@@ -113,7 +113,7 @@
     [self addSubview:renLingTree];
     self.renLingTree = renLingTree;
    
-    NSArray *Names = @[@"古树认养",@"果树预售",@"排行榜"];
+    NSArray *Names = @[@"古树认养",@"商城",@"排行榜"];
 
     [Names enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
@@ -161,18 +161,22 @@
     self.tuiLab = tuiLab;
     
     UIImageView *imageView = [[UIImageView alloc] init];
+    imageView.userInteractionEnabled = YES;
     imageView.image = kImage(@"baner1");
     imageView.contentMode = UIViewContentModeScaleToFill;
-    imageView.frame = CGRectMake(15, tuiLab.yy+5, (kScreenWidth-40)/2, 100);
+    imageView.frame = CGRectMake(15, tuiLab.yy+5, (kScreenWidth-40), 100);
     imageView.contentMode = UIViewContentModeScaleToFill;
     [self.tuiArticle addSubview:imageView];
+    UITapGestureRecognizer *ta = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tuiwenClick)];
+    [imageView addGestureRecognizer:ta];
     
-    UIImageView *imageView2 = [[UIImageView alloc] init];
-    imageView2.image = kImage(@"baner2");
-    imageView2.contentMode = UIViewContentModeScaleToFill;
-    imageView2.frame = CGRectMake((kScreenWidth-40)/2+10+15, tuiLab.yy+5, (kScreenWidth-40)/2, 100);
-    imageView2.contentMode = UIViewContentModeScaleToFill;
-    [self.tuiArticle addSubview:imageView2];
+    
+//    UIImageView *imageView2 = [[UIImageView alloc] init];
+//    imageView2.image = kImage(@"baner2");
+//    imageView2.contentMode = UIViewContentModeScaleToFill;
+//    imageView2.frame = CGRectMake((kScreenWidth-40)/2+10+15, tuiLab.yy+5, (kScreenWidth-40)/2, 100);
+//    imageView2.contentMode = UIViewContentModeScaleToFill;
+//    [self.tuiArticle addSubview:imageView2];
     
     UILabel *englishLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor font:12];
     englishLab.frame = CGRectMake((kScreenWidth-120), 10, 90, 30);
@@ -236,7 +240,7 @@
         _scrollView.data = @[@"baner1",@"baner2",@"baner1"];
         _scrollView.clickImageBlock = ^(NSInteger currentIndex) {
             
-            selectNum = currentIndex;
+            self->selectNum = currentIndex;
         };
     }
     return _scrollView;
@@ -322,6 +326,12 @@
     NSLog(@"点击认养");
 }
 
+-(void)tuiwenClick
+{
+    NSLog(@"点击推文");
+
+    
+}
 - (void)jumpArtcile
 {
     //跳转推文

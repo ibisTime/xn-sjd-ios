@@ -13,7 +13,8 @@
 #import "TLTopCollectionView.h"
 #import "PlateMineModel.h"
 #import "TLTextField.h"
-@interface HomeVC ()<RefreshDelegate,RefreshCollectionViewDelegate,UIScrollViewDelegate,UITextFieldDelegate>
+#import "TreeListVC.h"
+@interface HomeVC ()<RefreshDelegate,RefreshCollectionViewDelegate,UIScrollViewDelegate,UITextFieldDelegate,UISearchBarDelegate>
 @property (nonatomic, strong) HomeHeaderView *headerView;
 @property (nonatomic,strong) NSArray <HomeFindModel *>*findModels;
 @property (nonatomic,strong) NSMutableArray <BannerModel *>*bannerRoom;
@@ -36,9 +37,6 @@
 @implementation HomeVC
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    //    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    //去掉导航栏底部的黑线
-    // self.navigationController.navigationBarHidden = YES;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self headRefresh];
@@ -63,49 +61,89 @@
 }
 
 - (void)initSearchBar {
+    UIView *new = [UIView new];
+    new.frame = CGRectMake(0, 0, kScreenWidth-40, 44);
+    new.layer.cornerRadius = 23;
+    new.clipsToBounds = YES;
+    UISearchBar * searchbar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0f, 0.0f, kScreenWidth-40, 44.0f)];
+    searchbar.layer.cornerRadius = 23;
+    searchbar.clipsToBounds = YES;
+    searchbar.delegate = self;
+    [searchbar setTintColor:[UIColor lightGrayColor]];
+    [searchbar setPlaceholder:@"搜索商品信息"];
+    [new addSubview:searchbar];
+    self.searchBar = searchbar;
+    self.navigationItem.titleView = new;
+    UITextField *searchField = [searchbar valueForKey:@"searchField"];
     
-    [UINavigationBar appearance].barTintColor = kAppCustomMainColor;
-    CGFloat height = 35;
-    //搜索
-    UIView *searchBgView = [[UIView alloc] init];
-    //    UIView *searchBgView = [[UIView alloc] init];
-    searchBgView.frame = CGRectMake(0,0,kScreenWidth-40,height);
-    searchBgView.backgroundColor = kWhiteColor;
-    searchBgView.userInteractionEnabled = YES;
-    searchBgView.layer.cornerRadius = height/2.0;
-    searchBgView.clipsToBounds = YES;
-    
-    self.navigationItem.titleView = searchBgView;
-    
-    
-    //搜索输入框
-    self.searchTf = [[TLTextField alloc] initWithFrame:CGRectZero
-                                             leftTitle:@""
-                                            titleWidth:0
-                                           placeholder:@"请输入商品信息"];
-    self.searchTf.delegate = self;
-    self.searchTf.returnKeyType = UIReturnKeySearch;
-    self.searchTf.frame = CGRectMake(0,0,kScreenWidth-40,35);
-    [self.searchTf addTarget:self action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
-    [searchBgView addSubview:self.searchTf];
-    
-//    [self.searchTf setValue:[NSNumber numberWithInt:-15] forKey:@"paddingLeft"];
-    self.searchTf.leftView.frame = CGRectMake(0, 0, 20, 0);
-    self.searchTf.leftViewMode = UITextFieldViewModeAlways;
-    
-
-    [self.searchTf mas_makeConstraints:^(MASConstraintMaker *make) {
+    if (searchField) {
         
-        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 13, 0, 0));
+        [searchField setBackgroundColor:[UIColor whiteColor]];
         
-        make.width.mas_greaterThanOrEqualTo(kScreenWidth - 20 - 40 -  15 - 13-50);
-    }];
-    UIImageView *searImage = [[UIImageView alloc] initWithFrame:CGRectMake(15, 10, 15, 15)];
-    searImage.image = [UIImage imageNamed:@"位置"];
-    [searchBgView addSubview:searImage];
+        searchField.layer.cornerRadius = 23;//设置圆角具体根据实际情况来设置
+        
+        searchField.layer.borderColor = [UIColor lightGrayColor].CGColor;//边框的颜色
+        
+        searchField.layer.borderWidth = 1;//边框的宽
+        
+        searchField.layer.masksToBounds = YES;
+        
+        
+    }
+  
+ 
+  
+//    [UINavigationBar appearance].barTintColor = kAppCustomMainColor;
+//    CGFloat height = 35;
+//    //搜索
+//    UIView *searchBgView = [[UIView alloc] init];
+//    //    UIView *searchBgView = [[UIView alloc] init];
+//    searchBgView.frame = CGRectMake(0,0,kScreenWidth-40,height);
+//    searchBgView.backgroundColor = kWhiteColor;
+//    searchBgView.userInteractionEnabled = YES;
+//    searchBgView.layer.cornerRadius = height/2.0;
+//    searchBgView.clipsToBounds = YES;
+//
+//    self.navigationItem.titleView = searchBgView;
+//
+//
+//    //搜索输入框
+//    self.searchTf = [[TLTextField alloc] initWithFrame:CGRectZero
+//                                             leftTitle:@""
+//                                            titleWidth:0
+//                                           placeholder:@"请输入商品信息"];
+//    self.searchTf.delegate = self;
+//    self.searchTf.returnKeyType = UIReturnKeySearch;
+//    self.searchTf.frame = CGRectMake(0,0,kScreenWidth-40,35);
+//    [self.searchTf addTarget:self action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
+//    [searchBgView addSubview:self.searchTf];
+//
+////    [self.searchTf setValue:[NSNumber numberWithInt:-15] forKey:@"paddingLeft"];
+//    self.searchTf.leftView.frame = CGRectMake(0, 0, 20, 0);
+//    self.searchTf.leftViewMode = UITextFieldViewModeAlways;
+//
+//
+//    [self.searchTf mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 13, 0, 0));
+//
+//        make.width.mas_greaterThanOrEqualTo(kScreenWidth - 20 - 40 -  15 - 13-50);
+//    }];
+//    UIImageView *searImage = [[UIImageView alloc] initWithFrame:CGRectMake(15, 10, 15, 15)];
+//    searImage.image = [UIImage imageNamed:@"位置"];
+//    [searchBgView addSubview:searImage];
     
 }
-    
+
+-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    [self.view endEditing:YES];
+
+    TreeListVC *tree = [TreeListVC new];
+    [self.navigationController pushViewController:tree animated:YES];
+    return NO;
+
+}
 
 - (void)initTableView {
     
@@ -344,7 +382,8 @@
 
 - (void)textDidChange:(UITextField *)sender {
     
-    
+    TreeListVC *tree = [TreeListVC new];
+    [self.navigationController pushViewController:tree animated:YES];
 }
 
 - (void)back {
