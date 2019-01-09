@@ -22,4 +22,11 @@
 //更新placeholderView
 - (void)setPlaceholderViewTitle:(NSString *)title  operationTitle:(NSString *)optitle;
 
+
+//导航栏设为透明
+-(void)navigationTransparentClearColor;
+//导航栏设为默认
+-(void)navigationSetDefault;
+//导航栏设为白色
+-(void)navigationwhiteColor;
 @end

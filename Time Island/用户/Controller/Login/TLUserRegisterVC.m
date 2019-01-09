@@ -41,17 +41,45 @@
 //同意按钮
 @property (nonatomic, strong) UIButton *checkBtn;
 
+
+@property (nonatomic,strong)  UILabel * welcome;
+//账号
+@property (nonatomic,strong) UITextField * phone;
+@property (nonatomic,strong) UIView * phoneview;
+//验证码
+@property (nonatomic,strong) UITextField * check;
+@property (nonatomic,strong) UIView * checkview;
+//密码
+@property (nonatomic,strong) UITextField * pwd;
+@property (nonatomic,strong) UIView * pwdview;
+//确认密码
+@property (nonatomic,strong) UITextField * checkpwd;
+@property (nonatomic,strong) UIView * checkpwdview;
+
+
 @end
 
 @implementation TLUserRegisterVC
 
+-(void)viewWillAppear:(BOOL)animated{
+    //    self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
+    
+    //    [self.navigationController.navigationBar setBackgroundColor:[UIColor whiteColor]];
+}
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    self.title = [LangSwitcher switchLang:@"注册" key:nil];
+    self.title = @"注册";
+    
+    self.welcome = [[UILabel alloc]initWithFrame:CGRectMake(30, 139-64, 48, 34)];
+    self.welcome.text = @"注册";
+    self.welcome.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:24];
+    self.welcome.textColor = [UIColor colorWithHexString:@"#333333"];
+    [self.view addSubview:self.welcome];
     
     [self setUpUI];
-
+    
 }
 
 #pragma mark - Events
@@ -60,99 +88,106 @@
     
     self.view.backgroundColor = kBackgroundColor;
     
-    CGFloat margin = ACCOUNT_MARGIN;
+    //    CGFloat margin = ACCOUNT_MARGIN;
+    CGFloat margin = 30;
     CGFloat w = kScreenWidth - 2*margin;
     CGFloat h = ACCOUNT_HEIGHT;
     CGFloat titleWidth = 110;
     
     CGFloat btnMargin = 15;
     
-    //昵称
-    TLTextField *nickNameTF = [[TLTextField alloc] initWithFrame:CGRectMake(margin, 10, w, h) leftTitle:[LangSwitcher switchLang:@"昵称" key:nil] titleWidth:titleWidth placeholder:[LangSwitcher switchLang:@"请设置你的昵称" key:nil]];
-    
-    [self.view addSubview:nickNameTF];
-    self.nickNameTF = nickNameTF;
-    
     //账号
-    TLTextField *phoneTf = [[TLTextField alloc] initWithFrame:CGRectMake(margin, nickNameTF.yy + 1, w, h) leftTitle:[LangSwitcher switchLang:@"手机号" key:nil] titleWidth:titleWidth placeholder:[LangSwitcher switchLang:@"请输入手机号" key:nil]];
-    phoneTf.keyboardType = UIKeyboardTypeNumberPad;
-    [self.view addSubview:phoneTf];
-    self.phoneTf = phoneTf;
+    UITextField * phone = [[UITextField alloc]initWithFrame:CGRectMake(margin, self.welcome.yy+38, w, h)];
+    [phone setBackgroundColor:[UIColor colorWithHexString:@"#FFFFFF"]];
+    phone.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
+    phone.placeholder = @"请输入手机号";
+    phone.keyboardType = UIKeyboardTypeNumberPad;
+    phone.delegate = self;
+    phone.tag = 0;
+    [self.view addSubview:phone];
+    self.phone = phone;
+    
+    //phoneview
+    self.phoneview = [self createview:CGRectMake(margin, phone.yy, w, 1)];
+    [self.view addSubview:self.phoneview];
     
     //验证码
-    CaptchaView *captchaView = [[CaptchaView alloc] initWithFrame:CGRectMake(margin, phoneTf.yy + 1, w, h)];
-    [captchaView.captchaBtn addTarget:self action:@selector(sendCaptcha) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:captchaView];
-
-    self.captchaView = captchaView;
     
-    //推荐人
-    self.referTF = [[TLTextField alloc] initWithFrame:CGRectMake(margin, captchaView.yy + 1 , w, h) leftTitle:[LangSwitcher switchLang:@"推荐人(选填)" key:nil] titleWidth:titleWidth placeholder:[LangSwitcher switchLang:@"请输入推荐人手机号码" key:nil]];
-    [self.view addSubview:self.referTF];
-    self.referTF.keyboardType = UIKeyboardTypeNumberPad;
+    UITextField * check = [[UITextField alloc]initWithFrame:CGRectMake(margin, self.phone.yy+10, w-105, h)];
+    check.placeholder = @"请输入验证码";
+    check.delegate = self;
+    check.tag = 1;
+    [self.view addSubview:check];
+    self.check = check;
+    
+    //获取验证码
+    UIButton * getcheck = [[UIButton alloc]initWithFrame:CGRectMake(check.right, self.phoneview.yy + 13, 105,34)];
+    [getcheck setTitle:@"获取验证码" forState:UIControlStateNormal];
+    getcheck.titleLabel.font = [UIFont systemFontOfSize:13];
+    [getcheck setTitleColor:[UIColor colorWithHexString:@"#23AD8C"] forState:UIControlStateNormal];
+    getcheck.layer.cornerRadius = 5;
+    getcheck.layer.masksToBounds = YES;
+    [getcheck.layer setBorderWidth:1.0];
+    [getcheck.layer setBorderColor:[UIColor colorWithHexString:@"#23AD8C"].CGColor];
+    [getcheck addTarget:self action:@selector(sendCaptcha) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:getcheck];
+    
+    
+    //checkview
+    self.checkview = [self createview:CGRectMake(margin, check.yy, w, 1)];
+    [self.view addSubview:self.checkview];
     
     //密码
-    TLTextField *pwdTf = [[TLTextField alloc] initWithFrame:CGRectMake(margin, self.referTF.yy + 10, w, h) leftTitle:[LangSwitcher switchLang:@"密码" key:nil] titleWidth:titleWidth placeholder:[LangSwitcher switchLang:@"请输入密码(不少于6位)" key:nil]];
-    pwdTf.secureTextEntry = YES;
+    UITextField * pwd = [[UITextField alloc]initWithFrame:CGRectMake(margin,self.checkview.yy + 10, w, h)];
+    pwd.secureTextEntry = YES;
+    pwd.placeholder = @"请输入密码";
+    [pwd setBackgroundColor:[UIColor colorWithHexString:@"#FFFFFF"]];
+    pwd.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
+    pwd.delegate = self;
+    pwd.tag = 2;
+    [self.view addSubview:pwd];
+    self.pwd = pwd;
     
-    [self.view addSubview:pwdTf];
-    self.pwdTf = pwdTf;
     
-    //re密码
-    TLTextField *rePwdTf = [[TLTextField alloc] initWithFrame:CGRectMake(margin, pwdTf.yy + 1, w, h) leftTitle:[LangSwitcher switchLang:@"确认密码" key:nil] titleWidth:titleWidth placeholder:[LangSwitcher switchLang:@"确认密码" key:nil]];
-    rePwdTf.secureTextEntry = YES;
-    [self.view addSubview:rePwdTf];
-    self.rePwdTf = rePwdTf;
+    //pwdview
+    self.pwdview = [self createview:CGRectMake(margin, pwd.yy, w, 1)];
+    [self.view addSubview:self.pwdview];
     
-//    for (int i = 0; i < 2; i++) {
+    //确认密码
+    UITextField * checkpwd = [[UITextField alloc]initWithFrame:CGRectMake(margin, pwd.yy + 10, w, h)];
+    checkpwd.secureTextEntry = YES;
+    checkpwd.placeholder = @"请确认密码";
+    [checkpwd setBackgroundColor:[UIColor colorWithHexString:@"#FFFFFF"]];
+    checkpwd.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
+    checkpwd.delegate = self;
+    checkpwd.tag = 3;
+    [self.view addSubview:checkpwd];
+    self.checkpwd = checkpwd;
     
-//        UIView *line = [[UIView alloc] init];
-//
-//        line.backgroundColor = kLineColor;
-//
-//        [self.view addSubview:line];
-//        [line mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//            make.left.mas_equalTo(margin);
-//            make.right.mas_equalTo(0);
-//            make.height.mas_equalTo(0.5);
-//            make.top.mas_equalTo(10 + h + i*(2*h + 10 + 1));
-//
-//        }];
-//    }
+    //checkpwdview
+    self.checkpwdview = [self createview:CGRectMake(margin, checkpwd.yy, w, 1)];
+    [self.view addSubview:self.checkpwdview];
     
-    //
-    UIButton *confirmBtn = [UIButton buttonWithTitle:[LangSwitcher switchLang:@"确认注册" key:nil] titleColor:kWhiteColor backgroundColor:kAppCustomMainColor titleFont:16.0 cornerRadius:5];
-    
-    [confirmBtn addTarget:self action:@selector(goReg) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:confirmBtn];
-    [confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.mas_equalTo(btnMargin);
-        make.width.mas_equalTo(kScreenWidth - 2*btnMargin);
-        make.height.mas_equalTo(h - 5);
-        make.top.mas_equalTo(rePwdTf.mas_bottom).mas_equalTo(40);
-        
-    }];
     
     //选择按钮
-    UIButton *checkBtn = [UIButton buttonWithImageName:@"不打勾" selectedImageName:@"打勾"];
+    UIButton *checkBtn = [UIButton buttonWithImageName:@"条款-未选中" selectedImageName:@"条款-选中"];
     
     checkBtn.selected = YES;
-    
     [checkBtn addTarget:self action:@selector(clickSelect:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:checkBtn];
     [checkBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(confirmBtn.mas_left).offset(5);
-        make.top.equalTo(confirmBtn.mas_bottom).offset(18);
+        make.left.equalTo(self.checkpwdview.mas_left);
+        make.top.equalTo(self.checkpwdview.mas_bottom).offset(18);
+        make.width.equalTo(@(12));
+        make.height.equalTo(@(12));
+        
     }];
     
     self.checkBtn = checkBtn;
     
-    NSString *text = [LangSwitcher switchLang:@"我已阅读并同意" key:nil];
+    NSString *text = @"我已阅读并同意";
     
     //text
     UILabel *textLbl = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor font:12];
@@ -169,7 +204,7 @@
         
     }];
     
-    UIButton *protocolBtn = [UIButton buttonWithTitle:[LangSwitcher switchLang:@"《注册协议》" key:nil] titleColor:kAppCustomMainColor backgroundColor:kClearColor titleFont:12.0];
+    UIButton *protocolBtn = [UIButton buttonWithTitle:@"《时间岛服务产品条款》" titleColor:kAppCustomMainColor backgroundColor:kClearColor titleFont:12.0];
     
     [protocolBtn addTarget:self action:@selector(readProtocal) forControlEvents:UIControlEventTouchUpInside];
     
@@ -178,6 +213,19 @@
         
         make.left.equalTo(textLbl.mas_right);
         make.centerY.equalTo(checkBtn.mas_centerY);
+        
+    }];
+    
+    //注册按钮
+    UIButton *confirmBtn = [UIButton buttonWithTitle:@"确认注册" titleColor:kWhiteColor backgroundColor:[UIColor colorWithHexString:@"#23AD8C"] titleFont:16.0 cornerRadius:5];
+    [confirmBtn addTarget:self action:@selector(goReg) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:confirmBtn];
+    [confirmBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.mas_equalTo(btnMargin);
+        make.width.mas_equalTo(kScreenWidth - 2*btnMargin);
+        make.height.mas_equalTo(h - 5);
+        make.top.mas_equalTo(protocolBtn.mas_bottom).mas_equalTo(40);
         
     }];
 }
@@ -189,7 +237,7 @@
     
     if (![self.phoneTf.text isPhoneNum]) {
         
-        [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入正确的手机号" key:nil]];
+        [TLAlert alertWithInfo:@"请输入正确的手机号"];
         
         return;
     }
@@ -251,18 +299,18 @@
     
     if (!self.checkBtn.selected) {
         
-        [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请同意《注册协议》" key:nil]];
+        [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请同意《时间岛服务产品条款》" key:nil]];
         return ;
     }
     
     [self.view endEditing:YES];
-
+    
     TLNetworking *http = [TLNetworking new];
     http.showView = self.view;
     http.code = USER_REG_CODE;
     http.parameters[@"mobile"] = self.phoneTf.text;
     http.parameters[@"loginPwd"] = self.pwdTf.text;
-//    http.parameters[@"isRegHx"] = @"0";
+    //    http.parameters[@"isRegHx"] = @"0";
     http.parameters[@"smsCaptcha"] = self.captchaView.captchaTf.text;
     http.parameters[@"kind"] = APP_KIND;
     http.parameters[@"nickname"] = self.nickNameTF.text;
@@ -270,7 +318,7 @@
         
         http.parameters[@"userReferee"] = self.referTF.text;
         http.parameters[@"userRefereeKind"] = APP_KIND;
-       
+        
     }
     
     [http postWithSuccess:^(id responseObject) {
@@ -281,35 +329,35 @@
         NSString *userId = responseObject[@"data"][@"userId"];
         
         //保存用户账号和密码
-//        [[TLUser user] saveUserName:self.phoneTf.text pwd:self.pwdTf.text];
+        //        [[TLUser user] saveUserName:self.phoneTf.text pwd:self.pwdTf.text];
         
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-            //获取用户信息
-            TLNetworking *http = [TLNetworking new];
-            http.showView = self.view;
-            http.code = USER_INFO;
-            http.parameters[@"userId"] = userId;
-            http.parameters[@"token"] = token;
-            [http postWithSuccess:^(id responseObject) {
-                
-                [TLAlert alertWithSucces:[LangSwitcher switchLang:@"注册成功" key:nil]];
-                NSDictionary *userInfo = responseObject[@"data"];
-                [TLUser user].userId = userId;
-                [TLUser user].token = token;
-                
-                //保存信息
-                [[TLUser user] saveUserInfo:userInfo];
-                [[TLUser user] setUserInfoWithDict:userInfo];
-                //dismiss 掉
-                [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-                [[NSNotificationCenter defaultCenter] postNotificationName:kUserLoginNotification object:nil];
-                
-            } failure:^(NSError *error) {
-                
-            }];
+        //获取用户信息
+        TLNetworking *http = [TLNetworking new];
+        http.showView = self.view;
+        http.code = USER_INFO;
+        http.parameters[@"userId"] = userId;
+        http.parameters[@"token"] = token;
+        [http postWithSuccess:^(id responseObject) {
             
-//        });
+            [TLAlert alertWithSucces:[LangSwitcher switchLang:@"注册成功" key:nil]];
+            NSDictionary *userInfo = responseObject[@"data"];
+            [TLUser user].userId = userId;
+            [TLUser user].token = token;
+            
+            //保存信息
+            [[TLUser user] saveUserInfo:userInfo];
+            [[TLUser user] setUserInfoWithDict:userInfo];
+            //dismiss 掉
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kUserLoginNotification object:nil];
+            
+        } failure:^(NSError *error) {
+            
+        }];
+        
+        //        });
         
         
     } failure:^(NSError *error) {
@@ -332,5 +380,46 @@
     
     [self.navigationController pushViewController:htmlVC animated:YES];
     
+}
+-(UIView * )createview:(CGRect)frame{
+    UIView * view = [[UIView alloc]initWithFrame:frame];
+    view.backgroundColor = [UIColor grayColor];
+    return view;
+}
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    switch (textField.tag) {
+        case 0:
+            self.phoneview.backgroundColor = [UIColor blackColor];
+            break;
+        case 1:
+            self.checkview.backgroundColor = [UIColor blackColor];
+            break;
+        case 2:
+            self.pwdview.backgroundColor = [UIColor blackColor];
+            break;
+        case 3:
+            self.checkpwdview.backgroundColor = [UIColor blackColor];
+            break;
+        default:
+            break;
+    }
+}
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    switch (textField.tag) {
+        case 0:
+            self.phoneview.backgroundColor = [UIColor grayColor];
+            break;
+        case 1:
+            self.checkview.backgroundColor = [UIColor grayColor];
+            break;
+        case 2:
+            self.pwdview.backgroundColor = [UIColor grayColor];
+            break;
+        case 3:
+            self.checkpwdview.backgroundColor = [UIColor grayColor];
+            break;
+        default:
+            break;
+    }
 }
 @end

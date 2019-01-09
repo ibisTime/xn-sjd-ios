@@ -28,13 +28,19 @@
 
 @interface TLUserLoginVC ()
 
-@property (nonatomic,strong) AccountTf *phoneTf;
-@property (nonatomic,strong) AccountTf *pwdTf;
+
+@property (nonatomic,strong) UITextField * phone;
+@property (nonatomic,strong) UITextField * pwd;
+
+@property (nonatomic,strong)  UILabel * welcome;
+@property (nonatomic,strong) UILabel * weichat;
 
 @property (nonatomic, copy) NSString *verifyCode;
 
 @property (nonatomic, copy) NSString *mobile;
 
+@property (nonatomic,strong) UIView * phoneview;
+@property (nonatomic,strong) UIView * pwdview;
 @end
 
 @implementation TLUserLoginVC
@@ -42,30 +48,39 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
+    //    [self.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
+    [self navigationTransparentClearColor];
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self navigationSetDefault];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = [LangSwitcher switchLang:@"登录" key:nil];
+    //    self.title = [LangSwitcher switchLang:@"登录" key:nil];
+    self.title = @"登录";
     
-    [self setBarButtonItem];
+    self.welcome = [[UILabel alloc]initWithFrame:CGRectMake(30, 139-64, 97, 33.5)];
+    self.welcome.text = @"欢迎回来";
+    self.welcome.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:24];
+    self.welcome.textColor = [UIColor colorWithHexString:@"#2D2D2D"];
+    [self.view addSubview:self.welcome];
+    
+    
+    
     
     [self setUpUI];
     //腾讯云登录成功
-//    [self setUpNotification];
+    //    [self setUpNotification];
+    
     
 }
 
 #pragma mark - Init
-
-- (void)setBarButtonItem {
-
-    //取消按钮
-    [UIBarButtonItem addLeftItemWithImageName:kCancelIcon frame:CGRectMake(-30, 0, 80, 44) vc:self action:@selector(back)];
-    //注册
-    [UIBarButtonItem addRightItemWithTitle:[LangSwitcher switchLang:@"注册" key:nil] titleColor:kTextColor frame:CGRectMake(0, 0, 60, 44) vc:self action:@selector(goReg)];
-}
 
 - (void)setUpUI {
     
@@ -74,114 +89,104 @@
     CGFloat w = kScreenWidth;
     CGFloat h = ACCOUNT_HEIGHT;
     
-    UIView *bgView = [[UIView alloc] init];
-    
-    bgView.backgroundColor = kWhiteColor;
-    
-    [self.view addSubview:bgView];
-    [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.top.equalTo(@(10));
-        make.left.mas_equalTo(0);
-        make.height.mas_equalTo(2*h + 1);
-        make.width.mas_equalTo(w);
-        
-    }];
     
     //账号
-    //账号
-    AccountTf *phoneTf = [[AccountTf alloc] initWithFrame:CGRectMake(0, 0, w, h)];
-    phoneTf.leftIconView.image = [UIImage imageNamed:@"手机"];
-    phoneTf.placeHolder = [LangSwitcher switchLang:@"请输入手机号或邮箱" key:nil];
-    [bgView addSubview:phoneTf];
-    self.phoneTf = phoneTf;
+    UITextField * phone = [[UITextField alloc]initWithFrame:CGRectMake(30, self.welcome.yy + 36 ,w-60, 55)];
+    phone.placeholder = @"请输入账号";
+    phone.borderStyle = UITextBorderStyleNone;
+    phone.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
+    phone.textColor = [UIColor colorWithHexString:@"#333333"];
+    [phone resignFirstResponder];
+    [self.view addSubview:phone];
+    phone.tag = 0;
+    phone.delegate = self;
+    self.phone = phone;
     
+    //phoneview
+    self.phoneview = [self createview:CGRectMake(30, phone.yy, w-60, 1)];
+    [self.view addSubview:self.phoneview];
     
     //密码
-    AccountTf *pwdTf = [[AccountTf alloc] initWithFrame:CGRectMake(0, phoneTf.yy + 1, w, h)];
-    pwdTf.secureTextEntry = YES;
-    pwdTf.leftIconView.image = [UIImage imageNamed:@"密码"];
-    pwdTf.placeHolder = [LangSwitcher switchLang:@"请输入密码" key:nil];
-    [bgView addSubview:pwdTf];
-    self.pwdTf = pwdTf;
+    UITextField * pwd = [[UITextField alloc]initWithFrame:CGRectMake(30, phone.yy + 10 , w-60, 55)];
+    pwd.placeholder = @"请输入密码（6～16个字符或字母组成）";
+    pwd.borderStyle = UITextBorderStyleNone;
+    pwd.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
+    pwd.textColor = [UIColor colorWithHexString:@"#333333"];
+    pwd.tag = 1;
+    pwd.delegate = self;
+    pwd.secureTextEntry = YES;
+    [self.view addSubview:pwd];
     
-    for (int i = 0; i < 2; i++) {
-        
-        UIView *line = [[UIView alloc] init];
-        
-        line.backgroundColor = kLineColor;
-        
-        [bgView addSubview:line];
-        [line mas_makeConstraints:^(MASConstraintMaker *make) {
-            
-            make.left.mas_equalTo(0);
-            make.right.mas_equalTo(0);
-            make.height.mas_equalTo(0.5);
-            make.top.mas_equalTo((i+1)*h);
-            
-        }];
-    }
+    //pwdview
+    self.pwdview = [self createview:CGRectMake(30, pwd.yy, w-60, 1)];
+    [self.view addSubview:self.pwdview];
+    
     //登录
-    UIButton *loginBtn = [UIButton buttonWithTitle:[LangSwitcher switchLang:@"登录" key:nil] titleColor:kWhiteColor backgroundColor:kAppCustomMainColor titleFont:17.0 cornerRadius:5];
+    UIButton *loginBtn = [UIButton buttonWithTitle:@"登录" titleColor:[UIColor colorWithHexString:@"#FFFFFF"] backgroundColor:[UIColor colorWithHexString:@"#23AD8C"] titleFont:16.0 cornerRadius:4];
+    loginBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:16.0];
     [loginBtn addTarget:self action:@selector(goLogin) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginBtn];
     [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(@(15));
-        make.height.equalTo(@(h - 5));
-        make.right.equalTo(@(-15));
-        make.top.equalTo(bgView.mas_bottom).offset(28);
+        make.left.equalTo(@(30));
+        make.height.equalTo(@(45));
+        make.right.equalTo(@(-30));
+        make.top.equalTo(pwd.mas_bottom).offset(40);
         
     }];
     
-    //找回密码
-    UIButton *forgetPwdBtn = [UIButton buttonWithTitle:[LangSwitcher switchLang:@"找回密码?" key:nil] titleColor:kTextColor2 backgroundColor:kClearColor titleFont:14.0];
+    //立即注册
+    UIButton * registerbtn = [UIButton buttonWithTitle:@"立即注册" titleColor:kTextColor2 backgroundColor:kClearColor titleFont:13.0];
+    registerbtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [self.view addSubview:registerbtn];
+    [registerbtn addTarget:self action:@selector(goReg) forControlEvents:UIControlEventTouchUpInside];
+    [registerbtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(loginBtn.mas_left);
+        make.top.equalTo(loginBtn.mas_bottom).offset(20);
+        make.width.equalTo(@(55));
+        make.height.equalTo(@(18.5));
+    }];
     
+    
+    //找回密码
+    UIButton *forgetPwdBtn = [UIButton buttonWithTitle:@"忘记密码？" titleColor:kTextColor2 backgroundColor:kClearColor titleFont:13.0];
     forgetPwdBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     [forgetPwdBtn addTarget:self action:@selector(findPwd) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:forgetPwdBtn];
     
     [forgetPwdBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
+        make.width.equalTo(@(70));
+        make.height.equalTo(@(18.5));
         make.right.equalTo(loginBtn.mas_right);
-        make.top.equalTo(loginBtn.mas_bottom).offset(18);
-
+        make.top.equalTo(loginBtn.mas_bottom).offset(20);
+        
     }];
     
+    [self.view addSubview: [self createview:CGRectMake(113, 510, 15, 1)]];
+    
+    UIImageView * weichatlogin = [[UIImageView alloc]initWithFrame:CGRectMake(136, 502, 20, 17)];
+    weichatlogin.image = [UIImage imageNamed:@"微信"];
+    [self.view addSubview:weichatlogin];
+    
+    self.weichat = [[UILabel alloc]initWithFrame:CGRectMake(163, 501, 78, 19)];
+    self.weichat.text = @"微信快速登录";
+    self.weichat.textAlignment = NSTextAlignmentCenter;
+    self.weichat.textColor = kTextColor2;
+    self.weichat.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:13];
+    [self.view addSubview:self.weichat];
+    
+    [self.view addSubview: [self createview:CGRectMake(249, 510, 15, 1)]];
+    
 }
-
-//- (void)setUpNotification {
-//
-//    //登录成功之后，给予回调
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(login) name:kUserLoginNotification object:nil];
-//
-//}
 
 #pragma mark - Events
 
 - (void)back {
-    
     [self.view endEditing:YES];
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-//登录成功
-//- (void)login {
-//
-//
-//    // apple delegate
-//
-//    [[NSNotificationCenter defaultCenter] postNotificationName:kUserLoginNotification object:nil];
-//
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//
-//    if (self.loginSuccess) {
-//
-//        self.loginSuccess();
-//    }
-//
-//}
 
 - (void)findPwd {
     
@@ -199,38 +204,15 @@
 }
 
 - (void)goLogin {
-    
-    if (![self.phoneTf.text isPhoneNum]) {
-        
-        [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入正确的账号" key:nil]];
-
+    if (![self.phone.text isPhoneNum]) {
+        [TLAlert alertWithInfo:@"请输入正确的账号"];
         return;
     }
-    
-    if (!(self.pwdTf.text &&self.pwdTf.text.length > 5)) {
-        
-        [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入6位以上密码" key:nil]];
+    if (!(self.pwd.text && self.pwd.text.length > 5)) {
+        [TLAlert alertWithInfo:@"请输入正确的密码"];
         return;
     }
-    
     [self.view endEditing:YES];
-
-    TLNetworking *http = [TLNetworking new];
-    http.showView = self.view;
-    http.code = USER_LOGIN_CODE;
-    
-    http.parameters[@"loginName"] = self.phoneTf.text;
-    http.parameters[@"loginPwd"] = self.pwdTf.text;
-    http.parameters[@"kind"] = APP_KIND;
-
-    [http postWithSuccess:^(id responseObject) {
-        
-        [self requesUserInfoWithResponseObject:responseObject];
-        
-    } failure:^(NSError *error) {
-        
-        
-    }];
     
 }
 
@@ -240,7 +222,7 @@
     NSString *userId = responseObject[@"data"][@"userId"];
     
     //保存用户账号和密码
-//    [[TLUser user] saveUserName:self.phoneTf.text pwd:self.pwdTf.text];
+    //    [[TLUser user] saveUserName:self.phoneTf.text pwd:self.pwdTf.text];
     
     //1.获取用户信息
     TLNetworking *http = [TLNetworking new];
@@ -312,4 +294,26 @@
     [self.view endEditing:YES];
 }
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    if (textField.tag == 0) {
+        self.phoneview.backgroundColor = [UIColor blackColor];
+    }
+    else{
+        self.pwdview.backgroundColor = [UIColor blackColor];
+    }
+}
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    if (textField.tag == 0) {
+        self.phoneview.backgroundColor = [UIColor grayColor];
+    }
+    else{
+        self.pwdview.backgroundColor = [UIColor grayColor];
+    }
+}
+
+-(UIView*)createview:(CGRect)frame{
+    UIView * view = [[UIView alloc]initWithFrame:frame];
+    view.backgroundColor = kLineColor;
+    return view;
+}
 @end
