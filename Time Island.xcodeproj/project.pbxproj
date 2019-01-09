@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36F5117B21E5F88D00213DE3 /* MineVcCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F5117A21E5F88D00213DE3 /* MineVcCell.m */; };
 		B81E5EA821DC8B3C00873AB9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B81E5EA721DC8B3C00873AB9 /* ViewController.m */; };
 		B81E5EAB21DC8B3C00873AB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B81E5EA921DC8B3C00873AB9 /* Main.storyboard */; };
 		B81E5EAD21DC8B4100873AB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B81E5EAC21DC8B4100873AB9 /* Assets.xcassets */; };
@@ -175,6 +176,8 @@
 /* Begin PBXFileReference section */
 		2613D8EB1E56B0B644262010 /* Pods-Time Island.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time Island.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Time Island/Pods-Time Island.debug.xcconfig"; sourceTree = "<group>"; };
 		298359E7B0E6639397AFC0E2 /* Pods-Time Island.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time Island.release.xcconfig"; path = "Pods/Target Support Files/Pods-Time Island/Pods-Time Island.release.xcconfig"; sourceTree = "<group>"; };
+		36F5117921E5F88D00213DE3 /* MineVcCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineVcCell.h; sourceTree = "<group>"; };
+		36F5117A21E5F88D00213DE3 /* MineVcCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineVcCell.m; sourceTree = "<group>"; };
 		85935B108A2342344937F73A /* libPods-Time Island.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Time Island.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B81E5EA021DC8B3C00873AB9 /* Time Island.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Time Island.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B81E5EA621DC8B3C00873AB9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -492,6 +495,22 @@
 				298359E7B0E6639397AFC0E2 /* Pods-Time Island.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		36F5117721E5F87F00213DE3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		36F5117821E5F87F00213DE3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36F5117921E5F88D00213DE3 /* MineVcCell.h */,
+				36F5117A21E5F88D00213DE3 /* MineVcCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		A27B85BBCC1D95F10D614566 /* Frameworks */ = {
@@ -1098,9 +1117,9 @@
 		B81E5F9A21DC8FC100873AB9 /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				36F5117721E5F87F00213DE3 /* Model */,
+				36F5117821E5F87F00213DE3 /* View */,
 				B81E5F9B21DC8FC100873AB9 /* Controller */,
-				B81E5F9C21DC8FC100873AB9 /* Model */,
-				B81E5F9D21DC8FC100873AB9 /* View */,
 			);
 			path = "我的";
 			sourceTree = "<group>";
@@ -1112,20 +1131,6 @@
 				B81E608421DC9FB200873AB9 /* MineVC.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		B81E5F9C21DC8FC100873AB9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B81E5F9D21DC8FC100873AB9 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		B81E5F9E21DC8FC100873AB9 /* 氧圈 */ = {
@@ -1244,11 +1249,11 @@
 			isa = PBXGroup;
 			children = (
 				B81E600021DC906C00873AB9 /* TLUserForgetPwdVC.h */,
-				B81E600121DC906C00873AB9 /* TLUserLoginVC.m */,
-				B81E600221DC906C00873AB9 /* TLUserRegisterVC.h */,
-				B81E600321DC906C00873AB9 /* TLUserLoginVC.h */,
 				B81E600421DC906C00873AB9 /* TLUserForgetPwdVC.m */,
+				B81E600221DC906C00873AB9 /* TLUserRegisterVC.h */,
 				B81E600521DC906C00873AB9 /* TLUserRegisterVC.m */,
+				B81E600321DC906C00873AB9 /* TLUserLoginVC.h */,
+				B81E600121DC906C00873AB9 /* TLUserLoginVC.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -1638,6 +1643,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B81E5FBE21DC8FC200873AB9 /* TLAlert.m in Sources */,
+				36F5117B21E5F88D00213DE3 /* MineVcCell.m in Sources */,
 				B81E5FB821DC8FC200873AB9 /* TLProgressHUD.m in Sources */,
 				B81E5FED21DC8FC200873AB9 /* LangSwitcher.m in Sources */,
 				B81E608E21DC9FFC00873AB9 /* HomeVC.m in Sources */,

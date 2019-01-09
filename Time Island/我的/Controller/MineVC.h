@@ -7,7 +7,7 @@
 //
 
 #import "TLBaseVC.h"
-
-@interface MineVC : TLBaseVC
+#import "MineVcCell.h"
+@interface MineVC : TLBaseVC<UITableViewDelegate,UITableViewDataSource>
 
 @end
