@@ -30,13 +30,13 @@
     NSArray *titles = @[
                         [LangSwitcher switchLang:@"首页" key:nil],
                         [LangSwitcher switchLang:@"氧圈" key:nil],
-                        [LangSwitcher switchLang:@"商城" key:nil],
+//                        [LangSwitcher switchLang:@"商城" key:nil],
                         [LangSwitcher switchLang:@"我的" key:nil]
                         ];
-    NSArray *VCNames = @[@"HomeVC",@"LinCircleVC",@"MallVC",@"MineVC"];
+    NSArray *VCNames = @[@"HomeVC",@"LinCircleVC",@"MineVC"];
     
-    NSArray *imageNames = @[@"首页未点击",@"林空间未点击",@"商场未点击",@"我的未点击"];
-    NSArray *selectedImageNames = @[@"首页点击",@"林空间点击",@"商场点击",@"我的点击"];
+    NSArray *imageNames = @[@"首页未点击",@"林空间未点击",@"我的未点击"];
+    NSArray *selectedImageNames = @[@"首页点击",@"林空间点击",@"我的点击"];
     
     
     for (int i = 0; i < imageNames.count; i++) {
