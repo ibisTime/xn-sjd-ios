@@ -7,12 +7,21 @@
 //
 
 #import "TreeDetailVC.h"
-
+#import "SelectScrollView.h"
+#import "TreeFieldVC.h"
+#import "TreeRenYangVC.h"
+#import "TreeInfoView.h"
+#import "TreeBottomView.h"
 @interface TreeDetailVC ()<UIScrollViewDelegate>
 @property (nonatomic ,strong) UIScrollView *contentScrollView;
 @property (nonatomic ,strong) UIView *topView;
 @property (nonatomic ,strong) UIView *placeHoldImage;
 @property (nonatomic ,strong) UIView *moreImage;
+@property (nonatomic , strong)SelectScrollView *selectSV;
+@property (nonatomic , strong) UIImageView *imageView;
+@property (nonatomic , strong) NSArray *itemsTitles;
+@property (nonatomic , strong) TreeInfoView *infoView;
+@property (nonatomic , strong) TreeBottomView *bottomView;
 
 @end
 
@@ -41,7 +50,47 @@
     [self initScrollView];
     [self initTopView];
     [self initCustomButton];
+    [self initFlats];
+    [self initBottomView];
+}
+- (void)initBottomView
+{
+    self.bottomView = [[TreeBottomView alloc] initWithFrame:CGRectMake(0, kScreenHeight-44, kScreenWidth, 44)];
+    [self.view addSubview:self.bottomView];
+    
+}
+- (void)initFlats
+{
+    
+    self.infoView = [[TreeInfoView alloc] initWithFrame:CGRectMake(0, self.imageView.yy+5, kScreenWidth, 100)];
+    [self.contentScrollView addSubview:self.infoView];
+    
+    self.itemsTitles = @[@"图文详情",@"数目参数",@"认养记录"];
+    self.selectSV = [[SelectScrollView alloc] initWithFrame:CGRectMake(0, self.infoView.yy+5, kScreenWidth, kSuperViewHeight - kTabBarHeight) itemTitles:self.itemsTitles];
+    [self.contentScrollView addSubview:self.selectSV];
+    self.contentScrollView.contentSize = CGSizeMake(0,  self.selectSV.yy+100);
 
+    for (NSInteger index = 0; index < self.itemsTitles.count; index ++) {
+        if (index == 0) {
+            TreeRenYangVC *activity = [[TreeRenYangVC alloc] init];
+            [self addChildViewController:activity];
+            activity.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
+            [self.selectSV.scrollView addSubview:activity.view];
+        }else if (index == 1)
+        {
+            TreeFieldVC *activity = [[TreeFieldVC alloc] init];
+            [self addChildViewController:activity];
+            activity.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
+            [self.selectSV.scrollView addSubview:activity.view];
+        }else{
+            TreeRenYangVC *activity = [[TreeRenYangVC alloc] init];
+            [self addChildViewController:activity];
+            activity.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
+            [self.selectSV.scrollView addSubview:activity.view];
+        }
+        
+    }
+    
 }
 
 - (void)initCustomButton
@@ -59,7 +108,7 @@
     moreImage.layer.cornerRadius = 15;
     moreImage.clipsToBounds = YES;
     UIButton *backButton = [UIButton buttonWithImageName:@"返回"];
-    UIButton *moreButton = [UIButton buttonWithImageName:@"返回"];
+    UIButton *moreButton = [UIButton buttonWithImageName:@""];
     backButton.frame = CGRectMake(15, 25, 30, 30);
     moreButton.frame = CGRectMake(kScreenWidth-55, 25, 30, 30);
     [self.view addSubview:backButton];
@@ -89,11 +138,12 @@
     
 }
 - (void)initScrollView {
-    self.contentScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, -kStatusBarHeight, kScreenWidth, kScreenHeight-kNavigationBarHeight)];
+    self.contentScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, -kStatusBarHeight, kScreenWidth, kScreenHeight+kStatusBarHeight)];
     self.contentScrollView.delegate = self;
     [self.view addSubview:self.contentScrollView];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 400)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 355)];
     imageView.image = kImage(@"baner1");
+    self.imageView = imageView;
     [self.contentScrollView addSubview:imageView];
     UIView *newView  = [UIView new];
     newView.frame = CGRectMake(0, imageView.yy, kScreenWidth, kScreenHeight);
@@ -107,7 +157,7 @@
     NSLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
     if (scrollView.contentOffset.y >0) {
     CGFloat TempAlpha = scrollView.contentOffset.y/kNavigationBarHeight;
-        self.topView.alpha = 1-TempAlpha;
+        self.topView.alpha = TempAlpha;
         if (scrollView.contentOffset.y > kNavigationBarHeight) {
             self.topView.alpha = 1;
         }

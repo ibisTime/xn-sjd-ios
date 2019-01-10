@@ -14,6 +14,7 @@
 #import "PlateMineModel.h"
 #import "TLTextField.h"
 #import "TreeListVC.h"
+#import "TitleView.h"
 @interface HomeVC ()<RefreshDelegate,RefreshCollectionViewDelegate,UIScrollViewDelegate,UITextFieldDelegate,UISearchBarDelegate>
 @property (nonatomic, strong) HomeHeaderView *headerView;
 @property (nonatomic,strong) NSArray <HomeFindModel *>*findModels;
@@ -32,18 +33,23 @@
 
 @property (nonatomic, strong) TLTextField *searchTf;//当前页数
 
+@property (nonatomic, strong) TitleView *Title;
+
 @end
 
 @implementation HomeVC
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self headRefresh];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 
@@ -56,82 +62,51 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.title = @"首页";
-    [self initTableView];
     [self initSearchBar];
+
+    [self initTableView];
 }
 
 - (void)initSearchBar {
-    UIView *new = [UIView new];
-    new.frame = CGRectMake(0, 0, kScreenWidth-40, 44);
-    new.layer.cornerRadius = 23;
-    new.clipsToBounds = YES;
-    UISearchBar * searchbar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0f, 0.0f, kScreenWidth-40, 44.0f)];
-    searchbar.layer.cornerRadius = 23;
+    UIView *content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kNavigationBarHeight)];
+    content.backgroundColor = kAppCustomMainColor;
+    
+    [self.view addSubview:content];
+    UIView *Title = [[UIView alloc] initWithFrame:CGRectMake(10, kStatusBarHeight+10, kScreenWidth-60, 31)];
+    Title.backgroundColor = kWhiteColor;
+    Title.layer.cornerRadius = 15.5;
+    Title.clipsToBounds = YES;
+    [content addSubview:Title];
+    UISearchBar * searchbar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth-60, 31.0f)];
+    searchbar.layer.cornerRadius = 15.5;
     searchbar.clipsToBounds = YES;
     searchbar.delegate = self;
-    [searchbar setTintColor:[UIColor lightGrayColor]];
+    [searchbar setBackgroundColor:kWhiteColor];
+//    [searchbar setTintColor:[UIColor lightGrayColor]];
     [searchbar setPlaceholder:@"搜索商品信息"];
-    [new addSubview:searchbar];
+    [Title addSubview:searchbar];
     self.searchBar = searchbar;
-    self.navigationItem.titleView = new;
+   
     UITextField *searchField = [searchbar valueForKey:@"searchField"];
     
     if (searchField) {
+        [[[[searchbar.subviews objectAtIndex : 0 ] subviews ] objectAtIndex : 0 ] removeFromSuperview ];
         
+        searchbar.backgroundColor = kWhiteColor;
+        
+     
         [searchField setBackgroundColor:[UIColor whiteColor]];
+        [searchField setValue:[UIFont systemFontOfSize:11] forKeyPath:@"_placeholderLabel.font"];
+       
+        searchField.layer.cornerRadius = 15.5;//设置圆角具体根据实际情况来设置
+        searchField.font =FONT(11);
         
-        searchField.layer.cornerRadius = 23;//设置圆角具体根据实际情况来设置
+//        searchField.layer.borderWidth = 1;//边框的宽
         
-        searchField.layer.borderColor = [UIColor lightGrayColor].CGColor;//边框的颜色
-        
-        searchField.layer.borderWidth = 1;//边框的宽
-        
-        searchField.layer.masksToBounds = YES;
+        searchField.clipsToBounds = YES;
         
         
     }
-  
- 
-  
-//    [UINavigationBar appearance].barTintColor = kAppCustomMainColor;
-//    CGFloat height = 35;
-//    //搜索
-//    UIView *searchBgView = [[UIView alloc] init];
-//    //    UIView *searchBgView = [[UIView alloc] init];
-//    searchBgView.frame = CGRectMake(0,0,kScreenWidth-40,height);
-//    searchBgView.backgroundColor = kWhiteColor;
-//    searchBgView.userInteractionEnabled = YES;
-//    searchBgView.layer.cornerRadius = height/2.0;
-//    searchBgView.clipsToBounds = YES;
-//
-//    self.navigationItem.titleView = searchBgView;
-//
-//
-//    //搜索输入框
-//    self.searchTf = [[TLTextField alloc] initWithFrame:CGRectZero
-//                                             leftTitle:@""
-//                                            titleWidth:0
-//                                           placeholder:@"请输入商品信息"];
-//    self.searchTf.delegate = self;
-//    self.searchTf.returnKeyType = UIReturnKeySearch;
-//    self.searchTf.frame = CGRectMake(0,0,kScreenWidth-40,35);
-//    [self.searchTf addTarget:self action:@selector(textDidChange:) forControlEvents:UIControlEventEditingChanged];
-//    [searchBgView addSubview:self.searchTf];
-//
-////    [self.searchTf setValue:[NSNumber numberWithInt:-15] forKey:@"paddingLeft"];
-//    self.searchTf.leftView.frame = CGRectMake(0, 0, 20, 0);
-//    self.searchTf.leftViewMode = UITextFieldViewModeAlways;
-//
-//
-//    [self.searchTf mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.edges.mas_equalTo(UIEdgeInsetsMake(0, 13, 0, 0));
-//
-//        make.width.mas_greaterThanOrEqualTo(kScreenWidth - 20 - 40 -  15 - 13-50);
-//    }];
-//    UIImageView *searImage = [[UIImageView alloc] initWithFrame:CGRectMake(15, 10, 15, 15)];
-//    searImage.image = [UIImage imageNamed:@"位置"];
-//    [searchBgView addSubview:searImage];
     
 }
 
@@ -147,14 +122,14 @@
 
 - (void)initTableView {
     
-    self.contentScrollew = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-kNavigationBarHeight)];
+    self.contentScrollew = [[UIScrollView alloc] initWithFrame:CGRectMake(0, kNavigationBarHeight, kScreenWidth, kScreenHeight-kNavigationBarHeight)];
     [self.view addSubview:self.contentScrollew];
     self.contentScrollew.delegate = self;
     self.contentScrollew.scrollEnabled = YES;
     self.contentScrollew.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headRefresh)];
 //    self.contentScrollew.mj_header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(headRefresh)];
     self.contentScrollew.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
-    self.tableView = [[HomeTbleView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-200) style:UITableViewStyleGrouped];
+    self.tableView = [[HomeTbleView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-220) style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = kWhiteColor;
     self.tableView.refreshDelegate = self;
     [self.contentScrollew addSubview:self.tableView];
@@ -190,17 +165,14 @@
 {
     self.page ++;
     [self.contentScrollew.mj_footer beginRefreshing];
-
     [self requestBannerList];
 
-    
 }
 
 - (void)initCollection
 {
     
-    
-    UILabel *lable = [UILabel labelWithTitle:@"古树认养" frame:CGRectMake(10, self.headerView.yy, kScreenWidth -30, 30)];
+    UILabel *lable = [UILabel labelWithTitle:@"古树认养" frame:CGRectMake(10, self.headerView.yy, kScreenWidth -30, 22)];
     lable.textAlignment = NSTextAlignmentLeft;
     lable.font = [UIFont boldSystemFontOfSize:16];
     
@@ -210,17 +182,17 @@
     lable.textColor = kTextColor;
     
     UILabel *englishLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor font:12];
-    englishLab.frame = CGRectMake((kScreenWidth-120), self.headerView.yy, 90, 30);
+    englishLab.frame = CGRectMake((kScreenWidth-130), self.headerView.yy, 90, 30);
     englishLab.textAlignment = NSTextAlignmentRight;
     englishLab.text = @"查看更多";
     [self.tableView addSubview:englishLab];
-    
+    englishLab.centerY = lable.centerY;
     UIButton *button = [UIButton buttonWithImageName:@"" selectedImageName:@""];
     [button setImage:kImage(@"积分更多") forState:UIControlStateNormal];
     button.frame  = CGRectMake(kScreenWidth -30, self.headerView.yy, 14, 30);
     [button addTarget:self action:@selector(jumpArtcile) forControlEvents:UIControlEventTouchUpInside];
     [self.tableView addSubview:button];
-    
+    button.centerY = englishLab.centerY;
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake((kScreenWidth-40)/2, 250);
     layout.minimumLineSpacing = 10.0; // 竖
@@ -229,7 +201,7 @@
     
    
     
-    TLTopCollectionView *topView = [[TLTopCollectionView alloc] initWithFrame:CGRectMake(0, self.tableView.yy+10, kScreenWidth, 550) collectionViewLayout:layout withImage:@[@""]];
+    TLTopCollectionView *topView = [[TLTopCollectionView alloc] initWithFrame:CGRectMake(0, self.tableView.yy, kScreenWidth, 550) collectionViewLayout:layout withImage:@[@""]];
     self.topView = topView;
     topView.refreshDelegate = self;
     [self.contentScrollew addSubview:topView];
@@ -281,7 +253,7 @@
         
         CoinWeakSelf;
         //头部
-        _headerView = [[HomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 10 + SCREEN_WIDTH/2+320 - 15-10)];
+        _headerView = [[HomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 10 + SCREEN_WIDTH/2+320 -65)];
         
         _headerView.headerBlock = ^(HomeEventsType type, NSInteger index, HomeFindModel *find) {
             [weakSelf headerViewEventsWithType:type index:index model:find];

@@ -12,6 +12,7 @@
 #import "MMBasePopupView.h"
 #import "MMSelectedPath.h"
 #import "MMCombinationItem.h"
+#import "AppColorMacro.h"
 @interface MMComBoBoxView () <MMDropDownBoxDelegate,MMPopupViewDelegate>
 @property (nonatomic, strong) NSMutableArray <MMDropDownBox *>*dropDownBoxArray;
 @property (nonatomic, strong) NSMutableArray <MMItem *>*itemArray;
@@ -97,8 +98,9 @@
         MMBasePopupView *popupView = [MMBasePopupView getSubPopupView:item];
         popupView.delegate = self;
         popupView.tag = index;
+        NSLog(@"%@",NSStringFromCGRect(popupView.frame));
         self.popupView = popupView;
-        [popupView popupViewFromSourceFrame:self.frame completion:^{
+        [popupView popupViewFromSourceFrame:CGRectMake(0, kNavigationBarHeight, self.frame.size.width, self.frame.size.height) completion:^{
            self.isAnimation = NO;
         }];
         [self.symbolArray addObject:popupView];

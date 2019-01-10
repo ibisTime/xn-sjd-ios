@@ -35,8 +35,8 @@
                         ];
     NSArray *VCNames = @[@"HomeVC",@"LinCircleVC",@"MineVC"];
     
-    NSArray *imageNames = @[@"首页未点击",@"林空间未点击",@"我的未点击"];
-    NSArray *selectedImageNames = @[@"首页点击",@"林空间点击",@"我的点击"];
+    NSArray *imageNames = @[@"首页-未选中",@"氧圈未选中",@"我的未选中"];
+    NSArray *selectedImageNames = @[@"首页选中",@"氧圈选中",@"我的-选中"];
     
     
     for (int i = 0; i < imageNames.count; i++) {

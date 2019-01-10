@@ -70,28 +70,30 @@
 -(void)initNoticeView
 {
     UIView *noticeView = [UIView new];
-    noticeView.frame = CGRectMake(0, self.scrollView.yy, kScreenWidth, 40);
+    noticeView.frame = CGRectMake(0, self.scrollView.yy, kScreenWidth, 32);
     [self addSubview:noticeView];
     self.noticeView = noticeView;
-    noticeView.backgroundColor = RGB(227, 246, 239);
+    noticeView.backgroundColor = RGB(233, 247, 243);
     UIImageView *imageView = [[UIImageView alloc] init];
     imageView.image = kImage(@"公告");
     imageView.contentMode = UIViewContentModeScaleToFill;
-    imageView.frame = CGRectMake(25, 10, 40, 20);
+    imageView.frame = CGRectMake(23, 10, 28.5, 12.5);
     [self.noticeView addSubview:imageView];
     UIView *line = [UIView new];
     line.backgroundColor = kLineColor;
-    line.frame = CGRectMake(10, 12.5, 4, 15);
+    line.frame = CGRectMake(10, 10, 4, 12.5);
     line.backgroundColor = kAppCustomMainColor;
     [self.noticeView addSubview:line];
-    UILabel *introduceLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor font:14];
-    introduceLab.frame = CGRectMake(90, 5, kScreenWidth-140-50, 30);
+    UILabel *introduceLab = [UILabel labelWithBackgroundColor:kClearColor textColor:RGB(0, 0, 0) font:11];
+    introduceLab.textAlignment = NSTextAlignmentLeft;
+    introduceLab.frame = CGRectMake(60, 6, kScreenWidth-140-50, 20);
     introduceLab.text = @"测试";
+    introduceLab.centerY = imageView.centerY;
     [self.noticeView addSubview:introduceLab];
     self.introduceLab = introduceLab;
     
-    UILabel *moreLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor2 font:14];
-    moreLab.frame = CGRectMake(kScreenWidth-40, 5, 40, 30);
+    UILabel *moreLab = [UILabel labelWithBackgroundColor:kClearColor textColor:RGB(35, 173, 140) font:11];
+    moreLab.frame = CGRectMake(kScreenWidth-40, 10, 40, 12.5);
     moreLab.textAlignment = NSTextAlignmentLeft;
     moreLab.text = @"更多";
     [self.noticeView addSubview:moreLab];
@@ -101,7 +103,7 @@
     
     UIView *line1 = [UIView new];
     line1.backgroundColor = kLineColor;
-    line1.frame = CGRectMake(kScreenWidth-50, 12.5, 2, 15);
+    line1.frame = CGRectMake(kScreenWidth-50, 10, 2, 12.5);
     line1.backgroundColor = kAppCustomMainColor;
     [self.noticeView addSubview:line1];
 }
@@ -113,8 +115,9 @@
     [self addSubview:renLingTree];
     self.renLingTree = renLingTree;
    
-    NSArray *Names = @[@"古树认养",@"商城",@"排行榜"];
+    NSArray *Names = @[@"古树认养",@"商场",@"排行榜"];
 
+    CGFloat marge = (kScreenWidth-3*33)/4;
     [Names enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         UIButton *btn = [UIButton buttonWithTitle:@"" titleColor:kTextColor backgroundColor:kClearColor titleFont:15];
@@ -123,10 +126,10 @@
         btn.clipsToBounds = YES;
         [btn setBackgroundImage:kImage(Names[idx]) forState:UIControlStateNormal];
         [btn setTitleColor:kAppCustomMainColor forState:UIControlStateSelected];
-        btn.frame = CGRectMake(50+idx*50+idx*(70), 10, 40, 40);
+        btn.frame = CGRectMake(idx*marge+marge+idx*33, 10, 33, 33);
         [renLingTree addSubview:btn];
-        UILabel *title = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor font:15];
-        title.frame = CGRectMake(btn.xx, 50, 80, 20);
+        UILabel *title = [UILabel labelWithBackgroundColor:kClearColor textColor:RGB(0, 0, 0) font:12];
+        title.frame = CGRectMake(btn.xx, 47, 80, 20);
         title.centerX = btn.centerX;
         title.text = Names[idx];
         title.textAlignment = NSTextAlignmentCenter;
@@ -152,11 +155,11 @@
     [self addSubview:tuiArticle];
     self.tuiArticle = tuiArticle;
     
-    UILabel *tuiLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextBlack font:16];
+    UILabel *tuiLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kBlackColor font:15];
     tuiLab.frame = CGRectMake(15, 15, kScreenWidth-120-50, 22);
     tuiLab.text = @"情感推文";
-    tuiLab.font = [UIFont boldSystemFontOfSize:16];
-
+    [tuiLab  setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15]];
+    
     [self.tuiArticle addSubview:tuiLab];
     self.tuiLab = tuiLab;
     
@@ -164,7 +167,7 @@
     imageView.userInteractionEnabled = YES;
     imageView.image = kImage(@"baner1");
     imageView.contentMode = UIViewContentModeScaleToFill;
-    imageView.frame = CGRectMake(15, tuiLab.yy+5, (kScreenWidth-40), 100);
+    imageView.frame = CGRectMake(15, tuiLab.yy+8, (kScreenWidth-30), 100);
     imageView.contentMode = UIViewContentModeScaleToFill;
     [self.tuiArticle addSubview:imageView];
     UITapGestureRecognizer *ta = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tuiwenClick)];
@@ -178,8 +181,8 @@
 //    imageView2.contentMode = UIViewContentModeScaleToFill;
 //    [self.tuiArticle addSubview:imageView2];
     
-    UILabel *englishLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor font:12];
-    englishLab.frame = CGRectMake((kScreenWidth-120), 10, 90, 30);
+    UILabel *englishLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kBlackColor font:12];
+    englishLab.frame = CGRectMake((kScreenWidth-130), 10, 90, 30);
     englishLab.textAlignment = NSTextAlignmentRight;
     englishLab.text = @"查看更多";
     [self.tuiArticle addSubview:englishLab];
@@ -195,7 +198,7 @@
 -(void)initFastNews
 {
     UIView *fastNews = [UIView new];
-    fastNews.frame = CGRectMake(0, self.tuiArticle.yy+10, kScreenWidth, 40);
+    fastNews.frame = CGRectMake(0, self.tuiArticle.yy+20, kScreenWidth, 40);
     [self addSubview:fastNews];
     fastNews.backgroundColor = RGB(252, 240, 240);
     self.fastNews = fastNews;
@@ -213,9 +216,10 @@
     loopView.backgroundColor = RGB(252, 240, 240);;
     [self.fastNews addSubview:loopView];
     UILabel *englishLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor font:12];
-    englishLab.frame = CGRectMake((kScreenWidth-120), 10, 90, 30);
+    englishLab.frame = CGRectMake((kScreenWidth-130), 10, 90, 30);
     englishLab.textAlignment = NSTextAlignmentRight;
     englishLab.text = @"更多";
+    englishLab.centerY = imageView.centerY;
     [self.fastNews addSubview:englishLab];
     
     UIButton *button = [UIButton buttonWithImageName:@"" selectedImageName:@""];
@@ -223,6 +227,7 @@
     button.frame  = CGRectMake(kScreenWidth -30, 10, 14, 30);
     [button addTarget:self action:@selector(jumpArtcile) forControlEvents:UIControlEventTouchUpInside];
     [self.fastNews addSubview:button];
+    button.centerY =  englishLab.centerY;
     
 }
 
@@ -231,7 +236,7 @@
 {
     if (!_scrollView) {
 //        CoinWeakSelf;
-        _scrollView = [HW3DBannerView initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , SCREEN_WIDTH/2 - 15) imageSpacing:0 imageWidth:SCREEN_WIDTH ];
+        _scrollView = [HW3DBannerView initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , 150) imageSpacing:0 imageWidth:SCREEN_WIDTH ];
         _scrollView.initAlpha = 0; // 设置两边卡片的透明度
         _scrollView.imageRadius = 5; // 设置卡片圆角
         _scrollView.imageHeightPoor = 20;// 设置占位图片
