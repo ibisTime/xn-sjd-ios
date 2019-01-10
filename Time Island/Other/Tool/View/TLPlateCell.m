@@ -60,26 +60,26 @@
     self.owerButton.frame = CGRectMake(self.frame.size.width-60, self.contentImage.yy-30, 60, 20);
     self.owerButton.layer.cornerRadius = 3;
     self.owerButton.clipsToBounds = YES;
-    self.titleLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor font:14.0];
+    self.titleLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kBlackColor font:13.0];
     [self addSubview:self.titleLab];
-    self.titleLab.frame = CGRectMake(0, self.contentImage.yy, self.bounds.size.width, 44);
+    self.titleLab.frame = CGRectMake(0, self.contentImage.yy, self.bounds.size.width-20, 44);
     self.titleLab.numberOfLines = 0;
     self.titleLab.text = @"活了10000年的山间古树,100000年的古树";
     
-    self.contentLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor font:14.0];
+    self.contentLab = [UILabel labelWithBackgroundColor:kClearColor textColor:RGB(255, 69, 69) font:13.0];
     [self addSubview:self.contentLab];
     
 //    self.contentLab.frame = CGRectMake(0, self.titleLab.yy+10, self.bounds.size.width, 22);
     self.contentLab.text = @"¥10000.00";
     self.contentLab.textColor = [UIColor redColor];
     
-    self.nameLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor2 font:12.0];
+    self.nameLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor2 font:11.0];
     [self addSubview:self.nameLab];
     
 //    self.nameLab.frame = CGRectMake(self.contentLab.xx, self.titleLab.yy+10, self.frame.size.width/2, 22);
     self.nameLab.font = [UIFont systemFontOfSize:13];
     self.nameLab.text = @"浙江省 杭州市";
-    self.nameLab.textColor = kTextColor2;
+    self.nameLab.textColor = RGB(153, 153, 153);
     [self.contentLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left);
         make.top.equalTo(self.titleLab.mas_bottom).offset(5);

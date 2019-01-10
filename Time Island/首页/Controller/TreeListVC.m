@@ -76,12 +76,13 @@
 - (void)initSearchBar {
     
     UIView *new = [UIView new];
-    new.frame = CGRectMake(0, 0, kScreenWidth-60, 44);
-    new.layer.cornerRadius = 22;
+    new.frame = CGRectMake(0, 0, kScreenWidth-60, 31);
+    new.layer.cornerRadius = 15.5;
+    new.backgroundColor = kWhiteColor;
     new.clipsToBounds = YES;
-    UISearchBar * searchbar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0f, 0.0f, kScreenWidth-60, 44)];
-//    searchbar.layer.cornerRadius = 22;
-    searchbar.clipsToBounds = YES;
+    UISearchBar * searchbar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0f, 0.0f, kScreenWidth-60, 31)];
+//    searchbar.layer.cornerRadius = 15.5;
+//    searchbar.clipsToBounds = YES;
     searchbar.delegate = self;
     [searchbar setTintColor:[UIColor lightGrayColor]];
     [searchbar setPlaceholder:@"搜索商品信息"];
@@ -91,10 +92,11 @@
     UITextField *searchField = [searchbar valueForKey:@"searchField"];
     
     if (searchField) {
-        
+        [searchField setValue:[UIFont systemFontOfSize:11] forKeyPath:@"_placeholderLabel.font"];
+
         [searchField setBackgroundColor:[UIColor whiteColor]];
         
-        searchField.layer.cornerRadius = 22;//设置圆角具体根据实际情况来设置
+        searchField.layer.cornerRadius = 15.5;//设置圆角具体根据实际情况来设置
         
 //        searchField.layer.borderColor = [UIColor lightGrayColor].CGColor;//边框的颜色
 //
@@ -119,10 +121,10 @@
     self.contentScrollew.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake((kScreenWidth-40)/2, 250);
+    layout.itemSize = CGSizeMake((kScreenWidth-50)/2, 250);
     layout.minimumLineSpacing = 10.0; // 竖
     layout.minimumInteritemSpacing = 10.0; // 横
-    layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+    layout.sectionInset = UIEdgeInsetsMake(0, 18, 0, 18);
     
     
     

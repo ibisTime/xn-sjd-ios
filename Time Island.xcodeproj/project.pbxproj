@@ -189,6 +189,15 @@
 		B8A27AF821E5C44400914897 /* list_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8A27AE221E5C44400914897 /* list_selected@2x.png */; };
 		B8A27AF921E5C44400914897 /* pullup.png in Resources */ = {isa = PBXBuildFile; fileRef = B8A27AE321E5C44400914897 /* pullup.png */; };
 		B8A27AFC21E5D24F00914897 /* TreeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A27AFB21E5D24F00914897 /* TreeDetailVC.m */; };
+		B8ED2E6A21E6EA1D00FADCCE /* TreeFieldVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E6921E6EA1D00FADCCE /* TreeFieldVC.m */; };
+		B8ED2E6D21E6EA3400FADCCE /* TreeRenYangVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E6C21E6EA3400FADCCE /* TreeRenYangVC.m */; };
+		B8ED2E7021E6EE4300FADCCE /* TreeInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E6F21E6EE4300FADCCE /* TreeInfoView.m */; };
+		B8ED2E7321E7133900FADCCE /* TreeFieldTB.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E7221E7133900FADCCE /* TreeFieldTB.m */; };
+		B8ED2E7621E7139E00FADCCE /* TreeFiledCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E7521E7139E00FADCCE /* TreeFiledCell.m */; };
+		B8ED2E7921E71A2700FADCCE /* TreeRenYangListTB.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E7821E71A2700FADCCE /* TreeRenYangListTB.m */; };
+		B8ED2E7C21E71ABC00FADCCE /* RenYangListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E7B21E71ABC00FADCCE /* RenYangListCell.m */; };
+		B8ED2E7F21E7218E00FADCCE /* TreeBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E7E21E7218E00FADCCE /* TreeBottomView.m */; };
+		B8ED2E8221E72E1900FADCCE /* TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E8121E72E1900FADCCE /* TitleView.m */; };
 		C5BE2C47B2F2099539951C03 /* libPods-Time Island.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85935B108A2342344937F73A /* libPods-Time Island.a */; };
 /* End PBXBuildFile section */
 
@@ -584,6 +593,24 @@
 		B8A27AE321E5C44400914897 /* pullup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullup.png; sourceTree = "<group>"; };
 		B8A27AFA21E5D24F00914897 /* TreeDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeDetailVC.h; sourceTree = "<group>"; };
 		B8A27AFB21E5D24F00914897 /* TreeDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeDetailVC.m; sourceTree = "<group>"; };
+		B8ED2E6821E6EA1D00FADCCE /* TreeFieldVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeFieldVC.h; sourceTree = "<group>"; };
+		B8ED2E6921E6EA1D00FADCCE /* TreeFieldVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeFieldVC.m; sourceTree = "<group>"; };
+		B8ED2E6B21E6EA3400FADCCE /* TreeRenYangVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeRenYangVC.h; sourceTree = "<group>"; };
+		B8ED2E6C21E6EA3400FADCCE /* TreeRenYangVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeRenYangVC.m; sourceTree = "<group>"; };
+		B8ED2E6E21E6EE4300FADCCE /* TreeInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeInfoView.h; sourceTree = "<group>"; };
+		B8ED2E6F21E6EE4300FADCCE /* TreeInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeInfoView.m; sourceTree = "<group>"; };
+		B8ED2E7121E7133900FADCCE /* TreeFieldTB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeFieldTB.h; sourceTree = "<group>"; };
+		B8ED2E7221E7133900FADCCE /* TreeFieldTB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeFieldTB.m; sourceTree = "<group>"; };
+		B8ED2E7421E7139D00FADCCE /* TreeFiledCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeFiledCell.h; sourceTree = "<group>"; };
+		B8ED2E7521E7139E00FADCCE /* TreeFiledCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeFiledCell.m; sourceTree = "<group>"; };
+		B8ED2E7721E71A2700FADCCE /* TreeRenYangListTB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeRenYangListTB.h; sourceTree = "<group>"; };
+		B8ED2E7821E71A2700FADCCE /* TreeRenYangListTB.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeRenYangListTB.m; sourceTree = "<group>"; };
+		B8ED2E7A21E71ABC00FADCCE /* RenYangListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenYangListCell.h; sourceTree = "<group>"; };
+		B8ED2E7B21E71ABC00FADCCE /* RenYangListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RenYangListCell.m; sourceTree = "<group>"; };
+		B8ED2E7D21E7218E00FADCCE /* TreeBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeBottomView.h; sourceTree = "<group>"; };
+		B8ED2E7E21E7218E00FADCCE /* TreeBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeBottomView.m; sourceTree = "<group>"; };
+		B8ED2E8021E72E1900FADCCE /* TitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TitleView.h; sourceTree = "<group>"; };
+		B8ED2E8121E72E1900FADCCE /* TitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TitleView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1331,6 +1358,10 @@
 				B8A27AA421E5A15100914897 /* TreeListVC.m */,
 				B8A27AFA21E5D24F00914897 /* TreeDetailVC.h */,
 				B8A27AFB21E5D24F00914897 /* TreeDetailVC.m */,
+				B8ED2E6821E6EA1D00FADCCE /* TreeFieldVC.h */,
+				B8ED2E6921E6EA1D00FADCCE /* TreeFieldVC.m */,
+				B8ED2E6B21E6EA3400FADCCE /* TreeRenYangVC.h */,
+				B8ED2E6C21E6EA3400FADCCE /* TreeRenYangVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1358,6 +1389,20 @@
 				B81E609321DCAB8F00873AB9 /* Banner */,
 				B81E609121DCAB8D00873AB9 /* HomeHeaderView.h */,
 				B81E609221DCAB8E00873AB9 /* HomeHeaderView.m */,
+				B8ED2E6E21E6EE4300FADCCE /* TreeInfoView.h */,
+				B8ED2E6F21E6EE4300FADCCE /* TreeInfoView.m */,
+				B8ED2E7121E7133900FADCCE /* TreeFieldTB.h */,
+				B8ED2E7221E7133900FADCCE /* TreeFieldTB.m */,
+				B8ED2E7421E7139D00FADCCE /* TreeFiledCell.h */,
+				B8ED2E7521E7139E00FADCCE /* TreeFiledCell.m */,
+				B8ED2E7721E71A2700FADCCE /* TreeRenYangListTB.h */,
+				B8ED2E7821E71A2700FADCCE /* TreeRenYangListTB.m */,
+				B8ED2E7A21E71ABC00FADCCE /* RenYangListCell.h */,
+				B8ED2E7B21E71ABC00FADCCE /* RenYangListCell.m */,
+				B8ED2E7D21E7218E00FADCCE /* TreeBottomView.h */,
+				B8ED2E7E21E7218E00FADCCE /* TreeBottomView.m */,
+				B8ED2E8021E72E1900FADCCE /* TitleView.h */,
+				B8ED2E8121E72E1900FADCCE /* TitleView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2073,8 +2118,10 @@
 				B81E5FCF21DC8FC200873AB9 /* UIBarButtonItem+convience.m in Sources */,
 				B81E5FCB21DC8FC200873AB9 /* UIButton+Custom.m in Sources */,
 				B81E5FBF21DC8FC200873AB9 /* TLTimeButton.m in Sources */,
+				B8ED2E6D21E6EA3400FADCCE /* TreeRenYangVC.m in Sources */,
 				B81E608521DC9FB200873AB9 /* MineVC.m in Sources */,
 				B81E608B21DC9FE500873AB9 /* MallVC.m in Sources */,
+				B8ED2E7321E7133900FADCCE /* TreeFieldTB.m in Sources */,
 				B81E5FB221DC8FC200873AB9 /* TopLabelUtil.m in Sources */,
 				B81E5FD721DC8FC200873AB9 /* NSString+Extension.m in Sources */,
 				B81E5FCE21DC8FC200873AB9 /* UIView+Extension.m in Sources */,
@@ -2113,6 +2160,8 @@
 				B8A27AE721E5C44400914897 /* MMCombinationItem.m in Sources */,
 				B8A27AEB21E5C44400914897 /* MMSingleFitlerView.m in Sources */,
 				B81E609D21DCAB8F00873AB9 /* TLBannerView.m in Sources */,
+				B8ED2E7921E71A2700FADCCE /* TreeRenYangListTB.m in Sources */,
+				B8ED2E6A21E6EA1D00FADCCE /* TreeFieldVC.m in Sources */,
 				B8A27AE421E5C44400914897 /* MMSelectedPath.m in Sources */,
 				1F1B007E21E7358C000BEBD3 /* MyHomePageVC.m in Sources */,
 				1F1B009D21E7453F000BEBD3 /* UserModel.m in Sources */,
@@ -2130,6 +2179,7 @@
 				B81E5FE021DC8FC200873AB9 /* HttpRequestTool.m in Sources */,
 				1F1B002E21E71C5D000BEBD3 /* FloatingBallHeader.m in Sources */,
 				B81E5FD121DC8FC200873AB9 /* UIViewController+BackButtonHander.m in Sources */,
+				B8ED2E7C21E71ABC00FADCCE /* RenYangListCell.m in Sources */,
 				B81E5FD521DC8FC200873AB9 /* NSString+Check.m in Sources */,
 				B86CB6AC21DDB83A00C60AC7 /* PlateMineModel.m in Sources */,
 				B8A27AE621E5C44400914897 /* MMItem.m in Sources */,
@@ -2141,6 +2191,7 @@
 				B8A27AF321E5C44400914897 /* MMDropDownBox.m in Sources */,
 				B81E5FDA21DC8FC200873AB9 /* NSTimer+tlNoCycle.m in Sources */,
 				B81E5FB921DC8FC200873AB9 /* TLDatePicker.m in Sources */,
+				B8ED2E7F21E7218E00FADCCE /* TreeBottomView.m in Sources */,
 				B8A27AE521E5C44400914897 /* MMSingleItem.m in Sources */,
 				1F1B007121E71D26000BEBD3 /* RBBLinearInterpolation.m in Sources */,
 				B81E601721DC906D00873AB9 /* BindMobileVC.m in Sources */,
@@ -2151,12 +2202,14 @@
 				1F1B00A121E7456B000BEBD3 /* ZJAnimationPopView.m in Sources */,
 				1F1B008A21E735B6000BEBD3 /* CWInteractiveTransition.m in Sources */,
 				B81E60A321DCAB9B00873AB9 /* BannerModel.m in Sources */,
+				B8ED2E8221E72E1900FADCCE /* TitleView.m in Sources */,
 				B81E609C21DCAB8F00873AB9 /* HomeHeaderView.m in Sources */,
 				B81E5FB621DC8FC200873AB9 /* TopSegmentUtil.m in Sources */,
 				B8A27AE921E5C44400914897 /* MMAlternativeItem.m in Sources */,
 				B81E5FCD21DC8FC200873AB9 /* UIView+Responder.m in Sources */,
 				B81E60AC21DCAC7500873AB9 /* HomeTbleView.m in Sources */,
 				B81E605221DC981D00873AB9 /* RespHandler.m in Sources */,
+				B8ED2E7621E7139E00FADCCE /* TreeFiledCell.m in Sources */,
 				B81E5FB021DC8FC200873AB9 /* TLTableView.m in Sources */,
 				B81E5FDE21DC8FC200873AB9 /* AppConfig.m in Sources */,
 				B81E5FE221DC8FC200873AB9 /* HttpRequestService.m in Sources */,
@@ -2214,6 +2267,7 @@
 				B81E601D21DC906D00873AB9 /* TLUserForgetPwdVC.m in Sources */,
 				B81E5FDC21DC8FC200873AB9 /* TLWXManager.m in Sources */,
 				B81E602121DC906D00873AB9 /* UserInfo.m in Sources */,
+				B8ED2E7021E6EE4300FADCCE /* TreeInfoView.m in Sources */,
 				B81E605621DC981D00873AB9 /* NBRequest.m in Sources */,
 				B81E5FD821DC8FC200873AB9 /* NSString+Date.m in Sources */,
 				B81E5FC121DC8FC200873AB9 /* ShareView.m in Sources */,
@@ -2396,8 +2450,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+
 				DEVELOPMENT_TEAM = 3ZCW993X44;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Time Island/Macro/CoinPrefixHeader.pch";
+
+				DEVELOPMENT_TEAM = 4M8KD7B9X5;
+
 				INFOPLIST_FILE = "Time Island/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2418,8 +2476,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+
 				DEVELOPMENT_TEAM = 3ZCW993X44;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Time Island/Macro/CoinPrefixHeader.pch";
+
+				DEVELOPMENT_TEAM = 4M8KD7B9X5;
+
 				INFOPLIST_FILE = "Time Island/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -35,7 +35,10 @@
                         ];
     NSArray *VCNames = @[@"HomeVC",@"LinCircleVC",@"MineVC"];
     
+
     NSArray *imageNames = @[@"首页未选中",@"氧圈未选中",@"我的未选中"];
+
+
     NSArray *selectedImageNames = @[@"首页选中",@"氧圈选中",@"我的-选中"];
     
     
