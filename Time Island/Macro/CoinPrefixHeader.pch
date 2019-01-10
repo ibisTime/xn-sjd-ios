@@ -17,22 +17,22 @@
 //IM
 // 是否支持富文本显示
 #define kTestChatAttachment 1
-#import <SecurityGuardSDK/JAQ/SecurityVerification.h>
-#import <MSAuthSDK/MSAuthVCFactory.h>
-#import <MSAuthSDK/MSAuthSDK.h>
-#import <SecurityGuardSDK/JAQ/SecurityVerification.h>
+//#import <SecurityGuardSDK/JAQ/SecurityVerification.h>
+//#import <MSAuthSDK/MSAuthVCFactory.h>
+//#import <MSAuthSDK/MSAuthSDK.h>
+//#import <SecurityGuardSDK/JAQ/SecurityVerification.h>
 #import "AppMacro.h"
 #import "AppColorMacro.h"
 #import "APICodeMacro.h"
 #import "CoinHeader.h"
 #import "TLUser.h"
-#import "TLDataBase.h"
+//#import "TLDataBase.h"
 #import "TLWXManager.h"
-#import "TLWBManger.h"
+//#import "TLWBManger.h"
 #import "UILabel+Extension.h"
 #import "UILable+convience.h"
 #import "UIButton+Custom.h"
-#import "UIButton+SGImagePosition.h"
+//#import "UIButton+SGImagePosition.h"
 #import "UIButton+EnLargeEdge.h"
 #import "LangSwitcher.h"
 #import "CoinUtil.h"
@@ -40,10 +40,12 @@
 #import "NSString+Check.h"
 #import "NSString+Date.h"
 #import "TLProgressHUD.h"
-#import "UITableView+AddForPlaceholder.h"
+//#import "UITableView+AddForPlaceholder.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "TableViewAnimationKitHeaders.h"
+#import "UserModel.h"
 #import "ZJAnimationPopView.h"
+//#import "TableViewAnimationKitHeaders.h"
+//#import "ZJAnimationPopView.h"
 
 #endif /* CoinPrefixHeader_h */
 

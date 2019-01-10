@@ -26,6 +26,7 @@
 #define kNavBarMainColor  [UIColor appNavBarMainColor]
 #define kNavBarBgColor    [UIColor appNavBarBgColor]
 
+#define kTabbarColor   kHexColor(@"#22A079")
 
 #define kTabbarMainColor   [UIColor appTabbarMainColor]
 #define kTabbarBgColor     [UIColor appTabbarBgColor]
@@ -81,11 +82,13 @@
 #define kWidth(x) (x)*(kScreenWidth)/375.0
 #define kHeight(y) (y)*(kScreenHeight)/667.0
 
+
+
 #define kDevice_Is_iPhoneX (kScreenHeight == 812 ? YES : NO)
 #define kNavigationBarHeight  (kDevice_Is_iPhoneX == YES ? 88: 64)
 #define kStatusBarHeight (kDevice_Is_iPhoneX == YES ? 44: 20)
 
-#define kTabBarHeight  (49 + kBottomInsetHeight)
+#define kTabBarHeight  (50 + kBottomInsetHeight)
 #define kBottomInsetHeight  (kDevice_Is_iPhoneX == YES ? 34: 0)
 
 #define GlobalRevenueListBottomHeight  (kDevice_Is_iPhoneX == YES ? 34: 20)
