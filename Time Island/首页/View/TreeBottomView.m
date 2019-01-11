@@ -72,6 +72,9 @@
             break;
         case 2:
             //点击认养
+            if (self.RenYangBlock) {
+                self.RenYangBlock(sender.tag -100);
+            }
             break;
         default:
             break;
