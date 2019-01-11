@@ -19,6 +19,8 @@
             UIButton *dynamicBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
             dynamicBtn.frame = CGRectMake(SCREEN_WIDTH/6/2 - 20 + i%6*SCREEN_WIDTH/6, 15, 40, 40);
             [dynamicBtn setImage:kImage(@"头像") forState:(UIControlStateNormal)];
+            [dynamicBtn addTarget:self action:@selector(dynamicBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+            dynamicBtn.tag = 100 + i;
             [self addSubview:dynamicBtn];
             
             
@@ -37,6 +39,11 @@
         
     }
     return self;
+}
+
+-(void)dynamicBtnClick:(UIButton *)sender
+{
+    [_delegate MyFreeDynamicButton:sender.tag];
 }
 
 @end

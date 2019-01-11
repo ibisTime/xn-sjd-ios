@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol MyFreeDynamicDelegate <NSObject>
+
+-(void)MyFreeDynamicButton:(NSInteger )tag;
+
+@end
+
 @interface MyFreeDynamicCell : UITableViewCell
+
+@property (nonatomic, assign) id <MyFreeDynamicDelegate> delegate;
 
 @end

@@ -23,7 +23,7 @@
 /* 选中cell上的button时可使用 */
 
 - (void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index;
-
+-(void)refreshTableView:(TLTableView *)refreshTableview scrollView:(UIScrollView *)scroll;
 @end
 
 @interface  TLTableView: UITableView

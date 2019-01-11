@@ -2,8 +2,8 @@
 
 #import "FloatingBallHeader.h"
 #import "PaopaoButton.h"
-#import "RBBAnimation/RBBTweenAnimation.h"
-
+//#import "RBBAnimation/RBBTweenAnimation.h"
+#import "RBBTweenAnimation.h"
 // 最多显示泡泡的数量
 static NSInteger const PaopaoMaxNum = 10;
 

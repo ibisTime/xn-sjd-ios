@@ -46,7 +46,7 @@
 //    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 //    [self headRefresh];
 
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self headRefresh];
     
 
@@ -58,7 +58,7 @@
 //    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 
 
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 
 }
 

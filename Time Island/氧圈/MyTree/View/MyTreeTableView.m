@@ -13,7 +13,7 @@
 #define MyFreeDynamic @"MyFreeDynamicCell"
 #import "CollectEnergyDetailsCell.h"
 #define CollectEnergyDetails @"CollectEnergyDetailsCell"
-@interface MyTreeTableView()<UITableViewDelegate, UITableViewDataSource,MyTreeHeadDelegate>
+@interface MyTreeTableView()<UITableViewDelegate, UITableViewDataSource,MyTreeHeadDelegate,MyFreeDynamicDelegate>
 {
     UIButton *selectBtn;
     UIView *lineView;
@@ -64,6 +64,7 @@
     if (indexPath.section == 1) {
         MyFreeDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:MyFreeDynamic forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegate = self;
         return cell;
     }
     
@@ -80,6 +81,10 @@
     [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:tag];
 }
 
+-(void)MyFreeDynamicButton:(NSInteger)tag
+{
+    [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:tag];
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -100,6 +105,21 @@
         return 45;
     }
     return 0.1;
+}
+
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
+    
+    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableView:scrollView:)]) {
+        [self.refreshDelegate refreshTableView:self scrollView:scrollView];
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.refreshDelegate refreshTableView:self didSelectRowAtIndexPath:indexPath];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

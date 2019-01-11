@@ -12,6 +12,6 @@
 
 @interface CertificateOfPlantView : UIView
 
-
+@property (nonatomic , strong)UIButton *ShutDownBtn;
 
 @end

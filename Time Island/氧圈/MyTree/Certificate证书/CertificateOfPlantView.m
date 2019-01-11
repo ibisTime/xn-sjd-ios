@@ -15,7 +15,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        
+        UIButton *ShutDownBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        ShutDownBtn.frame = CGRectMake(SCREEN_WIDTH - kWidth(75), kHeight(177/2), 25, 25);
+        [ShutDownBtn setImage:kImage(@"删除") forState:(UIControlStateNormal)];
+        self.ShutDownBtn = ShutDownBtn;
+        [self addSubview:ShutDownBtn];
         
         UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, kHeight(139), SCREEN_WIDTH, kHeight(435))];
 //        scrollView.pagingEnabled = YES;
@@ -59,17 +63,30 @@
             [backImg addSubview:introduceLbl];
             
             
-            UILabel *codeLabel = [UILabel labelWithFrame:CGRectMake(WIDTH/2 - kWidth(32), introduceLbl.yy + kHeight(24), kWidth(64), kHeight(22.5)) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(16) textColor:kHexColor(@"#23AD8C")];
+            UILabel *codeLabel = [UILabel labelWithFrame:CGRectMake(WIDTH/2 - 35, introduceLbl.yy + kHeight(24), 70, kHeight(22.5)) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(16) textColor:kHexColor(@"#23AD8C")];
             codeLabel.text = @"树苗编号";
             [backImg addSubview:codeLabel];
             
-//            UIImageView *leftImg = [UIImageView alloc]initWithFrame:CGRectMake(kWidth(78.5), <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
-//            
+            UIImageView *leftImg = [[UIImageView alloc]initWithFrame:CGRectMake(WIDTH/2 - 35 - 75, codeLabel.y + kHeight(22.5)/2 - kHeight(1.5), 65, kHeight(3))];
+            leftImg.image = kImage(@"编号左");
+            leftImg.centerY = codeLabel.centerY;
+            [backImg addSubview:leftImg];
+            
+            UIImageView *rightImg = [[UIImageView alloc]initWithFrame:CGRectMake(WIDTH/2 + 35 + 10, codeLabel.y + kHeight(22.5)/2 - kHeight(1.5), 65, kHeight(3))];
+            rightImg.image = kImage(@"编号右");
+            rightImg.centerY = codeLabel.centerY;
+            [backImg addSubview:rightImg];
+//
+            
+            UIImageView *codeBackImg = [[UIImageView alloc]initWithFrame:CGRectMake(kWidth(30), codeLabel.yy + kHeight(13), WIDTH - kWidth(60), kHeight(45))];
+            codeBackImg.image = kImage(@"编号框框");
+            [backImg addSubview:codeBackImg];
+            
+            UILabel *codeNumberLbl = [UILabel labelWithFrame:CGRectMake(kWidth(45), codeBackImg.y + kHeight(11), WIDTH - kWidth(90), kHeight(25)) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(18) textColor:kHexColor(@"#23AD8C")];
+            codeNumberLbl.text = @"NO.SP1883457567798";
+            [backImg addSubview:codeNumberLbl];
             
         }
-        
-        
-        
     }
     return self;
 }

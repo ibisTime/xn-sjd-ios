@@ -37,6 +37,20 @@
 		1F1B009A21E743B1000BEBD3 /* CertificateOfPlantView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B009921E743B1000BEBD3 /* CertificateOfPlantView.m */; };
 		1F1B009D21E7453F000BEBD3 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B009C21E7453F000BEBD3 /* UserModel.m */; };
 		1F1B00A121E7456B000BEBD3 /* ZJAnimationPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B009F21E7456B000BEBD3 /* ZJAnimationPopView.m */; };
+		1F1B00A521E83CA4000BEBD3 /* ThePropsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B00A421E83CA4000BEBD3 /* ThePropsView.m */; };
+		1F1B00A821E86B3C000BEBD3 /* UIButton+SGImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B00A721E86B3C000BEBD3 /* UIButton+SGImagePosition.m */; };
+		1F1B00AF21E86F3B000BEBD3 /* StrategyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B00AE21E86F3B000BEBD3 /* StrategyVC.m */; };
+		1F1B00B221E86F63000BEBD3 /* StrategyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B00B121E86F63000BEBD3 /* StrategyTableView.m */; };
+		1F1B00B521E86FDC000BEBD3 /* ToObtainABubbleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B00B421E86FDC000BEBD3 /* ToObtainABubbleCell.m */; };
+		1F1B00B821E87909000BEBD3 /* DonateFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B00B721E87909000BEBD3 /* DonateFriendCell.m */; };
+		1F1B00BD21E87B00000BEBD3 /* GivingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B00BC21E87B00000BEBD3 /* GivingVC.m */; };
+		1F1B00C321E88121000BEBD3 /* MyArticleViC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B00C221E88121000BEBD3 /* MyArticleViC.m */; };
+		1F1B00C621E8814F000BEBD3 /* MyArticleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B00C521E8814F000BEBD3 /* MyArticleTableView.m */; };
+		1F1B00C921E88169000BEBD3 /* MyArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B00C821E88169000BEBD3 /* MyArticleCell.m */; };
+		1F1B00CF21E89651000BEBD3 /* FriendsTheTreeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B00CE21E89651000BEBD3 /* FriendsTheTreeVC.m */; };
+		1F1B00D221E89667000BEBD3 /* FriendsTheTreeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B00D121E89667000BEBD3 /* FriendsTheTreeTableView.m */; };
+		1F1B00D821E896A3000BEBD3 /* FriendsTreeHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B00D721E896A3000BEBD3 /* FriendsTreeHeadCell.m */; };
+		1F1B00DB21E89B67000BEBD3 /* EnergyCompeteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B00DA21E89B67000BEBD3 /* EnergyCompeteCell.m */; };
 		B81E5EA821DC8B3C00873AB9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B81E5EA721DC8B3C00873AB9 /* ViewController.m */; };
 		B81E5EAB21DC8B3C00873AB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B81E5EA921DC8B3C00873AB9 /* Main.storyboard */; };
 		B81E5EAD21DC8B4100873AB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B81E5EAC21DC8B4100873AB9 /* Assets.xcassets */; };
@@ -279,6 +293,34 @@
 		1F1B009C21E7453F000BEBD3 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		1F1B009F21E7456B000BEBD3 /* ZJAnimationPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJAnimationPopView.m; sourceTree = "<group>"; };
 		1F1B00A021E7456B000BEBD3 /* ZJAnimationPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJAnimationPopView.h; sourceTree = "<group>"; };
+		1F1B00A321E83CA4000BEBD3 /* ThePropsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThePropsView.h; sourceTree = "<group>"; };
+		1F1B00A421E83CA4000BEBD3 /* ThePropsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThePropsView.m; sourceTree = "<group>"; };
+		1F1B00A621E86B3B000BEBD3 /* UIButton+SGImagePosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+SGImagePosition.h"; sourceTree = "<group>"; };
+		1F1B00A721E86B3C000BEBD3 /* UIButton+SGImagePosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SGImagePosition.m"; sourceTree = "<group>"; };
+		1F1B00AD21E86F3B000BEBD3 /* StrategyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StrategyVC.h; sourceTree = "<group>"; };
+		1F1B00AE21E86F3B000BEBD3 /* StrategyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StrategyVC.m; sourceTree = "<group>"; };
+		1F1B00B021E86F63000BEBD3 /* StrategyTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StrategyTableView.h; sourceTree = "<group>"; };
+		1F1B00B121E86F63000BEBD3 /* StrategyTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StrategyTableView.m; sourceTree = "<group>"; };
+		1F1B00B321E86FDC000BEBD3 /* ToObtainABubbleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToObtainABubbleCell.h; sourceTree = "<group>"; };
+		1F1B00B421E86FDC000BEBD3 /* ToObtainABubbleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToObtainABubbleCell.m; sourceTree = "<group>"; };
+		1F1B00B621E87909000BEBD3 /* DonateFriendCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DonateFriendCell.h; sourceTree = "<group>"; };
+		1F1B00B721E87909000BEBD3 /* DonateFriendCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DonateFriendCell.m; sourceTree = "<group>"; };
+		1F1B00BB21E87B00000BEBD3 /* GivingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GivingVC.h; sourceTree = "<group>"; };
+		1F1B00BC21E87B00000BEBD3 /* GivingVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GivingVC.m; sourceTree = "<group>"; };
+		1F1B00C121E88121000BEBD3 /* MyArticleViC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyArticleViC.h; sourceTree = "<group>"; };
+		1F1B00C221E88121000BEBD3 /* MyArticleViC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyArticleViC.m; sourceTree = "<group>"; };
+		1F1B00C421E8814F000BEBD3 /* MyArticleTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyArticleTableView.h; sourceTree = "<group>"; };
+		1F1B00C521E8814F000BEBD3 /* MyArticleTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyArticleTableView.m; sourceTree = "<group>"; };
+		1F1B00C721E88169000BEBD3 /* MyArticleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyArticleCell.h; sourceTree = "<group>"; };
+		1F1B00C821E88169000BEBD3 /* MyArticleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyArticleCell.m; sourceTree = "<group>"; };
+		1F1B00CD21E89651000BEBD3 /* FriendsTheTreeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsTheTreeVC.h; sourceTree = "<group>"; };
+		1F1B00CE21E89651000BEBD3 /* FriendsTheTreeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsTheTreeVC.m; sourceTree = "<group>"; };
+		1F1B00D021E89667000BEBD3 /* FriendsTheTreeTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsTheTreeTableView.h; sourceTree = "<group>"; };
+		1F1B00D121E89667000BEBD3 /* FriendsTheTreeTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsTheTreeTableView.m; sourceTree = "<group>"; };
+		1F1B00D621E896A3000BEBD3 /* FriendsTreeHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsTreeHeadCell.h; sourceTree = "<group>"; };
+		1F1B00D721E896A3000BEBD3 /* FriendsTreeHeadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsTreeHeadCell.m; sourceTree = "<group>"; };
+		1F1B00D921E89B67000BEBD3 /* EnergyCompeteCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EnergyCompeteCell.h; sourceTree = "<group>"; };
+		1F1B00DA21E89B67000BEBD3 /* EnergyCompeteCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EnergyCompeteCell.m; sourceTree = "<group>"; };
 		2613D8EB1E56B0B644262010 /* Pods-Time Island.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time Island.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Time Island/Pods-Time Island.debug.xcconfig"; sourceTree = "<group>"; };
 		298359E7B0E6639397AFC0E2 /* Pods-Time Island.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time Island.release.xcconfig"; path = "Pods/Target Support Files/Pods-Time Island/Pods-Time Island.release.xcconfig"; sourceTree = "<group>"; };
 		85935B108A2342344937F73A /* libPods-Time Island.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Time Island.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -660,6 +702,10 @@
 		1F1B001A21E6F75D000BEBD3 /* MyTree */ = {
 			isa = PBXGroup;
 			children = (
+				1F1B00B921E87ACD000BEBD3 /* Giving赠送 */,
+				1F1B00AB21E86EFF000BEBD3 /* TheProps道具 */,
+				1F1B00AA21E86EEE000BEBD3 /* Certificate证书 */,
+				1F1B00A921E86ECA000BEBD3 /* Strategy攻略 */,
 				1F1B001D21E6F77F000BEBD3 /* Controller */,
 				1F1B001C21E6F77B000BEBD3 /* Model */,
 				1F1B001B21E6F77A000BEBD3 /* View */,
@@ -670,21 +716,16 @@
 		1F1B001B21E6F77A000BEBD3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1F1B00A221E83C65000BEBD3 /* Paopao */,
 				1F1B005421E71D25000BEBD3 /* RBBAnimation */,
 				1F1B002121E6F8C8000BEBD3 /* MyTreeTableView.h */,
 				1F1B002221E6F8C8000BEBD3 /* MyTreeTableView.m */,
 				1F1B002421E6F915000BEBD3 /* MyTreeHeadCell.h */,
 				1F1B002521E6F915000BEBD3 /* MyTreeHeadCell.m */,
-				1F1B002B21E71C5B000BEBD3 /* FloatingBallHeader.h */,
-				1F1B002A21E71C5B000BEBD3 /* FloatingBallHeader.m */,
-				1F1B002C21E71C5C000BEBD3 /* PaopaoButton.h */,
-				1F1B002D21E71C5C000BEBD3 /* PaopaoButton.m */,
 				1F1B007321E72B24000BEBD3 /* MyFreeDynamicCell.h */,
 				1F1B007421E72B24000BEBD3 /* MyFreeDynamicCell.m */,
 				1F1B007621E72D92000BEBD3 /* CollectEnergyDetailsCell.h */,
 				1F1B007721E72D92000BEBD3 /* CollectEnergyDetailsCell.m */,
-				1F1B009821E743B1000BEBD3 /* CertificateOfPlantView.h */,
-				1F1B009921E743B1000BEBD3 /* CertificateOfPlantView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -788,6 +829,119 @@
 				1F1B00A021E7456B000BEBD3 /* ZJAnimationPopView.h */,
 			);
 			path = CustomAnimation;
+			sourceTree = "<group>";
+		};
+		1F1B00A221E83C65000BEBD3 /* Paopao */ = {
+			isa = PBXGroup;
+			children = (
+				1F1B002B21E71C5B000BEBD3 /* FloatingBallHeader.h */,
+				1F1B002A21E71C5B000BEBD3 /* FloatingBallHeader.m */,
+				1F1B002C21E71C5C000BEBD3 /* PaopaoButton.h */,
+				1F1B002D21E71C5C000BEBD3 /* PaopaoButton.m */,
+			);
+			path = Paopao;
+			sourceTree = "<group>";
+		};
+		1F1B00A921E86ECA000BEBD3 /* Strategy攻略 */ = {
+			isa = PBXGroup;
+			children = (
+				1F1B00AD21E86F3B000BEBD3 /* StrategyVC.h */,
+				1F1B00AE21E86F3B000BEBD3 /* StrategyVC.m */,
+				1F1B00B021E86F63000BEBD3 /* StrategyTableView.h */,
+				1F1B00B121E86F63000BEBD3 /* StrategyTableView.m */,
+				1F1B00B321E86FDC000BEBD3 /* ToObtainABubbleCell.h */,
+				1F1B00B421E86FDC000BEBD3 /* ToObtainABubbleCell.m */,
+				1F1B00B621E87909000BEBD3 /* DonateFriendCell.h */,
+				1F1B00B721E87909000BEBD3 /* DonateFriendCell.m */,
+			);
+			path = "Strategy攻略";
+			sourceTree = "<group>";
+		};
+		1F1B00AA21E86EEE000BEBD3 /* Certificate证书 */ = {
+			isa = PBXGroup;
+			children = (
+				1F1B009821E743B1000BEBD3 /* CertificateOfPlantView.h */,
+				1F1B009921E743B1000BEBD3 /* CertificateOfPlantView.m */,
+			);
+			path = "Certificate证书";
+			sourceTree = "<group>";
+		};
+		1F1B00AB21E86EFF000BEBD3 /* TheProps道具 */ = {
+			isa = PBXGroup;
+			children = (
+				1F1B00A321E83CA4000BEBD3 /* ThePropsView.h */,
+				1F1B00A421E83CA4000BEBD3 /* ThePropsView.m */,
+			);
+			path = "TheProps道具";
+			sourceTree = "<group>";
+		};
+		1F1B00B921E87ACD000BEBD3 /* Giving赠送 */ = {
+			isa = PBXGroup;
+			children = (
+				1F1B00BB21E87B00000BEBD3 /* GivingVC.h */,
+				1F1B00BC21E87B00000BEBD3 /* GivingVC.m */,
+			);
+			path = "Giving赠送";
+			sourceTree = "<group>";
+		};
+		1F1B00BE21E880F2000BEBD3 /* MyArticle */ = {
+			isa = PBXGroup;
+			children = (
+				1F1B00C021E88107000BEBD3 /* Controller */,
+				1F1B00BF21E88105000BEBD3 /* View */,
+			);
+			path = MyArticle;
+			sourceTree = "<group>";
+		};
+		1F1B00BF21E88105000BEBD3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F1B00C421E8814F000BEBD3 /* MyArticleTableView.h */,
+				1F1B00C521E8814F000BEBD3 /* MyArticleTableView.m */,
+				1F1B00C721E88169000BEBD3 /* MyArticleCell.h */,
+				1F1B00C821E88169000BEBD3 /* MyArticleCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1F1B00C021E88107000BEBD3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1F1B00C121E88121000BEBD3 /* MyArticleViC.h */,
+				1F1B00C221E88121000BEBD3 /* MyArticleViC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1F1B00CA21E89622000BEBD3 /* FriendsTheTree */ = {
+			isa = PBXGroup;
+			children = (
+				1F1B00CC21E8963B000BEBD3 /* Controller */,
+				1F1B00CB21E89639000BEBD3 /* View */,
+			);
+			path = FriendsTheTree;
+			sourceTree = "<group>";
+		};
+		1F1B00CB21E89639000BEBD3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F1B00D021E89667000BEBD3 /* FriendsTheTreeTableView.h */,
+				1F1B00D121E89667000BEBD3 /* FriendsTheTreeTableView.m */,
+				1F1B00D621E896A3000BEBD3 /* FriendsTreeHeadCell.h */,
+				1F1B00D721E896A3000BEBD3 /* FriendsTreeHeadCell.m */,
+				1F1B00D921E89B67000BEBD3 /* EnergyCompeteCell.h */,
+				1F1B00DA21E89B67000BEBD3 /* EnergyCompeteCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1F1B00CC21E8963B000BEBD3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1F1B00CD21E89651000BEBD3 /* FriendsTheTreeVC.h */,
+				1F1B00CE21E89651000BEBD3 /* FriendsTheTreeVC.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		A27B85BBCC1D95F10D614566 /* Frameworks */ = {
@@ -1104,6 +1258,8 @@
 		B81E5F2C21DC8FC100873AB9 /* UIButton */ = {
 			isa = PBXGroup;
 			children = (
+				1F1B00A621E86B3B000BEBD3 /* UIButton+SGImagePosition.h */,
+				1F1B00A721E86B3C000BEBD3 /* UIButton+SGImagePosition.m */,
 				B81E5F2D21DC8FC100873AB9 /* UIButton+Custom.h */,
 				B81E5F2E21DC8FC100873AB9 /* UIButton+EnLargeEdge.h */,
 				B81E5F2F21DC8FC100873AB9 /* UIButton+EnLargeEdge.m */,
@@ -1445,8 +1601,10 @@
 			children = (
 				B81E5F9F21DC8FC100873AB9 /* Controller */,
 				1F1B001621E6E21D000BEBD3 /* View */,
-				1F1B007921E73538000BEBD3 /* MyHomePage */,
 				1F1B001A21E6F75D000BEBD3 /* MyTree */,
+				1F1B007921E73538000BEBD3 /* MyHomePage */,
+				1F1B00BE21E880F2000BEBD3 /* MyArticle */,
+				1F1B00CA21E89622000BEBD3 /* FriendsTheTree */,
 			);
 			path = "氧圈";
 			sourceTree = "<group>";
@@ -2124,6 +2282,7 @@
 				B8ED2E7321E7133900FADCCE /* TreeFieldTB.m in Sources */,
 				B81E5FB221DC8FC200873AB9 /* TopLabelUtil.m in Sources */,
 				B81E5FD721DC8FC200873AB9 /* NSString+Extension.m in Sources */,
+				1F1B00C621E8814F000BEBD3 /* MyArticleTableView.m in Sources */,
 				B81E5FCE21DC8FC200873AB9 /* UIView+Extension.m in Sources */,
 				1F1B008E21E735B6000BEBD3 /* CWLateralSlideAnimator.m in Sources */,
 				B81E5FBA21DC8FC200873AB9 /* HourPickerView.m in Sources */,
@@ -2138,6 +2297,7 @@
 				B81E5FBC21DC8FC200873AB9 /* CustomPickerView.m in Sources */,
 				1F1B006C21E71D26000BEBD3 /* RBBEasingFunction.m in Sources */,
 				B81E608821DC9FCC00873AB9 /* LinCircleVC.m in Sources */,
+				1F1B00A821E86B3C000BEBD3 /* UIButton+SGImagePosition.m in Sources */,
 				1F1B009421E73770000BEBD3 /* MyHomePageCell.m in Sources */,
 				B81E603B21DC948900873AB9 /* CoinModel.m in Sources */,
 				B86CB6A721DDB7FF00C60AC7 /* BaseCollectionView.m in Sources */,
@@ -2145,6 +2305,8 @@
 				B81E5FC921DC8FC200873AB9 /* UILable+convience.m in Sources */,
 				B81E5FDF21DC8FC200873AB9 /* Foundation+Log.m in Sources */,
 				B81E603721DC93EC00873AB9 /* UIView+Frame.m in Sources */,
+				1F1B00D221E89667000BEBD3 /* FriendsTheTreeTableView.m in Sources */,
+				1F1B00BD21E87B00000BEBD3 /* GivingVC.m in Sources */,
 				B86CB6A821DDB7FF00C60AC7 /* TLPlateCell.m in Sources */,
 				1F1B007221E71D26000BEBD3 /* NSValue+PlatformIndependence.m in Sources */,
 				1F1B009721E73798000BEBD3 /* MyHomePageHeadView.m in Sources */,
@@ -2157,9 +2319,11 @@
 				B81E5FD021DC8FC200873AB9 /* XWScanImage.m in Sources */,
 				B8A27AEA21E5C44400914897 /* MMMultiItem.m in Sources */,
 				B81E5FC721DC8FC200873AB9 /* TLPlaceholderView.m in Sources */,
+				1F1B00D821E896A3000BEBD3 /* FriendsTreeHeadCell.m in Sources */,
 				B8A27AE721E5C44400914897 /* MMCombinationItem.m in Sources */,
 				B8A27AEB21E5C44400914897 /* MMSingleFitlerView.m in Sources */,
 				B81E609D21DCAB8F00873AB9 /* TLBannerView.m in Sources */,
+				1F1B00B521E86FDC000BEBD3 /* ToObtainABubbleCell.m in Sources */,
 				B8ED2E7921E71A2700FADCCE /* TreeRenYangListTB.m in Sources */,
 				B8ED2E6A21E6EA1D00FADCCE /* TreeFieldVC.m in Sources */,
 				B8A27AE421E5C44400914897 /* MMSelectedPath.m in Sources */,
@@ -2170,6 +2334,7 @@
 				B81E5FC521DC8FC200873AB9 /* TLPageDataHelper.m in Sources */,
 				B81E60A021DCAB8F00873AB9 /* UIView+Banner.m in Sources */,
 				1F1B007021E71D26000BEBD3 /* RBBAnimation.m in Sources */,
+				1F1B00DB21E89B67000BEBD3 /* EnergyCompeteCell.m in Sources */,
 				B81E5FEA21DC8FC200873AB9 /* UIColor+theme.m in Sources */,
 				B81E5FAA21DC8FC200873AB9 /* TLBaseVC.m in Sources */,
 				B81E5FD621DC8FC200873AB9 /* NSString+CGSize.m in Sources */,
@@ -2189,11 +2354,14 @@
 				B8A27AFC21E5D24F00914897 /* TreeDetailVC.m in Sources */,
 				B8A27AED21E5C44400914897 /* MMHeaderView.m in Sources */,
 				B8A27AF321E5C44400914897 /* MMDropDownBox.m in Sources */,
+				1F1B00A521E83CA4000BEBD3 /* ThePropsView.m in Sources */,
 				B81E5FDA21DC8FC200873AB9 /* NSTimer+tlNoCycle.m in Sources */,
 				B81E5FB921DC8FC200873AB9 /* TLDatePicker.m in Sources */,
+				1F1B00C921E88169000BEBD3 /* MyArticleCell.m in Sources */,
 				B8ED2E7F21E7218E00FADCCE /* TreeBottomView.m in Sources */,
 				B8A27AE521E5C44400914897 /* MMSingleItem.m in Sources */,
 				1F1B007121E71D26000BEBD3 /* RBBLinearInterpolation.m in Sources */,
+				1F1B00B821E87909000BEBD3 /* DonateFriendCell.m in Sources */,
 				B81E601721DC906D00873AB9 /* BindMobileVC.m in Sources */,
 				1F1B006A21E71D26000BEBD3 /* RBBBlockBasedArray.m in Sources */,
 				B81E602421DC906D00873AB9 /* AccountTf.m in Sources */,
@@ -2230,6 +2398,7 @@
 				1F1B002021E6F79C000BEBD3 /* MyTreeVC.m in Sources */,
 				1F1B002621E6F915000BEBD3 /* MyTreeHeadCell.m in Sources */,
 				B81E5FC221DC8FC200873AB9 /* CustomShareView.m in Sources */,
+				1F1B00C321E88121000BEBD3 /* MyArticleViC.m in Sources */,
 				B81E5FE321DC8FC200873AB9 /* HttpLogger.m in Sources */,
 				B81E603621DC93EC00873AB9 /* ImageUtil.m in Sources */,
 				B81E601821DC906D00873AB9 /* ChangeLoginPwdVC.m in Sources */,
@@ -2252,6 +2421,7 @@
 				1F1B002321E6F8C8000BEBD3 /* MyTreeTableView.m in Sources */,
 				B81E5FEF21DC8FC200873AB9 /* TLBaseLabel.m in Sources */,
 				1F1B009121E73755000BEBD3 /* MyHomePageTableView.m in Sources */,
+				1F1B00CF21E89651000BEBD3 /* FriendsTheTreeVC.m in Sources */,
 				B81E601921DC906D00873AB9 /* TLAccountSetBaseVC.m in Sources */,
 				B81E5FDD21DC8FC200873AB9 /* TLAlipayManager.m in Sources */,
 				B81E5FAC21DC8FC200873AB9 /* WebVC.m in Sources */,
@@ -2265,6 +2435,7 @@
 				1F1B001921E6E23F000BEBD3 /* OxygenCircleView.m in Sources */,
 				B81E602221DC906D00873AB9 /* TLUser.m in Sources */,
 				B81E601D21DC906D00873AB9 /* TLUserForgetPwdVC.m in Sources */,
+				1F1B00AF21E86F3B000BEBD3 /* StrategyVC.m in Sources */,
 				B81E5FDC21DC8FC200873AB9 /* TLWXManager.m in Sources */,
 				B81E602121DC906D00873AB9 /* UserInfo.m in Sources */,
 				B8ED2E7021E6EE4300FADCCE /* TreeInfoView.m in Sources */,
@@ -2275,6 +2446,7 @@
 				B81E601F21DC906D00873AB9 /* TLAccountBaseVC.m in Sources */,
 				B81E5EB321DC8B4100873AB9 /* main.m in Sources */,
 				B81E605421DC981D00873AB9 /* NBNetworkConfig.m in Sources */,
+				1F1B00B221E86F63000BEBD3 /* StrategyTableView.m in Sources */,
 				B81E5FC621DC8FC200873AB9 /* TLUploadManager.m in Sources */,
 				B81E5FE821DC8FC200873AB9 /* TestContentVC.m in Sources */,
 				B8A27AF221E5C44400914897 /* MMBasePopupView.m in Sources */,
@@ -2450,12 +2622,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-
 				DEVELOPMENT_TEAM = 3ZCW993X44;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Time Island/Macro/CoinPrefixHeader.pch";
-
-				DEVELOPMENT_TEAM = 4M8KD7B9X5;
-
 				INFOPLIST_FILE = "Time Island/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2476,12 +2644,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-
 				DEVELOPMENT_TEAM = 3ZCW993X44;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Time Island/Macro/CoinPrefixHeader.pch";
-
-				DEVELOPMENT_TEAM = 4M8KD7B9X5;
-
 				INFOPLIST_FILE = "Time Island/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (

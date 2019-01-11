@@ -32,7 +32,7 @@
 #import "UILabel+Extension.h"
 #import "UILable+convience.h"
 #import "UIButton+Custom.h"
-//#import "UIButton+SGImagePosition.h"
+#import "UIButton+SGImagePosition.h"
 #import "UIButton+EnLargeEdge.h"
 #import "LangSwitcher.h"
 #import "CoinUtil.h"

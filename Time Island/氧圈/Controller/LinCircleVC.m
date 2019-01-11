@@ -13,6 +13,7 @@
 //#import "CWScrollView.h"
 //#import "CWTableViewInfo.h"
 #import "UIViewController+CWLateralSlide.h"
+#import "MyArticleViC.h"
 @interface LinCircleVC ()<OxygenCircleDelegate>
 
 @property (nonatomic , strong)OxygenCircleView *circleView;
@@ -73,7 +74,8 @@
             break;
         case 3:
         {
-            
+            MyArticleViC *vc = [MyArticleViC new];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 4:
