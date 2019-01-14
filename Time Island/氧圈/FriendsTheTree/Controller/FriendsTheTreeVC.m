@@ -8,10 +8,16 @@
 
 #import "FriendsTheTreeVC.h"
 #import "FriendsTheTreeTableView.h"
+#import "DonationView.h"
+#import "BarrageView.h"
 @interface FriendsTheTreeVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)FriendsTheTreeTableView *tableView;
 
+
+@property (nonatomic , strong)DonationView *donationView;
+
+@property (nonatomic , strong)BarrageView *barrageView;
 @end
 
 @implementation FriendsTheTreeVC
@@ -37,22 +43,78 @@
         _tableView = [[FriendsTheTreeTableView alloc] initWithFrame:CGRectMake(0, -kNavigationBarHeight , SCREEN_WIDTH,SCREEN_HEIGHT) style:UITableViewStyleGrouped];
         
         _tableView.refreshDelegate = self;
-        _tableView.backgroundColor = kWhiteColor;
+        _tableView.backgroundColor = kBackgroundColor;
         //        [self.view addSubview:_tableView];
     }
     return _tableView;
+}
+
+-(DonationView *)donationView
+{
+    if (!_donationView) {
+        _donationView = [[DonationView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        [_donationView.ShutDownBtn addTarget:self action:@selector(ShutDownBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+        [_donationView.confirmBtn addTarget:self action:@selector(confirmBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+    }
+    return _donationView;
+}
+
+-(void)ShutDownBtnClick
+{
+    [[UserModel user].cusPopView dismiss];
+}
+
+
+-(BarrageView *)barrageView
+{
+    if (!_barrageView) {
+        _barrageView = [[BarrageView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        [_barrageView.ShutDownBtn addTarget:self action:@selector(ShutDownBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+        //        [_donationView.confirmBtn addTarget:self action:@selector(confirmBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+    }
+    return _barrageView;
+}
+
+-(void)confirmBtnClick
+{
+    [[UserModel user].cusPopView dismiss];
+    self.tableView.donation = 100;
+    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.donationView];
+    [self.view addSubview:self.barrageView];
     self.title = @"ALEN的树";
 }
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
 {
-    
+    switch (index) {
+        case 0:
+        {
+            
+        }
+            break;
+        case 1:
+        {
+//            弹幕
+            [[UserModel user]showPopAnimationWithAnimationStyle:3 showView:self.barrageView BGAlpha:0 isClickBGDismiss:YES];
+        }
+            break;
+        case 2:
+        {
+//            捐赠
+            [[UserModel user]showPopAnimationWithAnimationStyle:3 showView:self.donationView BGAlpha:0.5 isClickBGDismiss:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 

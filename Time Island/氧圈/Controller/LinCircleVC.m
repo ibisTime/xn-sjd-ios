@@ -14,6 +14,7 @@
 //#import "CWTableViewInfo.h"
 #import "UIViewController+CWLateralSlide.h"
 #import "MyArticleViC.h"
+#import "RankingVC.h"
 @interface LinCircleVC ()<OxygenCircleDelegate>
 
 @property (nonatomic , strong)OxygenCircleView *circleView;
@@ -58,11 +59,14 @@
     switch (tag) {
         case 0:
         {
-            
+//
+            RankingVC *vc = [RankingVC new];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 1:
         {
+//            我的树
             MyTreeVC *vc = [MyTreeVC new];
             [self.navigationController pushViewController:vc animated:YES];
         }
@@ -74,12 +78,15 @@
             break;
         case 3:
         {
+//            我的文字
             MyArticleViC *vc = [MyArticleViC new];
+
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 4:
         {
+//            点击头像
             [self defaultAnimationFromLeft];
         }
             break;

@@ -10,4 +10,6 @@
 
 @interface FriendsTheTreeTableView : TLTableView
 
+@property (nonatomic , assign)NSInteger donation;
+
 @end

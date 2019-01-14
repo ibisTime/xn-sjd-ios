@@ -85,7 +85,7 @@
     
     //配置根控制器
     [self configRootViewController];
-    [LangSwitcher startWithTraditional];
+//    [LangSwitcher startWithTraditional];
     //初始化为繁体
 
     

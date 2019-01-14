@@ -18,6 +18,8 @@
 
 -(void)showPopAnimationWithAnimationStyle:(NSInteger)style showView:(UIView *)showView BGAlpha:(CGFloat)alpha isClickBGDismiss:(BOOL)dismiss;
 
+- (void)showDataPopAnimationWithAnimationStyle:(NSInteger)style showView:(UIView *)showView BGAlpha:(CGFloat )alpha isClickBGDismiss:(BOOL)dismiss popAnimationDuration:(CGFloat)popAnimationDuration dismissAnimationDuration:(CGFloat)dismissAnimationDuration;
+
 -(void)phoneCode:(UIButton *)sender;
 
 

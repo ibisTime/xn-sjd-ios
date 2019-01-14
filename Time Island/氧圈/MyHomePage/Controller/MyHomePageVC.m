@@ -10,6 +10,8 @@
 #import "MyHomePageTableView.h"
 #import "MyHomePageHeadView.h"
 #define WIDTH SCREEN_WIDTH * 0.75
+#import "MyCarbonBubbleVC.h"
+#import "UIViewController+CWLateralSlide.h"
 @interface MyHomePageVC ()<RefreshDelegate>
 @property (nonatomic , strong)MyHomePageTableView *tableView;
 @property (nonatomic , strong)MyHomePageHeadView *headView;
@@ -39,9 +41,18 @@
     return _headView;
 }
 
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        MyCarbonBubbleVC *vc = [MyCarbonBubbleVC new];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self cw_presentViewController:nav];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+   
     [self.view addSubview:self.tableView];
     self.tableView.tableHeaderView = self.headView;
     
