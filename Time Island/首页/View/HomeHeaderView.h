@@ -15,11 +15,8 @@
 typedef NS_ENUM(NSInteger, HomeEventsType) {
     
     HomeEventsTypeBanner = 0,   //Banner图
-    HomeEventsTypeStatistics = 1,   //统计
-    HomeEventsTypeStore = 2,        //商家
-    HomeEventsTypeGoodMall = 3,     //在线商城
-    HomeEventsTypePosMining = 4,    //Pos挖矿
-    HomeEventsTypeRedEnvelope = 5,    //红包
+    HomeEventsTypeStatistics = 1,   
+    HomeEventsTypeStore = 2
 };
 
 typedef void(^HomeHeaderEventsBlock)(HomeEventsType type, NSInteger index, HomeFindModel*find);
@@ -31,9 +28,14 @@ typedef void(^HomeHeaderEventsBlock)(HomeEventsType type, NSInteger index, HomeF
 @property (nonatomic , strong)HW3DBannerView *scrollView;
 //轮播图
 @property (nonatomic, strong) NSMutableArray <BannerModel *>*banners;
-//统计
-//@property (nonatomic, strong) CountInfoModel *countInfo;
-//@property (nonatomic,strong) NSArray <HomeFindModel *>*findModels;
+//点击公告更多
+@property (nonatomic, copy) void (^clickNoticeBlock)(void);
+//点击tag标签
+@property (nonatomic, copy) void (^clickTagBlock)(NSInteger index);
+//点击推文更多
+@property (nonatomic, copy) void (^clickBookBlock)(void);
+//点击快报
+@property (nonatomic, copy) void (^clicknewsBlock)(void);
 
 
 @end

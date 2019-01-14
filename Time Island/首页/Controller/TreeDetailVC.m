@@ -21,7 +21,8 @@
 @property (nonatomic ,strong) UIView *topView;
 @property (nonatomic ,strong) UIView *placeHoldImage;
 @property (nonatomic ,strong) UIView *moreImage;
-@property (nonatomic , strong)SelectScrollView *selectSV;
+@property (nonatomic ,strong) UILabel *titleLable;
+@property (nonatomic , strong) SelectScrollView *selectSV;
 @property (nonatomic , strong) UIImageView *imageView;
 @property (nonatomic , strong) NSArray *itemsTitles;
 @property (nonatomic , strong) TreeInfoView *infoView;
@@ -92,7 +93,7 @@
 }
 - (void)initBottomView
 {
-    self.bottomView = [[TreeBottomView alloc] initWithFrame:CGRectMake(0, kScreenHeight-44, kScreenWidth, 44)];
+    self.bottomView = [[TreeBottomView alloc] initWithFrame:CGRectMake(0, kScreenHeight-kTabBarHeight, kScreenWidth, kTabBarHeight)];
     [self.view addSubview:self.bottomView];
     CoinWeakSelf;
     self.bottomView.RenYangBlock = ^(NSInteger index) {
@@ -118,14 +119,14 @@
 
 - (void)initFlats
 {
-    self.infoView = [[TreeInfoView alloc] initWithFrame:CGRectMake(0, self.imageView.yy+5, kScreenWidth, 100)];
+    self.infoView = [[TreeInfoView alloc] initWithFrame:CGRectMake(0, self.imageView.yy+5, kScreenWidth, 44)];
     [self.contentScrollView addSubview:self.infoView];
     
     self.teamView = [[TeamView alloc] initWithFrame:CGRectMake(0, self.infoView.yy+5, kScreenWidth, 100)];
     [self.contentScrollView addSubview:self.teamView];
     
     self.itemsTitles = @[@"图文详情",@"数目参数",@"认养记录"];
-    self.selectSV = [[SelectScrollView alloc] initWithFrame:CGRectMake(0, self.teamView.yy+5, kScreenWidth, kSuperViewHeight - kTabBarHeight) itemTitles:self.itemsTitles];
+    self.selectSV = [[SelectScrollView alloc] initWithFrame:CGRectMake(0, self.teamView.yy, kScreenWidth, kSuperViewHeight - kTabBarHeight) itemTitles:self.itemsTitles];
     [self.contentScrollView addSubview:self.selectSV];
     self.contentScrollView.contentSize = CGSizeMake(0,  self.selectSV.yy+100);
 
@@ -154,24 +155,29 @@
 
 - (void)initCustomButton
 {
-    UIView *placeHoldImage = [[UIView alloc] initWithFrame:CGRectMake(15, 25, 30, 30)];
+    UIView *placeHoldImage = [[UIView alloc] initWithFrame:CGRectMake(15, kStatusBarHeight, 30, 30)];
     placeHoldImage.backgroundColor = kBlackColor;
     self.placeHoldImage = placeHoldImage;
     [self.topView addSubview:self.placeHoldImage];
     placeHoldImage.layer.cornerRadius = 15;
     placeHoldImage.clipsToBounds = YES;
-    UIView *moreImage = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth-55, 25, 30, 30)];
+    placeHoldImage.centerY = self.titleLable.centerY;
+    UIView *moreImage = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth-55, kStatusBarHeight, 30, 30)];
     moreImage.backgroundColor = kBlackColor;
     self.moreImage = moreImage;
 //    [self.topView addSubview:self.moreImage];
     moreImage.layer.cornerRadius = 15;
     moreImage.clipsToBounds = YES;
+    moreImage.centerY = self.titleLable.centerY;
+
     UIButton *backButton = [UIButton buttonWithImageName:@"返回"];
     UIButton *moreButton = [UIButton buttonWithImageName:@""];
-    backButton.frame = CGRectMake(15, 25, 30, 30);
-    moreButton.frame = CGRectMake(kScreenWidth-55, 25, 30, 30);
+    backButton.frame = CGRectMake(15, kStatusBarHeight, 30, 30);
+    moreButton.frame = CGRectMake(kScreenWidth-55, kStatusBarHeight, 30, 30);
     [self.view addSubview:backButton];
 //    [self.view addSubview:moreButton];
+    backButton.centerY = self.titleLable.centerY;
+    moreButton.centerY = self.titleLable.centerY;
     [backButton addTarget:self action:@selector(backButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
   
@@ -213,6 +219,7 @@
     [topView addSubview:titleLable];
     titleLable.frame = CGRectMake((kScreenWidth-100)/2, 20, 100, 44);
     titleLable.text = @"古树详情";
+    self.titleLable = titleLable;
     
 }
 - (void)initScrollView {

@@ -1,28 +1,27 @@
 //
-//  TreeFieldVC.m
+//  NoticeVC.m
 //  Time Island
 //
-//  Created by shaojianfei on 2019/1/10.
+//  Created by shaojianfei on 2019/1/14.
 //  Copyright © 2019年 ChengLian. All rights reserved.
 //
 
-#import "TreeFieldVC.h"
-#import "TreeFieldTB.h"
-@interface TreeFieldVC ()<RefreshDelegate>
-@property (nonatomic , strong) TreeFieldTB *tableView;
+#import "NoticeVC.h"
+#import "NoticeTableView.h"
+@interface NoticeVC ()<RefreshDelegate>
+@property (nonatomic , strong) NoticeTableView *tableView;
 
 @end
 
-@implementation TreeFieldVC
+@implementation NoticeVC
 
 - (void)viewDidLoad {
-    self.view.backgroundColor = kAppCustomMainColor;
     [super viewDidLoad];
-    self.tableView = [[TreeFieldTB alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-200) style:UITableViewStyleGrouped];
+    self.view.backgroundColor = kWhiteColor;
+    self.tableView = [[NoticeTableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-kTabBarHeight) style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = kWhiteColor;
     self.tableView.refreshDelegate = self;
-    self.tableView.scrollEnabled = NO;
-
+    self.tableView.scrollEnabled = YES;
     [self.view addSubview:self.tableView];
     // Do any additional setup after loading the view.
 }

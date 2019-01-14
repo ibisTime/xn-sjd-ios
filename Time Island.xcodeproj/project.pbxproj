@@ -51,6 +51,14 @@
 		1F1B00D221E89667000BEBD3 /* FriendsTheTreeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B00D121E89667000BEBD3 /* FriendsTheTreeTableView.m */; };
 		1F1B00D821E896A3000BEBD3 /* FriendsTreeHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B00D721E896A3000BEBD3 /* FriendsTreeHeadCell.m */; };
 		1F1B00DB21E89B67000BEBD3 /* EnergyCompeteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B00DA21E89B67000BEBD3 /* EnergyCompeteCell.m */; };
+		B815278121EC8AB800F89395 /* NoticeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B815278021EC8AB800F89395 /* NoticeVC.m */; };
+		B815278621EC8BAE00F89395 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B815278521EC8BAE00F89395 /* BaseTableViewCell.m */; };
+		B815278921EC8BC200F89395 /* BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = B815278821EC8BC200F89395 /* BaseView.m */; };
+		B815278C21EC8BFD00F89395 /* NoticeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B815278B21EC8BFD00F89395 /* NoticeTableView.m */; };
+		B815278F21EC8C1300F89395 /* NoticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B815278E21EC8C1300F89395 /* NoticeCell.m */; };
+		B815279221EC906A00F89395 /* BookVideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B815279121EC906A00F89395 /* BookVideoVC.m */; };
+		B815279521EC946100F89395 /* BookVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B815279421EC946100F89395 /* BookVideoCell.m */; };
+		B815279821EC95E600F89395 /* BookTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B815279721EC95E600F89395 /* BookTableView.m */; };
 		B81E5EA821DC8B3C00873AB9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B81E5EA721DC8B3C00873AB9 /* ViewController.m */; };
 		B81E5EAB21DC8B3C00873AB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B81E5EA921DC8B3C00873AB9 /* Main.storyboard */; };
 		B81E5EAD21DC8B4100873AB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B81E5EAC21DC8B4100873AB9 /* Assets.xcassets */; };
@@ -328,6 +336,22 @@
 		2613D8EB1E56B0B644262010 /* Pods-Time Island.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time Island.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Time Island/Pods-Time Island.debug.xcconfig"; sourceTree = "<group>"; };
 		298359E7B0E6639397AFC0E2 /* Pods-Time Island.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time Island.release.xcconfig"; path = "Pods/Target Support Files/Pods-Time Island/Pods-Time Island.release.xcconfig"; sourceTree = "<group>"; };
 		85935B108A2342344937F73A /* libPods-Time Island.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Time Island.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B815277F21EC8AB800F89395 /* NoticeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoticeVC.h; sourceTree = "<group>"; };
+		B815278021EC8AB800F89395 /* NoticeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeVC.m; sourceTree = "<group>"; };
+		B815278421EC8BAE00F89395 /* BaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
+		B815278521EC8BAE00F89395 /* BaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
+		B815278721EC8BC200F89395 /* BaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseView.h; sourceTree = "<group>"; };
+		B815278821EC8BC200F89395 /* BaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseView.m; sourceTree = "<group>"; };
+		B815278A21EC8BFD00F89395 /* NoticeTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoticeTableView.h; sourceTree = "<group>"; };
+		B815278B21EC8BFD00F89395 /* NoticeTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeTableView.m; sourceTree = "<group>"; };
+		B815278D21EC8C1300F89395 /* NoticeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoticeCell.h; sourceTree = "<group>"; };
+		B815278E21EC8C1300F89395 /* NoticeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeCell.m; sourceTree = "<group>"; };
+		B815279021EC906A00F89395 /* BookVideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookVideoVC.h; sourceTree = "<group>"; };
+		B815279121EC906A00F89395 /* BookVideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookVideoVC.m; sourceTree = "<group>"; };
+		B815279321EC946100F89395 /* BookVideoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookVideoCell.h; sourceTree = "<group>"; };
+		B815279421EC946100F89395 /* BookVideoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookVideoCell.m; sourceTree = "<group>"; };
+		B815279621EC95E600F89395 /* BookTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookTableView.h; sourceTree = "<group>"; };
+		B815279721EC95E600F89395 /* BookTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookTableView.m; sourceTree = "<group>"; };
 		B81E5EA021DC8B3C00873AB9 /* Time Island.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Time Island.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B81E5EA621DC8B3C00873AB9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		B81E5EA721DC8B3C00873AB9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -964,6 +988,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B815278221EC8B8500F89395 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				B815278421EC8BAE00F89395 /* BaseTableViewCell.h */,
+				B815278521EC8BAE00F89395 /* BaseTableViewCell.m */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		B815278321EC8B8600F89395 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				B815278721EC8BC200F89395 /* BaseView.h */,
+				B815278821EC8BC200F89395 /* BaseView.m */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
 		B81E5E9721DC8B3C00873AB9 = {
 			isa = PBXGroup;
 			children = (
@@ -1090,6 +1132,8 @@
 		B81E5EE921DC8FC000873AB9 /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
+				B815278221EC8B8500F89395 /* TableViewCell */,
+				B815278321EC8B8600F89395 /* UIView */,
 				B8A27AA621E5C44300914897 /* MMComboBox */,
 				B81E5EEA21DC8FC000873AB9 /* TableView */,
 				B81E5EED21DC8FC000873AB9 /* TextView */,
@@ -1530,6 +1574,10 @@
 				B8ED2E6921E6EA1D00FADCCE /* TreeFieldVC.m */,
 				B8ED2E6B21E6EA3400FADCCE /* TreeRenYangVC.h */,
 				B8ED2E6C21E6EA3400FADCCE /* TreeRenYangVC.m */,
+				B815277F21EC8AB800F89395 /* NoticeVC.h */,
+				B815278021EC8AB800F89395 /* NoticeVC.m */,
+				B815279021EC906A00F89395 /* BookVideoVC.h */,
+				B815279121EC906A00F89395 /* BookVideoVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1548,6 +1596,8 @@
 		B81E5F9921DC8FC100873AB9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B815279321EC946100F89395 /* BookVideoCell.h */,
+				B815279421EC946100F89395 /* BookVideoCell.m */,
 				B86CB69E21DDAA1500C60AC7 /* XBTextLoopView.h */,
 				B86CB69F21DDAA1500C60AC7 /* XBTextLoopView.m */,
 				B81E60A821DCAC7400873AB9 /* HomeCell.h */,
@@ -1579,6 +1629,12 @@
 				B8ED2E8A21E878BB00FADCCE /* RenYangFieldDeyailView.m */,
 				B8ED2E8C21E8934B00FADCCE /* RealNameView.h */,
 				B8ED2E8D21E8934B00FADCCE /* RealNameView.m */,
+				B815278A21EC8BFD00F89395 /* NoticeTableView.h */,
+				B815278B21EC8BFD00F89395 /* NoticeTableView.m */,
+				B815278D21EC8C1300F89395 /* NoticeCell.h */,
+				B815278E21EC8C1300F89395 /* NoticeCell.m */,
+				B815279621EC95E600F89395 /* BookTableView.h */,
+				B815279721EC95E600F89395 /* BookTableView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2294,6 +2350,7 @@
 				B81E5FE121DC8FC200873AB9 /* HttpSign.m in Sources */,
 				B81E609E21DCAB8F00873AB9 /* TLBannerCell.m in Sources */,
 				B81E5FCF21DC8FC200873AB9 /* UIBarButtonItem+convience.m in Sources */,
+				B815278121EC8AB800F89395 /* NoticeVC.m in Sources */,
 				B81E5FCB21DC8FC200873AB9 /* UIButton+Custom.m in Sources */,
 				B81E5FBF21DC8FC200873AB9 /* TLTimeButton.m in Sources */,
 				B8ED2E6D21E6EA3400FADCCE /* TreeRenYangVC.m in Sources */,
@@ -2315,6 +2372,7 @@
 				B81E603821DC93EC00873AB9 /* DeviceUtil.m in Sources */,
 				B81E5FD421DC8FC200873AB9 /* NSDictionary+Extension.m in Sources */,
 				B81E5FBC21DC8FC200873AB9 /* CustomPickerView.m in Sources */,
+				B815278621EC8BAE00F89395 /* BaseTableViewCell.m in Sources */,
 				1F1B006C21E71D26000BEBD3 /* RBBEasingFunction.m in Sources */,
 				B81E608821DC9FCC00873AB9 /* LinCircleVC.m in Sources */,
 				1F1B00A821E86B3C000BEBD3 /* UIButton+SGImagePosition.m in Sources */,
@@ -2362,6 +2420,7 @@
 				B81E5FD621DC8FC200873AB9 /* NSString+CGSize.m in Sources */,
 				B81E5FB721DC8FC200873AB9 /* PushSortBar.m in Sources */,
 				B81E605821DC981D00873AB9 /* NBCDRequest.m in Sources */,
+				B815279221EC906A00F89395 /* BookVideoVC.m in Sources */,
 				B81E5FE921DC8FC200873AB9 /* TLSwitchView.m in Sources */,
 				B81E5FE021DC8FC200873AB9 /* HttpRequestTool.m in Sources */,
 				1F1B002E21E71C5D000BEBD3 /* FloatingBallHeader.m in Sources */,
@@ -2383,6 +2442,7 @@
 				1F1B00C921E88169000BEBD3 /* MyArticleCell.m in Sources */,
 				B8ED2E7F21E7218E00FADCCE /* TreeBottomView.m in Sources */,
 				B8A27AE521E5C44400914897 /* MMSingleItem.m in Sources */,
+				B815278921EC8BC200F89395 /* BaseView.m in Sources */,
 				1F1B007121E71D26000BEBD3 /* RBBLinearInterpolation.m in Sources */,
 				1F1B00B821E87909000BEBD3 /* DonateFriendCell.m in Sources */,
 				B81E601721DC906D00873AB9 /* BindMobileVC.m in Sources */,
@@ -2430,9 +2490,12 @@
 				B81E5FEB21DC8FC200873AB9 /* TLTabBarController.m in Sources */,
 				B81E5FD921DC8FC200873AB9 /* NSNumber+Extension.m in Sources */,
 				B8ED2E8521E8352B00FADCCE /* TeamView.m in Sources */,
+				B815279521EC946100F89395 /* BookVideoCell.m in Sources */,
+				B815278F21EC8C1300F89395 /* NoticeCell.m in Sources */,
 				B81E5FE421DC8FC200873AB9 /* HttpRequestObject.m in Sources */,
 				B81E5FC421DC8FC200873AB9 /* TLNetworking.m in Sources */,
 				B8A27AF521E5C44400914897 /* UIView+ComboBoxExtension.m in Sources */,
+				B815278C21EC8BFD00F89395 /* NoticeTableView.m in Sources */,
 				B81E5EA821DC8B3C00873AB9 /* ViewController.m in Sources */,
 				B81E5FF021DC8FC200873AB9 /* BaseLabel.m in Sources */,
 				B8A27AA521E5A15100914897 /* TreeListVC.m in Sources */,
@@ -2475,6 +2538,7 @@
 				B81E5FE821DC8FC200873AB9 /* TestContentVC.m in Sources */,
 				B8A27AF221E5C44400914897 /* MMBasePopupView.m in Sources */,
 				B81E5FAB21DC8FC200873AB9 /* HTMLStrVC.m in Sources */,
+				B815279821EC95E600F89395 /* BookTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

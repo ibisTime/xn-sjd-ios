@@ -43,7 +43,7 @@
     
     
     self.statusButton = [UIButton buttonWithTitle:@"集体" titleColor:kWhiteColor backgroundColor:[UIColor redColor] titleFont:14];
-    self.statusButton.frame = CGRectMake(15, 15, 32, 13);
+    self.statusButton.frame = CGRectMake(15, 15, 42, 22);
     self.statusButton.layer.cornerRadius = 5;
     self.statusButton.clipsToBounds = YES;
     [self addSubview:self.statusButton];
@@ -51,9 +51,10 @@
     self.infoTitle = [UILabel labelWithBackgroundColor:kClearColor textColor:RGB(0, 0, 0) font:15.0];
     [self.infoTitle setFont:[UIFont boldSystemFontOfSize:15]];
     [self addSubview:self.infoTitle];
-    self.infoTitle.frame = CGRectMake(60, 5, self.bounds.size.width-80, 44);
+    self.infoTitle.frame = CGRectMake(60, 8, self.bounds.size.width-80, 44);
     self.infoTitle.numberOfLines = 0;
     self.infoTitle.text = @"活了10000年的山间古树,100000年的古树,古树撒可敬的考拉胜利大街拉伸基多拉";
+    
     self.priceLable = [UILabel labelWithBackgroundColor:kClearColor textColor:RGB(255, 69, 69) font:18.0];
     [self addSubview:self.priceLable];
     self.priceLable.frame = CGRectMake(10, self.infoTitle.yy+15, kScreenWidth-120, 30);

@@ -58,7 +58,7 @@
         [self.contentView addSubview:moneyLab];
         
         UIView *line = [UIView new];
-        line.frame = CGRectMake(0, detailLab.yy, kScreenWidth, 1);
+        line.frame = CGRectMake(0, self.frame.size.height-1, kScreenWidth, 1);
         line.backgroundColor = RGB(244, 244, 244);
         [self.contentView addSubview:line];
     }

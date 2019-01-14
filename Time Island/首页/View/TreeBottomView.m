@@ -40,19 +40,19 @@
     
     
     self.myButton = [UIButton buttonWithTitle:@"我的" titleColor:kTextBlack backgroundColor:[UIColor whiteColor] titleFont:14];
-    self.myButton.frame = CGRectMake(0, 0, kScreenWidth/4, 44);
+    self.myButton.frame = CGRectMake(0, 0, kScreenWidth/4, self.frame.size.height);
     self.myButton.clipsToBounds = YES;
     self.myButton.tag = 100;
     [self addSubview:self.myButton];
     [self.myButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     self.shareButton = [UIButton buttonWithTitle:@"分享" titleColor:kWhiteColor backgroundColor:kAppCustomMainColor titleFont:14];
-    self.shareButton.frame = CGRectMake(kScreenWidth/4, 0, kScreenWidth/4, 44);
+    self.shareButton.frame = CGRectMake(kScreenWidth/4, 0, kScreenWidth/4, self.frame.size.height);
     self.shareButton.clipsToBounds = YES;
     [self addSubview:self.shareButton];
     self.shareButton.tag = 101;
     [self.shareButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     self.renYangButton = [UIButton buttonWithTitle:@"申请认养" titleColor:kWhiteColor backgroundColor:[UIColor redColor] titleFont:14];
-    self.renYangButton.frame = CGRectMake(kScreenWidth/2, 0, kScreenWidth/2, 44);
+    self.renYangButton.frame = CGRectMake(kScreenWidth/2, 0, kScreenWidth/2, self.frame.size.height);
     self.renYangButton.clipsToBounds = YES;
     [self addSubview:self.renYangButton];
     self.renYangButton.tag = 102;

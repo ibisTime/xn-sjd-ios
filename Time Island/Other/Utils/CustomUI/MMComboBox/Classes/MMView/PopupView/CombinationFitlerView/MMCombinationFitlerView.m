@@ -100,6 +100,8 @@
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.frame = CGRectMake(left, 0, 100, PopupViewTabBarHeight);
             button.tag = i;
+            button.layer.cornerRadius =3;
+            button.clipsToBounds = YES;
             [button setTitle:titleArray[i] forState:UIControlStateNormal];
             [button setTitleColor:titleColor forState:UIControlStateNormal];
             button.titleLabel.font = [UIFont systemFontOfSize:ButtonFontSize];

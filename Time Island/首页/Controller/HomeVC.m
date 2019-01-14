@@ -15,6 +15,8 @@
 #import "TLTextField.h"
 #import "TreeListVC.h"
 #import "TitleView.h"
+#import "NoticeVC.h"
+#import "BookVideoVC.h"
 @interface HomeVC ()<RefreshDelegate,RefreshCollectionViewDelegate,UIScrollViewDelegate,UITextFieldDelegate,UISearchBarDelegate>
 @property (nonatomic, strong) HomeHeaderView *headerView;
 @property (nonatomic,strong) NSArray <HomeFindModel *>*findModels;
@@ -181,36 +183,36 @@
 - (void)initCollection
 {
     
-    UILabel *lable = [UILabel labelWithTitle:@"古树认养" frame:CGRectMake(10, self.headerView.yy, kScreenWidth -30, 22)];
+    UILabel *lable = [UILabel labelWithTitle:@"古树认养" frame:CGRectMake(15, self.headerView.yy, kScreenWidth -30, 20)];
     lable.textAlignment = NSTextAlignmentLeft;
-    lable.font = [UIFont boldSystemFontOfSize:16];
-    
-
-    [self.tableView addSubview:lable];
-    lable.font = [UIFont systemFontOfSize:17.0];
-    lable.textColor = kTextColor;
+    lable.textColor = kBlackColor;
+    [lable setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15]];
+    [self.contentScrollew addSubview:lable];
     
     UILabel *englishLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor font:12];
-    englishLab.frame = CGRectMake((kScreenWidth-130), self.headerView.yy, 90, 30);
+    englishLab.userInteractionEnabled = YES;
+    englishLab.frame = CGRectMake((kScreenWidth-130), self.headerView.yy, 90, 20);
     englishLab.textAlignment = NSTextAlignmentRight;
     englishLab.text = @"查看更多";
-    [self.tableView addSubview:englishLab];
+    [self.contentScrollew addSubview:englishLab];
     englishLab.centerY = lable.centerY;
+    UITapGestureRecognizer *ta = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jumpTreeVC)];
+    [englishLab addGestureRecognizer:ta];
     UIButton *button = [UIButton buttonWithImageName:@"" selectedImageName:@""];
     [button setImage:kImage(@"积分更多") forState:UIControlStateNormal];
-    button.frame  = CGRectMake(kScreenWidth -30, self.headerView.yy, 14, 30);
-    [button addTarget:self action:@selector(jumpArtcile) forControlEvents:UIControlEventTouchUpInside];
-    [self.tableView addSubview:button];
+    button.frame  = CGRectMake(kScreenWidth -30, self.headerView.yy, 14, 20);
+    [button addTarget:self action:@selector(jumpTreeVC) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentScrollew addSubview:button];
     button.centerY = englishLab.centerY;
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake((kScreenWidth-40)/2, 250);
-    layout.minimumLineSpacing = 10.0; // 竖
-    layout.minimumInteritemSpacing = 10.0; // 横
-    layout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+    layout.itemSize = CGSizeMake((kScreenWidth-45)/2, 250);
+    layout.minimumLineSpacing = 15.0; // 竖
+    layout.minimumInteritemSpacing = 15.0; // 横
+    layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
     
    
     
-    TLTopCollectionView *topView = [[TLTopCollectionView alloc] initWithFrame:CGRectMake(0, self.tableView.yy, kScreenWidth, 550) collectionViewLayout:layout withImage:@[@""]];
+    TLTopCollectionView *topView = [[TLTopCollectionView alloc] initWithFrame:CGRectMake(0, self.headerView.yy+30, kScreenWidth, 550) collectionViewLayout:layout withImage:@[@""]];
     self.topView = topView;
     topView.refreshDelegate = self;
     [self.contentScrollew addSubview:topView];
@@ -256,21 +258,72 @@
     
     
 }
+
 - (HomeHeaderView *)headerView {
     
     if (!_headerView) {
         
         CoinWeakSelf;
         //头部
-        _headerView = [[HomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 10 + SCREEN_WIDTH/2+320 -65)];
-        
+        _headerView = [[HomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kHeight(10 + SCREEN_WIDTH/2+320 -110))];
+        //点击banner
         _headerView.headerBlock = ^(HomeEventsType type, NSInteger index, HomeFindModel *find) {
             [weakSelf headerViewEventsWithType:type index:index model:find];
+        };
+        _headerView.clickNoticeBlock = ^{
+            //点击公告
+            [weakSelf noticeClick];
+        };
+        _headerView.clickBookBlock = ^{
+            //点击情感推文
+            [weakSelf bookVideoClick];
+        };
+        _headerView.clicknewsBlock = ^{
+            //点击快报
+            [weakSelf noticeClick];
+
+        };
+        _headerView.clickTagBlock = ^(NSInteger index) {
+            [weakSelf clickTagWithIndex:index];
         };
         _headerView.scrollEnabled = NO;
     }
     return _headerView;
 }
+
+- (void)bookVideoClick
+{
+    BookVideoVC *notice = [BookVideoVC new];
+    notice.title = @"情感频道";
+    [self.navigationController pushViewController:notice animated:YES];
+    
+}
+
+- (void)noticeClick
+{
+    NoticeVC *notice = [NoticeVC new];
+    notice.title = @"公告";
+    [self.navigationController pushViewController:notice animated:YES];
+}
+- (void)jumpTreeVC
+{
+    [self clickTagWithIndex:0];
+}
+
+- (void)clickTagWithIndex:(NSInteger)index
+{
+    if (index == 0) {
+        TreeListVC *tree = [TreeListVC new];
+        [self.navigationController pushViewController:tree animated:YES];
+    }else if (index ==1)
+    {
+        
+    }else{
+        
+    }
+    
+}
+
 - (void)headerViewEventsWithType:(HomeEventsType)type index:(NSInteger)index  model:(HomeFindModel *)model
 {
     NSString *url = [[self.bannerRoom objectAtIndex:index] url];
@@ -346,13 +399,8 @@
 
 -(void)refreshCollectionView:(BaseCollectionView *)refreshCollectionview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-//    PlateMineModel *model = self.Plateforms[indexPath.row];
-//    PlateDetailVC *detail = [PlateDetailVC new];
-//    detail.code = model.code;
-//    detail.title = model.name;
-//    [self.navigationController pushViewController:detail animated:YES];
-    
+    TreeListVC *tree = [TreeListVC new];
+    [self.navigationController pushViewController:tree animated:YES];
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
