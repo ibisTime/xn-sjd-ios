@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FloatingBallHeader.h"
-
+#import "DonationAnimationView.h"
 @protocol FriendsTreeHeadDelegate <NSObject>
 
 -(void)FriendsTreeHeadButton:(NSInteger )tag;
@@ -17,8 +17,12 @@
 
 @interface FriendsTreeHeadCell : UITableViewCell<FloatingBallHeaderDelegate>
 
+@property (nonatomic , assign)NSInteger donation;
+
 @property (nonatomic, strong) FloatingBallHeader *floatingBallHeader;
 
 @property (nonatomic, assign) id <FriendsTreeHeadDelegate> delegate;
+
+@property (nonatomic , strong)DonationAnimationView *animationView;
 
 @end

@@ -96,6 +96,36 @@
 }
 
 
+- (void)showDataPopAnimationWithAnimationStyle:(NSInteger)style showView:(UIView *)showView BGAlpha:(CGFloat )alpha isClickBGDismiss:(BOOL)dismiss popAnimationDuration:(CGFloat)popAnimationDuration dismissAnimationDuration:(CGFloat)dismissAnimationDuration
+{
+    ZJAnimationPopStyle popStyle = (style == 8) ? ZJAnimationPopStyleCardDropFromLeft : (ZJAnimationPopStyle)style;
+    ZJAnimationDismissStyle dismissStyle = (ZJAnimationDismissStyle)style;
+    // 1.初始化
+    ZJAnimationPopView *_popView = [[ZJAnimationPopView alloc] initWithCustomView:showView popStyle:popStyle dismissStyle:dismissStyle];
+    self.cusPopView = _popView;
+    //    _popView.isClickBGDismiss = ![showView isKindOfClass:[UIView class]];
+    //    移除
+    _popView.isClickBGDismiss = dismiss;
+    // 2.2 显示时背景的透明度
+    _popView.popBGAlpha = alpha;
+    _popView.popAnimationDuration = popAnimationDuration;
+    _popView.dismissAnimationDuration =  dismissAnimationDuration;
+    // 2.3 显示时是否监听屏幕旋转
+    _popView.isObserverOrientationChange = YES;
+    // 2.6 显示完成回调
+    _popView.popComplete = ^{
+        NSLog(@"显示完成");
+    };
+    // 2.7 移除完成回调
+    _popView.dismissComplete = ^{
+        NSLog(@"移除完成");
+    };
+    // 4.显示弹框
+    [_popView pop];
+}
+
+
+
 
 
 

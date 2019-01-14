@@ -10,10 +10,22 @@
 
 @implementation FriendsTreeHeadCell
 
+
+
+-(DonationAnimationView *)animationView
+{
+    if (!_animationView) {
+        _animationView = [[DonationAnimationView alloc]initWithFrame:CGRectMake(kWidth(598)/2, kHeight(550)/2, 45, 70)];
+        _animationView.alpha = 0;
+    }
+    return _animationView;
+}
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        
+        
         
         UIImageView *backImg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,  kHeight(432))];
         backImg.image = kImage(@"树 跟背景");
@@ -67,8 +79,41 @@
         donationBtn.tag = 102;
         [self addSubview:donationBtn];
         
+        
+        [self addSubview:self.animationView];
+//        [self animationView];
+        
     }
     return self;
+}
+
+
+-(void)setDonation:(NSInteger)donation
+{
+    if (donation == 100) {
+        self.animationView.alpha = 1;
+        CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+        CATransform3D scale1 = CATransform3DMakeScale(0.5, 0.5, 1);
+        CATransform3D scale2 = CATransform3DMakeScale(1.6, 1.6, 1);
+        CATransform3D scale3 = CATransform3DMakeScale(0.9, 0.9, 1);
+        CATransform3D scale4 = CATransform3DMakeScale(1.0, 1.0, 1);
+        NSArray *frameValues = [NSArray arrayWithObjects:[NSValue valueWithCATransform3D:scale1],[NSValue valueWithCATransform3D:scale2],[NSValue valueWithCATransform3D:scale3],[NSValue valueWithCATransform3D:scale4],nil];
+        [animation setValues:frameValues];
+        NSArray *frameTimes = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0.0],[NSNumber numberWithFloat:0.5],[NSNumber numberWithFloat:0.8],[NSNumber numberWithFloat:0.9],nil];
+        [animation setKeyTimes:frameTimes];
+        animation.fillMode = kCAFillModeForwards;
+        animation.duration = 0.5f;
+        [self.animationView.layer addAnimation:animation forKey:@"DSPopUpAnimation"];
+        
+        
+        dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC));
+        dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+            //                [weakSelf delayMethod];
+            [UIView animateWithDuration:2 animations:^{
+                self.animationView.alpha = 0;
+            }];
+        });
+    }
 }
 
 -(void)buttonClick:(UIButton *)sender
