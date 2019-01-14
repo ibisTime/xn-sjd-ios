@@ -212,6 +212,10 @@
 		B8ED2E7C21E71ABC00FADCCE /* RenYangListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E7B21E71ABC00FADCCE /* RenYangListCell.m */; };
 		B8ED2E7F21E7218E00FADCCE /* TreeBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E7E21E7218E00FADCCE /* TreeBottomView.m */; };
 		B8ED2E8221E72E1900FADCCE /* TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E8121E72E1900FADCCE /* TitleView.m */; };
+		B8ED2E8521E8352B00FADCCE /* TeamView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E8421E8352B00FADCCE /* TeamView.m */; };
+		B8ED2E8821E8516D00FADCCE /* RenYangFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E8721E8516D00FADCCE /* RenYangFieldView.m */; };
+		B8ED2E8B21E878BB00FADCCE /* RenYangFieldDeyailView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E8A21E878BB00FADCCE /* RenYangFieldDeyailView.m */; };
+		B8ED2E8E21E8934B00FADCCE /* RealNameView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E8D21E8934B00FADCCE /* RealNameView.m */; };
 		C5BE2C47B2F2099539951C03 /* libPods-Time Island.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85935B108A2342344937F73A /* libPods-Time Island.a */; };
 /* End PBXBuildFile section */
 
@@ -653,6 +657,14 @@
 		B8ED2E7E21E7218E00FADCCE /* TreeBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeBottomView.m; sourceTree = "<group>"; };
 		B8ED2E8021E72E1900FADCCE /* TitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TitleView.h; sourceTree = "<group>"; };
 		B8ED2E8121E72E1900FADCCE /* TitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TitleView.m; sourceTree = "<group>"; };
+		B8ED2E8321E8352B00FADCCE /* TeamView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TeamView.h; sourceTree = "<group>"; };
+		B8ED2E8421E8352B00FADCCE /* TeamView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TeamView.m; sourceTree = "<group>"; };
+		B8ED2E8621E8516D00FADCCE /* RenYangFieldView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenYangFieldView.h; sourceTree = "<group>"; };
+		B8ED2E8721E8516D00FADCCE /* RenYangFieldView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RenYangFieldView.m; sourceTree = "<group>"; };
+		B8ED2E8921E878BB00FADCCE /* RenYangFieldDeyailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenYangFieldDeyailView.h; sourceTree = "<group>"; };
+		B8ED2E8A21E878BB00FADCCE /* RenYangFieldDeyailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RenYangFieldDeyailView.m; sourceTree = "<group>"; };
+		B8ED2E8C21E8934B00FADCCE /* RealNameView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RealNameView.h; sourceTree = "<group>"; };
+		B8ED2E8D21E8934B00FADCCE /* RealNameView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RealNameView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1559,6 +1571,14 @@
 				B8ED2E7E21E7218E00FADCCE /* TreeBottomView.m */,
 				B8ED2E8021E72E1900FADCCE /* TitleView.h */,
 				B8ED2E8121E72E1900FADCCE /* TitleView.m */,
+				B8ED2E8321E8352B00FADCCE /* TeamView.h */,
+				B8ED2E8421E8352B00FADCCE /* TeamView.m */,
+				B8ED2E8621E8516D00FADCCE /* RenYangFieldView.h */,
+				B8ED2E8721E8516D00FADCCE /* RenYangFieldView.m */,
+				B8ED2E8921E878BB00FADCCE /* RenYangFieldDeyailView.h */,
+				B8ED2E8A21E878BB00FADCCE /* RenYangFieldDeyailView.m */,
+				B8ED2E8C21E8934B00FADCCE /* RealNameView.h */,
+				B8ED2E8D21E8934B00FADCCE /* RealNameView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2337,6 +2357,8 @@
 				1F1B00DB21E89B67000BEBD3 /* EnergyCompeteCell.m in Sources */,
 				B81E5FEA21DC8FC200873AB9 /* UIColor+theme.m in Sources */,
 				B81E5FAA21DC8FC200873AB9 /* TLBaseVC.m in Sources */,
+				B8ED2E8E21E8934B00FADCCE /* RealNameView.m in Sources */,
+				B8ED2E8821E8516D00FADCCE /* RenYangFieldView.m in Sources */,
 				B81E5FD621DC8FC200873AB9 /* NSString+CGSize.m in Sources */,
 				B81E5FB721DC8FC200873AB9 /* PushSortBar.m in Sources */,
 				B81E605821DC981D00873AB9 /* NBCDRequest.m in Sources */,
@@ -2349,6 +2371,7 @@
 				B86CB6AC21DDB83A00C60AC7 /* PlateMineModel.m in Sources */,
 				B8A27AE621E5C44400914897 /* MMItem.m in Sources */,
 				B8A27AE821E5C44400914897 /* MMLayout.m in Sources */,
+				B8ED2E8B21E878BB00FADCCE /* RenYangFieldDeyailView.m in Sources */,
 				1F1B008C21E735B6000BEBD3 /* CWLateralSlideConfiguration.m in Sources */,
 				B81E5FAD21DC8FC200873AB9 /* ZMChineseConvert.m in Sources */,
 				B8A27AFC21E5D24F00914897 /* TreeDetailVC.m in Sources */,
@@ -2406,6 +2429,7 @@
 				1F1B006F21E71D26000BEBD3 /* RBBTweenAnimation.m in Sources */,
 				B81E5FEB21DC8FC200873AB9 /* TLTabBarController.m in Sources */,
 				B81E5FD921DC8FC200873AB9 /* NSNumber+Extension.m in Sources */,
+				B8ED2E8521E8352B00FADCCE /* TeamView.m in Sources */,
 				B81E5FE421DC8FC200873AB9 /* HttpRequestObject.m in Sources */,
 				B81E5FC421DC8FC200873AB9 /* TLNetworking.m in Sources */,
 				B8A27AF521E5C44400914897 /* UIView+ComboBoxExtension.m in Sources */,
@@ -2622,7 +2646,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3ZCW993X44;
+				DEVELOPMENT_TEAM = 4M8KD7B9X5;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Time Island/Macro/CoinPrefixHeader.pch";
 				INFOPLIST_FILE = "Time Island/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2630,7 +2654,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.MinicarsLife1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wzhy.11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2644,7 +2668,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3ZCW993X44;
+				DEVELOPMENT_TEAM = 4M8KD7B9X5;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Time Island/Macro/CoinPrefixHeader.pch";
 				INFOPLIST_FILE = "Time Island/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2652,7 +2676,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.MinicarsLife1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wzhy.11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

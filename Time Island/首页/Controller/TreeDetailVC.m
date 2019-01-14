@@ -12,6 +12,10 @@
 #import "TreeRenYangVC.h"
 #import "TreeInfoView.h"
 #import "TreeBottomView.h"
+#import "TeamView.h"
+#import "RenYangFieldView.h"
+#import "RenYangFieldDeyailView.h"
+#import "RealNameView.h"
 @interface TreeDetailVC ()<UIScrollViewDelegate>
 @property (nonatomic ,strong) UIScrollView *contentScrollView;
 @property (nonatomic ,strong) UIView *topView;
@@ -21,7 +25,12 @@
 @property (nonatomic , strong) UIImageView *imageView;
 @property (nonatomic , strong) NSArray *itemsTitles;
 @property (nonatomic , strong) TreeInfoView *infoView;
+@property (nonatomic , strong) TeamView *teamView;
+@property (nonatomic , strong) RenYangFieldView *renYangFieldView;
 @property (nonatomic , strong) TreeBottomView *bottomView;
+@property (nonatomic , strong) RenYangFieldDeyailView *renYangFieldDeyailView;
+
+@property (nonatomic , strong) RealNameView *realNameView;
 
 @end
 
@@ -52,21 +61,71 @@
     [self initCustomButton];
     [self initFlats];
     [self initBottomView];
+    self.renYangFieldView = [[RenYangFieldView alloc] initWithFrame:CGRectMake(0, kScreenHeight, kScreenWidth, 500)];
+    self.renYangFieldView.backgroundColor = [UIColor blackColor];
+    self.renYangFieldView.alpha = 0.7;
+    [self initcustomRenYang];
+}
+- (void)initcustomRenYang
+{
+        CoinWeakSelf;
+    self.renYangFieldDeyailView = [[RenYangFieldDeyailView alloc] initWithFrame:CGRectMake(0, 300, kScreenWidth, 500)];
+    self.renYangFieldDeyailView.sureBlock = ^{
+        [UIView animateWithDuration:0.01 animations:^{
+            weakSelf.renYangFieldView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight);
+            [weakSelf.view sendSubviewToBack:weakSelf.renYangFieldView];
+            weakSelf.renYangFieldDeyailView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight);
+            [weakSelf.view sendSubviewToBack:weakSelf.renYangFieldDeyailView];
+            [weakSelf initRealNameView];
+
+        }];
+
+    };
+}
+
+- (void)initRealNameView
+{
+
+    self.realNameView = [[RealNameView alloc] initWithFrame:CGRectMake(20,150, kScreenWidth-40, 300)];
+    [self.view addSubview:self.realNameView];
+    
 }
 - (void)initBottomView
 {
     self.bottomView = [[TreeBottomView alloc] initWithFrame:CGRectMake(0, kScreenHeight-44, kScreenWidth, 44)];
     [self.view addSubview:self.bottomView];
-    
+    CoinWeakSelf;
+    self.bottomView.RenYangBlock = ^(NSInteger index) {
+        NSLog(@"%ld",index);
+        [weakSelf bottomClickWithIndex:index];
+    };
 }
+
+- (void)bottomClickWithIndex:(NSInteger)index
+{
+    [self.view addSubview:self.renYangFieldView];
+    [self.view addSubview:self.renYangFieldDeyailView];
+
+//    [self.contentScrollView bringSubviewToFront:self.renYangFieldView];
+//    [self.contentScrollView bringSubviewToFront:self.renYangFieldDeyailView];
+
+    [UIView animateWithDuration:0.2 animations:^{
+     self.renYangFieldView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
+    self.renYangFieldDeyailView.frame = CGRectMake(0, 300, kScreenWidth, kScreenHeight-300);
+
+    }];
+}
+
 - (void)initFlats
 {
-    
     self.infoView = [[TreeInfoView alloc] initWithFrame:CGRectMake(0, self.imageView.yy+5, kScreenWidth, 100)];
     [self.contentScrollView addSubview:self.infoView];
     
+    self.teamView = [[TeamView alloc] initWithFrame:CGRectMake(0, self.infoView.yy+5, kScreenWidth, 100)];
+    [self.contentScrollView addSubview:self.teamView];
+    
     self.itemsTitles = @[@"图文详情",@"数目参数",@"认养记录"];
-    self.selectSV = [[SelectScrollView alloc] initWithFrame:CGRectMake(0, self.infoView.yy+5, kScreenWidth, kSuperViewHeight - kTabBarHeight) itemTitles:self.itemsTitles];
+    self.selectSV = [[SelectScrollView alloc] initWithFrame:CGRectMake(0, self.teamView.yy+5, kScreenWidth, kSuperViewHeight - kTabBarHeight) itemTitles:self.itemsTitles];
     [self.contentScrollView addSubview:self.selectSV];
     self.contentScrollView.contentSize = CGSizeMake(0,  self.selectSV.yy+100);
 
@@ -104,7 +163,7 @@
     UIView *moreImage = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth-55, 25, 30, 30)];
     moreImage.backgroundColor = kBlackColor;
     self.moreImage = moreImage;
-    [self.topView addSubview:self.moreImage];
+//    [self.topView addSubview:self.moreImage];
     moreImage.layer.cornerRadius = 15;
     moreImage.clipsToBounds = YES;
     UIButton *backButton = [UIButton buttonWithImageName:@"返回"];
@@ -112,10 +171,29 @@
     backButton.frame = CGRectMake(15, 25, 30, 30);
     moreButton.frame = CGRectMake(kScreenWidth-55, 25, 30, 30);
     [self.view addSubview:backButton];
-    [self.view addSubview:moreButton];
+//    [self.view addSubview:moreButton];
     [backButton addTarget:self action:@selector(backButtonClick) forControlEvents:UIControlEventTouchUpInside];
     
   
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+   
+    
+    CGPoint point = [[touches anyObject] locationInView:self.view];
+    point = [self.renYangFieldView.layer convertPoint:point fromLayer:self.view.layer];
+    if (point.y >300) {
+        return;
+    }
+    [UIView animateWithDuration:0.01 animations:^{
+        self.renYangFieldView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight);
+        [self.view sendSubviewToBack:self.renYangFieldView];
+        self.renYangFieldDeyailView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight);
+        [self.view sendSubviewToBack:self.renYangFieldDeyailView];
+    }];
+    
+    
 }
 
 - (void)backButtonClick
@@ -154,6 +232,9 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     
+    if (self.realNameView.frame.size.height >10) {
+        self.realNameView.hidden = YES;
+    }
     NSLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
     if (scrollView.contentOffset.y >0) {
     CGFloat TempAlpha = scrollView.contentOffset.y/kNavigationBarHeight;

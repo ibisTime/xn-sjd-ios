@@ -10,4 +10,6 @@
 
 @interface TreeBottomView : UIView
 
+@property (nonatomic ,copy)void(^RenYangBlock)(NSInteger index);
+
 @end
