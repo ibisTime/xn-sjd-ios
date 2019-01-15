@@ -13,6 +13,7 @@
 #import "StrategyVC.h"
 #import "GivingVC.h"
 #import "FriendsTheTreeVC.h"
+#import "MapViewController.h"
 @interface MyTreeVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)MyTreeTableView *tableView;
@@ -27,7 +28,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self navigationTransparentClearColor];
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    //    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
 }
 
@@ -92,32 +93,34 @@
     switch (index) {
         case 0:
         {
-//            证书
+            //            证书
             [[UserModel user] showPopAnimationWithAnimationStyle:1 showView:_certificateView BGAlpha:0.5 isClickBGDismiss:YES];
             
         }
             break;
         case 1:
         {
-//            地图
+            //            地图
+            MapViewController *vc = [[MapViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 2:
         {
-//            道具
+            //            道具
             [[UserModel user] showPopAnimationWithAnimationStyle:3 showView:_propsView BGAlpha:0 isClickBGDismiss:YES];
         }
             break;
         case 3:
         {
-//            攻略
+            //            攻略
             StrategyVC *vc = [[StrategyVC alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 4:
         {
-//            赠送
+            //            赠送
             GivingVC *vc = [[GivingVC alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
         }
@@ -176,13 +179,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

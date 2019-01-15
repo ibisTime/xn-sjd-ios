@@ -12,6 +12,9 @@
 #define WIDTH SCREEN_WIDTH * 0.75
 #import "MyCarbonBubbleVC.h"
 #import "UIViewController+CWLateralSlide.h"
+#import "MyGiftVC.h"
+#import "TLNavigationController.h"
+
 @interface MyHomePageVC ()<RefreshDelegate>
 @property (nonatomic , strong)MyHomePageTableView *tableView;
 @property (nonatomic , strong)MyHomePageHeadView *headView;
@@ -43,11 +46,27 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        MyCarbonBubbleVC *vc = [MyCarbonBubbleVC new];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-        [self cw_presentViewController:nav];
-    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+    NSDictionary *DIC = @{@"row":@(indexPath.row)};
+    NSNotification *notification =[NSNotification notificationWithName:@"SELECTROW" object:nil userInfo:DIC];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
+    
+//    if (indexPath.row == 0) {
+//
+//        MyCarbonBubbleVC *vc = [MyCarbonBubbleVC new];
+//        TLNavigationController *nav = [[TLNavigationController alloc] initWithRootViewController:vc];
+//        [self cw_pushViewController:vc];
+////        [self cw_presentViewController:nav];
+////        [self.navigationController pushViewController:vc animated:YES];
+//    }
+//    if (indexPath.row == 1) {
+////        [self dismissViewControllerAnimated:YES completion:nil]
+//        MyGiftVC *vc = [MyGiftVC new];
+//        TLNavigationController *nav = [[TLNavigationController alloc] initWithRootViewController:vc];
+////        [self presentViewController:vc animated:YES completion:nil];
+//        [self cw_pushViewController:vc];
+////        [self cw_presentViewController:nav];
+//    }
 }
 
 - (void)viewDidLoad {

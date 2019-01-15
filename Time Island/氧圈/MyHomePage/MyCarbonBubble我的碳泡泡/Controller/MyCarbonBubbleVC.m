@@ -8,7 +8,7 @@
 
 #import "MyCarbonBubbleVC.h"
 #import "MyCarbonBubbleTableView.h"
-#import "UIViewController+CWLateralSlide.h"
+
 #import "MyCarbombubbleView.h"
 @interface MyCarbonBubbleVC ()<RefreshDelegate>
 
@@ -49,22 +49,22 @@
     self.tableView.tableHeaderView = self.headView;
     self.title = @"我的碳泡泡";
     
-    UIButton *backBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    
-    
-    
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -10;
-    [backBtn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-    self.navigationItem.leftBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:backBtn]];
-    [backBtn setImage:kImage(@"返回白色") forState:(UIControlStateNormal)];
-    [backBtn addTarget:self action:@selector(backClick) forControlEvents:(UIControlEventTouchUpInside)];
+//    UIButton *backBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+//
+//
+//
+//    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    negativeSpacer.width = -10;
+//    [backBtn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+//    self.navigationItem.leftBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:backBtn]];
+//    [backBtn setImage:kImage(@"返回白色") forState:(UIControlStateNormal)];
+//    [backBtn addTarget:self action:@selector(backClick) forControlEvents:(UIControlEventTouchUpInside)];
 }
 
--(void)backClick
-{
-    [self cw_dismissViewController];
-}
+//-(void)backClick
+//{
+//    [self cw_dismissViewController];
+//}
 
 
 
