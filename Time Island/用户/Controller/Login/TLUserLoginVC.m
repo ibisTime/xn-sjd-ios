@@ -49,7 +49,7 @@
     
     [super viewWillAppear:animated];
     //    [self.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
-    [self navigationTransparentClearColor];
+    [self navigationwhiteColor];
     
 }
 
@@ -63,7 +63,6 @@
     
     //    self.title = [LangSwitcher switchLang:@"登录" key:nil];
     self.title = @"登录";
-    
     self.welcome = [[UILabel alloc]initWithFrame:CGRectMake(30, 139-64, 97, 33.5)];
     self.welcome.text = @"欢迎回来";
     self.welcome.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:24];
@@ -166,7 +165,7 @@
     [self.view addSubview: [self createview:CGRectMake(113, 510, 15, 1)]];
     
     UIImageView * weichatlogin = [[UIImageView alloc]initWithFrame:CGRectMake(136, 502, 20, 17)];
-    weichatlogin.image = [UIImage imageNamed:@"微信"];
+    weichatlogin.image = [UIImage imageNamed:@"微信登录"];
     [self.view addSubview:weichatlogin];
     
     self.weichat = [[UILabel alloc]initWithFrame:CGRectMake(163, 501, 78, 19)];

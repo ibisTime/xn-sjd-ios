@@ -105,7 +105,7 @@
 
 -(void)myRecodeClick
 {
-    
+    NSLog(@"%s",__func__);
 }
 
 

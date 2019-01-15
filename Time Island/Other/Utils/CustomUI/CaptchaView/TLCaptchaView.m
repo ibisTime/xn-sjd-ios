@@ -27,24 +27,27 @@
 {
     
     
-    self.captchaTf = [[TLTextField alloc] initWithFrame:CGRectMake(0, 0,frame.size.width, frame.size.height)
-                                           leftTitle:[LangSwitcher switchLang:@"验证码" key:nil]
-                                          titleWidth:90
-                                         placeholder:[LangSwitcher switchLang:@"请输入验证码" key:nil]];
+//    self.captchaTf = [[TLTextField alloc] initWithFrame:CGRectMake(0, 0,frame.size.width, frame.size.height)
+//                                           leftTitle:[LangSwitcher switchLang:@"验证码" key:nil]
+//                                          titleWidth:90
+//                                         placeholder:[LangSwitcher switchLang:@"请输入验证码" key:nil]];
+    self.captchaTf = [[TLTextField alloc]initWithFrame:CGRectMake(0, 0,frame.size.width, frame.size.height) placeholder:@"请输入验证码"];
     [self addSubview:self.captchaTf];
     
     UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 95, frame.size.height)];
 
     //获得验证码按钮
-    TLTimeButton *captchaBtn = [[TLTimeButton alloc] initWithFrame:CGRectMake(0, 0, 85, frame.size.height - 15) totalTime:60.0];
+    TLTimeButton *captchaBtn = [[TLTimeButton alloc] initWithFrame:CGRectMake(0, 14, 84, 26) totalTime:60.0];
     captchaBtn.centerY = rightView.height/2.0;
     self.captchaBtn = captchaBtn;
-    captchaBtn.titleLabel.font = Font(13.0);
+    captchaBtn.titleLabel.font = Font(11.0);
     self.captchaTf.keyboardType = UIKeyboardTypeNumberPad;
     captchaBtn.layer.cornerRadius = 4;
     captchaBtn.clipsToBounds = YES;
-    captchaBtn.backgroundColor = kAppCustomMainColor;
-    [captchaBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    captchaBtn.backgroundColor = kAppCustomMainColor;
+    [captchaBtn setTitleColor:[UIColor colorWithHexString:@"#23AD8C"] forState:UIControlStateNormal];
+    [captchaBtn.layer setBorderWidth:1.0];
+    [captchaBtn.layer setBorderColor:[UIColor colorWithHexString:@"#23AD8C"].CGColor];
     [rightView addSubview:captchaBtn];
     
     self.captchaTf.rightView = rightView;
