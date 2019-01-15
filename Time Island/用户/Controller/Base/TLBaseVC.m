@@ -168,7 +168,7 @@
     self.navigationController.navigationBar.backIndicatorImage = [UIImage imageNamed:@"返回白色"];
     self.navigationController.navigationBar.backIndicatorTransitionMaskImage = [UIImage imageNamed:@"返回白色"];
     self.navigationItem.backBarButtonItem = item;
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    //    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 
 -(void)navigationTransparentClearColor
@@ -184,7 +184,7 @@
     //    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
     self.navigationItem.backBarButtonItem = item;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    //    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     
 }
 
@@ -200,11 +200,9 @@
     self.navigationController.navigationBar.barTintColor = kTabbarColor;
     self.navigationItem.backBarButtonItem = item;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    //    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
-}
-
-
+}\
 - (void)didReceiveMemoryWarning {
     
     [super didReceiveMemoryWarning];

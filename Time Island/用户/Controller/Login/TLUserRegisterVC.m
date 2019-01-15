@@ -62,16 +62,13 @@
 @implementation TLUserRegisterVC
 
 -(void)viewWillAppear:(BOOL)animated{
-    //    self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
-    
-    //    [self.navigationController.navigationBar setBackgroundColor:[UIColor whiteColor]];
+    [self navigationwhiteColor];
 }
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     self.title = @"注册";
-    
     self.welcome = [[UILabel alloc]initWithFrame:CGRectMake(30, 139-64, 48, 34)];
     self.welcome.text = @"注册";
     self.welcome.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:24];
@@ -98,7 +95,7 @@
     
     //账号
     UITextField * phone = [[UITextField alloc]initWithFrame:CGRectMake(margin, self.welcome.yy+38, w, h)];
-    [phone setBackgroundColor:[UIColor colorWithHexString:@"#FFFFFF"]];
+//    [phone setBackgroundColor:[UIColor colorWithHexString:@"#FFFFFF"]];
     phone.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
     phone.placeholder = @"请输入手机号";
     phone.keyboardType = UIKeyboardTypeNumberPad;
@@ -141,7 +138,7 @@
     UITextField * pwd = [[UITextField alloc]initWithFrame:CGRectMake(margin,self.checkview.yy + 10, w, h)];
     pwd.secureTextEntry = YES;
     pwd.placeholder = @"请输入密码";
-    [pwd setBackgroundColor:[UIColor colorWithHexString:@"#FFFFFF"]];
+//    [pwd setBackgroundColor:[UIColor colorWithHexString:@"#FFFFFF"]];
     pwd.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
     pwd.delegate = self;
     pwd.tag = 2;
@@ -157,7 +154,7 @@
     UITextField * checkpwd = [[UITextField alloc]initWithFrame:CGRectMake(margin, pwd.yy + 10, w, h)];
     checkpwd.secureTextEntry = YES;
     checkpwd.placeholder = @"请确认密码";
-    [checkpwd setBackgroundColor:[UIColor colorWithHexString:@"#FFFFFF"]];
+//    [checkpwd setBackgroundColor:[UIColor colorWithHexString:@"#FFFFFF"]];
     checkpwd.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
     checkpwd.delegate = self;
     checkpwd.tag = 3;
@@ -383,7 +380,7 @@
 }
 -(UIView * )createview:(CGRect)frame{
     UIView * view = [[UIView alloc]initWithFrame:frame];
-    view.backgroundColor = [UIColor grayColor];
+    view.backgroundColor = kLineColor;
     return view;
 }
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
@@ -407,16 +404,16 @@
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     switch (textField.tag) {
         case 0:
-            self.phoneview.backgroundColor = [UIColor grayColor];
+            self.phoneview.backgroundColor = kLineColor;
             break;
         case 1:
-            self.checkview.backgroundColor = [UIColor grayColor];
+            self.checkview.backgroundColor = kLineColor;
             break;
         case 2:
-            self.pwdview.backgroundColor = [UIColor grayColor];
+            self.pwdview.backgroundColor = kLineColor;
             break;
         case 3:
-            self.checkpwdview.backgroundColor = [UIColor grayColor];
+            self.checkpwdview.backgroundColor = kLineColor;
             break;
         default:
             break;
