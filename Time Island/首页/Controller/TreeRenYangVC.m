@@ -9,6 +9,7 @@
 #import "TreeRenYangVC.h"
 #import "TreeRenYangListTB.h"
 #import "BookTableView.h"
+#import "BoolVideoDetailVC.h"
 @interface TreeRenYangVC ()<RefreshDelegate>
 @property (nonatomic , strong) BookTableView *tableView;
 
@@ -25,6 +26,15 @@
 //    self.tableView.scrollEnabled = NO;
     [self.view addSubview:self.tableView];
     // Do any additional setup after loading the view.
+}
+
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BoolVideoDetailVC *detailavc = [[BoolVideoDetailVC alloc] init];
+    detailavc.title =@"文章详情";
+    [self.navigationController pushViewController:detailavc animated:YES];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

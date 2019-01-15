@@ -1,14 +1,14 @@
 //
-//  BookVideoCell.h
+//  BookDetailHeadView.h
 //  Time Island
 //
-//  Created by shaojianfei on 2019/1/14.
+//  Created by shaojianfei on 2019/1/15.
 //  Copyright © 2019年 ChengLian. All rights reserved.
 //
 
-#import "BaseTableViewCell.h"
+#import "BaseView.h"
 
-@interface BookVideoCell : BaseTableViewCell
+@interface BookDetailHeadView : BaseView
 @property (nonatomic ,strong) UILabel *moreLab;
 
 @property (nonatomic ,strong) UIImageView *iconImage;
@@ -22,6 +22,4 @@
 @property (nonatomic ,strong) UILabel *collectLab;
 
 @property (nonatomic ,strong) UILabel *praiseLab;
-
-
 @end

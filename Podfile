@@ -8,6 +8,7 @@ pod 'Masonry', '~> 1.0.2'
 pod 'MJRefresh', '~> 3.1.12'
 pod 'Qiniu',                '7.1.5'
 pod 'MJExtension' ,         '3.0.13'
+pod 'FSCalendar', '~> 2.7.9'
 
 #私有
 pod 'IQKeyboardManager',    '5.0.2'

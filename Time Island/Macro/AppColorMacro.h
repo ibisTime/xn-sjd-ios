@@ -27,6 +27,7 @@
 #define kNavBarBgColor    [UIColor appNavBarBgColor]
 
 #define kTabbarColor   kHexColor(@"#22A079")
+#define kCalendarColor   kHexColor(@"#229B97")
 
 #define kTabbarMainColor   [UIColor appTabbarMainColor]
 #define kTabbarBgColor     [UIColor appTabbarBgColor]

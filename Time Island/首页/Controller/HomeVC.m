@@ -17,6 +17,8 @@
 #import "TitleView.h"
 #import "NoticeVC.h"
 #import "BookVideoVC.h"
+#import "UIBarButtonItem+convience.h"
+#import "CalendarCustomVC.h"
 @interface HomeVC ()<RefreshDelegate,RefreshCollectionViewDelegate,UIScrollViewDelegate,UITextFieldDelegate,UISearchBarDelegate>
 @property (nonatomic, strong) HomeHeaderView *headerView;
 @property (nonatomic,strong) NSArray <HomeFindModel *>*findModels;
@@ -44,24 +46,7 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
-
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-//    [self headRefresh];
-
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self headRefresh];
-    
-
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-
-
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-
 }
 
 //如果仅设置当前页导航透明，需加入下面方法
@@ -74,7 +59,7 @@
     [super viewDidLoad];
 //    self.title = @"首页";
     [self initSearchBar];
-
+    
     [self initTableView];
 }
 
@@ -82,6 +67,10 @@
     UIView *content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kNavigationBarHeight)];
     content.backgroundColor = kAppCustomMainColor;
     
+    UIButton *calendar = [UIButton buttonWithImageName:@"日历"];
+    calendar.frame = CGRectMake(kScreenWidth-60, kStatusBarHeight, 60, 40);
+    
+    [calendar addTarget:self action:@selector(calendarClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:content];
     UIView *Title = [[UIView alloc] initWithFrame:CGRectMake(10, kStatusBarHeight+10, kScreenWidth-60, 31)];
     Title.backgroundColor = kWhiteColor;
@@ -97,7 +86,8 @@
     [searchbar setPlaceholder:@"搜索商品信息"];
     [Title addSubview:searchbar];
     self.searchBar = searchbar;
-   
+    [content addSubview:calendar];
+
     UITextField *searchField = [searchbar valueForKey:@"searchField"];
     
     if (searchField) {
@@ -119,8 +109,14 @@
         
     }
     
+    
 }
 
+- (void)calendarClick
+{
+    CalendarCustomVC *calendar = [CalendarCustomVC new];
+    [self.navigationController pushViewController:calendar animated:YES];
+}
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
     [self.view endEditing:YES];

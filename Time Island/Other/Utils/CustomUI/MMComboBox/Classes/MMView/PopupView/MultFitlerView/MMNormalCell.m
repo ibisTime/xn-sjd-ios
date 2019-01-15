@@ -71,7 +71,7 @@ static const CGFloat horizontalMargin = 10.0f;
 
 - (UIImageView *)selectedImageview {
     if (!_selectedImageview) {
-        _selectedImageview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"list_selected"]];
+        _selectedImageview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"对勾"]];
         [self addSubview:_selectedImageview];
     }
     return _selectedImageview;
