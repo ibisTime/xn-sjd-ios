@@ -50,11 +50,14 @@
     self.BottomLine.backgroundColor = kLineColor;
     [self addSubview:self.BottomLine];
     self.BottomLine.frame = CGRectMake(10, 10, kScreenWidth-100, 4);
-    
+    self.BottomLine.layer.cornerRadius = 2;
+    self.BottomLine.clipsToBounds = YES;
     self.progressLine = [UIView new];
     self.progressLine.backgroundColor = [UIColor redColor];
     [self addSubview:self.progressLine];
     self.progressLine.frame = CGRectMake(10, 10, 100, 4);
+    self.progressLine.layer.cornerRadius = 2;
+    self.progressLine.clipsToBounds = YES;
 //    self.statusButton = [UIButton buttonWithTitle:@"集体" titleColor:kWhiteColor backgroundColor:[UIColor redColor] titleFont:14];
 //    self.statusButton.frame = CGRectMake(15, 15, 32, 13);
 //    self.statusButton.layer.cornerRadius = 5;
@@ -64,7 +67,7 @@
     self.infoTitle = [UILabel labelWithBackgroundColor:kClearColor textColor:RGB(0, 0, 0) font:14.0];
     [self.infoTitle setFont:[UIFont systemFontOfSize:14]];
     [self addSubview:self.infoTitle];
-    self.infoTitle.frame = CGRectMake(kScreenWidth/5, self.BottomLine.yy+10, kScreenWidth/5, 30);
+    self.infoTitle.frame = CGRectMake(kScreenWidth/5, self.BottomLine.yy+10, kScreenWidth/4, 30);
     self.infoTitle.text = @"目标份数/份";
     self.priceLable = [UILabel labelWithBackgroundColor:kClearColor textColor:kBlackColor font:14.0];
     [self addSubview:self.priceLable];

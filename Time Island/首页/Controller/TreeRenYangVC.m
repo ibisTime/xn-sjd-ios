@@ -8,8 +8,9 @@
 
 #import "TreeRenYangVC.h"
 #import "TreeRenYangListTB.h"
+#import "BookTableView.h"
 @interface TreeRenYangVC ()<RefreshDelegate>
-@property (nonatomic , strong) TreeRenYangListTB *tableView;
+@property (nonatomic , strong) BookTableView *tableView;
 
 @end
 
@@ -18,9 +19,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = kWhiteColor;
-    self.tableView = [[TreeRenYangListTB alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-200) style:UITableViewStyleGrouped];
+    self.tableView = [[BookTableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = kWhiteColor;
     self.tableView.refreshDelegate = self;
+//    self.tableView.scrollEnabled = NO;
     [self.view addSubview:self.tableView];
     // Do any additional setup after loading the view.
 }

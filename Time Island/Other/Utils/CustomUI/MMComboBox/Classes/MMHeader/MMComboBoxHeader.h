@@ -12,7 +12,9 @@
 #import "UIColor+ComboBoxExtension.h"
 
 #define scale [UIScreen mainScreen].scale
-static  NSString *titleSelectedColor = @"4EBC72";
+static  NSString *titleSelectedColor = @"FD5E64";
+static  NSString *bgSelectedColor = @"FEE7E7";
+
 static const CGFloat  ButtonFontSize = 14.0f;
 //MMPopupView
 static const CGFloat PopupViewRowHeight = 44.0f;

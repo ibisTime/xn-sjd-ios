@@ -81,7 +81,7 @@
     [self.noticeView addSubview:imageView];
     UIView *line = [UIView new];
     line.backgroundColor = kLineColor;
-    line.frame = CGRectMake(10, 10, 4, 12.5);
+    line.frame = CGRectMake(10, 10, 3, 12.5);
     line.backgroundColor = kAppCustomMainColor;
     [self.noticeView addSubview:line];
     UILabel *introduceLab = [UILabel labelWithBackgroundColor:kClearColor textColor:RGB(0, 0, 0) font:11];
@@ -129,7 +129,7 @@
         btn.frame = CGRectMake(idx*marge+marge+idx*33, 10, 33, 33);
         [renLingTree addSubview:btn];
         UILabel *title = [UILabel labelWithBackgroundColor:kClearColor textColor:RGB(0, 0, 0) font:12];
-        title.frame = CGRectMake(btn.xx, 47, 80, 20);
+        title.frame = CGRectMake(btn.xx, 50, 80, 20);
         title.centerX = btn.centerX;
         title.text = Names[idx];
         title.textAlignment = NSTextAlignmentCenter;
@@ -186,11 +186,13 @@
     englishLab.textAlignment = NSTextAlignmentRight;
     englishLab.text = @"查看更多";
     [self.tuiArticle addSubview:englishLab];
-    
+    englishLab.userInteractionEnabled = YES;
+    UITapGestureRecognizer *ta1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tuiwenClick)];
+    [englishLab addGestureRecognizer:ta1];
     UIButton *button = [UIButton buttonWithImageName:@"" selectedImageName:@""];
     [button setImage:kImage(@"积分更多") forState:UIControlStateNormal];
     button.frame  = CGRectMake(kScreenWidth -30, 10, 14, 30);
-    [button addTarget:self action:@selector(jumpArtcile) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(tuiwenClick) forControlEvents:UIControlEventTouchUpInside];
     [self.tuiArticle addSubview:button];
     
 }
@@ -205,18 +207,24 @@
     UIImageView *imageView = [[UIImageView alloc] init];
     imageView.image = kImage(@"快报");
     imageView.contentMode = UIViewContentModeScaleToFill;
-    imageView.frame = CGRectMake(10, 10, 60, 20);
+    imageView.frame = CGRectMake(20, 13.5, 30, 13.5);
     imageView.clipsToBounds = YES;
     [self.fastNews addSubview:imageView];
+    UIView *line = [UIView new];
+    line.frame = CGRectMake(10, 13.5, 3, 13.5);
+    line.backgroundColor = [UIColor redColor];
+    [self.fastNews addSubview:line];
     CoinWeakSelf;
-    XBTextLoopView *loopView = [XBTextLoopView textLoopViewWith:@[@"1234567890",@"234我轮播测试挎包快报打了卡时间岛",@"56790e8902890ce侧搜客来得及案件"] loopInterval:3.0 initWithFrame:CGRectMake(80, 5, kScreenWidth-100, 30) selectBlock:^(NSString *selectString, NSInteger index) {
+    XBTextLoopView *loopView = [XBTextLoopView textLoopViewWith:@[@"1234567890",@"234我轮播测试挎包快报打了卡时间岛",@"56790e8902890ce侧搜客来得及案件"] loopInterval:3.0 initWithFrame:CGRectMake(60, 0, kScreenWidth-80, 30) selectBlock:^(NSString *selectString, NSInteger index) {
         
         [weakSelf fastNewClickWithIndex:index];
     }];
     loopView.backgroundColor = RGB(252, 240, 240);;
+    loopView.clipsToBounds = YES;
     [self.fastNews addSubview:loopView];
+    loopView.centerY = imageView.centerY;
     UILabel *englishLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor font:12];
-    englishLab.frame = CGRectMake((kScreenWidth-130), 10, 90, 30);
+    englishLab.frame = CGRectMake((kScreenWidth-130), 0, 90, 30);
     englishLab.textAlignment = NSTextAlignmentRight;
     englishLab.text = @"更多";
     englishLab.centerY = imageView.centerY;
@@ -224,7 +232,7 @@
     
     UIButton *button = [UIButton buttonWithImageName:@"" selectedImageName:@""];
     [button setImage:kImage(@"积分更多") forState:UIControlStateNormal];
-    button.frame  = CGRectMake(kScreenWidth -30, 10, 14, 30);
+    button.frame  = CGRectMake(kScreenWidth -30, 0, 14, 30);
     [button addTarget:self action:@selector(jumpArtcile) forControlEvents:UIControlEventTouchUpInside];
     [self.fastNews addSubview:button];
     button.centerY =  englishLab.centerY;
@@ -321,31 +329,42 @@
 - (void)moreNotice
 {
     NSLog(@"点击更多");
-    
+    if (self.clickNoticeBlock) {
+        self.clickNoticeBlock();
+    }
 }
 
 
 -(void)renLingClick:(UIButton *)btn
 {
-    
     NSLog(@"点击认养");
+    if (self.clickTagBlock) {
+        self.clickTagBlock(btn.tag-100);
+    }
 }
 
 -(void)tuiwenClick
 {
     NSLog(@"点击推文");
-
+    if (self.clickBookBlock) {
+        self.clickBookBlock();
+    }
     
 }
 - (void)jumpArtcile
 {
     //跳转推文
     NSLog(@"跳转推文");
+    if (self.clickBookBlock) {
+        self.clickBookBlock();
+    }
 }
 
 -(void)fastNewClickWithIndex:(NSInteger)index
 {
-    
+    if (self.clicknewsBlock) {
+        self.clicknewsBlock();
+    }
     NSLog(@"点击快报");
     
 }

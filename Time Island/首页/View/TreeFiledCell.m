@@ -39,7 +39,7 @@
         self.detailLab = detailLab;
         [self.contentView addSubview:detailLab];
         UIView *line = [UIView new];
-        line.frame = CGRectMake(0, self.yy-1, kScreenWidth, 1);
+        line.frame = CGRectMake(0, self.frame.size.height-1, kScreenWidth, 1);
         line.backgroundColor = RGB(244, 244, 244);
         [self.contentView addSubview:line];
     }

@@ -112,26 +112,24 @@
 
 - (void)initCollection
 {
-    self.contentScrollew = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth, kScreenHeight-kNavigationBarHeight)];
-    [self.view addSubview:self.contentScrollew];
-    self.contentScrollew.delegate = self;
-    self.contentScrollew.scrollEnabled = YES;
-    self.contentScrollew.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headRefresh)];
-    //    self.contentScrollew.mj_header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(headRefresh)];
-    self.contentScrollew.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
-    
+//    self.contentScrollew = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth, kScreenHeight-kNavigationBarHeight)];
+//    [self.view addSubview:self.contentScrollew];
+//    self.contentScrollew.delegate = self;
+//    self.contentScrollew.scrollEnabled = YES;
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake((kScreenWidth-50)/2, 250);
-    layout.minimumLineSpacing = 10.0; // 竖
-    layout.minimumInteritemSpacing = 10.0; // 横
-    layout.sectionInset = UIEdgeInsetsMake(0, 18, 0, 18);
+    layout.itemSize = CGSizeMake((kScreenWidth-45)/2, 250);
+    layout.minimumLineSpacing = 15.0; // 竖
+    layout.minimumInteritemSpacing = 15.0; // 横
+    layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
     
     
     
-    TLTopCollectionView *topView = [[TLTopCollectionView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) collectionViewLayout:layout withImage:@[@""]];
+    TLTopCollectionView *topView = [[TLTopCollectionView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth, kScreenHeight) collectionViewLayout:layout withImage:@[@""]];
     self.topView = topView;
     topView.refreshDelegate = self;
-    [self.contentScrollew addSubview:topView];
+    self.topView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headRefresh)];
+    self.topView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
+    [self.view addSubview:topView];
     //    topView.mj_header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadMoreNews)];
     
     UIView *lineView = [[UIView alloc] init];
@@ -173,12 +171,11 @@
 
     self.topView.models = arr;
     [self.topView reloadData];
-    self.contentScrollew.contentSize = CGSizeMake(0, self.topView.yy+100);
 }
 -(void)headRefresh
 {
     self.page = 1;
-    [self.contentScrollew.mj_header beginRefreshing];
+    [self.topView.mj_header beginRefreshing];
     [self requestBannerList];
     
     
@@ -216,14 +213,14 @@
 //            [self reloadFindData];
 //        }
         
-        [self.contentScrollew.mj_header endRefreshing];
-        [self.contentScrollew.mj_footer endRefreshing];
+        [self.topView.mj_header endRefreshing];
+        [self.topView.mj_footer endRefreshing];
         
         //        [self.tableView endRefreshHeader];
         
     } failure:^(NSError *error) {
-        [self.contentScrollew.mj_header endRefreshing];
-        [self.contentScrollew.mj_footer endRefreshing];
+        [self.topView.mj_header endRefreshing];
+        [self.topView.mj_footer endRefreshing];
 //        [self.tableView endRefreshHeader];
         
     }];

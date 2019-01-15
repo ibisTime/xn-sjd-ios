@@ -28,8 +28,8 @@ static const CGFloat horizontalMargin = 10.0f;
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.selectedImageview.frame = CGRectMake(horizontalMargin, (self.height -16)/2, 16, 16);
-    self.title.frame = CGRectMake(self.selectedImageview.right + 20, 0, 100, self.height);
+    self.selectedImageview.frame = CGRectMake(self.frame.size.width-32, (self.height -16)/2, 16, 16);
+    self.title.frame = CGRectMake(horizontalMargin, 0, 100, self.height);
     if (_item.subTitle != nil) {
         self.subTitle.frame = CGRectMake(self.width - horizontalMargin - 100 , 0, 100, self.height);
     }
