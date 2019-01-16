@@ -28,9 +28,10 @@
     self.table.dataSource = self;
     [self.view addSubview:self.table];
     
-    
     UIButton * logout = [UIButton buttonWithTitle:@"退出登录" titleColor:[UIColor colorWithHexString:@"#23AD8C"] backgroundColor:[UIColor clearColor] titleFont:15];
     logout.frame = CGRectMake(15, self.table.yy + 81.5, SCREEN_WIDTH - 30, 42);
+    logout.layer.cornerRadius = 4;
+    logout.layer.masksToBounds = YES;
     [logout.layer setBorderWidth:1.0];
     [logout.layer setBorderColor:[UIColor colorWithHexString:@"#23AD8C"].CGColor];
     [logout addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
