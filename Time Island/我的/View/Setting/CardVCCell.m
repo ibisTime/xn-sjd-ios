@@ -68,9 +68,6 @@
         
         [self addSubview:label1];
         [self addSubview:label2];
-        
-        
-        
     }
     return self;
 }

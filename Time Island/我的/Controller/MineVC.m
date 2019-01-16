@@ -12,12 +12,18 @@
 #import "MyCarbonBubbleVC.h"
 #import "UIViewController+CWLateralSlide.h"
 #import "SettingVC.h"
+#import "CollectVC.h"
+#import "InviteVC.h"
+#import "CollectBookVC.h"
+#import "BookVC.h"
+#import "OrderVC.h"
 #define titlearray @[@"我的碳泡泡",@"我的认养",@"我的订单",@"我的文章",@"我的收藏",@"邀请有礼",@"设置"]
 #define imagearray @[@"泡泡",@"",@"",@"",@"",@"",@"设置"]
 #define array1 @[@"余额",@"碳泡泡",@"积分"]
 @interface MineVC ()
 @property (nonatomic,retain) UIView * topview;
-@property (nonatomic,strong) UITableView * table;
+@property (nonatomic,strong) TLTableView *table1;
+
 @end
 
 @implementation MineVC
@@ -35,19 +41,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的";
-    self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, -kNavigationBarHeight, kScreenWidth, kScreenHeight+55)];
+
+    self.table1 = [TLTableView tableViewWithFrame:CGRectMake(0, -kNavigationBarHeight, kScreenWidth, kScreenHeight+55) delegate:self dataSource:self];
     self.topview = [[UIView alloc]initWithFrame:CGRectMake(0, -kNavigationBarHeight, kScreenWidth, 563/2 -64 + kNavigationBarHeight)];
     [self setupview];
-    self.table.tableHeaderView = self.topview;
-    self.table.delegate = (id)self;
-    self.table.dataSource = self;
-    [self.view addSubview:self.table];
+    self.table1.tableHeaderView = self.topview;
+    self.table1.refreshDelegate = self;
+//    [_table1 beginRefreshing];
+    [_table1 addRefreshAction:^{
+        [TLAlert alertWithInfo:@"网络连接失败！"];
+        [self.table1 endRefreshHeader];
+    }];
+    [self.view addSubview:self.table1];
+    
     
 }
 
 -(void)setupview{
-
-    
     UIImageView *topiimage = [[UIImageView alloc]initWithFrame:self.topview.bounds];
     topiimage.image = kImage(@"我的背景");
     [self.topview addSubview:topiimage];
@@ -112,14 +122,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    TLUserLoginVC * login = [[TLUserLoginVC alloc]init];
-    [self.navigationController pushViewController:login animated:YES];
-}
--(void)test{
-    TLUserLoginVC * login = [[TLUserLoginVC alloc]init];
-    [self.navigationController pushViewController:login animated:YES];
-}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 55;
@@ -134,13 +136,13 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 10;
 }
+
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MineVCCell * cell = [[MineVCCell alloc]initWithfirstimage:imagearray[indexPath.row] title:titlearray[indexPath.row]];
     cell.selectionStyle = UIAccessibilityTraitNone;
     return cell;
 }
-
-
 
 -(UILabel *)createlabelwithFrame:(CGRect)frame title1:(NSString * )title1 fontname : (NSString *)name textsize : (CGFloat)size{
     UILabel * label = [[UILabel alloc]initWithFrame:frame];
@@ -158,14 +160,14 @@
     return view;
 }
 
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.row) {
         case 0:{
             MyCarbonBubbleVC * vc = [MyCarbonBubbleVC new];
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-            [self cw_presentViewController:nav];
+//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+//            [self cw_presentViewController:nav];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 1:
@@ -176,22 +178,26 @@
             break;
         case 2:
         {
-            
+            OrderVC * vc = [[OrderVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 3:
         {
-            
+            BookVC * bookview = [[BookVC alloc]init];
+            [self.navigationController pushViewController:bookview animated:YES];
         }
             break;
         case 4:
         {
-            
+            CollectVC * vc = [CollectVC new];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 5:
         {
-            
+            InviteVC * vc = [InviteVC alloc];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 6:{
@@ -199,7 +205,7 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-            
+
         default:
             break;
 }
