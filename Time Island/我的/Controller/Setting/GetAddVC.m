@@ -35,14 +35,20 @@
     TLTextField * Phone = [[TLTextField alloc]initWithFrame:CGRectMake(margin, Name.yy, SCREEN_WIDTH-30, height) leftTitle:@"收货人" placeholder:@"您的姓名"];
     [self.view addSubview:Phone];
     self.Phone = Phone;
-    //姓名
+    //地址
     TLTextField * Address = [[TLTextField alloc]initWithFrame:CGRectMake(margin, Phone.yy, SCREEN_WIDTH-30, height) leftTitle:@"地址" placeholder:@"所在地区"];
     [self.view addSubview:Address];
     self.Address = Address;
-    //姓名
+    //门牌号
     TLTextField * DoorNum = [[TLTextField alloc]initWithFrame:CGRectMake(margin, Address.yy, SCREEN_WIDTH-30, 80) leftTitle:@"门牌号" placeholder:@"10号楼5层501室"];
     [self.view addSubview:DoorNum];
     self.DoorNum = DoorNum;
+//    UITextView * DoorNum = [[UITextView alloc]initWithFrame:CGRectMake(60, Address.yy, SCREEN_WIDTH-30, 80)];
+//    DoorNum.backgroundColor = kWhiteColor;
+//    DoorNum.font = [UIFont systemFontOfSize:15.0];
+//    DoorNum.text = @"10号楼5层501室";
+//    DoorNum.clearsOnInsertion = YES;
+//    [self.view addSubview:DoorNum];
     
     
     UIButton *confirmBtn = [UIButton buttonWithTitle:[LangSwitcher switchLang:@"确认" key:nil] titleColor:kWhiteColor backgroundColor:kAppCustomMainColor titleFont:16.0 cornerRadius:5];

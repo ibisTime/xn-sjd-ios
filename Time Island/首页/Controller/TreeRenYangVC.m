@@ -33,8 +33,6 @@
     BoolVideoDetailVC *detailavc = [[BoolVideoDetailVC alloc] init];
     detailavc.title =@"文章详情";
     [self.navigationController pushViewController:detailavc animated:YES];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
