@@ -67,7 +67,6 @@
     
     
     if (row == 0) {
-        
         MyCarbonBubbleVC *vc = [MyCarbonBubbleVC new];
         [self.navigationController pushViewController:vc animated:YES];
     }

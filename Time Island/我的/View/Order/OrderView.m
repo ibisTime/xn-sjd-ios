@@ -7,7 +7,7 @@
 //
 
 #import "OrderView.h"
-
+#import "OrderFootCell.h"
 @interface OrderView ()
 @property (nonatomic,strong) TLTableView * table;
 @end
@@ -16,18 +16,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.table = [[TLTableView alloc]initWithFrame:self.view.frame];
-//    self.table.delegate = self;
-//    self.table.dataSource = self;
+    self.table = [[TLTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 40)];
+    self.table.delegate = self;
+    self.table.dataSource = self;
     self.table.refreshDelegate = self;
     [self.view addSubview:self.table];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 9;
 }
-
-
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    OrderFootCell * cell = [[OrderFootCell alloc]init];
+    if (indexPath.section == 0) {
+        cell.OrderCount = 2;
+    }
+//    else{
+//        cell.OrderCount = 1;
+//    }
+    cell.selectionStyle = UIAccessibilityTraitNone;
+    return cell;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 140;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 10;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"%d",(int)indexPath.section);
+}
 @end

@@ -2,7 +2,7 @@
 //  CardVCCell.h
 //  Time Island
 //
-//  Created by 梅敏杰 on 2019/1/15.
+//  Created by 梅敏杰 on 2019/1/17.
 //  Copyright © 2019年 ChengLian. All rights reserved.
 //
 
@@ -10,13 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CardVCCell : UICollectionViewCell
-@property (nonatomic,strong) UIImageView * image;
--(instancetype)initWithFrame:(CGRect)frame
-                imagestring : (NSString * )imagestring
-                 logostring : (NSString * )logostring
-                   cardname : (NSString * )cardname
-                    cardnum : (NSString * )cardnum;
+@interface CardVCCell : UITableViewCell
+@property (nonatomic,strong) UIImageView * LogoImage;
+@property (nonatomic,strong) UIImageView * BackgroundImage;
+@property (nonatomic,strong) UILabel * CardName;
+@property (nonatomic,strong) UILabel * CardType;
+@property (nonatomic,strong) UILabel * CardCount;
+//@property (nonatomic,strong) NSString * CardCountSrting;
 @end
 
 NS_ASSUME_NONNULL_END
