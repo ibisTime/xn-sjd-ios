@@ -122,8 +122,8 @@
         
         UIButton *btn = [UIButton buttonWithTitle:@"" titleColor:kTextColor backgroundColor:kClearColor titleFont:15];
         [btn setTitleColor:kTextColor forState:UIControlStateNormal];
-        btn.layer.cornerRadius = 25;
-        btn.clipsToBounds = YES;
+//        btn.layer.cornerRadius = 25;
+//        btn.clipsToBounds = YES;
         [btn setBackgroundImage:kImage(Names[idx]) forState:UIControlStateNormal];
         [btn setTitleColor:kAppCustomMainColor forState:UIControlStateSelected];
         btn.frame = CGRectMake(idx*marge+marge+idx*33, 10, 33, 33);
