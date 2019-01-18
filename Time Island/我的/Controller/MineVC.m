@@ -18,7 +18,7 @@
 #import "BookVC.h"
 #import "OrderVC.h"
 #import "MallTabbar.h"
-#define titlearray @[@"我的碳泡泡",@"我的认养",@"我的订单",@"我的文章",@"我的收藏",@"邀请有礼",@"设置"]
+#define titlearray @[@"我的购物车",@"我的认养",@"我的订单",@"我的文章",@"我的收藏",@"邀请有礼",@"设置"]
 #define imagearray @[@"泡泡",@"",@"",@"",@"",@"",@"设置"]
 #define array1 @[@"余额",@"碳泡泡",@"积分"]
 @interface MineVC ()

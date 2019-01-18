@@ -27,7 +27,8 @@
         img1.image = [UIImage imageNamed:firstimage];
         [self.contentView addSubview:img1];
         
-        UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(41, 17, 100, 25)];
+        UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(41, 17, 200, 25)];
+        label.textAlignment = NSTextAlignmentLeft;
         label.text = title;
         [self.contentView addSubview:label];
         

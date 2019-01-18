@@ -57,6 +57,7 @@ static NSString *identifierCell = @"homeCell";
 
     if (indexPath.section == 0) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+        cell.backgroundColor = [UIColor redColor];
         //商业应用
         UILabel *textLbl = [UILabel labelWithBackgroundColor:kWhiteColor textColor:kTextBlack font:16.0];
         textLbl.text = [LangSwitcher switchLang:@"推荐应用" key:nil];

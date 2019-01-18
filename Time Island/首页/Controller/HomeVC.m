@@ -138,6 +138,7 @@
 //    self.contentScrollew.mj_header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(headRefresh)];
     self.contentScrollew.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
     self.tableView = [[HomeTbleView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-220) style:UITableViewStyleGrouped];
+    self.tableView.backgroundColor = [UIColor redColor];
     self.tableView.backgroundColor = kWhiteColor;
     self.tableView.refreshDelegate = self;
     [self.contentScrollew addSubview:self.tableView];
@@ -263,6 +264,7 @@
         CoinWeakSelf;
         //头部
         _headerView = [[HomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kHeight(10 + SCREEN_WIDTH/2+320 -110))];
+//        _headerView.backgroundColor = [UIColor redColor];
         //点击banner
         _headerView.headerBlock = ^(HomeEventsType type, NSInteger index, HomeFindModel *find) {
             [weakSelf headerViewEventsWithType:type index:index model:find];
