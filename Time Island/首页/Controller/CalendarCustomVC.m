@@ -115,6 +115,7 @@
     calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesDefaultCase;
     [self.view addSubview:calendar];
     self.calendar = calendar;
+    
     UIButton * signButton = [UIButton buttonWithTitle:@"马上签到" titleColor:kWhiteColor backgroundColor:RGB(253, 103, 103) titleFont:15];
     [self.view addSubview:signButton];
     signButton.frame = CGRectMake(35, calendar.yy+30, kScreenWidth-70, 45);

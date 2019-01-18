@@ -33,7 +33,7 @@
         
         
         //佣金
-        self.moneylab = [[UILabel alloc]initWithFrame:CGRectMake(kScreenWidth * 1 / 3, 16.5, 0, 13) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#FF666666")];
+        self.moneylab = [[UILabel alloc]initWithFrame:CGRectMake(kScreenWidth * 1 / 3, 16.5, 0, 13) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#FF666666")];
         [self.moneylab sizeToFit];
         if (self.moneylab.width > self.width / 3 - 20) {
             self.moneylab.frame = CGRectMake(kScreenWidth * 1 / 3, 16, SCREEN_WIDTH / 3 - 20, 14);

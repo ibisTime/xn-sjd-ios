@@ -89,7 +89,6 @@
 		3610EEA921EDA72200FD345D /* SettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEA821EDA72200FD345D /* SettingVC.m */; };
 		3610EEAC21EDA95900FD345D /* SettingVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEAB21EDA95900FD345D /* SettingVCCell.m */; };
 		3610EEBB21EDBEBF00FD345D /* CardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEBA21EDBEBF00FD345D /* CardVC.m */; };
-		3610EEBE21EDBEF000FD345D /* CardVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEBD21EDBEF000FD345D /* CardVCCell.m */; };
 		3610EEC121EDC3A300FD345D /* AddCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC021EDC3A300FD345D /* AddCardVC.m */; };
 		3610EEC421EDCEBD00FD345D /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC321EDCEBD00FD345D /* InfoVC.m */; };
 		3610EEC721EDD6A800FD345D /* GetAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC621EDD6A800FD345D /* GetAddVC.m */; };
@@ -109,9 +108,10 @@
 		3689768D21EF1C1F005F1177 /* BookVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3689768C21EF1C1F005F1177 /* BookVC.m */; };
 		3689769021EF3342005F1177 /* OrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3689768F21EF3342005F1177 /* OrderVC.m */; };
 		3689769321EF367B005F1177 /* OrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3689769221EF367B005F1177 /* OrderView.m */; };
-		3689769721EF38D7005F1177 /* OrderHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3689769621EF38D7005F1177 /* OrderHeadCell.m */; };
 		3689769A21EF38E8005F1177 /* OrderFootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3689769921EF38E8005F1177 /* OrderFootCell.m */; };
 		3689769C21EF3A4F005F1177 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3689769B21EF3A4F005F1177 /* AMap.bundle */; };
+		36F841D221F02B0D00BAC88A /* IssueBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F841D121F02B0D00BAC88A /* IssueBook.m */; };
+		36F841D521F05B3B00BAC88A /* CardVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F841D421F05B3B00BAC88A /* CardVCCell.m */; };
 		B815278121EC8AB800F89395 /* NoticeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B815278021EC8AB800F89395 /* NoticeVC.m */; };
 		B815278621EC8BAE00F89395 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B815278521EC8BAE00F89395 /* BaseTableViewCell.m */; };
 		B815278921EC8BC200F89395 /* BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = B815278821EC8BC200F89395 /* BaseView.m */; };
@@ -469,8 +469,6 @@
 		3610EEAB21EDA95900FD345D /* SettingVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingVCCell.m; sourceTree = "<group>"; };
 		3610EEB921EDBEBF00FD345D /* CardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardVC.h; sourceTree = "<group>"; };
 		3610EEBA21EDBEBF00FD345D /* CardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardVC.m; sourceTree = "<group>"; };
-		3610EEBC21EDBEF000FD345D /* CardVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardVCCell.h; sourceTree = "<group>"; };
-		3610EEBD21EDBEF000FD345D /* CardVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardVCCell.m; sourceTree = "<group>"; };
 		3610EEBF21EDC3A300FD345D /* AddCardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddCardVC.h; sourceTree = "<group>"; };
 		3610EEC021EDC3A300FD345D /* AddCardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddCardVC.m; sourceTree = "<group>"; };
 		3610EEC221EDCEBD00FD345D /* InfoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoVC.h; sourceTree = "<group>"; };
@@ -507,11 +505,13 @@
 		3689768F21EF3342005F1177 /* OrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderVC.m; sourceTree = "<group>"; };
 		3689769121EF367B005F1177 /* OrderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderView.h; sourceTree = "<group>"; };
 		3689769221EF367B005F1177 /* OrderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderView.m; sourceTree = "<group>"; };
-		3689769521EF38D7005F1177 /* OrderHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderHeadCell.h; sourceTree = "<group>"; };
-		3689769621EF38D7005F1177 /* OrderHeadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderHeadCell.m; sourceTree = "<group>"; };
 		3689769821EF38E8005F1177 /* OrderFootCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderFootCell.h; sourceTree = "<group>"; };
 		3689769921EF38E8005F1177 /* OrderFootCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderFootCell.m; sourceTree = "<group>"; };
 		3689769B21EF3A4F005F1177 /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
+		36F841D021F02B0D00BAC88A /* IssueBook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IssueBook.h; sourceTree = "<group>"; };
+		36F841D121F02B0D00BAC88A /* IssueBook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IssueBook.m; sourceTree = "<group>"; };
+		36F841D321F05B3B00BAC88A /* CardVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardVCCell.h; sourceTree = "<group>"; };
+		36F841D421F05B3B00BAC88A /* CardVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardVCCell.m; sourceTree = "<group>"; };
 		85935B108A2342344937F73A /* libPods-Time Island.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Time Island.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B815277F21EC8AB800F89395 /* NoticeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoticeVC.h; sourceTree = "<group>"; };
 		B815278021EC8AB800F89395 /* NoticeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeVC.m; sourceTree = "<group>"; };
@@ -1424,8 +1424,8 @@
 			children = (
 				3610EEAA21EDA95900FD345D /* SettingVCCell.h */,
 				3610EEAB21EDA95900FD345D /* SettingVCCell.m */,
-				3610EEBC21EDBEF000FD345D /* CardVCCell.h */,
-				3610EEBD21EDBEF000FD345D /* CardVCCell.m */,
+				36F841D321F05B3B00BAC88A /* CardVCCell.h */,
+				36F841D421F05B3B00BAC88A /* CardVCCell.m */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1435,8 +1435,6 @@
 			children = (
 				3689769121EF367B005F1177 /* OrderView.h */,
 				3689769221EF367B005F1177 /* OrderView.m */,
-				3689769521EF38D7005F1177 /* OrderHeadCell.h */,
-				3689769621EF38D7005F1177 /* OrderHeadCell.m */,
 				3689769821EF38E8005F1177 /* OrderFootCell.h */,
 				3689769921EF38E8005F1177 /* OrderFootCell.m */,
 			);
@@ -2141,6 +2139,8 @@
 				3689768121EF00D3005F1177 /* InviteVC.m */,
 				3689768B21EF1C1F005F1177 /* BookVC.h */,
 				3689768C21EF1C1F005F1177 /* BookVC.m */,
+				36F841D021F02B0D00BAC88A /* IssueBook.h */,
+				36F841D121F02B0D00BAC88A /* IssueBook.m */,
 				3689768E21EF3342005F1177 /* OrderVC.h */,
 				3689768F21EF3342005F1177 /* OrderVC.m */,
 				3689767C21EF005B005F1177 /* Setting */,
@@ -2839,6 +2839,7 @@
 				B8A27AEE21E5C44400914897 /* MMCombinationFitlerView.m in Sources */,
 				B81E5FBB21DC8FC200873AB9 /* TLPickerTextField.m in Sources */,
 				3610EEC721EDD6A800FD345D /* GetAddVC.m in Sources */,
+				36F841D521F05B3B00BAC88A /* CardVCCell.m in Sources */,
 				B81E602321DC906D00873AB9 /* UserDefaultsUtil.m in Sources */,
 				3689766821EED7CF005F1177 /* CollectBookVC.m in Sources */,
 				1F1B002F21E71C5D000BEBD3 /* PaopaoButton.m in Sources */,
@@ -2873,17 +2874,16 @@
 				B81E5FF121DC8FC200873AB9 /* AppDelegate.m in Sources */,
 				B81E5FDB21DC8FC200873AB9 /* NSObject+Extension.m in Sources */,
 				B81E603821DC93EC00873AB9 /* DeviceUtil.m in Sources */,
-				3610EEBE21EDBEF000FD345D /* CardVCCell.m in Sources */,
 				1FF6397F21EC712C00F5FF68 /* BarrageView.m in Sources */,
 				B81E5FD421DC8FC200873AB9 /* NSDictionary+Extension.m in Sources */,
 				B81E5FBC21DC8FC200873AB9 /* CustomPickerView.m in Sources */,
 				B815278621EC8BAE00F89395 /* BaseTableViewCell.m in Sources */,
 				1F1B006C21E71D26000BEBD3 /* RBBEasingFunction.m in Sources */,
+				36F841D221F02B0D00BAC88A /* IssueBook.m in Sources */,
 				B81E608821DC9FCC00873AB9 /* LinCircleVC.m in Sources */,
 				1F1B00A821E86B3C000BEBD3 /* UIButton+SGImagePosition.m in Sources */,
 				B81E603B21DC948900873AB9 /* CoinModel.m in Sources */,
 				B86CB6A721DDB7FF00C60AC7 /* BaseCollectionView.m in Sources */,
-				3689769721EF38D7005F1177 /* OrderHeadCell.m in Sources */,
 				B8EE11F721ED777300B9DF0D /* BookDetailHeadView.m in Sources */,
 				1F9360AC21EDFCA5007E522A /* MapViewController.m in Sources */,
 				B81E5FB121DC8FC200873AB9 /* TLTextView.m in Sources */,
@@ -3256,7 +3256,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A7AR7GW3Q2;
+				DEVELOPMENT_TEAM = 4M8KD7B9X5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -3275,7 +3275,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wzhy.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wzhy.111;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3289,7 +3289,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A7AR7GW3Q2;
+				DEVELOPMENT_TEAM = 4M8KD7B9X5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -3308,7 +3308,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wzhy.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wzhy.111;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

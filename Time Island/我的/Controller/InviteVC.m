@@ -26,10 +26,6 @@
     UIView * view1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
     view1.backgroundColor = kHexColor(@"#F6533F");
     view1.alpha = 0.1;
-//    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(15, 11, SCREEN_WIDTH - 15, 18.5) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:FONT(13) textColor:kHexColor(@"#F6533F")];
-//    label.text = @"您已成功邀请10人注册";
-//    label.alpha = 1;
-//    [view1 addSubview:label];
     [self.topview addSubview:view1];
     
     UIView * view2 = [[UIView alloc]initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH - 30, 45)];
@@ -64,9 +60,6 @@
     label.text = @"您已成功邀请10人注册";
     label.alpha = 1;
     [self.topview addSubview:label];
-    
-    
-    
 
     
     self.table = [[TLTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -88,8 +81,8 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     InviteVCCell * cell = [[InviteVCCell alloc]init];
-    cell.namelab.text = @"隐隐约约隐隐约约隐隐约约隐隐约约有";
-    cell.moneylab.text = @"123456789098765";
+//    cell.namelab.text = @"隐隐约约隐隐约约隐隐约约隐隐约约有";
+//    cell.moneylab.text = @"123456789098765";
     cell.selectionStyle = UIAccessibilityTraitNone;
     return cell;
 }

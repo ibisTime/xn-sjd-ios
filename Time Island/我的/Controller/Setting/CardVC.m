@@ -10,7 +10,7 @@
 #import "CardVCCell.h"
 #import "AddCardVC.h"
 @interface CardVC ()
-@property (nonatomic,strong) UICollectionView *cview;
+@property (nonatomic,strong) TLTableView * table;
 @end
 
 @implementation CardVC
@@ -30,29 +30,42 @@
     [self.RightButton setTitle:@"绑定" forState:UIControlStateNormal];
     [self.RightButton addTarget:self action:@selector(myRecodeClick) forControlEvents:(UIControlEventTouchUpInside)];
     
-    UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.itemSize = CGSizeMake(SCREEN_WIDTH-30, 160);
-    self.cview = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:layout];
-    [self.cview registerClass:[CardVCCell class] forCellWithReuseIdentifier:@"cell"];
-    self.cview.delegate = self;
-    self.cview.backgroundColor = kWhiteColor;
-    self.cview.dataSource = self;
-    [self.view addSubview:self.cview];
+    self.table = [[TLTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+    self.table.delegate = self;
+    self.table.dataSource = self;
+    self.table.refreshDelegate = self;
+    [self.view addSubview:self.table];
+    
     
 }
-
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 1;
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 5;
 }
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CardVCCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    cell = [cell initWithFrame:CGRectMake(15, 15, SCREEN_WIDTH-30, 160) imagestring:@"邮政银行" logostring:@"邮政logo" cardname:@"中国邮政储蓄银行" cardnum:@"1234567890098765432"];
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 173.5;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CardVCCell * cell = [[CardVCCell alloc]init];
+    if (indexPath.row == 0) {
+        cell.CardName.text = @"中国邮政储蓄银行";
+        cell.LogoImage.image = kImage(@"邮政logo");
+        cell.BackgroundImage.image = kImage(@"邮政银行");
+        cell.CardType.text = @"借记卡";
+        cell.CardCount.text = @"**** **** **** 9987";
+    }
+    else if (indexPath.row == 1){
+        cell.CardName.text = @"中国招商银行";
+        cell.LogoImage.image = kImage(@"招商logo");
+        cell.BackgroundImage.image = kImage(@"招商银行");
+        cell.CardType.text = @"借记卡";
+        cell.CardCount.text = @"**** **** **** 9987";
+    }
+    cell.selectionStyle = UIAccessibilityTraitNone;
     return cell;
 }
-
 
 -(void)myRecodeClick{
     AddCardVC * vc = [[AddCardVC alloc]init];
