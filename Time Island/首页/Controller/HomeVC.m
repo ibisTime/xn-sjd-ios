@@ -69,7 +69,7 @@
     content.backgroundColor = kAppCustomMainColor;
     
     UIButton *calendar = [UIButton buttonWithImageName:@"日历"];
-    calendar.frame = CGRectMake(kScreenWidth-60, kStatusBarHeight, 60, 40);
+    calendar.frame = CGRectMake(kScreenWidth-60, kStatusBarHeight+5, 60, 40);
     
     [calendar addTarget:self action:@selector(calendarClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:content];

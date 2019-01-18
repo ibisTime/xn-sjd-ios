@@ -217,7 +217,7 @@
 
     UILabel *titleLable = [UILabel labelWithBackgroundColor:kClearColor textColor:kWhiteColor font:18];
     [topView addSubview:titleLable];
-    titleLable.frame = CGRectMake((kScreenWidth-100)/2, 20, 100, 44);
+    titleLable.frame = CGRectMake((kScreenWidth-100)/2, kStatusBarHeight, 100, 44);
     titleLable.text = @"古树详情";
     self.titleLable = titleLable;
     

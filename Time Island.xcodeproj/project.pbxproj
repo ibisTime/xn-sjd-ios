@@ -255,6 +255,7 @@
 		B86CB6A821DDB7FF00C60AC7 /* TLPlateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B86CB6A421DDB7FE00C60AC7 /* TLPlateCell.m */; };
 		B86CB6A921DDB7FF00C60AC7 /* TLTopCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B86CB6A621DDB7FE00C60AC7 /* TLTopCollectionView.m */; };
 		B86CB6AC21DDB83A00C60AC7 /* PlateMineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B86CB6AB21DDB83A00C60AC7 /* PlateMineModel.m */; };
+		B888333B21F19F5400435B38 /* BookListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B888333A21F19F5400435B38 /* BookListVC.m */; };
 		B8A27AA521E5A15100914897 /* TreeListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A27AA421E5A15100914897 /* TreeListVC.m */; };
 		B8A27AE421E5C44400914897 /* MMSelectedPath.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A27AAB21E5C44300914897 /* MMSelectedPath.m */; };
 		B8A27AE521E5C44400914897 /* MMSingleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A27AAE21E5C44300914897 /* MMSingleItem.m */; };
@@ -816,6 +817,8 @@
 		B86CB6A621DDB7FE00C60AC7 /* TLTopCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTopCollectionView.m; sourceTree = "<group>"; };
 		B86CB6AA21DDB83900C60AC7 /* PlateMineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlateMineModel.h; sourceTree = "<group>"; };
 		B86CB6AB21DDB83A00C60AC7 /* PlateMineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlateMineModel.m; sourceTree = "<group>"; };
+		B888333921F19F5400435B38 /* BookListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookListVC.h; sourceTree = "<group>"; };
+		B888333A21F19F5400435B38 /* BookListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookListVC.m; sourceTree = "<group>"; };
 		B8A27AA321E5A15100914897 /* TreeListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeListVC.h; sourceTree = "<group>"; };
 		B8A27AA421E5A15100914897 /* TreeListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeListVC.m; sourceTree = "<group>"; };
 		B8A27AAA21E5C44300914897 /* MMSelectedPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSelectedPath.h; sourceTree = "<group>"; };
@@ -2119,6 +2122,8 @@
 				B8EE11F321ED76C700B9DF0D /* BoolVideoDetailVC.m */,
 				B8EE11F821EDB0EA00B9DF0D /* CalendarCustomVC.h */,
 				B8EE11F921EDB0EA00B9DF0D /* CalendarCustomVC.m */,
+				B888333921F19F5400435B38 /* BookListVC.h */,
+				B888333A21F19F5400435B38 /* BookListVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2979,6 +2984,7 @@
 				1F1B006D21E71D26000BEBD3 /* RBBCustomAnimation.m in Sources */,
 				B81E5FD021DC8FC200873AB9 /* XWScanImage.m in Sources */,
 				B8A27AEA21E5C44400914897 /* MMMultiItem.m in Sources */,
+				B888333B21F19F5400435B38 /* BookListVC.m in Sources */,
 				B81E5FC721DC8FC200873AB9 /* TLPlaceholderView.m in Sources */,
 				1F1B00D821E896A3000BEBD3 /* FriendsTreeHeadCell.m in Sources */,
 				B8A27AE721E5C44400914897 /* MMCombinationItem.m in Sources */,

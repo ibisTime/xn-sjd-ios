@@ -10,7 +10,7 @@
 #import "SelectScrollView.h"
 #import "TreeRenYangVC.h"
 #import "TreeFieldVC.h"
-
+#import "BookListVC.h"
 @interface BookVideoVC ()
 @property (nonatomic , strong) SelectScrollView *selectSV;
 @property (nonatomic , strong) NSArray *itemsTitles;
@@ -31,18 +31,18 @@
     
     for (NSInteger index = 0; index < self.itemsTitles.count; index ++) {
         if (index == 0) {
-            TreeRenYangVC *activity = [[TreeRenYangVC alloc] init];
+            BookListVC *activity = [[BookListVC alloc] init];
             [self addChildViewController:activity];
             activity.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
             [self.selectSV.scrollView addSubview:activity.view];
         }else if (index == 1)
         {
-            TreeRenYangVC *activity = [[TreeRenYangVC alloc] init];
+            BookListVC *activity = [[BookListVC alloc] init];
             [self addChildViewController:activity];
             activity.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
             [self.selectSV.scrollView addSubview:activity.view];
         }else{
-            TreeRenYangVC *activity = [[TreeRenYangVC alloc] init];
+            BookListVC *activity = [[BookListVC alloc] init];
             [self addChildViewController:activity];
             activity.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
             [self.selectSV.scrollView addSubview:activity.view];

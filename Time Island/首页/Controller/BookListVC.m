@@ -1,29 +1,28 @@
 //
-//  TreeRenYangVC.m
+//  BookListVC.m
 //  Time Island
 //
-//  Created by shaojianfei on 2019/1/10.
+//  Created by shaojianfei on 2019/1/18.
 //  Copyright © 2019年 ChengLian. All rights reserved.
 //
 
-#import "TreeRenYangVC.h"
-#import "TreeRenYangListTB.h"
+#import "BookListVC.h"
 #import "BookTableView.h"
 #import "BoolVideoDetailVC.h"
-@interface TreeRenYangVC ()<RefreshDelegate>
-@property (nonatomic , strong) TreeRenYangListTB *tableView;
+@interface BookListVC ()<RefreshDelegate>
+@property (nonatomic , strong) BookTableView *tableView;
 
 @end
 
-@implementation TreeRenYangVC
+@implementation BookListVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = kWhiteColor;
-    self.tableView = [[TreeRenYangListTB alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) style:UITableViewStyleGrouped];
+    self.tableView = [[BookTableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = kWhiteColor;
     self.tableView.refreshDelegate = self;
-    self.tableView.scrollEnabled = NO;
+//    self.tableView.scrollEnabled = NO;
     [self.view addSubview:self.tableView];
     // Do any additional setup after loading the view.
 }
@@ -33,11 +32,6 @@
     BoolVideoDetailVC *detailavc = [[BoolVideoDetailVC alloc] init];
     detailavc.title =@"文章详情";
     [self.navigationController pushViewController:detailavc animated:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*
