@@ -28,8 +28,6 @@
         
         //状态
         self.OrderStatelab = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH - 40 - 15, 9.5, 40, 16.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#FE5656")];
-//        self.OrderStatelab = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 40 - 15, 9.5, 40, 16.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#FE5656")];
-//        self.OrderStatelab.textColor = [UIColor redColor];
         self.OrderStatelab.text = @"待支付";
         [self addSubview:self.OrderStatelab];
         
@@ -38,12 +36,17 @@
         view.frame = CGRectMake(15, 35, SCREEN_WIDTH - 30, 1);
         [self addSubview:view];
         
-        self.OrderCount = 1;
+        self.OrderCount = 2;
         for (int i = 0; i < self.OrderCount; i ++ ) {
             //左边图片
-            self.TreeImage = [[UIImageView alloc]initWithFrame:CGRectMake(15,50 + 105 * i, 75, 75)];
+//            self.TreeImage = [[UIImageView alloc]initWithFrame:CGRectMake(15,51 + 105 * i, 75, 75)];
+//            self.TreeImage.image = kImage(@"baner1");
+//            [self.contentView addSubview:self.TreeImage];
+            
+            self.TreeImage = [[UIImageView alloc]initWithFrame:CGRectMake(15,51 + 104 * i, 75, 75)];
             self.TreeImage.image = kImage(@"baner1");
             [self.contentView addSubview:self.TreeImage];
+
             
             //树的名字
             self.TreeName = [[UILabel alloc]initWithFrame:CGRectMake(self.TreeImage.xx + 15, self.TreeImage.y, 0, 21) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:FONT(15) textColor:kHexColor(@"#333333")];
@@ -80,6 +83,10 @@
             [self addSubview:self.TreeMoney];
             
             
+            if (i < self.OrderCount - 1) {
+                [self addSubview:[self createview:CGRectMake(15, self.TreeMoney.yy + 15, SCREEN_WIDTH - 30, 1)]];
+            }
+            
         }
         
         
@@ -87,5 +94,11 @@
         
     }
     return self;
+}
+
+-(UIView*)createview:(CGRect)frame{
+    UIView * view = [[UIView alloc]initWithFrame:frame];
+    view.backgroundColor = kLineColor;
+    return view;
 }
 @end

@@ -14,8 +14,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        
         UIImageView *topView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 111 - 64)];
         topView.backgroundColor = kTabbarColor;
         [self addSubview:topView];
@@ -37,7 +35,7 @@
         UILabel *currentLbl = [UILabel labelWithBackgroundColor:kClearColor textColor:kHexColor(@"#656565") font:13.0];
         currentLbl.frame = CGRectMake(0, 45, SCREEN_WIDTH - 30, 18.5);
         currentLbl.textAlignment = NSTextAlignmentCenter;
-        currentLbl.text = @"碳泡泡数量";
+        currentLbl.text = @"当前积分";
         [bgImage addSubview:currentLbl];
 
         UILabel *amountLbl = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor font:22.0];

@@ -8,6 +8,7 @@
 
 #import "OrderView.h"
 #import "OrderFootCell.h"
+#import "OrderDetailsVC.h"
 @interface OrderView ()
 @property (nonatomic,strong) TLTableView * table;
 @end
@@ -20,6 +21,7 @@
     self.table.delegate = self;
     self.table.dataSource = self;
     self.table.refreshDelegate = self;
+    [self.table registerClass:[OrderFootCell class] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.table];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -29,23 +31,26 @@
     return 1;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    OrderFootCell * cell = [[OrderFootCell alloc]init];
+//    OrderFootCell * cell = [[OrderFootCell alloc]init];
+    OrderFootCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     if (indexPath.section == 0) {
         cell.OrderCount = 2;
     }
-//    else{
-//        cell.OrderCount = 1;
-//    }
+    else{
+        cell.OrderCount = 1;
+    }
     cell.selectionStyle = UIAccessibilityTraitNone;
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 140;
+    return 140 * 2 - 35;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 10;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"%d",(int)indexPath.section);
+    OrderDetailsVC * vc = [[OrderDetailsVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

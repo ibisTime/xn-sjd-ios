@@ -92,6 +92,7 @@
 		3610EEC121EDC3A300FD345D /* AddCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC021EDC3A300FD345D /* AddCardVC.m */; };
 		3610EEC421EDCEBD00FD345D /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC321EDCEBD00FD345D /* InfoVC.m */; };
 		3610EEC721EDD6A800FD345D /* GetAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC621EDD6A800FD345D /* GetAddVC.m */; };
+		3647C47221F16D6B00FB049D /* OrderDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647C47121F16D6B00FB049D /* OrderDetailsVC.m */; };
 		3689763A21EEC550005F1177 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3689763821EEC550005F1177 /* MAMapKit.framework */; };
 		3689763B21EEC550005F1177 /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3689763921EEC550005F1177 /* AMapFoundationKit.framework */; };
 		3689766221EED58A005F1177 /* CollectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3689766121EED58A005F1177 /* CollectVC.m */; };
@@ -475,6 +476,8 @@
 		3610EEC321EDCEBD00FD345D /* InfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoVC.m; sourceTree = "<group>"; };
 		3610EEC521EDD6A800FD345D /* GetAddVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAddVC.h; sourceTree = "<group>"; };
 		3610EEC621EDD6A800FD345D /* GetAddVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAddVC.m; sourceTree = "<group>"; };
+		3647C47021F16D6B00FB049D /* OrderDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderDetailsVC.h; sourceTree = "<group>"; };
+		3647C47121F16D6B00FB049D /* OrderDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderDetailsVC.m; sourceTree = "<group>"; };
 		3689763821EEC550005F1177 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
 		3689763921EEC550005F1177 /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapFoundationKit.framework; sourceTree = "<group>"; };
 		3689766021EED58A005F1177 /* CollectVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectVC.h; sourceTree = "<group>"; };
@@ -2143,6 +2146,8 @@
 				36F841D121F02B0D00BAC88A /* IssueBook.m */,
 				3689768E21EF3342005F1177 /* OrderVC.h */,
 				3689768F21EF3342005F1177 /* OrderVC.m */,
+				3647C47021F16D6B00FB049D /* OrderDetailsVC.h */,
+				3647C47121F16D6B00FB049D /* OrderDetailsVC.m */,
 				3689767C21EF005B005F1177 /* Setting */,
 				3689767B21EF003B005F1177 /* Collect */,
 			);
@@ -2885,6 +2890,7 @@
 				B81E603B21DC948900873AB9 /* CoinModel.m in Sources */,
 				B86CB6A721DDB7FF00C60AC7 /* BaseCollectionView.m in Sources */,
 				B8EE11F721ED777300B9DF0D /* BookDetailHeadView.m in Sources */,
+				3647C47221F16D6B00FB049D /* OrderDetailsVC.m in Sources */,
 				1F9360AC21EDFCA5007E522A /* MapViewController.m in Sources */,
 				B81E5FB121DC8FC200873AB9 /* TLTextView.m in Sources */,
 				B81E5FC921DC8FC200873AB9 /* UILable+convience.m in Sources */,
