@@ -55,9 +55,7 @@
     }];
     [self.view addSubview:self.table1];
     
-    MallTabbar *tabbar = [MallTabbar new];
-//    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:tabbar];
-    [self presentViewController:tabbar animated:YES completion:nil];
+    
 //    [self.navigationController pushViewController:tabbar animated:YES];
 }
 

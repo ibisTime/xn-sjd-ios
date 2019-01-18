@@ -100,6 +100,7 @@
 		3610EEC421EDCEBD00FD345D /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC321EDCEBD00FD345D /* InfoVC.m */; };
 		3610EEC721EDD6A800FD345D /* GetAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC621EDD6A800FD345D /* GetAddVC.m */; };
 		3647C47221F16D6B00FB049D /* OrderDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647C47121F16D6B00FB049D /* OrderDetailsVC.m */; };
+		3647C49721F19FA600FB049D /* MallHomeHeadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647C49621F19FA600FB049D /* MallHomeHeadVC.m */; };
 		3689763A21EEC550005F1177 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3689763821EEC550005F1177 /* MAMapKit.framework */; };
 		3689763B21EEC550005F1177 /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3689763921EEC550005F1177 /* AMapFoundationKit.framework */; };
 		3689766221EED58A005F1177 /* CollectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3689766121EED58A005F1177 /* CollectVC.m */; };
@@ -501,6 +502,8 @@
 		3610EEC621EDD6A800FD345D /* GetAddVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAddVC.m; sourceTree = "<group>"; };
 		3647C47021F16D6B00FB049D /* OrderDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderDetailsVC.h; sourceTree = "<group>"; };
 		3647C47121F16D6B00FB049D /* OrderDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderDetailsVC.m; sourceTree = "<group>"; };
+		3647C49521F19FA600FB049D /* MallHomeHeadVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallHomeHeadVC.h; sourceTree = "<group>"; };
+		3647C49621F19FA600FB049D /* MallHomeHeadVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallHomeHeadVC.m; sourceTree = "<group>"; };
 		3689763821EEC550005F1177 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
 		3689763921EEC550005F1177 /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapFoundationKit.framework; sourceTree = "<group>"; };
 		3689766021EED58A005F1177 /* CollectVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectVC.h; sourceTree = "<group>"; };
@@ -2140,6 +2143,9 @@
 		B81E5F9921DC8FC100873AB9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B81E609321DCAB8F00873AB9 /* Banner */,
+				B81E609121DCAB8D00873AB9 /* HomeHeaderView.h */,
+				B81E609221DCAB8E00873AB9 /* HomeHeaderView.m */,
 				B815279321EC946100F89395 /* BookVideoCell.h */,
 				B815279421EC946100F89395 /* BookVideoCell.m */,
 				B86CB69E21DDAA1500C60AC7 /* XBTextLoopView.h */,
@@ -2148,9 +2154,6 @@
 				B81E60A921DCAC7500873AB9 /* HomeCell.m */,
 				B81E60A721DCAC7400873AB9 /* HomeTbleView.h */,
 				B81E60AA21DCAC7500873AB9 /* HomeTbleView.m */,
-				B81E609321DCAB8F00873AB9 /* Banner */,
-				B81E609121DCAB8D00873AB9 /* HomeHeaderView.h */,
-				B81E609221DCAB8E00873AB9 /* HomeHeaderView.m */,
 				B8ED2E6E21E6EE4300FADCCE /* TreeInfoView.h */,
 				B8ED2E6F21E6EE4300FADCCE /* TreeInfoView.m */,
 				B8ED2E7121E7133900FADCCE /* TreeFieldTB.h */,
@@ -2285,6 +2288,8 @@
 				1F9361C921F174D0007E522A /* MallHomeVC.m */,
 				1F9361D421F178FA007E522A /* GoodsListVC.h */,
 				1F9361D521F178FA007E522A /* GoodsListVC.m */,
+				3647C49521F19FA600FB049D /* MallHomeHeadVC.h */,
+				3647C49621F19FA600FB049D /* MallHomeHeadVC.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -3049,6 +3054,7 @@
 				B81E60A321DCAB9B00873AB9 /* BannerModel.m in Sources */,
 				B8ED2E8221E72E1900FADCCE /* TitleView.m in Sources */,
 				B81E609C21DCAB8F00873AB9 /* HomeHeaderView.m in Sources */,
+				3647C49721F19FA600FB049D /* MallHomeHeadVC.m in Sources */,
 				1FF6399221EC833000F5FF68 /* FriendRequestsVC.m in Sources */,
 				B81E5FB621DC8FC200873AB9 /* TopSegmentUtil.m in Sources */,
 				B8A27AE921E5C44400914897 /* MMAlternativeItem.m in Sources */,
