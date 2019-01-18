@@ -74,6 +74,13 @@
 		1F93617421EE07C1007E522A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F9360AF21EDFCE0007E522A /* SystemConfiguration.framework */; };
 		1F93617521EE07CE007E522A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F9360AD21EDFCDA007E522A /* CoreLocation.framework */; };
 		1F93617621EE07D8007E522A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F9360B121EDFCFF007E522A /* CoreTelephony.framework */; };
+		1F9361BF21F172E0007E522A /* MallBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9361BE21F172E0007E522A /* MallBaseVC.m */; };
+		1F9361C721F17398007E522A /* MallTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9361C621F17398007E522A /* MallTabbar.m */; };
+		1F9361CA21F174D0007E522A /* MallHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9361C921F174D0007E522A /* MallHomeVC.m */; };
+		1F9361CD21F174E1007E522A /* MallClassificationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9361CC21F174E1007E522A /* MallClassificationVC.m */; };
+		1F9361D021F174F1007E522A /* MallShoppingCartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9361CF21F174F1007E522A /* MallShoppingCartVC.m */; };
+		1F9361D321F17507007E522A /* MallMyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9361D221F17507007E522A /* MallMyVC.m */; };
+		1F9361D621F178FA007E522A /* GoodsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9361D521F178FA007E522A /* GoodsListVC.m */; };
 		1FF6397021EC35C500F5FF68 /* HisDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF6396F21EC35C500F5FF68 /* HisDynamicCell.m */; };
 		1FF6397821EC3E8300F5FF68 /* DonationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF6397721EC3E8300F5FF68 /* DonationView.m */; };
 		1FF6397B21EC626000F5FF68 /* DonationAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF6397A21EC626000F5FF68 /* DonationAnimationView.m */; };
@@ -273,6 +280,8 @@
 		B8A27AF821E5C44400914897 /* list_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8A27AE221E5C44400914897 /* list_selected@2x.png */; };
 		B8A27AF921E5C44400914897 /* pullup.png in Resources */ = {isa = PBXBuildFile; fileRef = B8A27AE321E5C44400914897 /* pullup.png */; };
 		B8A27AFC21E5D24F00914897 /* TreeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A27AFB21E5D24F00914897 /* TreeDetailVC.m */; };
+		B8B52C8B21F0504500975459 /* MallTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B52C8A21F0504500975459 /* MallTabBarController.m */; };
+		B8B52C8E21F0506200975459 /* MallNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B52C8D21F0506200975459 /* MallNavigationController.m */; };
 		B8ED2E6A21E6EA1D00FADCCE /* TreeFieldVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E6921E6EA1D00FADCCE /* TreeFieldVC.m */; };
 		B8ED2E6D21E6EA3400FADCCE /* TreeRenYangVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E6C21E6EA3400FADCCE /* TreeRenYangVC.m */; };
 		B8ED2E7021E6EE4300FADCCE /* TreeInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E6F21E6EE4300FADCCE /* TreeInfoView.m */; };
@@ -438,6 +447,20 @@
 		1F93616321EE01B4007E522A /* MyHomePageHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyHomePageHeadView.m; sourceTree = "<group>"; };
 		1F93616421EE01B4007E522A /* MyHomePageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHomePageCell.h; sourceTree = "<group>"; };
 		1F93616521EE01B4007E522A /* MyHomePageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyHomePageCell.m; sourceTree = "<group>"; };
+		1F9361BD21F172E0007E522A /* MallBaseVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallBaseVC.h; sourceTree = "<group>"; };
+		1F9361BE21F172E0007E522A /* MallBaseVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallBaseVC.m; sourceTree = "<group>"; };
+		1F9361C521F17398007E522A /* MallTabbar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallTabbar.h; sourceTree = "<group>"; };
+		1F9361C621F17398007E522A /* MallTabbar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallTabbar.m; sourceTree = "<group>"; };
+		1F9361C821F174D0007E522A /* MallHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallHomeVC.h; sourceTree = "<group>"; };
+		1F9361C921F174D0007E522A /* MallHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallHomeVC.m; sourceTree = "<group>"; };
+		1F9361CB21F174E1007E522A /* MallClassificationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallClassificationVC.h; sourceTree = "<group>"; };
+		1F9361CC21F174E1007E522A /* MallClassificationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallClassificationVC.m; sourceTree = "<group>"; };
+		1F9361CE21F174F1007E522A /* MallShoppingCartVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallShoppingCartVC.h; sourceTree = "<group>"; };
+		1F9361CF21F174F1007E522A /* MallShoppingCartVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallShoppingCartVC.m; sourceTree = "<group>"; };
+		1F9361D121F17507007E522A /* MallMyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallMyVC.h; sourceTree = "<group>"; };
+		1F9361D221F17507007E522A /* MallMyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallMyVC.m; sourceTree = "<group>"; };
+		1F9361D421F178FA007E522A /* GoodsListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsListVC.h; sourceTree = "<group>"; };
+		1F9361D521F178FA007E522A /* GoodsListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsListVC.m; sourceTree = "<group>"; };
 		1FF6396E21EC35C500F5FF68 /* HisDynamicCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HisDynamicCell.h; sourceTree = "<group>"; };
 		1FF6396F21EC35C500F5FF68 /* HisDynamicCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HisDynamicCell.m; sourceTree = "<group>"; };
 		1FF6397621EC3E8300F5FF68 /* DonationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DonationView.h; sourceTree = "<group>"; };
@@ -843,6 +866,10 @@
 		B8A27AE321E5C44400914897 /* pullup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullup.png; sourceTree = "<group>"; };
 		B8A27AFA21E5D24F00914897 /* TreeDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeDetailVC.h; sourceTree = "<group>"; };
 		B8A27AFB21E5D24F00914897 /* TreeDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeDetailVC.m; sourceTree = "<group>"; };
+		B8B52C8921F0504500975459 /* MallTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallTabBarController.h; sourceTree = "<group>"; };
+		B8B52C8A21F0504500975459 /* MallTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallTabBarController.m; sourceTree = "<group>"; };
+		B8B52C8C21F0506200975459 /* MallNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallNavigationController.h; sourceTree = "<group>"; };
+		B8B52C8D21F0506200975459 /* MallNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallNavigationController.m; sourceTree = "<group>"; };
 		B8ED2E6821E6EA1D00FADCCE /* TreeFieldVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeFieldVC.h; sourceTree = "<group>"; };
 		B8ED2E6921E6EA1D00FADCCE /* TreeFieldVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeFieldVC.m; sourceTree = "<group>"; };
 		B8ED2E6B21E6EA3400FADCCE /* TreeRenYangVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeRenYangVC.h; sourceTree = "<group>"; };
@@ -1302,6 +1329,44 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		1F9361BC21F172B2007E522A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				1F9361BD21F172E0007E522A /* MallBaseVC.h */,
+				1F9361BE21F172E0007E522A /* MallBaseVC.m */,
+				1F9361C521F17398007E522A /* MallTabbar.h */,
+				1F9361C621F17398007E522A /* MallTabbar.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		1F9361C221F17326007E522A /* My */ = {
+			isa = PBXGroup;
+			children = (
+				1F9361D121F17507007E522A /* MallMyVC.h */,
+				1F9361D221F17507007E522A /* MallMyVC.m */,
+			);
+			path = My;
+			sourceTree = "<group>";
+		};
+		1F9361C321F17328007E522A /* ShoppingCart */ = {
+			isa = PBXGroup;
+			children = (
+				1F9361CE21F174F1007E522A /* MallShoppingCartVC.h */,
+				1F9361CF21F174F1007E522A /* MallShoppingCartVC.m */,
+			);
+			path = ShoppingCart;
+			sourceTree = "<group>";
+		};
+		1F9361C421F1732A007E522A /* Classification */ = {
+			isa = PBXGroup;
+			children = (
+				1F9361CB21F174E1007E522A /* MallClassificationVC.h */,
+				1F9361CC21F174E1007E522A /* MallClassificationVC.m */,
+			);
+			path = Classification;
+			sourceTree = "<group>";
+		};
 		1FF6397121EC3E3700F5FF68 /* Donation捐赠 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1488,6 +1553,7 @@
 				B81E5EA121DC8B3C00873AB9 /* Products */,
 				0922DD858AC9E8EC8EECAF99 /* Pods */,
 				A27B85BBCC1D95F10D614566 /* Frameworks */,
+				B888333821F1836D00435B38 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2201,34 +2267,26 @@
 		B81E5FA521DC8FC200873AB9 /* 商城 */ = {
 			isa = PBXGroup;
 			children = (
-				B81E5FA621DC8FC200873AB9 /* Controller */,
-				B81E5FA721DC8FC200873AB9 /* Model */,
-				B81E5FA821DC8FC200873AB9 /* View */,
+				B81E608921DC9FE500873AB9 /* MallVC.h */,
+				B81E608A21DC9FE500873AB9 /* MallVC.m */,
+				1F9361BC21F172B2007E522A /* Base */,
+				B81E5FA621DC8FC200873AB9 /* Home */,
+				1F9361C421F1732A007E522A /* Classification */,
+				1F9361C321F17328007E522A /* ShoppingCart */,
+				1F9361C221F17326007E522A /* My */,
 			);
 			path = "商城";
 			sourceTree = "<group>";
 		};
-		B81E5FA621DC8FC200873AB9 /* Controller */ = {
+		B81E5FA621DC8FC200873AB9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				B81E608921DC9FE500873AB9 /* MallVC.h */,
-				B81E608A21DC9FE500873AB9 /* MallVC.m */,
+				1F9361C821F174D0007E522A /* MallHomeVC.h */,
+				1F9361C921F174D0007E522A /* MallHomeVC.m */,
+				1F9361D421F178FA007E522A /* GoodsListVC.h */,
+				1F9361D521F178FA007E522A /* GoodsListVC.m */,
 			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		B81E5FA721DC8FC200873AB9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B81E5FA821DC8FC200873AB9 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		B81E5FF221DC906C00873AB9 /* 用户 */ = {
@@ -2292,6 +2350,10 @@
 				B81E5F8A21DC8FC100873AB9 /* TLTabBarController.m */,
 				B81E605B21DC995300873AB9 /* TLNavigationController.h */,
 				B81E605A21DC995200873AB9 /* TLNavigationController.m */,
+				B8B52C8921F0504500975459 /* MallTabBarController.h */,
+				B8B52C8A21F0504500975459 /* MallTabBarController.m */,
+				B8B52C8C21F0506200975459 /* MallNavigationController.h */,
+				B8B52C8D21F0506200975459 /* MallNavigationController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2451,6 +2513,13 @@
 				B81E609B21DCAB8F00873AB9 /* HW3DBannerView.h */,
 			);
 			path = Banner;
+			sourceTree = "<group>";
+		};
+		B888333821F1836D00435B38 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		B8A27AA621E5C44300914897 /* MMComboBox */ = {
@@ -2832,6 +2901,7 @@
 			files = (
 				1F1B006E21E71D26000BEBD3 /* UIColor+PlatformIndependence.m in Sources */,
 				B8A27AF121E5C44400914897 /* MMMultiFitlerView.m in Sources */,
+				B8B52C8B21F0504500975459 /* MallTabBarController.m in Sources */,
 				B81E5FBE21DC8FC200873AB9 /* TLAlert.m in Sources */,
 				3689769321EF367B005F1177 /* OrderView.m in Sources */,
 				B81E5FB821DC8FC200873AB9 /* TLProgressHUD.m in Sources */,
@@ -2851,6 +2921,7 @@
 				3689766E21EED9A3005F1177 /* BookCell.m in Sources */,
 				B81E609F21DCAB8F00873AB9 /* HW3DBannerView.m in Sources */,
 				B81E5FE121DC8FC200873AB9 /* HttpSign.m in Sources */,
+				B8B52C8E21F0506200975459 /* MallNavigationController.m in Sources */,
 				3689767721EEF135005F1177 /* CollectTreeView.m in Sources */,
 				1F93610421EDFD8F007E522A /* MyGiftVC.m in Sources */,
 				B81E609E21DCAB8F00873AB9 /* TLBannerCell.m in Sources */,
@@ -2872,6 +2943,7 @@
 				B81E5FBA21DC8FC200873AB9 /* HourPickerView.m in Sources */,
 				B81E605721DC981D00873AB9 /* NBBaseRequest.m in Sources */,
 				B81E5FA921DC8FC200873AB9 /* TLBaseModel.m in Sources */,
+				1F9361BF21F172E0007E522A /* MallBaseVC.m in Sources */,
 				B8EE11FD21EDC98800B9DF0D /* LunarFormatter.m in Sources */,
 				3610EEC421EDCEBD00FD345D /* InfoVC.m in Sources */,
 				B81E5FE521DC8FC200873AB9 /* CoinUtil.m in Sources */,
@@ -2905,6 +2977,7 @@
 				B81E5FD221DC8FC200873AB9 /* UIControl+Block.m in Sources */,
 				B81E5FD321DC8FC200873AB9 /* UITabBar+Badge.m in Sources */,
 				1F1B007521E72B24000BEBD3 /* MyFreeDynamicCell.m in Sources */,
+				1F9361CA21F174D0007E522A /* MallHomeVC.m in Sources */,
 				B81E5FB521DC8FC200873AB9 /* SortBar.m in Sources */,
 				B81E5FC321DC8FC200873AB9 /* TLTextField.m in Sources */,
 				1F93610321EDFD8F007E522A /* ToClaimTheGiftVC.m in Sources */,
@@ -2935,6 +3008,7 @@
 				B81E5FAA21DC8FC200873AB9 /* TLBaseVC.m in Sources */,
 				1F93610E21EDFD8F007E522A /* MyNoticeCell.m in Sources */,
 				1F93614C21EE0105007E522A /* MyCarbonBubbleVC.m in Sources */,
+				1F9361C721F17398007E522A /* MallTabbar.m in Sources */,
 				B8ED2E8E21E8934B00FADCCE /* RealNameView.m in Sources */,
 				B8ED2E8821E8516D00FADCCE /* RenYangFieldView.m in Sources */,
 				B81E5FD621DC8FC200873AB9 /* NSString+CGSize.m in Sources */,
@@ -3030,6 +3104,7 @@
 				B815278F21EC8C1300F89395 /* NoticeCell.m in Sources */,
 				B81E5FE421DC8FC200873AB9 /* HttpRequestObject.m in Sources */,
 				1F93610921EDFD8F007E522A /* MyGiftCell.m in Sources */,
+				1F9361D321F17507007E522A /* MallMyVC.m in Sources */,
 				B81E5FC421DC8FC200873AB9 /* TLNetworking.m in Sources */,
 				B8A27AF521E5C44400914897 /* UIView+ComboBoxExtension.m in Sources */,
 				3689768D21EF1C1F005F1177 /* BookVC.m in Sources */,
@@ -3040,6 +3115,7 @@
 				B8A27AA521E5A15100914897 /* TreeListVC.m in Sources */,
 				B81E605921DC981D00873AB9 /* NBBatchReqest.m in Sources */,
 				B81E605521DC981D00873AB9 /* NBNetworkAgent.m in Sources */,
+				1F9361D621F178FA007E522A /* GoodsListVC.m in Sources */,
 				B81E5FE721DC8FC200873AB9 /* TestViewController.m in Sources */,
 				B81E5FCA21DC8FC200873AB9 /* UIButton+EnLargeEdge.m in Sources */,
 				1F1B002321E6F8C8000BEBD3 /* MyTreeTableView.m in Sources */,
@@ -3056,6 +3132,7 @@
 				B81E605C21DC995300873AB9 /* TLNavigationController.m in Sources */,
 				1F1B006921E71D26000BEBD3 /* RBBSpringAnimation.m in Sources */,
 				B81E5FBD21DC8FC200873AB9 /* TLImagePicker.m in Sources */,
+				1F9361CD21F174E1007E522A /* MallClassificationVC.m in Sources */,
 				B81E5FCC21DC8FC200873AB9 /* UIColor+Extension.m in Sources */,
 				3689769A21EF38E8005F1177 /* OrderFootCell.m in Sources */,
 				3689768721EF0435005F1177 /* InviteModel.m in Sources */,
@@ -3075,6 +3152,7 @@
 				3689768221EF00D3005F1177 /* InviteVC.m in Sources */,
 				B8ED2E7021E6EE4300FADCCE /* TreeInfoView.m in Sources */,
 				1FF6399821EC837400F5FF68 /* FriendRequestsCell.m in Sources */,
+				1F9361D021F174F1007E522A /* MallShoppingCartVC.m in Sources */,
 				1F93610B21EDFD8F007E522A /* MyNoticeDetailsVC.m in Sources */,
 				3689767A21EEF4B5005F1177 /* CollectTreeVC.m in Sources */,
 				B81E605621DC981D00873AB9 /* NBRequest.m in Sources */,

@@ -81,8 +81,6 @@
     new.backgroundColor = kWhiteColor;
     new.clipsToBounds = YES;
     UISearchBar * searchbar = [[UISearchBar alloc]initWithFrame:CGRectMake(0.0f, 0.0f, kScreenWidth-60, 31)];
-//    searchbar.layer.cornerRadius = 15.5;
-//    searchbar.clipsToBounds = YES;
     searchbar.delegate = self;
     [searchbar setTintColor:[UIColor lightGrayColor]];
     [searchbar setPlaceholder:@"搜索商品信息"];
@@ -97,11 +95,6 @@
         [searchField setBackgroundColor:[UIColor whiteColor]];
         
         searchField.layer.cornerRadius = 15.5;//设置圆角具体根据实际情况来设置
-        
-//        searchField.layer.borderColor = [UIColor lightGrayColor].CGColor;//边框的颜色
-//
-//        searchField.layer.borderWidth = 1;//边框的宽
-//
         searchField.layer.masksToBounds = YES;
         
     }
