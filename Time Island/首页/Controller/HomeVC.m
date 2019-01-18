@@ -19,6 +19,7 @@
 #import "BookVideoVC.h"
 #import "UIBarButtonItem+convience.h"
 #import "CalendarCustomVC.h"
+#import "MallTabBarController.h"
 @interface HomeVC ()<RefreshDelegate,RefreshCollectionViewDelegate,UIScrollViewDelegate,UITextFieldDelegate,UISearchBarDelegate>
 @property (nonatomic, strong) HomeHeaderView *headerView;
 @property (nonatomic,strong) NSArray <HomeFindModel *>*findModels;
@@ -313,6 +314,8 @@
         [self.navigationController pushViewController:tree animated:YES];
     }else if (index ==1)
     {
+        MallTabBarController *tab = [[MallTabBarController alloc] init];
+        [UIApplication sharedApplication].keyWindow.rootViewController = tab;
         
     }else{
         

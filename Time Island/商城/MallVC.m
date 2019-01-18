@@ -7,32 +7,54 @@
 //
 
 #import "MallVC.h"
-
+#import "TLTabBarController.h"
+//#import "MallHomeHeaderView.h"
 @interface MallVC ()
-
+//@property (nonatomic ,strong) MallHomeHeaderView *headerView;
 @end
 
 @implementation MallVC
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.barTintColor = kBlackColor;
+}
 
+-(void)viewDidAppear:(BOOL)animated
+{
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+}
+
+//如果仅设置当前页导航透明，需加入下面方法
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"商场";
-    // Do any additional setup after loading the view.
+    [UIBarButtonItem addLeftItemWithImageName:@"返回白色" frame:CGRectMake(-10, 0, 44, 40) vc:self action:@selector(backButtonClick)];
+    [self initHeaderView];
 }
 
+- (void)initHeaderView
+{
+//    self.headerView = [[MallHomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kWidth(190))];
+//    [self.view addSubview:self.headerView];
+    
+    
+}
+- (void)backButtonClick
+{
+    TLTabBarController *tab = [[TLTabBarController alloc] init];
+    [UIApplication sharedApplication].keyWindow.rootViewController = tab;
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

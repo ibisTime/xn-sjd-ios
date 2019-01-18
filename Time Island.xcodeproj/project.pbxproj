@@ -279,6 +279,8 @@
 		B8A27AF821E5C44400914897 /* list_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8A27AE221E5C44400914897 /* list_selected@2x.png */; };
 		B8A27AF921E5C44400914897 /* pullup.png in Resources */ = {isa = PBXBuildFile; fileRef = B8A27AE321E5C44400914897 /* pullup.png */; };
 		B8A27AFC21E5D24F00914897 /* TreeDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A27AFB21E5D24F00914897 /* TreeDetailVC.m */; };
+		B8B52C8B21F0504500975459 /* MallTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B52C8A21F0504500975459 /* MallTabBarController.m */; };
+		B8B52C8E21F0506200975459 /* MallNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B52C8D21F0506200975459 /* MallNavigationController.m */; };
 		B8ED2E6A21E6EA1D00FADCCE /* TreeFieldVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E6921E6EA1D00FADCCE /* TreeFieldVC.m */; };
 		B8ED2E6D21E6EA3400FADCCE /* TreeRenYangVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E6C21E6EA3400FADCCE /* TreeRenYangVC.m */; };
 		B8ED2E7021E6EE4300FADCCE /* TreeInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED2E6F21E6EE4300FADCCE /* TreeInfoView.m */; };
@@ -861,6 +863,10 @@
 		B8A27AE321E5C44400914897 /* pullup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullup.png; sourceTree = "<group>"; };
 		B8A27AFA21E5D24F00914897 /* TreeDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeDetailVC.h; sourceTree = "<group>"; };
 		B8A27AFB21E5D24F00914897 /* TreeDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeDetailVC.m; sourceTree = "<group>"; };
+		B8B52C8921F0504500975459 /* MallTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallTabBarController.h; sourceTree = "<group>"; };
+		B8B52C8A21F0504500975459 /* MallTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallTabBarController.m; sourceTree = "<group>"; };
+		B8B52C8C21F0506200975459 /* MallNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallNavigationController.h; sourceTree = "<group>"; };
+		B8B52C8D21F0506200975459 /* MallNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallNavigationController.m; sourceTree = "<group>"; };
 		B8ED2E6821E6EA1D00FADCCE /* TreeFieldVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeFieldVC.h; sourceTree = "<group>"; };
 		B8ED2E6921E6EA1D00FADCCE /* TreeFieldVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeFieldVC.m; sourceTree = "<group>"; };
 		B8ED2E6B21E6EA3400FADCCE /* TreeRenYangVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeRenYangVC.h; sourceTree = "<group>"; };
@@ -1544,6 +1550,7 @@
 				B81E5EA121DC8B3C00873AB9 /* Products */,
 				0922DD858AC9E8EC8EECAF99 /* Pods */,
 				A27B85BBCC1D95F10D614566 /* Frameworks */,
+				B888333821F1836D00435B38 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2338,6 +2345,10 @@
 				B81E5F8A21DC8FC100873AB9 /* TLTabBarController.m */,
 				B81E605B21DC995300873AB9 /* TLNavigationController.h */,
 				B81E605A21DC995200873AB9 /* TLNavigationController.m */,
+				B8B52C8921F0504500975459 /* MallTabBarController.h */,
+				B8B52C8A21F0504500975459 /* MallTabBarController.m */,
+				B8B52C8C21F0506200975459 /* MallNavigationController.h */,
+				B8B52C8D21F0506200975459 /* MallNavigationController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2497,6 +2508,13 @@
 				B81E609B21DCAB8F00873AB9 /* HW3DBannerView.h */,
 			);
 			path = Banner;
+			sourceTree = "<group>";
+		};
+		B888333821F1836D00435B38 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		B8A27AA621E5C44300914897 /* MMComboBox */ = {
@@ -2878,6 +2896,7 @@
 			files = (
 				1F1B006E21E71D26000BEBD3 /* UIColor+PlatformIndependence.m in Sources */,
 				B8A27AF121E5C44400914897 /* MMMultiFitlerView.m in Sources */,
+				B8B52C8B21F0504500975459 /* MallTabBarController.m in Sources */,
 				B81E5FBE21DC8FC200873AB9 /* TLAlert.m in Sources */,
 				3689769321EF367B005F1177 /* OrderView.m in Sources */,
 				B81E5FB821DC8FC200873AB9 /* TLProgressHUD.m in Sources */,
@@ -2897,6 +2916,7 @@
 				3689766E21EED9A3005F1177 /* BookCell.m in Sources */,
 				B81E609F21DCAB8F00873AB9 /* HW3DBannerView.m in Sources */,
 				B81E5FE121DC8FC200873AB9 /* HttpSign.m in Sources */,
+				B8B52C8E21F0506200975459 /* MallNavigationController.m in Sources */,
 				3689767721EEF135005F1177 /* CollectTreeView.m in Sources */,
 				1F93610421EDFD8F007E522A /* MyGiftVC.m in Sources */,
 				B81E609E21DCAB8F00873AB9 /* TLBannerCell.m in Sources */,
@@ -3314,7 +3334,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3ZCW993X44;
+				DEVELOPMENT_TEAM = 4M8KD7B9X5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -3347,7 +3367,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3ZCW993X44;
+				DEVELOPMENT_TEAM = 4M8KD7B9X5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",

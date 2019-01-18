@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CoinHeader.h"
-
+#import "UIBarButtonItem+convience.h"
 @interface TLBaseVC : UIViewController
 
 @property (nonatomic,strong) UIView *tl_placeholderView;
