@@ -8,9 +8,9 @@
 
 #import "MallVC.h"
 #import "TLTabBarController.h"
-#import "MallHomeHeaderView.h"
+//#import "MallHomeHeaderView.h"
 @interface MallVC ()
-@property (nonatomic ,strong) MallHomeHeaderView *headerView;
+//@property (nonatomic ,strong) MallHomeHeaderView *headerView;
 @end
 
 @implementation MallVC
@@ -41,8 +41,8 @@
 
 - (void)initHeaderView
 {
-    self.headerView = [[MallHomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kWidth(190))];
-    [self.view addSubview:self.headerView];
+//    self.headerView = [[MallHomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kWidth(190))];
+//    [self.view addSubview:self.headerView];
     
     
 }

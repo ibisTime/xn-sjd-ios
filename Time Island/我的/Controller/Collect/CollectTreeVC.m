@@ -27,10 +27,6 @@
 
 - (void)initCollection
 {
-    //    self.contentScrollew = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth, kScreenHeight-kNavigationBarHeight)];
-    //    [self.view addSubview:self.contentScrollew];
-    //    self.contentScrollew.delegate = self;
-    //    self.contentScrollew.scrollEnabled = YES;
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
 //    layout.itemSize = CGSizeMake((kScreenWidth-45)/2, 250);
     layout.itemSize = CGSizeMake((kScreenWidth-45)/2, 210);
@@ -41,7 +37,7 @@
     
     
     
-    CollectTreeView *topView = [[CollectTreeView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth, kScreenHeight) collectionViewLayout:layout withImage:@[@""]];
+    CollectTreeView *topView = [[CollectTreeView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - kTabBarHeight - 40) collectionViewLayout:layout withImage:@[@""]];
     self.topView = topView;
     topView.refreshDelegate = self;
     self.topView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headRefresh)];

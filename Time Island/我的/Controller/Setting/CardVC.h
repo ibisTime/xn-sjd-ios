@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CardVC : TLBaseVC<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface CardVC : TLBaseVC<UITableViewDelegate,UITableViewDataSource,RefreshDelegate>
 
 @end
 

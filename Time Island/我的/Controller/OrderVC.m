@@ -27,21 +27,13 @@
     for (NSInteger index = 0; index < self.itemsTitles.count; index ++) {
         if (index == 0) {
             OrderView * bookview = [[OrderView alloc]init];
-//            [self addChildViewController:bookview];
+            [self addChildViewController:bookview];
             bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
             [self.selectSV.scrollView addSubview:bookview.view];
         }
     }
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

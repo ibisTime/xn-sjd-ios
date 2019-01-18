@@ -2,73 +2,63 @@
 //  CardVCCell.m
 //  Time Island
 //
-//  Created by 梅敏杰 on 2019/1/15.
+//  Created by 梅敏杰 on 2019/1/17.
 //  Copyright © 2019年 ChengLian. All rights reserved.
 //
 
 #import "CardVCCell.h"
 
 @implementation CardVCCell
--(instancetype)init{
-    if (self == [super init]) {
-        self.backgroundColor = [UIColor grayColor];
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        //背景图片
+        self.BackgroundImage = [[UIImageView alloc]initWithFrame:CGRectMake(15, 13.5, SCREEN_WIDTH - 30, 160)];
+        [self addSubview:self.BackgroundImage];
+        
+        //Logo
+        UIView * view = [[UIView alloc]initWithFrame:CGRectMake(39, 37.5, 40, 40)];
+        view.backgroundColor = [UIColor whiteColor];
+        view.layer.cornerRadius = 20;
+        view.layer.masksToBounds = YES;
+        self.LogoImage = [[UIImageView alloc]initWithFrame:CGRectMake(8.5, 8.5, 23, 23)];
+        [view addSubview:self.LogoImage];
+        [self addSubview:view];
+        
+        //银行名称
+        self.CardName= [[UILabel alloc]initWithFrame:CGRectMake(view.xx + 12, 24, SCREEN_WIDTH - 105, 32)];
+        self.CardName.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
+        self.CardName.textColor = [UIColor whiteColor];
+        self.CardName.textAlignment = NSTextAlignmentLeft;
+        [self addSubview:self.CardName];
+        
+        //银行类型
+        self.CardType = [[UILabel alloc]initWithFrame:CGRectMake(self.CardName.x, self.CardName.yy + 1, 36, 16.5)];
+        self.CardType.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
+        self.CardType.textColor = [UIColor whiteColor];
+        self.CardType.textAlignment = NSTextAlignmentLeft;
+        [self addSubview:self.CardType];
+        
+        
+        //银行卡号
+        self.CardCount = [[UILabel alloc]initWithFrame:CGRectMake(66, self.CardType.yy + 40, SCREEN_WIDTH - 120, 33.5)];
+        self.CardCount.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:24];
+        self.CardCount.textColor = [UIColor whiteColor];
+        self.CardCount.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:self.CardCount];
         
     }
     return self;
 }
--(instancetype)initWithFrame:(CGRect)frame
-                 imagestring:(NSString *)imagestring
-                  logostring:(NSString *)logostring
-                    cardname:(NSString *)cardname
-                     cardnum:(NSString *)cardnum{
-    if (self == [super init]) {
-        UIImageView * image = [[UIImageView alloc]initWithFrame:self.bounds];
-        image.image = kImage(imagestring);
-        [self addSubview:image];
-        
-        UIImageView * image1 = [[UIImageView alloc]initWithFrame:CGRectMake(24, 24, 40, 40)];
-        image1.backgroundColor = [UIColor whiteColor];
-        image1.layer.cornerRadius = 20;
-        image1.layer.masksToBounds = YES;
-        image1.image = kImage(logostring);
-        [self addSubview:image1];
-        
-        UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(image1.right+12, 24, 150, 32)];
-        label.text = cardname;
-        label.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
-        label.textColor = [UIColor whiteColor];
-        label.textAlignment = NSTextAlignmentLeft;
-        [self addSubview:label];
-        
-        UILabel * label1 = [[UILabel alloc]initWithFrame:CGRectMake(label.x, label.yy + 1, 36, 16.5)];
-        NSString * str1;
-        NSString * str2;
-        if (cardnum.length == 16) {
-            label1.text = @"储蓄卡";
-            str1 = @"****  ****  ****  ";
-            str2 = [cardnum substringFromIndex:11];
-        }
-        else if (cardnum.length == 19){
-            label1.text = @"借记卡";
-            str1 = @"****  ****  ****  ";
-            str2 = [cardnum substringFromIndex:15];
-        }
-        
-        label1.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
-        label1.textColor = [UIColor whiteColor];
-        label1.textAlignment = NSTextAlignmentLeft;
-        
-        UILabel * label2 = [[UILabel alloc]initWithFrame:CGRectMake(0, label1.yy + 40, SCREEN_WIDTH, 34)];
-//        NSString * str1 = @"****  ****  ****  ";
-        NSString * str3 = [str1 stringByAppendingString:str2];
-        label2.text = str3;
-        label2.font = [UIFont fontWithName:@"PingFangSC-Regular" size:24];
-        label2.textColor = [UIColor whiteColor];
-        label2.textAlignment = NSTextAlignmentCenter;
-        
-        [self addSubview:label1];
-        [self addSubview:label2];
-    }
-    return self;
-}
+
 @end

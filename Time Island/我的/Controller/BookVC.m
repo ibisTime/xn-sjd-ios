@@ -8,6 +8,7 @@
 
 #import "BookVC.h"
 #import "BookView.h"
+#import "IssueBook.h"
 @interface BookVC ()<RefreshDelegate>
 @property (nonatomic,strong) BookView * bookview;
 @end
@@ -32,7 +33,7 @@
     
     
     self.view.backgroundColor = kWhiteColor;
-    self.bookview = [[BookView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) style:UITableViewStyleGrouped];
+    self.bookview = [[BookView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - kTabBarHeight) style:UITableViewStyleGrouped];
     self.bookview.backgroundColor = kWhiteColor;
     self.bookview.refreshDelegate = self;
     [self.view addSubview:self.bookview];
@@ -41,6 +42,8 @@
 
 -(void)myRecodeClick{
     NSLog(@"%s",__func__);
+    IssueBook * issue = [[IssueBook alloc]init];
+    [self.navigationController pushViewController:issue animated:YES];
 }
 
 

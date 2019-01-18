@@ -34,13 +34,13 @@
         if (index == 0) {
             CollectBookVC * bookview = [[CollectBookVC alloc]init];
             [self addChildViewController:bookview];
-            bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
+            bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight - 40);
             [self.selectSV.scrollView addSubview:bookview.view];
         }else if (index == 1)
         {
             CollectTreeVC * view = [[CollectTreeVC alloc]init];
             [self addChildViewController:view];
-            view.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
+            view.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight - 40);
             [self.selectSV.scrollView addSubview:view.view];
      }
     }

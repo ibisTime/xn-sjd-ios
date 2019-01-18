@@ -202,7 +202,7 @@
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     //    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
-}\
+}
 - (void)didReceiveMemoryWarning {
     
     [super didReceiveMemoryWarning];
