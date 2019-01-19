@@ -81,6 +81,7 @@
 		1F9361D021F174F1007E522A /* MallShoppingCartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9361CF21F174F1007E522A /* MallShoppingCartVC.m */; };
 		1F9361D321F17507007E522A /* MallMyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9361D221F17507007E522A /* MallMyVC.m */; };
 		1F9361D621F178FA007E522A /* GoodsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9361D521F178FA007E522A /* GoodsListVC.m */; };
+		1F9361E421F3158F007E522A /* GoodsListCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9361E321F3158F007E522A /* GoodsListCollCell.m */; };
 		1FF6397021EC35C500F5FF68 /* HisDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF6396F21EC35C500F5FF68 /* HisDynamicCell.m */; };
 		1FF6397821EC3E8300F5FF68 /* DonationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF6397721EC3E8300F5FF68 /* DonationView.m */; };
 		1FF6397B21EC626000F5FF68 /* DonationAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF6397A21EC626000F5FF68 /* DonationAnimationView.m */; };
@@ -465,6 +466,8 @@
 		1F9361D221F17507007E522A /* MallMyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallMyVC.m; sourceTree = "<group>"; };
 		1F9361D421F178FA007E522A /* GoodsListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsListVC.h; sourceTree = "<group>"; };
 		1F9361D521F178FA007E522A /* GoodsListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsListVC.m; sourceTree = "<group>"; };
+		1F9361E221F3158F007E522A /* GoodsListCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsListCollCell.h; sourceTree = "<group>"; };
+		1F9361E321F3158F007E522A /* GoodsListCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsListCollCell.m; sourceTree = "<group>"; };
 		1FF6396E21EC35C500F5FF68 /* HisDynamicCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HisDynamicCell.h; sourceTree = "<group>"; };
 		1FF6396F21EC35C500F5FF68 /* HisDynamicCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HisDynamicCell.m; sourceTree = "<group>"; };
 		1FF6397621EC3E8300F5FF68 /* DonationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DonationView.h; sourceTree = "<group>"; };
@@ -1380,6 +1383,45 @@
 			path = Classification;
 			sourceTree = "<group>";
 		};
+		1F9361DA21F31158007E522A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				1F9361DC21F31162007E522A /* Controller */,
+				1F9361DB21F3115E007E522A /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		1F9361DB21F3115E007E522A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B81E609321DCAB8F00873AB9 /* Banner */,
+				B81E609121DCAB8D00873AB9 /* HomeHeaderView.h */,
+				B81E609221DCAB8E00873AB9 /* HomeHeaderView.m */,
+				1F9361E221F3158F007E522A /* GoodsListCollCell.h */,
+				1F9361E321F3158F007E522A /* GoodsListCollCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1F9361DC21F31162007E522A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B81E608C21DC9FFC00873AB9 /* HomeVC.h */,
+				B81E608D21DC9FFC00873AB9 /* HomeVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1F9361E521F332AC007E522A /* GoodsList */ = {
+			isa = PBXGroup;
+			children = (
+				B8A27AA321E5A15100914897 /* TreeListVC.h */,
+				B8A27AA421E5A15100914897 /* TreeListVC.m */,
+			);
+			path = GoodsList;
+			sourceTree = "<group>";
+		};
 		1FF6397121EC3E3700F5FF68 /* Donation捐赠 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2134,6 +2176,8 @@
 		B81E5F9621DC8FC100873AB9 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				1F9361DA21F31158007E522A /* Home */,
+				1F9361E521F332AC007E522A /* GoodsList */,
 				B81E5F9721DC8FC100873AB9 /* Controller */,
 				B81E5F9821DC8FC100873AB9 /* Model */,
 				B81E5F9921DC8FC100873AB9 /* View */,
@@ -2144,10 +2188,6 @@
 		B81E5F9721DC8FC100873AB9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B81E608C21DC9FFC00873AB9 /* HomeVC.h */,
-				B81E608D21DC9FFC00873AB9 /* HomeVC.m */,
-				B8A27AA321E5A15100914897 /* TreeListVC.h */,
-				B8A27AA421E5A15100914897 /* TreeListVC.m */,
 				B8A27AFA21E5D24F00914897 /* TreeDetailVC.h */,
 				B8A27AFB21E5D24F00914897 /* TreeDetailVC.m */,
 				B8ED2E6821E6EA1D00FADCCE /* TreeFieldVC.h */,
@@ -2182,9 +2222,6 @@
 		B81E5F9921DC8FC100873AB9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B81E609321DCAB8F00873AB9 /* Banner */,
-				B81E609121DCAB8D00873AB9 /* HomeHeaderView.h */,
-				B81E609221DCAB8E00873AB9 /* HomeHeaderView.m */,
 				B815279321EC946100F89395 /* BookVideoCell.h */,
 				B815279421EC946100F89395 /* BookVideoCell.m */,
 				B86CB69E21DDAA1500C60AC7 /* XBTextLoopView.h */,
@@ -3203,6 +3240,7 @@
 				1F9361D021F174F1007E522A /* MallShoppingCartVC.m in Sources */,
 				1F93610B21EDFD8F007E522A /* MyNoticeDetailsVC.m in Sources */,
 				3689767A21EEF4B5005F1177 /* CollectTreeVC.m in Sources */,
+				1F9361E421F3158F007E522A /* GoodsListCollCell.m in Sources */,
 				B81E605621DC981D00873AB9 /* NBRequest.m in Sources */,
 				B81E5FD821DC8FC200873AB9 /* NSString+Date.m in Sources */,
 				B81E5FC121DC8FC200873AB9 /* ShareView.m in Sources */,
@@ -3388,7 +3426,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A7AR7GW3Q2;
+				DEVELOPMENT_TEAM = 3ZCW993X44;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -3421,7 +3459,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A7AR7GW3Q2;
+				DEVELOPMENT_TEAM = 3ZCW993X44;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",

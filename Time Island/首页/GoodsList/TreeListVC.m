@@ -394,24 +394,24 @@
     return _mutableArray;
 }
 
-- (UIImageView *)imageView {
-    if (_imageView == nil) {
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.comBoBoxView.bottom, self.view.width, self.view.height - 64)];
-        _imageView.image = [UIImage imageNamed:@"7.jpg"];
-    }
-    return _imageView;
-}
-
-- (UIButton *)nextPageBtn {
-    if (_nextPageBtn == nil) {
-        _nextPageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _nextPageBtn.frame = CGRectMake(self.view.width - 80, kScreenHeigth - 60, 100, 30);
-        [_nextPageBtn setTitle:@"多选" forState:UIControlStateNormal];
-        [_nextPageBtn addTarget:self action:@selector(respondsToButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-        
-    }
-    return _nextPageBtn;
-}
+//- (UIImageView *)imageView {
+//    if (_imageView == nil) {
+//        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.comBoBoxView.bottom, self.view.width, self.view.height - 64)];
+//        _imageView.image = [UIImage imageNamed:@"7.jpg"];
+//    }
+//    return _imageView;
+//}
+//
+//- (UIButton *)nextPageBtn {
+//    if (_nextPageBtn == nil) {
+//        _nextPageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        _nextPageBtn.frame = CGRectMake(self.view.width - 80, kScreenHeigth - 60, 100, 30);
+//        [_nextPageBtn setTitle:@"多选" forState:UIControlStateNormal];
+//        [_nextPageBtn addTarget:self action:@selector(respondsToButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//    }
+//    return _nextPageBtn;
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

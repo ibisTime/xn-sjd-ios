@@ -46,8 +46,9 @@
     }
     cell.textLabel.text = _dataSource[indexPath.row];
     cell.backgroundColor = [UIColor clearColor];
-    cell.textLabel.font = [UIFont systemFontOfSize:13];
-    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.textColor = kHexColor(@"#666666");
+    cell.textLabel.font = [UIFont systemFontOfSize:12];
+
     return cell;
 }
 
@@ -82,6 +83,7 @@
         // tableView
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         _tableView = tableView;
+        _tableView.showsVerticalScrollIndicator = NO;
         tableView.dataSource = self;
         tableView.delegate = self;
         tableView.rowHeight = frame.size.height;
