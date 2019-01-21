@@ -67,6 +67,7 @@
     self.renYangFieldView.alpha = 0.7;
     [self initcustomRenYang];
 }
+
 - (void)initcustomRenYang
 {
         CoinWeakSelf;
@@ -80,7 +81,6 @@
             [weakSelf initRealNameView];
 
         }];
-
     };
 }
 
@@ -106,9 +106,6 @@
 {
     [self.view addSubview:self.renYangFieldView];
     [self.view addSubview:self.renYangFieldDeyailView];
-
-//    [self.contentScrollView bringSubviewToFront:self.renYangFieldView];
-//    [self.contentScrollView bringSubviewToFront:self.renYangFieldDeyailView];
 
     [UIView animateWithDuration:0.2 animations:^{
      self.renYangFieldView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);

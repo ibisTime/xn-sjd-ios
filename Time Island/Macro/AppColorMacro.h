@@ -61,7 +61,7 @@
 #define kPlaceholderColor       [UIColor colorWithHexString:@"#CCCCCC"]
     //占位颜色
 /****颜色列表***/
-
+#define kRedColor RGB(239, 106, 105)
 
 #define kLightGreyColor RGB(153, 153, 153)         //亮灰色 #999999
 #define kOrangeRedColor RGB(255, 83, 27)           //橘红色 #ff531b

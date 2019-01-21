@@ -25,7 +25,7 @@
         
         
         UILabel *contactLbl = [UILabel labelWithFrame:CGRectMake(15,nameLbl.yy + 11, SCREEN_WIDTH - 30, 20) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(14) textColor:kHexColor(@"#999999")];
-        contactLbl.text = @"千岛湖时间岛辅助文字辅助文字….";
+        contactLbl.text = @"千岛湖时间岛辅助文字辅助文字千岛湖时间岛辅助文字辅助文字千岛湖时间岛辅助文字辅助文字";
         [self addSubview:contactLbl];
         
         

@@ -11,8 +11,10 @@
 #import "TLTextField.h"
 #import "MMComBoBox.h"
 #import "TreeDetailVC.h"
-@interface TreeListVC ()<UITextFieldDelegate,RefreshCollectionViewDelegate,UISearchBarDelegate,UIScrollViewDelegate,MMComBoBoxViewDataSource, MMComBoBoxViewDelegate>
-@property (nonatomic, strong) TLTopCollectionView *topView;
+#import "GoodsListCollCell.h"
+#import "GoodsDetailsVc.h"
+@interface TreeListVC ()<UITextFieldDelegate,UISearchBarDelegate,UIScrollViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MMComBoBoxViewDelegate,MMComBoBoxViewDataSource>
+//@property (nonatomic, strong) TLTopCollectionView *topView;
 
 @property (nonatomic, strong) UIScrollView *contentScrollew;
 
@@ -31,6 +33,8 @@
 @property (nonatomic, strong) MMComBoBoxView *comBoBoxView;
 @property (nonatomic, strong) UIButton *nextPageBtn;
 @property (nonatomic, strong) UIImageView *imageView;
+
+@property (nonatomic,strong)UICollectionView *collectionView;
 @end
 
 @implementation TreeListVC
@@ -56,10 +60,113 @@
     [super viewDidLoad];
     self.title = @"";
     [self initSearchBar];
-    [self initCollection];
+//    [self initCollection];
     [self initComboBox];
-
+    [self.view addSubview:self.collectionView];
 }
+
+
+-(UICollectionView *)collectionView{
+    if (_collectionView==nil) {
+        UICollectionViewFlowLayout *flowayout = [[UICollectionViewFlowLayout alloc]init];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 40) collectionViewLayout:flowayout];
+        _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        _collectionView.backgroundColor = kWhiteColor;
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        
+        [_collectionView registerClass:[GoodsListCollCell class] forCellWithReuseIdentifier:@"GoodsListCollCell"];
+    }
+    return _collectionView;
+}
+
+
+
+
+
+
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+#pragma mark------CollectionView的代理方法
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    GoodsListCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GoodsListCollCell" forIndexPath:indexPath];
+    
+    if (indexPath.row % 2 == 0) {
+        cell.backView.frame = CGRectMake(12, 0, (SCREEN_WIDTH - 30)/2, (SCREEN_WIDTH - 30)/2 + 80);
+    }else
+    {
+        cell.backView.frame = CGRectMake(3, 0, (SCREEN_WIDTH - 30)/2, (SCREEN_WIDTH - 30)/2 + 80);
+    }
+    
+    
+    return cell;
+}
+
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    GoodsDetailsVc *detailVC = [GoodsDetailsVc new];
+//    detailVC.title = @"古树详情";
+//    detailVC.mineModel = self.models[indexPath.row];
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0.01;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    
+    return 0.01;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    return CGSizeMake((SCREEN_WIDTH - 1)/2, (SCREEN_WIDTH - 30)/2 + 80);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return CGSizeMake(SCREEN_WIDTH, 0.001);
+}
+
+//- (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+//{
+//    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+//    [headerView addSubview:self.headerView];
+    
+//    return nil;
+//}
+
+
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
+{
+    return CGSizeMake(SCREEN_WIDTH, 0.001);
+}
+
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(0.1, 0.1, 0.1, 0.1);
+}
+
+
+
 - (void)initComboBox
 {
     self.comBoBoxView = [[MMComBoBoxView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
@@ -103,81 +210,80 @@
     
 }
 
-- (void)initCollection
-{
-//    self.contentScrollew = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth, kScreenHeight-kNavigationBarHeight)];
-//    [self.view addSubview:self.contentScrollew];
-//    self.contentScrollew.delegate = self;
-//    self.contentScrollew.scrollEnabled = YES;
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake((kScreenWidth-45)/2, 250);
-    layout.minimumLineSpacing = 15.0; // 竖
-    layout.minimumInteritemSpacing = 15.0; // 横
-    layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
-    
-    
-    
-    TLTopCollectionView *topView = [[TLTopCollectionView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth, kScreenHeight) collectionViewLayout:layout withImage:@[@""]];
-    self.topView = topView;
-    topView.refreshDelegate = self;
-    self.topView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headRefresh)];
-    self.topView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
-    [self.view addSubview:topView];
-    //    topView.mj_header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadMoreNews)];
-    
-    UIView *lineView = [[UIView alloc] init];
-    self.bottomLine = lineView;
-    CGFloat f = CGRectGetMaxY(topView.frame);
-    lineView.frame = CGRectMake(0, f, kScreenWidth, 10);
-    [self.contentScrollew addSubview:lineView];
-    lineView.backgroundColor = kHexColor(@"#F5F5F5");
-    
-    PlateMineModel *mineModel = [PlateMineModel new];
-    mineModel.Description = @"描述描述";
-    mineModel.avgChange = @"1000";
-    mineModel.bestChange = @"2000";
-    mineModel.worstChange = @"500";
-    mineModel.name = @"产品1";
-    PlateMineModel *mineModel1 = [PlateMineModel new];
-    mineModel1.Description = @"描述描述2";
-    mineModel1.avgChange = @"10000";
-    mineModel1.bestChange = @"20000";
-    mineModel1.worstChange = @"5000";
-    mineModel1.name = @"产品2";
-    PlateMineModel *mineModel2 = [PlateMineModel new];
-    mineModel2.Description = @"描述描述";
-    mineModel2.avgChange = @"100000";
-    mineModel2.bestChange = @"200000";
-    mineModel2.worstChange = @"50000";
-    mineModel2.name = @"产品3";
-    mineModel2.Description = @"描述描述3";
-    NSMutableArray *arr = [NSMutableArray array];
-    [arr addObject:mineModel];
-    [arr addObject:mineModel1];
-    [arr addObject:mineModel2];
-    [arr addObject:mineModel];
-    [arr addObject:mineModel2];
-    [arr addObject:mineModel1];
-    [arr addObject:mineModel2];
-    [arr addObject:mineModel];
-    [arr addObject:mineModel1];
+//- (void)initCollection
+//{
+////    self.contentScrollew = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth, kScreenHeight-kNavigationBarHeight)];
+////    [self.view addSubview:self.contentScrollew];
+////    self.contentScrollew.delegate = self;
+////    self.contentScrollew.scrollEnabled = YES;
+//    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+//    layout.itemSize = CGSizeMake((kScreenWidth-45)/2, 250);
+//    layout.minimumLineSpacing = 15.0; // 竖
+//    layout.minimumInteritemSpacing = 15.0; // 横
+//    layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
+//
+//
+//
+//    TLTopCollectionView *topView = [[TLTopCollectionView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth, kScreenHeight) collectionViewLayout:layout withImage:@[@""]];
+//    self.topView = topView;
+//    topView.refreshDelegate = self;
+//    self.topView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headRefresh)];
+//    self.topView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
+//    [self.view addSubview:topView];
+//    //    topView.mj_header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadMoreNews)];
+//
+//    UIView *lineView = [[UIView alloc] init];
+//    self.bottomLine = lineView;
+//    CGFloat f = CGRectGetMaxY(topView.frame);
+//    lineView.frame = CGRectMake(0, f, kScreenWidth, 10);
+//    [self.contentScrollew addSubview:lineView];
+//    lineView.backgroundColor = kHexColor(@"#F5F5F5");
+//
+//    PlateMineModel *mineModel = [PlateMineModel new];
+//    mineModel.Description = @"描述描述";
+//    mineModel.avgChange = @"1000";
+//    mineModel.bestChange = @"2000";
+//    mineModel.worstChange = @"500";
+//    mineModel.name = @"产品1";
+//    PlateMineModel *mineModel1 = [PlateMineModel new];
+//    mineModel1.Description = @"描述描述2";
+//    mineModel1.avgChange = @"10000";
+//    mineModel1.bestChange = @"20000";
+//    mineModel1.worstChange = @"5000";
+//    mineModel1.name = @"产品2";
+//    PlateMineModel *mineModel2 = [PlateMineModel new];
+//    mineModel2.Description = @"描述描述";
+//    mineModel2.avgChange = @"100000";
+//    mineModel2.bestChange = @"200000";
+//    mineModel2.worstChange = @"50000";
+//    mineModel2.name = @"产品3";
+//    mineModel2.Description = @"描述描述3";
+//    NSMutableArray *arr = [NSMutableArray array];
+//    [arr addObject:mineModel];
+//    [arr addObject:mineModel1];
+//    [arr addObject:mineModel2];
+//    [arr addObject:mineModel];
+//    [arr addObject:mineModel2];
+//    [arr addObject:mineModel1];
+//    [arr addObject:mineModel2];
+//    [arr addObject:mineModel];
+//    [arr addObject:mineModel1];
+//
+//    self.topView.models = arr;
+//    [self.topView reloadData];
+//}
 
-    self.topView.models = arr;
-    [self.topView reloadData];
-}
+
 -(void)headRefresh
 {
     self.page = 1;
-    [self.topView.mj_header beginRefreshing];
+    [self.collectionView.mj_header beginRefreshing];
     [self requestBannerList];
-    
-    
 }
 
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    
     [self.searchTf resignFirstResponder];
 }
 
@@ -187,9 +293,8 @@
     [self.contentScrollew.mj_footer beginRefreshing];
     
     [self requestBannerList];
-    
-    
 }
+
 - (void)requestBannerList {
     
     TLNetworking *http = [TLNetworking new];
@@ -206,29 +311,19 @@
 //            [self reloadFindData];
 //        }
         
-        [self.topView.mj_header endRefreshing];
-        [self.topView.mj_footer endRefreshing];
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
         
         //        [self.tableView endRefreshHeader];
         
     } failure:^(NSError *error) {
-        [self.topView.mj_header endRefreshing];
-        [self.topView.mj_footer endRefreshing];
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
 //        [self.tableView endRefreshHeader];
         
     }];
 }
 
-
--(void)refreshCollectionView:(BaseCollectionView *)refreshCollectionview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    TreeDetailVC *detailVC = [TreeDetailVC new];
-    detailVC.title = @"古树详情";
-    detailVC.mineModel = self.models[indexPath.row];
-    [self.navigationController pushViewController:detailVC animated:YES];
-    
-}
 
 #pragma mark - MMComBoBoxViewDataSource
 - (NSUInteger)numberOfColumnsIncomBoBoxView :(MMComBoBoxView *)comBoBoxView {
@@ -283,6 +378,8 @@
             break;
     }
 }
+
+
 
 #pragma mark - Getter
 - (NSArray *)mutableArray {
@@ -394,24 +491,7 @@
     return _mutableArray;
 }
 
-//- (UIImageView *)imageView {
-//    if (_imageView == nil) {
-//        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.comBoBoxView.bottom, self.view.width, self.view.height - 64)];
-//        _imageView.image = [UIImage imageNamed:@"7.jpg"];
-//    }
-//    return _imageView;
-//}
-//
-//- (UIButton *)nextPageBtn {
-//    if (_nextPageBtn == nil) {
-//        _nextPageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        _nextPageBtn.frame = CGRectMake(self.view.width - 80, kScreenHeigth - 60, 100, 30);
-//        [_nextPageBtn setTitle:@"多选" forState:UIControlStateNormal];
-//        [_nextPageBtn addTarget:self action:@selector(respondsToButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-//        
-//    }
-//    return _nextPageBtn;
-//}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
