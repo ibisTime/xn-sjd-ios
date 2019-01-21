@@ -25,13 +25,12 @@
     [self.view addSubview:self.table];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 9;
+    return 6;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    OrderFootCell * cell = [[OrderFootCell alloc]init];
     OrderFootCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     if (indexPath.section == 0) {
         cell.OrderCount = 2;
@@ -43,7 +42,11 @@
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 140 * 2 - 35;
+    if (indexPath.section == 0) {
+        return 140 * 2 - 35 * 1;
+    }
+    else
+        return 140 * 1 - 35 * 0;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 10;

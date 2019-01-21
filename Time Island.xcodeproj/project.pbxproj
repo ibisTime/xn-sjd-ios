@@ -122,6 +122,12 @@
 		3689769321EF367B005F1177 /* OrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3689769221EF367B005F1177 /* OrderView.m */; };
 		3689769A21EF38E8005F1177 /* OrderFootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3689769921EF38E8005F1177 /* OrderFootCell.m */; };
 		3689769C21EF3A4F005F1177 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3689769B21EF3A4F005F1177 /* AMap.bundle */; };
+		36DB50D621F5993B009D56EF /* NewsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50D521F5993B009D56EF /* NewsVC.m */; };
+		36DB50D921F59AEF009D56EF /* NewsVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50D821F59AEF009D56EF /* NewsVCCell.m */; };
+		36DB50DC21F5A11F009D56EF /* MallOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50DB21F5A11F009D56EF /* MallOrderVC.m */; };
+		36DB50DF21F5B355009D56EF /* MallOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50DE21F5B355009D56EF /* MallOrderView.m */; };
+		36DB50E221F5B606009D56EF /* MallOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50E121F5B606009D56EF /* MallOrderCell.m */; };
+		36DB50E521F5B720009D56EF /* MallOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50E421F5B720009D56EF /* MallOrderModel.m */; };
 		36F841D221F02B0D00BAC88A /* IssueBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F841D121F02B0D00BAC88A /* IssueBook.m */; };
 		36F841D521F05B3B00BAC88A /* CardVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F841D421F05B3B00BAC88A /* CardVCCell.m */; };
 		B815278121EC8AB800F89395 /* NoticeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B815278021EC8AB800F89395 /* NoticeVC.m */; };
@@ -547,6 +553,18 @@
 		3689769821EF38E8005F1177 /* OrderFootCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderFootCell.h; sourceTree = "<group>"; };
 		3689769921EF38E8005F1177 /* OrderFootCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderFootCell.m; sourceTree = "<group>"; };
 		3689769B21EF3A4F005F1177 /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
+		36DB50D421F5993B009D56EF /* NewsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsVC.h; sourceTree = "<group>"; };
+		36DB50D521F5993B009D56EF /* NewsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsVC.m; sourceTree = "<group>"; };
+		36DB50D721F59AEF009D56EF /* NewsVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsVCCell.h; sourceTree = "<group>"; };
+		36DB50D821F59AEF009D56EF /* NewsVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsVCCell.m; sourceTree = "<group>"; };
+		36DB50DA21F5A11F009D56EF /* MallOrderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallOrderVC.h; sourceTree = "<group>"; };
+		36DB50DB21F5A11F009D56EF /* MallOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallOrderVC.m; sourceTree = "<group>"; };
+		36DB50DD21F5B355009D56EF /* MallOrderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallOrderView.h; sourceTree = "<group>"; };
+		36DB50DE21F5B355009D56EF /* MallOrderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallOrderView.m; sourceTree = "<group>"; };
+		36DB50E021F5B606009D56EF /* MallOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallOrderCell.h; sourceTree = "<group>"; };
+		36DB50E121F5B606009D56EF /* MallOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallOrderCell.m; sourceTree = "<group>"; };
+		36DB50E321F5B720009D56EF /* MallOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallOrderModel.h; sourceTree = "<group>"; };
+		36DB50E421F5B720009D56EF /* MallOrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallOrderModel.m; sourceTree = "<group>"; };
 		36F841D021F02B0D00BAC88A /* IssueBook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IssueBook.h; sourceTree = "<group>"; };
 		36F841D121F02B0D00BAC88A /* IssueBook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IssueBook.m; sourceTree = "<group>"; };
 		36F841D321F05B3B00BAC88A /* CardVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardVCCell.h; sourceTree = "<group>"; };
@@ -1508,6 +1526,12 @@
 				1F9361D221F17507007E522A /* MallMyVC.m */,
 				3647C4A121F1D57400FB049D /* ReceivingAddressVC.h */,
 				3647C4A221F1D57400FB049D /* ReceivingAddressVC.m */,
+				36DB50D421F5993B009D56EF /* NewsVC.h */,
+				36DB50D521F5993B009D56EF /* NewsVC.m */,
+				36DB50DA21F5A11F009D56EF /* MallOrderVC.h */,
+				36DB50DB21F5A11F009D56EF /* MallOrderVC.m */,
+				36DB50DD21F5B355009D56EF /* MallOrderView.h */,
+				36DB50DE21F5B355009D56EF /* MallOrderView.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1515,6 +1539,8 @@
 		3647C49F21F1D4C000FB049D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				36DB50E321F5B720009D56EF /* MallOrderModel.h */,
+				36DB50E421F5B720009D56EF /* MallOrderModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1524,6 +1550,10 @@
 			children = (
 				3647C4A421F1D80100FB049D /* AddressCell.h */,
 				3647C4A521F1D80100FB049D /* AddressCell.m */,
+				36DB50D721F59AEF009D56EF /* NewsVCCell.h */,
+				36DB50D821F59AEF009D56EF /* NewsVCCell.m */,
+				36DB50E021F5B606009D56EF /* MallOrderCell.h */,
+				36DB50E121F5B606009D56EF /* MallOrderCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3001,12 +3031,14 @@
 				B81E602321DC906D00873AB9 /* UserDefaultsUtil.m in Sources */,
 				3689766821EED7CF005F1177 /* CollectBookVC.m in Sources */,
 				1F1B002F21E71C5D000BEBD3 /* PaopaoButton.m in Sources */,
+				36DB50D921F59AEF009D56EF /* NewsVCCell.m in Sources */,
 				3689766E21EED9A3005F1177 /* BookCell.m in Sources */,
 				B81E609F21DCAB8F00873AB9 /* HW3DBannerView.m in Sources */,
 				B81E5FE121DC8FC200873AB9 /* HttpSign.m in Sources */,
 				B8B52C8E21F0506200975459 /* MallNavigationController.m in Sources */,
 				3689767721EEF135005F1177 /* CollectTreeView.m in Sources */,
 				1F93610421EDFD8F007E522A /* MyGiftVC.m in Sources */,
+				36DB50E221F5B606009D56EF /* MallOrderCell.m in Sources */,
 				B81E609E21DCAB8F00873AB9 /* TLBannerCell.m in Sources */,
 				B81E5FCF21DC8FC200873AB9 /* UIBarButtonItem+convience.m in Sources */,
 				B815278121EC8AB800F89395 /* NoticeVC.m in Sources */,
@@ -3031,6 +3063,7 @@
 				3610EEC421EDCEBD00FD345D /* InfoVC.m in Sources */,
 				B81E5FE521DC8FC200873AB9 /* CoinUtil.m in Sources */,
 				B81E602521DC906D00873AB9 /* CaptchaView.m in Sources */,
+				36DB50DF21F5B355009D56EF /* MallOrderView.m in Sources */,
 				B81E5FF121DC8FC200873AB9 /* AppDelegate.m in Sources */,
 				B81E5FDB21DC8FC200873AB9 /* NSObject+Extension.m in Sources */,
 				B81E603821DC93EC00873AB9 /* DeviceUtil.m in Sources */,
@@ -3064,6 +3097,7 @@
 				B81E5FB521DC8FC200873AB9 /* SortBar.m in Sources */,
 				B81E5FC321DC8FC200873AB9 /* TLTextField.m in Sources */,
 				1F93610321EDFD8F007E522A /* ToClaimTheGiftVC.m in Sources */,
+				36DB50DC21F5A11F009D56EF /* MallOrderVC.m in Sources */,
 				3689767421EEE28C005F1177 /* CollectTreeCell.m in Sources */,
 				1F1B006D21E71D26000BEBD3 /* RBBCustomAnimation.m in Sources */,
 				B81E5FD021DC8FC200873AB9 /* XWScanImage.m in Sources */,
@@ -3073,6 +3107,7 @@
 				1F1B00D821E896A3000BEBD3 /* FriendsTreeHeadCell.m in Sources */,
 				B8A27AE721E5C44400914897 /* MMCombinationItem.m in Sources */,
 				B8A27AEB21E5C44400914897 /* MMSingleFitlerView.m in Sources */,
+				36DB50D621F5993B009D56EF /* NewsVC.m in Sources */,
 				B81E609D21DCAB8F00873AB9 /* TLBannerView.m in Sources */,
 				1F1B00B521E86FDC000BEBD3 /* ToObtainABubbleCell.m in Sources */,
 				B8ED2E7921E71A2700FADCCE /* TreeRenYangListTB.m in Sources */,
@@ -3090,6 +3125,7 @@
 				1F1B00DB21E89B67000BEBD3 /* EnergyCompeteCell.m in Sources */,
 				B81E5FEA21DC8FC200873AB9 /* UIColor+theme.m in Sources */,
 				B81E5FAA21DC8FC200873AB9 /* TLBaseVC.m in Sources */,
+				36DB50E521F5B720009D56EF /* MallOrderModel.m in Sources */,
 				1F93610E21EDFD8F007E522A /* MyNoticeCell.m in Sources */,
 				1F93614C21EE0105007E522A /* MyCarbonBubbleVC.m in Sources */,
 				1F9361C721F17398007E522A /* MallTabbar.m in Sources */,

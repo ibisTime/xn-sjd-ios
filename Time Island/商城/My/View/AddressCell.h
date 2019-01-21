@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UILabel * UserPhone;
 @property (nonatomic,strong) UILabel * UserAddress;
 @property (nonatomic,strong) UIButton * checkBtn;
+@property (nonatomic,strong) UILabel * label ;
 
 @end
 

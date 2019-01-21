@@ -19,7 +19,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"新增收获地址";
+//    self.title = @"新增收获地址";
+//    UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] init];
+//    backBtn.title = @"新增收货地址";
+//    self.navigationItem.backBarButtonItem = backBtn;
     [self setup];
     // Do any additional setup after loading the view.
 }
