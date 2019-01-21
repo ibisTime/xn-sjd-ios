@@ -77,7 +77,6 @@
 		1F9361BF21F172E0007E522A /* MallBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9361BE21F172E0007E522A /* MallBaseVC.m */; };
 		1F9361C721F17398007E522A /* MallTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9361C621F17398007E522A /* MallTabbar.m */; };
 		1F9361CA21F174D0007E522A /* MallHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9361C921F174D0007E522A /* MallHomeVC.m */; };
-		1F9361CD21F174E1007E522A /* MallClassificationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9361CC21F174E1007E522A /* MallClassificationVC.m */; };
 		1F9361D021F174F1007E522A /* MallShoppingCartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9361CF21F174F1007E522A /* MallShoppingCartVC.m */; };
 		1F9361D321F17507007E522A /* MallMyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9361D221F17507007E522A /* MallMyVC.m */; };
 		1F9361D621F178FA007E522A /* GoodsListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9361D521F178FA007E522A /* GoodsListVC.m */; };
@@ -260,6 +259,16 @@
 		B86CB6A821DDB7FF00C60AC7 /* TLPlateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B86CB6A421DDB7FE00C60AC7 /* TLPlateCell.m */; };
 		B86CB6A921DDB7FF00C60AC7 /* TLTopCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B86CB6A621DDB7FE00C60AC7 /* TLTopCollectionView.m */; };
 		B86CB6AC21DDB83A00C60AC7 /* PlateMineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B86CB6AB21DDB83A00C60AC7 /* PlateMineModel.m */; };
+		B8712E8021F577FA00039086 /* MallClassificationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8712E7C21F577FA00039086 /* MallClassificationVC.m */; };
+		B8712E8521F578AB00039086 /* QWCategoryDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8712E8221F578AA00039086 /* QWCategoryDetailController.m */; };
+		B8712E8621F578AB00039086 /* QWCategoryMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8712E8421F578AB00039086 /* QWCategoryMenuController.m */; };
+		B8712E9021F5797200039086 /* QWCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8712E8C21F5797100039086 /* QWCollectionHeaderView.m */; };
+		B8712E9121F5797200039086 /* QWDetailCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8712E8D21F5797100039086 /* QWDetailCategoryCell.m */; };
+		B8712E9621F5898B00039086 /* QWCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B8712E9321F5898B00039086 /* QWCategory.m */; };
+		B8712E9721F5898B00039086 /* QWCategoryDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = B8712E9421F5898B00039086 /* QWCategoryDetail.m */; };
+		B8712E9F21F5961C00039086 /* JHCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8712E9B21F5961C00039086 /* JHCollectionReusableView.m */; };
+		B8712EA021F5961C00039086 /* JHCollectionViewLayoutAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = B8712E9C21F5961C00039086 /* JHCollectionViewLayoutAttributes.m */; };
+		B8712EA121F5961C00039086 /* JHCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B8712E9D21F5961C00039086 /* JHCollectionViewFlowLayout.m */; };
 		B888333B21F19F5400435B38 /* BookListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B888333A21F19F5400435B38 /* BookListVC.m */; };
 		B8A27AA521E5A15100914897 /* TreeListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A27AA421E5A15100914897 /* TreeListVC.m */; };
 		B8A27AE421E5C44400914897 /* MMSelectedPath.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A27AAB21E5C44300914897 /* MMSelectedPath.m */; };
@@ -458,8 +467,6 @@
 		1F9361C621F17398007E522A /* MallTabbar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallTabbar.m; sourceTree = "<group>"; };
 		1F9361C821F174D0007E522A /* MallHomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallHomeVC.h; sourceTree = "<group>"; };
 		1F9361C921F174D0007E522A /* MallHomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallHomeVC.m; sourceTree = "<group>"; };
-		1F9361CB21F174E1007E522A /* MallClassificationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallClassificationVC.h; sourceTree = "<group>"; };
-		1F9361CC21F174E1007E522A /* MallClassificationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallClassificationVC.m; sourceTree = "<group>"; };
 		1F9361CE21F174F1007E522A /* MallShoppingCartVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallShoppingCartVC.h; sourceTree = "<group>"; };
 		1F9361CF21F174F1007E522A /* MallShoppingCartVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallShoppingCartVC.m; sourceTree = "<group>"; };
 		1F9361D121F17507007E522A /* MallMyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallMyVC.h; sourceTree = "<group>"; };
@@ -832,6 +839,30 @@
 		B86CB6A621DDB7FE00C60AC7 /* TLTopCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTopCollectionView.m; sourceTree = "<group>"; };
 		B86CB6AA21DDB83900C60AC7 /* PlateMineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlateMineModel.h; sourceTree = "<group>"; };
 		B86CB6AB21DDB83A00C60AC7 /* PlateMineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlateMineModel.m; sourceTree = "<group>"; };
+		B8712E7C21F577FA00039086 /* MallClassificationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallClassificationVC.m; sourceTree = "<group>"; };
+		B8712E7D21F577FA00039086 /* MallClassificationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallClassificationVC.h; sourceTree = "<group>"; };
+		B8712E8121F578AA00039086 /* QWCategoryMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWCategoryMenuController.h; sourceTree = "<group>"; };
+		B8712E8221F578AA00039086 /* QWCategoryDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWCategoryDetailController.m; sourceTree = "<group>"; };
+		B8712E8321F578AA00039086 /* QWCategoryDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWCategoryDetailController.h; sourceTree = "<group>"; };
+		B8712E8421F578AB00039086 /* QWCategoryMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWCategoryMenuController.m; sourceTree = "<group>"; };
+		B8712E8821F5790F00039086 /* MainHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainHeader.h; sourceTree = "<group>"; };
+		B8712E8921F5790F00039086 /* QWProductCellCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWProductCellCommon.h; sourceTree = "<group>"; };
+		B8712E8A21F5790F00039086 /* QWProductToolCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWProductToolCommon.h; sourceTree = "<group>"; };
+		B8712E8B21F5790F00039086 /* QWCategoryCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWCategoryCommon.h; sourceTree = "<group>"; };
+		B8712E8C21F5797100039086 /* QWCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWCollectionHeaderView.m; sourceTree = "<group>"; };
+		B8712E8D21F5797100039086 /* QWDetailCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWDetailCategoryCell.m; sourceTree = "<group>"; };
+		B8712E8E21F5797100039086 /* QWDetailCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWDetailCategoryCell.h; sourceTree = "<group>"; };
+		B8712E8F21F5797100039086 /* QWCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWCollectionHeaderView.h; sourceTree = "<group>"; };
+		B8712E9221F5898A00039086 /* QWCategoryDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWCategoryDetail.h; sourceTree = "<group>"; };
+		B8712E9321F5898B00039086 /* QWCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWCategory.m; sourceTree = "<group>"; };
+		B8712E9421F5898B00039086 /* QWCategoryDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QWCategoryDetail.m; sourceTree = "<group>"; };
+		B8712E9521F5898B00039086 /* QWCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QWCategory.h; sourceTree = "<group>"; };
+		B8712E9921F5961C00039086 /* JHCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHCollectionViewFlowLayout.h; sourceTree = "<group>"; };
+		B8712E9A21F5961C00039086 /* JHCollectionViewLayoutAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHCollectionViewLayoutAttributes.h; sourceTree = "<group>"; };
+		B8712E9B21F5961C00039086 /* JHCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHCollectionReusableView.m; sourceTree = "<group>"; };
+		B8712E9C21F5961C00039086 /* JHCollectionViewLayoutAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHCollectionViewLayoutAttributes.m; sourceTree = "<group>"; };
+		B8712E9D21F5961C00039086 /* JHCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		B8712E9E21F5961C00039086 /* JHCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHCollectionReusableView.h; sourceTree = "<group>"; };
 		B888333921F19F5400435B38 /* BookListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookListVC.h; sourceTree = "<group>"; };
 		B888333A21F19F5400435B38 /* BookListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookListVC.m; sourceTree = "<group>"; };
 		B8A27AA321E5A15100914897 /* TreeListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeListVC.h; sourceTree = "<group>"; };
@@ -1377,8 +1408,11 @@
 		1F9361C421F1732A007E522A /* Classification */ = {
 			isa = PBXGroup;
 			children = (
-				1F9361CB21F174E1007E522A /* MallClassificationVC.h */,
-				1F9361CC21F174E1007E522A /* MallClassificationVC.m */,
+				B8712E9821F5961C00039086 /* Class */,
+				B8712E8721F5790F00039086 /* Header */,
+				B8712E7B21F577FA00039086 /* Controller */,
+				B8712E7E21F577FA00039086 /* Model */,
+				B8712E7F21F577FA00039086 /* View */,
 			);
 			path = Classification;
 			sourceTree = "<group>";
@@ -2596,6 +2630,66 @@
 			path = Banner;
 			sourceTree = "<group>";
 		};
+		B8712E7B21F577FA00039086 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B8712E8321F578AA00039086 /* QWCategoryDetailController.h */,
+				B8712E8221F578AA00039086 /* QWCategoryDetailController.m */,
+				B8712E8121F578AA00039086 /* QWCategoryMenuController.h */,
+				B8712E8421F578AB00039086 /* QWCategoryMenuController.m */,
+				B8712E7D21F577FA00039086 /* MallClassificationVC.h */,
+				B8712E7C21F577FA00039086 /* MallClassificationVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B8712E7E21F577FA00039086 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B8712E9521F5898B00039086 /* QWCategory.h */,
+				B8712E9321F5898B00039086 /* QWCategory.m */,
+				B8712E9221F5898A00039086 /* QWCategoryDetail.h */,
+				B8712E9421F5898B00039086 /* QWCategoryDetail.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B8712E7F21F577FA00039086 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B8712E8F21F5797100039086 /* QWCollectionHeaderView.h */,
+				B8712E8C21F5797100039086 /* QWCollectionHeaderView.m */,
+				B8712E8E21F5797100039086 /* QWDetailCategoryCell.h */,
+				B8712E8D21F5797100039086 /* QWDetailCategoryCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B8712E8721F5790F00039086 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				B8712E8821F5790F00039086 /* MainHeader.h */,
+				B8712E8921F5790F00039086 /* QWProductCellCommon.h */,
+				B8712E8A21F5790F00039086 /* QWProductToolCommon.h */,
+				B8712E8B21F5790F00039086 /* QWCategoryCommon.h */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		B8712E9821F5961C00039086 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				B8712E9921F5961C00039086 /* JHCollectionViewFlowLayout.h */,
+				B8712E9D21F5961C00039086 /* JHCollectionViewFlowLayout.m */,
+				B8712E9A21F5961C00039086 /* JHCollectionViewLayoutAttributes.h */,
+				B8712E9C21F5961C00039086 /* JHCollectionViewLayoutAttributes.m */,
+				B8712E9E21F5961C00039086 /* JHCollectionReusableView.h */,
+				B8712E9B21F5961C00039086 /* JHCollectionReusableView.m */,
+			);
+			name = Class;
+			path = CustomUI/Class;
+			sourceTree = "<group>";
+		};
 		B888333821F1836D00435B38 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -3047,6 +3141,7 @@
 				B8EE11F721ED777300B9DF0D /* BookDetailHeadView.m in Sources */,
 				3647C47221F16D6B00FB049D /* OrderDetailsVC.m in Sources */,
 				1F9360AC21EDFCA5007E522A /* MapViewController.m in Sources */,
+				B8712E9F21F5961C00039086 /* JHCollectionReusableView.m in Sources */,
 				B81E5FB121DC8FC200873AB9 /* TLTextView.m in Sources */,
 				B81E5FC921DC8FC200873AB9 /* UILable+convience.m in Sources */,
 				B81E5FDF21DC8FC200873AB9 /* Foundation+Log.m in Sources */,
@@ -3065,6 +3160,7 @@
 				B81E5FC321DC8FC200873AB9 /* TLTextField.m in Sources */,
 				1F93610321EDFD8F007E522A /* ToClaimTheGiftVC.m in Sources */,
 				3689767421EEE28C005F1177 /* CollectTreeCell.m in Sources */,
+				B8712EA121F5961C00039086 /* JHCollectionViewFlowLayout.m in Sources */,
 				1F1B006D21E71D26000BEBD3 /* RBBCustomAnimation.m in Sources */,
 				B81E5FD021DC8FC200873AB9 /* XWScanImage.m in Sources */,
 				B8A27AEA21E5C44400914897 /* MMMultiItem.m in Sources */,
@@ -3121,7 +3217,9 @@
 				1F1B00C921E88169000BEBD3 /* MyArticleCell.m in Sources */,
 				B8ED2E7F21E7218E00FADCCE /* TreeBottomView.m in Sources */,
 				B8A27AE521E5C44400914897 /* MMSingleItem.m in Sources */,
+				B8712E9621F5898B00039086 /* QWCategory.m in Sources */,
 				B815278921EC8BC200F89395 /* BaseView.m in Sources */,
+				B8712EA021F5961C00039086 /* JHCollectionViewLayoutAttributes.m in Sources */,
 				1F1B007121E71D26000BEBD3 /* RBBLinearInterpolation.m in Sources */,
 				1F1B00B821E87909000BEBD3 /* DonateFriendCell.m in Sources */,
 				B81E601721DC906D00873AB9 /* BindMobileVC.m in Sources */,
@@ -3165,6 +3263,7 @@
 				B8A27AEF21E5C44400914897 /* MMNormalCell.m in Sources */,
 				B81E601B21DC906D00873AB9 /* TLChangeMobileVC.m in Sources */,
 				B81E601A21DC906D00873AB9 /* TLPwdRelatedVC.m in Sources */,
+				B8712E9121F5797200039086 /* QWDetailCategoryCell.m in Sources */,
 				B81E60AB21DCAC7500873AB9 /* HomeCell.m in Sources */,
 				1F1B002021E6F79C000BEBD3 /* MyTreeVC.m in Sources */,
 				1F1B002621E6F915000BEBD3 /* MyTreeHeadCell.m in Sources */,
@@ -3183,6 +3282,7 @@
 				B81E5FEB21DC8FC200873AB9 /* TLTabBarController.m in Sources */,
 				1F93610521EDFD8F007E522A /* ToClaimTheGiftVC2.m in Sources */,
 				3689767121EEE176005F1177 /* CollectTreeModel.m in Sources */,
+				B8712E8021F577FA00039086 /* MallClassificationVC.m in Sources */,
 				B81E5FD921DC8FC200873AB9 /* NSNumber+Extension.m in Sources */,
 				B8ED2E8521E8352B00FADCCE /* TeamView.m in Sources */,
 				B815279521EC946100F89395 /* BookVideoCell.m in Sources */,
@@ -3207,6 +3307,7 @@
 				1FF6398821EC7DAF00F5FF68 /* RankingVC.m in Sources */,
 				1F93615C21EE0139007E522A /* CWLateralSlideConfiguration.m in Sources */,
 				B81E5FEF21DC8FC200873AB9 /* TLBaseLabel.m in Sources */,
+				B8712E8521F578AB00039086 /* QWCategoryDetailController.m in Sources */,
 				1FF6397B21EC626000F5FF68 /* DonationAnimationView.m in Sources */,
 				1F1B00CF21E89651000BEBD3 /* FriendsTheTreeVC.m in Sources */,
 				B8EE11FA21EDB0EA00B9DF0D /* CalendarCustomVC.m in Sources */,
@@ -3217,12 +3318,12 @@
 				B81E605C21DC995300873AB9 /* TLNavigationController.m in Sources */,
 				1F1B006921E71D26000BEBD3 /* RBBSpringAnimation.m in Sources */,
 				B81E5FBD21DC8FC200873AB9 /* TLImagePicker.m in Sources */,
-				1F9361CD21F174E1007E522A /* MallClassificationVC.m in Sources */,
 				B81E5FCC21DC8FC200873AB9 /* UIColor+Extension.m in Sources */,
 				3689769A21EF38E8005F1177 /* OrderFootCell.m in Sources */,
 				3689768721EF0435005F1177 /* InviteModel.m in Sources */,
 				B81E601E21DC906D00873AB9 /* TLUserRegisterVC.m in Sources */,
 				B81E601C21DC906D00873AB9 /* TLUserLoginVC.m in Sources */,
+				B8712E9721F5898B00039086 /* QWCategoryDetail.m in Sources */,
 				1F93615A21EE0139007E522A /* CWLateralSlideAnimator.m in Sources */,
 				B81E603421DC93EC00873AB9 /* CDCommon.m in Sources */,
 				3610EEAC21EDA95900FD345D /* SettingVCCell.m in Sources */,
@@ -3244,6 +3345,7 @@
 				B81E605621DC981D00873AB9 /* NBRequest.m in Sources */,
 				B81E5FD821DC8FC200873AB9 /* NSString+Date.m in Sources */,
 				B81E5FC121DC8FC200873AB9 /* ShareView.m in Sources */,
+				B8712E9021F5797200039086 /* QWCollectionHeaderView.m in Sources */,
 				B8A27AEC21E5C44400914897 /* MMCombineCell.m in Sources */,
 				B81E601F21DC906D00873AB9 /* TLAccountBaseVC.m in Sources */,
 				B81E5EB321DC8B4100873AB9 /* main.m in Sources */,
@@ -3252,6 +3354,7 @@
 				B81E5FC621DC8FC200873AB9 /* TLUploadManager.m in Sources */,
 				B81E5FE821DC8FC200873AB9 /* TestContentVC.m in Sources */,
 				B8A27AF221E5C44400914897 /* MMBasePopupView.m in Sources */,
+				B8712E8621F578AB00039086 /* QWCategoryMenuController.m in Sources */,
 				B81E5FAB21DC8FC200873AB9 /* HTMLStrVC.m in Sources */,
 				B815279821EC95E600F89395 /* BookTableView.m in Sources */,
 				3689766B21EED882005F1177 /* BookView.m in Sources */,
@@ -3426,7 +3529,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3ZCW993X44;
+				DEVELOPMENT_TEAM = 4M8KD7B9X5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -3459,7 +3562,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3ZCW993X44;
+				DEVELOPMENT_TEAM = 4M8KD7B9X5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",

@@ -62,6 +62,8 @@
     tabBarBgView.backgroundColor = [UIColor whiteColor];
     [self.tabBar insertSubview:tabBarBgView atIndex:0];
 //  self.tabBar.backgroundColor = [UIColor whiteColor];
+    [UITabBar appearance].translucent = NO;
+
 }
 
 
