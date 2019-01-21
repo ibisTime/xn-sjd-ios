@@ -269,6 +269,7 @@
 		B8712E9F21F5961C00039086 /* JHCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8712E9B21F5961C00039086 /* JHCollectionReusableView.m */; };
 		B8712EA021F5961C00039086 /* JHCollectionViewLayoutAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = B8712E9C21F5961C00039086 /* JHCollectionViewLayoutAttributes.m */; };
 		B8712EA121F5961C00039086 /* JHCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B8712E9D21F5961C00039086 /* JHCollectionViewFlowLayout.m */; };
+		B8712EA421F5CC0800039086 /* MallGoodListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8712EA321F5CC0800039086 /* MallGoodListViewController.m */; };
 		B888333B21F19F5400435B38 /* BookListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B888333A21F19F5400435B38 /* BookListVC.m */; };
 		B8A27AA521E5A15100914897 /* TreeListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A27AA421E5A15100914897 /* TreeListVC.m */; };
 		B8A27AE421E5C44400914897 /* MMSelectedPath.m in Sources */ = {isa = PBXBuildFile; fileRef = B8A27AAB21E5C44300914897 /* MMSelectedPath.m */; };
@@ -863,6 +864,8 @@
 		B8712E9C21F5961C00039086 /* JHCollectionViewLayoutAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHCollectionViewLayoutAttributes.m; sourceTree = "<group>"; };
 		B8712E9D21F5961C00039086 /* JHCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHCollectionViewFlowLayout.m; sourceTree = "<group>"; };
 		B8712E9E21F5961C00039086 /* JHCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHCollectionReusableView.h; sourceTree = "<group>"; };
+		B8712EA221F5CC0800039086 /* MallGoodListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallGoodListViewController.h; sourceTree = "<group>"; };
+		B8712EA321F5CC0800039086 /* MallGoodListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallGoodListViewController.m; sourceTree = "<group>"; };
 		B888333921F19F5400435B38 /* BookListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookListVC.h; sourceTree = "<group>"; };
 		B888333A21F19F5400435B38 /* BookListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookListVC.m; sourceTree = "<group>"; };
 		B8A27AA321E5A15100914897 /* TreeListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeListVC.h; sourceTree = "<group>"; };
@@ -2639,6 +2642,8 @@
 				B8712E8421F578AB00039086 /* QWCategoryMenuController.m */,
 				B8712E7D21F577FA00039086 /* MallClassificationVC.h */,
 				B8712E7C21F577FA00039086 /* MallClassificationVC.m */,
+				B8712EA221F5CC0800039086 /* MallGoodListViewController.h */,
+				B8712EA321F5CC0800039086 /* MallGoodListViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3186,6 +3191,7 @@
 				1F1B00DB21E89B67000BEBD3 /* EnergyCompeteCell.m in Sources */,
 				B81E5FEA21DC8FC200873AB9 /* UIColor+theme.m in Sources */,
 				B81E5FAA21DC8FC200873AB9 /* TLBaseVC.m in Sources */,
+				B8712EA421F5CC0800039086 /* MallGoodListViewController.m in Sources */,
 				1F93610E21EDFD8F007E522A /* MyNoticeCell.m in Sources */,
 				1F93614C21EE0105007E522A /* MyCarbonBubbleVC.m in Sources */,
 				1F9361C721F17398007E522A /* MallTabbar.m in Sources */,
