@@ -17,6 +17,8 @@
 
 @property (nonatomic , strong)NSString *backStr;
 
+@property (nonatomic , strong)UILabel *backLbl;
+
 - (void)tl_placeholderOperation;
 
 

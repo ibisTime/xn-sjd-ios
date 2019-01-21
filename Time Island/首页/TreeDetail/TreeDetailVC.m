@@ -97,7 +97,7 @@
     [self.view addSubview:self.bottomView];
     CoinWeakSelf;
     self.bottomView.RenYangBlock = ^(NSInteger index) {
-        NSLog(@"%ld",index);
+//        NSLog(@"%ld",index);
         [weakSelf bottomClickWithIndex:index];
     };
 }
@@ -239,7 +239,7 @@
     if (self.realNameView.frame.size.height >10) {
         self.realNameView.hidden = YES;
     }
-    NSLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
+//    NSLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
     if (scrollView.contentOffset.y >0) {
     CGFloat TempAlpha = scrollView.contentOffset.y/kNavigationBarHeight;
         self.topView.alpha = TempAlpha;

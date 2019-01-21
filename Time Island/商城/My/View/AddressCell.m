@@ -34,67 +34,42 @@
         self.checkBtn.selected = YES;
         self.checkBtn.frame = CGRectMake(30, view.yy + 11.5, 18, 18);
         [self.contentView addSubview:self.checkBtn];
+        [self.checkBtn addTarget:self action:@selector(clickSelect:) forControlEvents:UIControlEventTouchUpInside];
         
         
-        UILabel * label = [UILabel labelWithFrame:CGRectMake(self.checkBtn.xx + 5, view.yy + 12.5, 73, 16.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(12) textColor:kTextColor3];
-        label.text = @"设为默认地址";
+        self.label = [UILabel labelWithFrame:CGRectMake(self.checkBtn.xx + 5, view.yy + 12.5, 80, 16.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(12) textColor:kTextColor3];
+        self.label.text = @"设为默认地址";
         if (self.checkBtn.isSelected) {
-            label.textColor = kTabbarColor;
+            self.label.textColor = kHexColor(@"#F68646");
         }
-        [self.contentView addSubview:label];
+        [self.contentView addSubview:self.label];
         
         
-        UIButton * editbtn = [[UIButton alloc]initWithFrame:CGRectMake(label.xx + 123.5, view.yy + 9, 50, 23)];
+        UIButton * editbtn = [[UIButton alloc]initWithFrame:CGRectMake(self.label.xx + 123.5, view.yy + 9, 50, 23)];
         [editbtn setTitle:@"编辑" forState:UIControlStateNormal];
         editbtn.backgroundColor = kClearColor;
         [editbtn setTitleColor:kTextColor3 forState:UIControlStateNormal];
         editbtn.layer.borderWidth = 1;
-        editbtn.layer.borderColor = kTextColor3.CGColor;
+        editbtn.layer.cornerRadius = 2;
+        editbtn.layer.masksToBounds = YES;
+        editbtn.titleLabel.font = FONT(12);
+        editbtn.layer.borderColor = kHexColor(@"#979797").CGColor;
         [self.contentView addSubview:editbtn];
         
         
-        UIButton * cancelbtn = [[UIButton alloc]initWithFrame:CGRectMake(editbtn.xx + 123.5, view.yy + 9, 50, 23)];
+        UIButton * cancelbtn = [[UIButton alloc]initWithFrame:CGRectMake(editbtn.xx + 25.5, view.yy + 9, 50, 23)];
         [cancelbtn setTitle:@"删除" forState:UIControlStateNormal];
         cancelbtn.backgroundColor = kClearColor;
         [cancelbtn setTitleColor:kTextColor3 forState:UIControlStateNormal];
+        cancelbtn.titleLabel.font = FONT(12);
         cancelbtn.layer.borderWidth = 1;
-        cancelbtn.layer.borderColor = kTextColor3.CGColor;
+        cancelbtn.layer.cornerRadius = 2;
+        cancelbtn.layer.masksToBounds = YES;
+        cancelbtn.layer.borderColor = kHexColor(@"#979797").CGColor;
         [self.contentView addSubview:cancelbtn];
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        [self addSubview:[self createview:CGRectMake(0, cancelbtn.yy + 11, SCREEN_WIDTH, 10)]];
         
     }
     return self;
@@ -109,6 +84,23 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+- (void)clickSelect:(UIButton *)sender {
+    
+    sender.selected = !sender.selected;
+    if (sender.isSelected) {
+        self.label.textColor = kHexColor(@"#F68646");
+    }
+    else{
+        self.label.textColor = kTextColor3;
+    }
+    
+}
+
+-(UIView*)createview:(CGRect)frame{
+    UIView * view = [[UIView alloc]initWithFrame:frame];
+    view.backgroundColor = kLineColor;
+    return view;
 }
 
 @end
