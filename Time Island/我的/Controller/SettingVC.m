@@ -13,6 +13,7 @@
 #import "CardVC.h"
 #import "InfoVC.h"
 #import "GetAddVC.h"
+#import "ReceivingAddressVC.h"
 #define titlearray @[@"修改手机号",@"我的银行卡",@"完善资料",@"收货地址"]
 @interface SettingVC ()
 @property (nonatomic,strong) UITableView *table;
@@ -26,6 +27,7 @@
     self.table = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 220) style:UIAccessibilityTraitNone];
     self.table.delegate = self;
     self.table.dataSource = self;
+    self.table.scrollEnabled = false;
     [self.view addSubview:self.table];
     
     UIButton * logout = [UIButton buttonWithTitle:@"退出登录" titleColor:[UIColor colorWithHexString:@"#23AD8C"] backgroundColor:[UIColor clearColor] titleFont:15];
@@ -77,7 +79,11 @@
             break;
         case 3:
         {
-            GetAddVC * vc = [[GetAddVC alloc]init];
+            ReceivingAddressVC * vc = [ReceivingAddressVC new];
+            vc.state = 1;
+            UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] init];
+            backBtn.title = @"我的收货地址";
+            self.navigationItem.backBarButtonItem = backBtn;
             [self.navigationController pushViewController: vc animated:YES];
         }
             break;

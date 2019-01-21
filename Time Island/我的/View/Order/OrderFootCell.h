@@ -20,8 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UILabel * TreeAge;
 @property (nonatomic,strong) UILabel * TreeMoney;
 
-@property int OrderCount;
-
+//子订单数量
+@property (nonatomic,assign) NSInteger  OrderCount;
+@property (nonatomic,assign) NSInteger  count;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -26,20 +26,23 @@
         
         
         UILabel *moreLab = [UILabel labelWithBackgroundColor:kClearColor textColor:RGB(0, 0, 0) font:13];
-        moreLab.frame = CGRectMake(15, 5, 120, 30);
+        moreLab.frame = CGRectMake(15, 5, 70, 30);
         moreLab.textAlignment = NSTextAlignmentLeft;
         moreLab.text = @"[树木名称]";
+//        moreLab.backgroundColor = [UIColor redColor];
         self.moreLab = moreLab;
         [self.contentView addSubview:moreLab];
         
-        UILabel *detailLab = [UILabel labelWithBackgroundColor:kClearColor textColor:RGB(0, 0, 0) font:14];
-        detailLab.frame = CGRectMake(120+30, 5, kScreenWidth-120-60, 30);
+        UILabel *detailLab = [UILabel labelWithBackgroundColor:kClearColor textColor:RGB(0, 0, 0) font:13];
+        detailLab.frame = CGRectMake(100, 5, kScreenWidth-100 - 15, 30);
         detailLab.textAlignment = NSTextAlignmentLeft;
         detailLab.text = @"习总书记栽种的下姜村一级樟树";
         self.detailLab = detailLab;
         [self.contentView addSubview:detailLab];
+        
+        
         UIView *line = [UIView new];
-        line.frame = CGRectMake(0, self.frame.size.height-1, kScreenWidth, 1);
+        line.frame = CGRectMake(0, 40-1, kScreenWidth, 1);
         line.backgroundColor = RGB(244, 244, 244);
         [self.contentView addSubview:line];
     }

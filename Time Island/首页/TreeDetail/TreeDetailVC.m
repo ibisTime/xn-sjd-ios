@@ -67,6 +67,7 @@
     self.renYangFieldView.alpha = 0.7;
     [self initcustomRenYang];
 }
+
 - (void)initcustomRenYang
 {
         CoinWeakSelf;
@@ -80,7 +81,6 @@
             [weakSelf initRealNameView];
 
         }];
-
     };
 }
 
@@ -97,7 +97,7 @@
     [self.view addSubview:self.bottomView];
     CoinWeakSelf;
     self.bottomView.RenYangBlock = ^(NSInteger index) {
-        NSLog(@"%ld",index);
+//        NSLog(@"%ld",index);
         [weakSelf bottomClickWithIndex:index];
     };
 }
@@ -106,9 +106,6 @@
 {
     [self.view addSubview:self.renYangFieldView];
     [self.view addSubview:self.renYangFieldDeyailView];
-
-//    [self.contentScrollView bringSubviewToFront:self.renYangFieldView];
-//    [self.contentScrollView bringSubviewToFront:self.renYangFieldDeyailView];
 
     [UIView animateWithDuration:0.2 animations:^{
      self.renYangFieldView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
@@ -242,7 +239,7 @@
     if (self.realNameView.frame.size.height >10) {
         self.realNameView.hidden = YES;
     }
-    NSLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
+//    NSLog(@"%@",NSStringFromCGPoint(scrollView.contentOffset));
     if (scrollView.contentOffset.y >0) {
     CGFloat TempAlpha = scrollView.contentOffset.y/kNavigationBarHeight;
         self.topView.alpha = TempAlpha;

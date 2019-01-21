@@ -9,6 +9,8 @@
 #import "MallMyVC.h"
 #import "MineVCCell.h"
 #import "ReceivingAddressVC.h"
+#import "NewsVC.h"
+#import "MallOrderVC.h"
 #define titlearray @[@"我的购物车",@"我的商场订单",@"我的商场消息",@"我的收货地址",@"设置"]
 #define imagearray @[@"商场购物车-未选中",@"",@"",@"",@"设置"]
 @interface MallMyVC ()
@@ -118,8 +120,25 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
+        case 1:{
+            MallOrderVC * vc = [MallOrderVC new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 2:{
+            NewsVC * vc = [[NewsVC alloc]init];
+            UIBarButtonItem * item = [[UIBarButtonItem alloc]init];
+            item.title = @"消息";
+            self.navigationItem.backBarButtonItem = item;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
         case 3:{
             ReceivingAddressVC * vc = [[ReceivingAddressVC alloc]init];
+            vc.state = 2;
+            UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] init];
+            backBtn.title = @"我的收货地址";
+            vc.navigationItem.backBarButtonItem = backBtn;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

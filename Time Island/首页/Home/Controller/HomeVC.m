@@ -15,7 +15,7 @@
 #import "TLTextField.h"
 #import "TreeListVC.h"
 #import "TitleView.h"
-#import "NoticeVC.h"
+#import "MyNoticeVC.h"
 #import "BookVideoVC.h"
 #import "UIBarButtonItem+convience.h"
 #import "CalendarCustomVC.h"
@@ -316,7 +316,7 @@
 
 - (void)noticeClick
 {
-    NoticeVC *notice = [NoticeVC new];
+    MyNoticeVC *notice = [MyNoticeVC new];
     notice.title = @"公告";
     [self.navigationController pushViewController:notice animated:YES];
     
@@ -427,7 +427,6 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    
     [self.searchTf resignFirstResponder];
 }
 
@@ -438,7 +437,6 @@
 }
 
 - (void)back {
-    
     [self.searchTf resignFirstResponder];
     
 }

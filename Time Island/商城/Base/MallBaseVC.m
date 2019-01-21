@@ -22,6 +22,15 @@
     
 }
 
+-(UILabel *)backLbl
+{
+    if (!_backLbl) {
+        _backLbl = [UILabel labelWithFrame:CGRectMake(30, 0, SCREEN_WIDTH - 60, 44) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(16) textColor:kWhiteColor];
+        
+    }
+    return _backLbl;
+}
+
 -(UIButton *)RightButton
 {
     if (!_RightButton) {

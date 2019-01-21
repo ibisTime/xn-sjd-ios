@@ -60,7 +60,7 @@
         [backView addSubview:titleLab];
         
         
-        UILabel *priceLabel = [UILabel labelWithFrame:CGRectMake(5, headImage.yy + 48, 0, 16) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(16) textColor:[UIColor redColor]];
+        UILabel *priceLabel = [UILabel labelWithFrame:CGRectMake(5, headImage.yy + 48, 0, 16) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(16) textColor:kRedColor];
         NSString *str= @"¥ 5000.00";
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:str];
         [attrStr addAttribute:NSFontAttributeName value:FONT(11) range:NSMakeRange(0, 1)];
@@ -71,7 +71,7 @@
         [backView addSubview:priceLabel];
         
         
-        UILabel *addressLabel = [UILabel labelWithFrame:CGRectMake(priceLabel.frame.size.width + 9, headImage.yy + 50, (SCREEN_WIDTH - 30)/2 - priceLabel.xx - 9, 14) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:FONT(11) textColor:RGB(193, 193, 193)];
+        UILabel *addressLabel = [UILabel labelWithFrame:CGRectMake(priceLabel.frame.size.width + 9, headImage.yy + 50, (SCREEN_WIDTH - 30)/2 - priceLabel.xx - 9, 14) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:FONT(11) textColor:RGB(153, 153, 153)];
         addressLabel.text = @"浙江省 杭州市";
         [backView addSubview:addressLabel];
         

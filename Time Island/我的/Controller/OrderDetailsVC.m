@@ -76,17 +76,12 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     //    OrderFootCell * cell = [[OrderFootCell alloc]init];
     OrderFootCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    if (indexPath.section == 0) {
-        cell.OrderCount = 2;
-    }
-    else{
-        cell.OrderCount = 1;
-    }
+    cell.OrderCount = 1;
     cell.selectionStyle = UIAccessibilityTraitNone;
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 140 * 2 - 35;
+    return 140 * 1 - 35 * 0;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 10;

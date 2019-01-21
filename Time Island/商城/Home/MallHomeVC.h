@@ -8,6 +8,6 @@
 
 #import "MallBaseVC.h"
 
-@interface MallHomeVC : MallBaseVC<UITableViewDelegate,UITableViewDataSource,RefreshDelegate>
+@interface MallHomeVC : MallBaseVC<UITableViewDelegate,UITableViewDataSource,RefreshDelegate,UISearchBarDelegate>
 
 @end
