@@ -24,42 +24,33 @@
     if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         //店铺名称
         self.ShopNameBtn = [UIButton buttonWithTitle:@"店铺名称" titleColor:kTextColor3 backgroundColor:kClearColor titleFont:12];
+        self.ShopNameBtn.tag = 100-1;
+        [self.ShopNameBtn addTarget:self action:@selector(clickDeleteButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.ShopNameBtn];
 
-        
-        
         //下单时间
         self.OrderTime = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH - 139, 9.5, 72.5, 16.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(12) textColor:kTextColor2];
         [self addSubview:self.OrderTime];
         
         //订单状态
-        self.OrderState = [UILabel labelWithFrame:CGRectMake(self.OrderTime.xx + 10, 9.5, 73 - 15, 16.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#FE5656 ")];
-        [self addSubview:self.OrderState];
+        self.StateLab = [UILabel labelWithFrame:CGRectMake(self.OrderTime.xx + 10, 9.5, 73 - 15, 16.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#FE5656 ")];
+        [self addSubview:self.StateLab];
         
         //底线
-        UIView * lineview = [self createview:CGRectMake(15, 35, SCREEN_WIDTH - 30, 1)];
-        [self addSubview:lineview];
+        UIView * lineview1 = [self createview:CGRectMake(15, 35, SCREEN_WIDTH - 30, 1)];
+        [self addSubview:lineview1];
         
         //商品图片
-        self.GoodsImage = [[UIImageView alloc]initWithFrame:CGRectMake(30, lineview.yy + 15, 75, 75)];
+        self.GoodsImage = [[UIImageView alloc]initWithFrame:CGRectMake(30, lineview1.yy + 15, 75, 75)];
         [self addSubview:self.GoodsImage];
         
         //商品名称
         self.GoodsName = [UILabel labelWithFrame:CGRectMake(self.GoodsImage.xx + 10, self.GoodsImage.y, 0, 21) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(15) textColor:kTextBlack];
-//        self.GoodsName.text = @"商品名称";
         [self addSubview:self.GoodsName];
-        [self.GoodsName sizeToFit];
-        if (self.GoodsName.width > SCREEN_WIDTH - 100 - 100) {
-            self.GoodsName.frame = CGRectMake(self.GoodsImage.xx + 10, self.GoodsImage.y,SCREEN_WIDTH - 100 - 100, 21);
-        }
-        else
-        {
-            self.GoodsName.frame = CGRectMake(self.GoodsImage.xx + 10, self.GoodsImage.y,self.GoodsName.width, 21);
-        }
-        
+
         
         //商品数量
-        self.GoodsCount = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH - 100, lineview.yy + 17.5, 85, 16.5) textAligment:NSTextAlignmentRight backgroundColor:kClearColor font:FONT(12) textColor:kTextColor2];
+        self.GoodsCount = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH - 100, lineview1.yy + 17.5, 85, 16.5) textAligment:NSTextAlignmentRight backgroundColor:kClearColor font:FONT(12) textColor:kTextColor2];
         [self addSubview:self.GoodsCount];
         
         //商品描述
@@ -75,20 +66,64 @@
         [self addSubview:self.GoodsMoney];
         
         
+        //底线
+        UIView * lineview = [self createview:CGRectMake(15, self.GoodsMoney.yy + 18.5, SCREEN_WIDTH - 30, 1)];
+        [self addSubview:lineview];
         
+        //底部按钮
         
+        NSLog(@"state = %d",self.OrderState);
         
-        
+
     }
     return self;
 }
+
+-(void)setOrderState:(int)OrderState{
+    _OrderState = OrderState;
+    if (OrderState == 1) {
+        self.StateLab.text = @"待付款";
+        self.StateLab.textColor = kHexColor(@"#FE5656");
+        [self addSubview:[self CreateButtonWithFrame:CGRectMake(SCREEN_WIDTH - 90, self.GoodsMoney.yy + 27, 75, 28) Title:@"删除订单" Color:kTextColor2 tag:101]];
+    }
+    else if (OrderState == 2){
+        self.StateLab.text = @"待收货";
+        self.StateLab.textColor = kTextColor3;
+        
+    }
+    else if (OrderState == 3){
+        self.StateLab.text = @"待发货";
+        self.StateLab.textColor = kTextColor3;
+    }
+    else if (OrderState == 4){
+        self.StateLab.text = @"待评价";
+        self.StateLab.textColor = kTextColor3;
+    }
+}
+
+
 
 -(UIView * )createview:(CGRect)frame{
     UIView * view = [[UIView alloc]initWithFrame:frame];
     view.backgroundColor = kLineColor;
     return view;
 }
-//-(void)setShopName:(UILabel *)ShopName{
-//    
-//}
+- (void)clickDeleteButton:(UIButton *)sender
+
+{
+    [_delagate MallOrderCell:self clickDeleteButton:sender];
+}
+
+
+-(UIButton * )CreateButtonWithFrame : (CGRect)frame Title : (NSString * )title Color : (UIColor * )color tag : (int)tag
+{
+    UIButton * btn = [UIButton buttonWithTitle:title titleColor:color backgroundColor:kClearColor titleFont:12 cornerRadius:2];
+    btn.frame = frame;
+    btn.layer.borderColor = color.CGColor;
+    btn.layer.borderWidth = 0.5;
+    btn.tag = tag;
+    [btn addTarget:self action:@selector(clickDeleteButton:) forControlEvents:UIControlEventTouchUpInside];
+    return btn;
+}
+
 @end

@@ -38,18 +38,23 @@
     
     CGFloat btnWidth = 95;
     
-    self.captchaTf = [[TLTextField alloc] initWithFrame:CGRectMake(0, 0, frame.size.width - btnWidth, frame.size.height)
-                                              leftTitle:[LangSwitcher switchLang:@"验证码" key:nil]
-                                             titleWidth:leftTitleWidth
-                                            placeholder:[LangSwitcher switchLang:@"请输入验证码" key:nil]];
+//    self.captchaTf = [[TLTextField alloc] initWithFrame:CGRectMake(0, 0, frame.size.width - btnWidth, frame.size.height)
+//                                              leftTitle:[LangSwitcher switchLang:@"验证码" key:nil]
+//                                             titleWidth:leftTitleWidth
+//                                            placeholder:[LangSwitcher switchLang:@"请输入验证码" key:nil]];
+    self.captchaTf = [[TLTextField alloc]initWithFrame:CGRectMake(0, 0, frame.size.width - btnWidth, frame.size.height) placeholder:@"请输入验证码"];
     self.captchaTf.rightViewMode = UITextFieldViewModeAlways;
     self.captchaTf.keyboardType = UIKeyboardTypeNumberPad;
     [self addSubview:self.captchaTf];
+    
+//    UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, self.captchaTf.yy - 1, SCREEN_WIDTH - 30, 1)];
+//    view.backgroundColor = kLineColor;
+//    [self addSubview:view];
 
     //获得验证码按钮
     UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(self.captchaTf.xx, 0, btnWidth, frame.size.height)];
     
-    rightView.backgroundColor = kWhiteColor;
+//    rightView.backgroundColor = kWhiteColor;
     
     [self addSubview:rightView];
 

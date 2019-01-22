@@ -101,7 +101,7 @@
     
     
     
-    
+    [[TLUser user]isLogin];
     [[TLUser user] updateUserInfo];
     // 登录时间变更到，didBecomeActive中
     [[NSNotificationCenter defaultCenter] postNotificationName:kUserLoginNotification

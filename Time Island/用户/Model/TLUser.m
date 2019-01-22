@@ -146,7 +146,7 @@ NSString *const kGoogleAuthClose = @"0";
 }
 
 - (void)changLoginTime {
-    [self refreshLoginTime];
+//    [self refreshLoginTime];
     if (_updateLoginTimeTimer) {
         return;
     }
@@ -239,7 +239,6 @@ NSString *const kGoogleAuthClose = @"0";
 }
 
 - (void)updateUserInfoWithNotification:(BOOL)isPostNotification {
-    
     TLNetworking *http = [TLNetworking new];
     
     http.isShowMsg = NO;
@@ -251,7 +250,7 @@ NSString *const kGoogleAuthClose = @"0";
         
         [self setUserInfoWithDict:responseObject[@"data"]];
         [self saveUserInfo:responseObject[@"data"]];
-        [self loadTengxunYun];
+//        [self loadTengxunYun];
         if (isPostNotification) {
             
             [[NSNotificationCenter defaultCenter] postNotificationName:kUserInfoChange object:nil];
@@ -290,6 +289,7 @@ NSString *const kGoogleAuthClose = @"0";
 
 - (void)setUserInfoWithDict:(NSDictionary *)dict {
     
+    self.userName = dict[@"loginName"];
     self.mobile = dict[@"mobile"];
     self.nickname = dict[@"nickname"];
     self.realName = dict[@"realName"];

@@ -8,6 +8,6 @@
 
 #import "TLAccountBaseVC.h"
 
-@interface TLUserRegisterVC : TLAccountBaseVC
+@interface TLUserRegisterVC : TLAccountBaseVC<UITextFieldDelegate>
 
 @end

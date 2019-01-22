@@ -50,24 +50,25 @@ void TLLog(NSString *format, ...) {
 
             self.ossDomain = @"http://kkkotc.oss-cn-shenzhen.aliyuncs.com/";
 //            self.addr = @"https://www.bcoin.im/api";
-            self.addr = @"https://kkkotc.com/api";
+//            self.addr = @"https://kkkotc.com/api";
 
+            self.addr = @"http://47.99.147.67:2919";
         }break;
             
         case RunEnvDev: {
             //apidev.bcoin.im:4001
             self.ossDomain = @"http://kkkotc.oss-cn-shenzhen.aliyuncs.com/";
 //            self.addr = @"178.128.208.125:5501";
-            self.addr = @"https://loveotc.com/api";
+            self.addr = @"http://47.99.147.67:2901";
 //            self.addr = @"http://47.98.46.31:5501";
-            self.qiniuDomain = @"http://image.bjdd.hichengdai.com";
+            self.qiniuDomain = @"http://image.o2lin.com/";
         }break;
             
         case RunEnvTest: {
             self.qiniuDomain = @"http://image.bjdd.hichengdai.com";
 
             self.ossDomain = @"http://kkkotc.oss-cn-shenzhen.aliyuncs.com/";
-            self.addr = @"https://kkkotc.com/api";
+            self.addr = @"http://47.99.147.67:2905";
 
         } break;
             
