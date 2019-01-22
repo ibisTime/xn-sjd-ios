@@ -22,7 +22,9 @@
 
 @property (nonatomic,strong) TLTextField *OldphoneTf;
 @property (nonatomic,strong) TLTextField *NewphoneTf;
-@property (nonatomic,strong) TLCaptchaView *captchaView;
+@property (nonatomic,strong) TLCaptchaView *newcaptchaView;
+@property (nonatomic,strong) TLCaptchaView *oldcaptchaView;
+
 //@property (nonatomic,strong) TLTextField *tradePwdTf;
 @end
 
@@ -37,46 +39,24 @@
     
     //旧手机号
     TLTextField * OldphoneTf = [[TLTextField alloc]initWithFrame:CGRectMake(leftMargin, 0, kScreenWidth - 2*leftMargin, 55) placeholder:@"请输入旧手机号"];
+    OldphoneTf.text = [[TLUser user]mobile];
     OldphoneTf.keyboardType = UIKeyboardTypeNumberPad;
     [self.bgSV addSubview:OldphoneTf];
     self.OldphoneTf = OldphoneTf;
-    if ([TLUser user].mobile.length >0) {
-        OldphoneTf.text = [TLUser user].mobile;
-        OldphoneTf.userInteractionEnabled = NO;
-    }else{
-        OldphoneTf.userInteractionEnabled = YES;
-        //新手机号
-       
-        //验证码
-        TLCaptchaView *newCaptchaView = [[TLCaptchaView alloc] initWithFrame:CGRectMake(OldphoneTf.x, OldphoneTf.yy + 1, OldphoneTf.width, OldphoneTf.height)];
-        
-        [self.bgSV addSubview:newCaptchaView];
-        self.captchaView = newCaptchaView;
-        [newCaptchaView.captchaBtn addTarget:self action:@selector(sendCaptcha) forControlEvents:UIControlEventTouchUpInside];
-        
-        
-    }
+
     //新手机号
-    TLTextField * NewphoneTf = [[TLTextField alloc]initWithFrame:CGRectMake(leftMargin, 110, kScreenWidth - 2*leftMargin, 55) placeholder:@"请输入新手机号"];
+    TLTextField * NewphoneTf = [[TLTextField alloc]initWithFrame:CGRectMake(leftMargin, 55, kScreenWidth - 2*leftMargin, 55) placeholder:@"请输入新手机号"];
     NewphoneTf.keyboardType = UIKeyboardTypeNumberPad;
     [self.bgSV addSubview:NewphoneTf];
     self.NewphoneTf = NewphoneTf;
-    if ([TLUser user].mobile.length >0) {
-        NewphoneTf.text = [TLUser user].mobile;
-        NewphoneTf.userInteractionEnabled = NO;
-    }else{
-        NewphoneTf.userInteractionEnabled = YES;
-        //新手机号
-        
-        //验证码
-        TLCaptchaView *newCaptchaView = [[TLCaptchaView alloc] initWithFrame:CGRectMake(NewphoneTf.x, NewphoneTf.yy + 1, NewphoneTf.width, NewphoneTf.height)];
-        
-        [self.bgSV addSubview:newCaptchaView];
-        self.captchaView = newCaptchaView;
-        [newCaptchaView.captchaBtn addTarget:self action:@selector(sendCaptcha) forControlEvents:UIControlEventTouchUpInside];
-        
-        
-    }
+    
+    //验证码
+    TLCaptchaView *newcaptchaView = [[TLCaptchaView alloc] initWithFrame:CGRectMake(NewphoneTf.x, NewphoneTf.yy + 1, NewphoneTf.width, NewphoneTf.height)];
+    [self.bgSV addSubview:newcaptchaView];
+    self.newcaptchaView = newcaptchaView;
+    [newcaptchaView.captchaBtn addTarget:self action:@selector(sendCaptcha) forControlEvents:UIControlEventTouchUpInside];
+
+//    }
    
 
   
@@ -107,7 +87,7 @@
 
 - (void)sendCaptcha {
 
-    if (![self.OldphoneTf.text isPhoneNum]) {
+    if (![self.NewphoneTf.text isPhoneNum]) {
         
         [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入正确的手机号" key:nil]];
         
@@ -119,12 +99,12 @@
     http.code = CAPTCHA_CODE;
     http.parameters[@"bizType"] = USER_CAHNGE_MOBILE;
     http.parameters[@"mobile"] = self.OldphoneTf.text;
-
+  
     [http postWithSuccess:^(id responseObject) {
         
         [TLAlert alertWithSucces:[LangSwitcher switchLang:@"验证码已发送,请注意查收" key:nil]];
 
-        [self.captchaView.captchaBtn begin];
+        [self.newcaptchaView.captchaBtn begin];
         
     } failure:^(NSError *error) {
         
@@ -141,7 +121,7 @@
         return;
     }
     
-    if (![self.captchaView.captchaTf.text valid] || self.captchaView.captchaTf.text.length < 4 ) {
+    if (![self.newcaptchaView.captchaTf.text valid] || self.newcaptchaView.captchaTf.text.length < 4 ) {
         [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入正确的验证码" key:nil]];
         return;
     }
@@ -149,15 +129,15 @@
     TLNetworking *http = [TLNetworking new];
     http.showView = self.view;
     http.code = USER_CAHNGE_MOBILE;
-    http.parameters[@"newMobile"] = self.OldphoneTf.text;
-    http.parameters[@"smsCaptcha"] = self.captchaView.captchaTf.text;
+    http.parameters[@"newMobile"] = self.NewphoneTf.text;
+    http.parameters[@"smsCaptcha"] = self.newcaptchaView.captchaTf.text;
     http.parameters[@"token"] = [TLUser user].token;
     http.parameters[@"userId"] = [TLUser user].userId;
    
     [http postWithSuccess:^(id responseObject) {
         
         [TLAlert alertWithSucces:[LangSwitcher switchLang:@"修改成功" key:nil]];
-        [TLUser user].mobile = self.OldphoneTf.text;
+        [TLUser user].mobile = self.NewphoneTf.text;
         [[TLUser user] updateUserInfo];
 
         //保存用户账号和密码
@@ -165,7 +145,7 @@
         
         [self.navigationController popViewControllerAnimated:YES];
         if (self.done) {
-            self.done(self.OldphoneTf.text);
+            self.done(self.NewphoneTf.text);
         }
         
     } failure:^(NSError *error) {

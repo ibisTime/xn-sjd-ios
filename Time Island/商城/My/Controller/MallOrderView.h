@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
 @interface MallOrderView : MallBaseVC<UITableViewDataSource,UITableViewDelegate,RefreshDelegate>
 
 @end

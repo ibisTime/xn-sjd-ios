@@ -130,6 +130,8 @@
 		3689769321EF367B005F1177 /* OrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3689769221EF367B005F1177 /* OrderView.m */; };
 		3689769A21EF38E8005F1177 /* OrderFootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3689769921EF38E8005F1177 /* OrderFootCell.m */; };
 		3689769C21EF3A4F005F1177 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3689769B21EF3A4F005F1177 /* AMap.bundle */; };
+		369C60CC21F71254001F9CBA /* MailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C60CB21F71254001F9CBA /* MailVC.m */; };
+		369C60CF21F717A9001F9CBA /* PayPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C60CE21F717A9001F9CBA /* PayPwdVC.m */; };
 		36DB50D621F5993B009D56EF /* NewsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50D521F5993B009D56EF /* NewsVC.m */; };
 		36DB50D921F59AEF009D56EF /* NewsVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50D821F59AEF009D56EF /* NewsVCCell.m */; };
 		36DB50DC21F5A11F009D56EF /* MallOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50DB21F5A11F009D56EF /* MallOrderVC.m */; };
@@ -598,6 +600,10 @@
 		3689769821EF38E8005F1177 /* OrderFootCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderFootCell.h; sourceTree = "<group>"; };
 		3689769921EF38E8005F1177 /* OrderFootCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderFootCell.m; sourceTree = "<group>"; };
 		3689769B21EF3A4F005F1177 /* AMap.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AMap.bundle; sourceTree = "<group>"; };
+		369C60CA21F71254001F9CBA /* MailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MailVC.h; sourceTree = "<group>"; };
+		369C60CB21F71254001F9CBA /* MailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MailVC.m; sourceTree = "<group>"; };
+		369C60CD21F717A9001F9CBA /* PayPwdVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayPwdVC.h; sourceTree = "<group>"; };
+		369C60CE21F717A9001F9CBA /* PayPwdVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayPwdVC.m; sourceTree = "<group>"; };
 		36DB50D421F5993B009D56EF /* NewsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsVC.h; sourceTree = "<group>"; };
 		36DB50D521F5993B009D56EF /* NewsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsVC.m; sourceTree = "<group>"; };
 		36DB50D721F59AEF009D56EF /* NewsVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsVCCell.h; sourceTree = "<group>"; };
@@ -1752,6 +1758,10 @@
 				3610EEC321EDCEBD00FD345D /* InfoVC.m */,
 				3610EEC521EDD6A800FD345D /* GetAddVC.h */,
 				3610EEC621EDD6A800FD345D /* GetAddVC.m */,
+				369C60CA21F71254001F9CBA /* MailVC.h */,
+				369C60CB21F71254001F9CBA /* MailVC.m */,
+				369C60CD21F717A9001F9CBA /* PayPwdVC.h */,
+				369C60CE21F717A9001F9CBA /* PayPwdVC.m */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -2586,14 +2596,14 @@
 			children = (
 				B81E5FF521DC906C00873AB9 /* TLChangeMobileVC.h */,
 				B81E5FFA21DC906C00873AB9 /* TLChangeMobileVC.m */,
-				B81E5FF621DC906C00873AB9 /* BindMobileVC.m */,
-				B81E5FF721DC906C00873AB9 /* ChangeLoginPwdVC.m */,
-				B81E5FF821DC906C00873AB9 /* TLAccountSetBaseVC.m */,
-				B81E5FF921DC906C00873AB9 /* TLPwdRelatedVC.m */,
 				B81E5FFB21DC906C00873AB9 /* BindMobileVC.h */,
-				B81E5FFC21DC906C00873AB9 /* TLPwdRelatedVC.h */,
-				B81E5FFD21DC906C00873AB9 /* TLAccountSetBaseVC.h */,
+				B81E5FF621DC906C00873AB9 /* BindMobileVC.m */,
 				B81E5FFE21DC906C00873AB9 /* ChangeLoginPwdVC.h */,
+				B81E5FF721DC906C00873AB9 /* ChangeLoginPwdVC.m */,
+				B81E5FFD21DC906C00873AB9 /* TLAccountSetBaseVC.h */,
+				B81E5FF821DC906C00873AB9 /* TLAccountSetBaseVC.m */,
+				B81E5FFC21DC906C00873AB9 /* TLPwdRelatedVC.h */,
+				B81E5FF921DC906C00873AB9 /* TLPwdRelatedVC.m */,
 			);
 			path = UserInfo;
 			sourceTree = "<group>";
@@ -3321,6 +3331,7 @@
 				B81E5FBC21DC8FC200873AB9 /* CustomPickerView.m in Sources */,
 				B815278621EC8BAE00F89395 /* BaseTableViewCell.m in Sources */,
 				1F1B006C21E71D26000BEBD3 /* RBBEasingFunction.m in Sources */,
+				369C60CC21F71254001F9CBA /* MailVC.m in Sources */,
 				36F841D221F02B0D00BAC88A /* IssueBook.m in Sources */,
 				B81E608821DC9FCC00873AB9 /* LinCircleVC.m in Sources */,
 				1F1B00A821E86B3C000BEBD3 /* UIButton+SGImagePosition.m in Sources */,
@@ -3340,6 +3351,7 @@
 				B81E603721DC93EC00873AB9 /* UIView+Frame.m in Sources */,
 				1F1B00D221E89667000BEBD3 /* FriendsTheTreeTableView.m in Sources */,
 				1F1B00BD21E87B00000BEBD3 /* GivingVC.m in Sources */,
+				369C60CF21F717A9001F9CBA /* PayPwdVC.m in Sources */,
 				B86CB6A821DDB7FF00C60AC7 /* TLPlateCell.m in Sources */,
 				1F1B007221E71D26000BEBD3 /* NSValue+PlatformIndependence.m in Sources */,
 				B81E5FD221DC8FC200873AB9 /* UIControl+Block.m in Sources */,
@@ -3737,7 +3749,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4M8KD7B9X5;
+				DEVELOPMENT_TEAM = A7AR7GW3Q2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -3770,7 +3782,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4M8KD7B9X5;
+				DEVELOPMENT_TEAM = A7AR7GW3Q2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
