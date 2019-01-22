@@ -14,6 +14,7 @@
 #import "JHCollectionReusableView.h"
 #import "QWCategoryDetail.h"
 #import "MallGoodListViewController.h"
+#import "MallClassificationVC.h"
 //#import "QWProductListController.h"
 
 #import "UIImageView+WebCache.h"
@@ -261,7 +262,16 @@ static NSString * const reuseIdentifierImageCell = @"imageCell";
 //    // 跳转
     MallGoodListViewController *productListVC = [MallGoodListViewController new];
     productListVC.title = @"商品列表";
-    [self.navigationController pushViewController:productListVC animated:YES];
+     TLNavigationController *navigationVC = [[TLNavigationController alloc] initWithRootViewController:productListVC];
+    if ([self.view.superview.nextResponder isKindOfClass:[MallClassificationVC class]]) {
+        MallClassificationVC *categoryVC = (MallClassificationVC *)self.view.superview.nextResponder;
+//        categoryVC.hidesBottomBarWhenPushed = YES;
+//        categoryVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//        [categoryVC.navigationController pushViewController:productListVC animated:YES];
+        categoryVC.hidesBottomBarWhenPushed = YES;
+        categoryVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [categoryVC.navigationController pushViewController:productListVC animated:YES];
+    }
 //
     
     

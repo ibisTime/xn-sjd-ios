@@ -63,14 +63,14 @@ static const float kAnimationdDuration = 0.3;
     
     _selectLine = [[UIView alloc] init];
     
-    _selectLine.backgroundColor = kLightGreenColor;
+    _selectLine.backgroundColor = kRedColor;
     [self addSubview:_selectLine];
     
     [_selectLine mas_makeConstraints:^(MASConstraintMaker *make) {
        
-        make.left.mas_equalTo((widthItem - lineW)/2.0);
+        make.left.mas_equalTo(lineW/4);
         make.bottom.mas_equalTo(self.frame.size.height -1);
-        make.width.mas_equalTo(lineW);
+        make.width.mas_equalTo(lineW/2);
         make.height.mas_equalTo(2);
     }];
 }
@@ -128,27 +128,27 @@ static const float kAnimationdDuration = 0.3;
         UIButton *btn = [self viewWithTag:100 + i];
         if (i == index) {
             if (i == 0) {
-                [btn setTitleColor:kLightGreenColor forState:UIControlStateNormal];
+                [btn setTitleColor:kRedColor forState:UIControlStateNormal];
                 btn.titleLabel.font = Font(MIN(kWidth(16.0), 16));
             } else if (i == 1) {
-                [btn setTitleColor:kThemeColor forState:UIControlStateNormal];
+                [btn setTitleColor:kRedColor forState:UIControlStateNormal];
                 btn.titleLabel.font = Font(MIN(kWidth(16.0), 16));
             } else {
-                [btn setTitleColor:kAppCustomMainColor forState:UIControlStateNormal];
+                [btn setTitleColor:kRedColor forState:UIControlStateNormal];
                 btn.titleLabel.font = Font(MIN(kWidth(16.0), 16));
             }
             
         }
         else {
             if (i == 0) {
-                [btn setTitleColor:kLightGreenColor forState:UIControlStateNormal];
+                [btn setTitleColor:kTextColor forState:UIControlStateNormal];
                 btn.titleLabel.font = Font(MIN(kWidth(16.0), 16));
             } else if (i == 1) {
-                [btn setTitleColor:kThemeColor forState:UIControlStateNormal];
+                [btn setTitleColor:kTextColor forState:UIControlStateNormal];
                 btn.titleLabel.font = Font(MIN(kWidth(16.0), 16));
             } else {
-                [btn setTitleColor:[UIColor textColor] forState:UIControlStateNormal];
-                btn.titleLabel.font = Font(MIN(kWidth(15.0), 15));
+                [btn setTitleColor:kTextColor forState:UIControlStateNormal];
+                btn.titleLabel.font = Font(MIN(kWidth(16.0), 16));
             }
             
         }
@@ -168,19 +168,21 @@ static const float kAnimationdDuration = 0.3;
     [self scrollRectToVisible:CGRectMake(length, 0, self.width, self.height) animated:YES];
     
     CGFloat leftMargin = button.left;
+    CGSize size = [button boundingRectWithText:button.titleLabel.text Font:FONT(16) size:CGSizeMake(widthItem, self.height)];
+    
     
     [UIView animateWithDuration:kAnimationdDuration animations:^{
         
         [_selectLine mas_updateConstraints:^(MASConstraintMaker *make) {
             
-            make.left.mas_equalTo(leftMargin);
-            make.width.mas_equalTo(widthItem);
+            make.left.mas_equalTo( index*widthItem + (widthItem -size.width)/2);
+            make.width.mas_equalTo(size.width);
         }];
         
         if (index == 0) {
-            _selectLine.backgroundColor = kLightGreenColor;
+            _selectLine.backgroundColor = kRedColor;
         } else {
-            _selectLine.backgroundColor = kThemeColor;
+            _selectLine.backgroundColor = kRedColor;
         }
         
         [self changeItemTitleColorWithIndex:button.tag - 100];
@@ -237,7 +239,7 @@ static const float kAnimationdDuration = 0.3;
     if (_selectIndex == button.tag - 100) {
         return;
     }
-    if (button.tag - 100 == 2 || button.tag - 100 == 3) {
+    if ( button.tag - 100 == 3) {
         _sortBlock(button.tag - 100);
         return;
     }
@@ -255,5 +257,6 @@ static const float kAnimationdDuration = 0.3;
     
     [self selectSortBarWithIndex:curruntIndex];
 }
+
 
 @end

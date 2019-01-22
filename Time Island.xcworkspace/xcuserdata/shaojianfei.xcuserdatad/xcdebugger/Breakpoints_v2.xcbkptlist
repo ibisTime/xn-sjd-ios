@@ -95,5 +95,68 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Time Island/Other/Utils/CustomUI/MMComboBox/Classes/MMView/ComBoBoxView/MMComBoBoxView.m"
+            timestampString = "569844635.249313"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "-didTapDropDownBox:atIndex:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[MMComBoBoxView didTapDropDownBox:atIndex:]"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/Other/Utils/CustomUI/MMComboBox/Classes/MMView/ComBoBoxView/MMComBoBoxView.m"
+                  timestampString = "569844635.553654"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "103"
+                  endingLineNumber = "103"
+                  offsetFromSymbolStart = "944">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__44-[MMComBoBoxView didTapDropDownBox:atIndex:]_block_invoke"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/Other/Utils/CustomUI/MMComboBox/Classes/MMView/ComBoBoxView/MMComBoBoxView.m"
+                  timestampString = "569844635.5572571"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "103"
+                  endingLineNumber = "103"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/Other/Utils/CustomUI/MMComboBox/Classes/MMView/ComBoBoxView/MMComBoBoxView.m"
+                  timestampString = "569844635.560716"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "103"
+                  endingLineNumber = "103"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
