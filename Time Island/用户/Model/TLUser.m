@@ -146,7 +146,7 @@ NSString *const kGoogleAuthClose = @"0";
 }
 
 - (void)changLoginTime {
-    [self refreshLoginTime];
+//    [self refreshLoginTime];
     if (_updateLoginTimeTimer) {
         return;
     }
@@ -208,6 +208,9 @@ NSString *const kGoogleAuthClose = @"0";
 //    self.unReadMsgCount = 0;
     self.realName = nil;
     self.idNo = nil;
+    self.idPic = nil;
+    self.backIdPic = nil;
+    self.introduce = nil;
     self.zfbAccount = nil;
     self.zfbQr = nil;
     
@@ -239,7 +242,6 @@ NSString *const kGoogleAuthClose = @"0";
 }
 
 - (void)updateUserInfoWithNotification:(BOOL)isPostNotification {
-    
     TLNetworking *http = [TLNetworking new];
     
     http.isShowMsg = NO;
@@ -251,7 +253,7 @@ NSString *const kGoogleAuthClose = @"0";
         
         [self setUserInfoWithDict:responseObject[@"data"]];
         [self saveUserInfo:responseObject[@"data"]];
-        [self loadTengxunYun];
+//        [self loadTengxunYun];
         if (isPostNotification) {
             
             [[NSNotificationCenter defaultCenter] postNotificationName:kUserInfoChange object:nil];
@@ -290,10 +292,14 @@ NSString *const kGoogleAuthClose = @"0";
 
 - (void)setUserInfoWithDict:(NSDictionary *)dict {
     
+    self.userName = dict[@"loginName"];
     self.mobile = dict[@"mobile"];
     self.nickname = dict[@"nickname"];
     self.realName = dict[@"realName"];
     self.idNo = dict[@"idNo"];
+    self.idPic = dict[@"idPic"];
+    self.backIdPic = dict[@"backIdPic"];
+    self.introduce = dict[@"introduce"];
     self.tradepwdFlag = [NSString stringWithFormat:@"%@", dict[@"tradepwdFlag"]];
     self.googleAuthFlag = [NSString stringWithFormat:@"%@", dict[@"googleAuthFlag"]];
     self.level = dict[@"level"];
@@ -318,7 +324,12 @@ NSString *const kGoogleAuthClose = @"0";
     _photo = [photo copy];
     
 }
-
+-(void)setIdPic:(NSString *)idPic{
+    _idPic = [idPic copy];
+}
+- (void)setBackIdPic:(NSString *)backIdPic{
+    _backIdPic = [backIdPic copy];
+}
 //- (void)saveUserName:(NSString *)userName pwd:(NSString *)pwd {
 //    
 //    self.userName = userName;

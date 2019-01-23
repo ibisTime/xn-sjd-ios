@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.title = @"我的收货地址";
+    self.title = @"我的收货地址";
 //    UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] init];
 //    backBtn.title = @"我的收货地址";
 //    self.navigationItem.backBarButtonItem = backBtn;

@@ -23,7 +23,7 @@
 + (NSString *)stringWithRegularExpression:(NSString *)regularStr string:(NSString *)string;
 
 //MD5加密
-+ (NSString *)MD5:(NSString *)sourceString;
+//+ (NSString *)MD5:(NSString *)sourceString;
 
 //根据返回的结果状态码，返回原因
 + (NSString *)stringWithReturnCode:(NSInteger)returnCode;
@@ -67,4 +67,5 @@
 
 + (NSString *)appVersionString;
 
+-(UIImage * )DownloadImageWithSrting : (NSString * )ImageString;
 @end

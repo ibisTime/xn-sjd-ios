@@ -1,0 +1,70 @@
+//
+//  CertifyVC.m
+//  Time Island
+//
+//  Created by 梅敏杰 on 2019/1/23.
+//  Copyright © 2019年 ChengLian. All rights reserved.
+//
+
+#import "CertifyVC.h"
+#import "CertifyVCCell.h"
+#import "PersonalCertifyVC.h"
+@interface CertifyVC ()<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic,strong) TLTableView * table;
+@end
+
+@implementation CertifyVC
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"认证";
+    self.table = [[TLTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 110)];
+    self.table.delegate = self;
+    self.table.dataSource = self;
+    [self.table registerClass:[CertifyVCCell class] forCellReuseIdentifier:@"CertifyVCCell"];
+    [self.view addSubview:self.table];
+    
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if ([TLUser user].idNo) {
+        return 1;
+    }
+    else
+        return 2;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 55;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CertifyVCCell * cell = [tableView dequeueReusableCellWithIdentifier:@"CertifyVCCell" forIndexPath:indexPath];
+    if ([TLUser user].idNo) {
+        if (indexPath.row == 0) {
+            cell.title.text = @"个人认证";
+            cell.state.text = @"已认证";
+        }
+    }
+    else{
+        if (indexPath.row == 0) {
+            cell.title.text = @"个人认证";
+            cell.state.text = @"未认证";
+        }
+        if (indexPath.row == 1) {
+            cell.title.text = @"企业认证";
+            cell.state.text = @"未认证";
+        }
+    }
+    
+    cell.selectionStyle = UIAccessibilityTraitNone;
+    return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        PersonalCertifyVC * vc = [PersonalCertifyVC new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+@end

@@ -95,6 +95,7 @@ typedef NS_OPTIONS(NSUInteger, SDWebImageOptions) {
      * If `SDWebImageProgressiveDownload` flag is set the scale down is deactivated.
      */
     SDWebImageScaleDownLargeImages = 1 << 12
+    
 };
 
 typedef void(^SDExternalCompletionBlock)(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL);

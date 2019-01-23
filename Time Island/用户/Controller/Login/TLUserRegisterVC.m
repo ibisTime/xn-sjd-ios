@@ -21,17 +21,17 @@
 
 @interface TLUserRegisterVC ()<CLLocationManagerDelegate>
 
-@property (nonatomic,strong) CaptchaView *captchaView;
+
 //昵称
-@property (nonatomic, strong) TLTextField *nickNameTF;
-@property (nonatomic, strong) TLTextField *referTF;
-
-
-@property (nonatomic,strong) TLTextField *phoneTf;
-
-@property (nonatomic,strong) TLTextField *pwdTf;
-
-@property (nonatomic,strong) TLTextField *rePwdTf;
+//@property (nonatomic, strong) TLTextField *nickNameTF;
+//@property (nonatomic, strong) TLTextField *referTF;
+//
+//
+//@property (nonatomic,strong) TLTextField *phoneTf;
+//
+//@property (nonatomic,strong) TLTextField *pwdTf;
+//
+//@property (nonatomic,strong) TLTextField *rePwdTf;
 
 //@property (nonatomic,strong) CLLocationManager *sysLocationManager;
 //
@@ -47,7 +47,8 @@
 @property (nonatomic,strong) UITextField * phone;
 @property (nonatomic,strong) UIView * phoneview;
 //验证码
-@property (nonatomic,strong) UITextField * check;
+//@property (nonatomic,strong) UITextField * check;
+@property (nonatomic,strong) CaptchaView *captchaView;
 @property (nonatomic,strong) UIView * checkview;
 //密码
 @property (nonatomic,strong) UITextField * pwd;
@@ -89,7 +90,7 @@
     CGFloat margin = 30;
     CGFloat w = kScreenWidth - 2*margin;
     CGFloat h = ACCOUNT_HEIGHT;
-    CGFloat titleWidth = 110;
+//    CGFloat titleWidth = 110;
     
     CGFloat btnMargin = 15;
     
@@ -109,33 +110,18 @@
     [self.view addSubview:self.phoneview];
     
     //验证码
+    self.captchaView = [[CaptchaView alloc]initWithFrame:CGRectMake(margin, self.phone.yy+10, w, h) leftTitleWidth:96];
+    [self.captchaView.captchaBtn addTarget:self action:@selector(sendCaptcha) forControlEvents:UIControlEventTouchUpInside];
+    self.captchaView.captchaTf.delegate = self;
+    [self.view addSubview:self.captchaView];
     
-    UITextField * check = [[UITextField alloc]initWithFrame:CGRectMake(margin, self.phone.yy+10, w-105, h)];
-    check.placeholder = @"请输入验证码";
-    check.delegate = self;
-    check.tag = 1;
-    [self.view addSubview:check];
-    self.check = check;
-    
-    //获取验证码
-    UIButton * getcheck = [[UIButton alloc]initWithFrame:CGRectMake(check.right, self.phoneview.yy + 13, 105,34)];
-    [getcheck setTitle:@"获取验证码" forState:UIControlStateNormal];
-    getcheck.titleLabel.font = [UIFont systemFontOfSize:13];
-    [getcheck setTitleColor:[UIColor colorWithHexString:@"#23AD8C"] forState:UIControlStateNormal];
-    getcheck.layer.cornerRadius = 5;
-    getcheck.layer.masksToBounds = YES;
-    [getcheck.layer setBorderWidth:1.0];
-    [getcheck.layer setBorderColor:[UIColor colorWithHexString:@"#23AD8C"].CGColor];
-    [getcheck addTarget:self action:@selector(sendCaptcha) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:getcheck];
-    
-    
+
     //checkview
-    self.checkview = [self createview:CGRectMake(margin, check.yy, w, 1)];
+    self.checkview = [self createview:CGRectMake(margin, self.captchaView.yy, w, 1)];
     [self.view addSubview:self.checkview];
     
     //密码
-    UITextField * pwd = [[UITextField alloc]initWithFrame:CGRectMake(margin,self.checkview.yy + 10, w, h)];
+    UITextField * pwd = [[UITextField alloc]initWithFrame:CGRectMake(margin,self.captchaView.yy + 10, w, h)];
     pwd.secureTextEntry = YES;
     pwd.placeholder = @"请输入密码";
 //    [pwd setBackgroundColor:[UIColor colorWithHexString:@"#FFFFFF"]];
@@ -232,7 +218,7 @@
 #pragma mark - Events
 - (void)sendCaptcha {
     
-    if (![self.phoneTf.text isPhoneNum]) {
+    if (![self.phone.text isPhoneNum]) {
         
         [TLAlert alertWithInfo:@"请输入正确的手机号"];
         
@@ -243,13 +229,13 @@
     http.showView = self.view;
     http.code = CAPTCHA_CODE;
     http.parameters[@"bizType"] = USER_REG_CODE;
-    http.parameters[@"mobile"] = self.phoneTf.text;
-    
+    http.parameters[@"mobile"] = self.phone.text;
     [http postWithSuccess:^(id responseObject) {
         
         [TLAlert alertWithSucces:[LangSwitcher switchLang:@"验证码已发送,请注意查收" key:nil]];
-        
+//
         [self.captchaView.captchaBtn begin];
+        
         
     } failure:^(NSError *error) {
         
@@ -261,33 +247,20 @@
 
 - (void)goReg {
     
-    if (![self.nickNameTF.text valid]) {
-        
-        [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请设置你的昵称" key:nil]];
-        
-        return ;
-    }
-    
-    if (![self.phoneTf.text isPhoneNum]) {
+    if (![self.phone.text isPhoneNum]) {
         
         [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入正确的手机号" key:nil]];
         
         return;
     }
     
-    if (!(self.captchaView.captchaTf.text && self.captchaView.captchaTf.text.length > 3)) {
-        [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入正确的验证码" key:nil]];
-        
-        return;
-    }
-    
-    if (!(self.pwdTf.text &&self.pwdTf.text.length > 5)) {
+    if (!(self.pwd.text &&self.pwd.text.length > 5)) {
         
         [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入6位以上密码" key:nil]];
         return;
     }
     
-    if (![self.pwdTf.text isEqualToString:self.rePwdTf.text]) {
+    if (![self.pwd.text isEqualToString:self.checkpwd.text]) {
         
         [TLAlert alertWithInfo:[LangSwitcher switchLang:@"输入的密码不一致" key:nil]];
         return;
@@ -305,18 +278,18 @@
     TLNetworking *http = [TLNetworking new];
     http.showView = self.view;
     http.code = USER_REG_CODE;
-    http.parameters[@"mobile"] = self.phoneTf.text;
-    http.parameters[@"loginPwd"] = self.pwdTf.text;
+    http.parameters[@"mobile"] = self.phone.text;
+    http.parameters[@"loginPwd"] = self.pwd.text;
     //    http.parameters[@"isRegHx"] = @"0";
     http.parameters[@"smsCaptcha"] = self.captchaView.captchaTf.text;
-    http.parameters[@"kind"] = APP_KIND;
-    http.parameters[@"nickname"] = self.nickNameTF.text;
-    if ([self.referTF.text valid]) {
-        
-        http.parameters[@"userReferee"] = self.referTF.text;
-        http.parameters[@"userRefereeKind"] = APP_KIND;
-        
-    }
+//    http.parameters[@"kind"] = APP_KIND;
+//    http.parameters[@"nickname"] = self.nickNameTF.text;
+//    if ([self.referTF.text valid]) {
+//
+//        http.parameters[@"userReferee"] = self.referTF.text;
+//        http.parameters[@"userRefereeKind"] = APP_KIND;
+//
+//    }
     
     [http postWithSuccess:^(id responseObject) {
         

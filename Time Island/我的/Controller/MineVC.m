@@ -18,12 +18,20 @@
 #import "BookVC.h"
 #import "OrderVC.h"
 #import "MallTabbar.h"
-#define titlearray @[@"我的购物车",@"我的认养",@"我的订单",@"我的文章",@"我的收藏",@"邀请有礼",@"设置"]
+#import "TLUploadManager.h"
+#import "AppConfig.h"
+
+#import "CertifyVC.h"
+
+#define titlearray @[@"我的碳泡泡",@"我的认养",@"我的订单",@"我的文章",@"我的收藏",@"邀请有礼",@"设置"]
 #define imagearray @[@"泡泡",@"",@"",@"",@"",@"",@"设置"]
 #define array1 @[@"余额",@"碳泡泡",@"积分"]
 @interface MineVC ()
 @property (nonatomic,retain) UIView * topview;
 @property (nonatomic,strong) TLTableView *table1;
+@property (nonatomic,strong) UILabel * name;
+@property (nonatomic,strong) UIImageView * logoimage;
+@property (nonatomic,strong) UILabel * nameLbl;
 
 @end
 
@@ -32,6 +40,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self navigationTransparentClearColor];
+    [self RefreshInfo];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -41,8 +50,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    [[NSString alloc]convertImageUrl];
+//    NSString * str = [[NSString alloc]init];
+//    NSLog(@" convertImageUrl = %@",[str convertImageUrl]);
+    
+    
     self.title = @"我的";
-
+    [self RefreshInfo];
+    if (![[TLUser user] checkLogin]) {
+        TLUserLoginVC * login = [TLUserLoginVC new];
+        [self.navigationController pushViewController:login animated:YES];
+    }
+    
+    
     self.table1 = [TLTableView tableViewWithFrame:CGRectMake(0, -kNavigationBarHeight, kScreenWidth, kScreenHeight+55) delegate:self dataSource:self];
     self.topview = [[UIView alloc]initWithFrame:CGRectMake(0, -kNavigationBarHeight, kScreenWidth, 563/2 -64 + kNavigationBarHeight)];
     [self setupview];
@@ -50,7 +71,7 @@
     self.table1.refreshDelegate = self;
 //    [_table1 beginRefreshing];
     [_table1 addRefreshAction:^{
-        [TLAlert alertWithInfo:@"网络连接失败！"];
+        [self RefreshInfo];
         [self.table1 endRefreshHeader];
     }];
     [self.view addSubview:self.table1];
@@ -69,17 +90,24 @@
     kViewRadius(headPortraitView, 33/2);
     headPortraitView.alpha = 0.3;
     
+    UITapGestureRecognizer * ges = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(certify)];
+    ges.delegate = self;
+    [headPortraitView addGestureRecognizer:ges];
+
+    
     UIImageView *headImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 171/2 + 12, 72.5 - 64 + kNavigationBarHeight + 8, 15, 15)];
     headImg.image = kImage(@"支付完成");
     
     UILabel *nameLbl = [UILabel labelWithFrame:CGRectMake(headImg.xx + 4, 72.5 - 64 + kNavigationBarHeight + 8, SCREEN_WIDTH - headImg.xx - 5, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:[UIColor whiteColor]];
     nameLbl.text = @"未认证";
+    self.nameLbl = nameLbl;
     
     //头像框
     UIImageView * img = [[UIImageView alloc]initWithFrame:CGRectMake(kScreenWidth/2 - 35, 170/2 - 64 + kNavigationBarHeight  , 70, 70)];
     img.image = [UIImage imageNamed:@"果树预售"];
     img.layer.cornerRadius = 35;
     img.layer.masksToBounds = YES;
+    self.logoimage = img;
     
     
     //姓名
@@ -89,6 +117,7 @@
     name.text = @"王大锤";
     name.textAlignment = NSTextAlignmentCenter;
     name.adjustsFontSizeToFitWidth = YES;
+    self.name = name;
     
     
     //签名
@@ -167,8 +196,6 @@
     switch (indexPath.row) {
         case 0:{
             MyCarbonBubbleVC * vc = [MyCarbonBubbleVC new];
-//            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-//            [self cw_presentViewController:nav];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
@@ -211,5 +238,33 @@
         default:
             break;
 }
+}
+//刷新s信息
+-(void)RefreshInfo{
+    
+    
+    [self.logoimage sd_setImageWithURL: [NSURL URLWithString:[[TLUser user].photo convertImageUrl]]];
+
+    
+    if ([TLUser user].idNo) {
+        self.nameLbl.text = @"已认证";
+    }
+    else{
+        self.nameLbl.text = @"未认证";
+    }
+    TLNetworking * http = [TLNetworking new];
+    http.code = USER_INFO;
+    http.parameters[@"userId"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
+        NSDictionary * dic = responseObject[@"data"];
+        [[TLUser user]saveUserInfo:dic];
+    } failure:^(NSError *error) {
+        self.name.text = @"王大锤" ;
+        self.logoimage.image =  [UIImage imageNamed:@"果树预售"];
+    }];
+}
+-(void)certify{
+    CertifyVC * vc = [CertifyVC new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

@@ -86,6 +86,6 @@
 
 
 -(void)ClassifyClick : (UIButton * )btn{
-    NSLog(@"%d",(int)btn.tag);
+//    NSLog(@"%d",(int)btn.tag);
 }
 @end

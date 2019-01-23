@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@class MallOrderCell;
+@protocol MallOrderCellDelegrate <NSObject>
+
+- (void)MallOrderCell:(MallOrderCell *)tableViewCell clickDeleteButton:(UIButton *)sender;
+
+@end
 
 @interface MallOrderCell : UITableViewCell
 @property (nonatomic,strong) UIButton * ShopNameBtn;
@@ -20,7 +26,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UILabel * GoodsCount;
 @property (nonatomic,strong) UILabel * GoodsMoney;
 @property (nonatomic,strong) UILabel * OrderTime;
-@property (nonatomic,strong) UILabel * OrderState;
+@property (nonatomic,assign) int OrderState;
+@property (nonatomic,strong) UILabel * StateLab;
+
+//@property (nonatomic,assign) int uuu;
+
+
+@property(nonatomic,weak)id<MallOrderCellDelegrate>delagate;
 @end
 
 NS_ASSUME_NONNULL_END

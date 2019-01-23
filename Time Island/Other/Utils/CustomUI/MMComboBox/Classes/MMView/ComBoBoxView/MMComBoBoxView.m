@@ -100,7 +100,7 @@
         popupView.tag = index;
         NSLog(@"%@",NSStringFromCGRect(popupView.frame));
         self.popupView = popupView;
-        [popupView popupViewFromSourceFrame:CGRectMake(0, kNavigationBarHeight, self.frame.size.width, self.frame.size.height) completion:^{
+        [popupView popupViewFromSourceFrame:CGRectMake(0, kNavigationBarHeight+self.frame.origin.y, self.frame.size.width, self.frame.size.height) completion:^{
            self.isAnimation = NO;
         }];
         [self.symbolArray addObject:popupView];

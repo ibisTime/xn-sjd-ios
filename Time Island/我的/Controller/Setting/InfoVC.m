@@ -7,8 +7,9 @@
 //
 
 #import "InfoVC.h"
+#import "TLUploadManager.h"
 
-@interface InfoVC ()
+@interface InfoVC ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic,strong) UIImageView * image;
 @property (nonatomic,strong) TLTextField * name;
 @property (nonatomic,strong) TLTextField * gender;
@@ -43,6 +44,10 @@
 //    [self.view addSubview:image];
     [view addSubview:image];
     self.image = image;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(seleckImage)];
+    [self.image addGestureRecognizer:tapGesture];
+    self.image.userInteractionEnabled = YES;
+    
     
     UIImageView * image1 = [[UIImageView alloc]initWithFrame:CGRectMake(image.x + 38, image.y + 38, 17, 17)
                            ];
@@ -78,4 +83,49 @@
     return view;
 }
 
+-(void)seleckImage{
+    
+    NSLog(@"%s",__func__);
+    //这部分代码是用来打开相册的
+    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;//是否允许编辑
+    picker.sourceType = sourceType;
+    [self presentViewController:picker animated:YES completion:nil];
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage * image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    TLUploadManager * manager = [TLUploadManager manager];
+    manager.imgData = UIImageJPEGRepresentation(image, 1.0);;
+    manager.image = image;
+    [manager getTokenShowView:self.view succes:^(NSString *key) {
+        
+//        [self changeHeadIconWithKey:key imgData:imgData];
+        TLNetworking *http = [TLNetworking new];
+        http.code = @"805080";
+        http.parameters[@"photo"] = key;
+        http.parameters[@"userId"] = [TLUser user].userId;
+        
+        [http postWithSuccess:^(id responseObject) {
+            [TLAlert alertWithSucces:[LangSwitcher switchLang:@"设置成功" key:nil]];
+            [[TLUser user] updateUserInfo];
+            self.image.image = image;
+            [picker dismissViewControllerAnimated:YES completion:nil];
+        } failure:^(NSError *error) {
+            [TLAlert alertWithError:@"设置失败"];
+            [picker dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
+    } failure:^(NSError *error) {
+        
+    }];
+
+   
+}
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
 @end

@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSString * GoodsCount;
 @property (nonatomic,strong) NSString * GoodsMoney;
 @property (nonatomic,strong) NSString * OrderTime;
-@property (nonatomic,strong) NSString * OrderState;
+@property (nonatomic,assign) int OrderState;//1为待付款。2为待收货。3为待发货。4待评价
 @end
 
 NS_ASSUME_NONNULL_END

@@ -10,7 +10,8 @@
 #define APICodeMacro_h
 
 //验证码
-#define CAPTCHA_CODE @"805953"
+//#define CAPTCHA_CODE @"805953"
+#define CAPTCHA_CODE @"630090"
 
 //用户
 #define USER_REG_CODE @"805041"//注册
@@ -30,7 +31,7 @@
 #define SYS_KEY @"ckey"
 
 //七牛图片上传
-#define IMG_UPLOAD_CODE @"805951"
+#define IMG_UPLOAD_CODE @"630091"
 
 //用户信息
 #define USER_INFO @"805121"

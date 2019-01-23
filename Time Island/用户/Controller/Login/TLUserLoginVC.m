@@ -7,7 +7,7 @@
 //
 
 #import "TLUserLoginVC.h"
-
+#import "AppDelegate.h"
 #import "BindMobileVC.h"
 #import "TLUserRegisterVC.h"
 #import "TLUserForgetPwdVC.h"
@@ -17,6 +17,8 @@
 #import "NSString+Check.h"
 #import "UIBarButtonItem+convience.h"
 #import "UILabel+Extension.h"
+
+#import "TLTabBarController.h"
 
 //#import "CurrencyModel.h"
 
@@ -115,6 +117,7 @@
     pwd.delegate = self;
     pwd.secureTextEntry = YES;
     [self.view addSubview:pwd];
+    self.pwd = pwd;
     
     //pwdview
     self.pwdview = [self createview:CGRectMake(30, pwd.yy, w-60, 1)];
@@ -183,6 +186,7 @@
 
 - (void)back {
     [self.view endEditing:YES];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -203,16 +207,27 @@
 }
 
 - (void)goLogin {
-    if (![self.phone.text isPhoneNum]) {
-        [TLAlert alertWithInfo:@"请输入正确的账号"];
-        return;
-    }
-    if (!(self.pwd.text && self.pwd.text.length > 5)) {
-        [TLAlert alertWithInfo:@"请输入正确的密码"];
-        return;
-    }
-    [self.view endEditing:YES];
+    TLNetworking *http = [TLNetworking new];
+    http.showView = self.view;
+    http.code = USER_LOGIN_CODE;
+    http.parameters[@"loginName"] = self.phone.text;
+    http.parameters[@"loginPwd"] = self.pwd.text;
     
+    [http postWithSuccess:^(id responseObject) {
+        NSDictionary * userinfo = responseObject[@"data"];
+        [TLUser user].userId = userinfo[@"userId"];
+        [TLUser user].token = userinfo[@"token"];
+//        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        self.window.backgroundColor = [UIColor whiteColor];
+        [self.window makeKeyAndVisible];
+        TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
+        self.window.rootViewController = tabBarCtrl;
+        
+    } failure:^(NSError *error) {
+        
+    }];
+
 }
 
 - (void)requesUserInfoWithResponseObject:(id)responseObject {
@@ -221,7 +236,7 @@
     NSString *userId = responseObject[@"data"][@"userId"];
     
     //保存用户账号和密码
-    //    [[TLUser user] saveUserName:self.phoneTf.text pwd:self.pwdTf.text];
+//        [[TLUser user] saveUserName:self.phoneTf.text pwd:self.pwdTf.text];
     
     //1.获取用户信息
     TLNetworking *http = [TLNetworking new];

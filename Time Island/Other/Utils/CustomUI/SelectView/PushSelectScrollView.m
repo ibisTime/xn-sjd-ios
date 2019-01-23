@@ -58,17 +58,12 @@
     
     _headView = [[PushSortBar alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kHeadBarHeight) sortNames:_itemTitles sortBlock:^(NSInteger index) {
         
-        if (index == 0 || index == 1) {
             [weakSelf.scrollView scrollRectToVisible:CGRectMake(kScreenWidth*index, 0, kScreenWidth, weakSelf.scrollView.height) animated:YES];
             
             if (weakSelf.selectBlock) {
                 weakSelf.selectBlock(index);
             }
-        } else {
-            if (weakSelf.selectBlock) {
-                weakSelf.selectBlock(index);
-            }
-        }
+      
         
     }];
     
@@ -83,7 +78,7 @@
     _scrollView.delegate = self;
     _scrollView.pagingEnabled = YES;
     _scrollView.bounces = NO;
-    _scrollView.scrollEnabled = NO;
+    _scrollView.scrollEnabled = YES;
     
     [_scrollView adjustsContentInsets];
     
@@ -103,5 +98,26 @@
     _headView.curruntIndex = _currentIndex;
 
 }
-
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    
+    CGFloat pageWith = scrollView.frame.size.width;
+    NSLog(@"scrollViewcontentSize%@",NSStringFromCGSize(scrollView.contentSize));
+    NSLog(@"scrollViewcontentOffset%@",NSStringFromCGPoint(scrollView.contentOffset));
+    CGFloat floa = scrollView.contentOffset.x;
+    NSInteger index = floa / kScreenWidth;
+    
+    if (index >= 0) {
+        [_headView selectSortBarWithIndex:index];
+        NSLog(@"scrollViewDidScroll%ld",index);
+        
+        if (self.selectBlock) {
+            
+            self.selectBlock(index);
+        }
+        
+    }
+    
+    
+}
 @end

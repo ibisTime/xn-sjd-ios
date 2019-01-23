@@ -16,7 +16,7 @@
 
 @interface ChangeLoginPwdVC ()
 //谷歌验证码
-@property (nonatomic, strong) TLTextField *googleAuthTF;
+//@property (nonatomic, strong) TLTextField *googleAuthTF;
 //旧密码
 @property (nonatomic,strong) TLTextField *oldPwdTf;
 //新密码
@@ -45,58 +45,60 @@
     CGFloat height = 45;
     
     //谷歌验证码
-    self.googleAuthTF = [[TLTextField alloc] initWithFrame:CGRectMake(0, 10, kScreenWidth, height)
-                                                 leftTitle:[LangSwitcher switchLang:@"谷歌验证码" key:nil]
-                                                titleWidth:leftW
-                                               placeholder:[LangSwitcher switchLang:@"请输入谷歌验证码" key:nil]];
-    
-    self.googleAuthTF.keyboardType = UIKeyboardTypeNumberPad;
-
-    [self.view addSubview:self.googleAuthTF];
-    
-    self.googleAuthTF.hidden = ![TLUser user].isGoogleAuthOpen;
-    
-    //复制
-    UIView *authView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 95, self.googleAuthTF.height)];
-    
-    UIButton *pasteBtn = [UIButton buttonWithTitle:[LangSwitcher switchLang:@"粘贴" key:nil] titleColor:kWhiteColor backgroundColor:kThemeColor titleFont:13.0 cornerRadius:5];
-    
-    pasteBtn.frame = CGRectMake(0, 0, 85, self.googleAuthTF.height - 15);
-    
-    pasteBtn.centerY = authView.height/2.0;
-    
-    [pasteBtn addTarget:self action:@selector(clickPaste) forControlEvents:UIControlEventTouchUpInside];
-    
-    [authView addSubview:pasteBtn];
-    
-    self.googleAuthTF.rightView = authView;
-    
-    CGFloat captchaViewY = [TLUser user].isGoogleAuthOpen ? self.googleAuthTF.yy + 1: 10;
-    
+//    self.googleAuthTF = [[TLTextField alloc] initWithFrame:CGRectMake(0, 10, kScreenWidth, height)
+//                                                 leftTitle:[LangSwitcher switchLang:@"谷歌验证码" key:nil]
+//                                                titleWidth:leftW
+//                                               placeholder:[LangSwitcher switchLang:@"请输入谷歌验证码" key:nil]];
+//
+//    self.googleAuthTF.keyboardType = UIKeyboardTypeNumberPad;
+//
+//    [self.view addSubview:self.googleAuthTF];
+//
+//    self.googleAuthTF.hidden = ![TLUser user].isGoogleAuthOpen;
+//
+//    //复制
+//    UIView *authView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 95, self.googleAuthTF.height)];
+//
+//    UIButton *pasteBtn = [UIButton buttonWithTitle:[LangSwitcher switchLang:@"粘贴" key:nil] titleColor:kWhiteColor backgroundColor:kThemeColor titleFont:13.0 cornerRadius:5];
+//
+//    pasteBtn.frame = CGRectMake(0, 0, 85, self.googleAuthTF.height - 15);
+//
+//    pasteBtn.centerY = authView.height/2.0;
+//
+//    [pasteBtn addTarget:self action:@selector(clickPaste) forControlEvents:UIControlEventTouchUpInside];
+//
+//    [authView addSubview:pasteBtn];
+//
+//    self.googleAuthTF.rightView = authView;
+//
+//    CGFloat captchaViewY = [TLUser user].isGoogleAuthOpen ? self.googleAuthTF.yy + 1: 10;
+//
     //旧密码
-    TLTextField *oldPwdTf = [[TLTextField alloc] initWithFrame:CGRectMake(0, captchaViewY, kScreenWidth, height)
-                                                  leftTitle:[LangSwitcher switchLang:@"旧密码" key:nil]
-                                                 titleWidth:leftW
-                                                placeholder:[LangSwitcher switchLang:@"请输入旧密码(不少于6位)" key:nil]];
+//    TLTextField *oldPwdTf = [[TLTextField alloc] initWithFrame:CGRectMake(0, captchaViewY, kScreenWidth, height)
+//                                                  leftTitle:[LangSwitcher switchLang:@"旧密码" key:nil]
+//                                                 titleWidth:leftW
+//                                                placeholder:[LangSwitcher switchLang:@"请输入旧密码(不少于6位)" key:nil]];
     
+    TLTextField *oldPwdTf = [[TLTextField alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 55) placeholder:@"请输入原密码(不少于6位)"];
     oldPwdTf.returnKeyType = UIReturnKeyNext;
     oldPwdTf.secureTextEntry = YES;
     [oldPwdTf addTarget:self action:@selector(next:) forControlEvents:UIControlEventEditingDidEndOnExit];
     
-    [self.bgSV addSubview:oldPwdTf];
+    [self.view addSubview:oldPwdTf];
     self.oldPwdTf = oldPwdTf;
     
     //重新输入
-    TLTextField *rePwdTf = [[TLTextField alloc] initWithFrame:CGRectMake(0, oldPwdTf.yy + 1, kScreenWidth, height)
-                                                    leftTitle:[LangSwitcher switchLang:@"新密码" key:nil]
-                                                   titleWidth:leftW
-                                                  placeholder:[LangSwitcher switchLang:@"请输入新密码(不少于6位)" key:nil]];
+//    TLTextField *rePwdTf = [[TLTextField alloc] initWithFrame:CGRectMake(0, oldPwdTf.yy + 1, kScreenWidth, height)
+//                                                    leftTitle:[LangSwitcher switchLang:@"新密码" key:nil]
+//                                                   titleWidth:leftW
+//                                                  placeholder:[LangSwitcher switchLang:@"请输入新密码(不少于6位)" key:nil]];
+    TLTextField *rePwdTf = [[TLTextField alloc]initWithFrame:CGRectMake(15, 55, SCREEN_WIDTH - 30, 55) placeholder:@"请输入新密码(不少于6位)"];
     
     rePwdTf.returnKeyType = UIReturnKeyDone;
     
     [rePwdTf addTarget:self action:@selector(done:) forControlEvents:UIControlEventEditingDidEndOnExit];
     
-    [self.bgSV addSubview:rePwdTf];
+    [self.view addSubview:rePwdTf];
     rePwdTf.secureTextEntry = YES;
     
     self.rePwdTf = rePwdTf;
@@ -107,25 +109,25 @@
     UIButton *confirmBtn = [UIButton buttonWithTitle:btnStr titleColor:kWhiteColor backgroundColor:kAppCustomMainColor titleFont:15.0 cornerRadius:5];
     
     confirmBtn.frame = CGRectMake(15, rePwdTf.yy + 30, kScreenWidth - 30, 44);
-    [self.bgSV addSubview:confirmBtn];
+    [self.view addSubview:confirmBtn];
     [confirmBtn addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
 #pragma mark - Events
-- (void)clickPaste {
-    
-    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    
-    if (pasteboard.string != nil) {
-        
-        self.googleAuthTF.text = pasteboard.string;
-        
-    } else {
-        
-        [TLAlert alertWithInfo:[LangSwitcher switchLang:@"粘贴内容为空" key:nil]];
-    }
-}
+//- (void)clickPaste {
+//
+//    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+//
+//    if (pasteboard.string != nil) {
+//
+//        self.googleAuthTF.text = pasteboard.string;
+//
+//    } else {
+//
+//        [TLAlert alertWithInfo:[LangSwitcher switchLang:@"粘贴内容为空" key:nil]];
+//    }
+//}
 
 - (void)next:(UIButton *)sender {
     
@@ -139,28 +141,28 @@
 
 - (void)confirm {
     
-    if ([TLUser user].isGoogleAuthOpen) {
-        
-        if (![self.googleAuthTF.text valid]) {
-            
-            [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入谷歌验证码" key:nil]];
-            return;
-        }
-        
-        //判断谷歌验证码是否为纯数字
-        if (![NSString isPureNumWithString:self.googleAuthTF.text]) {
-            
-            [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入正确的谷歌验证码" key:nil]];
-            return ;
-        }
-        
-        //判断谷歌验证码是否为6位
-        if (self.googleAuthTF.text.length != 6) {
-            
-            [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入正确的谷歌验证码" key:nil]];
-            return ;
-        }
-    }
+//    if ([TLUser user].isGoogleAuthOpen) {
+//
+//        if (![self.googleAuthTF.text valid]) {
+//
+//            [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入谷歌验证码" key:nil]];
+//            return;
+//        }
+//
+//        //判断谷歌验证码是否为纯数字
+//        if (![NSString isPureNumWithString:self.googleAuthTF.text]) {
+//
+//            [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入正确的谷歌验证码" key:nil]];
+//            return ;
+//        }
+//
+//        //判断谷歌验证码是否为6位
+//        if (self.googleAuthTF.text.length != 6) {
+//
+//            [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入正确的谷歌验证码" key:nil]];
+//            return ;
+//        }
+//    }
     
     if (!([self.oldPwdTf.text valid])) {
         
@@ -201,11 +203,11 @@
     http.parameters[@"newLoginPwd"] = self.rePwdTf.text;
     http.parameters[@"userId"] = [TLUser user].userId;
     
-    if ([TLUser user].isGoogleAuthOpen) {
-        
-        http.parameters[@"googleCaptcha"] = self.googleAuthTF.text;
-        
-    }
+//    if ([TLUser user].isGoogleAuthOpen) {
+//
+//        http.parameters[@"googleCaptcha"] = self.googleAuthTF.text;
+//
+//    }
     
     [http postWithSuccess:^(id responseObject) {
         
@@ -221,7 +223,7 @@
             
             self.success();
         }
-        
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     } failure:^(NSError *error) {
         
         

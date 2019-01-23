@@ -47,6 +47,16 @@
 //#import "TableViewAnimationKitHeaders.h"
 //#import "ZJAnimationPopView.h"
 
+#import <SDWebImageManager.h>
+#import <SDWebImageDownloader.h>
+#import "UIImageView+WebCache.h"
+#import "SDWebImageManager.h"
+#import "SDWebImageDownloader.h"
+#import "UIImage+GIF.h"
+#import "NSData+ImageContentType.h"
+
+
+#import "TLUploadManager.h"
 #endif /* CoinPrefixHeader_h */
 
 #endif
