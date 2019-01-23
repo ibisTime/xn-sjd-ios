@@ -59,6 +59,8 @@
 #define kBottomItemGrayColor    [UIColor colorWithHexString:@"#FAFAFA"]   //底栏灰色
 #define kCommentSecondColor     [UIColor colorWithHexString:@"#FAFAFA"]   //评论二级颜色
 #define kPlaceholderColor       [UIColor colorWithHexString:@"#CCCCCC"]
+#define kSJDMainTextColor       [UIColor colorWithHexString:@"#F68646"] //橘黄色文字
+
     //占位颜色
 /****颜色列表***/
 #define kRedColor RGB(239, 106, 105)
@@ -75,6 +77,14 @@
 #define kSilverGreyColor RGB(236, 236, 236)        //银灰色 #ececec
 #define kShallowGreyColor RGB(206, 206, 206)       //浅灰色 #cecece
 #define kClearColor [UIColor clearColor]           //透明
+#define BackColor RGB(247.0, 247.0, 247.0)
+#define HGfont(s)  [UIFont systemFontOfSize:(s)]
+#define HGImage(name)       [UIImage imageNamed:name]
+#define HGColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define TextColor RGB(51, 51, 51)
+#define LineBackColor RGB(247.0, 247.0, 247.0)
+#define USERDEFAULTS [NSUserDefaults standardUserDefaults]
+#define GaryTextColor RGB(153, 153, 153)
 
 #pragma mark - 界面尺寸
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
@@ -83,7 +93,14 @@
 #define kWidth(x) (x)*(kScreenWidth)/375.0
 #define kHeight(y) (y)*(kScreenHeight)/667.0
 
-
+#define TOKEN_ID @"token_id"
+#define USER_ID @"user_id"
+#define MOBILE @"mobile_id"
+#define NICKNAME @"nickname_id"
+#define PHOTO @"photo"
+#define PAYPASSWORD @"tradepwdFlag"
+#define IDNO @"idNo"
+#define NAME @"name"
 
 #define kDevice_Is_iPhoneX (kScreenHeight == 812 ? YES : NO)
 #define kNavigationBarHeight  (kDevice_Is_iPhoneX == YES ? 88: 64)

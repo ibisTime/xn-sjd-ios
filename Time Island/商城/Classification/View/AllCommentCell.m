@@ -13,7 +13,7 @@
 @property (nonatomic ,strong) UILabel *timeLab;
 @property (nonatomic ,strong) UIButton *commentBtn;
 @property (nonatomic ,strong) UIButton *zanBtn;
-
+@property (nonatomic ,strong) UIView *lineView;
 
 @end
 @implementation AllCommentCell
@@ -45,7 +45,6 @@
         [self.contentView addSubview:detailLab];
         UILabel *seeCount = [UILabel labelWithBackgroundColor:kClearColor textColor:RGB(0, 0, 0) font:13];
         seeCount.frame = CGRectMake(15, detailLab.yy+5,80, 35);
-        seeCount.numberOfLines = 2;
         seeCount.textAlignment = NSTextAlignmentLeft;
         seeCount.text = @"浏览100次";
         self.seeCount = seeCount;
@@ -72,6 +71,7 @@
         lineView.backgroundColor = RGB(242, 242, 242);
         lineView.frame = CGRectMake(0, seeCount.yy, kScreenWidth, 10);
         [self addSubview:lineView];
+        self.lineView = lineView;
     }
     return self;
 }
@@ -81,4 +81,46 @@
     
 }
 
+- (void)setImagesName:(NSArray *)imagesName
+{
+    _imagesName = imagesName;
+}
+
+- (void)layoutImagesView
+{
+    
+}
+-(void)setEditModel:(GoodsEditModel *)editModel
+{
+    _editModel = editModel;
+    if (editModel.images.count >0) {
+        
+    }else{
+        editModel.Rowheight = self.zanBtn.yy +20;
+        
+//        [self setNeedsLayout];
+        
+        return;
+    }
+    
+    for (int i = 0; i < editModel.images.count; i++) {
+        UIImageView *photoImage = [[UIImageView alloc]initWithFrame:CGRectMake(15 + i % 3 *  ((SCREEN_WIDTH - 50)/3 + 10), self.detailLab.yy +10 + i / 3 * ((SCREEN_WIDTH - 50)/3 + 10), (SCREEN_WIDTH - 50)/3, kHeight(102))];
+        [photoImage sd_setImageWithURL:[NSURL URLWithString:[editModel.images[i] convertImageUrl]] placeholderImage:kImage(editModel.images[i])];
+        photoImage.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(btnclick1:)];
+        [photoImage addGestureRecognizer:tap];
+        [self addSubview:photoImage];
+    }
+    self.seeCount.frame = CGRectMake(15, (editModel.images.count/4 +1)*(kHeight(102))+kHeight(100)+(editModel.images.count/4)*15, 80, 35);
+    self.commentBtn.frame = CGRectMake(kScreenWidth/2+80, (editModel.images.count/4 +1)*(kHeight(102))+kHeight(100)+(editModel.images.count/4)*15, 48, 33);
+    self.zanBtn.frame = CGRectMake(kScreenWidth/2+80+kWidth(48), (editModel.images.count/4 +1)*(kHeight(102))+kHeight(100)+(editModel.images.count/4)*15, 48, 33);
+    self.lineView.frame = CGRectMake(0, self.seeCount.yy+20, kScreenWidth, 10);
+    editModel.Rowheight = self.seeCount.yy +30;
+    
+//    [self setNeedsLayout];
+}
+- (void)btnclick1:(UIButton *)btn
+{
+    
+}
 @end

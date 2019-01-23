@@ -27,11 +27,13 @@
 @property (nonatomic , strong) NSArray *itemsTitles;
 @property (nonatomic , strong) TreeInfoView *infoView;
 @property (nonatomic , strong) TeamView *teamView;
-@property (nonatomic , strong) RenYangFieldView *renYangFieldView;
 @property (nonatomic , strong) TreeBottomView *bottomView;
+@property (nonatomic , strong) RealNameView *realNameView;
+
+@property (nonatomic , strong) RenYangFieldView *renYangFieldView;
+
 @property (nonatomic , strong) RenYangFieldDeyailView *renYangFieldDeyailView;
 
-@property (nonatomic , strong) RealNameView *realNameView;
 
 @end
 

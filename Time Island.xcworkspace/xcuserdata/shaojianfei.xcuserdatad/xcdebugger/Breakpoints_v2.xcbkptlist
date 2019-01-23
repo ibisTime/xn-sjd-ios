@@ -118,7 +118,7 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/Other/Utils/CustomUI/MMComboBox/Classes/MMView/ComBoBoxView/MMComBoBoxView.m"
-                  timestampString = "569844635.553654"
+                  timestampString = "569928728.939904"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "103"
@@ -133,7 +133,7 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/Other/Utils/CustomUI/MMComboBox/Classes/MMView/ComBoBoxView/MMComBoBoxView.m"
-                  timestampString = "569844635.5572571"
+                  timestampString = "569928728.944272"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "103"
@@ -148,7 +148,7 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/Other/Utils/CustomUI/MMComboBox/Classes/MMView/ComBoBoxView/MMComBoBoxView.m"
-                  timestampString = "569844635.560716"
+                  timestampString = "569928728.949288"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "103"
@@ -156,6 +156,38 @@
                   offsetFromSymbolStart = "20">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Time Island/&#x9996;&#x9875;/TreeDetail/TreeDetailVC.m"
+            timestampString = "569931720.544353"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "-bottomClickWithIndex:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Time Island/&#x9996;&#x9875;/GoodsDetails/Controller/GoodsDetailsVc.m"
+            timestampString = "569931720.544898"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "-bannerView:didClickImagesAtIndex:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

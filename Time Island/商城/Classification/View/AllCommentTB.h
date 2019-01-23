@@ -7,7 +7,10 @@
 //
 
 #import "TLTableView.h"
-
+#import "GoodsEditModel.h"
 @interface AllCommentTB : TLTableView
+@property (nonatomic ,assign) CGFloat rowHe;
+@property (nonatomic ,strong) NSArray *imagesName;
+@property (nonatomic, strong) NSMutableArray <GoodsEditModel *>*models;
 
 @end

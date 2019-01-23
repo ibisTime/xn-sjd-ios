@@ -39,15 +39,20 @@ static NSString *identifierCell = @"CommentCell";
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 9;
+    return self.models.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    AllCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:identifierCell forIndexPath:indexPath];
-    
+    NSString *identifier = [NSString stringWithFormat:@"%ld%ldcell", indexPath.section, indexPath.row];
+    AllCommentCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (cell==nil) {
+        cell = [[AllCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    GoodsEditModel *model = self.models[indexPath.row];
+    cell.editModel = model;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    CoinWeakSelf;
     
     return cell;
 }
@@ -56,8 +61,7 @@ static NSString *identifierCell = @"CommentCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    return kHeight(120);
+    return self.models[indexPath.row].Rowheight;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
