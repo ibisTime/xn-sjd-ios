@@ -40,13 +40,16 @@ void TLLog(NSString *format, ...) {
     
     _runEnv = runEnv;
     
-    self.companyCode = @"CD-COIN000017";
-    self.systemCode = @"CD-COIN000017";
+//    self.companyCode = @"CD-COIN000017";
+//    self.systemCode = @"CD-COIN000017";
+
+    self.companyCode = @"CD-SJD000025";
+    self.systemCode = @"CD-SJD000025";
     
     switch (_runEnv) {
             
         case RunEnvRelease: {
-            self.qiniuDomain = @"http://image.bjdd.hichengdai.com";
+            self.qiniuDomain = @"http://image.o2lin.com/";
 
             self.ossDomain = @"http://kkkotc.oss-cn-shenzhen.aliyuncs.com/";
 //            self.addr = @"https://www.bcoin.im/api";
@@ -65,7 +68,7 @@ void TLLog(NSString *format, ...) {
         }break;
             
         case RunEnvTest: {
-            self.qiniuDomain = @"http://image.bjdd.hichengdai.com";
+            self.qiniuDomain = @"http://image.o2lin.com/";
 
             self.ossDomain = @"http://kkkotc.oss-cn-shenzhen.aliyuncs.com/";
             self.addr = @"http://47.99.147.67:2905";

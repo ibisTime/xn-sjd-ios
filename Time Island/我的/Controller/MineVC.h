@@ -8,6 +8,6 @@
 
 #import "TLBaseVC.h"
 
-@interface MineVC : TLBaseVC<UITableViewDelegate,UITableViewDataSource,RefreshDelegate>
+@interface MineVC : TLBaseVC<UITableViewDelegate,UITableViewDataSource,RefreshDelegate,UIGestureRecognizerDelegate>
 
 @end

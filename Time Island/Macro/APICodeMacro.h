@@ -18,7 +18,7 @@
 #define USER_INVITE_REG_CODE @"805154"//邀请注册
 #define USER_LOGIN_CODE @"805050"//登录
 #define USER_FIND_PWD_CODE @"805063"//忘记密码
-#define USER_CHANGE_PWD_CODE @"630071"//修改登录密码
+#define USER_CHANGE_PWD_CODE @"805064"//修改登录密码
 #define USER_CAHNGE_MOBILE @"805061"//修改手机号
 #define USER_CHANGE_LOGIN_NAME @"805150"//修改登录名
 #define USER_SET_TRADE_PWD @"805066"//设置交易密码
@@ -31,7 +31,7 @@
 #define SYS_KEY @"ckey"
 
 //七牛图片上传
-#define IMG_UPLOAD_CODE @"805951"
+#define IMG_UPLOAD_CODE @"630091"
 
 //用户信息
 #define USER_INFO @"805121"

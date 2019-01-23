@@ -62,6 +62,12 @@
 @property (nonatomic, copy) NSString *realName;
 //身份证
 @property (nonatomic, copy) NSString *idNo;
+//身份证前照
+@property (nonatomic,copy) NSString * idPic;
+//身份证后照
+@property (nonatomic,copy) NSString * backIdPic;
+//个人简介
+@property (nonatomic,copy) NSString * introduce;
 
 @property (nonatomic, copy) NSString *remark;
 //人民币账户

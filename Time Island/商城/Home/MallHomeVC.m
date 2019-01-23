@@ -196,7 +196,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)ClassifyClick : (UIButton * )btn{
-    NSLog(@"%d",(int)btn.tag);
+//    NSLog(@"%d",(int)btn.tag);
 }
 
 

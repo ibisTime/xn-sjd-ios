@@ -96,7 +96,7 @@
 
 - (void)timer {
     self.currentRowIndex++;
-    NSLog(@"%ld", _currentRowIndex);
+//    NSLog(@"%ld", _currentRowIndex);
     [self.tableView setContentOffset:CGPointMake(0, _currentRowIndex * _tableView.rowHeight) animated:YES];
 }
 

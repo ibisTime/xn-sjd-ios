@@ -54,7 +54,7 @@
     TLNetworking *http = [TLNetworking new];
     http.showView = self.view;
     http.code = CAPTCHA_CODE;
-    http.parameters[@"bizType"] = @"630070";
+    http.parameters[@"bizType"] = @"805066";
     http.parameters[@"mobile"] = self.PayPwdPhone.text;
     
     [http postWithSuccess:^(id responseObject) {
@@ -89,7 +89,7 @@
     
     TLNetworking *http = [TLNetworking new];
     http.showView = self.view;
-    http.code = @"630070";
+    http.code = @"805066";
     
     http.parameters[@"tradePwd"] = self.PayPwd.text;
     http.parameters[@"smsCaptcha"] = self.captchaView.captchaTf.text;
