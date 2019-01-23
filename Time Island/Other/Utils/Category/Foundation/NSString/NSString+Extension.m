@@ -19,6 +19,14 @@
 #import <sys/sysctl.h>
 #import <sys/socket.h>
 
+#import <SDWebImageManager.h>
+#import <SDWebImageDownloader.h>
+#import "UIImageView+WebCache.h"
+#import "SDWebImageManager.h"
+#import "SDWebImageDownloader.h"
+#import "UIImage+GIF.h"
+#import "NSData+ImageContentType.h"
+
 #define IOS_CELLULAR    @"pdp_ip0"
 #define IOS_WIFI        @"en0"
 #define IOS_VPN         @"utun0"
@@ -159,7 +167,7 @@
     } else {
         
 //        if ([self containsString:@"kkkotc_"]) {
-            NSString *imageUrl = [[NSString stringWithFormat:@"%@%@",[AppConfig config].ossDomain,self] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet] ];
+            NSString *imageUrl = [[NSString stringWithFormat:@"%@%@",[AppConfig config].qiniuDomain,self] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet] ];
             
             return imageUrl;
 //        }else{
@@ -456,6 +464,17 @@ raiseOnOverflow:NO raiseOnUnderflow:NO raiseOnDivideByZero:YES];
     }
     return [addresses count] ? addresses : nil;
 }
-
+-(UIImage *)DownloadImageWithSrting:(NSString *)ImageString{
+    UIImageView * image;
+//    NSString * url = [[AppConfig config].qiniuDomain stringByAppendingFormat:@"%@", ImageString];
+    NSString * str =  [NSString stringWithFormat:@"%@%@", [AppConfig config].qiniuDomain, ImageString];
+    NSURL * url = [NSURL URLWithString:str];
+    [image sd_setImageWithURL:url placeholderImage:nil options:SDWebImageCacheMemoryOnly progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+        NSLog(@"%.2f",1.0*receivedSize/expectedSize);
+    } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        
+    }];
+    return image.image;
+}
 
 @end

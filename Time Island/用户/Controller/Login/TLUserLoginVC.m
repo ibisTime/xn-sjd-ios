@@ -7,7 +7,7 @@
 //
 
 #import "TLUserLoginVC.h"
-
+#import "AppDelegate.h"
 #import "BindMobileVC.h"
 #import "TLUserRegisterVC.h"
 #import "TLUserForgetPwdVC.h"
@@ -17,6 +17,8 @@
 #import "NSString+Check.h"
 #import "UIBarButtonItem+convience.h"
 #import "UILabel+Extension.h"
+
+#import "TLTabBarController.h"
 
 //#import "CurrencyModel.h"
 
@@ -184,6 +186,7 @@
 
 - (void)back {
     [self.view endEditing:YES];
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -204,17 +207,6 @@
 }
 
 - (void)goLogin {
-//    if (![self.phone.text isPhoneNum]) {
-//        [TLAlert alertWithInfo:@"请输入正确的账号"];
-//        return;
-//    }
-//    if (!(self.pwd.text && self.pwd.text.length > 5)) {
-//        [TLAlert alertWithInfo:@"请输入正确的密码"];
-//        return;
-//    }
-
-//    [self.view endEditing:YES];
-    
     TLNetworking *http = [TLNetworking new];
     http.showView = self.view;
     http.code = USER_LOGIN_CODE;
@@ -222,15 +214,20 @@
     http.parameters[@"loginPwd"] = self.pwd.text;
     
     [http postWithSuccess:^(id responseObject) {
-//        [TLUser user]sa
         NSDictionary * userinfo = responseObject[@"data"];
         [TLUser user].userId = userinfo[@"userId"];
         [TLUser user].token = userinfo[@"token"];
 //        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        self.window.backgroundColor = [UIColor whiteColor];
+        [self.window makeKeyAndVisible];
+        TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
+        self.window.rootViewController = tabBarCtrl;
+        
     } failure:^(NSError *error) {
         
     }];
-    
+
 }
 
 - (void)requesUserInfoWithResponseObject:(id)responseObject {

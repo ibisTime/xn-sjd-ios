@@ -13,5 +13,5 @@
 
 @property (nonatomic,copy) void(^loginSuccess)();
 
-
+@property (strong, nonatomic) UIWindow *window;
 @end

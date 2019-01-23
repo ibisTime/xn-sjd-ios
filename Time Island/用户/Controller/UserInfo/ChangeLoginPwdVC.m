@@ -199,8 +199,8 @@
     http.showView = self.view;
     
     http.code = USER_CHANGE_PWD_CODE;
-    http.parameters[@"oldTradePwd"] = self.oldPwdTf.text;
-    http.parameters[@"newTradePwd"] = self.rePwdTf.text;
+    http.parameters[@"oldLoginPwd"] = self.oldPwdTf.text;
+    http.parameters[@"newLoginPwd"] = self.rePwdTf.text;
     http.parameters[@"userId"] = [TLUser user].userId;
     
 //    if ([TLUser user].isGoogleAuthOpen) {
@@ -223,7 +223,7 @@
             
             self.success();
         }
-        
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     } failure:^(NSError *error) {
         
         

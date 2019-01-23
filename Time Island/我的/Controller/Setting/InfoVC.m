@@ -7,6 +7,7 @@
 //
 
 #import "InfoVC.h"
+#import "TLUploadManager.h"
 
 @interface InfoVC ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic,strong) UIImageView * image;
@@ -96,8 +97,33 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage * image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    self.image.image = image;
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    
+    TLUploadManager * manager = [TLUploadManager manager];
+    manager.imgData = UIImageJPEGRepresentation(image, 1.0);;
+    manager.image = image;
+    [manager getTokenShowView:self.view succes:^(NSString *key) {
+        
+//        [self changeHeadIconWithKey:key imgData:imgData];
+        TLNetworking *http = [TLNetworking new];
+        http.code = @"805080";
+        http.parameters[@"photo"] = key;
+        http.parameters[@"userId"] = [TLUser user].userId;
+        
+        [http postWithSuccess:^(id responseObject) {
+            [TLAlert alertWithSucces:[LangSwitcher switchLang:@"设置成功" key:nil]];
+            [[TLUser user] updateUserInfo];
+            self.image.image = image;
+            [picker dismissViewControllerAnimated:YES completion:nil];
+        } failure:^(NSError *error) {
+            [TLAlert alertWithError:@"设置失败"];
+            [picker dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
+    } failure:^(NSError *error) {
+        
+    }];
+
+   
 }
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [picker dismissViewControllerAnimated:YES completion:nil];

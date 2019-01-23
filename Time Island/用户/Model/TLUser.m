@@ -208,6 +208,9 @@ NSString *const kGoogleAuthClose = @"0";
 //    self.unReadMsgCount = 0;
     self.realName = nil;
     self.idNo = nil;
+    self.idPic = nil;
+    self.backIdPic = nil;
+    self.introduce = nil;
     self.zfbAccount = nil;
     self.zfbQr = nil;
     
@@ -294,6 +297,9 @@ NSString *const kGoogleAuthClose = @"0";
     self.nickname = dict[@"nickname"];
     self.realName = dict[@"realName"];
     self.idNo = dict[@"idNo"];
+    self.idPic = dict[@"idPic"];
+    self.backIdPic = dict[@"backIdPic"];
+    self.introduce = dict[@"introduce"];
     self.tradepwdFlag = [NSString stringWithFormat:@"%@", dict[@"tradepwdFlag"]];
     self.googleAuthFlag = [NSString stringWithFormat:@"%@", dict[@"googleAuthFlag"]];
     self.level = dict[@"level"];
@@ -318,7 +324,12 @@ NSString *const kGoogleAuthClose = @"0";
     _photo = [photo copy];
     
 }
-
+-(void)setIdPic:(NSString *)idPic{
+    _idPic = [idPic copy];
+}
+- (void)setBackIdPic:(NSString *)backIdPic{
+    _backIdPic = [backIdPic copy];
+}
 //- (void)saveUserName:(NSString *)userName pwd:(NSString *)pwd {
 //    
 //    self.userName = userName;

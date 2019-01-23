@@ -108,6 +108,9 @@
 		3610EEC121EDC3A300FD345D /* AddCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC021EDC3A300FD345D /* AddCardVC.m */; };
 		3610EEC421EDCEBD00FD345D /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC321EDCEBD00FD345D /* InfoVC.m */; };
 		3610EEC721EDD6A800FD345D /* GetAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC621EDD6A800FD345D /* GetAddVC.m */; };
+		363E291421F84530003981CD /* CertifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 363E291321F84530003981CD /* CertifyVC.m */; };
+		363E291721F84984003981CD /* CertifyVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 363E291621F84984003981CD /* CertifyVCCell.m */; };
+		363E291B21F84D46003981CD /* PersonalCertifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 363E291A21F84D46003981CD /* PersonalCertifyVC.m */; };
 		3647C47221F16D6B00FB049D /* OrderDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647C47121F16D6B00FB049D /* OrderDetailsVC.m */; };
 		3647C49A21F1B38800FB049D /* MallHomeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647C49921F1B38800FB049D /* MallHomeHeadView.m */; };
 		3647C4A321F1D57400FB049D /* ReceivingAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647C4A221F1D57400FB049D /* ReceivingAddressVC.m */; };
@@ -584,6 +587,12 @@
 		3610EEC321EDCEBD00FD345D /* InfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoVC.m; sourceTree = "<group>"; };
 		3610EEC521EDD6A800FD345D /* GetAddVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAddVC.h; sourceTree = "<group>"; };
 		3610EEC621EDD6A800FD345D /* GetAddVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAddVC.m; sourceTree = "<group>"; };
+		363E291221F84530003981CD /* CertifyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CertifyVC.h; sourceTree = "<group>"; };
+		363E291321F84530003981CD /* CertifyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CertifyVC.m; sourceTree = "<group>"; };
+		363E291521F84984003981CD /* CertifyVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CertifyVCCell.h; sourceTree = "<group>"; };
+		363E291621F84984003981CD /* CertifyVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CertifyVCCell.m; sourceTree = "<group>"; };
+		363E291921F84D46003981CD /* PersonalCertifyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalCertifyVC.h; sourceTree = "<group>"; };
+		363E291A21F84D46003981CD /* PersonalCertifyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCertifyVC.m; sourceTree = "<group>"; };
 		3647C47021F16D6B00FB049D /* OrderDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderDetailsVC.h; sourceTree = "<group>"; };
 		3647C47121F16D6B00FB049D /* OrderDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderDetailsVC.m; sourceTree = "<group>"; };
 		3647C49821F1B38800FB049D /* MallHomeHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallHomeHeadView.h; sourceTree = "<group>"; };
@@ -1771,8 +1780,21 @@
 				3610EEA521ED716A00FD345D /* MineVCCell.m */,
 				3689768821EF0488005F1177 /* InviteVCCell.h */,
 				3689768921EF0488005F1177 /* InviteVCCell.m */,
+				363E291521F84984003981CD /* CertifyVCCell.h */,
+				363E291621F84984003981CD /* CertifyVCCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		363E291821F84D28003981CD /* Certify */ = {
+			isa = PBXGroup;
+			children = (
+				363E291221F84530003981CD /* CertifyVC.h */,
+				363E291321F84530003981CD /* CertifyVC.m */,
+				363E291921F84D46003981CD /* PersonalCertifyVC.h */,
+				363E291A21F84D46003981CD /* PersonalCertifyVC.m */,
+			);
+			path = Certify;
 			sourceTree = "<group>";
 		};
 		3647C49E21F1D4A400FB049D /* Controller */ = {
@@ -2682,6 +2704,7 @@
 				3689768F21EF3342005F1177 /* OrderVC.m */,
 				3647C47021F16D6B00FB049D /* OrderDetailsVC.h */,
 				3647C47121F16D6B00FB049D /* OrderDetailsVC.m */,
+				363E291821F84D28003981CD /* Certify */,
 				3689767C21EF005B005F1177 /* Setting */,
 				3689767B21EF003B005F1177 /* Collect */,
 			);
@@ -2799,11 +2822,11 @@
 		B81E5FFF21DC906C00873AB9 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				B81E600021DC906C00873AB9 /* TLUserForgetPwdVC.h */,
-				B81E600121DC906C00873AB9 /* TLUserLoginVC.m */,
-				B81E600221DC906C00873AB9 /* TLUserRegisterVC.h */,
 				B81E600321DC906C00873AB9 /* TLUserLoginVC.h */,
+				B81E600121DC906C00873AB9 /* TLUserLoginVC.m */,
+				B81E600021DC906C00873AB9 /* TLUserForgetPwdVC.h */,
 				B81E600421DC906C00873AB9 /* TLUserForgetPwdVC.m */,
+				B81E600221DC906C00873AB9 /* TLUserRegisterVC.h */,
 				B81E600521DC906C00873AB9 /* TLUserRegisterVC.m */,
 			);
 			path = Login;
@@ -3587,6 +3610,7 @@
 				B8A27AE421E5C44400914897 /* MMSelectedPath.m in Sources */,
 				1FF6398221EC716400F5FF68 /* BarrageEncapsulationView.m in Sources */,
 				1F1B009D21E7453F000BEBD3 /* UserModel.m in Sources */,
+				363E291B21F84D46003981CD /* PersonalCertifyVC.m in Sources */,
 				B81E5FE621DC8FC200873AB9 /* FTUtils+NSObject.m in Sources */,
 				1F1B006B21E71D26000BEBD3 /* RBBCubicBezier.m in Sources */,
 				B81E5FC521DC8FC200873AB9 /* TLPageDataHelper.m in Sources */,
@@ -3727,6 +3751,7 @@
 				3610EEC121EDC3A300FD345D /* AddCardVC.m in Sources */,
 				B8A27AA521E5A15100914897 /* TreeListVC.m in Sources */,
 				B80D389121F8754600206B55 /* USERXX.m in Sources */,
+				363E291721F84984003981CD /* CertifyVCCell.m in Sources */,
 				B81E605921DC981D00873AB9 /* NBBatchReqest.m in Sources */,
 				B81E605521DC981D00873AB9 /* NBNetworkAgent.m in Sources */,
 				1F9361D621F178FA007E522A /* GoodsListVC.m in Sources */,
@@ -3753,6 +3778,7 @@
 				3689768721EF0435005F1177 /* InviteModel.m in Sources */,
 				B81E601E21DC906D00873AB9 /* TLUserRegisterVC.m in Sources */,
 				B81E601C21DC906D00873AB9 /* TLUserLoginVC.m in Sources */,
+				363E291421F84530003981CD /* CertifyVC.m in Sources */,
 				B8712E9721F5898B00039086 /* QWCategoryDetail.m in Sources */,
 				1F93615A21EE0139007E522A /* CWLateralSlideAnimator.m in Sources */,
 				B81E603421DC93EC00873AB9 /* CDCommon.m in Sources */,
