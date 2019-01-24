@@ -115,6 +115,14 @@
 		3647C49A21F1B38800FB049D /* MallHomeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647C49921F1B38800FB049D /* MallHomeHeadView.m */; };
 		3647C4A321F1D57400FB049D /* ReceivingAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647C4A221F1D57400FB049D /* ReceivingAddressVC.m */; };
 		3647C4A621F1D80100FB049D /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647C4A521F1D80100FB049D /* AddressCell.m */; };
+		367D68E021F95A230091177C /* aiai_area.txt in Resources */ = {isa = PBXBuildFile; fileRef = 367D68DF21F95A230091177C /* aiai_area.txt */; };
+		367D68E921F95B920091177C /* SelectAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D68E821F95B920091177C /* SelectAdView.m */; };
+		367D68F421F95FDB0091177C /* CityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D68EB21F95FDB0091177C /* CityModel.m */; };
+		367D68F521F95FDB0091177C /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = 367D68EF21F95FDB0091177C /* address.json */; };
+		367D68F621F95FDB0091177C /* ProvinceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D68F021F95FDB0091177C /* ProvinceModel.m */; };
+		367D68F721F95FDB0091177C /* AreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D68F221F95FDB0091177C /* AreaModel.m */; };
+		367D68F821F95FDB0091177C /* AddressPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D68F321F95FDB0091177C /* AddressPickView.m */; };
+		367D694221F998A70091177C /* GenderPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D694121F998A70091177C /* GenderPickerView.m */; };
 		3689763A21EEC550005F1177 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3689763821EEC550005F1177 /* MAMapKit.framework */; };
 		3689763B21EEC550005F1177 /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3689763921EEC550005F1177 /* AMapFoundationKit.framework */; };
 		3689766221EED58A005F1177 /* CollectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3689766121EED58A005F1177 /* CollectVC.m */; };
@@ -601,6 +609,20 @@
 		3647C4A221F1D57400FB049D /* ReceivingAddressVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceivingAddressVC.m; sourceTree = "<group>"; };
 		3647C4A421F1D80100FB049D /* AddressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressCell.h; sourceTree = "<group>"; };
 		3647C4A521F1D80100FB049D /* AddressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
+		367D68DF21F95A230091177C /* aiai_area.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aiai_area.txt; sourceTree = "<group>"; };
+		367D68E721F95B920091177C /* SelectAdView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectAdView.h; sourceTree = "<group>"; };
+		367D68E821F95B920091177C /* SelectAdView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectAdView.m; sourceTree = "<group>"; };
+		367D68EB21F95FDB0091177C /* CityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityModel.m; sourceTree = "<group>"; };
+		367D68EC21F95FDB0091177C /* ProvinceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvinceModel.h; sourceTree = "<group>"; };
+		367D68ED21F95FDB0091177C /* AddressPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressPickView.h; sourceTree = "<group>"; };
+		367D68EE21F95FDB0091177C /* AreaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaModel.h; sourceTree = "<group>"; };
+		367D68EF21F95FDB0091177C /* address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address.json; sourceTree = "<group>"; };
+		367D68F021F95FDB0091177C /* ProvinceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvinceModel.m; sourceTree = "<group>"; };
+		367D68F121F95FDB0091177C /* CityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityModel.h; sourceTree = "<group>"; };
+		367D68F221F95FDB0091177C /* AreaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaModel.m; sourceTree = "<group>"; };
+		367D68F321F95FDB0091177C /* AddressPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressPickView.m; sourceTree = "<group>"; };
+		367D694021F998A70091177C /* GenderPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenderPickerView.h; sourceTree = "<group>"; };
+		367D694121F998A70091177C /* GenderPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenderPickerView.m; sourceTree = "<group>"; };
 		3689763821EEC550005F1177 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
 		3689763921EEC550005F1177 /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapFoundationKit.framework; sourceTree = "<group>"; };
 		3689766021EED58A005F1177 /* CollectVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectVC.h; sourceTree = "<group>"; };
@@ -1773,6 +1795,7 @@
 		3610EEA321ED715600FD345D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				367D68EA21F95FDB0091177C /* Address */,
 				3689769421EF3683005F1177 /* Order */,
 				3689768421EF00F8005F1177 /* Setting */,
 				3689768321EF00E5005F1177 /* Collect */,
@@ -1782,6 +1805,8 @@
 				3689768921EF0488005F1177 /* InviteVCCell.m */,
 				363E291521F84984003981CD /* CertifyVCCell.h */,
 				363E291621F84984003981CD /* CertifyVCCell.m */,
+				367D694021F998A70091177C /* GenderPickerView.h */,
+				367D694121F998A70091177C /* GenderPickerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1836,6 +1861,22 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		367D68EA21F95FDB0091177C /* Address */ = {
+			isa = PBXGroup;
+			children = (
+				367D68F121F95FDB0091177C /* CityModel.h */,
+				367D68EB21F95FDB0091177C /* CityModel.m */,
+				367D68EC21F95FDB0091177C /* ProvinceModel.h */,
+				367D68F021F95FDB0091177C /* ProvinceModel.m */,
+				367D68ED21F95FDB0091177C /* AddressPickView.h */,
+				367D68F321F95FDB0091177C /* AddressPickView.m */,
+				367D68EE21F95FDB0091177C /* AreaModel.h */,
+				367D68F221F95FDB0091177C /* AreaModel.m */,
+				367D68EF21F95FDB0091177C /* address.json */,
+			);
+			path = Address;
+			sourceTree = "<group>";
+		};
 		3689767B21EF003B005F1177 /* Collect */ = {
 			isa = PBXGroup;
 			children = (
@@ -1888,6 +1929,8 @@
 				3610EEAB21EDA95900FD345D /* SettingVCCell.m */,
 				36F841D321F05B3B00BAC88A /* CardVCCell.h */,
 				36F841D421F05B3B00BAC88A /* CardVCCell.m */,
+				367D68E721F95B920091177C /* SelectAdView.h */,
+				367D68E821F95B920091177C /* SelectAdView.m */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -2547,6 +2590,7 @@
 		B81E5F7A21DC8FC100873AB9 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				367D68DF21F95A230091177C /* aiai_area.txt */,
 				B81E5F7F21DC8FC100873AB9 /* test */,
 				B81E5F8E21DC8FC100873AB9 /* View */,
 				B81E5F7B21DC8FC100873AB9 /* LangSwitcher.h */,
@@ -2856,13 +2900,13 @@
 			children = (
 				1F1B009B21E7453F000BEBD3 /* UserModel.h */,
 				1F1B009C21E7453F000BEBD3 /* UserModel.m */,
-				B81E600A21DC906C00873AB9 /* TLUserExt.m */,
-				B81E600B21DC906C00873AB9 /* UserInfo.m */,
-				B81E600C21DC906C00873AB9 /* UserDefaultsUtil.h */,
-				B81E600D21DC906C00873AB9 /* TLUser.m */,
 				B81E600E21DC906C00873AB9 /* TLUserExt.h */,
+				B81E600A21DC906C00873AB9 /* TLUserExt.m */,
 				B81E600F21DC906C00873AB9 /* UserInfo.h */,
+				B81E600B21DC906C00873AB9 /* UserInfo.m */,
 				B81E601021DC906C00873AB9 /* TLUser.h */,
+				B81E600D21DC906C00873AB9 /* TLUser.m */,
+				B81E600C21DC906C00873AB9 /* UserDefaultsUtil.h */,
 				B81E601121DC906C00873AB9 /* UserDefaultsUtil.m */,
 			);
 			path = Model;
@@ -3413,7 +3457,9 @@
 				B8A27AF821E5C44400914897 /* list_selected@2x.png in Resources */,
 				B81E5ED821DC8C8A00873AB9 /* Podfile in Resources */,
 				1F3EBAF821F5A621005BC837 /* SLBannerView.xib in Resources */,
+				367D68F521F95FDB0091177C /* address.json in Resources */,
 				B81E5EAB21DC8B3C00873AB9 /* Main.storyboard in Resources */,
+				367D68E021F95A230091177C /* aiai_area.txt in Resources */,
 				B81E5FAE21DC8FC200873AB9 /* SimplifiedCode.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3493,6 +3539,7 @@
 				B81E5FED21DC8FC200873AB9 /* LangSwitcher.m in Sources */,
 				1F1B009A21E743B1000BEBD3 /* CertificateOfPlantView.m in Sources */,
 				B81E608E21DC9FFC00873AB9 /* HomeVC.m in Sources */,
+				367D68F621F95FDB0091177C /* ProvinceModel.m in Sources */,
 				3647C49A21F1B38800FB049D /* MallHomeHeadView.m in Sources */,
 				1F93615821EE0139007E522A /* CWInteractiveTransition.m in Sources */,
 				B86CB6A921DDB7FF00C60AC7 /* TLTopCollectionView.m in Sources */,
@@ -3575,6 +3622,7 @@
 				1F93615921EE0139007E522A /* UIViewController+CWLateralSlide.m in Sources */,
 				1F93614B21EE0105007E522A /* MyCarbombubbleView.m in Sources */,
 				B81E603721DC93EC00873AB9 /* UIView+Frame.m in Sources */,
+				367D68F821F95FDB0091177C /* AddressPickView.m in Sources */,
 				1F1B00D221E89667000BEBD3 /* FriendsTheTreeTableView.m in Sources */,
 				1F1B00BD21E87B00000BEBD3 /* GivingVC.m in Sources */,
 				369C60CF21F717A9001F9CBA /* PayPwdVC.m in Sources */,
@@ -3625,6 +3673,7 @@
 				1F93610E21EDFD8F007E522A /* MyNoticeCell.m in Sources */,
 				1F93614C21EE0105007E522A /* MyCarbonBubbleVC.m in Sources */,
 				1F9361C721F17398007E522A /* MallTabbar.m in Sources */,
+				367D68F721F95FDB0091177C /* AreaModel.m in Sources */,
 				B8ED2E8E21E8934B00FADCCE /* RealNameView.m in Sources */,
 				B8ED2E8821E8516D00FADCCE /* RenYangFieldView.m in Sources */,
 				B80D385F21F85F1E00206B55 /* CountView.m in Sources */,
@@ -3724,6 +3773,7 @@
 				1F1B00C321E88121000BEBD3 /* MyArticleViC.m in Sources */,
 				B81E5FE321DC8FC200873AB9 /* HttpLogger.m in Sources */,
 				B81E603621DC93EC00873AB9 /* ImageUtil.m in Sources */,
+				367D694221F998A70091177C /* GenderPickerView.m in Sources */,
 				B81E601821DC906D00873AB9 /* ChangeLoginPwdVC.m in Sources */,
 				1F93615B21EE0139007E522A /* CWDrawerTransition.m in Sources */,
 				1F93610C21EDFD8F007E522A /* MyNoticeVC.m in Sources */,
@@ -3762,6 +3812,7 @@
 				1FF6398821EC7DAF00F5FF68 /* RankingVC.m in Sources */,
 				1F93615C21EE0139007E522A /* CWLateralSlideConfiguration.m in Sources */,
 				B81E5FEF21DC8FC200873AB9 /* TLBaseLabel.m in Sources */,
+				367D68F421F95FDB0091177C /* CityModel.m in Sources */,
 				B8712E8521F578AB00039086 /* QWCategoryDetailController.m in Sources */,
 				1FF6397B21EC626000F5FF68 /* DonationAnimationView.m in Sources */,
 				1F1B00CF21E89651000BEBD3 /* FriendsTheTreeVC.m in Sources */,
@@ -3801,6 +3852,7 @@
 				1F3EBAF721F5A621005BC837 /* SLBannerView.m in Sources */,
 				3689767A21EEF4B5005F1177 /* CollectTreeVC.m in Sources */,
 				B80D388321F871CF00206B55 /* SubmitOrderGoodsCell.m in Sources */,
+				367D68E921F95B920091177C /* SelectAdView.m in Sources */,
 				1F9361E421F3158F007E522A /* GoodsListCollCell.m in Sources */,
 				B81E605621DC981D00873AB9 /* NBRequest.m in Sources */,
 				B81E5FD821DC8FC200873AB9 /* NSString+Date.m in Sources */,
@@ -3993,7 +4045,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3ZCW993X44;
+				DEVELOPMENT_TEAM = A7AR7GW3Q2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -4026,7 +4078,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3ZCW993X44;
+				DEVELOPMENT_TEAM = A7AR7GW3Q2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",

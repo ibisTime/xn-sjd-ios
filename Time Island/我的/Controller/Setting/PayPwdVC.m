@@ -15,6 +15,14 @@
 @end
 
 @implementation PayPwdVC
+-(void)viewWillAppear:(BOOL)animated{
+    if ([TLUser user].tradepwdFlag) {
+        self.title = @"重置支付密码";
+    }
+    else{
+        self.title = @"设置支付密码";
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -41,6 +41,13 @@
 @property (nonatomic, copy) NSString *companyCode;
 //头像
 @property (nonatomic, copy) NSString *photo;
+//性别
+@property (nonatomic,copy) NSString * gender;
+//年龄
+@property (nonatomic,copy) NSString * age;
+
+//支付密码
+//@property (nonatomic,copy) NSString * tradepwdFlag;
 //邮箱
 @property (nonatomic, copy) NSString *email;
 
@@ -53,7 +60,7 @@
 @property (nonatomic, copy) NSString *amount;
 
 //0 未设置交易密码 1已设置
-@property (nonatomic, copy) NSString *tradepwdFlag;
+@property (nonatomic, copy) NSString * tradepwdFlag;
 //谷歌验证
 @property (nonatomic, copy) NSString *googleAuthFlag;
 //开启/关闭谷歌验证

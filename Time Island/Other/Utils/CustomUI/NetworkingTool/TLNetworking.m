@@ -182,7 +182,7 @@
        
        if (self.isShowMsg) {
            
-           [TLAlert alertWithInfo:@"当前网络不给力，请稍后再试或切换网络"];
+//           [TLAlert alertWithInfo:@"当前网络不给力，请稍后再试或切换网络"];
 
        }
        

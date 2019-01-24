@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self connect];
     UIBarButtonItem * item = [[UIBarButtonItem alloc]init];
     item.title = @"消息";
     self.navigationItem.backBarButtonItem = item;
@@ -71,5 +72,15 @@
     cell.selectionStyle = UIAccessibilityTraitNone;
     return cell;
 }
-
+-(void)connect{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"805315";
+    http.parameters[@"id"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
+        NSDictionary * dic = (NSDictionary * )responseObject;
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
 @end

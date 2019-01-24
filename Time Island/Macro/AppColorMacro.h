@@ -35,6 +35,8 @@
 
 // 界面背景颜色
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
+/*** RGBA颜色 */
+#define RGBA(r, g, b, a) [UIColor colorWithRed:(r) / 255.f green:(g) / 255.f blue:(b) / 255.f alpha:(a)]
 //151, 215, 76 RGB(195, 207, 72)
 #define kNavBarBackgroundColor  RGB(241, 241, 241)
 

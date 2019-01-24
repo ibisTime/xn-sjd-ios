@@ -16,6 +16,9 @@
 @interface MallMyVC ()
 @property (nonatomic,retain) UIView * topview;
 @property (nonatomic,strong) TLTableView *table1;
+@property (nonatomic,strong) UIImageView * logoimage;
+@property (nonatomic,strong) UILabel * name;
+@property (nonatomic,strong) UILabel * sign;
 @end
 
 @implementation MallMyVC
@@ -24,6 +27,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self navigationTransparentClearColor];
+    [self RefreshInfo];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -42,7 +46,7 @@
     self.table1.refreshDelegate = self;
     //    [_table1 beginRefreshing];
     [_table1 addRefreshAction:^{
-        [TLAlert alertWithInfo:@"网络连接失败！"];
+        [self RefreshInfo];
         [self.table1 endRefreshHeader];
     }];
     [self.view addSubview:self.table1];
@@ -59,6 +63,7 @@
     img.image = [UIImage imageNamed:@"果树预售"];
     img.layer.cornerRadius = 35;
     img.layer.masksToBounds = YES;
+    self.logoimage = img;
     
     
     //姓名
@@ -68,6 +73,7 @@
     name.text = @"王大锤";
     name.textAlignment = NSTextAlignmentCenter;
     name.adjustsFontSizeToFitWidth = YES;
+    self.name = name;
     
     
     //签名
@@ -78,6 +84,8 @@
     sign.textAlignment = NSTextAlignmentCenter;
     sign.adjustsFontSizeToFitWidth = YES;
     sign.numberOfLines = 0;
+    self.sign = sign;
+    
     
 
     [self.topview addSubview:img];
@@ -158,6 +166,25 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)RefreshInfo{
+    
+    
+    [self.logoimage sd_setImageWithURL: [NSURL URLWithString:[[TLUser user].photo convertImageUrl]]];
+    
+    TLNetworking * http = [TLNetworking new];
+    http.code = USER_INFO;
+    http.parameters[@"userId"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
+        NSDictionary * dic = responseObject[@"data"];
+        [[TLUser user]saveUserInfo:dic];
+        [[TLUser user]setUserInfoWithDict:dic];
+        self.name.text = [TLUser user].nickname;
+        self.sign.text = [TLUser user].introduce;
+    } failure:^(NSError *error) {
+        self.name.text = @"王大锤" ;
+        self.logoimage.image =  [UIImage imageNamed:@"果树预售"];
+        self.sign.text =  @"此人很懒，没留下什么";
+    }];
+}
 
 @end
