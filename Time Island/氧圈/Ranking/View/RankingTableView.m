@@ -15,6 +15,7 @@
 {
     UIButton *selectBtn;
     UIView *lineView;
+   
 }
 
 @end
@@ -24,7 +25,6 @@
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     
     if (self = [super initWithFrame:frame style:style]) {
-        
         self.dataSource = self;
         self.delegate = self;
         [self registerClass:[RankingCell class] forCellReuseIdentifier:Ranking];

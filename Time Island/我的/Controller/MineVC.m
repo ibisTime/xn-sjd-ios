@@ -32,7 +32,7 @@
 @property (nonatomic,strong) UILabel * name;
 @property (nonatomic,strong) UIImageView * logoimage;
 @property (nonatomic,strong) UILabel * nameLbl;
-
+@property (nonatomic,strong) UILabel * sign;
 @end
 
 @implementation MineVC
@@ -128,6 +128,7 @@
     sign.textAlignment = NSTextAlignmentCenter;
     sign.adjustsFontSizeToFitWidth = YES;
     sign.numberOfLines = 0;
+    self.sign = sign;
     
     for (int i = 0; i < 3; i ++) {
         
@@ -239,7 +240,7 @@
             break;
 }
 }
-//刷新s信息
+//刷新信息
 -(void)RefreshInfo{
     
     
@@ -258,9 +259,13 @@
     [http postWithSuccess:^(id responseObject) {
         NSDictionary * dic = responseObject[@"data"];
         [[TLUser user]saveUserInfo:dic];
+        [[TLUser user]setUserInfoWithDict:dic];
+        self.name.text = [TLUser user].nickname;
+        self.sign.text = [TLUser user].introduce;
     } failure:^(NSError *error) {
         self.name.text = @"王大锤" ;
         self.logoimage.image =  [UIImage imageNamed:@"果树预售"];
+        self.sign.text = @"此人很懒，没留下什么";
     }];
 }
 -(void)certify{

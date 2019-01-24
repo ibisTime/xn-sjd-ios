@@ -7,12 +7,14 @@
 //
 
 #import "GetAddVC.h"
+#import "AddressPickView.h"
 
 @interface GetAddVC ()
 @property (nonatomic,strong) TLTextField * Name;
 @property (nonatomic,strong) TLTextField * Phone;
 @property (nonatomic,strong) TLTextField * Address;
 @property (nonatomic,strong) TLTextField * DoorNum;
+@property (nonatomic,strong) AddressPickView * pickerView;
 @end
 
 @implementation GetAddVC
@@ -39,9 +41,15 @@
     [self.view addSubview:Phone];
     self.Phone = Phone;
     //地址
+    
+    
     TLTextField * Address = [[TLTextField alloc]initWithFrame:CGRectMake(margin, Phone.yy, SCREEN_WIDTH-30, height) leftTitle:@"地址" placeholder:@"所在地区"];
+    Address.delegate = self;
     [self.view addSubview:Address];
     self.Address = Address;
+    
+    
+    
     //门牌号
     TLTextField * DoorNum = [[TLTextField alloc]initWithFrame:CGRectMake(margin, Address.yy, SCREEN_WIDTH-30, 80) leftTitle:@"门牌号" placeholder:@"10号楼5层501室"];
     [self.view addSubview:DoorNum];
@@ -65,4 +73,22 @@
     http.code = @"";
 }
 
+-(AddressPickView *)pickerView{
+    if (!_pickerView) {
+        _pickerView = [[AddressPickView alloc] init];
+    }
+    return _pickerView;
+}
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    [textField resignFirstResponder];
+    [self pickerView];
+    
+    [_pickerView show];
+    
+    __weak typeof(self) weakSelf = self;
+    //block传值
+    _pickerView.determineBtnBlock = ^(NSString *shengId, NSString *shiId, NSString *xianId, NSString *shengName, NSString *shiName, NSString *xianName, NSString *postCode) {
+        weakSelf.Address.text = [NSString stringWithFormat:@"%@ %@ %@",shengName,shiName,xianName];
+    };
+}
 @end
