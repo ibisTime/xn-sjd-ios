@@ -9,13 +9,13 @@
 #import "TLTableView.h"
 #import "AddressModel.h"
 #import "BankCardModel.h"
-#import "HomeModel.h"
+#import "MallOrderModel.h"
 @interface SubmitOrdersTableView : TLTableView
 
 
 @property(nonatomic , strong)AddressModel *addressModel;
 @property(nonatomic , strong)BankCardModel *bankCardModel;
-@property(nonatomic , strong)HomeModel *homeModel;
+@property(nonatomic , strong)MallOrderModel *homeModel;
 
 @property(nonatomic , copy)NSString *specificationsStr;
 @end

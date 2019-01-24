@@ -7,10 +7,10 @@
 //
 
 #import "TLBaseVC.h"
-#import "HomeModel.h"
+#import "MallOrderModel.h"
 @interface SubmitOrdersVC : TLBaseVC
 
-@property (nonatomic,strong)HomeModel *model;
+@property (nonatomic,strong)MallOrderModel *model;
 
 @property (nonatomic , strong)NSArray *selectArray;
 

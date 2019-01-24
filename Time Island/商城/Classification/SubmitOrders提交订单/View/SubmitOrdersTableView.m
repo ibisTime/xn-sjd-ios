@@ -11,9 +11,15 @@
 #import "SubmitOrderBankCardCell.h"
 #import "SubmitOrderGoodsCell.h"
 #import "USERXX.h"
+#import "BuyCountCell.h"
+#import "TransportCell.h"
+#import "BuyRemarkCell.h"
 #define SubmitOrderAddress @"SubmitOrderAddressCell"
 #define SubmitOrderBankCard @"SubmitOrderBankCardCell"
 #define SubmitOrderGoods @"SubmitOrderGoodsCell"
+#define buyCountCell @"BuyCountCell"
+#define transportCell @"TransportCell"
+#define buyRemarkCell @"BuyRemarkCell"
 
 @interface SubmitOrdersTableView ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -33,9 +39,9 @@
         [self registerClass:[SubmitOrderAddressCell class] forCellReuseIdentifier:SubmitOrderAddress];
         [self registerClass:[SubmitOrderBankCardCell class] forCellReuseIdentifier:SubmitOrderBankCard];
         [self registerClass:[SubmitOrderGoodsCell class] forCellReuseIdentifier:SubmitOrderGoods];
-
-
-
+        [self registerClass:[BuyCountCell class] forCellReuseIdentifier:buyCountCell];
+        [self registerClass:[TransportCell class] forCellReuseIdentifier:transportCell];
+        [self registerClass:[BuyRemarkCell class] forCellReuseIdentifier:buyRemarkCell];
 
     }
     return self;
@@ -43,27 +49,20 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 5;
 }
 
 #pragma mark -- 行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section == 3)
-    {
-        return 5;
-    }
+   
     return 1;
 }
 
 #pragma mark -- tableView
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    for (int i = 0; i < _homeModel.productSpecsList.count; i ++) {
-        if ([_homeModel.productSpecsList[i][@"name"] isEqualToString:self.specificationsStr]) {
-            dataDic = _homeModel.productSpecsList[i];
-        }
-    }
+   
     if(indexPath.section == 0)
     {
         _cell = [tableView dequeueReusableCellWithIdentifier:SubmitOrderAddress forIndexPath:indexPath];
@@ -79,19 +78,6 @@
     }
     if(indexPath.section == 1)
     {
-        SubmitOrderBankCardCell *cell = [tableView dequeueReusableCellWithIdentifier:SubmitOrderBankCard forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        if ([USERXX isBlankString:self.bankCardModel.bankName] == NO) {
-            cell.model = self.bankCardModel;
-            cell.backLabel.hidden = YES;
-        }else
-        {
-            cell.backLabel.hidden = NO;
-        }
-        return cell;
-    }
-    if(indexPath.section == 2)
-    {
         SubmitOrderGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:SubmitOrderGoods forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.model = self.homeModel;
@@ -100,28 +86,21 @@
         }
         return cell;
     }
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+    if(indexPath.section == 2)
+    {
+        BuyCountCell *cell = [tableView dequeueReusableCellWithIdentifier:buyCountCell forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.count = self.homeModel.GoodsCount;
+        return cell;
     }
+    if(indexPath.section == 3)
+    {
+        TransportCell *cell = [tableView dequeueReusableCellWithIdentifier:transportCell forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+    BuyRemarkCell *cell = [tableView dequeueReusableCellWithIdentifier:buyRemarkCell forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *textArray = @[@"首付比例",@"分期月数",@"分期利率",@"月供",@"首付"];
-
-    NSString *str = @"%";
-    NSArray *detailTextArray = @[
-      [NSString stringWithFormat:@"%.1f%@",[dataDic[@"sfRate"] floatValue] * 100,str],
-      [NSString stringWithFormat:@"%@",dataDic[@"periods"]],
-      [NSString stringWithFormat:@"%.2f%@",[dataDic[@"bankRate"] floatValue]*100,str],
-      [NSString stringWithFormat:@"%.2f",[dataDic[@"monthAmount"] floatValue]/1000],
-      [NSString stringWithFormat:@"%.2f",[dataDic[@"price"] floatValue]/1000 * [dataDic[@"sfRate"] floatValue]]];
-    cell.textLabel.text = textArray[indexPath.row];
-    cell.textLabel.font = HGfont(14);
-    cell.detailTextLabel.text = detailTextArray[indexPath.row];
-    cell.detailTextLabel.font = HGfont(14);
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 49, SCREEN_WIDTH, 1)];
-    lineView.backgroundColor = LineBackColor;
-    [cell addSubview:lineView];
-
     return cell;
 
 
@@ -129,6 +108,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 2 || indexPath.section ==3 || indexPath.section ==4) {
+        return;
+    }
     if ([self.refreshDelegate respondsToSelector:@selector(refreshTableView:didSelectRowAtIndexPath:)]) {
         [self.refreshDelegate refreshTableView:self didSelectRowAtIndexPath:indexPath];
     }
@@ -148,17 +130,18 @@
     }
     if(indexPath.section == 1)
     {
-        if ([USERXX isBlankString:self.bankCardModel.bankName] == NO) {
-            return 95;
-        }else
-        {
-            return 50;
-        }
+       
+            return kHeight(140);
+    
 
     }
     if(indexPath.section == 2)
     {
-        return 110;
+        return kHeight(55);
+    }
+    if(indexPath.section == 3)
+    {
+        return kHeight(55);
     }
     return 50;
 }

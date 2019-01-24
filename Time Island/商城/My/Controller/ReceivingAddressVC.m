@@ -89,5 +89,21 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    AddressModel *model = [AddressModel new];
+    model.province = @"浙江省";
+    model.city = @"杭州市";
+    model.area = @"余杭区";
+    model.detail = @"人工智能小镇";
+
+    model.mobile = @"18612233322";
+    model.addressee = @"测试";
+    if (self.selectCellBlock) {
+        self.selectCellBlock(model);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 @end
 

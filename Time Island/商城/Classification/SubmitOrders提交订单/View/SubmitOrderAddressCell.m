@@ -7,7 +7,7 @@
 //
 
 #import "SubmitOrderAddressCell.h"
-
+#import <Masonry.h>
 @implementation SubmitOrderAddressCell
 {
     UIImageView *youImage;
@@ -17,8 +17,8 @@
 {
     if(!_addressImg)
     {
-        _addressImg = [[UIImageView alloc]initWithFrame:CGRectMake(15, 50/2 - 7.5, 12, 15)];
-        _addressImg.image = HGImage(@"收货地址");
+        _addressImg = [[UIImageView alloc] init];
+        _addressImg.image = HGImage(@"地址");
     }
     return _addressImg;
 }
@@ -27,7 +27,7 @@
 {
     if(!_nameLbl)
     {
-        _nameLbl = [UILabel labelWithFrame:CGRectMake(40, 15, (SCREEN_WIDTH - 80)/2 , 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:TextColor];
+        _nameLbl = [UILabel labelWithFrame:CGRectMake(50, 15, kWidth(60) , 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:kBlackColor];
     }
     return _nameLbl;
 }
@@ -35,7 +35,7 @@
 -(UILabel *)phoneLbl{
     if(!_phoneLbl)
     {
-        _phoneLbl = [UILabel labelWithFrame:CGRectMake((SCREEN_WIDTH - 80)/2 + 40, 15, (SCREEN_WIDTH - 80)/2 , 15) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(14) textColor:TextColor];
+        _phoneLbl = [UILabel labelWithFrame:CGRectMake(kWidth(80), 15, (SCREEN_WIDTH - 80)/2 , 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:TextColor];
     }
     return _phoneLbl;
 }
@@ -44,7 +44,7 @@
 {
     if(!_addressLbl)
     {
-        _addressLbl = [UILabel labelWithFrame:CGRectMake(40,42, SCREEN_WIDTH - 80 , 0) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(12) textColor:TextColor];
+        _addressLbl = [UILabel labelWithFrame:CGRectMake(50,42, SCREEN_WIDTH - 80 , 0) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(14) textColor:kBlackColor];
         _addressLbl.numberOfLines = 0;
 
     }
@@ -54,7 +54,7 @@
 -(UILabel *)backLabel
 {
     if (!_backLabel) {
-        _backLabel = [UILabel labelWithFrame:CGRectMake(40,0, SCREEN_WIDTH - 80 , 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(12) textColor:TextColor];
+        _backLabel = [UILabel labelWithFrame:CGRectMake(50,0, SCREEN_WIDTH - 80 , 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(12) textColor:TextColor];
         _backLabel.text = @"请选择收货地址";
     }
     return _backLabel;
@@ -70,10 +70,14 @@
         [self addSubview:self.addressLbl];
         [self addSubview:self.addressImg];
         [self addSubview:self.backLabel];
-
-
+      
+        [self.addressImg mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(@15);
+            make.width.height.equalTo(@30);
+            make.centerY.equalTo(self.mas_centerY);
+        }];
         youImage = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 21, 50/2 - 5.5, 6, 11)];
-        youImage.image = HGImage(@"more");
+        youImage.image = HGImage(@"积分更多");
         [self addSubview:youImage];
 
     }
@@ -82,14 +86,16 @@
 
 -(void)setModel:(AddressModel *)model
 {
-    _nameLbl.text = [NSString stringWithFormat:@"收货人:%@",model.addressee];
+    _nameLbl.text = [NSString stringWithFormat:@"%@",model.addressee];
     _phoneLbl.text = model.mobile;
 
-    _addressLbl.text = [NSString stringWithFormat:@"收货地址:%@ %@ %@ %@",model.province,model.city,model.area,model.detail];
-    _addressLbl.frame = CGRectMake(40,42, SCREEN_WIDTH - 80 , 0);
+    _addressLbl.text = [NSString stringWithFormat:@"%@ %@ %@ %@",model.province,model.city,model.area,model.detail];
+    _addressLbl.frame = CGRectMake(50,_nameLbl.yy+10, SCREEN_WIDTH - 80 , 0);
     [_addressLbl sizeToFit];
     youImage.frame = CGRectMake(SCREEN_WIDTH - 21, (57 + _addressLbl.frame.size.height)/2 - 5.5, 6, 11);
-    _addressImg.frame = CGRectMake(15, (57 + _addressLbl.frame.size.height)/2 - 7.5, 12, 15);
+//    _addressImg.frame = CGRectMake(15,(self.height-30)/2, 30, 30);
+     [self layoutIfNeeded];
+
 }
 
 @end
