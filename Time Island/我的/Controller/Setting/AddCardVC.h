@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AddCardVC : TLBaseVC
+@interface AddCardVC : TLBaseVC<UITextFieldDelegate>
 
 @end
 

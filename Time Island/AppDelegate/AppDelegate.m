@@ -442,7 +442,7 @@
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     if([TLUser user].isLogin) {
         
-        [[TLUser user] changLoginTime];
+//        [[TLUser user] changLoginTime];
         //czy      [[IMAPlatform sharedInstance] configOnAppDidBecomeActive];
         
     }

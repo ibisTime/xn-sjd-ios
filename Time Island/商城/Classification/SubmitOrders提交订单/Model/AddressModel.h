@@ -12,13 +12,13 @@
 //收件人
 @property (nonatomic , copy)NSString *addressee;
 
-@property (nonatomic , copy)NSString *area;
+@property (nonatomic , copy)NSString *district;
 
 @property (nonatomic , copy)NSString *city;
 
 @property (nonatomic , copy)NSString *code;
 
-@property (nonatomic , copy)NSString *detail;
+@property (nonatomic , copy)NSString *detailAddress;
 
 @property (nonatomic , copy)NSString *isDefault;
 
@@ -27,6 +27,7 @@
 @property (nonatomic , copy)NSString *province;
 
 @property (nonatomic , copy)NSString *userId;
+
 
 
 @end

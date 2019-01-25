@@ -10,10 +10,15 @@
 #import "AddressModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^AddBlock)(NSString *Name, NSString *Phone, NSString *shengName, NSString *shiName, NSString *xianName,NSString *Details);
+
 @interface ReceivingAddressVC : MallBaseVC<UITableViewDelegate,UITableViewDataSource,RefreshDelegate>
 @property int state;
 @property (nonatomic, copy) void (^selectCellBlock)(AddressModel* model);
+@property (nonatomic,strong) AddressModel * AddressModel;
+@property (nonatomic,strong) NSMutableArray * AddressArray;
 
+@property (nonatomic,copy) AddBlock AddressBlock;
 @end
 
 NS_ASSUME_NONNULL_END

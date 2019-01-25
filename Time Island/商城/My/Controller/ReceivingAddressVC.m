@@ -9,23 +9,22 @@
 #import "ReceivingAddressVC.h"
 #import "AddressCell.h"
 #import "GetAddVC.h"
-@interface ReceivingAddressVC ()
+@interface ReceivingAddressVC ()<AddressCellDelegrate>
 @property (nonatomic,strong) TLTableView * table;
+
+@property (nonatomic , strong)NSMutableArray <AddressModel *>*addressModels;
+
 @end
 
 @implementation ReceivingAddressVC
 
+-(void)viewWillAppear:(BOOL)animated{
+    [self refresh];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的收货地址";
-//    UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] init];
-//    backBtn.title = @"我的收货地址";
-//    self.navigationItem.backBarButtonItem = backBtn;
-////
-    
-//    self.backLbl.text = @"我的收货地址";
-//    self.navigationItem.titleView = self.backLbl;
-    
+
     if (self.state == 2) {
         self.navigationController.navigationBar.barTintColor = kHexColor(@"#333333");
     }
@@ -54,8 +53,6 @@
     [addbtn addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:addbtn];
 
-    
-    
 
     
 }
@@ -64,19 +61,83 @@
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+//    NSLog(@"%D",(int)self.addressModels.count);
+    return self.addressModels.count;
+    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 137.5;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     AddressCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.selectionStyle = UIAccessibilityTraitNone;
-    if (indexPath.section == 1) {
-        cell.checkBtn.selected = NO;
+//    cell.delegrate = self;
+    if (self.addressModels.count > 0) {
+        AddressModel * model = self.addressModels[indexPath.row];
+        cell.UserName.text = model.addressee;
+        cell.UserPhone.text = model.mobile;
+        cell.UserAddress.text = [NSString stringWithFormat:@"%@ %@ %@ %@",model.province,model.city,model.district,model.detailAddress];
+        if ([model.isDefault isEqualToString:@"0"]) {
+            cell.checkBtn.selected = NO;
+        }else{
+            cell.checkBtn.selected = YES;
+        }
+        cell.checkBtn.tag = indexPath.row;
+        [cell.checkBtn addTarget:self action:@selector(checkBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        cell.editbtn.tag = indexPath.row;
+        [cell.editbtn addTarget:self action:@selector(editbtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        cell.cancelbtn.tag = indexPath.row;
+        [cell.cancelbtn addTarget:self action:@selector(cancelbtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
     }
+    
+    cell.selectionStyle = UIAccessibilityTraitNone;
     return cell;
 }
+
+-(void)checkBtnClick:(UIButton *)sender
+{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"805173";
+    http.parameters[@"code"] = self.addressModels[sender.tag].code;
+    [http postWithSuccess:^(id responseObject) {
+        [TLAlert alertWithSucces:@"设置成功"];
+    } failure:^(NSError *error) {
+    }];
+    [self.table reloadData];
+}
+
+-(void)editbtnClick:(UIButton *)sender
+{
+    GetAddVC * vc = [[GetAddVC alloc]init];
+    vc.NameString = self.addressModels[sender.tag].addressee;
+    vc.PhoneString = self.addressModels[sender.tag].mobile;
+//    vc.AddressString = [NSString stringWithFormat:@"%@ %@ %@",self.addressModels[sender.tag].province,self.addressModels[sender.tag].city,self.addressModels[sender.tag].district];
+    vc.AddressCode = self.addressModels[sender.tag].code;
+    vc.sheng = self.addressModels[sender.tag].province;
+    vc.shi = self.addressModels[sender.tag].city;
+    vc.qu = self.addressModels[sender.tag].district;
+    vc.DoorNumString = self.addressModels[sender.tag].detailAddress;
+    vc.state = 1;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+-(void)cancelbtnClick:(UIButton *)sender
+{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    [TLAlert alertWithTitle:@"提示" msg:@"确定删除地址吗？" confirmMsg:@"确定" cancleMsg:@"取消" cancle:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } confirm:^(UIAlertAction *action) {
+        http.code = @"805171";
+        http.parameters[@"code"] = self.addressModels[sender.tag].code;
+        [http postWithSuccess:^(id responseObject) {
+            [TLAlert alertWithSucces:@"设置成功"];
+        } failure:^(NSError *error) {
+        }];
+        [self.table reloadData];
+    }];
+    
+    
+}
+
+
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, tableView.yy, SCREEN_WIDTH, 10)];
     return view;
@@ -91,19 +152,24 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AddressModel *model = [AddressModel new];
-    model.province = @"浙江省";
-    model.city = @"杭州市";
-    model.area = @"余杭区";
-    model.detail = @"人工智能小镇";
-
-    model.mobile = @"18612233322";
-    model.addressee = @"测试";
-    if (self.selectCellBlock) {
-        self.selectCellBlock(model);
-    }
-    [self.navigationController popViewControllerAnimated:YES];
-    
+    NSLog(@"%d",(int)indexPath.row);
 }
+-(void)refresh{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"805175";
+    http.parameters[@"userId"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
+        
+        
+        
+        self.addressModels = [AddressModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+//        AddressModel *model = self.addressModels[0];
+//        NSLog(@"%@",model.userId);
+        [self.table reloadData];
+
+    } failure:^(NSError *error) {
+    }];
+}
+
 @end
 

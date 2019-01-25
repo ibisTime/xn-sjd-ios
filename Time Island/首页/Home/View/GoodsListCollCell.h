@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TreeModel.h"
 @interface GoodsListCollCell : UICollectionViewCell
 
 @property (nonatomic , strong)UIView *backView;
+
+@property (nonatomic , strong)TreeModel *model;
+@property (nonatomic,strong) NSMutableArray * modelarray;
 
 @end
 

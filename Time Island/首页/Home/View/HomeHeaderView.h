@@ -25,11 +25,12 @@ typedef void(^HomeHeaderEventsBlock)(HomeEventsType type, NSInteger index, HomeF
 
 @property (nonatomic, copy) HomeHeaderEventsBlock headerBlock;
 
-@property (nonatomic , strong)HW3DBannerView *scrollView;
+//@property (nonatomic , strong)HW3DBannerView *scrollView;
 //轮播图
 @property (nonatomic, strong) NSMutableArray <BannerModel *>*banners;
 //点击公告更多
 @property (nonatomic, copy) void (^clickNoticeBlock)(void);
+@property (nonatomic,copy) void (^tapintroduce)(void);
 //点击tag标签
 @property (nonatomic, copy) void (^clickTagBlock)(NSInteger index);
 //点击推文更多
@@ -38,4 +39,8 @@ typedef void(^HomeHeaderEventsBlock)(HomeEventsType type, NSInteger index, HomeF
 @property (nonatomic, copy) void (^clicknewsBlock)(void);
 
 @property (nonatomic , strong)UIView *backView;
+
+@property (nonatomic, strong) UIView *noticeView;//公告
+@property (nonatomic, strong) UILabel *introduceLab;
+@property (nonatomic,strong) NSArray * TextLoopArray;
 @end
