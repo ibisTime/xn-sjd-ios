@@ -21,6 +21,7 @@
 #import "GoodsPriceModel.h"
 #import "GoodsTypeModel.h"
 #import "SubmitOrdersVC.h"
+#import "ReceivingAddressVC.h"
 @interface MallGoodDetailVC ()<RefreshDelegate>
 {
     GoodsModel *model;
@@ -192,6 +193,14 @@
 - (void)loadMoreComment
 {
     
+    
+}
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        CoinWeakSelf;
+       
+    }
     
 }
 @end

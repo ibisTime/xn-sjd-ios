@@ -118,7 +118,7 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/Other/Utils/CustomUI/MMComboBox/Classes/MMView/ComBoBoxView/MMComBoBoxView.m"
-                  timestampString = "569928728.939904"
+                  timestampString = "570018315.371419"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "103"
@@ -133,7 +133,7 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/Other/Utils/CustomUI/MMComboBox/Classes/MMView/ComBoBoxView/MMComBoBoxView.m"
-                  timestampString = "569928728.944272"
+                  timestampString = "570018315.374655"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "103"
@@ -148,7 +148,7 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/Other/Utils/CustomUI/MMComboBox/Classes/MMView/ComBoBoxView/MMComBoBoxView.m"
-                  timestampString = "569928728.949288"
+                  timestampString = "570018315.378687"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "103"
@@ -188,6 +188,641 @@
             endingLineNumber = "160"
             landmarkName = "-bannerView:didClickImagesAtIndex:"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Time Island/&#x5546;&#x57ce;/Classification/SubmitOrders&#x63d0;&#x4ea4;&#x8ba2;&#x5355;/View/SubmitOrdersTableView.m"
+            timestampString = "570018676.1202019"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Time Island/&#x5546;&#x57ce;/Classification/SubmitOrders&#x63d0;&#x4ea4;&#x8ba2;&#x5355;/View/SubmitOrderGoodsCell.m"
+            timestampString = "570018676.121233"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "-setModel:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Time Island/&#x5546;&#x57ce;/Classification/SubmitOrders&#x63d0;&#x4ea4;&#x8ba2;&#x5355;/View/BuyCountCell.m"
+            timestampString = "570018676.122084"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = ""
+            moduleName = "">
+            <Locations>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Time Island/&#x5546;&#x57ce;/Classification/ShoppIngCard/JVShopcart/View/JVShopcartHeaderView.m"
+            timestampString = "570017721.276974"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "-layoutSubviews"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[JVShopcartHeaderView layoutSubviews]"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartHeaderView.m"
+                  timestampString = "570018315.435703"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__38-[JVShopcartHeaderView layoutSubviews]_block_invoke"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartHeaderView.m"
+                  timestampString = "570018315.4394161"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartHeaderView.m"
+                  timestampString = "570018315.443123"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "78"
+                  endingLineNumber = "78"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Time Island/&#x5546;&#x57ce;/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+            timestampString = "570018676.122834"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "-layoutSubviews"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[JVShopcartCell layoutSubviews]"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018315.455858"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "168"
+                  endingLineNumber = "168"
+                  offsetFromSymbolStart = "248">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[JVShopcartCell layoutSubviews]_block_invoke.116"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018315.459627"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "169"
+                  endingLineNumber = "169"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.129"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018315.463553"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "168"
+                  endingLineNumber = "168"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Time Island/&#x5546;&#x57ce;/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+            timestampString = "570018676.123358"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "-layoutSubviews"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[JVShopcartCell layoutSubviews]"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018315.4754421"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "217"
+                  endingLineNumber = "217"
+                  offsetFromSymbolStart = "1560">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[JVShopcartCell layoutSubviews]_block_invoke.174"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018315.479295"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "217"
+                  endingLineNumber = "217"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.178"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018315.483356"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "217"
+                  endingLineNumber = "217"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Time Island/&#x5546;&#x57ce;/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+            timestampString = "570018676.123677"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "-layoutSubviews"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[JVShopcartCell layoutSubviews]"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018315.4953181"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "174"
+                  endingLineNumber = "174"
+                  offsetFromSymbolStart = "412">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[JVShopcartCell layoutSubviews]_block_invoke.131"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018315.499078"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.133"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018315.503122"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "174"
+                  endingLineNumber = "174"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Time Island/&#x5546;&#x57ce;/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+            timestampString = "570018676.123896"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "-layoutSubviews"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[JVShopcartCell layoutSubviews]"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018331.943145"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "180"
+                  endingLineNumber = "180"
+                  offsetFromSymbolStart = "576">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[JVShopcartCell layoutSubviews]_block_invoke.135"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018331.947163"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "180"
+                  endingLineNumber = "180"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.143"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018331.951439"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "180"
+                  endingLineNumber = "180"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Time Island/&#x5546;&#x57ce;/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+            timestampString = "570018676.1240799"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "-layoutSubviews"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[JVShopcartCell layoutSubviews]"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018352.890859"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "204"
+                  endingLineNumber = "204"
+                  offsetFromSymbolStart = "1232">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[JVShopcartCell layoutSubviews]_block_invoke.166"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018352.895117"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "205"
+                  endingLineNumber = "205"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.168"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018352.900201"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "204"
+                  endingLineNumber = "204"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Time Island/&#x5546;&#x57ce;/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+            timestampString = "570018676.124244"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
+            landmarkName = "-layoutSubviews"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[JVShopcartCell layoutSubviews]"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018355.360655"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "1068">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[JVShopcartCell layoutSubviews]_block_invoke.162"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018355.36476"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.164"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018355.368403"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Time Island/&#x5546;&#x57ce;/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+            timestampString = "570018676.124447"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "-layoutSubviews"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[JVShopcartCell layoutSubviews]"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018356.292704"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "190"
+                  endingLineNumber = "190"
+                  offsetFromSymbolStart = "904">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[JVShopcartCell layoutSubviews]_block_invoke.151"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018356.296791"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "190"
+                  endingLineNumber = "190"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.160"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018356.300959"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "190"
+                  endingLineNumber = "190"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Time Island/&#x5546;&#x57ce;/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+            timestampString = "570018676.12463"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
+            landmarkName = "-layoutSubviews"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[JVShopcartCell layoutSubviews]"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018358.267377"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "185"
+                  endingLineNumber = "185"
+                  offsetFromSymbolStart = "740">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[JVShopcartCell layoutSubviews]_block_invoke.145"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018358.271726"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.149"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
+                  timestampString = "570018358.2753789"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "185"
+                  endingLineNumber = "185"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

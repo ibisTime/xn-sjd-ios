@@ -34,7 +34,7 @@
                         [LangSwitcher switchLang:@"购物车" key:nil],
                         [LangSwitcher switchLang:@"我的" key:nil]
                         ];
-    NSArray *VCNames = @[@"MallHomeVC",@"MallClassificationVC",@"MallShoppingCartVC",@"MallMyVC"];
+    NSArray *VCNames = @[@"MallHomeVC",@"MallClassificationVC",@"JVShopcartViewController",@"MallMyVC"];
     
     
     NSArray *imageNames = @[@"商场首页-未选中",@"商场分类-未选中",@"商场购物车-未选中",@"商场我的-未选中"];

@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HomeModel.h"
+#import "MallOrderModel.h"
 @interface SubmitOrderGoodsCell : UITableViewCell
 
-@property (nonatomic , strong)HomeModel *model;
+@property (nonatomic , strong)MallOrderModel *model;
 
 @property (nonatomic , copy)NSDictionary *dic;
 
@@ -23,5 +23,7 @@
 @property (nonatomic , strong)UILabel *priceLabel;
 
 @property (nonatomic , strong)UILabel *numberLabel;
+
+@property (nonatomic , strong)UILabel *shopLabel;
 
 @end

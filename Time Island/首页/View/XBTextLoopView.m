@@ -89,6 +89,7 @@
         tableView.rowHeight = frame.size.height;
         tableView.backgroundColor = [UIColor clearColor];
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        tableView.scrollEnabled = false;
         [self addSubview:tableView];
     }
     return self;

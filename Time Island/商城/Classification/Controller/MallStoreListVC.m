@@ -90,7 +90,7 @@
             [button setImage:kImage(ClassifyName[i]) forState:(UIControlStateNormal)];
         }];
         iconBtn.tag = i;
-        [iconBtn addTarget:self action:@selector(ClassifyClick:) forControlEvents:UIControlEventTouchUpInside];
+        [iconBtn addTarget:self action:@selector(ClassifyClick) forControlEvents:UIControlEventTouchUpInside];
         [self.headerView addSubview:iconBtn];
     }
     
@@ -105,6 +105,12 @@
     
 }
 
+- (void)ClassifyClick
+{
+    MallGoodDetailVC *detail = [MallGoodDetailVC new];
+    detail.title = @"产品详情";
+    [self.navigationController pushViewController:detail animated:YES];
+}
 #pragma mark------CollectionView的代理方法
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
