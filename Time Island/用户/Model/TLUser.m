@@ -145,33 +145,33 @@ NSString *const kGoogleAuthClose = @"0";
     }];
 }
 
-- (void)changLoginTime {
-//    [self refreshLoginTime];
-    if (_updateLoginTimeTimer) {
-        return;
-    }
-   
-    _updateLoginTimeTimer = [NSTimer scheduledTimerWithTimeInterval:5*60
-                                                             target:self
-                                                        selector:@selector(refreshLoginTime)
-                                                           userInfo:nil repeats:YES];
-}
+//- (void)changLoginTime {
+////    [self refreshLoginTime];
+//    if (_updateLoginTimeTimer) {
+//        return;
+//    }
+//   
+//    _updateLoginTimeTimer = [NSTimer scheduledTimerWithTimeInterval:5*60
+//                                                             target:self
+//                                                        selector:@selector(refreshLoginTime)
+//                                                           userInfo:nil repeats:YES];
+//}
 
-- (void)refreshLoginTime {
-    
-    if (![[TLUser user] checkLogin]) {
-        return;
-    }
-    TLNetworking *http = [TLNetworking new];
-    http.code = @"805083";
-    http.parameters[@"userId"] = [TLUser user].userId;
-    [http postWithSuccess:^(id responseObject) {
-        
-        
-    } failure:^(NSError *error) {
-        
-    }];
-}
+//- (void)refreshLoginTime {
+//    
+//    if (![[TLUser user] checkLogin]) {
+//        return;
+//    }
+//    TLNetworking *http = [TLNetworking new];
+//    http.code = @"805083";
+//    http.parameters[@"userId"] = [TLUser user].userId;
+//    [http postWithSuccess:^(id responseObject) {
+//        
+//        
+//    } failure:^(NSError *error) {
+//        
+//    }];
+//}
 
 - (void)requestQiniuDomain {
     

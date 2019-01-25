@@ -11,17 +11,16 @@
 @interface TreeModel : UITableViewHeaderFooterView
 
 
-@property (nonatomic , copy)NSString *ownerId;
+
 @property (nonatomic , copy)NSString *rank;
 @property (nonatomic , copy)NSString *productCode;
 @property (nonatomic , copy)NSString *province;
 @property (nonatomic , copy)NSString *originPlace;
-@property (nonatomic , copy)NSString *code;
+
 @property (nonatomic , copy)NSString *status;
 @property (nonatomic , copy)NSString *adoptCount;
 @property (nonatomic , copy)NSString *updateDatetime;
 @property (nonatomic , copy)NSString *articleCount;
-@property (nonatomic , copy)NSString *sellType;
 @property (nonatomic , copy)NSString *treeNumber;
 @property (nonatomic , copy)NSString *city;
 @property (nonatomic , copy)NSString *category;
@@ -43,6 +42,16 @@
 @property (nonatomic , copy)NSString *curOrderCode;
 @property (nonatomic , copy)NSString *ownerName;
 
+@property (nonatomic,copy) NSString * name;
+@property (nonatomic , copy)NSString *code;
+@property (nonatomic,copy) NSString * sellType;
+@property (nonatomic , copy)NSString *ownerId;
+@property (nonatomic,copy) NSString * categoryCode;
+@property (nonatomic,copy) NSString * listPic;
+@property (nonatomic,copy) NSString * bannerPic;
 
-
+@property (nonatomic,copy) NSString * raiseStartDatetime;
+@property (nonatomic,copy) NSString * raiseEndDatetime;
+@property (nonatomic,copy) NSString * raiseCount;
+@property (nonatomic,copy) NSString * nowCount;
 @end

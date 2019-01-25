@@ -13,6 +13,7 @@
 @property (nonatomic , strong)UIView *backView;
 
 @property (nonatomic , strong)TreeModel *model;
+@property (nonatomic,strong) NSMutableArray * modelarray;
 
 @end
 

@@ -130,6 +130,7 @@
 		3647C4A321F1D57400FB049D /* ReceivingAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647C4A221F1D57400FB049D /* ReceivingAddressVC.m */; };
 		3647C4A621F1D80100FB049D /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647C4A521F1D80100FB049D /* AddressCell.m */; };
 		365514D221FADC9A00E54996 /* CardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 365514D121FADC9A00E54996 /* CardModel.m */; };
+		365514D821FB009000E54996 /* introduceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 365514D721FB009000E54996 /* introduceView.m */; };
 		367D68E021F95A230091177C /* aiai_area.txt in Resources */ = {isa = PBXBuildFile; fileRef = 367D68DF21F95A230091177C /* aiai_area.txt */; };
 		367D68E921F95B920091177C /* SelectAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D68E821F95B920091177C /* SelectAdView.m */; };
 		367D694221F998A70091177C /* GenderPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D694121F998A70091177C /* GenderPickerView.m */; };
@@ -663,6 +664,8 @@
 		3647C4A521F1D80100FB049D /* AddressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
 		365514D021FADC9A00E54996 /* CardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardModel.h; sourceTree = "<group>"; };
 		365514D121FADC9A00E54996 /* CardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardModel.m; sourceTree = "<group>"; };
+		365514D621FB009000E54996 /* introduceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = introduceView.h; sourceTree = "<group>"; };
+		365514D721FB009000E54996 /* introduceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = introduceView.m; sourceTree = "<group>"; };
 		367D68DF21F95A230091177C /* aiai_area.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aiai_area.txt; sourceTree = "<group>"; };
 		367D68E721F95B920091177C /* SelectAdView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectAdView.h; sourceTree = "<group>"; };
 		367D68E821F95B920091177C /* SelectAdView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectAdView.m; sourceTree = "<group>"; };
@@ -1890,6 +1893,8 @@
 				B81E609221DCAB8E00873AB9 /* HomeHeaderView.m */,
 				1F9361E221F3158F007E522A /* GoodsListCollCell.h */,
 				1F9361E321F3158F007E522A /* GoodsListCollCell.m */,
+				365514D621FB009000E54996 /* introduceView.h */,
+				365514D721FB009000E54996 /* introduceView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3812,6 +3817,7 @@
 				1F1B002F21E71C5D000BEBD3 /* PaopaoButton.m in Sources */,
 				36DB50D921F59AEF009D56EF /* NewsVCCell.m in Sources */,
 				3689766E21EED9A3005F1177 /* BookCell.m in Sources */,
+				365514D821FB009000E54996 /* introduceView.m in Sources */,
 				B81E609F21DCAB8F00873AB9 /* HW3DBannerView.m in Sources */,
 				B81E5FE121DC8FC200873AB9 /* HttpSign.m in Sources */,
 				1F3EBB0121F5BB55005BC837 /* GoodsDetailsHeadView.m in Sources */,
