@@ -9,15 +9,17 @@
 /* Begin PBXBuildFile section */
 		1F19A8C721FAA26D0090BF84 /* FontSizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8A921FAA26C0090BF84 /* FontSizeView.m */; };
 		1F19A8C821FAA26D0090BF84 /* ShareButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8AB21FAA26C0090BF84 /* ShareButton.m */; };
-		1F19A8C921FAA26D0090BF84 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8AC21FAA26C0090BF84 /* ShareView.m */; };
 		1F19A8CA21FAA26D0090BF84 /* AllShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8AD21FAA26C0090BF84 /* AllShareView.m */; };
 		1F19A8CB21FAA26D0090BF84 /* OpenPushView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8B321FAA26C0090BF84 /* OpenPushView.m */; };
 		1F19A8CC21FAA26D0090BF84 /* SelectedListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8B521FAA26C0090BF84 /* SelectedListModel.m */; };
 		1F19A8CD21FAA26D0090BF84 /* SelectedListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8B621FAA26C0090BF84 /* SelectedListView.m */; };
 		1F19A8CE21FAA26D0090BF84 /* SignFinishView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8BA21FAA26C0090BF84 /* SignFinishView.m */; };
-		1F19A8CF21FAA26D0090BF84 /* UIView+SDAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8BE21FAA26C0090BF84 /* UIView+SDAutoLayout.m */; };
-		1F19A8D021FAA26D0090BF84 /* UITableView+SDAutoTableViewCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8C121FAA26C0090BF84 /* UITableView+SDAutoTableViewCellHeight.m */; };
 		1F19A8D121FAA26D0090BF84 /* LEEAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8C521FAA26C0090BF84 /* LEEAlert.m */; };
+		1F19A8EA21FAA6BA0090BF84 /* CityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8E221FAA6BA0090BF84 /* CityModel.m */; };
+		1F19A8EB21FAA6BA0090BF84 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F19A8E521FAA6BA0090BF84 /* address.json */; };
+		1F19A8EC21FAA6BA0090BF84 /* ProvinceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8E621FAA6BA0090BF84 /* ProvinceModel.m */; };
+		1F19A8ED21FAA6BA0090BF84 /* AreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8E921FAA6BA0090BF84 /* AreaModel.m */; };
+		1F19A8EF21FAA7140090BF84 /* AddressPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8EE21FAA7130090BF84 /* AddressPickView.m */; };
 		1F1B001921E6E23F000BEBD3 /* OxygenCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B001821E6E23F000BEBD3 /* OxygenCircleView.m */; };
 		1F1B002021E6F79C000BEBD3 /* MyTreeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B001F21E6F79C000BEBD3 /* MyTreeVC.m */; };
 		1F1B002321E6F8C8000BEBD3 /* MyTreeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B002221E6F8C8000BEBD3 /* MyTreeTableView.m */; };
@@ -422,10 +424,8 @@
 		1F19A8A821FAA26C0090BF84 /* FontSizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontSizeView.h; sourceTree = "<group>"; };
 		1F19A8A921FAA26C0090BF84 /* FontSizeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontSizeView.m; sourceTree = "<group>"; };
 		1F19A8AB21FAA26C0090BF84 /* ShareButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareButton.m; sourceTree = "<group>"; };
-		1F19A8AC21FAA26C0090BF84 /* ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
 		1F19A8AD21FAA26C0090BF84 /* AllShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllShareView.m; sourceTree = "<group>"; };
 		1F19A8AE21FAA26C0090BF84 /* ShareButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareButton.h; sourceTree = "<group>"; };
-		1F19A8AF21FAA26C0090BF84 /* ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
 		1F19A8B021FAA26C0090BF84 /* AllShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllShareView.h; sourceTree = "<group>"; };
 		1F19A8B221FAA26C0090BF84 /* OpenPushView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPushView.h; sourceTree = "<group>"; };
 		1F19A8B321FAA26C0090BF84 /* OpenPushView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPushView.m; sourceTree = "<group>"; };
@@ -435,14 +435,18 @@
 		1F19A8B821FAA26C0090BF84 /* SelectedListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectedListView.h; sourceTree = "<group>"; };
 		1F19A8BA21FAA26C0090BF84 /* SignFinishView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignFinishView.m; sourceTree = "<group>"; };
 		1F19A8BB21FAA26C0090BF84 /* SignFinishView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignFinishView.h; sourceTree = "<group>"; };
-		1F19A8BE21FAA26C0090BF84 /* UIView+SDAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDAutoLayout.m"; sourceTree = "<group>"; };
-		1F19A8BF21FAA26C0090BF84 /* UITableView+SDAutoTableViewCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+SDAutoTableViewCellHeight.h"; sourceTree = "<group>"; };
-		1F19A8C021FAA26C0090BF84 /* SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAutoLayout.h; sourceTree = "<group>"; };
-		1F19A8C121FAA26C0090BF84 /* UITableView+SDAutoTableViewCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+SDAutoTableViewCellHeight.m"; sourceTree = "<group>"; };
-		1F19A8C221FAA26C0090BF84 /* UIView+SDAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDAutoLayout.h"; sourceTree = "<group>"; };
 		1F19A8C421FAA26C0090BF84 /* LEEAlertHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEAlertHelper.h; sourceTree = "<group>"; };
 		1F19A8C521FAA26C0090BF84 /* LEEAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEAlert.m; sourceTree = "<group>"; };
 		1F19A8C621FAA26C0090BF84 /* LEEAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEAlert.h; sourceTree = "<group>"; };
+		1F19A8E221FAA6BA0090BF84 /* CityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityModel.m; sourceTree = "<group>"; };
+		1F19A8E321FAA6BA0090BF84 /* ProvinceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvinceModel.h; sourceTree = "<group>"; };
+		1F19A8E421FAA6BA0090BF84 /* AreaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaModel.h; sourceTree = "<group>"; };
+		1F19A8E521FAA6BA0090BF84 /* address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address.json; sourceTree = "<group>"; };
+		1F19A8E621FAA6BA0090BF84 /* ProvinceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvinceModel.m; sourceTree = "<group>"; };
+		1F19A8E721FAA6BA0090BF84 /* CityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityModel.h; sourceTree = "<group>"; };
+		1F19A8E821FAA6BA0090BF84 /* AddressPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressPickView.h; sourceTree = "<group>"; };
+		1F19A8E921FAA6BA0090BF84 /* AreaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaModel.m; sourceTree = "<group>"; };
+		1F19A8EE21FAA7130090BF84 /* AddressPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressPickView.m; sourceTree = "<group>"; };
 		1F1B001721E6E23F000BEBD3 /* OxygenCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OxygenCircleView.h; sourceTree = "<group>"; };
 		1F1B001821E6E23F000BEBD3 /* OxygenCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OxygenCircleView.m; sourceTree = "<group>"; };
 		1F1B001E21E6F79C000BEBD3 /* MyTreeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTreeVC.h; sourceTree = "<group>"; };
@@ -1287,10 +1291,8 @@
 			isa = PBXGroup;
 			children = (
 				1F19A8AB21FAA26C0090BF84 /* ShareButton.m */,
-				1F19A8AC21FAA26C0090BF84 /* ShareView.m */,
 				1F19A8AD21FAA26C0090BF84 /* AllShareView.m */,
 				1F19A8AE21FAA26C0090BF84 /* ShareButton.h */,
-				1F19A8AF21FAA26C0090BF84 /* ShareView.h */,
 				1F19A8B021FAA26C0090BF84 /* AllShareView.h */,
 			);
 			path = ShareView;
@@ -1336,11 +1338,6 @@
 		1F19A8BD21FAA26C0090BF84 /* SDAutoLayout */ = {
 			isa = PBXGroup;
 			children = (
-				1F19A8BE21FAA26C0090BF84 /* UIView+SDAutoLayout.m */,
-				1F19A8BF21FAA26C0090BF84 /* UITableView+SDAutoTableViewCellHeight.h */,
-				1F19A8C021FAA26C0090BF84 /* SDAutoLayout.h */,
-				1F19A8C121FAA26C0090BF84 /* UITableView+SDAutoTableViewCellHeight.m */,
-				1F19A8C221FAA26C0090BF84 /* UIView+SDAutoLayout.h */,
 			);
 			path = SDAutoLayout;
 			sourceTree = "<group>";
@@ -1353,6 +1350,22 @@
 				1F19A8C621FAA26C0090BF84 /* LEEAlert.h */,
 			);
 			path = LEEAlert;
+			sourceTree = "<group>";
+		};
+		1F19A8E121FAA6BA0090BF84 /* Address */ = {
+			isa = PBXGroup;
+			children = (
+				1F19A8E721FAA6BA0090BF84 /* CityModel.h */,
+				1F19A8E221FAA6BA0090BF84 /* CityModel.m */,
+				1F19A8E321FAA6BA0090BF84 /* ProvinceModel.h */,
+				1F19A8E621FAA6BA0090BF84 /* ProvinceModel.m */,
+				1F19A8E421FAA6BA0090BF84 /* AreaModel.h */,
+				1F19A8E921FAA6BA0090BF84 /* AreaModel.m */,
+				1F19A8E521FAA6BA0090BF84 /* address.json */,
+				1F19A8E821FAA6BA0090BF84 /* AddressPickView.h */,
+				1F19A8EE21FAA7130090BF84 /* AddressPickView.m */,
+			);
+			path = Address;
 			sourceTree = "<group>";
 		};
 		1F1B001621E6E21D000BEBD3 /* View */ = {
@@ -1961,6 +1974,7 @@
 		3610EEA321ED715600FD345D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1F19A8E121FAA6BA0090BF84 /* Address */,
 				3689769421EF3683005F1177 /* Order */,
 				3689768421EF00F8005F1177 /* Setting */,
 				3689768321EF00E5005F1177 /* Collect */,
@@ -3691,6 +3705,7 @@
 				B81E5ED821DC8C8A00873AB9 /* Podfile in Resources */,
 				1F3EBAF821F5A621005BC837 /* SLBannerView.xib in Resources */,
 				B81E5EAB21DC8B3C00873AB9 /* Main.storyboard in Resources */,
+				1F19A8EB21FAA6BA0090BF84 /* address.json in Resources */,
 				367D68E021F95A230091177C /* aiai_area.txt in Resources */,
 				B81E5FAE21DC8FC200873AB9 /* SimplifiedCode.txt in Resources */,
 				B88E545121F9BEE700C33040 /* shopcart.plist in Resources */,
@@ -3763,7 +3778,6 @@
 			files = (
 				1F1B006E21E71D26000BEBD3 /* UIColor+PlatformIndependence.m in Sources */,
 				B8A27AF121E5C44400914897 /* MMMultiFitlerView.m in Sources */,
-				1F19A8CF21FAA26D0090BF84 /* UIView+SDAutoLayout.m in Sources */,
 				3647C4A621F1D80100FB049D /* AddressCell.m in Sources */,
 				B8B52C8B21F0504500975459 /* MallTabBarController.m in Sources */,
 				B81E5FBE21DC8FC200873AB9 /* TLAlert.m in Sources */,
@@ -3835,6 +3849,7 @@
 				B81E5FDB21DC8FC200873AB9 /* NSObject+Extension.m in Sources */,
 				B81E603821DC93EC00873AB9 /* DeviceUtil.m in Sources */,
 				1FF6397F21EC712C00F5FF68 /* BarrageView.m in Sources */,
+				1F19A8EA21FAA6BA0090BF84 /* CityModel.m in Sources */,
 				B81E5FD421DC8FC200873AB9 /* NSDictionary+Extension.m in Sources */,
 				B81E5FBC21DC8FC200873AB9 /* CustomPickerView.m in Sources */,
 				B80D388621F871CF00206B55 /* SubmitOrdersTableView.m in Sources */,
@@ -3866,6 +3881,7 @@
 				1F1B007221E71D26000BEBD3 /* NSValue+PlatformIndependence.m in Sources */,
 				B81E5FD221DC8FC200873AB9 /* UIControl+Block.m in Sources */,
 				1F19A8CD21FAA26D0090BF84 /* SelectedListView.m in Sources */,
+				1F19A8EF21FAA7140090BF84 /* AddressPickView.m in Sources */,
 				B81E5FD321DC8FC200873AB9 /* UITabBar+Badge.m in Sources */,
 				1F1B007521E72B24000BEBD3 /* MyFreeDynamicCell.m in Sources */,
 				1F9361CA21F174D0007E522A /* MallHomeVC.m in Sources */,
@@ -3893,7 +3909,6 @@
 				1F93616621EE01B4007E522A /* MyHomePageTableView.m in Sources */,
 				3689766221EED58A005F1177 /* CollectVC.m in Sources */,
 				B8A27AE421E5C44400914897 /* MMSelectedPath.m in Sources */,
-				1F19A8C921FAA26D0090BF84 /* ShareView.m in Sources */,
 				1FF6398221EC716400F5FF68 /* BarrageEncapsulationView.m in Sources */,
 				1F1B009D21E7453F000BEBD3 /* UserModel.m in Sources */,
 				363E291B21F84D46003981CD /* PersonalCertifyVC.m in Sources */,
@@ -3927,7 +3942,6 @@
 				B81E5FE921DC8FC200873AB9 /* TLSwitchView.m in Sources */,
 				B88E544721F9BDF600C33040 /* JVShopcartTableViewProxy.m in Sources */,
 				B81E5FE021DC8FC200873AB9 /* HttpRequestTool.m in Sources */,
-				1F19A8D021FAA26D0090BF84 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				1F1B002E21E71C5D000BEBD3 /* FloatingBallHeader.m in Sources */,
 				B81E5FD121DC8FC200873AB9 /* UIViewController+BackButtonHander.m in Sources */,
 				B8ED2E7C21E71ABC00FADCCE /* RenYangListCell.m in Sources */,
@@ -3953,6 +3967,7 @@
 				B8A27AE521E5C44400914897 /* MMSingleItem.m in Sources */,
 				B8712E9621F5898B00039086 /* QWCategory.m in Sources */,
 				B815278921EC8BC200F89395 /* BaseView.m in Sources */,
+				1F19A8EC21FAA6BA0090BF84 /* ProvinceModel.m in Sources */,
 				B8712EA021F5961C00039086 /* JHCollectionViewLayoutAttributes.m in Sources */,
 				B88E544E21F9BDF600C33040 /* JVShopcartFormat.m in Sources */,
 				1F1B007121E71D26000BEBD3 /* RBBLinearInterpolation.m in Sources */,
@@ -4003,6 +4018,7 @@
 				1F93610821EDFD8F007E522A /* ToClaimTheGiftTableView.m in Sources */,
 				1F3EBB0A21F5C42D005BC837 /* YSActionSheetButton.m in Sources */,
 				B88E544921F9BDF600C33040 /* JVShopcartBrandModel.m in Sources */,
+				1F19A8ED21FAA6BA0090BF84 /* AreaModel.m in Sources */,
 				B8A27AEF21E5C44400914897 /* MMNormalCell.m in Sources */,
 				B81E601B21DC906D00873AB9 /* TLChangeMobileVC.m in Sources */,
 				B81E601A21DC906D00873AB9 /* TLPwdRelatedVC.m in Sources */,
