@@ -76,7 +76,29 @@
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     
+    
+    SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) style:UITableViewStylePlain];
+    view.isSingle = YES;
+    view.array = @[@"邮政银行",@"邮政银行",@"邮政银行",@"邮政银行"];
+    view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
+        [LEEAlert closeWithCompletionBlock:^{
+            SelectedListModel *model = array[0];
+            NSLog(@"选中第%ld行" , model.sid);
+            
+
+        }];
+    };
+    [LEEAlert alert].config
+    .LeeTitle(@"选择银行卡")
+    .LeeItemInsets(UIEdgeInsetsMake(20, 0, 20, 0))
+    .LeeCustomView(view)
+    .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+    .LeeHeaderInsets(UIEdgeInsetsMake(10, 0, 0, 0))
+    .LeeClickBackgroundClose(YES)
+    .LeeShow();
 }
+
+
 
 //如果仅设置当前页导航透明，需加入下面方法
 - (void)viewWillDisappear:(BOOL)animated{
