@@ -9,12 +9,17 @@
 #import "CardVC.h"
 #import "CardVCCell.h"
 #import "AddCardVC.h"
+#import "CardModel.h"
 @interface CardVC ()
 @property (nonatomic,strong) TLTableView * table;
+@property (nonatomic , strong)NSMutableArray <CardModel *>*CardModels;
 @end
 
 @implementation CardVC
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -36,33 +41,28 @@
     self.table.refreshDelegate = self;
     [self.view addSubview:self.table];
     
-    
+    [self refresh];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return self.CardModels.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 173.5;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     CardVCCell * cell = [[CardVCCell alloc]init];
-    if (indexPath.row == 0) {
-        cell.CardName.text = @"中国邮政储蓄银行";
-        cell.LogoImage.image = kImage(@"邮政logo");
-        cell.BackgroundImage.image = kImage(@"邮政银行");
-        cell.CardType.text = @"借记卡";
-        cell.CardCount.text = @"**** **** **** 9987";
-    }
-    else if (indexPath.row == 1){
-        cell.CardName.text = @"中国招商银行";
-        cell.LogoImage.image = kImage(@"招商logo");
-        cell.BackgroundImage.image = kImage(@"招商银行");
-        cell.CardType.text = @"借记卡";
-        cell.CardCount.text = @"**** **** **** 9987";
-    }
+    
+    cell.LogoImage.image = kImage(@"邮政logo");
+    cell.BackgroundImage.image = kImage(@"邮政银行");
+    cell.CardName.text = self.CardModels[indexPath.row].bankName;
+    NSString * str = self.CardModels[indexPath.row].bankcardNumber;
+    NSString * str1 = [str substringToIndex:4];
+    NSString * str2 = [str substringFromIndex:15];
+    cell.CardCount.text = [NSString stringWithFormat:@"%@ XXXX XXXX %@",str1,str2];
+    cell.CardType.text = @"借记卡";
     cell.selectionStyle = UIAccessibilityTraitNone;
     return cell;
 }
@@ -82,5 +82,14 @@
 }
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"删除");
+}
+-(void)refresh{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"802026";
+    [http postWithSuccess:^(id responseObject) {
+        self.CardModels = [CardModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        [self.table reloadData];
+    } failure:^(NSError *error) {
+    }];
 }
 @end

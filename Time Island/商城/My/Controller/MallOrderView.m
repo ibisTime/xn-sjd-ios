@@ -8,6 +8,7 @@
 
 #import "MallOrderView.h"
 #import "MallOrderCell.h"
+#import "MallOrderDetailVC.h"
 @interface MallOrderView ()<MallOrderCellDelegrate>
 @property (nonatomic,strong) TLTableView * table;
 
@@ -86,6 +87,13 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 10;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MallOrderDetailVC *detailVC  = [MallOrderDetailVC new];
+    [self.navigationController pushViewController:detailVC animated:YES];
+    
 }
 -(void)MallOrderCell:(MallOrderCell *)tableViewCell clickDeleteButton:(UIButton *)sender{
     NSLog(@"%d",(int)sender.tag);

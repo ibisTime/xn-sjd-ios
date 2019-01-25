@@ -20,8 +20,8 @@
 //V
 #import "TLBannerView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-
-@interface HomeHeaderView()<HW3DBannerViewDelegate>
+#import "SLBannerView.h"
+@interface HomeHeaderView()<HW3DBannerViewDelegate,SLBannerViewDelegate>
 {
     NSInteger selectNum;
 }
@@ -37,15 +37,15 @@
 
 @property (nonatomic, strong) UIButton *tempBtn;
 
-@property (nonatomic, strong) UIView *noticeView;//公告
-@property (nonatomic, strong) UILabel *introduceLab;
+//@property (nonatomic, strong) UIView *noticeView;//公告
+//@property (nonatomic, strong) UILabel *introduceLab;
 @property (nonatomic, strong) UIView *renLingTree;//认领
 
 @property (nonatomic, strong) UIView *tuiArticle;//推文
 @property (nonatomic, strong) UILabel *tuiLab;
 @property (nonatomic, strong)  UILabel *englishLab;//推文英文
 @property (nonatomic, strong) UIView *fastNews;//快报
-
+@property (nonatomic,strong) SLBannerView * banner;
 
 @end
 
@@ -58,7 +58,8 @@
         self.backgroundColor = kWhiteColor;
         //轮播图
 //        [self initBannerView];
-        [self addSubview:self.scrollView];
+        [self addSubview:self.banner];
+//        [self addSubview:self.scrollView];
         [self initNoticeView];
         [self initRenLingTree];
         [self initTuiArticle];
@@ -70,7 +71,7 @@
 -(void)initNoticeView
 {
     UIView *noticeView = [UIView new];
-    noticeView.frame = CGRectMake(0, self.scrollView.yy, kScreenWidth, 30);
+    noticeView.frame = CGRectMake(0, self.banner.yy, kScreenWidth, 30);
     [self addSubview:noticeView];
 
     self.noticeView = noticeView;
@@ -96,6 +97,11 @@
     introduceLab.frame = CGRectMake(imageView.xx + 15, 7, kScreenWidth - 120, 16);
     introduceLab.text = @"氧林平台测试公告氧林平台测试公告氧林平台测试公告氧林平台测试公告";
     introduceLab.centerY = imageView.centerY;
+    
+    UITapGestureRecognizer * ges = [[UITapGestureRecognizer alloc]init];
+    introduceLab.userInteractionEnabled = YES;
+    [ges addTarget:self action:@selector(tap)];
+    [introduceLab addGestureRecognizer:ges];
     [noticeView addSubview:introduceLab];
     self.introduceLab = introduceLab;
     
@@ -141,7 +147,13 @@
     }
   
 }
-
+-(void)tap{
+    NSLog(@"%s",__func__);
+    NSLog(@"点击更多");
+    if (self.tapintroduce) {
+        self.tapintroduce();
+    }
+}
 
 
 
@@ -213,8 +225,10 @@
     [fastNews addSubview:imageView];
     
     CoinWeakSelf;
-    XBTextLoopView *loopView = [XBTextLoopView textLoopViewWith:@[@"氧林快报测试数据氧林快报测试数据氧林快报测试数据氧林快报测试数据",@"氧林快报测试数据",@"氧林快报测试数据"] loopInterval:3.0 initWithFrame:CGRectMake(imageView.xx, 0, kScreenWidth-105, 30) selectBlock:^(NSString *selectString, NSInteger index) {
-        
+//    XBTextLoopView *loopView = [XBTextLoopView textLoopViewWith:@[@"氧林快报测试数据氧林快报测试数据氧林快报测试数据氧林快报测试数据",@"氧林快报测试数据",@"氧林快报测试数据"] loopInterval:3.0 initWithFrame:CGRectMake(imageView.xx, 0, kScreenWidth-105, 30) selectBlock:^(NSString *selectString, NSInteger index) {
+    NSLog(@"self.TextLoopArray = %@",self.TextLoopArray);
+     XBTextLoopView *loopView = [XBTextLoopView textLoopViewWith:self.TextLoopArray loopInterval:3.0 initWithFrame:CGRectMake(imageView.xx, 0, kScreenWidth-105, 30) selectBlock:^(NSString *selectString, NSInteger index) {
+    
         [weakSelf fastNewClickWithIndex:index];
     }];
     loopView.backgroundColor = RGB(252, 240, 240);;
@@ -256,27 +270,39 @@
 
 }
 
-
-
-
--(HW3DBannerView *)scrollView
+-(SLBannerView *)banner
 {
-    if (!_scrollView) {
-//        CoinWeakSelf;
-        _scrollView = [HW3DBannerView initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , SCREEN_WIDTH/750 * 300) imageSpacing:0 imageWidth:SCREEN_WIDTH ];
-        _scrollView.initAlpha = 0; // 设置两边卡片的透明度
-//        _scrollView.imageRadius = 5; // 设置卡片圆角
-        _scrollView.imageHeightPoor = 20;// 设置占位图片
-        _scrollView.delegate = self;
-        _scrollView.autoScrollTimeInterval = 4;
-        _scrollView.data = @[@"baner1",@"baner2",@"baner1"];
-        _scrollView.clickImageBlock = ^(NSInteger currentIndex) {
-            
-            self->selectNum = currentIndex;
-        };
+    if (!_banner) {
+        _banner = [SLBannerView bannerView];
+        _banner.frame = CGRectMake(0, 0, SCREEN_WIDTH , SCREEN_WIDTH/750 * 300);
+        //工程图片
+        _banner.slImages = @[@"树 跟背景", @"树 跟背景", @"树 跟背景", @"树 跟背景", @"树 跟背景"];
+        _banner.durTimeInterval = 0.2;
+        _banner.imgStayTimeInterval = 2.5;
+        _banner.delegate = self;
     }
-    return _scrollView;
+    return _banner;
 }
+
+
+
+//-(HW3DBannerView *)scrollView{
+//    if (!_scrollView) {
+////        CoinWeakSelf;
+//        _scrollView = [HW3DBannerView initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , SCREEN_WIDTH/750 * 300) imageSpacing:0 imageWidth:SCREEN_WIDTH ];
+//        _scrollView.initAlpha = 0; // 设置两边卡片的透明度
+////        _scrollView.imageRadius = 5; // 设置卡片圆角
+//        _scrollView.imageHeightPoor = 20;// 设置占位图片
+//        _scrollView.delegate = self;
+//        _scrollView.autoScrollTimeInterval = 4;
+//        _scrollView.data = @[@"baner1",@"baner2",@"baner1"];
+//        _scrollView.clickImageBlock = ^(NSInteger currentIndex) {
+//
+//            self->selectNum = currentIndex;
+//        };
+//    }
+//    return _scrollView;
+//}
 
 -(void)HW3DBannerViewClick
 {
@@ -303,21 +329,22 @@
             [imgUrls addObject:obj.pic];
         }
     }];
-    _scrollView.data = imgUrls;
+    _banner.slImages = imgUrls;
 //    self.bannerView.imgUrls = imgUrls;
 
 }
 
 
 
+
 #pragma mark - Events
-- (void)lookFlowList:(UITapGestureRecognizer *)tapGR {
-    
-    if (_headerBlock) {
-        
-        _headerBlock(HomeEventsTypeStatistics, 0,nil);
-    }
-}
+//- (void)lookFlowList:(UITapGestureRecognizer *)tapGR {
+//
+//    if (_headerBlock) {
+//
+//        _headerBlock(HomeEventsTypeStatistics, 0,nil);
+//    }
+//}
 
 
 - (void)moreNotice

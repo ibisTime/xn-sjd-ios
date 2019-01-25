@@ -22,6 +22,8 @@
 #import "MallTabBarController.h"
 #import "MallTabbar.h"
 #import "GoodsListCollCell.h"
+#import "TreeModel.h"
+#import "introduceView.h"
 @interface HomeVC ()<RefreshDelegate,RefreshCollectionViewDelegate,UIScrollViewDelegate,UITextFieldDelegate,UISearchBarDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) HomeHeaderView *headerView;
@@ -42,6 +44,11 @@
 
 @property (nonatomic,strong)UICollectionView *collectionView;
 
+@property (nonatomic , strong)NSMutableArray *treeArray;
+@property (nonatomic,strong) NSMutableArray <TreeModel * > * Models;
+
+//存放公告
+@property (nonatomic,strong)  NSArray *IntroduceArray;
 
 @end
 
@@ -60,8 +67,6 @@
         _collectionView.dataSource = self;
         
         [_collectionView registerClass:[GoodsListCollCell class] forCellWithReuseIdentifier:@"GoodsListCollCell"];
-//        [_collectionView registerClass:[ClassificationCollCell class] forCellWithReuseIdentifier:@"ClassificationCollCell"];
-//        [_collectionView registerClass:[TheGameCollCell class] forCellWithReuseIdentifier:@"TheGameCollCell"];
         
         [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
         [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView1"];
@@ -75,31 +80,7 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
-    
-//    NSMutableArray *array = [NSMutableArray array];
-//    for (int i = 0;  i < 5; i ++) {
-//        [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@",@"邮政银行"]]];
-//    }
-//
-//    SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) style:UITableViewStylePlain];
-//    view.isSingle = YES;
-//    view.array = array;
-//    view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
-//        [LEEAlert closeWithCompletionBlock:^{
-//            SelectedListModel *model = array[0];
-//            NSLog(@"选中第%ld行" , model.sid);
-//
-//
-//        }];
-//    };
-//    [LEEAlert alert].config
-//    .LeeTitle(@"选择银行卡")
-//    .LeeItemInsets(UIEdgeInsetsMake(20, 0, 20, 0))
-//    .LeeCustomView(view)
-//    .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
-//    .LeeHeaderInsets(UIEdgeInsetsMake(10, 0, 0, 0))
-//    .LeeClickBackgroundClose(YES)
-//    .LeeShow();
+
 }
 
 
@@ -108,33 +89,15 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBarHidden = NO;
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.title = @"首页";
     [self initSearchBar];
-    
+    self.treeArray = [NSMutableArray array];
     [self.view addSubview:self.collectionView];
-    
-//    [self initTableView];
-//    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-//    layout.itemSize = CGSizeMake((kScreenWidth-45)/2, 250);
-//    layout.minimumLineSpacing = 15.0; // 竖
-//    layout.minimumInteritemSpacing = 15.0; // 横
-//    layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
-//    TLTopCollectionView *topView = [[TLTopCollectionView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, SCREEN_HEIGHT - kNavigationBarHeight) collectionViewLayout:layout withImage:@[@""]];
-//    self.topView = topView;
-//    topView.refreshDelegate = self;
-//
-//    [self.view addSubview:topView];
-//    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0,
+    [self headRefresh];
 }
-
-
-
-
-
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -144,13 +107,16 @@
 #pragma mark------CollectionView的代理方法
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+    return self.Models.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
     GoodsListCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GoodsListCollCell" forIndexPath:indexPath];
+//    cell.model =
+    TreeModel * model = self.Models[indexPath.row];
+    cell.model = model;
 
     if (indexPath.row % 2 == 0) {
         cell.backView.frame = CGRectMake(12, 0, (SCREEN_WIDTH - 30)/2, (SCREEN_WIDTH - 30)/2 + 80);
@@ -233,7 +199,6 @@
     searchbar.clipsToBounds = YES;
     searchbar.delegate = self;
     [searchbar setBackgroundColor:kWhiteColor];
-//    [searchbar setTintColor:[UIColor lightGrayColor]];
     [searchbar setPlaceholder:@"搜索商品信息"];
     [Title addSubview:searchbar];
     self.searchBar = searchbar;
@@ -267,15 +232,33 @@
 
 }
 
-
 -(void)headRefresh
 {
-    self.page = 1;
-//    [self.contentScrollew.mj_header beginRefreshing];
-    [self requestBannerList];
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    header.automaticallyChangeAlpha = YES;
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = YES;
+    _collectionView.mj_header = header;
+    [_collectionView.mj_header beginRefreshing];
+    
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewDataFooter)];
+    footer.arrowView.hidden = YES;
+    footer.stateLabel.hidden = YES;
+    _collectionView.mj_footer = footer;
+}
 
+-(void)loadNewData
+{
+    [self requestBannerList];
+    [self refresh];
+}
+
+-(void)loadNewDataFooter
+{
     
 }
+
+
 
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -284,20 +267,7 @@
     [self.searchTf resignFirstResponder];
 }
 
--(void)footerRefresh
-{
-    self.page ++;
-//    [self.contentScrollew.mj_footer beginRefreshing];
-    [self requestBannerList];
 
-}
-
-
-- (void)loadMoreNews
-{
-    
-    
-}
 
 - (HomeHeaderView *)headerView {
     
@@ -306,7 +276,6 @@
         CoinWeakSelf;
         //头部
         _headerView = [[HomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 100 + (SCREEN_WIDTH - 30)/690*200 + 34 + 20 + 64 + SCREEN_WIDTH/750 * 300)];
-//        _headerView.backgroundColor = [UIColor redColor];
         //点击banner
         _headerView.headerBlock = ^(HomeEventsType type, NSInteger index, HomeFindModel *find) {
             [weakSelf headerViewEventsWithType:type index:index model:find];
@@ -324,12 +293,23 @@
             [weakSelf noticeClick];
 
         };
+        _headerView.tapintroduce = ^{
+            [weakSelf detailIntroduce];
+        };
         _headerView.clickTagBlock = ^(NSInteger index) {
             [weakSelf clickTagWithIndex:index];
         };
         _headerView.scrollEnabled = NO;
     }
     return _headerView;
+}
+
+-(void)detailIntroduce{
+    introduceView * vc = [introduceView new];
+    vc.web = self.IntroduceArray[0][@"content"];
+    vc.IntroduceTitle = self.IntroduceArray[0][@"title"];
+    vc.time = self.IntroduceArray[0][@"createDatetime"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)bookVideoClick
@@ -375,7 +355,6 @@
     NSString *url = [[self.bannerRoom objectAtIndex:index] url];
     if (url && url.length > 0) {
         HomeVC *webVC = [[HomeVC alloc] init];
-//        webVC.url = url;
         [self.navigationController pushViewController:webVC animated:YES];
     }
 }
@@ -387,26 +366,22 @@
     TLNetworking *http = [TLNetworking new];
     //    http.showView = self.view;
     http.isUploadToken = NO;
-    http.code = @"805806";
-    http.parameters[@"location"] = @"app_home";
+    http.code = @"630506";
+    http.parameters[@"type"] = @"2";
     
     [http postWithSuccess:^(id responseObject) {
         
         self.bannerRoom = [BannerModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
         if (self.bannerRoom.count > 0) {
             self.headerView.banners = self.bannerRoom;
-            [self reloadFindData];
-        }
-      
-//        [self.contentScrollew.mj_header endRefreshing];
-//        [self.contentScrollew.mj_footer endRefreshing];
 
-        //获取官方钱包总量，已空投量
-        //        [self.tableView endRefreshHeader];
-        
+        }
+        [self.collectionView reloadData];
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
     } failure:^(NSError *error) {
-//        [self.contentScrollew.mj_header endRefreshing];
-//        [self.contentScrollew.mj_footer endRefreshing];
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
 //        [self.tableView endRefreshHeader];
         
     }];
@@ -425,31 +400,12 @@
     http.parameters[@"status"] = @"1"  ;
     
     [http postWithSuccess:^(id responseObject) {
-//        [self.contentScrollew.mj_header endRefreshing];
-//        [self.contentScrollew.mj_footer endRefreshing];
-//        self.tableView.findModels = [HomeFindModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
-//        [self.tableView endRefreshHeader];
-//        [self.tableView reloadData];
-//        if (self.findModels.count != self.tableView.findModels.count) {
-//            [TableView AnimationKit showWithAnimationType:6 tableView:self.tableView];
-//        }
-        
-        
-//        self.findModels = [HomeFindModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
-        
     } failure:^(NSError *error) {
-//        [self.contentScrollew.mj_header endRefreshing];
-//        [self.contentScrollew.mj_footer endRefreshing];
-        
     }];
     
 }
 
-//-(void)refreshCollectionView:(BaseCollectionView *)refreshCollectionview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    TreeListVC *tree = [TreeListVC new];
-//    [self.navigationController pushViewController:tree animated:YES];
-//}
+
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -466,14 +422,59 @@
     [self.searchTf resignFirstResponder];
     
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)refresh{
+    //古树
+//    TLNetworking * http = [[TLNetworking alloc]init];
+//    http.code = @"629025";
+//    http.parameters[@"start"] = @(1);
+//    http.parameters[@"limit"] = @(1);
+//    [http postWithSuccess:^(id responseObject) {
+//
+//        [self.treeArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+//        self.Models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treeArray];
+//        [self.collectionView reloadData];
+//        
+//    } failure:^(NSError *error) {
+//        NSLog(@"%@",error);
+//    }];
+    
+    //公告
+    TLNetworking * http1 = [[TLNetworking alloc]init];
+    http1.code = @"805305";
+    http1.parameters[@"start"] = @(1);
+    http1.parameters[@"limit"] = @(10);
+    http1.parameters[@"status"] = @"1";
+    http1.parameters[@"type"] = @"1";
+    http1.parameters[@"object"] = @"C";
+    [http1 postWithSuccess:^(id responseObject) {
+        NSDictionary * dic = (NSDictionary * )responseObject;
+        self.IntroduceArray = dic[@"data"][@"list"];
+        if (self.IntroduceArray.count > 0) {
+            self.headerView.introduceLab.text = self.IntroduceArray[0][@"title"];
+        }
+        
+    } failure:^(NSError *error) {
+    }];
+    
+    //快报
+    TLNetworking * http2 = [[TLNetworking alloc]init];
+    http2.code = @"805305";
+    http2.parameters[@"start"] = @(1);
+    http2.parameters[@"limit"] = @(10);
+    http2.parameters[@"status"] = @"1";
+    http2.parameters[@"type"] = @"3";
+    http2.parameters[@"object"] = @"C";
+    [http2 postWithSuccess:^(id responseObject) {
+        NSLog(@"%@",responseObject[@"data"]);
+        NSDictionary * dic = (NSDictionary * )responseObject;
+        NSArray * array = dic[@"data"][@"list"];
+        NSLog(@"array = %@",array);
+        for (int i = 0; i < array.count; i ++) {
+            self.headerView.TextLoopArray = array[i][@"content"];
+            NSLog(@"%@",self.headerView.TextLoopArray);
+            [self.collectionView reloadData];
+        }
+    } failure:^(NSError *error) {
+    }];
 }
-*/
-
 @end

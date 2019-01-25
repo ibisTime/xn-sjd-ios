@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UILabel * CardName;
 @property (nonatomic,strong) UILabel * CardType;
 @property (nonatomic,strong) UILabel * CardCount;
+@property (nonatomic,strong) NSString * CardNameString;
+@property (nonatomic,strong) NSString * CardTypeString;
+@property (nonatomic,strong) NSString * CardCountString;
 //@property (nonatomic,strong) NSString * CardCountSrting;
 @end
 

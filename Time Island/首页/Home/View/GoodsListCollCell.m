@@ -100,7 +100,8 @@
         adoptLbl.text = @"不可认养";
         adoptLbl.backgroundColor = RGB(179, 98, 188);
     }
-    
+    [self.modelarray addObject:self.model];
+    NSLog(@"%@",model.name);
     
     NSString *str= @"¥ 5000.00";
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:str];
