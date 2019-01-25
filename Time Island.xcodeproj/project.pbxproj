@@ -128,6 +128,7 @@
 		3647C49A21F1B38800FB049D /* MallHomeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647C49921F1B38800FB049D /* MallHomeHeadView.m */; };
 		3647C4A321F1D57400FB049D /* ReceivingAddressVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647C4A221F1D57400FB049D /* ReceivingAddressVC.m */; };
 		3647C4A621F1D80100FB049D /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647C4A521F1D80100FB049D /* AddressCell.m */; };
+		365514D221FADC9A00E54996 /* CardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 365514D121FADC9A00E54996 /* CardModel.m */; };
 		367D68E021F95A230091177C /* aiai_area.txt in Resources */ = {isa = PBXBuildFile; fileRef = 367D68DF21F95A230091177C /* aiai_area.txt */; };
 		367D68E921F95B920091177C /* SelectAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D68E821F95B920091177C /* SelectAdView.m */; };
 		367D694221F998A70091177C /* GenderPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D694121F998A70091177C /* GenderPickerView.m */; };
@@ -657,6 +658,8 @@
 		3647C4A221F1D57400FB049D /* ReceivingAddressVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceivingAddressVC.m; sourceTree = "<group>"; };
 		3647C4A421F1D80100FB049D /* AddressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddressCell.h; sourceTree = "<group>"; };
 		3647C4A521F1D80100FB049D /* AddressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
+		365514D021FADC9A00E54996 /* CardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardModel.h; sourceTree = "<group>"; };
+		365514D121FADC9A00E54996 /* CardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardModel.m; sourceTree = "<group>"; };
 		367D68DF21F95A230091177C /* aiai_area.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aiai_area.txt; sourceTree = "<group>"; };
 		367D68E721F95B920091177C /* SelectAdView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectAdView.h; sourceTree = "<group>"; };
 		367D68E821F95B920091177C /* SelectAdView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectAdView.m; sourceTree = "<group>"; };
@@ -2934,6 +2937,8 @@
 				3689767021EEE176005F1177 /* CollectTreeModel.m */,
 				3689768521EF0435005F1177 /* InviteModel.h */,
 				3689768621EF0435005F1177 /* InviteModel.m */,
+				365514D021FADC9A00E54996 /* CardModel.h */,
+				365514D121FADC9A00E54996 /* CardModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3873,6 +3878,7 @@
 				B88E542421F9A5A300C33040 /* BuyCountCell.m in Sources */,
 				1F93615921EE0139007E522A /* UIViewController+CWLateralSlide.m in Sources */,
 				1F93614B21EE0105007E522A /* MyCarbombubbleView.m in Sources */,
+				365514D221FADC9A00E54996 /* CardModel.m in Sources */,
 				B81E603721DC93EC00873AB9 /* UIView+Frame.m in Sources */,
 				1F1B00D221E89667000BEBD3 /* FriendsTheTreeTableView.m in Sources */,
 				1F1B00BD21E87B00000BEBD3 /* GivingVC.m in Sources */,
@@ -4315,7 +4321,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3ZCW993X44;
-
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -4349,7 +4354,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3ZCW993X44;
-
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
