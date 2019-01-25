@@ -13,12 +13,19 @@
 #import "TreeDetailVC.h"
 #import "GoodsListCollCell.h"
 #import "GoodsDetailsVc.h"
+#import "TreeModel.h"
 @interface TreeListVC ()<UITextFieldDelegate,UISearchBarDelegate,UIScrollViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MMComBoBoxViewDelegate,MMComBoBoxViewDataSource>
 //@property (nonatomic, strong) TLTopCollectionView *topView;
 
+
+
+@property (nonatomic , strong)NSMutableArray <TreeModel *>*models;
+
+@property (nonatomic , strong)NSMutableArray *treeArray;
+
 @property (nonatomic, strong) UIScrollView *contentScrollew;
 
-@property (nonatomic, assign) NSInteger page;//当前页数
+@property (nonatomic, assign) NSInteger start;//当前页数
 
 @property (nonatomic, strong) UISearchBar *searchBar;
 
@@ -26,7 +33,7 @@
 
 @property (nonatomic, strong) UIView *topLine;
 
-@property (nonatomic, strong) NSMutableArray <PlateMineModel *>*models;//树models
+//@property (nonatomic, strong) NSMutableArray <PlateMineModel *>*models;//树models
 
 @property (nonatomic, strong) UIView *bottomLine;
 @property (nonatomic, strong) NSArray *mutableArray;
@@ -42,12 +49,7 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
 //    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-    [self headRefresh];
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+//    [self headRefresh];
 }
 
 //如果仅设置当前页导航透明，需加入下面方法
@@ -59,10 +61,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"";
+    self.treeArray = [NSMutableArray array];
     [self initSearchBar];
-//    [self initCollection];
     [self initComboBox];
     [self.view addSubview:self.collectionView];
+    [self headRefresh];
 }
 
 
@@ -81,12 +84,6 @@
     return _collectionView;
 }
 
-
-
-
-
-
-
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
@@ -95,7 +92,7 @@
 #pragma mark------CollectionView的代理方法
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+    return self.models.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -109,7 +106,7 @@
     {
         cell.backView.frame = CGRectMake(3, 0, (SCREEN_WIDTH - 30)/2, (SCREEN_WIDTH - 30)/2 + 80);
     }
-    
+    cell.model = self.models[indexPath.row];
     
     return cell;
 }
@@ -210,75 +207,19 @@
     
 }
 
-//- (void)initCollection
-//{
-////    self.contentScrollew = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth, kScreenHeight-kNavigationBarHeight)];
-////    [self.view addSubview:self.contentScrollew];
-////    self.contentScrollew.delegate = self;
-////    self.contentScrollew.scrollEnabled = YES;
-//    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-//    layout.itemSize = CGSizeMake((kScreenWidth-45)/2, 250);
-//    layout.minimumLineSpacing = 15.0; // 竖
-//    layout.minimumInteritemSpacing = 15.0; // 横
-//    layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
-//
-//
-//
-//    TLTopCollectionView *topView = [[TLTopCollectionView alloc] initWithFrame:CGRectMake(0, 40, kScreenWidth, kScreenHeight) collectionViewLayout:layout withImage:@[@""]];
-//    self.topView = topView;
-//    topView.refreshDelegate = self;
-//    self.topView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headRefresh)];
-//    self.topView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefresh)];
-//    [self.view addSubview:topView];
-//    //    topView.mj_header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadMoreNews)];
-//
-//    UIView *lineView = [[UIView alloc] init];
-//    self.bottomLine = lineView;
-//    CGFloat f = CGRectGetMaxY(topView.frame);
-//    lineView.frame = CGRectMake(0, f, kScreenWidth, 10);
-//    [self.contentScrollew addSubview:lineView];
-//    lineView.backgroundColor = kHexColor(@"#F5F5F5");
-//
-//    PlateMineModel *mineModel = [PlateMineModel new];
-//    mineModel.Description = @"描述描述";
-//    mineModel.avgChange = @"1000";
-//    mineModel.bestChange = @"2000";
-//    mineModel.worstChange = @"500";
-//    mineModel.name = @"产品1";
-//    PlateMineModel *mineModel1 = [PlateMineModel new];
-//    mineModel1.Description = @"描述描述2";
-//    mineModel1.avgChange = @"10000";
-//    mineModel1.bestChange = @"20000";
-//    mineModel1.worstChange = @"5000";
-//    mineModel1.name = @"产品2";
-//    PlateMineModel *mineModel2 = [PlateMineModel new];
-//    mineModel2.Description = @"描述描述";
-//    mineModel2.avgChange = @"100000";
-//    mineModel2.bestChange = @"200000";
-//    mineModel2.worstChange = @"50000";
-//    mineModel2.name = @"产品3";
-//    mineModel2.Description = @"描述描述3";
-//    NSMutableArray *arr = [NSMutableArray array];
-//    [arr addObject:mineModel];
-//    [arr addObject:mineModel1];
-//    [arr addObject:mineModel2];
-//    [arr addObject:mineModel];
-//    [arr addObject:mineModel2];
-//    [arr addObject:mineModel1];
-//    [arr addObject:mineModel2];
-//    [arr addObject:mineModel];
-//    [arr addObject:mineModel1];
-//
-//    self.topView.models = arr;
-//    [self.topView reloadData];
-//}
-
-
 -(void)headRefresh
 {
-    self.page = 1;
-    [self.collectionView.mj_header beginRefreshing];
-    [self requestBannerList];
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    header.automaticallyChangeAlpha = YES;
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = YES;
+    _collectionView.mj_header = header;
+    [_collectionView.mj_header beginRefreshing];
+    
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewDataFooter)];
+    footer.arrowView.hidden = YES;
+    footer.stateLabel.hidden = YES;
+    _collectionView.mj_footer = footer;
 }
 
 
@@ -287,40 +228,39 @@
     [self.searchTf resignFirstResponder];
 }
 
--(void)footerRefresh
+-(void)loadNewData
 {
-    self.page ++;
-    [self.contentScrollew.mj_footer beginRefreshing];
-    
+    self.start = 1;
+    self.treeArray = [NSMutableArray array];
+    [self requestBannerList];
+}
+
+-(void)loadNewDataFooter
+{
+    self.start ++;
     [self requestBannerList];
 }
 
 - (void)requestBannerList {
     
     TLNetworking *http = [TLNetworking new];
-    //    http.showView = self.view;
-    http.isUploadToken = NO;
-    http.code = @"805806";
-    http.parameters[@"location"] = @"app_home";
+    
+    http.code = @"629035";
+    http.parameters[@"start"] = [NSString stringWithFormat:@"%ld",self.start];
+    http.parameters[@"limit"] = @"10";
     
     [http postWithSuccess:^(id responseObject) {
         
-//        self.bannerRoom = [BannerModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
-//        if (self.bannerRoom.count > 0) {
-//            self.headerView.banners = self.bannerRoom;
-//            [self reloadFindData];
-//        }
+        [self.treeArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treeArray];
         
-        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView reloadData];
         [self.collectionView.mj_footer endRefreshing];
-        
-        //        [self.tableView endRefreshHeader];
+        [self.collectionView.mj_header endRefreshing];
         
     } failure:^(NSError *error) {
-        [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
-//        [self.tableView endRefreshHeader];
-        
+        [self.collectionView.mj_header endRefreshing];
     }];
 }
 

@@ -20,6 +20,7 @@
 		1F19A8EC21FAA6BA0090BF84 /* ProvinceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8E621FAA6BA0090BF84 /* ProvinceModel.m */; };
 		1F19A8ED21FAA6BA0090BF84 /* AreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8E921FAA6BA0090BF84 /* AreaModel.m */; };
 		1F19A8EF21FAA7140090BF84 /* AddressPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8EE21FAA7130090BF84 /* AddressPickView.m */; };
+		1F19A8F321FADF9B0090BF84 /* TreeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8F221FADF9B0090BF84 /* TreeModel.m */; };
 		1F1B001921E6E23F000BEBD3 /* OxygenCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B001821E6E23F000BEBD3 /* OxygenCircleView.m */; };
 		1F1B002021E6F79C000BEBD3 /* MyTreeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B001F21E6F79C000BEBD3 /* MyTreeVC.m */; };
 		1F1B002321E6F8C8000BEBD3 /* MyTreeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B002221E6F8C8000BEBD3 /* MyTreeTableView.m */; };
@@ -448,6 +449,8 @@
 		1F19A8E821FAA6BA0090BF84 /* AddressPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressPickView.h; sourceTree = "<group>"; };
 		1F19A8E921FAA6BA0090BF84 /* AreaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaModel.m; sourceTree = "<group>"; };
 		1F19A8EE21FAA7130090BF84 /* AddressPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressPickView.m; sourceTree = "<group>"; };
+		1F19A8F121FADF9B0090BF84 /* TreeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeModel.h; sourceTree = "<group>"; };
+		1F19A8F221FADF9B0090BF84 /* TreeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeModel.m; sourceTree = "<group>"; };
 		1F1B001721E6E23F000BEBD3 /* OxygenCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OxygenCircleView.h; sourceTree = "<group>"; };
 		1F1B001821E6E23F000BEBD3 /* OxygenCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OxygenCircleView.m; sourceTree = "<group>"; };
 		1F1B001E21E6F79C000BEBD3 /* MyTreeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTreeVC.h; sourceTree = "<group>"; };
@@ -2853,6 +2856,8 @@
 				B81E60A521DCAC0F00873AB9 /* HomeFindModel.m */,
 				B81E60A221DCAB9A00873AB9 /* BannerModel.h */,
 				B81E60A121DCAB9A00873AB9 /* BannerModel.m */,
+				1F19A8F121FADF9B0090BF84 /* TreeModel.h */,
+				1F19A8F221FADF9B0090BF84 /* TreeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3997,6 +4002,7 @@
 				B80D386921F8607900206B55 /* UIView+SDAutoLayout.m in Sources */,
 				1F93614A21EE0105007E522A /* MyCarbonBubbleCell.m in Sources */,
 				B8ED2E7621E7139E00FADCCE /* TreeFiledCell.m in Sources */,
+				1F19A8F321FADF9B0090BF84 /* TreeModel.m in Sources */,
 				3610EEBB21EDBEBF00FD345D /* CardVC.m in Sources */,
 				B81E5FB021DC8FC200873AB9 /* TLTableView.m in Sources */,
 				B81E5FDE21DC8FC200873AB9 /* AppConfig.m in Sources */,
