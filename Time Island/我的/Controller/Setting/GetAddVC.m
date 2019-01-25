@@ -8,20 +8,33 @@
 
 #import "GetAddVC.h"
 #import "AddressPickView.h"
-
+#import "ReceivingAddressVC.h"
 @interface GetAddVC ()
-@property (nonatomic,strong) TLTextField * Name;
-@property (nonatomic,strong) TLTextField * Phone;
-@property (nonatomic,strong) TLTextField * Address;
-@property (nonatomic,strong) TLTextField * DoorNum;
+//@property (nonatomic,strong) TLTextField * Name;
+//@property (nonatomic,strong) TLTextField * Phone;
+//@property (nonatomic,strong) TLTextField * Address;
+//@property (nonatomic,strong) TLTextField * DoorNum;
 @property (nonatomic,strong) AddressPickView * pickerView;
+@property (nonatomic,strong) NSString * code;
+//@property (nonatomic,strong) NSString * sheng;
+//@property (nonatomic,strong) NSString * shi;
+//@property (nonatomic,strong) NSString * qu;
 @end
 
 @implementation GetAddVC
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"新增收货地址";
+    if (self.state == 1) {
+        self.title = @"修改收货地址";
+        self.code = @"805172";
+    }
+    else{
+        self.title = @"新增收货地址";
+        self.code = @"805170";
+    }
+    
 //    UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] init];
 //    backBtn.title = @"新增收货地址";
 //    self.navigationItem.backBarButtonItem = backBtn;
@@ -35,10 +48,16 @@
     //姓名
     TLTextField * Name = [[TLTextField alloc]initWithFrame:CGRectMake(margin, 0, SCREEN_WIDTH-30, height) leftTitle:@"收货人" placeholder:@"您的姓名"];
     [self.view addSubview:Name];
+    if (self.NameString) {
+        Name.text = self.NameString;
+    }
     self.Name = Name;
     //电话
-    TLTextField * Phone = [[TLTextField alloc]initWithFrame:CGRectMake(margin, Name.yy, SCREEN_WIDTH-30, height) leftTitle:@"收货人" placeholder:@"您的姓名"];
+    TLTextField * Phone = [[TLTextField alloc]initWithFrame:CGRectMake(margin, Name.yy, SCREEN_WIDTH-30, height) leftTitle:@"电话" placeholder:@"您的电话"];
     [self.view addSubview:Phone];
+    if (self.PhoneString) {
+        Phone.text = self.PhoneString;
+    }
     self.Phone = Phone;
     //地址
     
@@ -46,6 +65,9 @@
     TLTextField * Address = [[TLTextField alloc]initWithFrame:CGRectMake(margin, Phone.yy, SCREEN_WIDTH-30, height) leftTitle:@"地址" placeholder:@"所在地区"];
     Address.delegate = self;
     [self.view addSubview:Address];
+    if (self.sheng||self.shi||self.qu) {
+        Address.text = [NSString stringWithFormat:@"%@ %@ %@",self.sheng,self.shi,self.qu];
+    }
     self.Address = Address;
     
     
@@ -53,6 +75,9 @@
     //门牌号
     TLTextField * DoorNum = [[TLTextField alloc]initWithFrame:CGRectMake(margin, Address.yy, SCREEN_WIDTH-30, 80) leftTitle:@"门牌号" placeholder:@"10号楼5层501室"];
     [self.view addSubview:DoorNum];
+    if (self.DoorNumString) {
+        DoorNum.text = self.DoorNumString;
+    }
     self.DoorNum = DoorNum;
 //    UITextView * DoorNum = [[UITextView alloc]initWithFrame:CGRectMake(60, Address.yy, SCREEN_WIDTH-30, 80)];
 //    DoorNum.backgroundColor = kWhiteColor;
@@ -70,7 +95,25 @@
 -(void)confirm{
     NSLog(@"%s",__func__);
     TLNetworking * http = [[TLNetworking alloc]init];
-    http.code = @"";
+    http.code = self.code;
+    if (self.state == 1) {
+        http.parameters[@"code"] = self.AddressCode;
+    }
+    http.parameters[@"addressee"] = self.Name.text;
+    http.parameters[@"mobile"] = self.Phone.text;
+    http.parameters[@"userId"] = [TLUser user].userId;
+    http.parameters[@"detailAddress"] = self.DoorNum.text;
+    http.parameters[@"province"] = self.sheng;
+    http.parameters[@"city"] = self.shi;
+    http.parameters[@"isDefault"] = @"0";
+    http.parameters[@"district"] = self.qu;
+    [http postWithSuccess:^(id responseObject) {
+        [TLAlert alertWithSucces:@"添加成功"];
+        [self.navigationController popViewControllerAnimated:YES];
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
 }
 
 -(AddressPickView *)pickerView{
@@ -88,7 +131,11 @@
     __weak typeof(self) weakSelf = self;
     //block传值
     _pickerView.determineBtnBlock = ^(NSString *shengId, NSString *shiId, NSString *xianId, NSString *shengName, NSString *shiName, NSString *xianName, NSString *postCode) {
+        weakSelf.sheng = shengName;
+        weakSelf.shi = shiName;
+        weakSelf.qu = xianName;
         weakSelf.Address.text = [NSString stringWithFormat:@"%@ %@ %@",shengName,shiName,xianName];
     };
 }
+
 @end

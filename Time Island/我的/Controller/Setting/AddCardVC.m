@@ -47,6 +47,9 @@
     [self.view addSubview:CardName];
     self.CardName = CardName;
     
+    UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, CardName.yy, SCREEN_WIDTH, 10)];
+    view.backgroundColor = kLineColor;
+    [self.view addSubview:view];
     
     //持卡人
     TLTextField * CardUserName = [[TLTextField alloc]initWithFrame:CGRectMake(margin, CardName.yy + 10, SCREEN_WIDTH - 30, height) leftTitle:@"持卡人" placeholder:@"持卡人姓名"];
@@ -110,6 +113,11 @@
 -(void)confirm{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"802020";
+    http.parameters[@"bankcardNumber"] = self.CardNum.text;
+    http.parameters[@"bindMobile"] = self.CardUserPhone.text;
+    http.parameters[@"smsCaptcha"] = self.captchaView.captchaTf.text;
+    http.parameters[@"realName"] = self.CardUserName.text;
+//    http.parameters[@"subbranch"] = self.
     
 }
 /*

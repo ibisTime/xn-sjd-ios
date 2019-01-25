@@ -31,10 +31,11 @@
         [self.contentView addSubview:view];
         
         self.checkBtn = [UIButton buttonWithImageName:@"地址-未选中" selectedImageName:@"地址（选择）"];
-        self.checkBtn.selected = YES;
-        self.checkBtn.frame = CGRectMake(30, view.yy + 11.5, 18, 18);
+//        self.checkBtn.selected = YES;
+        self.checkBtn.frame = CGRectMake(15, view.yy + 11.5, 18, 18);
         [self.contentView addSubview:self.checkBtn];
-        [self.checkBtn addTarget:self action:@selector(clickSelect:) forControlEvents:UIControlEventTouchUpInside];
+//        self.checkBtn.tag = 1;
+//        [self.checkBtn addTarget:self action:@selector(clickSelect:) forControlEvents:UIControlEventTouchUpInside];
         
         
         self.label = [UILabel labelWithFrame:CGRectMake(self.checkBtn.xx + 5, view.yy + 12.5, 80, 16.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(12) textColor:kTextColor3];
@@ -48,24 +49,30 @@
         UIButton * editbtn = [[UIButton alloc]initWithFrame:CGRectMake(self.label.xx + 123.5, view.yy + 9, 50, 23)];
         [editbtn setTitle:@"编辑" forState:UIControlStateNormal];
         editbtn.backgroundColor = kClearColor;
+        self.editbtn = editbtn;
         [editbtn setTitleColor:kTextColor3 forState:UIControlStateNormal];
         editbtn.layer.borderWidth = 1;
         editbtn.layer.cornerRadius = 2;
         editbtn.layer.masksToBounds = YES;
         editbtn.titleLabel.font = FONT(12);
         editbtn.layer.borderColor = kHexColor(@"#979797").CGColor;
+//        editbtn.tag = 2;
+//        [editbtn addTarget:self action:@selector(clickSelect:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:editbtn];
         
         
         UIButton * cancelbtn = [[UIButton alloc]initWithFrame:CGRectMake(editbtn.xx + 25.5, view.yy + 9, 50, 23)];
         [cancelbtn setTitle:@"删除" forState:UIControlStateNormal];
         cancelbtn.backgroundColor = kClearColor;
+        self.cancelbtn = cancelbtn;
         [cancelbtn setTitleColor:kTextColor3 forState:UIControlStateNormal];
         cancelbtn.titleLabel.font = FONT(12);
         cancelbtn.layer.borderWidth = 1;
         cancelbtn.layer.cornerRadius = 2;
         cancelbtn.layer.masksToBounds = YES;
         cancelbtn.layer.borderColor = kHexColor(@"#979797").CGColor;
+//        cancelbtn.tag = 3;
+//        [cancelbtn addTarget:self action:@selector(clickSelect:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:cancelbtn];
         
         
@@ -94,9 +101,8 @@
     else{
         self.label.textColor = kTextColor3;
     }
-    
+    [_delegrate ClickButton:sender.tag];
 }
-
 -(UIView*)createview:(CGRect)frame{
     UIView * view = [[UIView alloc]initWithFrame:frame];
     view.backgroundColor = kLineColor;

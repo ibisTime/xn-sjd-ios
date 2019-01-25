@@ -89,7 +89,7 @@
     _nameLbl.text = [NSString stringWithFormat:@"%@",model.addressee];
     _phoneLbl.text = model.mobile;
 
-    _addressLbl.text = [NSString stringWithFormat:@"%@ %@ %@ %@",model.province,model.city,model.area,model.detail];
+    _addressLbl.text = [NSString stringWithFormat:@"%@ %@ %@ %@",model.province,model.city,model.district,model.detailAddress];
     _addressLbl.frame = CGRectMake(50,_nameLbl.yy+10, SCREEN_WIDTH - 80 , 0);
     [_addressLbl sizeToFit];
     youImage.frame = CGRectMake(SCREEN_WIDTH - 21, (57 + _addressLbl.frame.size.height)/2 - 5.5, 6, 11);
