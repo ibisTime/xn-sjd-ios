@@ -10,6 +10,7 @@
 #import "TLCaptchaView.h"
 @interface AddCardVC ()
 @property (nonatomic,strong) TLTextField * CardNum;
+@property (nonatomic,strong) TLTextField * BankName;
 @property (nonatomic,strong) TLTextField * CardName;
 @property (nonatomic,strong) TLTextField * CardUserName;
 @property (nonatomic,strong) TLTextField * CardUserId;
@@ -35,8 +36,14 @@
     [self.view addSubview:CardNum];
     self.CardNum = CardNum;
     
+    //银行名称
+    TLTextField * BankName = [[TLTextField alloc]initWithFrame:CGRectMake(margin, CardNum.yy, SCREEN_WIDTH - 30, height) leftTitle:@"银行名称" placeholder:@"银行名称"];
+    [self.view addSubview:BankName];
+    self.BankName = BankName;
+    
+    
     //支行名称
-    TLTextField * CardName = [[TLTextField alloc]initWithFrame:CGRectMake(margin, CardNum.yy, SCREEN_WIDTH-30, height) leftTitle:@"支行名称" placeholder:@"银行卡支行名称"];
+    TLTextField * CardName = [[TLTextField alloc]initWithFrame:CGRectMake(margin, BankName.yy, SCREEN_WIDTH-30, height) leftTitle:@"支行名称" placeholder:@"银行卡支行名称"];
     [self.view addSubview:CardName];
     self.CardName = CardName;
     
@@ -77,9 +84,33 @@
 }
 -(void)sendCaptcha{
     NSLog(@"%s",__func__);
+    if (![self.CardUserPhone.text isPhoneNum]) {
+        
+        [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入正确的手机号" key:nil]];
+        
+        return;
+    }
+    //
+    TLNetworking *http = [TLNetworking new];
+    http.showView = self.view;
+    http.code = CAPTCHA_CODE;
+    http.parameters[@"bizType"] = @"802020";
+    http.parameters[@"mobile"] = self.CardUserPhone.text;
+    
+    [http postWithSuccess:^(id responseObject) {
+        
+        [TLAlert alertWithSucces:[LangSwitcher switchLang:@"验证码已发送,请注意查收" key:nil]];
+        
+        [self.captchaView.captchaBtn begin];
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 -(void)confirm{
-    NSLog(@"%s",__func__);
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"802020";
+    
 }
 /*
 #pragma mark - Navigation
