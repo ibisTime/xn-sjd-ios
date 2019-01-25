@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6D43ED90E9B16823C306CE573FE84E6D"
-               BlueprintName = "Qiniu"
+               BlueprintIdentifier = "03BC56021C485EF7F5DD27B356320544"
+               BlueprintName = "JSONModel"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libQiniu.a">
+               BuildableName = "libJSONModel.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
