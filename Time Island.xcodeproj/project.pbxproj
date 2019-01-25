@@ -21,6 +21,7 @@
 		1F19A8ED21FAA6BA0090BF84 /* AreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8E921FAA6BA0090BF84 /* AreaModel.m */; };
 		1F19A8EF21FAA7140090BF84 /* AddressPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8EE21FAA7130090BF84 /* AddressPickView.m */; };
 		1F19A8F321FADF9B0090BF84 /* TreeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8F221FADF9B0090BF84 /* TreeModel.m */; };
+		1F19A8F721FB23980090BF84 /* HomeHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8F621FB23980090BF84 /* HomeHeadCell.m */; };
 		1F1B001921E6E23F000BEBD3 /* OxygenCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B001821E6E23F000BEBD3 /* OxygenCircleView.m */; };
 		1F1B002021E6F79C000BEBD3 /* MyTreeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B001F21E6F79C000BEBD3 /* MyTreeVC.m */; };
 		1F1B002321E6F8C8000BEBD3 /* MyTreeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B002221E6F8C8000BEBD3 /* MyTreeTableView.m */; };
@@ -309,7 +310,6 @@
 		B81E608821DC9FCC00873AB9 /* LinCircleVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B81E608721DC9FCC00873AB9 /* LinCircleVC.m */; };
 		B81E608B21DC9FE500873AB9 /* MallVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B81E608A21DC9FE500873AB9 /* MallVC.m */; };
 		B81E608E21DC9FFC00873AB9 /* HomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B81E608D21DC9FFC00873AB9 /* HomeVC.m */; };
-		B81E609C21DCAB8F00873AB9 /* HomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B81E609221DCAB8E00873AB9 /* HomeHeaderView.m */; };
 		B81E609D21DCAB8F00873AB9 /* TLBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B81E609421DCAB8F00873AB9 /* TLBannerView.m */; };
 		B81E609E21DCAB8F00873AB9 /* TLBannerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B81E609521DCAB8F00873AB9 /* TLBannerCell.m */; };
 		B81E609F21DCAB8F00873AB9 /* HW3DBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B81E609721DCAB8F00873AB9 /* HW3DBannerView.m */; };
@@ -471,6 +471,8 @@
 		1F19A8EE21FAA7130090BF84 /* AddressPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressPickView.m; sourceTree = "<group>"; };
 		1F19A8F121FADF9B0090BF84 /* TreeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeModel.h; sourceTree = "<group>"; };
 		1F19A8F221FADF9B0090BF84 /* TreeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeModel.m; sourceTree = "<group>"; };
+		1F19A8F521FB23980090BF84 /* HomeHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeHeadCell.h; sourceTree = "<group>"; };
+		1F19A8F621FB23980090BF84 /* HomeHeadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeHeadCell.m; sourceTree = "<group>"; };
 		1F1B001721E6E23F000BEBD3 /* OxygenCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OxygenCircleView.h; sourceTree = "<group>"; };
 		1F1B001821E6E23F000BEBD3 /* OxygenCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OxygenCircleView.m; sourceTree = "<group>"; };
 		1F1B001E21E6F79C000BEBD3 /* MyTreeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTreeVC.h; sourceTree = "<group>"; };
@@ -1048,8 +1050,6 @@
 		B81E608A21DC9FE500873AB9 /* MallVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallVC.m; sourceTree = "<group>"; };
 		B81E608C21DC9FFC00873AB9 /* HomeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
 		B81E608D21DC9FFC00873AB9 /* HomeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
-		B81E609121DCAB8D00873AB9 /* HomeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHeaderView.h; sourceTree = "<group>"; };
-		B81E609221DCAB8E00873AB9 /* HomeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHeaderView.m; sourceTree = "<group>"; };
 		B81E609421DCAB8F00873AB9 /* TLBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLBannerView.m; sourceTree = "<group>"; };
 		B81E609521DCAB8F00873AB9 /* TLBannerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLBannerCell.m; sourceTree = "<group>"; };
 		B81E609621DCAB8F00873AB9 /* UIView+Banner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Banner.h"; sourceTree = "<group>"; };
@@ -1941,8 +1941,8 @@
 			isa = PBXGroup;
 			children = (
 				B81E609321DCAB8F00873AB9 /* Banner */,
-				B81E609121DCAB8D00873AB9 /* HomeHeaderView.h */,
-				B81E609221DCAB8E00873AB9 /* HomeHeaderView.m */,
+				1F19A8F521FB23980090BF84 /* HomeHeadCell.h */,
+				1F19A8F621FB23980090BF84 /* HomeHeadCell.m */,
 				1F9361E221F3158F007E522A /* GoodsListCollCell.h */,
 				1F9361E321F3158F007E522A /* GoodsListCollCell.m */,
 				365514D621FB009000E54996 /* introduceView.h */,
@@ -4108,7 +4108,6 @@
 				1F1B00A121E7456B000BEBD3 /* ZJAnimationPopView.m in Sources */,
 				B81E60A321DCAB9B00873AB9 /* BannerModel.m in Sources */,
 				B8ED2E8221E72E1900FADCCE /* TitleView.m in Sources */,
-				B81E609C21DCAB8F00873AB9 /* HomeHeaderView.m in Sources */,
 				B87C211821FAE8C800EFD0B0 /* ExpressView.m in Sources */,
 				1FF6399221EC833000F5FF68 /* FriendRequestsVC.m in Sources */,
 				B81E5FB621DC8FC200873AB9 /* TopSegmentUtil.m in Sources */,
@@ -4238,6 +4237,7 @@
 				B81E603421DC93EC00873AB9 /* CDCommon.m in Sources */,
 				3610EEAC21EDA95900FD345D /* SettingVCCell.m in Sources */,
 				B8226F8921F71CCE002F450F /* AllCommentCell.m in Sources */,
+				1F19A8F721FB23980090BF84 /* HomeHeadCell.m in Sources */,
 				1F1B001921E6E23F000BEBD3 /* OxygenCircleView.m in Sources */,
 				B81E602221DC906D00873AB9 /* TLUser.m in Sources */,
 				B81E601D21DC906D00873AB9 /* TLUserForgetPwdVC.m in Sources */,
