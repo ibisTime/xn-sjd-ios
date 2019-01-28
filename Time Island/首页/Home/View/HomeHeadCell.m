@@ -46,7 +46,7 @@
 @property (nonatomic, strong)  UILabel *englishLab;//推文英文
 @property (nonatomic, strong) UIView *fastNews;//快报
 @property (nonatomic,strong) SLBannerView * banner;
-@property (nonatomic,strong)  UIImageView *imageView;
+@property (nonatomic,strong) UIImageView * imageView;
 
 @end
 @implementation HomeHeadCell
@@ -65,6 +65,7 @@
         [self initRenLingTree];
         [self initTuiArticle];
         [self initFastNews];
+        NSLog(@"self.ImageString = %@",self.ImageString);
     }
     return self;
 }
@@ -91,7 +92,7 @@
     imageView.contentMode = UIViewContentModeScaleToFill;
     imageView.frame = CGRectMake(line.xx + 7, 9, 28, 12);
     [noticeView addSubview:imageView];
-    self.imageView = imageView;
+//    self.imageView = imageView;
     
     
     UILabel *introduceLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kHexColor(@"#666666") font:12];
@@ -184,10 +185,11 @@
     
     
     UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.image = kImage(@"baner1");
+//    [imageView sd_setImageWithURL:[NSURL URLWithString:[self.ImageString convertImageUrl]]];
     imageView.frame = CGRectMake(15, tuiLab.yy+8, (kScreenWidth-30), (SCREEN_WIDTH - 30)/690*200);
     kViewRadius(imageView, 4);
     [self.tuiArticle addSubview:imageView];
+    self.tuiwenimage = imageView;
     
     UITapGestureRecognizer *ta = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tuiwenClick)];
     [imageView addGestureRecognizer:ta];
@@ -224,7 +226,7 @@
     imageView.image = kImage(@"快报");
     imageView.frame = CGRectMake(line.xx + 7, 9, 28, 12);
     [fastNews addSubview:imageView];
-    
+    self.imageView = imageView;
 
     
     UILabel *moreLab = [UILabel labelWithBackgroundColor:kClearColor textColor:[UIColor redColor] font:12];
@@ -256,7 +258,7 @@
     [button SG_imagePositionStyle:(SGImagePositionStyleRight) spacing:10 imagePositionBlock:^(UIButton *button) {
         [button setImage:kImage(@"积分更多") forState:UIControlStateNormal];
     }];
-    [button addTarget:self action:@selector(tuiwenClick) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(TreeClick) forControlEvents:UIControlEventTouchUpInside];
     [backView addSubview:button];
     
     
@@ -313,6 +315,11 @@
 
 #pragma mark - Events
 
+-(void)TreeClick{
+    if (self.TreeClickBlock) {
+        self.TreeClickBlock();
+    }
+}
 
 - (void)moreNotice
 {
@@ -370,4 +377,5 @@
     [self.fastNews addSubview:loopView];
     loopView.centerY = self.imageView.centerY;
 }
+
 @end

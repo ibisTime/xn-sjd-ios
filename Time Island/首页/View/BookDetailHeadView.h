@@ -7,6 +7,7 @@
 //
 
 #import "BaseView.h"
+#import "BookModel.h"
 
 @interface BookDetailHeadView : BaseView
 @property (nonatomic ,strong) UILabel *moreLab;
@@ -19,7 +20,8 @@
 
 @property (nonatomic ,strong) UILabel *timeLab;
 
-@property (nonatomic ,strong) UILabel *collectLab;
-
-@property (nonatomic ,strong) UILabel *praiseLab;
+//@property (nonatomic ,strong) UILabel *collectLab;
+//
+//@property (nonatomic ,strong) UILabel *praiseLab;
+@property (nonatomic,strong) BookModel * BookModel;
 @end

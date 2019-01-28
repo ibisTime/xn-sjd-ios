@@ -14,6 +14,7 @@
 
 @property (nonatomic , strong)TreeModel *model;
 @property (nonatomic,strong) NSMutableArray * modelarray;
-
+@property (nonatomic,strong) NSArray * SellTypeArray;
+@property (nonatomic,strong) NSArray * ProductStatusArray;
 @end
 

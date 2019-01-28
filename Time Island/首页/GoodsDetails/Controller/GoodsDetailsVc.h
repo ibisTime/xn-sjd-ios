@@ -7,7 +7,7 @@
 //
 
 #import "TLBaseVC.h"
-
+#import "TreeModel.h"
 @interface GoodsDetailsVc : TLBaseVC
-
+@property (nonatomic,strong) TreeModel * TreeModel;
 @end

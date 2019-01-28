@@ -27,6 +27,7 @@
 #import "HomeHeadCell.h"
 #import "MyNoticeDetailsVC.h"
 #import "NoticeModel.h"
+#import "GoodsDetailsVc.h"
 @interface HomeVC ()<RefreshDelegate,RefreshCollectionViewDelegate,UIScrollViewDelegate,UITextFieldDelegate,UISearchBarDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 //@property (nonatomic, strong) HomeHeaderView *headerView;
@@ -38,7 +39,7 @@
 @property (nonatomic, strong) UIView *bottomLine;
 
 
-@property (nonatomic, assign) NSInteger page;//当前页数
+@property (nonatomic, assign) NSInteger start;//当前页数
 
 @property (nonatomic, strong) UISearchBar *searchBar;
 
@@ -53,7 +54,14 @@
 @property (nonatomic,strong) NSMutableArray<NoticeModel * > * newsarray;
 //存放公告
 @property (nonatomic,strong)  NSArray *IntroduceArray;
+@property (nonatomic,strong) NSArray * TuiwenArray;
 //@property (nonatomic,strong) NSArray * newsarray;
+
+//存放古树商品
+@property (nonatomic,strong)  NSMutableArray *treemMuArray;
+
+@property (nonatomic,strong) NSArray * SellTypeArray;
+@property (nonatomic,strong) NSArray * ProductStatusArray;
 
 @end
 
@@ -103,6 +111,7 @@
     [self initSearchBar];
     self.treeArray = [NSMutableArray array];
     [self.view addSubview:self.collectionView];
+    self.start = 1;
     [self headRefresh];
 }
 
@@ -137,6 +146,10 @@
             //点击情感推文
             [weakSelf bookVideoClick];
         };
+        _cell.TreeClickBlock = ^{
+            TreeListVC *tree = [TreeListVC new];
+            [weakSelf.navigationController pushViewController:tree animated:YES];
+        };
 //        _cell.clicknewsBlock = ^{
 //            //点击快报
 //            [weakSelf detailsClick];
@@ -161,6 +174,9 @@
     TreeModel * model = self.Models[indexPath.row];
     cell.model = model;
 
+    cell.SellTypeArray = self.SellTypeArray;
+    cell.ProductStatusArray = self.ProductStatusArray;
+    
     if (indexPath.row % 2 == 0) {
         cell.backView.frame = CGRectMake(12, 0, (SCREEN_WIDTH - 30)/2, (SCREEN_WIDTH - 30)/2 + 80);
     }else
@@ -176,7 +192,9 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        TreeListVC *tree = [TreeListVC new];
+//        TreeListVC *tree = [TreeListVC new];
+        GoodsDetailsVc * tree = [GoodsDetailsVc new];
+        tree.TreeModel = self.Models[indexPath.row];
         [self.navigationController pushViewController:tree animated:YES];
     }
     
@@ -289,13 +307,16 @@
 
 -(void)loadNewData
 {
+    self.treemMuArray = [NSMutableArray array];
+    self.start = 1;
     [self requestBannerList];
     [self refresh];
 }
 
 -(void)loadNewDataFooter
 {
-    
+    self.start ++;
+    [self refresh];
 }
 
 
@@ -436,18 +457,50 @@
     //古树
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629025";
-    http.parameters[@"start"] = @(1);
-    http.parameters[@"limit"] = @(1);
+    http.parameters[@"start"] = @(self.start);
+    http.parameters[@"limit"] = @(10);
+    http.parameters[@"location"] = @"1";
+    http.parameters[@"orderDir"] = @"asc";
+    http.parameters[@"orderColumn"]= @"buyable";
+    http.parameters[@"statusList"] = @[@"4",@"5",@"6"];
     [http postWithSuccess:^(id responseObject) {
 
-//        [self.treeArray addObjectsFromArray:responseObject[@"data"][@"list"]];
         NSArray *array = responseObject[@"data"][@"list"];
-        self.Models = [TreeModel mj_objectArrayWithKeyValuesArray:array];
+        [self.treemMuArray addObjectsFromArray:array];
+        self.Models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treemMuArray];
         [self.collectionView reloadData];
-        
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
     }];
+    
+    
+    //专属
+    TLNetworking * http3 = [[TLNetworking alloc]init];
+    http3.code = @"630036";
+    http3.parameters[@"parentKey"] = @"sell_type";
+    [http3 postWithSuccess:^(id responseObject) {
+        NSDictionary * dic = (NSDictionary * )responseObject;
+        self.SellTypeArray = dic[@"data"];
+        [self.collectionView reloadData];
+    } failure:^(NSError *error) {
+    }];
+    
+    
+    //状态
+    TLNetworking * http4 = [[TLNetworking alloc]init];
+    http4.code = @"630036";
+    http4.parameters[@"parentKey"] = @"product_status";
+    [http4 postWithSuccess:^(id responseObject) {
+        NSDictionary * dic = (NSDictionary * )responseObject;
+        self.ProductStatusArray = dic[@"data"];
+        [self.collectionView reloadData];
+    } failure:^(NSError *error) {
+    }];
+    
+    
     
     //公告
     TLNetworking * http1 = [[TLNetworking alloc]init];
@@ -487,6 +540,25 @@
             [array1 addObject:array[i][@"content"] ];
         }
         self.cell.TextLoopArray = array1;
+        [self.collectionView reloadData];
+    } failure:^(NSError *error) {
+    }];
+    
+    
+    //情感推文图片
+    TLNetworking * http5 = [[TLNetworking alloc]init];
+    http5.code = @"630045";
+    http5.parameters[@"start"] = @(1);
+    http5.parameters[@"limit"] = @(10);
+    http5.parameters[@"type"] =@"SYS_TXT";
+    http5.parameters[@"ckey"] = @"ARTICLE_PIC";
+    [http5 postWithSuccess:^(id responseObject) {
+        NSDictionary * dic = (NSDictionary * )responseObject;
+        self.TuiwenArray = dic[@"data"][@"list"];
+        if (self.TuiwenArray.count > 0) {
+//            self.cell.ImageString
+            [self.cell.tuiwenimage sd_setImageWithURL:[NSURL URLWithString:[self.TuiwenArray[0][@"cvalue"] convertImageUrl]]];
+        }
         [self.collectionView reloadData];
     } failure:^(NSError *error) {
     }];

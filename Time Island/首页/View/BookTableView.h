@@ -7,7 +7,7 @@
 //
 
 #import "TLTableView.h"
-
+#import "BookModel.h"
 @interface BookTableView : TLTableView
-
+@property (nonatomic,strong) NSArray<BookModel * > * BookModel;
 @end

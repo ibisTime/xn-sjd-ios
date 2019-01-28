@@ -50,9 +50,11 @@
 @property (nonatomic,copy) NSString * categoryCode;
 @property (nonatomic,copy) NSString * listPic;
 @property (nonatomic,copy) NSString * bannerPic;
-
+@property (nonatomic,copy) NSString * price;
 @property (nonatomic,copy) NSString * raiseStartDatetime;
 @property (nonatomic,copy) NSString * raiseEndDatetime;
 @property (nonatomic,copy) NSString * raiseCount;
 @property (nonatomic,copy) NSString * nowCount;
+@property (nonatomic,copy) NSString * Description;
+@property (nonatomic,strong) NSArray * productSpecsList;
 @end
