@@ -29,6 +29,7 @@
     JVShopcartCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JVShopcartCell"];
     JVShopcartBrandModel *brandModel = self.dataArray[indexPath.section];
     NSArray *productArray = brandModel.products;
+  
     if (productArray.count > indexPath.row) {
         JVShopcartProductModel *productModel = productArray[indexPath.row];
         NSString *productName = [NSString stringWithFormat:@"%@%@%@", brandModel.brandName, productModel.productStyle, productModel.productType];

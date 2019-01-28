@@ -7,7 +7,7 @@
 //
 
 #import "HomeVC.h"
-#import "HomeHeaderView.h"
+//#import "HomeHeaderView.h"
 #import "HomeFindModel.h"
 #import "HomeTbleView.h"
 #import "TLTopCollectionView.h"
@@ -24,9 +24,11 @@
 #import "GoodsListCollCell.h"
 #import "TreeModel.h"
 #import "introduceView.h"
+#import "HomeHeadCell.h"
 @interface HomeVC ()<RefreshDelegate,RefreshCollectionViewDelegate,UIScrollViewDelegate,UITextFieldDelegate,UISearchBarDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) HomeHeaderView *headerView;
+//@property (nonatomic, strong) HomeHeaderView *headerView;
+@property (nonatomic,strong)HomeHeadCell *cell;
 @property (nonatomic,strong) NSArray <HomeFindModel *>*findModels;
 @property (nonatomic,strong) NSMutableArray <BannerModel *>*bannerRoom;
 //@property (nonatomic, strong) HomeTbleView *tableView;
@@ -67,6 +69,8 @@
         _collectionView.dataSource = self;
         
         [_collectionView registerClass:[GoodsListCollCell class] forCellWithReuseIdentifier:@"GoodsListCollCell"];
+        [_collectionView registerClass:[HomeHeadCell class] forCellWithReuseIdentifier:@"HomeHeadCell"];
+        
         
         [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
         [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView1"];
@@ -101,17 +105,50 @@
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return 2;
 }
 
 #pragma mark------CollectionView的代理方法
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    if (section == 0) {
+        return 1;
+    }
     return self.Models.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if (indexPath.section == 0) {
+        _cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeHeadCell" forIndexPath:indexPath];
+        CoinWeakSelf;
+        _cell.headerBlock = ^(HomeEventsType type, NSInteger index, HomeFindModel *find) {
+            [weakSelf headerViewEventsWithType:type index:index model:find];
+        };
+        _cell.clickNoticeBlock = ^{
+            //点击公告
+            [weakSelf noticeClick];
+        };
+        _cell.clickBookBlock = ^{
+            //点击情感推文
+            [weakSelf bookVideoClick];
+        };
+        _cell.clicknewsBlock = ^{
+            //点击快报
+            [weakSelf noticeClick];
+            
+        };
+        _cell.tapintroduce = ^{
+            [weakSelf detailIntroduce];
+        };
+        _cell.clickTagBlock = ^(NSInteger index) {
+            [weakSelf clickTagWithIndex:index];
+        };
+//        cell.scrollEnabled = NO;
+        return _cell;
+    }
+    
     
     GoodsListCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GoodsListCollCell" forIndexPath:indexPath];
 //    cell.model =
@@ -149,22 +186,30 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+ 
+    if (indexPath.section == 0) {
+        return CGSizeMake(SCREEN_WIDTH, 100 + (SCREEN_WIDTH - 30)/690*200 + 34 + 20 + 64 + SCREEN_WIDTH/750 * 300);
+    }
     return CGSizeMake((SCREEN_WIDTH - 1)/2, (SCREEN_WIDTH - 30)/2 + 80);
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-{
-    return CGSizeMake(SCREEN_WIDTH, 100 + (SCREEN_WIDTH - 30)/690*200 + 34 + 20 + 64 + SCREEN_WIDTH/750 * 300);
-}
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+//{
+//    return CGSizeMake(SCREEN_WIDTH, 100 + (SCREEN_WIDTH - 30)/690*200 + 34 + 20 + 64 + SCREEN_WIDTH/750 * 300);
+//}
 
-- (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
-    [headerView addSubview:self.headerView];
-
-    return headerView;
-}
+//- (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+//{
+//    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+//    //头部
+//    CoinWeakSelf;
+////    _headerView = [[HomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 100 + (SCREEN_WIDTH - 30)/690*200 + 34 + 20 + 64 + SCREEN_WIDTH/750 * 300)];
+////    //点击banner
+////
+////    [headerView addSubview:self.headerView];
+//
+//    return headerView;
+//}
 
 
 
@@ -175,6 +220,9 @@
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
+    if (section == 0) {
+        return UIEdgeInsetsMake(0, 0, 0, 0);
+    }
     return UIEdgeInsetsMake(0.1, 0.1, 0.1, 0.1);
 }
 
@@ -269,40 +317,15 @@
 
 
 
-- (HomeHeaderView *)headerView {
-    
-    if (!_headerView) {
-        
-        CoinWeakSelf;
-        //头部
-        _headerView = [[HomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 100 + (SCREEN_WIDTH - 30)/690*200 + 34 + 20 + 64 + SCREEN_WIDTH/750 * 300)];
-        //点击banner
-        _headerView.headerBlock = ^(HomeEventsType type, NSInteger index, HomeFindModel *find) {
-            [weakSelf headerViewEventsWithType:type index:index model:find];
-        };
-        _headerView.clickNoticeBlock = ^{
-            //点击公告
-            [weakSelf noticeClick];
-        };
-        _headerView.clickBookBlock = ^{
-            //点击情感推文
-            [weakSelf bookVideoClick];
-        };
-        _headerView.clicknewsBlock = ^{
-            //点击快报
-            [weakSelf noticeClick];
-
-        };
-        _headerView.tapintroduce = ^{
-            [weakSelf detailIntroduce];
-        };
-        _headerView.clickTagBlock = ^(NSInteger index) {
-            [weakSelf clickTagWithIndex:index];
-        };
-        _headerView.scrollEnabled = NO;
-    }
-    return _headerView;
-}
+//- (HomeHeaderView *)headerView {
+//
+//    if (!_headerView) {
+//
+//        CoinWeakSelf;
+//
+//    }
+//    return _headerView;
+//}
 
 -(void)detailIntroduce{
     introduceView * vc = [introduceView new];
@@ -373,7 +396,7 @@
         
         self.bannerRoom = [BannerModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
         if (self.bannerRoom.count > 0) {
-            self.headerView.banners = self.bannerRoom;
+            self.cell.banners = self.bannerRoom;
 
         }
         [self.collectionView reloadData];
@@ -424,19 +447,20 @@
 }
 -(void)refresh{
     //古树
-//    TLNetworking * http = [[TLNetworking alloc]init];
-//    http.code = @"629025";
-//    http.parameters[@"start"] = @(1);
-//    http.parameters[@"limit"] = @(1);
-//    [http postWithSuccess:^(id responseObject) {
-//
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629025";
+    http.parameters[@"start"] = @(1);
+    http.parameters[@"limit"] = @(1);
+    [http postWithSuccess:^(id responseObject) {
+
 //        [self.treeArray addObjectsFromArray:responseObject[@"data"][@"list"]];
-//        self.Models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treeArray];
-//        [self.collectionView reloadData];
-//        
-//    } failure:^(NSError *error) {
-//        NSLog(@"%@",error);
-//    }];
+        NSArray *array = responseObject[@"data"][@"list"];
+        self.Models = [TreeModel mj_objectArrayWithKeyValuesArray:array];
+        [self.collectionView reloadData];
+        
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
     
     //公告
     TLNetworking * http1 = [[TLNetworking alloc]init];
@@ -450,7 +474,7 @@
         NSDictionary * dic = (NSDictionary * )responseObject;
         self.IntroduceArray = dic[@"data"][@"list"];
         if (self.IntroduceArray.count > 0) {
-            self.headerView.introduceLab.text = self.IntroduceArray[0][@"title"];
+            self.cell.introduceLab.text = self.IntroduceArray[0][@"title"];
         }
         
     } failure:^(NSError *error) {
@@ -472,9 +496,13 @@
         NSMutableArray *array1 = [NSMutableArray array];
 //        self.headerView.TextLoopArray = [NSMutableArray array];
         for (int i = 0; i < array.count; i ++) {
+
             [array1 addObject:array[i][@"content"] ];
 //            NSLog(@"%@",self.headerView.TextLoopArray);
-            self.headerView.TextLoopArray = array1;
+//            self.headerView.TextLoopArray = array1;
+            self.cell.TextLoopArray = array[i][@"content"];
+            NSLog(@"%@",self.cell.TextLoopArray);
+            [self.collectionView reloadData];
         }
         [self.collectionView reloadData];
     } failure:^(NSError *error) {
