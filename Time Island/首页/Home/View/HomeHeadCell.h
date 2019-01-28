@@ -1,13 +1,12 @@
 //
-//  HomeHeaderView.h
-//  OGC
+//  HomeHeadCell.h
+//  Time Island
 //
-//  Created by 蔡卓越 on 2018/3/13.
-//  Copyright © 2018年  tianlei. All rights reserved.
+//  Created by 郑勤宝 on 2019/1/25.
+//  Copyright © 2019 ChengLian. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-//M
 #import "BannerModel.h"
 #import "HomeFindModel.h"
 #import "HW3DBannerView.h"
@@ -15,13 +14,17 @@
 typedef NS_ENUM(NSInteger, HomeEventsType) {
     
     HomeEventsTypeBanner = 0,   //Banner图
-    HomeEventsTypeStatistics = 1,   
+    HomeEventsTypeStatistics = 1,
     HomeEventsTypeStore = 2
 };
 
 typedef void(^HomeHeaderEventsBlock)(HomeEventsType type, NSInteger index, HomeFindModel*find);
 
-@interface HomeHeaderView : UIScrollView
+
+
+
+@interface HomeHeadCell : UICollectionViewCell
+
 
 @property (nonatomic, copy) HomeHeaderEventsBlock headerBlock;
 
@@ -43,4 +46,6 @@ typedef void(^HomeHeaderEventsBlock)(HomeEventsType type, NSInteger index, HomeF
 @property (nonatomic, strong) UIView *noticeView;//公告
 @property (nonatomic, strong) UILabel *introduceLab;
 @property (nonatomic,strong) NSArray * TextLoopArray;
+
+
 @end

@@ -1,13 +1,12 @@
 //
-//  HomeHeaderView.m
-//  OGC
+//  HomeHeadCell.m
+//  Time Island
 //
-//  Created by 蔡卓越 on 2018/3/13.
-//  Copyright © 2018年  tianlei. All rights reserved.
+//  Created by 郑勤宝 on 2019/1/25.
+//  Copyright © 2019 ChengLian. All rights reserved.
 //
 
-#import "HomeHeaderView.h"
-
+#import "HomeHeadCell.h"
 //Macro
 #import "TLUIHeader.h"
 #import "AppColorMacro.h"
@@ -21,7 +20,7 @@
 #import "TLBannerView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "SLBannerView.h"
-@interface HomeHeaderView()<HW3DBannerViewDelegate,SLBannerViewDelegate>
+@interface HomeHeadCell()<HW3DBannerViewDelegate,SLBannerViewDelegate>
 {
     NSInteger selectNum;
 }
@@ -46,10 +45,11 @@
 @property (nonatomic, strong)  UILabel *englishLab;//推文英文
 @property (nonatomic, strong) UIView *fastNews;//快报
 @property (nonatomic,strong) SLBannerView * banner;
+@property (nonatomic,strong)  UIImageView *imageView;
 
 @end
+@implementation HomeHeadCell
 
-@implementation HomeHeaderView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     
@@ -57,9 +57,9 @@
     if (self) {
         self.backgroundColor = kWhiteColor;
         //轮播图
-//        [self initBannerView];
+        //        [self initBannerView];
         [self addSubview:self.banner];
-//        [self addSubview:self.scrollView];
+        //        [self addSubview:self.scrollView];
         [self initNoticeView];
         [self initRenLingTree];
         [self initTuiArticle];
@@ -73,7 +73,7 @@
     UIView *noticeView = [UIView new];
     noticeView.frame = CGRectMake(0, self.banner.yy, kScreenWidth, 30);
     [self addSubview:noticeView];
-
+    
     self.noticeView = noticeView;
     noticeView.backgroundColor = RGB(233, 247, 243);
     
@@ -90,6 +90,7 @@
     imageView.contentMode = UIViewContentModeScaleToFill;
     imageView.frame = CGRectMake(line.xx + 7, 9, 28, 12);
     [noticeView addSubview:imageView];
+    self.imageView = imageView;
     
     
     UILabel *introduceLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kHexColor(@"#666666") font:12];
@@ -128,13 +129,13 @@
     renLingTree.frame = CGRectMake(0, self.noticeView.yy, kScreenWidth, 70);
     [self addSubview:renLingTree];
     self.renLingTree = renLingTree;
-   
+    
     NSArray *Names = @[@"古树认养",@"商场",@"排行榜"];
-
+    
     for (int i = 0; i < 3; i ++) {
         UIButton *btn = [UIButton buttonWithTitle:@"" titleColor:kTextColor backgroundColor:kClearColor titleFont:12];
         [btn setTitleColor:kTextColor forState:UIControlStateNormal];
-
+        
         btn.frame = CGRectMake(25 + i % 3 * (SCREEN_WIDTH - 50)/3, 10, (SCREEN_WIDTH - 50)/3, 60);
         [btn setTitle:Names[i] forState:(UIControlStateNormal)];
         
@@ -145,7 +146,7 @@
         btn.tag = i +100;
         [btn addTarget:self action:@selector(renLingClick:) forControlEvents:UIControlEventTouchUpInside];
     }
-  
+    
 }
 -(void)tap{
     NSLog(@"%s",__func__);
@@ -180,7 +181,7 @@
     }];
     [button addTarget:self action:@selector(tuiwenClick) forControlEvents:UIControlEventTouchUpInside];
     [self.tuiArticle addSubview:button];
- 
+    
     
     UIImageView *imageView = [[UIImageView alloc] init];
     imageView.image = kImage(@"baner1");
@@ -209,8 +210,8 @@
     fastNews.backgroundColor = RGB(252, 240, 240);
     self.fastNews = fastNews;
     
-//    CGRectMake(line.xx + 7, 9, 28, 12)
-
+    //    CGRectMake(line.xx + 7, 9, 28, 12)
+    
     
     UIView *line = [UIView new];
     line.backgroundColor = kLineColor;
@@ -225,10 +226,11 @@
     [fastNews addSubview:imageView];
     
     CoinWeakSelf;
-//    XBTextLoopView *loopView = [XBTextLoopView textLoopViewWith:@[@"氧林快报测试数据氧林快报测试数据氧林快报测试数据氧林快报测试数据",@"氧林快报测试数据",@"氧林快报测试数据"] loopInterval:3.0 initWithFrame:CGRectMake(imageView.xx, 0, kScreenWidth-105, 30) selectBlock:^(NSString *selectString, NSInteger index) {
+    //    XBTextLoopView *loopView = [XBTextLoopView textLoopViewWith:@[@"氧林快报测试数据氧林快报测试数据氧林快报测试数据氧林快报测试数据",@"氧林快报测试数据",@"氧林快报测试数据"] loopInterval:3.0 initWithFrame:CGRectMake(imageView.xx, 0, kScreenWidth-105, 30) selectBlock:^(NSString *selectString, NSInteger index) {
     NSLog(@"self.TextLoopArray = %@",self.TextLoopArray);
-     XBTextLoopView *loopView = [XBTextLoopView textLoopViewWith:self.TextLoopArray loopInterval:3.0 initWithFrame:CGRectMake(imageView.xx, 0, kScreenWidth-105, 30) selectBlock:^(NSString *selectString, NSInteger index) {
-    
+
+    XBTextLoopView *loopView = [XBTextLoopView textLoopViewWith:self.TextLoopArray loopInterval:3.0 initWithFrame:CGRectMake(imageView.xx, 0, kScreenWidth-105, 30) selectBlock:^(NSString *selectString, NSInteger index) {
+        
         [weakSelf fastNewClickWithIndex:index];
     }];
     loopView.backgroundColor = RGB(252, 240, 240);;
@@ -243,7 +245,7 @@
     moreLab.text = @"更多";
     [fastNews addSubview:moreLab];
     moreLab.userInteractionEnabled = YES;
-
+    
     
     UIView *line1 = [UIView new];
     line1.frame = CGRectMake(kScreenWidth-45, 9, 1, 12);
@@ -266,8 +268,8 @@
     }];
     [button addTarget:self action:@selector(tuiwenClick) forControlEvents:UIControlEventTouchUpInside];
     [backView addSubview:button];
-
-
+    
+    
 }
 
 -(SLBannerView *)banner
@@ -317,21 +319,21 @@
 
 #pragma mark - Setting
 - (void)setBanners:(NSMutableArray<BannerModel *> *)banners {
-
+    
     _banners = banners;
-
+    
     NSMutableArray *imgUrls = [NSMutableArray array];
-
+    
     [banners enumerateObjectsUsingBlock:^(BannerModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-
+        
         if (obj.pic) {
-
+            
             [imgUrls addObject:obj.pic];
         }
     }];
     _banner.slImages = imgUrls;
-//    self.bannerView.imgUrls = imgUrls;
-
+    //    self.bannerView.imgUrls = imgUrls;
+    
 }
 
 
@@ -388,5 +390,18 @@
     }
     NSLog(@"点击快报");
     
+}
+
+-(void)setTextLoopArray:(NSMutableArray *)TextLoopArray{
+//    _TextLoopArray = TextLoopArray;
+    CoinWeakSelf;
+    XBTextLoopView *loopView = [XBTextLoopView textLoopViewWith:TextLoopArray loopInterval:3.0 initWithFrame:CGRectMake(self.imageView.xx, 0, kScreenWidth-105, 30) selectBlock:^(NSString *selectString, NSInteger index) {
+        
+        [weakSelf fastNewClickWithIndex:index];
+    }];
+    loopView.backgroundColor = RGB(252, 240, 240);;
+    loopView.clipsToBounds = YES;
+    [self.fastNews addSubview:loopView];
+    loopView.centerY = self.imageView.centerY;
 }
 @end
