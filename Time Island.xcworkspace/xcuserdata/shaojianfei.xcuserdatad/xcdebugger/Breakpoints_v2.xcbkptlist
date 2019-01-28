@@ -118,12 +118,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/Other/Utils/CustomUI/MMComboBox/Classes/MMView/ComBoBoxView/MMComBoBoxView.m"
-                  timestampString = "570182045.993446"
+                  timestampString = "570338143.077493"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "103"
                   endingLineNumber = "103"
-                  offsetFromSymbolStart = "1056">
+                  offsetFromSymbolStart = "944">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -133,12 +133,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/Other/Utils/CustomUI/MMComboBox/Classes/MMView/ComBoBoxView/MMComBoBoxView.m"
-                  timestampString = "570182045.997556"
+                  timestampString = "570338143.08145"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "103"
                   endingLineNumber = "103"
-                  offsetFromSymbolStart = "14">
+                  offsetFromSymbolStart = "28">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -148,12 +148,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/Other/Utils/CustomUI/MMComboBox/Classes/MMView/ComBoBoxView/MMComBoBoxView.m"
-                  timestampString = "570182046.001597"
+                  timestampString = "570338143.085349"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "103"
                   endingLineNumber = "103"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -281,12 +281,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartHeaderView.m"
-                  timestampString = "570182046.058489"
+                  timestampString = "570338143.135637"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "78"
                   endingLineNumber = "78"
-                  offsetFromSymbolStart = "61">
+                  offsetFromSymbolStart = "80">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -296,12 +296,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartHeaderView.m"
-                  timestampString = "570182046.062735"
+                  timestampString = "570338143.139176"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "78"
                   endingLineNumber = "78"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "24">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -311,12 +311,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartHeaderView.m"
-                  timestampString = "570182046.068379"
+                  timestampString = "570338143.142628"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "78"
                   endingLineNumber = "78"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -344,12 +344,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.081136"
+                  timestampString = "570338143.153182"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "168"
                   endingLineNumber = "168"
-                  offsetFromSymbolStart = "246">
+                  offsetFromSymbolStart = "248">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -359,12 +359,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.085242"
+                  timestampString = "570338143.156718"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "168"
-                  endingLineNumber = "168"
-                  offsetFromSymbolStart = "19">
+                  startingLineNumber = "169"
+                  endingLineNumber = "169"
+                  offsetFromSymbolStart = "52">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -374,12 +374,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.089381"
+                  timestampString = "570338143.160216"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "168"
                   endingLineNumber = "168"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -407,12 +407,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.10139"
+                  timestampString = "570338143.17021"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "217"
                   endingLineNumber = "217"
-                  offsetFromSymbolStart = "1779">
+                  offsetFromSymbolStart = "1560">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -422,12 +422,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.105446"
+                  timestampString = "570338143.1736881"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "217"
                   endingLineNumber = "217"
-                  offsetFromSymbolStart = "19">
+                  offsetFromSymbolStart = "24">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -437,12 +437,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.109524"
+                  timestampString = "570338143.177536"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "217"
                   endingLineNumber = "217"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -470,12 +470,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.121956"
+                  timestampString = "570338143.187863"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "174"
                   endingLineNumber = "174"
-                  offsetFromSymbolStart = "420">
+                  offsetFromSymbolStart = "412">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -485,12 +485,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.12611"
+                  timestampString = "570338143.190781"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "174"
-                  endingLineNumber = "174"
-                  offsetFromSymbolStart = "19">
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
+                  offsetFromSymbolStart = "52">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -500,12 +500,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.130227"
+                  timestampString = "570338143.193682"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "174"
                   endingLineNumber = "174"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -533,12 +533,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.142375"
+                  timestampString = "570338143.203499"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "180"
                   endingLineNumber = "180"
-                  offsetFromSymbolStart = "609">
+                  offsetFromSymbolStart = "576">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -548,12 +548,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.146421"
+                  timestampString = "570338143.20649"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "180"
                   endingLineNumber = "180"
-                  offsetFromSymbolStart = "19">
+                  offsetFromSymbolStart = "28">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -563,12 +563,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.1506211"
+                  timestampString = "570338143.210619"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "180"
                   endingLineNumber = "180"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -596,12 +596,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.162722"
+                  timestampString = "570338143.2215509"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "204"
                   endingLineNumber = "204"
-                  offsetFromSymbolStart = "1389">
+                  offsetFromSymbolStart = "1232">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -611,12 +611,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.166803"
+                  timestampString = "570338143.2251199"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "204"
-                  endingLineNumber = "204"
-                  offsetFromSymbolStart = "19">
+                  startingLineNumber = "205"
+                  endingLineNumber = "205"
+                  offsetFromSymbolStart = "52">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -626,12 +626,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.1709599"
+                  timestampString = "570338143.228999"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "204"
                   endingLineNumber = "204"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -659,12 +659,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.18323"
+                  timestampString = "570338143.2392991"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "197"
                   endingLineNumber = "197"
-                  offsetFromSymbolStart = "1194">
+                  offsetFromSymbolStart = "1068">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -674,12 +674,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.18751"
+                  timestampString = "570338143.242834"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "197"
                   endingLineNumber = "197"
-                  offsetFromSymbolStart = "19">
+                  offsetFromSymbolStart = "28">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -689,12 +689,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.192363"
+                  timestampString = "570338143.246292"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "197"
                   endingLineNumber = "197"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -722,12 +722,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.204537"
+                  timestampString = "570338143.257742"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "190"
                   endingLineNumber = "190"
-                  offsetFromSymbolStart = "999">
+                  offsetFromSymbolStart = "904">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -737,12 +737,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.208726"
+                  timestampString = "570338143.268001"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "190"
                   endingLineNumber = "190"
-                  offsetFromSymbolStart = "19">
+                  offsetFromSymbolStart = "28">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -752,12 +752,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.213431"
+                  timestampString = "570338143.2719719"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "190"
                   endingLineNumber = "190"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -785,12 +785,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.2282439"
+                  timestampString = "570338143.283736"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "185"
                   endingLineNumber = "185"
-                  offsetFromSymbolStart = "804">
+                  offsetFromSymbolStart = "740">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -800,12 +800,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.232533"
+                  timestampString = "570338143.2889169"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "185"
-                  endingLineNumber = "185"
-                  offsetFromSymbolStart = "19">
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
+                  offsetFromSymbolStart = "48">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -815,12 +815,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shaojianfei/xn-sjd-ios/Time%20Island/%E5%95%86%E5%9F%8E/Classification/ShoppIngCard/JVShopcart/View/JVShopcartCell.m"
-                  timestampString = "570182046.236465"
+                  timestampString = "570338143.29382"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "185"
                   endingLineNumber = "185"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -934,6 +934,22 @@
             startingLineNumber = "809"
             endingLineNumber = "809"
             landmarkName = "-searchBarSearchButtonClicked:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Time Island/&#x5546;&#x57ce;/Home/MallHomeVC.m"
+            timestampString = "570338142.904572"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "-loadBaner"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

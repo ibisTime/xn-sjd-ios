@@ -53,9 +53,22 @@
     [self SetupClassify];
     [self SetupFootView];
     [self createbackview];
-    
+    [self loadBaner];
 //    self.headview.frame = CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH - 30)/690*230 + SCREEN_WIDTH/750*370 + 247.5);
     
+}
+
+-(void)loadBaner
+{
+    TLNetworking *http = [TLNetworking new];
+    
+    http.code = @"630500";
+    http.parameters[@"type"] = @"6"  ;
+    
+    [http postWithSuccess:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(NSError *error) {
+    }];
 }
 
 -(void)SetupFootView{
