@@ -8,7 +8,7 @@
 
 #import "introduceView.h"
 
-@interface introduceView ()<UIWebViewDelegate>
+@interface introduceView ()<UIWebViewDelegate,UIScrollViewDelegate>
 {
 //    NSString *webViewHeight1;
     int height;
@@ -22,11 +22,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.detail = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 200)];
+    self.detail = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     self.detail.delegate = self;
+    self.detail.scrollView.delegate = self;
+    self.detail.scrollView.contentInset = UIEdgeInsetsMake(200, 0, 0, 0);
     [self.detail loadHTMLString:self.web baseURL:nil];
+    self.detail.scrollView.contentOffset= CGPointMake(0, -150);
 
-    UIView * headview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
+    UIView * headview = [[UIView alloc]initWithFrame:CGRectMake(0, -200, SCREEN_WIDTH, 200)];
+    headview.backgroundColor = kWhiteColor;
     
     UILabel * titlelab = [UILabel labelWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(20) textColor:kBlackColor];
     titlelab.numberOfLines = 0;

@@ -26,6 +26,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self navigationTransparentClearColor];
+    [self refresh];
     //    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
 }
@@ -161,6 +162,14 @@
 }
 
 
-
+-(void)refresh{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629026";
+    http.parameters[@"code"] = self.TreeModel.code;
+    [http postWithSuccess:^(id responseObject) {
+        
+    } failure:^(NSError *error) {
+    }];
+}
 
 @end

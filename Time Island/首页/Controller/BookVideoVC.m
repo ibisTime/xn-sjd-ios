@@ -32,17 +32,20 @@
     for (NSInteger index = 0; index < self.itemsTitles.count; index ++) {
         if (index == 0) {
             BookListVC *activity = [[BookListVC alloc] init];
+            activity.state = 0;
             [self addChildViewController:activity];
             activity.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
             [self.selectSV.scrollView addSubview:activity.view];
         }else if (index == 1)
         {
             BookListVC *activity = [[BookListVC alloc] init];
+            activity.state = 1;
             [self addChildViewController:activity];
             activity.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
             [self.selectSV.scrollView addSubview:activity.view];
         }else{
             BookListVC *activity = [[BookListVC alloc] init];
+            activity.state = 2;
             [self addChildViewController:activity];
             activity.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
             [self.selectSV.scrollView addSubview:activity.view];
