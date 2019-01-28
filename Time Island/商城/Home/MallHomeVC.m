@@ -5,17 +5,22 @@
 //  Created by 郑勤宝 on 2019/1/18.
 //  Copyright © 2019 ChengLian. All rights reserved.
 //
-
+#define KscreenW [UIScreen mainScreen].bounds.size.width
+#define KscreenH [UIScreen mainScreen].bounds.size.height
 #import "MallHomeVC.h"
 #import "GoodsListVC.h"
 #import "MallHomeHeadView.h"
-@interface MallHomeVC ()
+#import "PYSearch.h"
+#import "PYTempViewController.h"
+@interface MallHomeVC ()<PYSearchViewControllerDelegate>
 //@property (nonatomic,strong) MallHomeHeadView * Classifyview;
 @property (nonatomic,strong) UIView * headview;
 @property (nonatomic,strong) TLTableView * table;
 @property (nonatomic,strong) UIImageView * image;
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic,strong) UIImageView * backgroundimage;
+@property (nonatomic ,strong) PYSearchViewController *searchViewController;
+@property (nonatomic ,strong)  NSMutableArray *array;
 @end
 
 @implementation MallHomeVC
@@ -112,6 +117,7 @@
 
 
 - (void)initSearchBar {
+ 
     UISearchBar * searchbar = [[UISearchBar alloc]initWithFrame:CGRectMake(14.5, 12, kScreenWidth-30, 31.0f)];
     searchbar.layer.cornerRadius = 15.5;
     searchbar.clipsToBounds = YES;
@@ -140,11 +146,39 @@
         searchField.layer.cornerRadius = 15.5;//设置圆角具体根据实际情况来设置
         searchField.font =FONT(11);
         
-//        searchField.clipsToBounds = YES;
     }
 }
 
-
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    [self.searchBar resignFirstResponder];
+    // 1. 创建热门搜索
+    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
+    NSMutableArray *array =  [NSMutableArray arrayWithArray:hotSeaches];
+    self.array = array;
+    // 2. 创建控制器
+    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:array searchBarPlaceholder:@"搜索" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+        // 开始搜索执行以下代码
+        // 如：跳转到指定控制器
+        [array insertObject:searchText atIndex:0];
+        searchViewController.hotSearches = array;
+        //        return ;
+        return ;
+        
+        [searchViewController.navigationController pushViewController:[[PYTempViewController alloc] init] animated:YES];
+    }];
+    // 3. 设置风格
+    //        searchViewController.hotSearchStyle = PYHotSearchStyleNormalTag; // 热门搜索风格根据选择
+    self.searchViewController = searchViewController;
+    searchViewController.searchHistoryStyle = PYHotSearchStyleDefault; // 搜索历史风格为default
+    // 5. 跳转到搜索控制器
+    [self.navigationController pushViewController:searchViewController animated:YES];
+}
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    
+   
+}
 
 -(void)createbackview{
     UIButton * btn = [[UIButton alloc]initWithFrame:CGRectMake(15, SCREEN_HEIGHT - 63 - kTabBarHeight - kNavigationBarHeight, 40, 40)];

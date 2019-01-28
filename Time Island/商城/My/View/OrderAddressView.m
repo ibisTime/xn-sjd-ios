@@ -38,7 +38,7 @@
 -(UILabel *)phoneLbl{
     if(!_phoneLbl)
     {
-        _phoneLbl = [UILabel labelWithFrame:CGRectMake(kWidth(100), 25, (SCREEN_WIDTH - 80)/2 , 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:kTextColor2];
+        _phoneLbl = [UILabel labelWithFrame:CGRectMake(kWidth(120), 25, (SCREEN_WIDTH - 80)/2 , 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(13) textColor:kTextColor2];
     }
     return _phoneLbl;
 }
