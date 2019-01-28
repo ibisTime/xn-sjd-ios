@@ -8,7 +8,7 @@
 
 #import "MyNoticeTableView.h"
 
-
+#import "NoticeModel.h"
 #import "MyNoticeCell.h"
 #define MyNotice @"MyNoticeCell"
 
@@ -41,7 +41,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     
-    return 20;
+    return self.NoticeModels.count;
     
 }
 
@@ -51,7 +51,11 @@
     MyNoticeCell *cell = [tableView dequeueReusableCellWithIdentifier:MyNotice forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    cell.titleString = self.NoticeModels[indexPath.row].title;
+    cell.TimeString = [self.NoticeModels[indexPath.row].createDatetime convertToDetailDate];
+    cell.ContentString = self.NoticeModels[indexPath.row].content;
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
     

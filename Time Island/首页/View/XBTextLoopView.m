@@ -48,7 +48,7 @@
     cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.textColor = kHexColor(@"#666666");
     cell.textLabel.font = [UIFont systemFontOfSize:12];
-
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 

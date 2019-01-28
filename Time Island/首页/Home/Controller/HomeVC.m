@@ -25,6 +25,8 @@
 #import "TreeModel.h"
 #import "introduceView.h"
 #import "HomeHeadCell.h"
+#import "MyNoticeDetailsVC.h"
+#import "NoticeModel.h"
 @interface HomeVC ()<RefreshDelegate,RefreshCollectionViewDelegate,UIScrollViewDelegate,UITextFieldDelegate,UISearchBarDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 //@property (nonatomic, strong) HomeHeaderView *headerView;
@@ -48,9 +50,10 @@
 
 @property (nonatomic , strong)NSMutableArray *treeArray;
 @property (nonatomic,strong) NSMutableArray <TreeModel * > * Models;
-
+@property (nonatomic,strong) NSMutableArray<NoticeModel * > * newsarray;
 //存放公告
 @property (nonatomic,strong)  NSArray *IntroduceArray;
+//@property (nonatomic,strong) NSArray * newsarray;
 
 @end
 
@@ -134,10 +137,13 @@
             //点击情感推文
             [weakSelf bookVideoClick];
         };
-        _cell.clicknewsBlock = ^{
-            //点击快报
-            [weakSelf noticeClick];
-            
+//        _cell.clicknewsBlock = ^{
+//            //点击快报
+//            [weakSelf detailsClick];
+//
+//        };
+        _cell.clicknewsBlock = ^(NSInteger index) {
+            [weakSelf detailsClick:index];
         };
         _cell.tapintroduce = ^{
             [weakSelf detailIntroduce];
@@ -169,8 +175,11 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    TreeListVC *tree = [TreeListVC new];
-    [self.navigationController pushViewController:tree animated:YES];
+    if (indexPath.section == 1) {
+        TreeListVC *tree = [TreeListVC new];
+        [self.navigationController pushViewController:tree animated:YES];
+    }
+    
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
@@ -193,23 +202,6 @@
     return CGSizeMake((SCREEN_WIDTH - 1)/2, (SCREEN_WIDTH - 30)/2 + 80);
 }
 
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-//{
-//    return CGSizeMake(SCREEN_WIDTH, 100 + (SCREEN_WIDTH - 30)/690*200 + 34 + 20 + 64 + SCREEN_WIDTH/750 * 300);
-//}
-
-//- (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-//{
-//    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
-//    //头部
-//    CoinWeakSelf;
-////    _headerView = [[HomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 100 + (SCREEN_WIDTH - 30)/690*200 + 34 + 20 + 64 + SCREEN_WIDTH/750 * 300)];
-////    //点击banner
-////
-////    [headerView addSubview:self.headerView];
-//
-//    return headerView;
-//}
 
 
 
@@ -317,21 +309,13 @@
 
 
 
-//- (HomeHeaderView *)headerView {
-//
-//    if (!_headerView) {
-//
-//        CoinWeakSelf;
-//
-//    }
-//    return _headerView;
-//}
+
 
 -(void)detailIntroduce{
     introduceView * vc = [introduceView new];
     vc.web = self.IntroduceArray[0][@"content"];
     vc.IntroduceTitle = self.IntroduceArray[0][@"title"];
-    vc.time = self.IntroduceArray[0][@"createDatetime"];
+    vc.time = [self.IntroduceArray[0][@"createDatetime"] convertToDetailDate];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -349,6 +333,12 @@
     notice.title = @"公告";
     [self.navigationController pushViewController:notice animated:YES];
     
+}
+-(void)detailsClick : (NSInteger)index{
+    MyNoticeDetailsVC * vc = [MyNoticeDetailsVC new];
+    vc.title = @"公告详情";
+    vc.model = self.newsarray[index];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -413,9 +403,6 @@
 #pragma mark - 获取发现列表数据
 - (void)reloadFindData
 {
-    
-    
-
     TLNetworking *http = [TLNetworking new];
     
     http.code = @"625412";
@@ -492,18 +479,14 @@
         NSLog(@"%@",responseObject[@"data"]);
         NSDictionary * dic = (NSDictionary * )responseObject;
         NSArray * array = dic[@"data"][@"list"];
+//        self.newsarray = array;
+        self.newsarray = [NoticeModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
         NSLog(@"array = %@",array);
         NSMutableArray *array1 = [NSMutableArray array];
-//        self.headerView.TextLoopArray = [NSMutableArray array];
         for (int i = 0; i < array.count; i ++) {
-
             [array1 addObject:array[i][@"content"] ];
-//            NSLog(@"%@",self.headerView.TextLoopArray);
-//            self.headerView.TextLoopArray = array1;
-            self.cell.TextLoopArray = array[i][@"content"];
-            NSLog(@"%@",self.cell.TextLoopArray);
-            [self.collectionView reloadData];
         }
+        self.cell.TextLoopArray = array1;
         [self.collectionView reloadData];
     } failure:^(NSError *error) {
     }];

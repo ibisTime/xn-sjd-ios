@@ -155,6 +155,7 @@
 		3689769C21EF3A4F005F1177 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3689769B21EF3A4F005F1177 /* AMap.bundle */; };
 		369C60CC21F71254001F9CBA /* MailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C60CB21F71254001F9CBA /* MailVC.m */; };
 		369C60CF21F717A9001F9CBA /* PayPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C60CE21F717A9001F9CBA /* PayPwdVC.m */; };
+		36BB9F6B21FE9B2E0010E622 /* NoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB9F6A21FE9B2E0010E622 /* NoticeModel.m */; };
 		36DB50D621F5993B009D56EF /* NewsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50D521F5993B009D56EF /* NewsVC.m */; };
 		36DB50D921F59AEF009D56EF /* NewsVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50D821F59AEF009D56EF /* NewsVCCell.m */; };
 		36DB50DC21F5A11F009D56EF /* MallOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50DB21F5A11F009D56EF /* MallOrderVC.m */; };
@@ -736,6 +737,8 @@
 		369C60CB21F71254001F9CBA /* MailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MailVC.m; sourceTree = "<group>"; };
 		369C60CD21F717A9001F9CBA /* PayPwdVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayPwdVC.h; sourceTree = "<group>"; };
 		369C60CE21F717A9001F9CBA /* PayPwdVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayPwdVC.m; sourceTree = "<group>"; };
+		36BB9F6921FE9B2E0010E622 /* NoticeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoticeModel.h; sourceTree = "<group>"; };
+		36BB9F6A21FE9B2E0010E622 /* NoticeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeModel.m; sourceTree = "<group>"; };
 		36DB50D421F5993B009D56EF /* NewsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsVC.h; sourceTree = "<group>"; };
 		36DB50D521F5993B009D56EF /* NewsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsVC.m; sourceTree = "<group>"; };
 		36DB50D721F59AEF009D56EF /* NewsVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsVCCell.h; sourceTree = "<group>"; };
@@ -1805,6 +1808,7 @@
 		1F9360EC21EDFD8F007E522A /* MyNotice我的通知 */ = {
 			isa = PBXGroup;
 			children = (
+				36BB9F6C21FE9B340010E622 /* Model */,
 				1F9360ED21EDFD8F007E522A /* Controller */,
 				1F9360F221EDFD8F007E522A /* View */,
 			);
@@ -2210,6 +2214,15 @@
 				3689769921EF38E8005F1177 /* OrderFootCell.m */,
 			);
 			path = Order;
+			sourceTree = "<group>";
+		};
+		36BB9F6C21FE9B340010E622 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				36BB9F6921FE9B2E0010E622 /* NoticeModel.h */,
+				36BB9F6A21FE9B2E0010E622 /* NoticeModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		A27B85BBCC1D95F10D614566 /* Frameworks */ = {
@@ -4176,6 +4189,7 @@
 				B80D388C21F873F000206B55 /* BankCardModel.m in Sources */,
 				B88E544A21F9BDF600C33040 /* JVShopcartHeaderView.m in Sources */,
 				1F1B007821E72D92000BEBD3 /* CollectEnergyDetailsCell.m in Sources */,
+				36BB9F6B21FE9B2E0010E622 /* NoticeModel.m in Sources */,
 				B8226F7421F6EF58002F450F /* MallGoodDetailView.m in Sources */,
 				B81E5FC821DC8FC200873AB9 /* UILabel+Extension.m in Sources */,
 				B81E602021DC906D00873AB9 /* TLUserExt.m in Sources */,

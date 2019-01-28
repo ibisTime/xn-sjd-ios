@@ -39,7 +39,7 @@ typedef void(^HomeHeaderEventsBlock)(HomeEventsType type, NSInteger index, HomeF
 //点击推文更多
 @property (nonatomic, copy) void (^clickBookBlock)(void);
 //点击快报
-@property (nonatomic, copy) void (^clicknewsBlock)(void);
+@property (nonatomic, copy) void (^clicknewsBlock)(NSInteger index);
 
 @property (nonatomic , strong)UIView *backView;
 

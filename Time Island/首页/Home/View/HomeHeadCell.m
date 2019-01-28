@@ -20,6 +20,7 @@
 #import "TLBannerView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "SLBannerView.h"
+
 @interface HomeHeadCell()<HW3DBannerViewDelegate,SLBannerViewDelegate>
 {
     NSInteger selectNum;
@@ -113,8 +114,7 @@
     [noticeView addSubview:moreLab];
     moreLab.userInteractionEnabled = YES;
     
-    UITapGestureRecognizer *ta = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moreNotice)];
-    [moreLab addGestureRecognizer:ta];
+    
     
     UIView *line1 = [UIView new];
     line1.backgroundColor = kLineColor;
@@ -225,19 +225,7 @@
     imageView.frame = CGRectMake(line.xx + 7, 9, 28, 12);
     [fastNews addSubview:imageView];
     
-    CoinWeakSelf;
-    //    XBTextLoopView *loopView = [XBTextLoopView textLoopViewWith:@[@"氧林快报测试数据氧林快报测试数据氧林快报测试数据氧林快报测试数据",@"氧林快报测试数据",@"氧林快报测试数据"] loopInterval:3.0 initWithFrame:CGRectMake(imageView.xx, 0, kScreenWidth-105, 30) selectBlock:^(NSString *selectString, NSInteger index) {
-    NSLog(@"self.TextLoopArray = %@",self.TextLoopArray);
 
-    XBTextLoopView *loopView = [XBTextLoopView textLoopViewWith:self.TextLoopArray loopInterval:3.0 initWithFrame:CGRectMake(imageView.xx, 0, kScreenWidth-105, 30) selectBlock:^(NSString *selectString, NSInteger index) {
-        
-        [weakSelf fastNewClickWithIndex:index];
-    }];
-    loopView.backgroundColor = RGB(252, 240, 240);;
-    loopView.clipsToBounds = YES;
-    [self.fastNews addSubview:loopView];
-    loopView.centerY = imageView.centerY;
-    
     
     UILabel *moreLab = [UILabel labelWithBackgroundColor:kClearColor textColor:[UIColor redColor] font:12];
     moreLab.frame = CGRectMake(kScreenWidth-36, 9, 26, 12);
@@ -246,6 +234,8 @@
     [fastNews addSubview:moreLab];
     moreLab.userInteractionEnabled = YES;
     
+    UITapGestureRecognizer *ta = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moreNotice)];
+    [moreLab addGestureRecognizer:ta];
     
     UIView *line1 = [UIView new];
     line1.frame = CGRectMake(kScreenWidth-45, 9, 1, 12);
@@ -288,23 +278,6 @@
 
 
 
-//-(HW3DBannerView *)scrollView{
-//    if (!_scrollView) {
-////        CoinWeakSelf;
-//        _scrollView = [HW3DBannerView initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , SCREEN_WIDTH/750 * 300) imageSpacing:0 imageWidth:SCREEN_WIDTH ];
-//        _scrollView.initAlpha = 0; // 设置两边卡片的透明度
-////        _scrollView.imageRadius = 5; // 设置卡片圆角
-//        _scrollView.imageHeightPoor = 20;// 设置占位图片
-//        _scrollView.delegate = self;
-//        _scrollView.autoScrollTimeInterval = 4;
-//        _scrollView.data = @[@"baner1",@"baner2",@"baner1"];
-//        _scrollView.clickImageBlock = ^(NSInteger currentIndex) {
-//
-//            self->selectNum = currentIndex;
-//        };
-//    }
-//    return _scrollView;
-//}
 
 -(void)HW3DBannerViewClick
 {
@@ -340,13 +313,6 @@
 
 
 #pragma mark - Events
-//- (void)lookFlowList:(UITapGestureRecognizer *)tapGR {
-//
-//    if (_headerBlock) {
-//
-//        _headerBlock(HomeEventsTypeStatistics, 0,nil);
-//    }
-//}
 
 
 - (void)moreNotice
@@ -386,17 +352,18 @@
 -(void)fastNewClickWithIndex:(NSInteger)index
 {
     if (self.clicknewsBlock) {
-        self.clicknewsBlock();
+        self.clicknewsBlock(index);
+        
     }
     NSLog(@"点击快报");
     
 }
 
 -(void)setTextLoopArray:(NSMutableArray *)TextLoopArray{
-//    _TextLoopArray = TextLoopArray;
+    _TextLoopArray = TextLoopArray;
     CoinWeakSelf;
     XBTextLoopView *loopView = [XBTextLoopView textLoopViewWith:TextLoopArray loopInterval:3.0 initWithFrame:CGRectMake(self.imageView.xx, 0, kScreenWidth-105, 30) selectBlock:^(NSString *selectString, NSInteger index) {
-        
+
         [weakSelf fastNewClickWithIndex:index];
     }];
     loopView.backgroundColor = RGB(252, 240, 240);;
