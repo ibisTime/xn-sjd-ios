@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface MyNoticeCell : UITableViewCell
-
+@property (nonatomic,strong) NSString * titleString;
+@property (nonatomic,strong) NSString * TimeString;
+@property (nonatomic,strong) NSString * ContentString;
+@property (nonatomic,strong) UILabel * nameLbl;
+@property (nonatomic,strong) UILabel * timeLbl;
+@property (nonatomic,strong) UILabel * contactLbl;
 @end
