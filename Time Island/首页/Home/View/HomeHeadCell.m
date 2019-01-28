@@ -45,6 +45,7 @@
 @property (nonatomic, strong)  UILabel *englishLab;//推文英文
 @property (nonatomic, strong) UIView *fastNews;//快报
 @property (nonatomic,strong) SLBannerView * banner;
+@property (nonatomic,strong)  UIImageView *imageView;
 
 @end
 @implementation HomeHeadCell
@@ -89,6 +90,7 @@
     imageView.contentMode = UIViewContentModeScaleToFill;
     imageView.frame = CGRectMake(line.xx + 7, 9, 28, 12);
     [noticeView addSubview:imageView];
+    self.imageView = imageView;
     
     
     UILabel *introduceLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kHexColor(@"#666666") font:12];
@@ -226,6 +228,7 @@
     CoinWeakSelf;
     //    XBTextLoopView *loopView = [XBTextLoopView textLoopViewWith:@[@"氧林快报测试数据氧林快报测试数据氧林快报测试数据氧林快报测试数据",@"氧林快报测试数据",@"氧林快报测试数据"] loopInterval:3.0 initWithFrame:CGRectMake(imageView.xx, 0, kScreenWidth-105, 30) selectBlock:^(NSString *selectString, NSInteger index) {
     NSLog(@"self.TextLoopArray = %@",self.TextLoopArray);
+
     XBTextLoopView *loopView = [XBTextLoopView textLoopViewWith:self.TextLoopArray loopInterval:3.0 initWithFrame:CGRectMake(imageView.xx, 0, kScreenWidth-105, 30) selectBlock:^(NSString *selectString, NSInteger index) {
         
         [weakSelf fastNewClickWithIndex:index];
@@ -389,4 +392,16 @@
     
 }
 
+-(void)setTextLoopArray:(NSMutableArray *)TextLoopArray{
+//    _TextLoopArray = TextLoopArray;
+    CoinWeakSelf;
+    XBTextLoopView *loopView = [XBTextLoopView textLoopViewWith:TextLoopArray loopInterval:3.0 initWithFrame:CGRectMake(self.imageView.xx, 0, kScreenWidth-105, 30) selectBlock:^(NSString *selectString, NSInteger index) {
+        
+        [weakSelf fastNewClickWithIndex:index];
+    }];
+    loopView.backgroundColor = RGB(252, 240, 240);;
+    loopView.clipsToBounds = YES;
+    [self.fastNews addSubview:loopView];
+    loopView.centerY = self.imageView.centerY;
+}
 @end

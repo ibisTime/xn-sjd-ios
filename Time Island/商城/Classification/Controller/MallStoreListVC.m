@@ -38,7 +38,7 @@
         
         CoinWeakSelf;
         //头部
-        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/750*370 + 140 +  (SCREEN_WIDTH - 30)/690*230 + 247.5)];
+        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/750*370 + 140 +  (SCREEN_WIDTH - 30)/690*230 + 247.5+kNavigationBarHeight)];
        
     }
     return _headerView;
@@ -164,7 +164,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH/750*370+(SCREEN_WIDTH - 30)/690*230);
+    return CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH/750*370+(SCREEN_WIDTH - 30)/690*230+kNavigationBarHeight);
     
 }
 
