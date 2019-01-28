@@ -12,6 +12,11 @@
 
 @implementation BannerModel
 
++(NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"Description": @"description"};
+}
+
 - (NSString *)pic {
     
     return [_pic convertImageUrl];

@@ -12,6 +12,11 @@
 #import "MallHomeHeadView.h"
 #import "PYSearch.h"
 #import "PYTempViewController.h"
+#import "BannerModel.h"
+#import "MallHomeHeadView.h"
+#import "MallTreeModel.h"
+#import "MallGoodDetailVC.h"
+#import "MallGoodListViewController.h"
 @interface MallHomeVC ()<PYSearchViewControllerDelegate>
 //@property (nonatomic,strong) MallHomeHeadView * Classifyview;
 @property (nonatomic,strong) UIView * headview;
@@ -21,6 +26,11 @@
 @property (nonatomic,strong) UIImageView * backgroundimage;
 @property (nonatomic ,strong) PYSearchViewController *searchViewController;
 @property (nonatomic ,strong)  NSMutableArray *array;
+@property (nonatomic,strong) NSMutableArray <BannerModel *>*bannerRoom;
+@property (nonatomic,strong) MallHomeHeadView *mallHeader;
+@property (nonatomic,strong) NSMutableArray <MallTreeModel *>*HotTrees;
+@property (nonatomic,strong) UIView * footview;
+
 @end
 
 @implementation MallHomeVC
@@ -47,13 +57,14 @@
     self.table.tableHeaderView = self.headview;
     [self.view addSubview:self.table];
     
-    
     [self setupImage];
     [self initSearchBar];
     [self SetupClassify];
-    [self SetupFootView];
+//    [self SetupFootView];
     [self createbackview];
     [self loadBaner];
+    [self loadCentetImage];
+    [self loadGoodsList];
 //    self.headview.frame = CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_WIDTH - 30)/690*230 + SCREEN_WIDTH/750*370 + 247.5);
     
 }
@@ -62,16 +73,74 @@
 {
     TLNetworking *http = [TLNetworking new];
     
-    http.code = @"630500";
+    http.code = @"630505";
+    http.parameters[@"start"] = @"1"  ;
+    http.parameters[@"limit"] = @"10"  ;
+
     http.parameters[@"type"] = @"6"  ;
     
     [http postWithSuccess:^(id responseObject) {
-        NSLog(@"%@",responseObject);
+        
+        self.bannerRoom = [BannerModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        self.mallHeader.banners = self.bannerRoom;
     } failure:^(NSError *error) {
     }];
 }
 
+-(void)loadCentetImage
+{
+    TLNetworking *http = [TLNetworking new];
+    
+    http.code = @"630047";
+    http.parameters[@"ckey"] = @"ACTIVITY_PIC";
+    
+    [http postWithSuccess:^(id responseObject) {
+        [self.image sd_setImageWithURL:[NSURL URLWithString:        [responseObject[@"data"][@"cvalue"] convertImageUrl]]];
+      
+    } failure:^(NSError *error) {
+    }];
+}
+- (void)loadGoodsList
+{
+
+    TLPageDataHelper *http = [TLPageDataHelper new];
+    http.code = @"629706";
+    http.parameters[@"start"] = @"0";
+    http.parameters[@"limit"] = @"10";
+    http.parameters[@"location"] = @"1";
+
+    http.tableView = self.table;
+    http.isList = NO;
+    [http modelClass:[MallTreeModel class]];
+    CoinWeakSelf;
+
+    [self.table addRefreshAction:^{
+        
+        [http refresh:^(NSMutableArray *objs, BOOL stillHave) {
+            if (objs.count >0) {
+                weakSelf.HotTrees = objs;
+                [weakSelf SetupFootView];
+            }
+            NSLog(@"%@",objs);
+        } failure:^(NSError *error) {
+            
+        }];
+    }];
+    [self.table beginRefreshing];
+
+    [self.table addLoadMoreAction:^{
+        [http refresh:^(NSMutableArray *objs, BOOL stillHave) {
+            NSLog(@"%@",objs);
+        } failure:^(NSError *error) {
+            
+        }];
+        
+    }];
+    [self.table endRefreshingWithNoMoreData_tl];
+
+}
 -(void)SetupFootView{
+    
     UILabel * RecommendLab = [UILabel labelWithFrame:CGRectMake(15, self.image.yy + 15, 75, 22.5) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:FONT(16) textColor:kHexColor(@"#333333")];
     RecommendLab.text = @"热门推荐";
     [self.headview addSubview:RecommendLab];
@@ -79,27 +148,69 @@
     UILabel * MoreLab = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH - 58.5 - 15, self.image.yy + 18, 58.5, 16.5) textAligment:NSTextAlignmentRight backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#999999")];
     MoreLab.text = @"查看更多";
     [self.headview addSubview:MoreLab];
-    
-    
-    UIView * v1 = [self CreateViewWithFrame:CGRectMake(15, RecommendLab.yy + 10, (SCREEN_WIDTH - 30) / 2 , 200) GoodsNameFrame:CGRectMake(0, 26, (SCREEN_WIDTH - 30) / 2, 21) goodsname:@"杂物收纳盒" DescribeFrame:CGRectMake(0, 55, (SCREEN_WIDTH - 30) / 2, 16.5) describe:@"辅助文字辅助文字" Imageframe:CGRectMake((SCREEN_WIDTH - 30) / 2/2 - 60,55 + 16.5 + 26.5, 120, 90) ImageString:@"树 跟背景"];
+    MoreLab.userInteractionEnabled = YES;
+    UITapGestureRecognizer *taMore = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moreClick)];
+    [MoreLab addGestureRecognizer:taMore];
+    if (self.footview) {
+        return;
+    }
+    MallTreeModel *model = self.HotTrees[0];
+    UIView * v1 = [self CreateViewWithFrame:CGRectMake(15, RecommendLab.yy + 10, (SCREEN_WIDTH - 30) / 2 , 200) GoodsNameFrame:CGRectMake(0, 26, (SCREEN_WIDTH - 30) / 2, 21) goodsname:model.name DescribeFrame:CGRectMake(0, 55, (SCREEN_WIDTH - 30) / 2, 16.5) describe:model.shopName Imageframe:CGRectMake((SCREEN_WIDTH - 30) / 2/2 - 60,55 + 16.5 + 26.5, 120, 90) ImageString:model.listPic];
     [self.headview addSubview:v1];
-    
-    
-    UIView * v2 = [self CreateViewWithFrame:CGRectMake(v1.xx, RecommendLab.yy + 10, (SCREEN_WIDTH - 30) / 2 , 100) GoodsNameFrame:CGRectMake(10, 30.5, 85, 20) goodsname:@"杂物收纳盒" DescribeFrame:CGRectMake(10, 55.5, 85, 16.5) describe:@"辅助文字" Imageframe:CGRectMake(105, 20.5, SCREEN_WIDTH / 2 - 30 - 105, 100 - 41) ImageString:@"树 跟背景"];
+    v1.tag = 100;
+    v1.userInteractionEnabled = YES;
+    UITapGestureRecognizer *ta = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hotGoodsClck:)];
+    [v1 addGestureRecognizer:ta];
+    if (self.HotTrees.count < 2) {
+        return;
+    }
+    MallTreeModel *model1 = self.HotTrees[1];
+
+    UIView * v2 = [self CreateViewWithFrame:CGRectMake(v1.xx, RecommendLab.yy + 10, (SCREEN_WIDTH - 30) / 2 , 100) GoodsNameFrame:CGRectMake(10, 30.5, 85, 20) goodsname:model1.name DescribeFrame:CGRectMake(10, 55.5, 85, 16.5) describe:model.shopName Imageframe:CGRectMake(105, 20.5, SCREEN_WIDTH / 2 - 30 - 105, 100 - 41) ImageString:model.listPic];
     [self.headview addSubview:v2];
-    
-    UIView * v3 = [self CreateViewWithFrame:CGRectMake(v1.xx, v2.yy, (SCREEN_WIDTH - 30) / 2 , 100) GoodsNameFrame:CGRectMake(10, 30.5, 85, 20) goodsname:@"杂物收纳盒" DescribeFrame:CGRectMake(10, 55.5, 85, 16.5) describe:@"辅助文字" Imageframe:CGRectMake(105, 20.5, SCREEN_WIDTH / 2 - 30 - 105, 100 - 41) ImageString:@"树 跟背景"];
+    v2.tag = 101;
+    v2.userInteractionEnabled = YES;
+    UITapGestureRecognizer *ta1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hotGoodsClck:)];
+    [v2 addGestureRecognizer:ta1];
+    if (self.HotTrees.count < 3) {
+        return;
+    }
+    MallTreeModel *model2 = self.HotTrees[2];
+    UIView * v3 = [self CreateViewWithFrame:CGRectMake(v1.xx, v2.yy, (SCREEN_WIDTH - 30) / 2 , 100) GoodsNameFrame:CGRectMake(10, 30.5, 85, 20) goodsname:model2.name DescribeFrame:CGRectMake(10, 55.5, 85, 16.5) describe:model2.shopName Imageframe:CGRectMake(105, 20.5, SCREEN_WIDTH / 2 - 30 - 105, 100 - 41) ImageString:model2.listPic];
     [self.headview addSubview:v3];
+    v3.userInteractionEnabled = YES;
+    v3.tag = 102;
+    UITapGestureRecognizer *ta2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hotGoodsClck:)];
+    [v3 addGestureRecognizer:ta2];
+    self.footview = v3;
 }
 
+- (void)moreClick
+{
+    MallGoodListViewController *list = [MallGoodListViewController new];
+    list.title = @"商品列表";
+    [self.navigationController pushViewController:list animated:YES];
+    
+}
+-(void)hotGoodsClck:(UITapGestureRecognizer *)ta
+{
+    NSInteger inter = ta.view.tag-100;
+    MallGoodDetailVC *detailVC = [MallGoodDetailVC new];
+    detailVC.code = self.HotTrees[inter].code;
+    [self.navigationController pushViewController:detailVC animated:YES];
+    
+}
 
 #pragma 顶部view
 -(void)setupImage{
-    UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/750*370)];
-    image.image = kImage(@"树 跟背景");
-//    [self.view addSubview:image];
-    [self.headview addSubview:image];
-    self.backgroundimage = image;
+    
+    MallHomeHeadView *mallHeader = [[MallHomeHeadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , SCREEN_WIDTH/750 * 300)];
+    self.mallHeader = mallHeader;
+//    UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/750*370)];
+//    image.image = kImage(@"树 跟背景");
+////    [self.view addSubview:image];
+    [self.headview addSubview:mallHeader];
+//    self.backgroundimage = image;
 }
 -(void)SetupClassify{
 
@@ -108,7 +219,7 @@
     
     for (int i = 0; i < 5; i ++) {
         UIButton *iconBtn = [UIButton buttonWithTitle:ClassifyName[i] titleColor:kHexColor(@"#666666") backgroundColor:kClearColor titleFont:12];
-        iconBtn.frame = CGRectMake(i % 5 * SCREEN_WIDTH/5, self.backgroundimage.yy + 22, SCREEN_WIDTH/5, 55 + 16.5);
+        iconBtn.frame = CGRectMake(i % 5 * SCREEN_WIDTH/5, self.mallHeader.yy + 22, SCREEN_WIDTH/5, 55 + 16.5);
         [iconBtn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
             [button setImage:kImage(ClassifyName[i]) forState:(UIControlStateNormal)];
         }];
@@ -117,11 +228,11 @@
         [self.headview addSubview:iconBtn];
     }
     
-    UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, self.backgroundimage.yy + 22 + 55 + 16.5 + 21.5, SCREEN_WIDTH, 10)];
+    UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, self.mallHeader.yy + 22 + 55 + 16.5 + 21.5, SCREEN_WIDTH, 10)];
     view.backgroundColor = kLineColor;
     [self.headview addSubview:view];
     
-    UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(15, SCREEN_WIDTH/750*370 + 140, SCREEN_WIDTH - 30, (SCREEN_WIDTH - 30)/690*230)];
+    UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(15, view.yy +15, SCREEN_WIDTH - 30, (SCREEN_WIDTH - 30)/690*230)];
     image.image = kImage(@"树 跟背景");
     //    [self.view addSubview:image];
     [self.headview addSubview:image];
@@ -233,8 +344,8 @@
     [view addSubview:DescribeLab];
     
     UIImageView * image = [[UIImageView alloc]initWithFrame:imageframe];
-    image.image = kImage(imagestring);
     [view addSubview:image];
+    [image sd_setImageWithURL:[NSURL URLWithString:[imagestring convertImageUrl]]];
     return view;
 }
 

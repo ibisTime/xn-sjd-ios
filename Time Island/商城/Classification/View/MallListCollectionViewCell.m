@@ -7,7 +7,20 @@
 //
 
 #import "MallListCollectionViewCell.h"
+@interface MallListCollectionViewCell()
+@property (nonatomic ,strong) UIImageView *headImage;
 
+@property (nonatomic ,strong)  UILabel *titleLab;
+
+@property (nonatomic ,strong)  UILabel *statusLbl;
+
+@property (nonatomic ,strong)  UILabel *priceLabel;
+
+@property (nonatomic ,strong)  UILabel *addressLabel;
+
+@property (nonatomic ,strong)  UIButton *shopping;
+
+@end
 @implementation MallListCollectionViewCell
 -(instancetype)initWithFrame:(CGRect)frame
 {
@@ -85,6 +98,13 @@
     return self;
 }
 
-
+-(void)setModel:(MallTreeModel *)model
+{
+    _model = model;
+    self.titleLab.text = model.name;
+    self.priceLabel.text = [NSString stringWithFormat:@"¥: %@",model.originalPrice];
+    self.addressLabel.text = model.originPlace;
+    [self.headImage sd_setImageWithURL:[NSURL URLWithString:[model.listPic convertImageUrl]]];
+}
 
 @end

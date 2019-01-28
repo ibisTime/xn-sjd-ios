@@ -7,16 +7,40 @@
 //
 
 #import "MallHomeHeadView.h"
-@interface MallHomeHeadView()
+#import "TLBannerView.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "SLBannerView.h"
+@interface MallHomeHeadView()<SLBannerViewDelegate>
+{
+    NSInteger selectNum;
+}
+
+//轮播图
+@property (nonatomic,strong) TLBannerView *bannerView;
+
+@property (nonatomic, strong) UIView *statisticsView;
+
+@property (nonatomic, strong) UILabel *dataLbl;
+
+@property (nonatomic, strong) UIView *applicationView;
+
+@property (nonatomic, strong) UIButton *tempBtn;
+
 @property (nonatomic, strong) UISearchBar *searchBar;
+
 @property (nonatomic,strong) UIImageView * image;
+
+@property (nonatomic,strong) SLBannerView * banner;
+
 @end
 @implementation MallHomeHeadView
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self == [super initWithFrame:frame]) {
-        [self setupImage];
-        [self initSearchBar];
-        [self SetupClassify];
+//        [self setupImage];
+        [self addSubview:self.banner];
+
+//        [self initSearchBar];
+//        [self SetupClassify];
     }
     return self;
 }
@@ -82,6 +106,53 @@
         
         searchField.clipsToBounds = YES;
     }
+}
+
+-(SLBannerView *)banner
+{
+    if (!_banner) {
+        _banner = [SLBannerView bannerView];
+        _banner.frame = CGRectMake(0, 0, SCREEN_WIDTH , SCREEN_WIDTH/750 * 300);
+        //工程图片
+        _banner.slImages = @[@"树 跟背景", @"树 跟背景", @"树 跟背景", @"树 跟背景", @"树 跟背景"];
+        _banner.durTimeInterval = 0.2;
+        _banner.imgStayTimeInterval = 2.5;
+        _banner.delegate = self;
+    }
+    return _banner;
+}
+
+
+
+
+-(void)HW3DBannerViewClick
+{
+    CoinWeakSelf;
+    if (weakSelf.headerBlock) {
+        weakSelf.headerBlock(HomeEventsTypeBanner, selectNum,nil);
+    }
+}
+
+
+
+
+#pragma mark - Setting
+
+- (void)setBanners:(NSMutableArray<BannerModel *> *)banners {
+    
+    _banners = banners;
+    
+    NSMutableArray *imgUrls = [NSMutableArray array];
+    
+    [banners enumerateObjectsUsingBlock:^(BannerModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if (obj.pic) {
+            
+            [imgUrls addObject:[obj.pic convertImageUrl]];
+        }
+    }];
+    _banner.slImages = imgUrls;
+    
 }
 
 

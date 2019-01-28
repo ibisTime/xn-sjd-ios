@@ -430,6 +430,8 @@
 		B8EE11F721ED777300B9DF0D /* BookDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8EE11F621ED777300B9DF0D /* BookDetailHeadView.m */; };
 		B8EE11FA21EDB0EA00B9DF0D /* CalendarCustomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B8EE11F921EDB0EA00B9DF0D /* CalendarCustomVC.m */; };
 		B8EE11FD21EDC98800B9DF0D /* LunarFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B8EE11FC21EDC98800B9DF0D /* LunarFormatter.m */; };
+		B8F3724721FED7D60078B03B /* MallTreeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F3724621FED7D60078B03B /* MallTreeModel.m */; };
+		B8F3724A21FEEA1E0078B03B /* SpecsListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F3724921FEEA1E0078B03B /* SpecsListModel.m */; };
 		C5BE2C47B2F2099539951C03 /* libPods-Time Island.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85935B108A2342344937F73A /* libPods-Time Island.a */; };
 /* End PBXBuildFile section */
 
@@ -1295,6 +1297,10 @@
 		B8EE11F921EDB0EA00B9DF0D /* CalendarCustomVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalendarCustomVC.m; sourceTree = "<group>"; };
 		B8EE11FB21EDC98700B9DF0D /* LunarFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LunarFormatter.h; sourceTree = "<group>"; };
 		B8EE11FC21EDC98800B9DF0D /* LunarFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LunarFormatter.m; sourceTree = "<group>"; };
+		B8F3724521FED7D60078B03B /* MallTreeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallTreeModel.h; sourceTree = "<group>"; };
+		B8F3724621FED7D60078B03B /* MallTreeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallTreeModel.m; sourceTree = "<group>"; };
+		B8F3724821FEEA1E0078B03B /* SpecsListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpecsListModel.h; sourceTree = "<group>"; };
+		B8F3724921FEEA1E0078B03B /* SpecsListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpecsListModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3108,6 +3114,7 @@
 		B81E5FA621DC8FC200873AB9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B8F3724421FED7B20078B03B /* Model */,
 				B85F892421FC2FC100D5B7A4 /* PYTempViewController.h */,
 				B85F892321FC2FC100D5B7A4 /* PYTempViewController.m */,
 				B85F891021FC2F9B00D5B7A4 /* 搜索 */,
@@ -3761,6 +3768,17 @@
 			path = Assetses;
 			sourceTree = "<group>";
 		};
+		B8F3724421FED7B20078B03B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B8F3724521FED7D60078B03B /* MallTreeModel.h */,
+				B8F3724621FED7D60078B03B /* MallTreeModel.m */,
+				B8F3724821FEEA1E0078B03B /* SpecsListModel.h */,
+				B8F3724921FEEA1E0078B03B /* SpecsListModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4193,6 +4211,7 @@
 				B8226F7421F6EF58002F450F /* MallGoodDetailView.m in Sources */,
 				B81E5FC821DC8FC200873AB9 /* UILabel+Extension.m in Sources */,
 				B81E602021DC906D00873AB9 /* TLUserExt.m in Sources */,
+				B8F3724A21FEEA1E0078B03B /* SpecsListModel.m in Sources */,
 				1F93616721EE01B4007E522A /* MyHomePageHeadView.m in Sources */,
 				B81E5FC021DC8FC200873AB9 /* TLCaptchaView.m in Sources */,
 				B88E542721F9AC4200C33040 /* TransportCell.m in Sources */,
@@ -4219,6 +4238,7 @@
 				B88E544D21F9BDF600C33040 /* JVShopcartCell.m in Sources */,
 				B81E60AB21DCAC7500873AB9 /* HomeCell.m in Sources */,
 				1F19A8C721FAA26D0090BF84 /* FontSizeView.m in Sources */,
+				B8F3724721FED7D60078B03B /* MallTreeModel.m in Sources */,
 				1F1B002021E6F79C000BEBD3 /* MyTreeVC.m in Sources */,
 				1F1B002621E6F915000BEBD3 /* MyTreeHeadCell.m in Sources */,
 				B81E5FC221DC8FC200873AB9 /* CustomShareView.m in Sources */,

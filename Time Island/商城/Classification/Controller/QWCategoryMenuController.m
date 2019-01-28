@@ -11,12 +11,12 @@
 
 #import "QWCategory.h"
 #import "UIColor+Extension.h"
-
+#import "QWCategory.h"
 #define QWCellTextFont [UIFont systemFontOfSize:15]
 
 @interface QWCategoryMenuController ()
 
-@property (nonatomic, strong) NSMutableArray *catelogyList;
+@property (nonatomic, strong) NSMutableArray <QWCategory *>*catelogyList;
 @property (nonatomic, weak) QWCategory *selectedCategory;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
 
@@ -62,6 +62,25 @@
 #pragma mark - 加载一级分类数据
 - (void)loadData {
     
+    TLNetworking *http = [TLNetworking new];
+    http.code = @"629005";
+    http.parameters[@"start"] = @"1";
+    http.parameters[@"limit"] = @"10";
+    http.parameters[@"type"] = @"2";
+    http.parameters[@"level"] = @"1";
+    http.parameters[@"status"] = @"1";
+
+    CoinWeakSelf;
+    [http postWithSuccess:^(id responseObject) {
+        self.catelogyList = [QWCategory mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        [self.tableView reloadData];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
+        [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+    } failure:^(NSError *error) {
+        
+    }];
+    
 //    [QWCatelogListTool GETCatelogyListWithLevel:@"0" catelogyId:@"0" success:^(NSArray *catelogyList) {
 //        
 //        [self.catelogyList addObjectsFromArray:catelogyList];
@@ -71,9 +90,7 @@
 //        // 加载即选中第一行
 //        if (self.catelogyList.count) {
 //            
-//            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//            [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
-//            [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+    
 //        }
 //        
 //    } failure:^(NSError *error) {
@@ -90,7 +107,7 @@
 #pragma mark 多少行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 20;
+    return self.catelogyList.count;
 }
 
 #pragma mark cell长什么样
@@ -119,7 +136,7 @@
     // 设置cell内容
 //    QWCategory *category = self.catelogyList[indexPath.row];
 //    category.name = [NSString stringWithFormat:@"测试%ld",indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"测试%ld",indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@",self.catelogyList[indexPath.row].name];
     
     
     return cell;
@@ -140,13 +157,13 @@
     [tableView cellForRowAtIndexPath:indexPath].textLabel.textColor = kBlackColor;
     
     // 取出分类id
-//    QWCategory *selectedCategory = self.catelogyList[indexPath.row];
-//    if ([_selectedCategory.cid isEqualToString: selectedCategory.cid] == NO) { // 不重复点击
+    QWCategory *selectedCategory = self.catelogyList[indexPath.row];
+    if ([_selectedCategory.code isEqualToString: selectedCategory.code] == NO) { // 不重复点击
 //
 //        _selectedCategory = selectedCategory;
         // 发送通知,传递参数cid
-        [[NSNotificationCenter defaultCenter] postNotificationName:QWDetailCategoryDataWillLoadNotification object:[NSString stringWithFormat:@"%ld",indexPath.row]];
-//    }
+        [[NSNotificationCenter defaultCenter] postNotificationName:QWDetailCategoryDataWillLoadNotification object:selectedCategory];
+    }
 }
 
 

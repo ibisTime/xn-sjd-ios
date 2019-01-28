@@ -16,6 +16,7 @@
 @property (nonatomic , copy)NSString *productCode;
 @property (nonatomic , copy)NSString *province;
 @property (nonatomic , copy)NSString *originPlace;
+@property (nonatomic , copy)NSString *originalPrice;
 
 @property (nonatomic , copy)NSString *status;
 @property (nonatomic , copy)NSString *adoptCount;

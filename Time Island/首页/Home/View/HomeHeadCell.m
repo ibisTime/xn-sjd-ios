@@ -305,7 +305,6 @@
         }
     }];
     _banner.slImages = imgUrls;
-    //    self.bannerView.imgUrls = imgUrls;
     
 }
 

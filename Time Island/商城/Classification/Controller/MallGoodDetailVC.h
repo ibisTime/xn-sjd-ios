@@ -7,7 +7,7 @@
 //
 
 #import "TLBaseVC.h"
-
+#import "QWCategory.h"
 @interface MallGoodDetailVC : TLBaseVC
-
+@property (nonatomic ,copy) NSString *code;
 @end

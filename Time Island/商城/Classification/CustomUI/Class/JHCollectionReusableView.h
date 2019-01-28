@@ -13,4 +13,7 @@
  *  组的头标题
  */
 @property (nonatomic, copy) NSString *headerTitle;
+
+@property (nonatomic, weak)UIImageView *rankingImage;
+
 @end
