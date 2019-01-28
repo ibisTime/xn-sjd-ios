@@ -469,11 +469,14 @@
         NSDictionary * dic = (NSDictionary * )responseObject;
         NSArray * array = dic[@"data"][@"list"];
         NSLog(@"array = %@",array);
+        NSMutableArray *array1 = [NSMutableArray array];
+//        self.headerView.TextLoopArray = [NSMutableArray array];
         for (int i = 0; i < array.count; i ++) {
-            self.headerView.TextLoopArray = array[i][@"content"];
-            NSLog(@"%@",self.headerView.TextLoopArray);
-            [self.collectionView reloadData];
+            [array1 addObject:array[i][@"content"] ];
+//            NSLog(@"%@",self.headerView.TextLoopArray);
+            self.headerView.TextLoopArray = array1;
         }
+        [self.collectionView reloadData];
     } failure:^(NSError *error) {
     }];
 }
