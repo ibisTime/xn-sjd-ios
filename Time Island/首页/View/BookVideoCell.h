@@ -7,6 +7,7 @@
 //
 
 #import "BaseTableViewCell.h"
+#import "BookModel.h"
 
 @interface BookVideoCell : BaseTableViewCell
 @property (nonatomic ,strong) UILabel *moreLab;
@@ -22,6 +23,6 @@
 @property (nonatomic ,strong) UILabel *collectLab;
 
 @property (nonatomic ,strong) UILabel *praiseLab;
-
+@property (nonatomic,strong) BookModel * BookModel;
 
 @end

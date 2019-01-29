@@ -7,7 +7,7 @@
 //
 
 #import "TLTableView.h"
-
+#import "NoticeModel.h"
 @interface MyNoticeTableView : TLTableView
-
+@property (nonatomic,strong) NSMutableArray<NoticeModel *> * NoticeModels;
 @end

@@ -10,6 +10,7 @@
 #import "MMComBoBox.h"
 #import "MallListCollectionViewCell.h"
 #import "MallGoodDetailVC.h"
+#import "MallTreeModel.h"
 @interface MallGoodListViewController ()<UISearchBarDelegate,MMComBoBoxViewDataSource,MMComBoBoxViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) UIView *bottomLine;
@@ -18,6 +19,7 @@
 @property (nonatomic, strong) UIButton *nextPageBtn;
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic,strong)UICollectionView *collectionView;
+@property (nonatomic,strong) NSMutableArray <MallTreeModel *>*TreeModels;
 
 @end
 
@@ -42,7 +44,23 @@
     [self initSearchBar];
     [self initComboBox];
     [self.view addSubview:self.collectionView];
-
+//    [self loadGoodList];
+}
+- (void)loadGoodList
+{
+    TLNetworking *http = [TLNetworking new];
+    http.code = @"629706";
+    http.parameters[@"start"] = @"0";
+    http.parameters[@"limit"] = @"10";
+    http.parameters[@"location"] = @"0";
+    [http postWithSuccess:^(id responseObject) {
+        self.TreeModels = responseObject[@"data"][@"list"];
+        [self.collectionView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
+    
+    
 }
 - (void)initComboBox
 {
@@ -225,14 +243,14 @@
 #pragma mark------CollectionView的代理方法
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+    return self.TreeModels.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
     MallListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MallListCollectionViewCell" forIndexPath:indexPath];
-    
+    cell.model = self.TreeModels[indexPath.row];
     if (indexPath.row % 2 == 0) {
         cell.backView.frame = CGRectMake(12, 0, (SCREEN_WIDTH - 30)/2, kHeight(226));
     }else

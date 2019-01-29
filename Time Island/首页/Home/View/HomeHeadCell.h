@@ -39,13 +39,17 @@ typedef void(^HomeHeaderEventsBlock)(HomeEventsType type, NSInteger index, HomeF
 //点击推文更多
 @property (nonatomic, copy) void (^clickBookBlock)(void);
 //点击快报
-@property (nonatomic, copy) void (^clicknewsBlock)(void);
+@property (nonatomic, copy) void (^clicknewsBlock)(NSInteger index);
+
+@property (nonatomic,copy) void  (^TreeClickBlock)(void);
 
 @property (nonatomic , strong)UIView *backView;
 
 @property (nonatomic, strong) UIView *noticeView;//公告
 @property (nonatomic, strong) UILabel *introduceLab;
 @property (nonatomic,strong) NSArray * TextLoopArray;
-
+//@property UIImageView * imageView;
+@property (nonatomic,strong) NSString * ImageString;
+@property (nonatomic,strong) UIImageView * tuiwenimage;
 
 @end

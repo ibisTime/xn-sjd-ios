@@ -7,7 +7,8 @@
 //
 
 #import "TLBaseVC.h"
+#import "NoticeModel.h"
 
 @interface MyNoticeDetailsVC : TLBaseVC
-
+@property (nonatomic,strong) NoticeModel * model;
 @end

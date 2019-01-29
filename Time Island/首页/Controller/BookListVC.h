@@ -7,7 +7,8 @@
 //
 
 #import "TLBaseVC.h"
-
+//#import "BookModel.h"
 @interface BookListVC : TLBaseVC
-
+@property (nonatomic,assign) NSInteger state;
+//@property (nonatomic,strong) BookModel * BookModel;
 @end

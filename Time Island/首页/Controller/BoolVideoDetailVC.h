@@ -7,7 +7,7 @@
 //
 
 #import "TLBaseVC.h"
-
+#import "BookModel.h"
 @interface BoolVideoDetailVC : TLBaseVC
-
+@property (nonatomic,strong) BookModel * BookModel;
 @end

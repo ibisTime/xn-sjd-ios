@@ -7,10 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BannerModel.h"
+#import "HomeFindModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSInteger, HomeEventsType) {
+    
+    HomeEventsTypeBanner = 0,   //Banner图
+    HomeEventsTypeStatistics = 1,
+    HomeEventsTypeStore = 2
+};
+
+typedef void(^HomeHeaderEventsBlock)(HomeEventsType type, NSInteger index, HomeFindModel*find);
+
 @interface MallHomeHeadView : UIView<UISearchBarDelegate>
+@property (nonatomic, copy) HomeHeaderEventsBlock headerBlock;
+//轮播图
+@property (nonatomic, strong) NSMutableArray <BannerModel *>*banners;
 
 @end
 

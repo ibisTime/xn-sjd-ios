@@ -37,7 +37,7 @@
         
         statusLbl = [UILabel labelWithFrame:CGRectMake(0, 0, 40, 18) textAligment:(NSTextAlignmentCenter) backgroundColor:kTabbarColor font:FONT(12) textColor:kWhiteColor];
 //        kViewRadius(statusLbl, 4);
-        statusLbl.text = @"集体";
+//        statusLbl.text = @"集体";
         
         UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:statusLbl.bounds byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerBottomRight) cornerRadii:CGSizeMake(6,6)];//圆角大小
         CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
@@ -48,7 +48,7 @@
         [headImage addSubview:statusLbl];
         
         adoptLbl = [UILabel labelWithFrame:CGRectMake((SCREEN_WIDTH - 30)/2 - 55, (SCREEN_WIDTH - 30)/2 - 36, 55, 18) textAligment:(NSTextAlignmentCenter) backgroundColor:RGB(234, 85, 78) font:FONT(11) textColor:kWhiteColor];
-        adoptLbl.text = @"不可认养";
+//        adoptLbl.text = @"不可认养";
         UIBezierPath *maskPath1 = [UIBezierPath bezierPathWithRoundedRect:adoptLbl.bounds byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerBottomLeft) cornerRadii:CGSizeMake(4,4)];//圆角大小
         CAShapeLayer *maskLayer1 = [[CAShapeLayer alloc] init];
         maskLayer1.frame = adoptLbl.bounds;
@@ -71,7 +71,7 @@
         
         
         addressLabel = [UILabel labelWithFrame:CGRectMake(priceLabel.frame.size.width + 9, headImage.yy + 50, (SCREEN_WIDTH - 30)/2 - priceLabel.xx - 9, 14) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:FONT(11) textColor:RGB(153, 153, 153)];
-        addressLabel.text = @"浙江省 杭州市";
+//        addressLabel.text = @"浙江省 杭州市";
         [backView addSubview:addressLabel];
         
     }
@@ -81,11 +81,13 @@
 
 -(void)setModel:(TreeModel *)model
 {
+    _model = model;
     titleLab.frame = CGRectMake(5, headImage.yy + 8, (SCREEN_WIDTH - 30)/2 - 10, 0);
-    titleLab.text = model.productName;
+    titleLab.text = model.name;
     titleLab.numberOfLines = 2;
     [titleLab sizeToFit];
     
+
     if ([model.status isEqualToString:@"0"]) {
         adoptLbl.text = @"待认养";
         adoptLbl.backgroundColor = RGB(234, 85, 78);
@@ -93,23 +95,49 @@
     {
         adoptLbl.text = @"已认养";
         adoptLbl.backgroundColor = RGB(234, 85, 78);
+    [headImage sd_setImageWithURL:[NSURL URLWithString:[model.listPic convertImageUrl]]];
+    }
+
+//    [self.modelarray addObject:self.model];
+    NSLog(@"%@",model.name);
+    NSString *str;
+    if (model.productSpecsList.count > 0) {
+        str =  [NSString stringWithFormat:@"¥%@",model.productSpecsList[0][@"price"]];
+
     }else
     {
-        adoptLbl.text = @"不可认养";
-        adoptLbl.backgroundColor = RGB(179, 98, 188);
+        str = @"¥0.00";
     }
-    [self.modelarray addObject:self.model];
-    NSLog(@"%@",model.name);
-    
-    NSString *str= @"¥ 5000.00";
+//    NSString *str=  model.productSpecsList[@"price"];
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:str];
     [attrStr addAttribute:NSFontAttributeName value:FONT(11) range:NSMakeRange(0, 1)];
     priceLabel.attributedText = attrStr;
     [priceLabel sizeToFit];
     priceLabel.frame = CGRectMake(5, headImage.yy + 48, priceLabel.width, 16);
+
+    
+    
+    addressLabel.text = [NSString stringWithFormat:@"%@ %@",model.province,model.city];
+
 }
 
 
 
+-(void)setSellTypeArray:(NSArray *)SellTypeArray{
+    for (int i = 0; i < SellTypeArray.count; i++) {
+        if ([_model.sellType isEqualToString:SellTypeArray[i][@"dkey"]]) {
+            statusLbl.text = SellTypeArray[i][@"dvalue"];
+            //            adoptLbl.backgroundColor = RGB(179, 98, 188);
+        }
+    }
+}
+-(void)setProductStatusArray:(NSArray *)ProductStatusArray{
+    for (int i = 0; i < ProductStatusArray.count; i++) {
+        if ([_model.status isEqualToString:ProductStatusArray[i][@"dkey"]]) {
+            adoptLbl.text = ProductStatusArray[i][@"dvalue"];
+            //            adoptLbl.backgroundColor = RGB(179, 98, 188);
+        }
+    }
+}
 
 @end

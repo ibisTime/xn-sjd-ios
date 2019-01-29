@@ -24,11 +24,11 @@
     _category = category;
     
     // 添加图片
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:category.icon]
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:[category.pic convertImageUrl]]
                       placeholderImage:[UIImage imageNamed:@"jdm_photo_placeholer"]];
     
     // 添加文字
-    self.textLabel.text = [NSString stringWithFormat:@"分类:"];
+    self.textLabel.text = category.name;
 }
 
 #pragma mark - 懒加载

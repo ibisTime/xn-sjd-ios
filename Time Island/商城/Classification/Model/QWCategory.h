@@ -11,28 +11,34 @@
 
 @interface QWCategory : NSObject <MJKeyValue>
 /**
- *  类别代号
+ *  父级编号
  */
-@property (nonatomic, copy) NSString *cid;
+@property (nonatomic, copy) NSString *parentCode;
 /**
- *  具体描述
+ *  名称
  */
-@property (nonatomic, copy) NSString *detail_description;
+@property (nonatomic, copy) NSString *name;
 /**
- *  所属父类
+ *  顺序
  */
-@property (nonatomic, assign) int fid;
+@property (nonatomic, copy) NSString *orderNo;
 /**
- *  图标URL
+ *  code
  */
-@property (nonatomic, copy) NSString *icon;
+@property (nonatomic, copy) NSString *code;
 /**
  *  当前类的级别
  */
-@property (nonatomic, assign) int level;
+@property (nonatomic, copy) NSString *status;
 /**
- *  类别名
+ *  图片
  */
-@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *pic;
+
+@property (nonatomic, copy) NSString *updater;
+
+@property (nonatomic, copy) NSString *updateDatetime;
+
+@property (nonatomic, copy) NSString *remark;
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MallTreeModel.h"
 @interface MallListCollectionViewCell : UICollectionViewCell
 @property (nonatomic , strong)UIView *backView;
+@property (nonatomic , strong) MallTreeModel *model;
 
 @end

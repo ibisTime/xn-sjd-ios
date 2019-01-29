@@ -13,7 +13,6 @@
 @interface JHCollectionReusableView()
 @property (nonatomic, weak)UILabel *textLabel;
 
-@property (nonatomic, weak)UIImageView *rankingImage;
 @end
 @implementation JHCollectionReusableView
 
@@ -25,12 +24,14 @@
 //        self.backgroundColor = kLineColor;
         self.layer.borderWidth = 1;
         self.layer.borderColor = kLineColor.CGColor;
+
     }
 }
 - (void)setHeaderTitle:(NSString *)headerTitle {
     
     _headerTitle = headerTitle;
-    
+    [self addRankingImage];
+
     // 设置背景
 //    UIImage *backgroundImage = [UIImage imageNamed:@"bg_category_header"];
 //    self.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
@@ -38,7 +39,6 @@
     self.textLabel.text = headerTitle;
     [_textLabel sizeToFit];
     // 添加图片
-    [self addRankingImage];
 }
 
 
@@ -59,9 +59,9 @@
 
 - (void)addRankingImage {
     
-    UIImageView *rankingImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"baner1"]];
+    UIImageView *rankingImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
     [rankingImage sizeToFit];
-    _rankingImage = rankingImage;
+    self.rankingImage = rankingImage;
     if (self.height<100) {
         rankingImage.hidden = YES;
         _textLabel.frame = CGRectMake(15, 0, self.width, 30);

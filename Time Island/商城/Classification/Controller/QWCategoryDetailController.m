@@ -16,10 +16,12 @@
 #import "MallGoodListViewController.h"
 #import "MallClassificationVC.h"
 //#import "QWProductListController.h"
-
+#import "QWCategory.h"
 #import "UIImageView+WebCache.h"
 #import "JHCollectionViewFlowLayout.h"
+#import "MallGoodDetailVC.h"
 @interface QWCategoryDetailController ()<JHCollectionViewDelegateFlowLayout>
+@property (nonatomic, strong) NSMutableArray <QWCategory *>*catelogyList;
 
 // 保存模型(SCCategoryDetail)
 @property (nonatomic, strong) NSMutableArray *detailCategoryList;
@@ -30,6 +32,7 @@
 
 @property (nonatomic, assign) NSInteger inter; //左侧section索引
 
+@property (nonatomic, strong) QWCategory *row;
 @end
 
 @implementation QWCategoryDetailController
@@ -125,16 +128,32 @@ static NSString * const reuseIdentifierImageCell = @"imageCell";
 
 #pragma mark 2. 请求二级分类数据(1.用于显示组的头标题2.用于请求详细分类数据)
 - (void)loadHeaderCategoryData:(NSNotification *)notification {
-    
-   NSString *row = notification.object;
-    NSInteger inter = [row integerValue];
-    self.inter = inter;
-    NSIndexPath *inde = [NSIndexPath indexPathForRow:0 inSection:0];
-      [self.collectionView scrollToItemAtIndexPath:inde atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
-//    [self.collectionView reloadData];
-    return;
-    // 取消上一次的请求
-    [self cancelLastRequest];
+    QWCategory *row = notification.object;
+    self.row = row;
+    TLNetworking *http = [TLNetworking new];
+    http.code = @"629005";
+    http.parameters[@"start"] = @"0";
+    http.parameters[@"limit"] = @"10";
+    http.parameters[@"type"] = @"2";
+
+    http.parameters[@"parentCode"] = row.code;
+    CoinWeakSelf;
+    [http postWithSuccess:^(id responseObject) {
+        self.catelogyList = [QWCategory mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        if (self.catelogyList.count == 0) {
+            [self.collectionView reloadData];
+
+            return ;
+        }
+        NSIndexPath *inde = [NSIndexPath indexPathWithIndex:0];
+//        [self.collectionView scrollToItemAtIndexPath:inde atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
+        [self.collectionView reloadData];
+
+    } failure:^(NSError *error) {
+        
+    }];
+  
+//    [self cancelLastRequest];
     // 发起(新)请求
 //    AFHTTPRequestOperation *headerOperation
 //    = [QWCatelogListTool GETCatelogyListWithLevel:@"0" catelogyId:notification.object success:^(NSArray *catelogyList) {
@@ -193,15 +212,14 @@ static NSString * const reuseIdentifierImageCell = @"imageCell";
 #pragma mark 有多少组
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
-//    return self.detailCategoryList.count;
-    return 10;
+    return 1;
 }
 
 #pragma mark 每组有多少个
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 //    QWCategoryDetail *detailCategory = self.detailCategoryList[section];
-//    return detailCategory.categories.count;
-    return 20;
+    return self.catelogyList.count;
+//    return 20;
 }
 #pragma mark cell长什么样
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -219,13 +237,13 @@ static NSString * const reuseIdentifierImageCell = @"imageCell";
 //    }else{
         QWDetailCategoryCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifierForCell forIndexPath:indexPath];
         // 取出模型数据
-        //    QWCategoryDetail *detailCategory = self.detailCategoryList[indexPath.section];
-        //    cell.category = detailCategory.categories[indexPath.row];
-        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:@""]
-                          placeholderImage:[UIImage imageNamed:@"我的背景"]];
-        
-        // 添加文字
-        cell.textLabel.text = [NSString stringWithFormat:@"分类年货"];
+            QWCategory *detailCategory = self.catelogyList[indexPath.row];
+            cell.category = detailCategory;
+//        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:@""]
+//                          placeholderImage:[UIImage imageNamed:@"我的背景"]];
+//
+//        // 添加文字
+//        cell.textLabel.text = [NSString stringWithFormat:@"分类年货"];
         return cell;
 
 //        }
@@ -240,14 +258,10 @@ static NSString * const reuseIdentifierImageCell = @"imageCell";
         
         reusableView = headerView;
     }
-//    reusableView.layer.borderColor = kLineColor.CGColor;
-//    reusableView.layer.borderWidth = 1;
-//    reusableView.backgroundColor = [UIColor redColor];
-    // 取出模型数据
-//    QWCategoryDetail *detailCategory = self.detailCategoryList[indexPath.section];
-    reusableView.headerTitle = [NSString stringWithFormat:@"分组%ld",indexPath.section];
-    
-    NSLog(@"%@",NSStringFromCGRect(collectionView.frame));
+    reusableView.rankingImage.image = kImage(@"");
+    reusableView.headerTitle = @"";
+
+    [reusableView.rankingImage sd_setImageWithURL:[NSURL URLWithString:[self.row.pic convertImageUrl]]];
     return reusableView;
 }
 
@@ -260,15 +274,11 @@ static NSString * const reuseIdentifierImageCell = @"imageCell";
 //    QWCategory *selectedCategory = detailCategory.categories[indexPath.row];
 //
 //    // 跳转
-    MallGoodListViewController *productListVC = [MallGoodListViewController new];
-    productListVC.title = @"商品列表";
+    MallGoodDetailVC *productListVC = [MallGoodDetailVC new];
+    productListVC.code = self.catelogyList [indexPath.row].code;
      TLNavigationController *navigationVC = [[TLNavigationController alloc] initWithRootViewController:productListVC];
     if ([self.view.superview.nextResponder isKindOfClass:[MallClassificationVC class]]) {
         MallClassificationVC *categoryVC = (MallClassificationVC *)self.view.superview.nextResponder;
-//        categoryVC.hidesBottomBarWhenPushed = YES;
-//        categoryVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-//        [categoryVC.navigationController pushViewController:productListVC animated:YES];
-        categoryVC.hidesBottomBarWhenPushed = YES;
         categoryVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         [categoryVC.navigationController pushViewController:productListVC animated:YES];
     }

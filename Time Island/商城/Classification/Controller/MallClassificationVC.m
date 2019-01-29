@@ -92,6 +92,6 @@
     self.categoryDetailVC.view.frame = CGRectMake(x, y, width, height);
     
     [self.view addSubview:_categoryDetailVC.view];
-    
+    self.categoryMenuVC.detailVC = self.categoryDetailVC;
 }
 @end
