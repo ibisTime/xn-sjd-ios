@@ -86,20 +86,22 @@
 //    self.goButton.layer.borderColor = kAppCustomMainColor.CGColor;
     self.goButton.frame = CGRectMake(self.frame.size.width/2, self.frame.size.height-45, self.frame.size.width/2, 45);
     [self addSubview:self.goButton];
+    
     [self.goButton addTarget:self action:@selector(go) forControlEvents:UIControlEventTouchUpInside];
     [self.cancleButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)go
 {
-    [self removeFromSuperview];
+//    [self removeFromSuperview];
 
-    
+    [[UserModel user].cusPopView dismiss];
 }
 
 
 - (void)cancel
 {
-    [self removeFromSuperview];
+    [[UserModel user].cusPopView dismiss];
+//    [self removeFromSuperview];
 }
 @end

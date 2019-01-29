@@ -18,7 +18,7 @@
 @end
 
 @interface SLBannerView : UIView
-
+@property (nonatomic, weak) NSTimer *timer;
 /** 要展示的图片数组,支持网络，本地，工程图片可用 */
 @property (nonnull, nonatomic, copy) NSArray *slImages;
 

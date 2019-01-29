@@ -110,7 +110,7 @@ static int imagesCount = 3;
 /** 页控制 圆点 */
 @property (nonatomic, weak) IBOutlet UIPageControl *pageCtrl;
 /** 定时器,用weak */
-@property (nonatomic, weak) NSTimer *timer;
+
 
 @end
 

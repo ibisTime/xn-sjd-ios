@@ -75,7 +75,7 @@
     // 1.初始化
     ZJAnimationPopView *_popView = [[ZJAnimationPopView alloc] initWithCustomView:showView popStyle:popStyle dismissStyle:dismissStyle];
     self.cusPopView = _popView;
-//    _popView.isClickBGDismiss = ![showView isKindOfClass:[UIView class]];
+//    _popView.isClickBGDismiss = [showView isKindOfClass:[UIView class]];
     //    移除
     _popView.isClickBGDismiss = dismiss;
     // 2.2 显示时背景的透明度
