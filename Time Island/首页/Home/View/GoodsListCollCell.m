@@ -87,14 +87,23 @@
     titleLab.numberOfLines = 2;
     [titleLab sizeToFit];
     
+
+    if ([model.status isEqualToString:@"0"]) {
+        adoptLbl.text = @"待认养";
+        adoptLbl.backgroundColor = RGB(234, 85, 78);
+    }else if ([model.status isEqualToString:@"1"])
+    {
+        adoptLbl.text = @"已认养";
+        adoptLbl.backgroundColor = RGB(234, 85, 78);
     [headImage sd_setImageWithURL:[NSURL URLWithString:[model.listPic convertImageUrl]]];
-    
+    }
 
 //    [self.modelarray addObject:self.model];
     NSLog(@"%@",model.name);
     NSString *str;
     if (model.productSpecsList.count > 0) {
         str =  [NSString stringWithFormat:@"¥%@",model.productSpecsList[0][@"price"]];
+
     }else
     {
         str = @"¥0.00";
@@ -105,9 +114,11 @@
     priceLabel.attributedText = attrStr;
     [priceLabel sizeToFit];
     priceLabel.frame = CGRectMake(5, headImage.yy + 48, priceLabel.width, 16);
+
     
     
     addressLabel.text = [NSString stringWithFormat:@"%@ %@",model.province,model.city];
+
 }
 
 

@@ -9,5 +9,5 @@
 #import "TLBaseVC.h"
 #import "TreeModel.h"
 @interface GoodsDetailsVc : TLBaseVC
-@property (nonatomic,strong) TreeModel * TreeModel;
+@property (nonatomic,strong) TreeModel * treemodel;
 @end

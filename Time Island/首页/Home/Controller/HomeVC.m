@@ -63,6 +63,7 @@
 @property (nonatomic,strong) NSArray * SellTypeArray;
 @property (nonatomic,strong) NSArray * ProductStatusArray;
 
+
 @end
 
 @implementation HomeVC
@@ -164,7 +165,6 @@
         _cell.clickTagBlock = ^(NSInteger index) {
             [weakSelf clickTagWithIndex:index];
         };
-//        cell.scrollEnabled = NO;
         return _cell;
     }
     
@@ -194,7 +194,7 @@
     if (indexPath.section == 1) {
 //        TreeListVC *tree = [TreeListVC new];
         GoodsDetailsVc * tree = [GoodsDetailsVc new];
-        tree.TreeModel = self.Models[indexPath.row];
+        tree.treemodel = self.Models[indexPath.row];
         [self.navigationController pushViewController:tree animated:YES];
     }
     
@@ -219,7 +219,6 @@
     }
     return CGSizeMake((SCREEN_WIDTH - 1)/2, (SCREEN_WIDTH - 30)/2 + 80);
 }
-
 
 
 
@@ -532,12 +531,12 @@
         NSLog(@"%@",responseObject[@"data"]);
         NSDictionary * dic = (NSDictionary * )responseObject;
         NSArray * array = dic[@"data"][@"list"];
-//        self.newsarray = array;
         self.newsarray = [NoticeModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-        NSLog(@"array = %@",array);
         NSMutableArray *array1 = [NSMutableArray array];
         for (int i = 0; i < array.count; i ++) {
             [array1 addObject:array[i][@"content"] ];
+//            NSLog(@"%@",self.headerView.TextLoopArray);
+
         }
         self.cell.TextLoopArray = array1;
         [self.collectionView reloadData];
@@ -556,7 +555,6 @@
         NSDictionary * dic = (NSDictionary * )responseObject;
         self.TuiwenArray = dic[@"data"][@"list"];
         if (self.TuiwenArray.count > 0) {
-//            self.cell.ImageString
             [self.cell.tuiwenimage sd_setImageWithURL:[NSURL URLWithString:[self.TuiwenArray[0][@"cvalue"] convertImageUrl]]];
         }
         [self.collectionView reloadData];

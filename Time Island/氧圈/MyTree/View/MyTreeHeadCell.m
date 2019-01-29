@@ -72,6 +72,12 @@
     return self;
 }
 
+
+-(void)setEnergyModels:(NSMutableArray<MyTreeEnergyModel *> *)energyModels
+{
+    
+}
+
 -(void)buttonClick:(UIButton *)sender
 {
     [_delegate MyTreeHeadButton:sender.tag - 100];

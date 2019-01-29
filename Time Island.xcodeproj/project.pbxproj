@@ -22,6 +22,10 @@
 		1F19A8EF21FAA7140090BF84 /* AddressPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8EE21FAA7130090BF84 /* AddressPickView.m */; };
 		1F19A8F321FADF9B0090BF84 /* TreeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8F221FADF9B0090BF84 /* TreeModel.m */; };
 		1F19A8F721FB23980090BF84 /* HomeHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8F621FB23980090BF84 /* HomeHeadCell.m */; };
+		1F19A8FA21FED86B0090BF84 /* MyTreeEnergyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8F921FED86B0090BF84 /* MyTreeEnergyModel.m */; };
+		1F19A90021FEFEF50090BF84 /* PersonalCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8FF21FEFEF50090BF84 /* PersonalCenterVC.m */; };
+		1F19A90321FEFF130090BF84 /* PersonalCenterHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A90221FEFF130090BF84 /* PersonalCenterHeadView.m */; };
+		1F19A90621FF07A50090BF84 /* PersonalCenterTableVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A90521FF07A50090BF84 /* PersonalCenterTableVIew.m */; };
 		1F1B001921E6E23F000BEBD3 /* OxygenCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B001821E6E23F000BEBD3 /* OxygenCircleView.m */; };
 		1F1B002021E6F79C000BEBD3 /* MyTreeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B001F21E6F79C000BEBD3 /* MyTreeVC.m */; };
 		1F1B002321E6F8C8000BEBD3 /* MyTreeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B002221E6F8C8000BEBD3 /* MyTreeTableView.m */; };
@@ -132,6 +136,7 @@
 		3647C4A621F1D80100FB049D /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647C4A521F1D80100FB049D /* AddressCell.m */; };
 		365514D221FADC9A00E54996 /* CardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 365514D121FADC9A00E54996 /* CardModel.m */; };
 		365514D821FB009000E54996 /* introduceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 365514D721FB009000E54996 /* introduceView.m */; };
+		366A59F122000007009FFA6E /* GoodsDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A59F022000007009FFA6E /* GoodsDetailsCell.m */; };
 		367D68E021F95A230091177C /* aiai_area.txt in Resources */ = {isa = PBXBuildFile; fileRef = 367D68DF21F95A230091177C /* aiai_area.txt */; };
 		367D68E921F95B920091177C /* SelectAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D68E821F95B920091177C /* SelectAdView.m */; };
 		367D694221F998A70091177C /* GenderPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D694121F998A70091177C /* GenderPickerView.m */; };
@@ -485,6 +490,14 @@
 		1F19A8F221FADF9B0090BF84 /* TreeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeModel.m; sourceTree = "<group>"; };
 		1F19A8F521FB23980090BF84 /* HomeHeadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeHeadCell.h; sourceTree = "<group>"; };
 		1F19A8F621FB23980090BF84 /* HomeHeadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeHeadCell.m; sourceTree = "<group>"; };
+		1F19A8F821FED86B0090BF84 /* MyTreeEnergyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTreeEnergyModel.h; sourceTree = "<group>"; };
+		1F19A8F921FED86B0090BF84 /* MyTreeEnergyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTreeEnergyModel.m; sourceTree = "<group>"; };
+		1F19A8FE21FEFEF50090BF84 /* PersonalCenterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalCenterVC.h; sourceTree = "<group>"; };
+		1F19A8FF21FEFEF50090BF84 /* PersonalCenterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterVC.m; sourceTree = "<group>"; };
+		1F19A90121FEFF130090BF84 /* PersonalCenterHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalCenterHeadView.h; sourceTree = "<group>"; };
+		1F19A90221FEFF130090BF84 /* PersonalCenterHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterHeadView.m; sourceTree = "<group>"; };
+		1F19A90421FF07A50090BF84 /* PersonalCenterTableVIew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalCenterTableVIew.h; sourceTree = "<group>"; };
+		1F19A90521FF07A50090BF84 /* PersonalCenterTableVIew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterTableVIew.m; sourceTree = "<group>"; };
 		1F1B001721E6E23F000BEBD3 /* OxygenCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OxygenCircleView.h; sourceTree = "<group>"; };
 		1F1B001821E6E23F000BEBD3 /* OxygenCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OxygenCircleView.m; sourceTree = "<group>"; };
 		1F1B001E21E6F79C000BEBD3 /* MyTreeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTreeVC.h; sourceTree = "<group>"; };
@@ -699,6 +712,8 @@
 		365514D121FADC9A00E54996 /* CardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardModel.m; sourceTree = "<group>"; };
 		365514D621FB009000E54996 /* introduceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = introduceView.h; sourceTree = "<group>"; };
 		365514D721FB009000E54996 /* introduceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = introduceView.m; sourceTree = "<group>"; };
+		366A59EF22000007009FFA6E /* GoodsDetailsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsDetailsCell.h; sourceTree = "<group>"; };
+		366A59F022000007009FFA6E /* GoodsDetailsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailsCell.m; sourceTree = "<group>"; };
 		367D68DF21F95A230091177C /* aiai_area.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aiai_area.txt; sourceTree = "<group>"; };
 		367D68E721F95B920091177C /* SelectAdView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectAdView.h; sourceTree = "<group>"; };
 		367D68E821F95B920091177C /* SelectAdView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectAdView.m; sourceTree = "<group>"; };
@@ -1465,6 +1480,35 @@
 			path = Address;
 			sourceTree = "<group>";
 		};
+		1F19A8FB21FEFEB40090BF84 /* PersonalCenter */ = {
+			isa = PBXGroup;
+			children = (
+				1F19A8FD21FEFED20090BF84 /* Controller */,
+				1F19A8FC21FEFECF0090BF84 /* View */,
+			);
+			path = PersonalCenter;
+			sourceTree = "<group>";
+		};
+		1F19A8FC21FEFECF0090BF84 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F19A90121FEFF130090BF84 /* PersonalCenterHeadView.h */,
+				1F19A90221FEFF130090BF84 /* PersonalCenterHeadView.m */,
+				1F19A90421FF07A50090BF84 /* PersonalCenterTableVIew.h */,
+				1F19A90521FF07A50090BF84 /* PersonalCenterTableVIew.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1F19A8FD21FEFED20090BF84 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1F19A8FE21FEFEF50090BF84 /* PersonalCenterVC.h */,
+				1F19A8FF21FEFEF50090BF84 /* PersonalCenterVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		1F1B001621E6E21D000BEBD3 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1508,6 +1552,8 @@
 		1F1B001C21E6F77B000BEBD3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1F19A8F821FED86B0090BF84 /* MyTreeEnergyModel.h */,
+				1F19A8F921FED86B0090BF84 /* MyTreeEnergyModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1735,6 +1781,8 @@
 				B8ED2E8721E8516D00FADCCE /* RenYangFieldView.m */,
 				B8ED2E8921E878BB00FADCCE /* RenYangFieldDeyailView.h */,
 				B8ED2E8A21E878BB00FADCCE /* RenYangFieldDeyailView.m */,
+				366A59EF22000007009FFA6E /* GoodsDetailsCell.h */,
+				366A59F022000007009FFA6E /* GoodsDetailsCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3079,6 +3127,7 @@
 			children = (
 				B81E5F9F21DC8FC100873AB9 /* Controller */,
 				1F1B001621E6E21D000BEBD3 /* View */,
+				1F19A8FB21FEFEB40090BF84 /* PersonalCenter */,
 				1F1B001A21E6F75D000BEBD3 /* MyTree */,
 				1F1B007921E73538000BEBD3 /* MyHomePage */,
 				1F1B00BE21E880F2000BEBD3 /* MyArticle */,
@@ -3989,6 +4038,7 @@
 				B81E5FBE21DC8FC200873AB9 /* TLAlert.m in Sources */,
 				3689769321EF367B005F1177 /* OrderView.m in Sources */,
 				B81E5FB821DC8FC200873AB9 /* TLProgressHUD.m in Sources */,
+				366A59F122000007009FFA6E /* GoodsDetailsCell.m in Sources */,
 				B8226F7121F6E230002F450F /* MallGoodIntroduceVC.m in Sources */,
 				B81E5FED21DC8FC200873AB9 /* LangSwitcher.m in Sources */,
 				B85F891D21FC2F9C00D5B7A4 /* UIView+PYExtension.m in Sources */,
@@ -4090,6 +4140,7 @@
 				1F1B00D221E89667000BEBD3 /* FriendsTheTreeTableView.m in Sources */,
 				1F1B00BD21E87B00000BEBD3 /* GivingVC.m in Sources */,
 				369C60CF21F717A9001F9CBA /* PayPwdVC.m in Sources */,
+				1F19A90621FF07A50090BF84 /* PersonalCenterTableVIew.m in Sources */,
 				B86CB6A821DDB7FF00C60AC7 /* TLPlateCell.m in Sources */,
 				1F1B007221E71D26000BEBD3 /* NSValue+PlatformIndependence.m in Sources */,
 				B81E5FD221DC8FC200873AB9 /* UIControl+Block.m in Sources */,
@@ -4119,6 +4170,7 @@
 				B81E609D21DCAB8F00873AB9 /* TLBannerView.m in Sources */,
 				1F1B00B521E86FDC000BEBD3 /* ToObtainABubbleCell.m in Sources */,
 				B8ED2E7921E71A2700FADCCE /* TreeRenYangListTB.m in Sources */,
+				1F19A90321FEFF130090BF84 /* PersonalCenterHeadView.m in Sources */,
 				B8ED2E6A21E6EA1D00FADCCE /* TreeFieldVC.m in Sources */,
 				1F93616621EE01B4007E522A /* MyHomePageTableView.m in Sources */,
 				3689766221EED58A005F1177 /* CollectVC.m in Sources */,
@@ -4153,6 +4205,7 @@
 				1F93610721EDFD8F007E522A /* MyGiftTableView.m in Sources */,
 				1F3EBB0B21F5C42D005BC837 /* ShareTableViewCell.m in Sources */,
 				B81E605821DC981D00873AB9 /* NBCDRequest.m in Sources */,
+				1F19A90021FEFEF50090BF84 /* PersonalCenterVC.m in Sources */,
 				1F3EBB0921F5C42D005BC837 /* YSActionSheetView.m in Sources */,
 				B815279221EC906A00F89395 /* BookVideoVC.m in Sources */,
 				B81E5FE921DC8FC200873AB9 /* TLSwitchView.m in Sources */,
@@ -4277,6 +4330,7 @@
 				B81E5FD921DC8FC200873AB9 /* NSNumber+Extension.m in Sources */,
 				B8ED2E8521E8352B00FADCCE /* TeamView.m in Sources */,
 				B815279521EC946100F89395 /* BookVideoCell.m in Sources */,
+				1F19A8FA21FED86B0090BF84 /* MyTreeEnergyModel.m in Sources */,
 				B815278F21EC8C1300F89395 /* NoticeCell.m in Sources */,
 				B81E5FE421DC8FC200873AB9 /* HttpRequestObject.m in Sources */,
 				B80D386021F85F1E00206B55 /* GoodsInfoView.m in Sources */,
@@ -4548,7 +4602,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4M8KD7B9X5;
+				DEVELOPMENT_TEAM = A7AR7GW3Q2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -4581,7 +4635,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4M8KD7B9X5;
+
+				DEVELOPMENT_TEAM = A7AR7GW3Q2;
+
+				DEVELOPMENT_TEAM = "";
+
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",

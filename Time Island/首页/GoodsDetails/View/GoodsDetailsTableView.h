@@ -7,9 +7,10 @@
 //
 
 #import "TLTableView.h"
-
+#import "TreeModel.h"
 @interface GoodsDetailsTableView : TLTableView
 
 @property (nonatomic , assign)NSInteger SelectHeader;
 
+@property (nonatomic,strong) TreeModel * TreeModel;
 @end
