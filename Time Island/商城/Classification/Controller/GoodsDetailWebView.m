@@ -10,7 +10,6 @@
 #import <WebKit/WebKit.h>
 
 @interface GoodsDetailWebView ()<WKNavigationDelegate>
-@property (nonatomic, copy) NSString *htmlStr;
 
 @property (nonatomic, strong) WKWebView *webView;
 @end
@@ -49,7 +48,7 @@
     
     [self.view addSubview:_webView];
     
-    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]]];
+    [_webView loadHTMLString:self.htmlStr baseURL:nil];
 }
 
 - (void)loadWebWithString:(NSString *)string {

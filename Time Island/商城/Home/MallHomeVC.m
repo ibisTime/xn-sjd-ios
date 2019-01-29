@@ -196,7 +196,7 @@
 {
     NSInteger inter = ta.view.tag-100;
     MallGoodDetailVC *detailVC = [MallGoodDetailVC new];
-    detailVC.code = self.HotTrees[inter].code;
+    detailVC.treeModel = self.HotTrees[inter];
     [self.navigationController pushViewController:detailVC animated:YES];
     
 }

@@ -310,6 +310,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MallGoodDetailVC *detail = [MallGoodDetailVC new];
+    detail.treeModel = self.TreeModels[indexPath.row];
     detail.title = @"产品详情";
     [self.navigationController pushViewController:detail animated:YES];
 //    GoodsDetailsVc *detailVC = [GoodsDetailsVc new];

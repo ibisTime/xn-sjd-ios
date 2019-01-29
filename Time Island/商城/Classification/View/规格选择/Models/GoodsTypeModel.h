@@ -10,6 +10,6 @@
 //商品规格属性列表
 @interface GoodsTypeModel : NSObject
 @property(nonatomic, assign)int selectIndex;
-@property(nonatomic, copy)NSArray *typeArray;
+@property(nonatomic, strong)NSMutableArray *typeArray;
 @property(nonatomic, copy)NSString *typeName;
 @end

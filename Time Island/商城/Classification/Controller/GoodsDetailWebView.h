@@ -9,5 +9,6 @@
 #import "TLBaseVC.h"
 
 @interface GoodsDetailWebView : TLBaseVC
+@property (nonatomic, copy) NSString *htmlStr;
 
 @end

@@ -48,6 +48,7 @@
         
         sureButton = [JXUIKit buttonWithBackgroundColor:kHexColor(@"#524A46") titleColorForNormal:WhiteColor titleForNormal:@"加入购物车" titleForSelete:nil titleColorForSelete:nil fontSize:16 font:nil];
         sureButton.layer.cornerRadius = 4;
+        sureButton.tag = 100;
         sureButton.clipsToBounds = YES;
         [sureButton addTarget:self action:@selector(sure:) forControlEvents:UIControlEventTouchUpInside];
         [bgView addSubview:sureButton];
@@ -56,6 +57,8 @@
         [bgView addSubview:self.tableview];
         
         buyButton = [JXUIKit buttonWithBackgroundColor:kSJDMainTextColor titleColorForNormal:WhiteColor titleForNormal:@"立即购买" titleForSelete:nil titleColorForSelete:nil fontSize:16 font:nil];
+        buyButton.tag = 101;
+
         [buyButton addTarget:self action:@selector(sure:) forControlEvents:UIControlEventTouchUpInside];
         buyButton.layer.cornerRadius = 4;
         buyButton.clipsToBounds = YES;
@@ -115,7 +118,7 @@
     sizeModel = nil;
     //遍历属性组合列表找出符合的属性，修改价格和库存等信息
     for (SizeAttributeModel *model in _model.sizeAttribute) {
-        if ([model.value isEqualToString:str]) {
+        if ([model.goodsNo isEqualToString:str]) {
             sizeModel = model;
             if ([countView.countTextField.text intValue]>[sizeModel.stock intValue]) {
                 countView.countTextField.text = [NSString stringWithFormat:@"%d",[sizeModel.stock intValue]];
@@ -125,7 +128,7 @@
                     countView.countTextField.text = @"1";
                 }
             }
-            goodsInfo.promatLabel.text = [NSString stringWithFormat:@"已选%@",model.value];
+            goodsInfo.promatLabel.text = [NSString stringWithFormat:@"已选%@",model.goodsNo];
             [goodsInfo resetData:model];
             return;
         }
@@ -152,7 +155,7 @@
     if ([sizeModel.stock intValue]>0) {
         if (self.selectSize) {
             sizeModel.count = countView.countTextField.text;
-            self.selectSize(sizeModel);
+            self.selectSize(sizeModel,btn.tag);
         }
         [self hideView];
     }else

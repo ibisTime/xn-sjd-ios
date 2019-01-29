@@ -101,9 +101,20 @@
     lineView1.frame = CGRectMake(0, self.chooseLab.yy+10, kScreenWidth, 10);
     [self addSubview:lineView1];
 }
+-(void)setTreeModel:(MallTreeModel *)treeModel
+{
+    _treeModel = treeModel;
+    [self.bgImage sd_setImageWithURL:[NSURL URLWithString:[treeModel.bannerPic convertImageUrl]]];
+    self.priceLable.text = [NSString stringWithFormat:@"¥%@-¥%@",treeModel.minPrice,treeModel.maxPrice];
+    self.info.text = treeModel.shopName;
+    self.sellLab.text = [NSString stringWithFormat:@"月销%@",treeModel.monthSellCount];
+    self.addressLab.text = treeModel.originalPlace;
+}
 - (void)chooseClick
 {
-    
+    if (self.CategoryBlock) {
+        self.CategoryBlock();
+    }
     NSLog(@"点击选择规格");
     
 }
