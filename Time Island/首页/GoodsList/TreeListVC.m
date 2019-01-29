@@ -20,6 +20,7 @@
 
 
 @property (nonatomic , strong)NSMutableArray <TreeModel *>*models;
+@property (nonatomic,strong)  NSMutableArray *treemMuArray;
 
 @property (nonatomic , strong)NSMutableArray *treeArray;
 
@@ -42,6 +43,9 @@
 @property (nonatomic, strong) UIImageView *imageView;
 
 @property (nonatomic,strong)UICollectionView *collectionView;
+
+@property (nonatomic,strong) NSArray * SellTypeArray;
+@property (nonatomic,strong) NSArray * ProductStatusArray;
 @end
 
 @implementation TreeListVC
@@ -107,7 +111,8 @@
         cell.backView.frame = CGRectMake(3, 0, (SCREEN_WIDTH - 30)/2, (SCREEN_WIDTH - 30)/2 + 80);
     }
     cell.model = self.models[indexPath.row];
-    
+    cell.SellTypeArray = self.SellTypeArray;
+    cell.ProductStatusArray = self.ProductStatusArray;
     return cell;
 }
 
@@ -117,6 +122,7 @@
     GoodsDetailsVc *detailVC = [GoodsDetailsVc new];
 //    detailVC.title = @"古树详情";
 //    detailVC.mineModel = self.models[indexPath.row];
+    detailVC.treemodel = self.models[indexPath.row];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
@@ -232,36 +238,38 @@
 {
     self.start = 1;
     self.treeArray = [NSMutableArray array];
+    [self refresh];
     [self requestBannerList];
 }
 
 -(void)loadNewDataFooter
 {
     self.start ++;
+    [self refresh];
     [self requestBannerList];
 }
 
 - (void)requestBannerList {
     
-    TLNetworking *http = [TLNetworking new];
-    
-    http.code = @"629035";
-    http.parameters[@"start"] = [NSString stringWithFormat:@"%ld",self.start];
-    http.parameters[@"limit"] = @"10";
-    
-    [http postWithSuccess:^(id responseObject) {
-        
-        [self.treeArray addObjectsFromArray:responseObject[@"data"][@"list"]];
-        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treeArray];
-        
-        [self.collectionView reloadData];
-        [self.collectionView.mj_footer endRefreshing];
-        [self.collectionView.mj_header endRefreshing];
-        
-    } failure:^(NSError *error) {
-        [self.collectionView.mj_footer endRefreshing];
-        [self.collectionView.mj_header endRefreshing];
-    }];
+//    TLNetworking *http = [TLNetworking new];
+//
+//    http.code = @"629035";
+//    http.parameters[@"start"] = [NSString stringWithFormat:@"%ld",self.start];
+//    http.parameters[@"limit"] = @"10";
+//
+//    [http postWithSuccess:^(id responseObject) {
+//
+//        [self.treeArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+//        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treeArray];
+//
+//        [self.collectionView reloadData];
+//        [self.collectionView.mj_footer endRefreshing];
+//        [self.collectionView.mj_header endRefreshing];
+//
+//    } failure:^(NSError *error) {
+//        [self.collectionView.mj_footer endRefreshing];
+//        [self.collectionView.mj_header endRefreshing];
+//    }];
 }
 
 
@@ -396,28 +404,58 @@
         }
         
         //root 5
+//        MMMultiItem *rootItem5 = [MMMultiItem itemWithItemType:MMPopupViewDisplayTypeUnselected titleName:@"所在地区"];
+//
+//        rootItem5.displayType = MMPopupViewDisplayTypeMultilayer;
+//        rootItem5.numberOflayers = MMPopupViewThreelayers;
+//        for (int i = 0; i < MAX(5, random()%30); i++){
+//
+//            MMItem *item5_A = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:[NSString stringWithFormat:@"市%d",i] subtitleName:nil];
+//            item5_A.isSelected = (i == 0);
+//            [rootItem5 addNode:item5_A];
+//
+//            for (int j = 0; j < MAX(5, random()%30) ; j ++) {
+//                MMItem *item5_B = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:[NSString stringWithFormat:@"市%d县%d",i,j] subtitleName:[NSString stringWithFormat:@"%ld",random()%10000]];
+//                item5_B.isSelected = (i == 0 && j == 0);
+//                [item5_A addNode:item5_B];
+//
+//                for (int k = 0; k < MAX(5, random()%30); k++) {
+//                    MMItem *item5_C = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:[NSString stringWithFormat:@"市%d县%d镇%d",i,j,k] subtitleName:[NSString stringWithFormat:@"%ld",random()%10000]];
+//                    item5_C.isSelected = (i == 0 && j == 0 && k == 0);
+//                    [item5_B addNode:item5_C];
+//                }
+//            }
+//        }
+        
         MMMultiItem *rootItem5 = [MMMultiItem itemWithItemType:MMPopupViewDisplayTypeUnselected titleName:@"所在地区"];
         
         rootItem5.displayType = MMPopupViewDisplayTypeMultilayer;
         rootItem5.numberOflayers = MMPopupViewThreelayers;
-        for (int i = 0; i < MAX(5, random()%30); i++){
-            MMItem *item5_A = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:[NSString stringWithFormat:@"市%d",i] subtitleName:nil];
-            item5_A.isSelected = (i == 0);
-            [rootItem5 addNode:item5_A];
-            
-            for (int j = 0; j < MAX(5, random()%30) ; j ++) {
-                MMItem *item5_B = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:[NSString stringWithFormat:@"市%d县%d",i,j] subtitleName:[NSString stringWithFormat:@"%ld",random()%10000]];
-                item5_B.isSelected = (i == 0 && j == 0);
-                [item5_A addNode:item5_B];
+            NSArray *array  =[self JsonObject:@"address.json"];
+            NSLog(@"array = %d",(int)array.count);
+            for (int count = 0; count < array.count; count++) {
+                MMItem *item5_A = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:array[count][@"name"] subtitleName:nil];
+//                item5_A.isSelected = (i == 0);
+                [rootItem5 addNode:item5_A];
                 
-                for (int k = 0; k < MAX(5, random()%30); k++) {
-                    MMItem *item5_C = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:[NSString stringWithFormat:@"市%d县%d镇%d",i,j,k] subtitleName:[NSString stringWithFormat:@"%ld",random()%10000]];
-                    item5_C.isSelected = (i == 0 && j == 0 && k == 0);
-                    [item5_B addNode:item5_C];
+                NSArray *cityList = array[count][@"cityList"];
+                for (int i = 0; i < cityList.count; i ++) {
+                    MMItem * item5_B = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:cityList[i][@"name"] subtitleName:nil];
+                    //                    item5_B.isSelected = (i == 0 && j == 0);
+                    [item5_A addNode:item5_B];
+                    
+                    NSArray *areaList = cityList[i][@"areaList"];
+                    for (int j = 0; j < areaList.count; j ++) {
+                        MMItem *item5_C = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:areaList[j][@"name"] subtitleName:nil];
+                        //                        item5_C.isSelected = (i == 0 && j == 0 && k == 0);
+                        [item5_B addNode:item5_C];
+                    }
+                    
                 }
-            }
+                
+
+            
         }
-        
         
         //      [mutableArray addObject:rootItem1];
         [mutableArray addObject:rootItem5];
@@ -432,11 +470,60 @@
 }
 
 
-
+- (id)JsonObject:(NSString *)jsonStr{
+    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:jsonStr ofType:nil];
+    NSData *jsonData = [[NSData alloc] initWithContentsOfFile:jsonPath];
+    NSError *error;
+    id JsonObject= [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+    return JsonObject;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
+-(void)refresh{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629025";
+    http.parameters[@"start"] = @(self.start);
+    http.parameters[@"limit"] = @(10);
+    http.parameters[@"name"]= @"";
+    http.parameters[@"statusList"] = @[@"4",@"5",@"6"];
+    [http postWithSuccess:^(id responseObject) {
+        
+        NSArray *array = responseObject[@"data"][@"list"];
+        [self.treemMuArray addObjectsFromArray:array];
+        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:array];
+        [self.collectionView reloadData];
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
+    } failure:^(NSError *error) {
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
+    }];
+    
+    
+    //专属
+    TLNetworking * http3 = [[TLNetworking alloc]init];
+    http3.code = @"630036";
+    http3.parameters[@"parentKey"] = @"sell_type";
+    [http3 postWithSuccess:^(id responseObject) {
+        NSDictionary * dic = (NSDictionary * )responseObject;
+        self.SellTypeArray = dic[@"data"];
+        [self.collectionView reloadData];
+    } failure:^(NSError *error) {
+    }];
+    
+    
+    //状态
+    TLNetworking * http4 = [[TLNetworking alloc]init];
+    http4.code = @"630036";
+    http4.parameters[@"parentKey"] = @"product_status";
+    [http4 postWithSuccess:^(id responseObject) {
+        NSDictionary * dic = (NSDictionary * )responseObject;
+        self.ProductStatusArray = dic[@"data"];
+        [self.collectionView reloadData];
+    } failure:^(NSError *error) {
+    }];
+}
 @end

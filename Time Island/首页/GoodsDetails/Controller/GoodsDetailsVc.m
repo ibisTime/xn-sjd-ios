@@ -9,15 +9,21 @@
 #import "GoodsDetailsVc.h"
 #import "GoodsDetailsTableView.h"
 #import "YSActionSheetView.h"
+#import "RenYangFieldView.h"
+#import "RenYangFieldDeyailView.h"
+#import "RealNameView.h"
 @interface GoodsDetailsVc ()<SLBannerViewDelegate,RefreshDelegate,PlatformButtonClickDelegate>
 @property (nonatomic, strong) UIButton *myButton;//推文
 @property (nonatomic, strong) UIButton *shareButton;
 @property (nonatomic, strong) UIButton *renYangButton;//价格
 @property (nonatomic , strong)GoodsDetailsTableView *tableView;
 @property (nonatomic , strong)SLBannerView *banner;
-
-
-
+@property (nonatomic,strong)TreeModel  * TreeModels;
+@property (nonatomic,strong) NSArray * BannerArray;
+@property (nonatomic,strong) NSMutableArray * muarr;;
+@property (nonatomic , strong) RenYangFieldView *renYangFieldView;
+@property (nonatomic , strong) RealNameView *realNameView;
+@property (nonatomic , strong) RenYangFieldDeyailView *renYangFieldDeyailView;
 @end
 
 @implementation GoodsDetailsVc
@@ -73,6 +79,7 @@
 -(SLBannerView *)banner
 {
     if (!_banner) {
+//        NSLog(@"%@",self.TreeModels[0].bannerPic);
         _banner = [SLBannerView bannerView];
         _banner.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH);
         //工程图片
@@ -90,7 +97,40 @@
     [self.view addSubview:self.tableView];
     self.tableView.tableHeaderView = self.banner;
     [self initcustomView];
+    self.renYangFieldView = [[RenYangFieldView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 500)];
+    self.renYangFieldView.backgroundColor = [UIColor blackColor];
+    self.renYangFieldView.alpha = 0.7;
+    [self initcustomRenYang];
+    
+    self.realNameView = [[RealNameView alloc] initWithFrame:CGRectMake(20,150, kScreenWidth-40, 300)];
+
 }
+
+- (void)initcustomRenYang
+{
+    CoinWeakSelf;
+    self.renYangFieldDeyailView = [[RenYangFieldDeyailView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 500, kScreenWidth, 500)];
+    self.renYangFieldDeyailView.sureBlock = ^{
+//        [UIView animateWithDuration:0.01 animations:^{
+            weakSelf.renYangFieldView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight);
+            [weakSelf.view sendSubviewToBack:weakSelf.renYangFieldView];
+            weakSelf.renYangFieldDeyailView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight);
+            [weakSelf.view sendSubviewToBack:weakSelf.renYangFieldDeyailView];
+            [weakSelf initRealNameView];
+            
+//        }];
+    };
+}
+
+- (void)initRealNameView
+{
+    
+    [[UserModel user]showPopAnimationWithAnimationStyle:3 showView:self.realNameView BGAlpha:0.5 isClickBGDismiss:YES];
+//        [self.view addSubview:self.realNameView];
+    
+}
+
+
 
 - (void)initcustomView
 {
@@ -138,7 +178,14 @@
             break;
         case 2:
         {
+            [self.view addSubview:self.renYangFieldView];
+            [self.view addSubview:self.renYangFieldDeyailView];
             
+            [UIView animateWithDuration:0.2 animations:^{
+                self.renYangFieldView.frame = CGRectMake(0, -kNavigationBarHeight, kScreenWidth, kScreenHeight);
+                self.renYangFieldDeyailView.frame = CGRectMake(0, SCREEN_HEIGHT - 500, kScreenWidth, 500);
+                
+            }];
         }
             break;
             
@@ -148,6 +195,26 @@
     
     
 }
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    
+    
+    CGPoint point = [[touches anyObject] locationInView:self.view];
+    point = [self.renYangFieldView.layer convertPoint:point fromLayer:self.view.layer];
+    if (point.y >300) {
+        return;
+    }
+    [UIView animateWithDuration:0.01 animations:^{
+        self.renYangFieldView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight);
+        [self.view sendSubviewToBack:self.renYangFieldView];
+        self.renYangFieldDeyailView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight);
+        [self.view sendSubviewToBack:self.renYangFieldDeyailView];
+    }];
+    
+    
+}
+
 
 - (void) customActionSheetButtonClick:(YSActionSheetButton *) btn
 {
@@ -165,9 +232,21 @@
 -(void)refresh{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629026";
-    http.parameters[@"code"] = self.TreeModel.code;
+    http.parameters[@"code"] = self.treemodel.code;
     [http postWithSuccess:^(id responseObject) {
-        
+        NSDictionary * dic = (NSDictionary * )responseObject;
+        self.TreeModels = [TreeModel mj_objectWithKeyValues:dic[@"data"]];
+        NSString * string = [dic[@"data"][@"bannerPic"] stringByReplacingOccurrencesOfString:@"||" withString:@","];
+        self.BannerArray = [string componentsSeparatedByString:@","];
+        NSMutableArray *dateMutablearray = [@[] mutableCopy];
+        for (int i = 0; i < self.BannerArray.count; i ++) {
+            NSString * string = [self.BannerArray[i] convertImageUrl];
+            [dateMutablearray addObject:string];
+        }
+        NSArray * arr = [NSArray arrayWithArray:dateMutablearray];
+        self.banner.slImages = arr;
+        self.tableView.TreeModel = self.TreeModels;
+        [self.tableView reloadData];
     } failure:^(NSError *error) {
     }];
 }

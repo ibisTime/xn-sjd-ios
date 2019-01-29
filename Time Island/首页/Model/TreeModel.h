@@ -57,4 +57,5 @@
 @property (nonatomic,copy) NSString * nowCount;
 @property (nonatomic,copy) NSString * Description;
 @property (nonatomic,strong) NSArray * productSpecsList;
+@property (nonatomic,strong) NSArray * treeList;
 @end
