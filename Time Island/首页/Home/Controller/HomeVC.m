@@ -28,6 +28,7 @@
 #import "MyNoticeDetailsVC.h"
 #import "NoticeModel.h"
 #import "GoodsDetailsVc.h"
+#import "RankingVC.h"
 @interface HomeVC ()<RefreshDelegate,RefreshCollectionViewDelegate,UIScrollViewDelegate,UITextFieldDelegate,UISearchBarDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 //@property (nonatomic, strong) HomeHeaderView *headerView;
@@ -378,7 +379,8 @@
         [self presentViewController:tabbar animated:YES completion:nil];
         
     }else{
-        
+        RankingVC *vc = [RankingVC new];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     
 }

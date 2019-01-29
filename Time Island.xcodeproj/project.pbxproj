@@ -26,6 +26,7 @@
 		1F19A90021FEFEF50090BF84 /* PersonalCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8FF21FEFEF50090BF84 /* PersonalCenterVC.m */; };
 		1F19A90321FEFF130090BF84 /* PersonalCenterHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A90221FEFF130090BF84 /* PersonalCenterHeadView.m */; };
 		1F19A90621FF07A50090BF84 /* PersonalCenterTableVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A90521FF07A50090BF84 /* PersonalCenterTableVIew.m */; };
+		1F19A90922001FE50090BF84 /* RankingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A90822001FE40090BF84 /* RankingModel.m */; };
 		1F1B001921E6E23F000BEBD3 /* OxygenCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B001821E6E23F000BEBD3 /* OxygenCircleView.m */; };
 		1F1B002021E6F79C000BEBD3 /* MyTreeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B001F21E6F79C000BEBD3 /* MyTreeVC.m */; };
 		1F1B002321E6F8C8000BEBD3 /* MyTreeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B002221E6F8C8000BEBD3 /* MyTreeTableView.m */; };
@@ -499,6 +500,8 @@
 		1F19A90221FEFF130090BF84 /* PersonalCenterHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterHeadView.m; sourceTree = "<group>"; };
 		1F19A90421FF07A50090BF84 /* PersonalCenterTableVIew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalCenterTableVIew.h; sourceTree = "<group>"; };
 		1F19A90521FF07A50090BF84 /* PersonalCenterTableVIew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterTableVIew.m; sourceTree = "<group>"; };
+		1F19A90722001FE40090BF84 /* RankingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RankingModel.h; sourceTree = "<group>"; };
+		1F19A90822001FE40090BF84 /* RankingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RankingModel.m; sourceTree = "<group>"; };
 		1F1B001721E6E23F000BEBD3 /* OxygenCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OxygenCircleView.h; sourceTree = "<group>"; };
 		1F1B001821E6E23F000BEBD3 /* OxygenCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OxygenCircleView.m; sourceTree = "<group>"; };
 		1F1B001E21E6F79C000BEBD3 /* MyTreeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTreeVC.h; sourceTree = "<group>"; };
@@ -2096,6 +2099,8 @@
 				1FF6398A21EC7DC200F5FF68 /* RankingTableView.m */,
 				1FF6398C21EC7DD400F5FF68 /* RankingCell.h */,
 				1FF6398D21EC7DD400F5FF68 /* RankingCell.m */,
+				1F19A90722001FE40090BF84 /* RankingModel.h */,
+				1F19A90822001FE40090BF84 /* RankingModel.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4296,6 +4301,7 @@
 				1F3EBB0A21F5C42D005BC837 /* YSActionSheetButton.m in Sources */,
 				B88E544921F9BDF600C33040 /* JVShopcartBrandModel.m in Sources */,
 				1F19A8ED21FAA6BA0090BF84 /* AreaModel.m in Sources */,
+				1F19A90922001FE50090BF84 /* RankingModel.m in Sources */,
 				B8A27AEF21E5C44400914897 /* MMNormalCell.m in Sources */,
 				B81E601B21DC906D00873AB9 /* TLChangeMobileVC.m in Sources */,
 				B81E601A21DC906D00873AB9 /* TLPwdRelatedVC.m in Sources */,

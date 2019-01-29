@@ -9,9 +9,12 @@
 #import "RankingVC.h"
 #import "RankingTableView.h"
 #import "FriendRequestsVC.h"
+#import "RankingModel.h"
 @interface RankingVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)RankingTableView *tableView;
+
+@property (nonatomic , strong)NSMutableArray <RankingModel *>*models;
 
 @end
 
@@ -44,6 +47,58 @@
     [self.RightButton setTitle:@"好友审核" forState:(UIControlStateNormal)];
 //    [self.RightButton setImage:kImage(@"好友审核") forState:(UIControlStateNormal)];
     [self.RightButton addTarget:self action:@selector(myRecodeClick) forControlEvents:(UIControlEventTouchUpInside)];
+    [self loadData];
+}
+
+-(void)loadData
+{
+    CoinWeakSelf;
+    TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
+    helper.code = @"805159";
+    helper.parameters[@"userId"] = [TLUser user].userId;
+    helper.parameters[@"orderDir"] = @"asc";
+    helper.parameters[@"orderColumn"] = @"row_no";
+    helper.isCurrency = YES;
+    helper.tableView = self.tableView;
+    [helper modelClass:[RankingModel class]];
+    
+    [self.tableView addRefreshAction:^{
+        [helper refresh:^(NSMutableArray *objs, BOOL stillHave) {
+            NSMutableArray <RankingModel *> *shouldDisplayCoins = [[NSMutableArray alloc] init];
+            [objs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                RankingModel *model = (RankingModel *)obj;
+                [shouldDisplayCoins addObject:model];
+            }];
+
+            weakSelf.models = shouldDisplayCoins;
+            [weakSelf.tableView.models removeAllObjects];
+            [weakSelf.tableView reloadData];
+            weakSelf.tableView.models = shouldDisplayCoins;
+            [weakSelf.tableView reloadData_tl];
+        } failure:^(NSError *error) {
+            
+        }];
+    }];
+    [self.tableView addLoadMoreAction:^{
+
+        [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
+            NSLog(@" ==== %@",objs);
+            NSMutableArray <RankingModel *> *shouldDisplayCoins = [[NSMutableArray alloc] init];
+            [objs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                RankingModel *model = (RankingModel *)obj;
+                [shouldDisplayCoins addObject:model];
+            }];
+            weakSelf.models = shouldDisplayCoins;
+            
+            weakSelf.tableView.models = shouldDisplayCoins;
+            //        weakSelf.tableView.bills = objs;
+            [weakSelf.tableView reloadData_tl];
+            
+        } failure:^(NSError *error) {
+        }];
+    }];
+    [self.tableView beginRefreshing];
 }
 
 -(void)myRecodeClick

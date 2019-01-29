@@ -7,7 +7,7 @@
 //
 
 #import "TLTableView.h"
-
+#import "RankingModel.h"
 @interface RankingTableView : TLTableView
-
+@property (nonatomic , strong)NSMutableArray <RankingModel *>*models;
 @end
