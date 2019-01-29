@@ -18,7 +18,6 @@
 
 @property (nonatomic ,strong)  UILabel *addressLabel;
 
-@property (nonatomic ,strong)  UIButton *shopping;
 
 @end
 @implementation MallListCollectionViewCell
@@ -27,17 +26,19 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        
+        self.layer.borderWidth = 1;
+        self.layer.borderColor = RGB(236, 236, 236).CGColor;
         UIView *backView = [[UIView alloc]init];
+        backView.frame = self.bounds;
         self.backView = backView;
         //        backView.backgroundColor = [UIColor redColor];
         [self addSubview:backView];
         
         
-        UIImageView *headImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 15, (SCREEN_WIDTH - 45)/2, kHeight(115))];
+        UIImageView *headImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, (SCREEN_WIDTH - 45)/2, kHeight(115))];
         headImage.image = kImage(@"我的背景");
         [backView addSubview:headImage];
-        
+        self.headImage = headImage;
         
 
         
@@ -67,33 +68,37 @@
         titleLab.text = @"商品古树商品古树商品古树古树商品古树古树商品古树";
         [titleLab sizeToFit];
         [backView addSubview:titleLab];
-        
-        UILabel *statusLbl = [UILabel labelWithFrame:CGRectMake(5, titleLab.yy+10, 200, 18) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(10) textColor:kRedColor];
+        self.titleLab = titleLab;
+        UILabel *statusLbl = [UILabel labelWithFrame:CGRectMake(5, titleLab.yy+10, 60, 20) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(9) textColor:kRedColor];
         kViewRadius(statusLbl, 2);
         statusLbl.text = @"公益宝贝";
         statusLbl.layer.borderWidth = 1;
         statusLbl.layer.borderColor = kRedColor.CGColor;
-        [statusLbl sizeToFit];
+//        [statusLbl sizeToFit];
         [backView addSubview:statusLbl];
-        UILabel *priceLabel = [UILabel labelWithFrame:CGRectMake(5, statusLbl.yy + 10, 0, 16) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(16) textColor:kRedColor];
+        self.statusLbl = statusLbl;
+        UILabel *priceLabel = [UILabel labelWithFrame:CGRectMake(5, statusLbl.yy + 15, 0, 16) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(16) textColor:kRedColor];
         NSString *str= @"¥5000.00";
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:str];
-        [attrStr addAttribute:NSFontAttributeName value:FONT(11) range:NSMakeRange(0, 1)];
+        [attrStr addAttribute:NSFontAttributeName value:FONT(14) range:NSMakeRange(0, 1)];
         priceLabel.attributedText = attrStr;
         [priceLabel sizeToFit];
-        priceLabel.frame = CGRectMake(5, statusLbl.yy + 10, priceLabel.width, 16);
+        priceLabel.frame = CGRectMake(5, statusLbl.yy + 15, priceLabel.width, 16);
         //        priceLabel.backgroundColor = [UIColor yellowColor];
         [backView addSubview:priceLabel];
+        self.priceLabel = priceLabel;
+        [priceLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
         UIButton *shopping = [UIButton buttonWithImageName:@"购物车"];
-        shopping.frame = CGRectMake(self.size.width-50, headImage.yy + 50, 30, 30);
+        shopping.frame = CGRectMake(self.size.width-30, priceLabel.yy, 30, 30);
         shopping.centerY = priceLabel.centerY;
         [backView addSubview:shopping];
-
+        self.shopping = shopping;
         
         UILabel *addressLabel = [UILabel labelWithFrame:CGRectMake(priceLabel.frame.size.width + 9, titleLab.yy + 10, (SCREEN_WIDTH - 30)/2 - priceLabel.xx - 9, 14) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:FONT(11) textColor:RGB(153, 153, 153)];
         addressLabel.text = @"杭州市";
         [backView addSubview:addressLabel];
         addressLabel.centerY = statusLbl.centerY;
+        self.addressLabel = addressLabel;
     }
     return self;
 }
@@ -102,9 +107,15 @@
 {
     _model = model;
     self.titleLab.text = model.name;
-    self.priceLabel.text = [NSString stringWithFormat:@"¥: %@",model.originalPrice];
+    self.priceLabel.text = [NSString stringWithFormat:@"¥%@",model.originalPrice];
+//    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:self.priceLabel.text];
+//    [attrStr addAttribute:NSFontAttributeName value:FONT(13) range:NSMakeRange(0, 2)];
+//    self.priceLabel.attributedText = attrStr;
+    [self.priceLabel sizeToFit];
     self.addressLabel.text = model.originPlace;
     [self.headImage sd_setImageWithURL:[NSURL URLWithString:[model.listPic convertImageUrl]]];
+    self.shopping.centerY = self.priceLabel.centerY;
+
 }
 
 @end

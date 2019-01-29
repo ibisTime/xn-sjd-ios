@@ -11,5 +11,5 @@
 @interface MallListCollectionViewCell : UICollectionViewCell
 @property (nonatomic , strong)UIView *backView;
 @property (nonatomic , strong) MallTreeModel *model;
-
+@property (nonatomic , strong) UIButton *shopping;
 @end

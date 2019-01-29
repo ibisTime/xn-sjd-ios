@@ -11,6 +11,7 @@
 #import "MallListCollectionViewCell.h"
 #import "MallGoodDetailVC.h"
 #import "MallTreeModel.h"
+#import <MJRefresh.h>
 @interface MallGoodListViewController ()<UISearchBarDelegate,MMComBoBoxViewDataSource,MMComBoBoxViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) UIView *bottomLine;
@@ -20,6 +21,7 @@
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic,strong)UICollectionView *collectionView;
 @property (nonatomic,strong) NSMutableArray <MallTreeModel *>*TreeModels;
+@property (nonatomic, assign) NSInteger start;
 
 @end
 
@@ -27,13 +29,13 @@
 -(UICollectionView *)collectionView{
     if (_collectionView==nil) {
         UICollectionViewFlowLayout *flowayout = [[UICollectionViewFlowLayout alloc]init];
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.comBoBoxView.yy, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 40-40) collectionViewLayout:flowayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.comBoBoxView.yy, SCREEN_WIDTH, SCREEN_HEIGHT-kNavigationBarHeight-40-40-10) collectionViewLayout:flowayout];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.backgroundColor = kWhiteColor;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        
+
         [_collectionView registerClass:[MallListCollectionViewCell class] forCellWithReuseIdentifier:@"MallListCollectionViewCell"];
     }
     return _collectionView;
@@ -44,20 +46,55 @@
     [self initSearchBar];
     [self initComboBox];
     [self.view addSubview:self.collectionView];
-//    [self loadGoodList];
+    [self headRefresh];
 }
+-(void)headRefresh
+{
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    header.automaticallyChangeAlpha = YES;
+//    header.lastUpdatedTimeLabel.hidden = YES;
+//    header.stateLabel.hidden = YES;
+    _collectionView.mj_header = header;
+    [_collectionView.mj_header beginRefreshing];
+    
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewDataFooter)];
+//    footer.arrowView.hidden = YES;
+//    footer.stateLabel.hidden = YES;
+    _collectionView.mj_footer = footer;
+}
+
+-(void)loadNewData
+{
+    self.start = 1;
+    self.TreeModels = [NSMutableArray array];
+    [self loadGoodList];
+}
+
+-(void)loadNewDataFooter
+{
+    self.start ++;
+    [self loadGoodList];
+}
+
 - (void)loadGoodList
 {
     TLNetworking *http = [TLNetworking new];
     http.code = @"629706";
-    http.parameters[@"start"] = @"0";
+    http.parameters[@"start"] = [NSString stringWithFormat:@"%ld",self.start];
     http.parameters[@"limit"] = @"10";
     http.parameters[@"location"] = @"0";
     [http postWithSuccess:^(id responseObject) {
-        self.TreeModels = responseObject[@"data"][@"list"];
+        self.TreeModels = [MallTreeModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
         [self.collectionView reloadData];
+        if ([responseObject[@"data"][@"totalPage"] intValue] <=1) {
+            [self.collectionView.mj_header endRefreshing];
+            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [self.collectionView.mj_header endRefreshing];
+        }
     } failure:^(NSError *error) {
-        
+        [self.collectionView.mj_footer endRefreshing];
+        [self.collectionView.mj_header endRefreshing];
     }];
     
     
@@ -251,18 +288,25 @@
     
     MallListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MallListCollectionViewCell" forIndexPath:indexPath];
     cell.model = self.TreeModels[indexPath.row];
-    if (indexPath.row % 2 == 0) {
-        cell.backView.frame = CGRectMake(12, 0, (SCREEN_WIDTH - 30)/2, kHeight(226));
-    }else
-    {
-        cell.backView.frame = CGRectMake(3, 0, (SCREEN_WIDTH - 30)/2, kHeight(226));
-    }
-    
+//    if (indexPath.row % 2 == 0) {
+//        cell.backView.frame = CGRectMake(12, 0, (SCREEN_WIDTH - 30)/2, kHeight(226));
+//    }else
+//    {
+//        cell.backView.frame = CGRectMake(3, 0, (SCREEN_WIDTH - 30)/2, kHeight(226));
+//    }
+    [cell.shopping addTarget:self action:@selector(shoppButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
 }
 
-
+- (void)shoppButtonClick:(UIButton *)sender
+{
+    CGPoint point = sender.center;
+    point = [self.collectionView convertPoint:point fromView:sender.superview];
+    NSIndexPath* indexpath = [self.collectionView indexPathForItemAtPoint:point];
+    MallTreeModel *model = self.TreeModels[indexpath.row];
+    NSLog(@"%@",model);
+}
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MallGoodDetailVC *detail = [MallGoodDetailVC new];
@@ -274,21 +318,11 @@
 //    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 0.01;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
-    
-    return 0.01;
-}
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return CGSizeMake((SCREEN_WIDTH - 1)/2, kHeight(226));
+    return CGSizeMake((SCREEN_WIDTH - 45)/2, kHeight(226));
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
@@ -310,11 +344,17 @@
 {
     return CGSizeMake(SCREEN_WIDTH, 0.001);
 }
-
+//定义每个Section的四边间距
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(0.1, 0.1, 0.1, 0.1);
+    return UIEdgeInsetsMake(10, 15, -10, 15);//分别为上、左、下、右
 }
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 10;
+}
+
+
 
 
 @end
