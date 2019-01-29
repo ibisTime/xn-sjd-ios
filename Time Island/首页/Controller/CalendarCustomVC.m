@@ -211,6 +211,14 @@
         btn.enabled = NO;
         return;
     }else if (!_count){
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"805140";
+        http.parameters[@"userId"] = [TLUser user].userId;
+        [http postWithSuccess:^(id responseObject) {
+
+        } failure:^(NSError *error) {
+        
+        }];
         _count = 1;
     }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

@@ -8,6 +8,9 @@
 
 #import "TLBaseVC.h"
 #import "QWCategory.h"
+#import "MallTreeModel.h"
 @interface MallGoodDetailVC : TLBaseVC
 @property (nonatomic ,copy) NSString *code;
+@property (nonatomic,strong) MallTreeModel * treeModel;
+
 @end

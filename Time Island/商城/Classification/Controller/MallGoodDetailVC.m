@@ -40,6 +40,12 @@
 
 @property (nonatomic,strong) MallStoreListVC * storeVc;
 
+
+@property (nonatomic,strong) MallGoodIntroduceVC * bookVC;
+
+@property (nonatomic,strong) GoodsDetailWebView * goodDetailVC;
+
+@property (nonatomic,strong) GoodsEditVC * editVC;
 @end
 
 @implementation MallGoodDetailVC
@@ -54,61 +60,89 @@
     for (NSInteger index = 0; index < self.itemsTitles.count; index ++) {
         if (index == 0) {
             MallGoodIntroduceVC * bookview = [[MallGoodIntroduceVC alloc] init];
+            bookview.treeModel = self.treeModel;
+
             bookview.title = self.itemsTitles[index];
             [self addChildViewController:bookview];
+            self.bookVC = bookview;
             bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
             [self.selectSV.scrollView addSubview:bookview.view];
         }else if (index ==1)
         {
             GoodsDetailWebView * bookview = [[GoodsDetailWebView alloc] init];
+            bookview.htmlStr = self.treeModel.Description;
+
             bookview.title = self.itemsTitles[index];
             [self addChildViewController:bookview];
             bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
+            self.goodDetailVC = bookview;
             [self.selectSV.scrollView addSubview:bookview.view];
         }else{
             GoodsEditVC * bookview = [[GoodsEditVC alloc] init];
             bookview.title = self.itemsTitles[index];
             [self addChildViewController:bookview];
             bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
+            self.editVC = bookview;
+            bookview.treeModel = self.treeModel;
             [self.selectSV.scrollView addSubview:bookview.view];
         }
     }
     [self initBottomView];
     [self initTestModel];
+//    [self loadData];
+    
 }
-
+- (void)loadData
+{
+    TLNetworking *http = [TLNetworking new];
+    http.code = @"629707";
+    http.parameters[@"code"] = self.code;
+    [http postWithSuccess:^(id responseObject) {
+        self.treeModel = [MallTreeModel mj_objectWithKeyValues:responseObject[@"data"]];
+        NSLog(@"%@",responseObject);
+    } failure:^(NSError *error) {
+      
+    }];
+    
+}
 - (void)initTestModel
 {
     model = [[GoodsModel alloc] init];
-    model.imageId = @"1.jpg";
-    model.goodsNo = @"商品名";
+    model.imageId = [self.treeModel.bannerPic convertImageUrl];
+    model.goodsNo = self.treeModel.name;
     model.title = @"商品标题";
-    model.totalStock = @"100";
     //价格信息
     model.price = [[GoodsPriceModel alloc] init];
-    model.price.minPrice = @"150";
+    model.price.minPrice = self.treeModel.specsList[0][@"price"];
     //属性-应该从服务器获取属性列表
     GoodsTypeModel *type = [[GoodsTypeModel alloc] init];
-    type.selectIndex = -1;
+    type.selectIndex = 0;
     type.typeName = @"规格分类";
-    type.typeArray = @[@"一级分类",@"二级分类",@"三级分类",@"四级分类"];
+    type.typeArray = [NSMutableArray array];
+    for (int i = 0; i < self.treeModel.specsList.count; i++) {
+        [type.typeArray addObject:self.treeModel.specsList[i][@"name"]];
+    }
    
     model.itemsList = @[type];
     
     //属性组合数组-有时候不同的属性组合价格库存都会有差异，选择完之后要对应修改商品的价格、库存图片等信息，可能是获得商品信息时将属性数组一并返回，也可能属性选择后再请求服务器获得属性组合对应的商品信息，根据自己的实际情况调整
     model.sizeAttribute = [[NSMutableArray alloc] init];
-    NSArray *valueArr = @[@"一级分类",@"二级分类",@"三级分类",@"四级分类"];
-    for (int i = 0; i<valueArr.count; i++) {
+    NSArray *valueArr = [type.typeArray copy];
+    for (int i = 0; i<self.treeModel.specsList.count; i++) {
         SizeAttributeModel *type = [[SizeAttributeModel alloc] init];
-        type.price = @"153";
-        type.originalPrice = @"158";
-        type.stock = [NSString stringWithFormat:@"%d",i];
-        type.goodsNo = model.goodsNo;
-        type.value = valueArr[i];
-        type.imageId =[NSString stringWithFormat:@"%d.jpg",arc4random()%4];
+        type.price = self.treeModel.specsList[i][@"price"];
+        type.originalPrice = self.treeModel.specsList[i][@"price"];
+        type.stock = [NSString stringWithFormat:@"%@", self.treeModel.specsList[i][@"inventory"]];
+        type.goodsNo = self.treeModel.specsList[i][@"name"];
+        type.code = self.treeModel.specsList[i][@"code"];
+        type.id = self.treeModel.specsList[i][@"id"];
+        type.inventory = self.treeModel.specsList[i][@"inventory"];
+        type.commodityCode = self.treeModel.specsList[i][@"commodityCode"];
+
+        type.imageId =[NSString stringWithFormat:@"%@",self.treeModel.bannerPic];
         [model.sizeAttribute addObject:type];
     }
-   
+    self.bookVC.model = model;
 }
 - (void)initDetailView
 {
@@ -147,10 +181,10 @@
             break;
         case 3:
             //点击加入购物车
-            [self clickShoppingCard];
             break;
         case 4:
             //点击加入购买
+            [self clickShoppingCard];
 
             break;
         default:
@@ -165,10 +199,10 @@
     _alert.alpha = 0;
     [[UIApplication sharedApplication].keyWindow addSubview:_alert];
     CoinWeakSelf;
-    _alert.selectSize = ^(SizeAttributeModel *sizeModel) {
+    _alert.selectSize = ^(SizeAttributeModel *sizeModel, NSInteger inter) {
         //sizeModel 选择的属性模型
-        [JXUIKit showSuccessWithStatus:[NSString stringWithFormat:@"选择了：%@",sizeModel.value]];
-        [weakSelf sumbitOrder];
+        [JXUIKit showSuccessWithStatus:[NSString stringWithFormat:@"选择了：%@",sizeModel.goodsNo]];
+        [weakSelf sumbitOrderWithTag:inter];
     };
     [_alert initData:model];
     [_alert showView];
@@ -176,11 +210,16 @@
     
 }
 
-- (void)sumbitOrder
+- (void)sumbitOrderWithTag:(NSInteger)tag
 {
-    SubmitOrdersVC *orderVc = [SubmitOrdersVC new];
-    orderVc.title = @"确认订单";
-    [self.navigationController pushViewController:orderVc animated:YES];
+    if (tag ==100) {
+        //购物车
+    }else{
+        SubmitOrdersVC *orderVc = [SubmitOrdersVC new];
+        orderVc.title = @"确认订单";
+        [self.navigationController pushViewController:orderVc animated:YES];
+    }
+   
 }
 
 - (void)goToStoreListVC

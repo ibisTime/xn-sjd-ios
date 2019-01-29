@@ -58,10 +58,10 @@
 -(void)initData:(GoodsModel *)model
 {
     _model = model;
-    [_goodsImage setImage:[UIImage imageNamed:model.imageId]];
-    //[goodsImage sd_setImageWithURL:[NSURL URLWithString:[kThumbImageUrl stringByAppendingString:model.imageId]] placeholderImage:kDefaultImage];
+//    [_goodsImage setImage:[UIImage imageNamed:model.imageId]];
+    [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.imageId] placeholderImage:kImage(@"1")];
     _goodsTitleLabel.text = model.title;
-    _goodsCountLabel.text = [NSString stringWithFormat:@"库存：%@",model.totalStock];
+//    _goodsCountLabel.text = [NSString stringWithFormat:@"库存：%@",model.totalStock];
     _goodsPriceLabel.text = [NSString stringWithFormat:@"¥%@",model.price.minPrice];
     NSMutableAttributedString *attritu = [[NSMutableAttributedString alloc]initWithString:_goodsPriceLabel.text];
     [attritu addAttributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleThick), NSForegroundColorAttributeName: [UIColor lightGrayColor],NSBaselineOffsetAttributeName:@(0),
@@ -75,17 +75,17 @@
 {
     //如果有图片就显示图片，没图片就显示默认图
     if (sizeModel.imageId.length>0) {
-        [_goodsImage setImage:[UIImage imageNamed:sizeModel.imageId]];
+        [_goodsImage sd_setImageWithURL:[NSURL URLWithString:[sizeModel.imageId convertImageUrl]]];
     }else
-        [_goodsImage setImage:[UIImage imageNamed:_model.imageId]];
+        [_goodsImage setImage:[UIImage imageNamed:[_model.imageId convertImageUrl]]];
     
     _goodsCountLabel.text = [NSString stringWithFormat:@"库存%@",sizeModel.stock];
     _goodsPriceLabel.text = [NSString stringWithFormat:@"¥%@",sizeModel.price];
-    NSMutableAttributedString *attritu = [[NSMutableAttributedString alloc]initWithString:_goodsPriceLabel.text];
-    [attritu addAttributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleThick), NSForegroundColorAttributeName: [UIColor lightGrayColor],NSBaselineOffsetAttributeName:@(0),
-                             NSFontAttributeName: [UIFont systemFontOfSize:13]
-                             } range:[_goodsPriceLabel.text rangeOfString:[NSString stringWithFormat:@"¥%@",sizeModel.originalPrice]]];
-    _goodsPriceLabel.attributedText = attritu;
+//    NSMutableAttributedString *attritu = [[NSMutableAttributedString alloc]initWithString:_goodsPriceLabel.text];
+//    [attritu addAttributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleThick), NSForegroundColorAttributeName: [UIColor lightGrayColor],NSBaselineOffsetAttributeName:@(0),
+//                             NSFontAttributeName: [UIFont systemFontOfSize:13]
+//                             } range:[_goodsPriceLabel.text rangeOfString:[NSString stringWithFormat:@"¥%@",sizeModel.originalPrice]]];
+//    _goodsPriceLabel.attributedText = attritu;
 }
 /*
 // Only override drawRect: if you perform custom drawing.

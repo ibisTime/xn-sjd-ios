@@ -138,6 +138,7 @@
 		365514D221FADC9A00E54996 /* CardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 365514D121FADC9A00E54996 /* CardModel.m */; };
 		365514D821FB009000E54996 /* introduceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 365514D721FB009000E54996 /* introduceView.m */; };
 		366A59F122000007009FFA6E /* GoodsDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A59F022000007009FFA6E /* GoodsDetailsCell.m */; };
+		366A59F322003E35009FFA6E /* SelectAddress.json in Resources */ = {isa = PBXBuildFile; fileRef = 366A59F222003E35009FFA6E /* SelectAddress.json */; };
 		367D68E021F95A230091177C /* aiai_area.txt in Resources */ = {isa = PBXBuildFile; fileRef = 367D68DF21F95A230091177C /* aiai_area.txt */; };
 		367D68E921F95B920091177C /* SelectAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D68E821F95B920091177C /* SelectAdView.m */; };
 		367D694221F998A70091177C /* GenderPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D694121F998A70091177C /* GenderPickerView.m */; };
@@ -717,6 +718,7 @@
 		365514D721FB009000E54996 /* introduceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = introduceView.m; sourceTree = "<group>"; };
 		366A59EF22000007009FFA6E /* GoodsDetailsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsDetailsCell.h; sourceTree = "<group>"; };
 		366A59F022000007009FFA6E /* GoodsDetailsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailsCell.m; sourceTree = "<group>"; };
+		366A59F222003E35009FFA6E /* SelectAddress.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SelectAddress.json; sourceTree = "<group>"; };
 		367D68DF21F95A230091177C /* aiai_area.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aiai_area.txt; sourceTree = "<group>"; };
 		367D68E721F95B920091177C /* SelectAdView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectAdView.h; sourceTree = "<group>"; };
 		367D68E821F95B920091177C /* SelectAdView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectAdView.m; sourceTree = "<group>"; };
@@ -2051,6 +2053,7 @@
 		1F9361E521F332AC007E522A /* GoodsList */ = {
 			isa = PBXGroup;
 			children = (
+				366A59F222003E35009FFA6E /* SelectAddress.json */,
 				B8A27AA321E5A15100914897 /* TreeListVC.h */,
 				B8A27AA421E5A15100914897 /* TreeListVC.m */,
 			);
@@ -3954,6 +3957,7 @@
 				B81E5FAF21DC8FC200873AB9 /* TraditionalCode.txt in Resources */,
 				B81E5EAD21DC8B4100873AB9 /* Assets.xcassets in Resources */,
 				B8A27AF921E5C44400914897 /* pullup.png in Resources */,
+				366A59F322003E35009FFA6E /* SelectAddress.json in Resources */,
 				3689769C21EF3A4F005F1177 /* AMap.bundle in Resources */,
 				B87C213621FB047000EFD0B0 /* add_image@2x.png in Resources */,
 				B87C213321FB047000EFD0B0 /* wc_drag_delete_activate@3x.png in Resources */,
@@ -4608,7 +4612,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A7AR7GW3Q2;
+				DEVELOPMENT_TEAM = 4M8KD7B9X5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -4641,7 +4645,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",

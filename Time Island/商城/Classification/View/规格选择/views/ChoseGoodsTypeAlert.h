@@ -14,7 +14,7 @@
 @property (nonatomic, strong)UITableView *tableview;
 @property (nonatomic, strong)NSMutableArray *dataSource;
 @property (nonatomic, strong)GoodsModel *model;
-@property (nonatomic, copy)void (^selectSize)(SizeAttributeModel *sizeModel);
+@property (nonatomic, copy)void (^selectSize)(SizeAttributeModel *sizeModel,NSInteger inter);
 -(void)hideView;
 -(void)showView;
 -(void)initData:(GoodsModel *)model;
