@@ -46,6 +46,11 @@
 
 @property (nonatomic,strong) NSArray * SellTypeArray;
 @property (nonatomic,strong) NSArray * ProductStatusArray;
+//选择参数
+@property (nonatomic,strong) NSString * area;
+@property (nonatomic,strong) NSString * treeLevel;
+@property (nonatomic,strong) NSString * adoptStatus;
+@property (nonatomic,strong) NSString * variety;
 @end
 
 @implementation TreeListVC
@@ -103,8 +108,6 @@
 {
     
     GoodsListCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GoodsListCollCell" forIndexPath:indexPath];
-    
-    
     
     if (indexPath.row % 2 == 0) {
         cell.backView.frame = CGRectMake(12, 0, (SCREEN_WIDTH - 30)/2, (SCREEN_WIDTH - 30)/2 + 80);
@@ -286,7 +289,9 @@
 
 #pragma mark - MMComBoBoxViewDelegate
 - (void)comBoBoxView:(MMComBoBoxView *)comBoBoxViewd didSelectedItemsPackagingInArray:(NSArray *)array atIndex:(NSUInteger)index {
+    
     MMItem *rootItem = self.mutableArray[index];
+    NSLog(@"self.mutableArray[index] = %@",self.mutableArray[index]);
     switch (rootItem.displayType) {
         case MMPopupViewDisplayTypeNormal:
         case MMPopupViewDisplayTypeMultilayer:{
@@ -294,12 +299,28 @@
             NSMutableString *title = [NSMutableString string];
             __block NSInteger firstPath;
             [array enumerateObjectsUsingBlock:^(MMSelectedPath * path, NSUInteger idx, BOOL * _Nonnull stop) {
+                
                 [title appendString:idx?[NSString stringWithFormat:@";%@",[rootItem findTitleBySelectedPath:path]]:[rootItem findTitleBySelectedPath:path]];
                 if (idx == 0) {
                     firstPath = path.firstPath;
                 }
             }];
+            
             NSLog(@"当title为%@时，所选字段为 %@",rootItem.title ,title);
+            switch (index) {
+                case 0:
+                    self.area = title;
+                    [self refresh];
+                    break;
+                case 1:
+                    self.treeLevel = title;
+                    [self refresh];
+                    break;
+                default:
+                    break;
+            }
+//            [self.collectionView reloadData];
+            
             break;}
         case MMPopupViewDisplayTypeFilters:{
             MMCombinationItem * combineItem = (MMCombinationItem *)rootItem;
@@ -311,16 +332,36 @@
                     }
                     return;
                 }
+                    NSString *title;
+                    NSMutableString *subtitles = [NSMutableString string];
+                    //                NSMutableString *varietys = [NSMutableString string];
+                    for (MMSelectedPath *path in subArray) {
+                        MMItem *firstItem = combineItem.childrenNodes[path.firstPath];
+                        MMItem *secondItem = combineItem.childrenNodes[path.firstPath].childrenNodes[path.secondPath];
+                        title = firstItem.title;
+                        [subtitles appendString:[NSString stringWithFormat:@"%@",secondItem.title]];
+                        //                    [varietys appendString:[NSString stringWithFormat:@"%@",secondItem.title]];
+                    }
+                    NSLog(@"当title为%@时，所选字段为 %@",title,subtitles);
+                    if (subtitles) {
+                        if ([subtitles isEqualToString:@"不可认养"]) {
+                            self.adoptStatus = @"0";
+                        }
+                        else if ([subtitles isEqualToString:@"可认养"]){
+                            self.adoptStatus = @"1";
+                        }
+                        else if ([subtitles isEqualToString:@"柏树"]){
+                            self.variety = @"柏树";
+                        }
+                        else if ([subtitles isEqualToString:@"樟树"]){
+                            self.variety = @"樟树";
+                        }
+                        
+                        [self refresh];
+                    }
                 
-                NSString *title;
-                NSMutableString *subtitles = [NSMutableString string];
-                for (MMSelectedPath *path in subArray) {
-                    MMItem *firstItem = combineItem.childrenNodes[path.firstPath];
-                    MMItem *secondItem = combineItem.childrenNodes[path.firstPath].childrenNodes[path.secondPath];
-                    title = firstItem.title;
-                    [subtitles appendString:[NSString stringWithFormat:@"  %@",secondItem.title]];
-                }
-                NSLog(@"当title为%@时，所选字段为 %@",title,subtitles);
+                
+                
             }];
             
             break;}
@@ -365,7 +406,7 @@
         
         rootItem3.displayType = MMPopupViewDisplayTypeMultilayer;
         NSArray *name = @[@"全部",@"一级",@"二级",@"三级"];
-        NSArray *nameSub = @[@"全部",@"500年以上",@"200年以上",@"100年以上"];
+        NSArray *nameSub = @[@"全部",@"一级",@"二级",@"三级"];
 
         for (int i = 0; i < 4; i++){
             MMItem *item3_A = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:[NSString stringWithFormat:@"%@",name[i]] subtitleName:nameSub[i]];
@@ -374,11 +415,6 @@
             MMItem *item3_B = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:[NSString stringWithFormat:@"%@",nameSub[i]] subtitleName:nil];
             item3_B.isSelected = (i == 0);
             [item3_A addNode:item3_B];
-//            for (int j = 0; j < 2; j ++) {
-//                MMItem *item3_B = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:[NSString stringWithFormat:@"%@",nameSub[i]] subtitleName:nil];
-//                item3_B.isSelected = (i == 0 && j == 0);
-//                [item3_A addNode:item3_B];
-//            }
         }
         
         //root 4
@@ -399,67 +435,39 @@
                 NSString *title = [itemDic.allValues lastObject][i];
                 MMItem *item4_B = [MMItem itemWithItemType:MMPopupViewDisplayTypeUnselected titleName:title];
                 if (i == 0) {
-                    item4_B.isSelected = YES;
+                    item4_B.isSelected = NO;
                 }
                 [item4_A addNode:item4_B];
             }
         }
         
-        //root 5
-//        MMMultiItem *rootItem5 = [MMMultiItem itemWithItemType:MMPopupViewDisplayTypeUnselected titleName:@"所在地区"];
-//
-//        rootItem5.displayType = MMPopupViewDisplayTypeMultilayer;
-//        rootItem5.numberOflayers = MMPopupViewThreelayers;
-//        for (int i = 0; i < MAX(5, random()%30); i++){
-//
-//            MMItem *item5_A = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:[NSString stringWithFormat:@"市%d",i] subtitleName:nil];
-//            item5_A.isSelected = (i == 0);
-//            [rootItem5 addNode:item5_A];
-//
-//            for (int j = 0; j < MAX(5, random()%30) ; j ++) {
-//                MMItem *item5_B = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:[NSString stringWithFormat:@"市%d县%d",i,j] subtitleName:[NSString stringWithFormat:@"%ld",random()%10000]];
-//                item5_B.isSelected = (i == 0 && j == 0);
-//                [item5_A addNode:item5_B];
-//
-//                for (int k = 0; k < MAX(5, random()%30); k++) {
-//                    MMItem *item5_C = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:[NSString stringWithFormat:@"市%d县%d镇%d",i,j,k] subtitleName:[NSString stringWithFormat:@"%ld",random()%10000]];
-//                    item5_C.isSelected = (i == 0 && j == 0 && k == 0);
-//                    [item5_B addNode:item5_C];
-//                }
-//            }
-//        }
-        
         MMMultiItem *rootItem5 = [MMMultiItem itemWithItemType:MMPopupViewDisplayTypeUnselected titleName:@"所在地区"];
-        
+        rootItem5.numberOflayers = 1;
         rootItem5.displayType = MMPopupViewDisplayTypeMultilayer;
         rootItem5.numberOflayers = MMPopupViewThreelayers;
-//        for (int i = 0; i < MAX(5, random()%30); i++){
-        
-            NSArray *array  =[self JsonObject:@"address.json"];
+            NSArray *array  =[self JsonObject:@"SelectAddress.json"];
             NSLog(@"array = %d",(int)array.count);
             for (int count = 0; count < array.count; count++) {
                 MMItem *item5_A = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:array[count][@"name"] subtitleName:nil];
 //                item5_A.isSelected = (i == 0);
                 [rootItem5 addNode:item5_A];
                 
-//                for (int j = 0; j < MAX(5, random()%30) ; j ++) {
-                    MMItem * item5_B = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:array[count][@"name"] subtitleName:nil];
-                        //                    item5_B.isSelected = (i == 0 && j == 0);
-                        [item5_A addNode:item5_B];
+                NSArray *cityList = array[count][@"cityList"];
+                for (int i = 0; i < cityList.count; i ++) {
+                    MMItem * item5_B = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:cityList[i][@"name"] subtitleName:nil];
+                    //                    item5_B.isSelected = (i == 0 && j == 0);
+                    [item5_A addNode:item5_B];
                     
-                    
-                    
-//                    for (int k = 0; k < MAX(5, random()%30); k++) {
-                        MMItem *item5_C = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:array[count][@"name"] subtitleName:nil];
-//                        item5_C.isSelected = (i == 0 && j == 0 && k == 0);
+                    NSArray *areaList = cityList[i][@"areaList"];
+                    for (int j = 0; j < areaList.count; j ++) {
+                        MMItem *item5_C = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:areaList[j][@"name"] subtitleName:nil];
+                        //                        item5_C.isSelected = (i == 0 && j == 0 && k == 0);
                         [item5_B addNode:item5_C];
-//                    }
-//                }
-//            }
-            
+                    }
+                    
+                }
         }
         
-        //      [mutableArray addObject:rootItem1];
         [mutableArray addObject:rootItem5];
         [mutableArray addObject:rootItem3];
         [mutableArray addObject:rootItem2];
@@ -491,6 +499,29 @@
     http.parameters[@"limit"] = @(10);
     http.parameters[@"name"]= @"";
     http.parameters[@"statusList"] = @[@"4",@"5",@"6"];
+    if (self.area) {
+        if ([self.area isEqualToString:@"全国"]) {
+            http.parameters[@"area"] = @"";
+        }
+        else{
+            http.parameters[@"area"] = self.area;
+        }
+    }
+    if (self.treeLevel) {
+        if ([self.area isEqualToString:@"全部"]) {
+            http.parameters[@"treeLevel"] = @"";
+        }
+        else{
+        http.parameters[@"treeLevel"] = self.treeLevel;
+        }
+    }
+    if (self.adoptStatus) {
+        http.parameters[@"adoptStatus"] = self.adoptStatus;
+    }
+    if (self.variety) {
+        http.parameters[@"variety"] = self.variety;
+    }
+//    http.parameters[@"variety"] = @"樟树";
     [http postWithSuccess:^(id responseObject) {
         
         NSArray *array = responseObject[@"data"][@"list"];

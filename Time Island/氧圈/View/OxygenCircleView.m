@@ -33,13 +33,6 @@
     backImg.image = kImage(@"氧圈");
     [self addSubview:backImg];
     
-    
-//    UIView *headPortraitView = [[UIView alloc]initWithFrame:CGRectMake(-50.5, 14, 101, 39)];
-//    headPortraitView.backgroundColor = kWhiteColor;
-//    kViewRadius(headPortraitView, 39/2);
-//    headPortraitView.alpha = 0.3;
-//    [self addSubview:headPortraitView];
-    
     UIButton *headPortraitView = [UIButton buttonWithType:(UIButtonTypeCustom)];
     headPortraitView.frame = CGRectMake(-50.5, 14, 101, 39);
     headPortraitView.backgroundColor = kWhiteColor;

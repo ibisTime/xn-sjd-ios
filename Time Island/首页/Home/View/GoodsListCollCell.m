@@ -95,14 +95,16 @@
     {
         adoptLbl.text = @"已认养";
         adoptLbl.backgroundColor = RGB(234, 85, 78);
-    [headImage sd_setImageWithURL:[NSURL URLWithString:[model.listPic convertImageUrl]]];
+//    [headImage sd_setImageWithURL:[NSURL URLWithString:[model.listPic convertImageUrl]]];
     }
-
+    [headImage sd_setImageWithURL:[NSURL URLWithString:[model.listPic convertImageUrl]]];
 //    [self.modelarray addObject:self.model];
     NSLog(@"%@",model.name);
     NSString *str;
     if (model.productSpecsList.count > 0) {
-        str =  [NSString stringWithFormat:@"¥%@",model.productSpecsList[0][@"price"]];
+        int money = [model.productSpecsList[0][@"price"] intValue] / 1000;
+//        str =  [NSString stringWithFormat:@"¥%@",model.productSpecsList[0][@"price"]];
+        str =  [NSString stringWithFormat:@"¥%d",money];
 
     }else
     {

@@ -26,6 +26,7 @@
 		1F19A90021FEFEF50090BF84 /* PersonalCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8FF21FEFEF50090BF84 /* PersonalCenterVC.m */; };
 		1F19A90321FEFF130090BF84 /* PersonalCenterHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A90221FEFF130090BF84 /* PersonalCenterHeadView.m */; };
 		1F19A90621FF07A50090BF84 /* PersonalCenterTableVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A90521FF07A50090BF84 /* PersonalCenterTableVIew.m */; };
+		1F19A90922001FE50090BF84 /* RankingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A90822001FE40090BF84 /* RankingModel.m */; };
 		1F1B001921E6E23F000BEBD3 /* OxygenCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B001821E6E23F000BEBD3 /* OxygenCircleView.m */; };
 		1F1B002021E6F79C000BEBD3 /* MyTreeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B001F21E6F79C000BEBD3 /* MyTreeVC.m */; };
 		1F1B002321E6F8C8000BEBD3 /* MyTreeTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F1B002221E6F8C8000BEBD3 /* MyTreeTableView.m */; };
@@ -137,6 +138,7 @@
 		365514D221FADC9A00E54996 /* CardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 365514D121FADC9A00E54996 /* CardModel.m */; };
 		365514D821FB009000E54996 /* introduceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 365514D721FB009000E54996 /* introduceView.m */; };
 		366A59F122000007009FFA6E /* GoodsDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A59F022000007009FFA6E /* GoodsDetailsCell.m */; };
+		366A59F322003E35009FFA6E /* SelectAddress.json in Resources */ = {isa = PBXBuildFile; fileRef = 366A59F222003E35009FFA6E /* SelectAddress.json */; };
 		367D68E021F95A230091177C /* aiai_area.txt in Resources */ = {isa = PBXBuildFile; fileRef = 367D68DF21F95A230091177C /* aiai_area.txt */; };
 		367D68E921F95B920091177C /* SelectAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D68E821F95B920091177C /* SelectAdView.m */; };
 		367D694221F998A70091177C /* GenderPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D694121F998A70091177C /* GenderPickerView.m */; };
@@ -498,6 +500,8 @@
 		1F19A90221FEFF130090BF84 /* PersonalCenterHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterHeadView.m; sourceTree = "<group>"; };
 		1F19A90421FF07A50090BF84 /* PersonalCenterTableVIew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalCenterTableVIew.h; sourceTree = "<group>"; };
 		1F19A90521FF07A50090BF84 /* PersonalCenterTableVIew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterTableVIew.m; sourceTree = "<group>"; };
+		1F19A90722001FE40090BF84 /* RankingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RankingModel.h; sourceTree = "<group>"; };
+		1F19A90822001FE40090BF84 /* RankingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RankingModel.m; sourceTree = "<group>"; };
 		1F1B001721E6E23F000BEBD3 /* OxygenCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OxygenCircleView.h; sourceTree = "<group>"; };
 		1F1B001821E6E23F000BEBD3 /* OxygenCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OxygenCircleView.m; sourceTree = "<group>"; };
 		1F1B001E21E6F79C000BEBD3 /* MyTreeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTreeVC.h; sourceTree = "<group>"; };
@@ -714,6 +718,7 @@
 		365514D721FB009000E54996 /* introduceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = introduceView.m; sourceTree = "<group>"; };
 		366A59EF22000007009FFA6E /* GoodsDetailsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsDetailsCell.h; sourceTree = "<group>"; };
 		366A59F022000007009FFA6E /* GoodsDetailsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailsCell.m; sourceTree = "<group>"; };
+		366A59F222003E35009FFA6E /* SelectAddress.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SelectAddress.json; sourceTree = "<group>"; };
 		367D68DF21F95A230091177C /* aiai_area.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aiai_area.txt; sourceTree = "<group>"; };
 		367D68E721F95B920091177C /* SelectAdView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectAdView.h; sourceTree = "<group>"; };
 		367D68E821F95B920091177C /* SelectAdView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectAdView.m; sourceTree = "<group>"; };
@@ -2048,6 +2053,7 @@
 		1F9361E521F332AC007E522A /* GoodsList */ = {
 			isa = PBXGroup;
 			children = (
+				366A59F222003E35009FFA6E /* SelectAddress.json */,
 				B8A27AA321E5A15100914897 /* TreeListVC.h */,
 				B8A27AA421E5A15100914897 /* TreeListVC.m */,
 			);
@@ -2093,6 +2099,8 @@
 				1FF6398A21EC7DC200F5FF68 /* RankingTableView.m */,
 				1FF6398C21EC7DD400F5FF68 /* RankingCell.h */,
 				1FF6398D21EC7DD400F5FF68 /* RankingCell.m */,
+				1F19A90722001FE40090BF84 /* RankingModel.h */,
+				1F19A90822001FE40090BF84 /* RankingModel.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3949,6 +3957,7 @@
 				B81E5FAF21DC8FC200873AB9 /* TraditionalCode.txt in Resources */,
 				B81E5EAD21DC8B4100873AB9 /* Assets.xcassets in Resources */,
 				B8A27AF921E5C44400914897 /* pullup.png in Resources */,
+				366A59F322003E35009FFA6E /* SelectAddress.json in Resources */,
 				3689769C21EF3A4F005F1177 /* AMap.bundle in Resources */,
 				B87C213621FB047000EFD0B0 /* add_image@2x.png in Resources */,
 				B87C213321FB047000EFD0B0 /* wc_drag_delete_activate@3x.png in Resources */,
@@ -4292,6 +4301,7 @@
 				1F3EBB0A21F5C42D005BC837 /* YSActionSheetButton.m in Sources */,
 				B88E544921F9BDF600C33040 /* JVShopcartBrandModel.m in Sources */,
 				1F19A8ED21FAA6BA0090BF84 /* AreaModel.m in Sources */,
+				1F19A90922001FE50090BF84 /* RankingModel.m in Sources */,
 				B8A27AEF21E5C44400914897 /* MMNormalCell.m in Sources */,
 				B81E601B21DC906D00873AB9 /* TLChangeMobileVC.m in Sources */,
 				B81E601A21DC906D00873AB9 /* TLPwdRelatedVC.m in Sources */,
@@ -4635,7 +4645,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4M8KD7B9X5;
+
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
