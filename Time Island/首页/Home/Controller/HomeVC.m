@@ -165,7 +165,6 @@
         _cell.clickTagBlock = ^(NSInteger index) {
             [weakSelf clickTagWithIndex:index];
         };
-//        cell.scrollEnabled = NO;
         return _cell;
     }
     
@@ -220,7 +219,6 @@
     }
     return CGSizeMake((SCREEN_WIDTH - 1)/2, (SCREEN_WIDTH - 30)/2 + 80);
 }
-
 
 
 
@@ -537,6 +535,8 @@
         NSMutableArray *array1 = [NSMutableArray array];
         for (int i = 0; i < array.count; i ++) {
             [array1 addObject:array[i][@"content"] ];
+//            NSLog(@"%@",self.headerView.TextLoopArray);
+
         }
         self.cell.TextLoopArray = array1;
         [self.collectionView reloadData];

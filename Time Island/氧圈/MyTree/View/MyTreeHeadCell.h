@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FloatingBallHeader.h"
-
+#import "MyTreeEnergyModel.h"
 @protocol MyTreeHeadDelegate <NSObject>
 
 -(void)MyTreeHeadButton:(NSInteger )tag;
@@ -20,5 +20,7 @@
 @property (nonatomic, strong) FloatingBallHeader *floatingBallHeader;
 
 @property (nonatomic, assign) id <MyTreeHeadDelegate> delegate;
+
+@property (nonatomic , strong)NSMutableArray <MyTreeEnergyModel *>*energyModels;
 
 @end
