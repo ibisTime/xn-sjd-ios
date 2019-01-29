@@ -86,8 +86,6 @@
     titleLab.numberOfLines = 2;
     [titleLab sizeToFit];
     
-    
-    
     if ([model.status isEqualToString:@"0"]) {
         adoptLbl.text = @"待认养";
         adoptLbl.backgroundColor = RGB(234, 85, 78);
@@ -109,13 +107,6 @@
     priceLabel.attributedText = attrStr;
     [priceLabel sizeToFit];
     priceLabel.frame = CGRectMake(5, headImage.yy + 48, priceLabel.width, 16);
-    
-    
-//    addressLabel.text = [NSString stringWithFormat:@"%@ %@",model.]
-    
-//    priceLabel.text =
-    
-    
 }
 
 

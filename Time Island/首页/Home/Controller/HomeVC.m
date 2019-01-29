@@ -145,7 +145,6 @@
         _cell.clickTagBlock = ^(NSInteger index) {
             [weakSelf clickTagWithIndex:index];
         };
-//        cell.scrollEnabled = NO;
         return _cell;
     }
     
@@ -193,23 +192,7 @@
     return CGSizeMake((SCREEN_WIDTH - 1)/2, (SCREEN_WIDTH - 30)/2 + 80);
 }
 
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-//{
-//    return CGSizeMake(SCREEN_WIDTH, 100 + (SCREEN_WIDTH - 30)/690*200 + 34 + 20 + 64 + SCREEN_WIDTH/750 * 300);
-//}
 
-//- (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-//{
-//    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
-//    //头部
-//    CoinWeakSelf;
-////    _headerView = [[HomeHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 100 + (SCREEN_WIDTH - 30)/690*200 + 34 + 20 + 64 + SCREEN_WIDTH/750 * 300)];
-////    //点击banner
-////
-////    [headerView addSubview:self.headerView];
-//
-//    return headerView;
-//}
 
 
 
@@ -500,10 +483,10 @@
             [array1 addObject:array[i][@"content"] ];
 //            NSLog(@"%@",self.headerView.TextLoopArray);
 //            self.headerView.TextLoopArray = array1;
-            self.cell.TextLoopArray = array[i][@"content"];
-            NSLog(@"%@",self.cell.TextLoopArray);
-            [self.collectionView reloadData];
+            
         }
+        self.cell.TextLoopArray = array1;
+        NSLog(@"%@",self.cell.TextLoopArray);
         [self.collectionView reloadData];
     } failure:^(NSError *error) {
     }];

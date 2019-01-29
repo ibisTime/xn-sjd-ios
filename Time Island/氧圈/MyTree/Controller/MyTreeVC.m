@@ -14,12 +14,14 @@
 #import "GivingVC.h"
 #import "FriendsTheTreeVC.h"
 #import "MapViewController.h"
+#import "MyTreeEnergyModel.h"
 @interface MyTreeVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)MyTreeTableView *tableView;
 @property (nonatomic , strong)CertificateOfPlantView *certificateView;
 @property (nonatomic , strong)ThePropsView *propsView;
 
+@property (nonatomic , strong)NSMutableArray <MyTreeEnergyModel *>*energyModels;
 
 @end
 
@@ -146,6 +148,26 @@
     [self.view addSubview:self.certificateView];
     [self.view addSubview:self.propsView];
     self.title = @"我的树";
+    [self LoadData];
+}
+
+-(void)LoadData
+{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629357";
+    http.parameters[@"status"] = @"0";
+//    http.parameters[@"limit"] = @(1);
+//    http.parameters[@""] = []
+    [http postWithSuccess:^(id responseObject) {
+        
+        //        [self.treeArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+        self.energyModels = [MyTreeEnergyModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        self.tableView.energyModels = self.energyModels;
+        [self.tableView reloadData];
+        
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 
 

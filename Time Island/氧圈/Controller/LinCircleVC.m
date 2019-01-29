@@ -18,6 +18,7 @@
 #import "MyCarbonBubbleVC.h"
 #import "MyGiftVC.h"
 #import "MyNoticeVC.h"
+#import "PersonalCenterVC.h"
 @interface LinCircleVC ()<OxygenCircleDelegate>
 
 @property (nonatomic , strong)OxygenCircleView *circleView;
@@ -100,7 +101,8 @@
         case 1:
         {
             //            我的树
-            MyTreeVC *vc = [MyTreeVC new];
+            PersonalCenterVC *vc = [PersonalCenterVC new];
+//            MyTreeVC *vc = [MyTreeVC new];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

@@ -58,6 +58,7 @@
         MyTreeHeadCell *cell = [tableView dequeueReusableCellWithIdentifier:MyTreeHead forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
+        cell.energyModels = self.energyModels;
         return cell;
     }
     

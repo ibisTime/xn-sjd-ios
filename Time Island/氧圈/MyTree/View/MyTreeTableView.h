@@ -7,7 +7,8 @@
 //
 
 #import "TLTableView.h"
-
+#import "MyTreeEnergyModel.h"
 @interface MyTreeTableView : TLTableView
 
+@property (nonatomic , strong)NSMutableArray <MyTreeEnergyModel *>*energyModels;
 @end
