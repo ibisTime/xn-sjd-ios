@@ -95,9 +95,9 @@
     {
         adoptLbl.text = @"已认养";
         adoptLbl.backgroundColor = RGB(234, 85, 78);
-    [headImage sd_setImageWithURL:[NSURL URLWithString:[model.listPic convertImageUrl]]];
+//    [headImage sd_setImageWithURL:[NSURL URLWithString:[model.listPic convertImageUrl]]];
     }
-
+    [headImage sd_setImageWithURL:[NSURL URLWithString:[model.listPic convertImageUrl]]];
 //    [self.modelarray addObject:self.model];
     NSLog(@"%@",model.name);
     NSString *str;

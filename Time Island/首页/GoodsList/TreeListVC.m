@@ -104,8 +104,6 @@
     
     GoodsListCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GoodsListCollCell" forIndexPath:indexPath];
     
-    
-    
     if (indexPath.row % 2 == 0) {
         cell.backView.frame = CGRectMake(12, 0, (SCREEN_WIDTH - 30)/2, (SCREEN_WIDTH - 30)/2 + 80);
     }else
@@ -433,8 +431,6 @@
         
         rootItem5.displayType = MMPopupViewDisplayTypeMultilayer;
         rootItem5.numberOflayers = MMPopupViewThreelayers;
-//        for (int i = 0; i < MAX(5, random()%30); i++){
-        
             NSArray *array  =[self JsonObject:@"address.json"];
             NSLog(@"array = %d",(int)array.count);
             for (int count = 0; count < array.count; count++) {
@@ -442,20 +438,22 @@
 //                item5_A.isSelected = (i == 0);
                 [rootItem5 addNode:item5_A];
                 
-//                for (int j = 0; j < MAX(5, random()%30) ; j ++) {
-                    MMItem * item5_B = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:array[count][@"name"] subtitleName:nil];
-                        //                    item5_B.isSelected = (i == 0 && j == 0);
-                        [item5_A addNode:item5_B];
+                NSArray *cityList = array[count][@"cityList"];
+                for (int i = 0; i < cityList.count; i ++) {
+                    MMItem * item5_B = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:cityList[i][@"name"] subtitleName:nil];
+                    //                    item5_B.isSelected = (i == 0 && j == 0);
+                    [item5_A addNode:item5_B];
                     
-                    
-                    
-//                    for (int k = 0; k < MAX(5, random()%30); k++) {
-                        MMItem *item5_C = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:array[count][@"name"] subtitleName:nil];
-//                        item5_C.isSelected = (i == 0 && j == 0 && k == 0);
+                    NSArray *areaList = cityList[i][@"areaList"];
+                    for (int j = 0; j < areaList.count; j ++) {
+                        MMItem *item5_C = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:areaList[j][@"name"] subtitleName:nil];
+                        //                        item5_C.isSelected = (i == 0 && j == 0 && k == 0);
                         [item5_B addNode:item5_C];
-//                    }
-//                }
-//            }
+                    }
+                    
+                }
+                
+
             
         }
         
