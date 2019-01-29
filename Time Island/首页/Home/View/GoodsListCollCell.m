@@ -102,7 +102,9 @@
     NSLog(@"%@",model.name);
     NSString *str;
     if (model.productSpecsList.count > 0) {
-        str =  [NSString stringWithFormat:@"¥%@",model.productSpecsList[0][@"price"]];
+        int money = [model.productSpecsList[0][@"price"] intValue] / 1000;
+//        str =  [NSString stringWithFormat:@"¥%@",model.productSpecsList[0][@"price"]];
+        str =  [NSString stringWithFormat:@"¥%d",money];
 
     }else
     {

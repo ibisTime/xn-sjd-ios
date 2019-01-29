@@ -33,6 +33,11 @@
 @property (nonatomic,strong) UIImageView * logoimage;
 @property (nonatomic,strong) UILabel * nameLbl;
 @property (nonatomic,strong) UILabel * sign;
+@property (nonatomic,strong) NSArray * array;
+@property (nonatomic,strong) UILabel *numberLbl1;
+@property (nonatomic,strong) UILabel *numberLbl2;
+@property (nonatomic,strong) UILabel *numberLbl3;
+@property (nonatomic,strong)  UILabel *numLbl;
 @end
 
 @implementation MineVC
@@ -69,10 +74,11 @@
     [self setupview];
     self.table1.tableHeaderView = self.topview;
     self.table1.refreshDelegate = self;
+    CoinWeakSelf;
 //    [_table1 beginRefreshing];
     [_table1 addRefreshAction:^{
-        [self RefreshInfo];
-        [self.table1 endRefreshHeader];
+        [weakSelf RefreshInfo];
+        [weakSelf.table1 endRefreshHeader];
     }];
     [self.view addSubview:self.table1];
     
@@ -131,12 +137,22 @@
     self.sign = sign;
     
     for (int i = 0; i < 3; i ++) {
-        
+
         UILabel *nameLbl = [self createlabelwithFrame:CGRectMake(SCREEN_WIDTH / 3 * i, sign.yy + 28, SCREEN_WIDTH / 3, 12) title1:array1[i] fontname:@"PingFangSC-Regular" textsize:12];
         [self.topview addSubview:nameLbl];
+        self.numLbl = nameLbl;
+
+        UILabel *numberLbl1 = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH / 3 * 0, nameLbl.yy + 7, SCREEN_WIDTH / 3, 15) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(15) textColor:[UIColor whiteColor]];
+        [self.topview addSubview:numberLbl1];
+        self.numberLbl1 = numberLbl1;
         
-        UILabel *numberLbl = [self createlabelwithFrame:CGRectMake(SCREEN_WIDTH / 3 * i, nameLbl.yy + 7, SCREEN_WIDTH / 3, 15) title1:@"38930" fontname:@"PingFangSC-Bold" textsize:15];
-        [self.topview addSubview:numberLbl];
+        UILabel *numberLbl2 = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH / 3 * 1, nameLbl.yy + 7, SCREEN_WIDTH / 3, 15) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(15) textColor:[UIColor whiteColor]];
+        [self.topview addSubview:numberLbl2];
+        self.numberLbl2 = numberLbl2;
+        
+        UILabel *numberLbl3 = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH / 3 * 2, nameLbl.yy + 7, SCREEN_WIDTH / 3, 15) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(15) textColor:[UIColor whiteColor]];
+        [self.topview addSubview:numberLbl3];
+        self.numberLbl3 = numberLbl3;
     }
     
     [self.topview addSubview:[self createview:CGRectMake(SCREEN_WIDTH/3-1, sign.yy + 33, 1, 20)]];
@@ -267,6 +283,35 @@
         self.logoimage.image =  [UIImage imageNamed:@"果树预售"];
         self.sign.text = @"此人很懒，没留下什么";
     }];
+    
+    TLNetworking * http1 = [[TLNetworking alloc]init];
+    http1.code = @"802300";
+    http1.parameters[@"userId"] = [TLUser user].userId;
+    http1.parameters[@"start"] = @(1);
+    http1.parameters[@"limit"] = @(10);
+    [http1 postWithSuccess:^(id responseObject) {
+        self.array = responseObject[@"data"][@"list"];
+        for (int i = 0; i < 3; i ++) {
+            NSLog(@"%@",self.array[i][@"amount"]);
+            NSInteger amount1 = [self.array[0][@"amount"] intValue] / 1000;
+            NSString * str1 = [NSString stringWithFormat:@"%d",(int)amount1];
+            self.numberLbl1.text = str1;
+            
+            NSInteger amount2 = [self.array[1][@"amount"] intValue] / 1000;
+            NSString * str2 = [NSString stringWithFormat:@"%d",(int)amount2];
+            self.numberLbl2.text = str2;
+            
+            NSInteger amount3 = [self.array[2][@"amount"] intValue] / 1000;
+            NSString * str3 = [NSString stringWithFormat:@"%d",(int)amount3];
+            self.numberLbl3.text = str3;
+        }
+        [self.table1 reloadData];
+    } failure:^(NSError *error) {
+        
+        
+    }];
+    
+    
 }
 -(void)certify{
     CertifyVC * vc = [CertifyVC new];
