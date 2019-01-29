@@ -15,10 +15,12 @@
 #import "TreeFiledCell.h"
 #define TreeFiled @"TreeFiledCell"
 #import "GoodsDetailsHeadView.h"
+#import "GoodsDetailsCell.h"
+#define GoodsDetails @"GoodsDetailsCell"
 @interface GoodsDetailsTableView()<UITableViewDelegate, UITableViewDataSource,GoodsDetailsHeadDelegate>
 
-
-
+@property (nonatomic,strong) GoodsDetailsCell  *cell;
+@property (nonatomic,assign) CGFloat webViewHeight1;
 
 @end
 
@@ -34,6 +36,7 @@
         self.SelectHeader = 0;
         [self registerClass:[RenYangListCell class] forCellReuseIdentifier:RenYangList];
         [self registerClass:[TreeFiledCell class] forCellReuseIdentifier:TreeFiled];
+        [self registerClass:[GoodsDetailsCell class] forCellReuseIdentifier:GoodsDetails];
     }
     
     return self;
@@ -49,7 +52,11 @@
     if (section == 1) {
         if (self.SelectHeader == 1) {
             return 9;
-        }else
+        }
+        else if (self.SelectHeader == 0){
+            return 1;
+        }
+        else
         {
             return 20;
         }
@@ -62,6 +69,7 @@
     
     if (indexPath.section == 0) {
         GoodsDetailsInfomationCell *cell = [tableView dequeueReusableCellWithIdentifier:GoodsDetailsInfomation forIndexPath:indexPath];
+        cell.TreeModel = self.TreeModel;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -69,17 +77,26 @@
     if (self.SelectHeader == 1) {
         TreeFiledCell *cell = [tableView dequeueReusableCellWithIdentifier:TreeFiled forIndexPath:indexPath];
         NSArray *titles = @[@"树木名称",@"树木学名",@"树木级别",@"树木品种",@"所在市县",@"乡镇街道",@"树木产地",@"认养时间",@"树木定位"];
-        NSArray *details = @[@"习总书记栽种的下姜村一级樟树",@"樟科樟树",@"一级",@"樟树",@"浙江省淳安县",@"下姜村桥头",@"枫树岭镇",@"2018.12.25-2019.12.25",@""];
+        NSArray *details;
+        if (self.TreeModel.treeList.count>0||self.TreeModel.productSpecsList.count>0) {
+             details = @[self.TreeModel.name,self.TreeModel.treeList[0][@"scientificName"],self.TreeModel.treeList[0][@"rank"],self.TreeModel.treeList[0][@"variety"],[NSString stringWithFormat:@"%@ %@",self.TreeModel.treeList[0][@"city"],self.TreeModel.treeList[0][@"area"]],self.TreeModel.treeList[0][@"town"],self.TreeModel.treeList[0][@"originPlace"],[NSString stringWithFormat:@"%@ - %@",[self.TreeModel.productSpecsList[0][@"startDatetime"] convertToDetailDate],[self.TreeModel.productSpecsList[0][@"endDatetime"] convertToDetailDate]],@""];
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.moreLab.text = [NSString stringWithFormat:@"[%@]",titles[indexPath.row]];
         cell.detailLab.text = [NSString stringWithFormat:@"%@",details[indexPath.row]];
         if (indexPath.row == 8) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator; //显示最右边的箭头
-            
         }
         return cell;
-    }else
-    {
+    }else if(self.SelectHeader == 0){
+//        GoodsDetailsCell  *cell = [tableView dequeueReusableCellWithIdentifier:GoodsDetails forIndexPath:indexPath];
+////        cell.web = self.TreeModel.Description;
+//        cell.TreeModel = self.TreeModel;
+        _cell = [tableView dequeueReusableCellWithIdentifier:GoodsDetails forIndexPath:indexPath];
+        _cell.TreeModel = self.TreeModel;
+        [_cell.detail.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+        return _cell;
+    }else{
         RenYangListCell *cell = [tableView dequeueReusableCellWithIdentifier:RenYangList forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
@@ -88,7 +105,12 @@
     
     
 }
-
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"contentSize"]) {
+        _webViewHeight1 = [[_cell.detail stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
+        _cell.detail.frame = CGRectMake(0, 0, SCREEN_WIDTH, _webViewHeight1);
+    }
+}
 -(void)MyTreeHeadButton:(NSInteger)tag
 {
     [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:tag];
@@ -105,9 +127,13 @@
         return 180;
     }
     if (indexPath.section == 1) {
-        if (self.SelectHeader == 1) {
+        if (self.SelectHeader == 0) {
+            return _webViewHeight1;
+        }
+       else if (self.SelectHeader == 1) {
             return 40;
-        }else
+        }
+        else
         {
             return 50;
         }
@@ -184,5 +210,7 @@
     }
     return [UIView new];
 }
-
+//-(void)setTreeModel:(TreeModel *)TreeModel{
+//    _TreeModel = TreeModel;
+//}
 @end

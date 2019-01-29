@@ -15,8 +15,9 @@
 @property (nonatomic, strong) UIButton *renYangButton;//价格
 @property (nonatomic , strong)GoodsDetailsTableView *tableView;
 @property (nonatomic , strong)SLBannerView *banner;
-
-
+@property (nonatomic,strong)TreeModel  * TreeModels;
+@property (nonatomic,strong) NSArray * BannerArray;
+@property (nonatomic,strong) NSMutableArray * muarr;;
 
 @end
 
@@ -73,6 +74,7 @@
 -(SLBannerView *)banner
 {
     if (!_banner) {
+//        NSLog(@"%@",self.TreeModels[0].bannerPic);
         _banner = [SLBannerView bannerView];
         _banner.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH);
         //工程图片
@@ -165,9 +167,21 @@
 -(void)refresh{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629026";
-    http.parameters[@"code"] = self.TreeModel.code;
+    http.parameters[@"code"] = self.treemodel.code;
     [http postWithSuccess:^(id responseObject) {
-        
+        NSDictionary * dic = (NSDictionary * )responseObject;
+        self.TreeModels = [TreeModel mj_objectWithKeyValues:dic[@"data"]];
+        NSString * string = [dic[@"data"][@"bannerPic"] stringByReplacingOccurrencesOfString:@"||" withString:@","];
+        self.BannerArray = [string componentsSeparatedByString:@","];
+        NSMutableArray *dateMutablearray = [@[] mutableCopy];
+        for (int i = 0; i < self.BannerArray.count; i ++) {
+            NSString * string = [self.BannerArray[i] convertImageUrl];
+            [dateMutablearray addObject:string];
+        }
+        NSArray * arr = [NSArray arrayWithArray:dateMutablearray];
+        self.banner.slImages = arr;
+        self.tableView.TreeModel = self.TreeModels;
+        [self.tableView reloadData];
     } failure:^(NSError *error) {
     }];
 }
