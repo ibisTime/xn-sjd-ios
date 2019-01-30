@@ -14,5 +14,6 @@
 @property (nonatomic, copy) NSString *url;
 @property (nonatomic,copy) NSString *name;
 @property (nonatomic,copy) NSString *Description;
+@property (nonatomic,copy) NSString * code;
 
 @end

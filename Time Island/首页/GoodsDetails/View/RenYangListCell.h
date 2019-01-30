@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "RenYangUserModel.h"
 @interface RenYangListCell : UITableViewCell
 @property (nonatomic ,strong) UILabel *moreLab;
 
@@ -17,5 +17,5 @@
 
 @property (nonatomic ,strong) UILabel *moneyLab;
 
-
+@property (nonatomic,strong) RenYangUserModel * RenYangModel;
 @end

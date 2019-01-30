@@ -42,6 +42,8 @@
 @property (nonatomic , copy)NSString *remark;
 @property (nonatomic , copy)NSString *curOrderCode;
 @property (nonatomic , copy)NSString *ownerName;
+@property (nonatomic , copy)NSString *maxPrice;
+@property (nonatomic , copy)NSString *minPrice;
 
 @property (nonatomic,copy) NSString * name;
 @property (nonatomic , copy)NSString *code;

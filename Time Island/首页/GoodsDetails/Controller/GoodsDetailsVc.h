@@ -8,6 +8,9 @@
 
 #import "TLBaseVC.h"
 #import "TreeModel.h"
+#import "BannerModel.h"
 @interface GoodsDetailsVc : TLBaseVC
 @property (nonatomic,strong) TreeModel * treemodel;
+@property (nonatomic,strong) BannerModel * BannerModel;
+
 @end

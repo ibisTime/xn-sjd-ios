@@ -41,6 +41,9 @@ typedef void(^HomeHeaderEventsBlock)(HomeEventsType type, NSInteger index, HomeF
 //点击快报
 @property (nonatomic, copy) void (^clicknewsBlock)(NSInteger index);
 
+//i点击轮播图
+@property (nonatomic,copy) void (^clickimage)(NSInteger index);
+
 @property (nonatomic,copy) void  (^TreeClickBlock)(void);
 
 @property (nonatomic , strong)UIView *backView;

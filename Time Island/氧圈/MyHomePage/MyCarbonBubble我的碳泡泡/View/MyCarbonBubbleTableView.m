@@ -44,7 +44,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     
-    return 100;
+    return self.CarbonModels.count;
     
 }
 
@@ -52,6 +52,7 @@
     
     
     MyCarbonBubbleCell *cell = [tableView dequeueReusableCellWithIdentifier:MyCarbonBubble forIndexPath:indexPath];
+    cell.CarbonModel = self.CarbonModels[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     

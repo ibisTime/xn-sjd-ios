@@ -166,6 +166,12 @@
         _cell.clickTagBlock = ^(NSInteger index) {
             [weakSelf clickTagWithIndex:index];
         };
+        _cell.clickimage = ^(NSInteger index) {
+            GoodsDetailsVc * vc = [GoodsDetailsVc new];
+//            vc.code = weakSelf.bannerRoom[index];
+            vc.BannerModel = weakSelf.bannerRoom[index];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        };
         return _cell;
     }
     
@@ -409,7 +415,6 @@
         self.bannerRoom = [BannerModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
         if (self.bannerRoom.count > 0) {
             self.cell.banners = self.bannerRoom;
-
         }
         [self.collectionView reloadData];
         [self.collectionView.mj_header endRefreshing];

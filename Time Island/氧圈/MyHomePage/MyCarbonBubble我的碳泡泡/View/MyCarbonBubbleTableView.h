@@ -7,7 +7,8 @@
 //
 
 #import "TLTableView.h"
-
+#import "CarbonModel.h"
 @interface MyCarbonBubbleTableView : TLTableView
+@property (nonatomic,strong) NSMutableArray<CarbonModel *> * CarbonModels;
 
 @end

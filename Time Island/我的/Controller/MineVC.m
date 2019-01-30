@@ -25,7 +25,7 @@
 
 #define titlearray @[@"我的碳泡泡",@"我的认养",@"我的订单",@"我的文章",@"我的收藏",@"邀请有礼",@"设置"]
 #define imagearray @[@"泡泡",@"",@"",@"",@"",@"",@"设置"]
-#define array1 @[@"余额",@"碳泡泡",@"积分"]
+#define array1 @[@"余额",@"积分",@"碳泡泡"]
 @interface MineVC ()
 @property (nonatomic,retain) UIView * topview;
 @property (nonatomic,strong) TLTableView *table1;
@@ -143,14 +143,17 @@
         self.numLbl = nameLbl;
 
         UILabel *numberLbl1 = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH / 3 * 0, nameLbl.yy + 7, SCREEN_WIDTH / 3, 15) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(15) textColor:[UIColor whiteColor]];
+//        numberLbl1.text = @"0.00";
         [self.topview addSubview:numberLbl1];
         self.numberLbl1 = numberLbl1;
         
         UILabel *numberLbl2 = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH / 3 * 1, nameLbl.yy + 7, SCREEN_WIDTH / 3, 15) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(15) textColor:[UIColor whiteColor]];
+//        numberLbl2.text = @"0.00";
         [self.topview addSubview:numberLbl2];
         self.numberLbl2 = numberLbl2;
         
         UILabel *numberLbl3 = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH / 3 * 2, nameLbl.yy + 7, SCREEN_WIDTH / 3, 15) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(15) textColor:[UIColor whiteColor]];
+//        numberLbl3.text = @"0.00";
         [self.topview addSubview:numberLbl3];
         self.numberLbl3 = numberLbl3;
     }
@@ -213,6 +216,7 @@
     switch (indexPath.row) {
         case 0:{
             MyCarbonBubbleVC * vc = [MyCarbonBubbleVC new];
+            vc.accountNumber = self.array[2][@"accountNumber"];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
@@ -293,17 +297,19 @@
         self.array = responseObject[@"data"][@"list"];
         for (int i = 0; i < 3; i ++) {
             NSLog(@"%@",self.array[i][@"amount"]);
-            NSInteger amount1 = [self.array[0][@"amount"] intValue] / 1000;
-            NSString * str1 = [NSString stringWithFormat:@"%d",(int)amount1];
+            float amount1 = [self.array[0][@"amount"] floatValue] / 1000;
+            NSString * str1 = [NSString stringWithFormat:@"%.2f",amount1];
             self.numberLbl1.text = str1;
             
-            NSInteger amount2 = [self.array[1][@"amount"] intValue] / 1000;
-            NSString * str2 = [NSString stringWithFormat:@"%d",(int)amount2];
+            float amount2 = [self.array[1][@"totalAmount"] floatValue] / 1000;
+            NSString * str2 = [NSString stringWithFormat:@"%.2f",amount2];
             self.numberLbl2.text = str2;
             
-            NSInteger amount3 = [self.array[2][@"amount"] intValue] / 1000;
-            NSString * str3 = [NSString stringWithFormat:@"%d",(int)amount3];
-            self.numberLbl3.text = str3;
+            if (self.array[2][@"totalAmount"]) {
+                float amount3 = [self.array[2][@"totalAmount"] floatValue] / 1000;
+                NSString * str3 = [NSString stringWithFormat:@"%.2f",amount3];
+                self.numberLbl3.text = str3;
+            }
         }
         [self.table1 reloadData];
     } failure:^(NSError *error) {

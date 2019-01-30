@@ -244,6 +244,10 @@
     int value = [self.countLable.text intValue];
     value--;
     self.countLable.text = [NSString stringWithFormat:@"%d",value];
+    
+    float str = [self.TreeModel.minPrice floatValue] / 1000.00;
+    int count =  [self.countLable.text intValue];
+    [self.sureButton setTitle:[NSString stringWithFormat:@"确定 (总额: ¥ %.2f)", str * count] forState:(UIControlStateNormal)];
 }
 
 - (void)sum
@@ -251,6 +255,10 @@
     int value = [self.countLable.text intValue];
     value++;
     self.countLable.text = [NSString stringWithFormat:@"%d",value];
+    
+    float str = [self.TreeModel.minPrice floatValue] / 1000.00;
+    int count =  [self.countLable.text intValue];
+    [self.sureButton setTitle:[NSString stringWithFormat:@"确定 (总额: ¥ %.2f)", str * count] forState:(UIControlStateNormal)];
     
 }
 - (void)btnClick:(UIButton*)sender
@@ -267,12 +275,17 @@
 
 -(void)setTreeModel:(TreeModel *)TreeModel
 {
+    _TreeModel = TreeModel;
     if (self.bannaArray.count > 0) {
         [self.treeImage sd_setImageWithURL:[NSURL URLWithString:self.bannaArray[0]]];
     }
     if (TreeModel.treeList.count > 0) {
         self.infoTitle.text = TreeModel.treeList[0][@"scientificName"];
         self.priceLable.text = TreeModel.treeList[0][@"originPlace"];
+        float str = [TreeModel.minPrice floatValue] / 1000.00;
+        int count =  [self.countLable.text intValue];
+        [self.sureButton setTitle:[NSString stringWithFormat:@"确定 (总额: ¥ %.2f)", str * count] forState:(UIControlStateNormal)];
+        
     }
     
     UILabel *bottomSpec;

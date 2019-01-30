@@ -12,6 +12,7 @@
 #import "RenYangFieldView.h"
 #import "RenYangFieldDeyailView.h"
 #import "RealNameView.h"
+#import "RenYangUserModel.h"
 @interface GoodsDetailsVc ()<SLBannerViewDelegate,RefreshDelegate,PlatformButtonClickDelegate>
 @property (nonatomic, strong) UIButton *myButton;//推文
 @property (nonatomic, strong) UIButton *shareButton;
@@ -24,6 +25,8 @@
 //@property (nonatomic , strong) RenYangFieldView *renYangFieldView;
 @property (nonatomic , strong) RealNameView *realNameView;
 @property (nonatomic , strong) RenYangFieldDeyailView *renYangFieldDeyailView;
+@property (nonatomic,strong) NSMutableArray<RenYangUserModel * > * RenYangModel;
+
 @end
 
 @implementation GoodsDetailsVc
@@ -193,7 +196,12 @@
 -(void)refresh{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629026";
-    http.parameters[@"code"] = self.treemodel.code;
+    if (self.treemodel) {
+        http.parameters[@"code"] = self.treemodel.code;
+    }else{
+        http.parameters[@"productCode"] = self.BannerModel.code;
+    }
+    
     [http postWithSuccess:^(id responseObject) {
         NSDictionary * dic = (NSDictionary * )responseObject;
         self.TreeModels = [TreeModel mj_objectWithKeyValues:dic[@"data"]];
@@ -210,11 +218,19 @@
         
         self.renYangFieldDeyailView.slImages = arr;
         self.renYangFieldDeyailView.TreeModel = self.TreeModels;
-        
-        
-        
-        
-        
+
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+    }];
+    
+    
+    TLNetworking * http1 = [[TLNetworking alloc]init];
+    http1.code = @"629209";
+    http1.parameters[@"productCode"] = self.treemodel.productSpecsList[0][@"productCode"];
+    http1.parameters[@"statusList"] = @[@2,@3,@4];
+    [http1 postWithSuccess:^(id responseObject) {
+        self.RenYangModel = [RenYangUserModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        self.tableView.RenYangModel = self.RenYangModel;
         [self.tableView reloadData];
     } failure:^(NSError *error) {
     }];
