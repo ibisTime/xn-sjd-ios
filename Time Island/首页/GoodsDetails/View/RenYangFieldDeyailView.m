@@ -20,6 +20,9 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #define HEIGHT SCREEN_HEIGHT/922*560
 @interface RenYangFieldDeyailView()
+{
+    UIButton *selectBtn;
+}
 
 
 @property (nonatomic , strong)NSArray *bannaArray;
@@ -267,6 +270,9 @@
 
 -(void)setTreeModel:(TreeModel *)TreeModel
 {
+    
+    self.TreeModel = TreeModel;
+    
     if (self.bannaArray.count > 0) {
         [self.treeImage sd_setImageWithURL:[NSURL URLWithString:self.bannaArray[0]]];
     }
@@ -285,6 +291,18 @@
         [self.scrollView addSubview:specTimeLbl];
         
         
+        UIButton *specBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        specBtn.frame = CGRectMake(SCREEN_WIDTH - 50, self.addressLab.yy + 10 + i % TreeModel.productSpecsList.count * 40, 30, 30);
+        [specBtn setImage:kImage(@"未选中") forState:(UIControlStateNormal)];
+        [specBtn setImage:kImage(@"选中") forState:(UIControlStateSelected)];
+        
+        if (i == 0) {
+            specBtn.selected = YES;
+            selectBtn = specBtn;
+        }
+        [specBtn addTarget:self action:@selector(specBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        specBtn.tag = 100 + i;
+        [self.scrollView addSubview:specBtn];
     }
     
     
@@ -305,6 +323,14 @@
     
     
     self.scrollView.contentSize = CGSizeMake(0, self.descLab.yy + 30);
+    
+}
+
+-(void)specBtnClick:(UIButton *)sender
+{
+    sender.selected = !sender.selected;
+    selectBtn.selected = !selectBtn.selected;
+    selectBtn = sender;
     
 }
 
