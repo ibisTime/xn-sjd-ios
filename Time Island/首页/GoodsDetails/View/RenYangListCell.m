@@ -73,8 +73,8 @@
     NSLog(@"%@",RenYangModel.user);
     self.moreLab.text = RenYangModel.user[@"nickname"];
     self.detailLab.text = [RenYangModel.startDatetime convertToDetailDate];
-    int money = [RenYangModel.amount intValue] / 1000;
-    self.moneyLab.text = [NSString stringWithFormat:@"¥ %d.00",money];
+    float money = [RenYangModel.amount floatValue] / 1000.00;
+    self.moneyLab.text = [NSString stringWithFormat:@"¥ %.2f",money];
     if (RenYangModel.user[@"photo"]) {
         [self.iconImage sd_setImageWithURL:[NSURL URLWithString:[RenYangModel.user[@"photo"] convertImageUrl]]];
     }

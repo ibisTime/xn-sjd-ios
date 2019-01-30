@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TreeModel.h"
 @interface RenYangFieldDeyailView : UIView
-@property (nonatomic ,copy)void(^sureBlock)(void);
+@property (nonatomic ,copy)void(^sureBlock)(TreeModel * model ,int quantity,int TreeSize);
 
 @property (nonatomic,strong) TreeModel * TreeModel;
 

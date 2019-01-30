@@ -472,6 +472,7 @@
     [http postWithSuccess:^(id responseObject) {
 
         NSArray *array = responseObject[@"data"][@"list"];
+//        NSArray *array = responseObject[@"data"];
         [self.treemMuArray addObjectsFromArray:array];
         self.Models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treemMuArray];
         [self.collectionView reloadData];

@@ -13,6 +13,7 @@
 #import "RenYangFieldDeyailView.h"
 #import "RealNameView.h"
 #import "RenYangUserModel.h"
+#import "NegotiateVC.h"
 @interface GoodsDetailsVc ()<SLBannerViewDelegate,RefreshDelegate,PlatformButtonClickDelegate>
 @property (nonatomic, strong) UIButton *myButton;//推文
 @property (nonatomic, strong) UIButton *shareButton;
@@ -109,11 +110,24 @@
 {
     CoinWeakSelf;
     self.renYangFieldDeyailView = [[RenYangFieldDeyailView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, SCREEN_HEIGHT)];
-    self.renYangFieldDeyailView.sureBlock = ^{
+//    self.renYangFieldDeyailView.sureBlock = ^{
+//
+//
+////        [[UserModel user].cusPopView dismiss];
+////        [[UserModel user]showPopAnimationWithAnimationStyle:3 showView:weakSelf.realNameView BGAlpha:0.5 isClickBGDismiss:YES];
+//
+//    };
 
+    self.renYangFieldDeyailView.sureBlock = ^(TreeModel *model, int quantity,int TreeSize) {
         [[UserModel user].cusPopView dismiss];
-        [[UserModel user]showPopAnimationWithAnimationStyle:3 showView:weakSelf.realNameView BGAlpha:0.5 isClickBGDismiss:YES];
-
+        NegotiateVC * vc = [NegotiateVC new];
+        vc.TreeModel = model;
+        vc.count = quantity;
+        vc.TreeSize = TreeSize;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+        
+//
+        
     };
 }
 

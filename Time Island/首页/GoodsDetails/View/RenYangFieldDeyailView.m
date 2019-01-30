@@ -57,6 +57,9 @@
 //规格下划线
 @property (nonatomic , strong)UIView *specLineView;
 @property (nonatomic , strong)UIView *numberLineView;
+@property (nonatomic,assign) int quantity;
+@property (nonatomic,assign) int TreeSize;
+
 
 @end
 @implementation RenYangFieldDeyailView
@@ -194,6 +197,8 @@
 
     countLab1.text = @"1";
     countLab1.textAlignment = NSTextAlignmentCenter;
+    int value = [self.countLable.text intValue];
+    self.quantity = value;
 
     self.codeLab = [UILabel labelWithBackgroundColor:kWhiteColor textColor:kBlackColor font:15.0];
     [self.scrollView addSubview:self.codeLab];
@@ -234,10 +239,12 @@
 
 - (void)sureClick
 {
+//    if (self.sureBlock) {
+//        self.sureBlock();
+//    }
     if (self.sureBlock) {
-        self.sureBlock();
+        self.sureBlock(self.TreeModel,self.quantity,self.TreeSize);
     }
-    
 }
 - (void)min
 {
@@ -246,6 +253,7 @@
     }
     int value = [self.countLable.text intValue];
     value--;
+    self.quantity = value;
     self.countLable.text = [NSString stringWithFormat:@"%d",value];
     
     float str = [self.TreeModel.minPrice floatValue] / 1000.00;
@@ -257,6 +265,7 @@
 {
     int value = [self.countLable.text intValue];
     value++;
+    self.quantity = value;
     self.countLable.text = [NSString stringWithFormat:@"%d",value];
     
     float str = [self.TreeModel.minPrice floatValue] / 1000.00;
@@ -311,9 +320,11 @@
         if (i == 0) {
             specBtn.selected = YES;
             selectBtn = specBtn;
+            self.TreeSize = 0;
         }
-        [specBtn addTarget:self action:@selector(specBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
         specBtn.tag = 100 + i;
+        [specBtn addTarget:self action:@selector(specBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        
         [self.scrollView addSubview:specBtn];
     }
     
@@ -343,7 +354,7 @@
     sender.selected = !sender.selected;
     selectBtn.selected = !selectBtn.selected;
     selectBtn = sender;
-    
+    self.TreeSize = (int)sender.tag - 100;
 }
 
 

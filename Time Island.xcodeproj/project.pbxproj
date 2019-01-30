@@ -123,6 +123,8 @@
 		1FF6399821EC837400F5FF68 /* FriendRequestsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF6399721EC837400F5FF68 /* FriendRequestsCell.m */; };
 		360E09B42201351C003467B8 /* CarbonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 360E09B32201351C003467B8 /* CarbonModel.m */; };
 		360E09B822015790003467B8 /* RenYangUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 360E09B722015790003467B8 /* RenYangUserModel.m */; };
+		360E09BB22018CC5003467B8 /* NegotiateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 360E09BA22018CC5003467B8 /* NegotiateVC.m */; };
+		360E09BE22019A15003467B8 /* PayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 360E09BD22019A15003467B8 /* PayViewController.m */; };
 		3610EEA621ED716A00FD345D /* MineVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEA521ED716A00FD345D /* MineVCCell.m */; };
 		3610EEA921EDA72200FD345D /* SettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEA821EDA72200FD345D /* SettingVC.m */; };
 		3610EEAC21EDA95900FD345D /* SettingVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEAB21EDA95900FD345D /* SettingVCCell.m */; };
@@ -690,6 +692,10 @@
 		360E09B32201351C003467B8 /* CarbonModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarbonModel.m; sourceTree = "<group>"; };
 		360E09B622015790003467B8 /* RenYangUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenYangUserModel.h; sourceTree = "<group>"; };
 		360E09B722015790003467B8 /* RenYangUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RenYangUserModel.m; sourceTree = "<group>"; };
+		360E09B922018CC5003467B8 /* NegotiateVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NegotiateVC.h; sourceTree = "<group>"; };
+		360E09BA22018CC5003467B8 /* NegotiateVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NegotiateVC.m; sourceTree = "<group>"; };
+		360E09BC22019A15003467B8 /* PayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayViewController.h; sourceTree = "<group>"; };
+		360E09BD22019A15003467B8 /* PayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayViewController.m; sourceTree = "<group>"; };
 		3610EEA421ED716A00FD345D /* MineVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineVCCell.h; sourceTree = "<group>"; };
 		3610EEA521ED716A00FD345D /* MineVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineVCCell.m; sourceTree = "<group>"; };
 		3610EEA721EDA72200FD345D /* SettingVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingVC.h; sourceTree = "<group>"; };
@@ -1794,6 +1800,10 @@
 				B8ED2E8A21E878BB00FADCCE /* RenYangFieldDeyailView.m */,
 				B8ED2E8621E8516D00FADCCE /* RenYangFieldView.h */,
 				B8ED2E8721E8516D00FADCCE /* RenYangFieldView.m */,
+				360E09B922018CC5003467B8 /* NegotiateVC.h */,
+				360E09BA22018CC5003467B8 /* NegotiateVC.m */,
+				360E09BC22019A15003467B8 /* PayViewController.h */,
+				360E09BD22019A15003467B8 /* PayViewController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4163,6 +4173,7 @@
 				1F93615921EE0139007E522A /* UIViewController+CWLateralSlide.m in Sources */,
 				1F93614B21EE0105007E522A /* MyCarbombubbleView.m in Sources */,
 				365514D221FADC9A00E54996 /* CardModel.m in Sources */,
+				360E09BB22018CC5003467B8 /* NegotiateVC.m in Sources */,
 				B81E603721DC93EC00873AB9 /* UIView+Frame.m in Sources */,
 				1F1B00D221E89667000BEBD3 /* FriendsTheTreeTableView.m in Sources */,
 				1F1B00BD21E87B00000BEBD3 /* GivingVC.m in Sources */,
@@ -4229,6 +4240,7 @@
 				B80D385B21F85F1E00206B55 /* GoodsTypeModel.m in Sources */,
 				3610EEA621ED716A00FD345D /* MineVCCell.m in Sources */,
 				B87C210F21FAD12F00EFD0B0 /* orderDetailCell.m in Sources */,
+				360E09BE22019A15003467B8 /* PayViewController.m in Sources */,
 				1F93610721EDFD8F007E522A /* MyGiftTableView.m in Sources */,
 				1F3EBB0B21F5C42D005BC837 /* ShareTableViewCell.m in Sources */,
 				B81E605821DC981D00873AB9 /* NBCDRequest.m in Sources */,
