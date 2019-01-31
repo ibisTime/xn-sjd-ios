@@ -169,11 +169,11 @@
     http.parameters[@"type"] = @"2";
     http.parameters[@"dealType"] = @"1";
     [http postWithSuccess:^(id responseObject) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+        
     } failure:^(NSError *error) {
 
     }];
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)saveBook{
     NSLog(@"%s",__func__);

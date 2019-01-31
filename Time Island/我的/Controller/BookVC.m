@@ -10,6 +10,7 @@
 #import "BookView.h"
 #import "IssueBook.h"
 #import "BookModel.h"
+#import "BoolVideoDetailVC.h"
 @interface BookVC ()<RefreshDelegate,UITextFieldDelegate>
 @property (nonatomic,strong) BookView * bookview;
 @property (nonatomic,strong) NSMutableArray<BookModel *> * BookModels;
@@ -20,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的的文章";
+    [self refresh];
     
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = -10;
@@ -36,6 +38,11 @@
     self.bookview.backgroundColor = kWhiteColor;
     self.bookview.refreshDelegate = self;
     [self.view addSubview:self.bookview];
+    CoinWeakSelf
+    [self.bookview addRefreshAction:^{
+        [weakSelf refresh];
+        [weakSelf.bookview endRefreshHeader];
+    }];
     // Do any additional setup after loading the view.
 }
 
@@ -51,9 +58,16 @@
     http.parameters[@"limit"] = @(10);
     http.parameters[@"publishUserId"] = [TLUser user].userId;
     [http postWithSuccess:^(id responseObject) {
-        self.BookModels = [BookModel mj_objectWithKeyValues:responseObject[@"data"][@"list"]];
+        self.BookModels = [BookModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        self.bookview.BookModels = self.BookModels;
+        [self.bookview reloadData];
     } failure:^(NSError *error) {
     }];
 }
-
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"%s",__func__);
+    BoolVideoDetailVC * vc = [BoolVideoDetailVC new];
+    vc.BookModel = self.BookModels[indexPath.row];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 @end

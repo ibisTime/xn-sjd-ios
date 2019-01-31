@@ -7,7 +7,7 @@
 //
 
 #import "BaseTableViewCell.h"
-
+#import "BookModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BookCell : BaseTableViewCell
@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,strong) UILabel *collectLab;
 
 @property (nonatomic ,strong) UILabel *praiseLab;
+
+@property (nonatomic,strong) BookModel * BookModel;
 
 @end
 

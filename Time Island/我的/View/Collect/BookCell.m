@@ -91,5 +91,10 @@
     }
     return self;
 }
-
+-(void)setBookModel:(BookModel *)BookModel{
+    [self.iconImage sd_setImageWithURL:[NSURL URLWithString:[BookModel.photo convertImageUrl]]];
+    self.moreLab.text = BookModel.title;
+    self.timeLab.text = [BookModel.publishDatetime convertToDetailDate];
+    
+}
 @end

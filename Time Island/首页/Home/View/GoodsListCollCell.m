@@ -121,6 +121,20 @@
     
     addressLabel.text = [NSString stringWithFormat:@"%@ %@",model.province,model.city];
 
+    
+    if ([model.sellType isEqualToString:@"4"]) {
+        UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, headImage.height - 20, headImage.width, 20)];
+//        view.alpha = 0.8;
+        view.backgroundColor = kTabbarColor;
+//        UILabel * label = [UILabel labelWithFrame:CGRectMake(0, headImage.height - 20, headImage.width, 20) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(8) textColor:[UIColor whiteColor]];
+//        UILabel * label = [UILabel labelWithTitle: [NSString stringWithFormat:@"%@/%@",model.nowCount,model.raiseCount] frame:CGRectMake(0, headImage.height - 20, headImage.width, 20)];
+        UILabel * label = [UILabel labelWithTitle: @"12/12" frame:CGRectMake(0, headImage.height - 20, headImage.width, 20)];
+        [label setTextColor:[UIColor blackColor]];
+        
+//        label.text = [NSString stringWithFormat:@"%@/%@",model.nowCount,model.raiseCount];
+        [view addSubview:label];
+        [headImage addSubview:view];
+    }
 }
 
 
