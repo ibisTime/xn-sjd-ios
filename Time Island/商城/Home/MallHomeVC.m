@@ -100,6 +100,8 @@
     } failure:^(NSError *error) {
     }];
 }
+
+
 - (void)loadGoodsList
 {
 
@@ -108,7 +110,8 @@
     http.parameters[@"start"] = @"0";
     http.parameters[@"limit"] = @"10";
     http.parameters[@"location"] = @"1";
-
+    http.parameters[@"orderColumn"] = @"order_no";
+    http.parameters[@"orderDir"] = @"asc";
     http.tableView = self.table;
     http.isList = NO;
     [http modelClass:[MallTreeModel class]];
