@@ -39,6 +39,10 @@
  记录年月(正式使用时,不需要此属性)
  */
 @property (strong,nonatomic) NSString *dateStr;
+
+@property (nonatomic,strong) NSArray * RuleArray;
+
+@property (nonatomic,strong) NSDictionary * dic;
 @end
 
 @implementation CalendarCustomVC
@@ -47,6 +51,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self getgift];
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
 }
@@ -83,12 +88,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self getgift];
+    [self getcontinue];
+    
     [self initTopView];
-    [self initSignedView];
+//    [self initSignedView];
     [self initCalendar];
     [self calendarConfig];
     //1.加载缓存的日期,并选中
-    [self getCache];
+//    [self getCache];
     //载入节假日
     [self loadCalendarEvents];
     //显示农历
@@ -215,16 +223,26 @@
         http.code = @"805140";
         http.parameters[@"userId"] = [TLUser user].userId;
         [http postWithSuccess:^(id responseObject) {
-
+            // 获取代表公历的NSCalendar对象
+            NSCalendar *gregorian = [[NSCalendar alloc]
+                                     initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+            // 获取当前日期
+            NSDate* dt = [NSDate date];
+            // 定义一个时间字段的旗标，指定将会获取指定年、月、日、时、分、秒的信息
+            unsigned unitFlags = NSCalendarUnitDay;
+            // 获取不同时间字段的信息
+            NSDateComponents* comp = [gregorian components: unitFlags
+                                                  fromDate:dt];
+            // 获取各时间字段的数值
+            NSLog(@"现在是%ld日" , comp.day);
+            _count = (int)comp.day;
         } failure:^(NSError *error) {
-        
+
         }];
-        _count = 1;
+        
     }
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *datenow = [NSDate date];
-//    NSString *firstString = [formatter stringFromDate: datenow];
     
 //
     NSString *dateStr = [NSString stringWithFormat:@"%@-%ld",self.dateStr,_count];
@@ -234,30 +252,34 @@
 }
 //从网络获取所有签到结果
 - (void)getSign{
-    //配置日期缓存的key
     NSString *key = [NSString stringWithFormat:@"arrayDate"];
-    
-    //在这里假装网络请求所有的签到结果(signInList)成功了
-    NSLog(@"%@",_signInList);
-    //获取签到总数量
-    self.SignCount = self.signInList.count;
-    //常见临时数组dataArrayCache,用于存放签到结果(可能有的人觉得这一步不需要,但是咱们假设的签到结果里面只有纯日期,正式项目中可不一定如此)
-    NSMutableArray *dataArrayCache = [NSMutableArray array];
-    
-    if (self.SignCount) {//如果请求的数据有效
-        for (NSString *dateStr in _signInList) {
-            //把所有签到数据取出来添加进临时数组
-            NSDate *date = [self.dateFormatter dateFromString:dateStr];
-            if(date){
-                [dataArrayCache addObject:date];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"805146";
+    http.parameters[@"userId"] = [TLUser user].userId;
+    http.parameters[@"createStartDatetime"] = [NSString stringWithFormat:@"%@",self.minimumDate];
+    http.parameters[@"createEndDatetime"] = [NSString stringWithFormat:@"%@",self.maximumDate];
+    CoinWeakSelf
+    [http postWithSuccess:^(id responseObject) {
+        weakSelf.signInList = responseObject[@"data"][0][@"signResList"];
+        weakSelf.SignCount = weakSelf.signInList.count;
+        NSMutableArray *dataArrayCache = [NSMutableArray array];
+            if (self.SignCount) {//如果请求的数据有效
+                for (NSString *dateStr in weakSelf.signInList) {
+                    //把所有签到数据取出来添加进临时数组
+                    NSString * str = [dateStr convertToDetailDate];
+                    NSDate *date = [self.dateFormatter dateFromString:str];
+                    if(date){
+                        [dataArrayCache addObject:date];
+                    }
+                }
+                //用偏好设置保存签到数据到本地缓存
+                [[NSUserDefaults standardUserDefaults] setValue:dataArrayCache forKey:key];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                //保存后重新加载缓存数据
+                [self getCache];
             }
-        }
-        //用偏好设置保存签到数据到本地缓存
-        [[NSUserDefaults standardUserDefaults] setValue:dataArrayCache forKey:key];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        //保存后重新加载缓存数据
-        [self getCache];
-    }
+    } failure:^(NSError *error) {
+    }];
 }
 - (void)initTopView
 {
@@ -289,7 +311,7 @@
     signLab2.frame = CGRectMake(10, signLab.yy+15, 180, 22);
     [self.content addSubview:signLab2];
     UILabel *signCount = [UILabel labelWithBackgroundColor:kClearColor textColor:kWhiteColor font:12];
-    signCount.text = @"  本月已连续签到3天, 累计5天";
+    signCount.text = [NSString stringWithFormat: @"  本月已连续签到%@天, 累计%@天",self.dic[@"continueSignCount"],self.dic[@"monthSignCount"]];
     signCount.frame = CGRectMake(kScreenWidth-kWidth(200), self.titleLab.yy+30, kWidth(185), 23);
     signCount.textColor = kWhiteColor;
     [self.content addSubview:signCount];
@@ -302,9 +324,10 @@
     CGFloat marge = (totalWidth - 6*23)/5;
     CGFloat buttonW = kScreenWidth-20;
     buttonW = (buttonW - 44*6)/5;
-    for (int i = 0; i < 6; i++) {
+    
+    for (int i = 0; i < self.RuleArray.count; i++) {
         UIButton *button = [UIButton buttonWithImageName:@"签到-礼物" cornerRadius:11.5];
-        button.frame = CGRectMake(20+i*marge+i*23, signLab2.yy+20, 23, 23);
+        button.frame = CGRectMake(20+i*marge+i*11, signLab2.yy+20, 23, 23);
         [self.content addSubview:button];
         [button setBackgroundImage:kImage(@"签到-礼物") forState:UIControlStateNormal];
         [button setBackgroundColor:RGB(86, 185, 168) forState:UIControlStateNormal];
@@ -312,35 +335,25 @@
         circle.backgroundColor = RGB(86, 185, 168);
         circle.layer.cornerRadius = 6;
         circle.clipsToBounds = YES;
-        circle.frame = CGRectMake(20+i*marge+i*23, button.yy+5, 12, 12);
+        circle.frame = CGRectMake(20+i*marge+i*11, button.yy+5, 12, 12);
         circle.centerX = button.centerX;
         [self.content addSubview:circle];
         circle.tag = i+100;
         UILabel *dayLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kWhiteColor font:14];
         [self.content addSubview:dayLab];
-        dayLab.frame = CGRectMake(20+i*marge+i*23, button.yy+25, 33, 23);
-        if (i == 5) {
-            dayLab.text = [NSString stringWithFormat:@"%d天",i*4];
-        }else{
-            dayLab.text = [NSString stringWithFormat:@"%d天",(i+1)*3];
+        dayLab.frame = CGRectMake(20+i*marge+i*10, button.yy+25, 40, 23);
+        dayLab.numberOfLines = 0;
+        if (self.RuleArray) {
+            dayLab.text = [NSString stringWithFormat:@"%@",[ self.RuleArray[i][@"ckey"] stringByReplacingOccurrencesOfString:@"DAYS" withString:@"天"]];
         }
 
         UIButton *score = [UIButton buttonWithTitle:@"" titleColor:kWhiteColor backgroundColor:RGB(25, 118, 112) titleFont:11];
         [self.content addSubview:score];
-        score.frame = CGRectMake(10+i*buttonW+i*44, dayLab.yy+8, 44, 19);
+        score.frame = CGRectMake(10+i*buttonW+i*32, dayLab.yy+8, 44, 24);
         score.layer.cornerRadius = 3;
         score.clipsToBounds = YES;
-        if (i==0) {
-            [score setTitle:@"15积分" forState:UIControlStateNormal];
-        }else if (i==1)
-        {
-            [score setTitle:@"30积分" forState:UIControlStateNormal];
-
-        }else{
-            [score setTitle:[NSString stringWithFormat:@"%d积分",i*20] forState:UIControlStateNormal];
-
-        }
-    
+        score.titleLabel.numberOfLines = 0;
+        [score setTitle:[NSString stringWithFormat:@"%@积分",self.RuleArray[i][@"cvalue"]] forState:UIControlStateNormal];
     }
     UIView *totleView = [UIView new];
     totleView.backgroundColor = RGB(86, 185, 168);
@@ -358,6 +371,32 @@
     UIView *view  = [self.view viewWithTag:100];
     view.backgroundColor = kWhiteColor;
     
+}
+-(void)getgift{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"630045";
+    http.parameters[@"start"] = @(1);
+    http.parameters[@"limit"] = @(10);
+    http.parameters[@"type"] = @"SIGN_RULE";
+    http.parameters[@"orderColumn"] = @"id";
+    http.parameters[@"orderDir"] = @"asc";
+    [http postWithSuccess:^(id responseObject) {
+        self.RuleArray = responseObject[@"data"][@"list"];
+        [self initSignedView];
+    } failure:^(NSError *error) {
+    }];
+}
+-(void)getcontinue{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629906";
+    http.parameters[@"userId"] = [TLUser user].userId;
+    http.parameters[@"createStartDatetime"] = self.minimumDate;
+    http.parameters[@"createEndDatetime"] = self.maximumDate;
+    [http postWithSuccess:^(id responseObject) {
+        self.dic = (NSDictionary * )responseObject[@"data"];
+        [self initSignedView];
+    } failure:^(NSError *error) {
+    }];
 }
 - (void)backToTopView
 {

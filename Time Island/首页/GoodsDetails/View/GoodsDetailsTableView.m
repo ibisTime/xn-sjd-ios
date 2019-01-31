@@ -58,7 +58,7 @@
         }
         else
         {
-            return 20;
+            return self.RenYangModel.count;
         }
     }
     return 1;
@@ -89,15 +89,13 @@
         }
         return cell;
     }else if(self.SelectHeader == 0){
-//        GoodsDetailsCell  *cell = [tableView dequeueReusableCellWithIdentifier:GoodsDetails forIndexPath:indexPath];
-////        cell.web = self.TreeModel.Description;
-//        cell.TreeModel = self.TreeModel;
         _cell = [tableView dequeueReusableCellWithIdentifier:GoodsDetails forIndexPath:indexPath];
         _cell.TreeModel = self.TreeModel;
         [_cell.detail.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
         return _cell;
     }else{
         RenYangListCell *cell = [tableView dequeueReusableCellWithIdentifier:RenYangList forIndexPath:indexPath];
+        cell.RenYangModel = self.RenYangModel[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -161,10 +159,6 @@
     }
 }
 
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    [self.refreshDelegate refreshTableView:self didSelectRowAtIndexPath:indexPath];
-//}
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
@@ -210,7 +204,5 @@
     }
     return [UIView new];
 }
-//-(void)setTreeModel:(TreeModel *)TreeModel{
-//    _TreeModel = TreeModel;
-//}
+
 @end

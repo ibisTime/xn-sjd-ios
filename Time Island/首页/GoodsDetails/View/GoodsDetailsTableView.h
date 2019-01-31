@@ -8,9 +8,11 @@
 
 #import "TLTableView.h"
 #import "TreeModel.h"
+#import "RenYangUserModel.h"
 @interface GoodsDetailsTableView : TLTableView
 
 @property (nonatomic , assign)NSInteger SelectHeader;
 
 @property (nonatomic,strong) TreeModel * TreeModel;
+@property (nonatomic,strong) NSMutableArray<RenYangUserModel * > * RenYangModel;
 @end

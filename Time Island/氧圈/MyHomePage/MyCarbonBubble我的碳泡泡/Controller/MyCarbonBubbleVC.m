@@ -10,11 +10,13 @@
 #import "MyCarbonBubbleTableView.h"
 
 #import "MyCarbombubbleView.h"
+#import "CarbonModel.h"
 @interface MyCarbonBubbleVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)MyCarbonBubbleTableView *tableView;
 
 @property (nonatomic , strong)MyCarbombubbleView *headView;
+@property (nonatomic,strong) NSMutableArray<CarbonModel *> * CarbonModels;
 
 @end
 
@@ -24,11 +26,13 @@
     
     if (!_tableView) {
         
+        
         _tableView = [[MyCarbonBubbleTableView alloc] initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH,SCREEN_HEIGHT -kNavigationBarHeight) style:UITableViewStyleGrouped];
         
         _tableView.refreshDelegate = self;
         _tableView.backgroundColor = kWhiteColor;
         //        [self.view addSubview:_tableView];
+        [self refresh];
     }
     return _tableView;
 }
@@ -65,7 +69,19 @@
 //{
 //    [self cw_dismissViewController];
 //}
-
+-(void)refresh{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"802322";
+    http.parameters[@"accountNumber"] = self.accountNumber;
+    http.parameters[@"start"] = @(1);
+    http.parameters[@"limit"] = @(10);
+    [http postWithSuccess:^(id responseObject) {
+        self.CarbonModels = [CarbonModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        self.tableView.CarbonModels = self.CarbonModels;
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+    }];
+}
 
 
 @end

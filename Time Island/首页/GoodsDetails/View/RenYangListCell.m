@@ -69,5 +69,14 @@
     }
     return self;
 }
-
+-(void)setRenYangModel:(RenYangUserModel *)RenYangModel{
+    NSLog(@"%@",RenYangModel.user);
+    self.moreLab.text = RenYangModel.user[@"nickname"];
+    self.detailLab.text = [RenYangModel.startDatetime convertToDetailDate];
+    float money = [RenYangModel.amount floatValue] / 1000.00;
+    self.moneyLab.text = [NSString stringWithFormat:@"¥ %.2f",money];
+    if (RenYangModel.user[@"photo"]) {
+        [self.iconImage sd_setImageWithURL:[NSURL URLWithString:[RenYangModel.user[@"photo"] convertImageUrl]]];
+    }
+}
 @end

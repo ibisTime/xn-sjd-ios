@@ -9,5 +9,6 @@
 #import "TLBaseVC.h"
 
 @interface MyCarbonBubbleVC : TLBaseVC
+@property (nonatomic,strong) NSString * accountNumber;
 
 @end

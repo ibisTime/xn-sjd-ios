@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CarbonModel.h"
 @interface MyCarbombubbleView : UIView
-
+@property (nonatomic,strong) CarbonModel * CarbonModel;
+@property (nonatomic,strong) UILabel *amountLbl;
+@property (nonatomic,strong) NSArray * array;
 @end

@@ -213,11 +213,28 @@
         searchField.layer.masksToBounds = YES;
         
     }
-    
-    
-    
 }
-
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629025";
+    http.parameters[@"start"] = @(self.start);
+    http.parameters[@"limit"] = @(10);
+    http.parameters[@"type"]= @(1);
+    http.parameters[@"name"] = self.searchBar.text;
+    http.parameters[@"userId"] = [TLUser user].userId;
+    http.parameters[@"statusList"] = @[@"4",@"5",@"6"];
+    [http postWithSuccess:^(id responseObject) {
+        NSArray *array = responseObject[@"data"][@"list"];
+        [self.treemMuArray addObjectsFromArray:array];
+        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:array];
+        [self.collectionView reloadData];
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
+    } failure:^(NSError *error) {
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
+    }];
+}
 -(void)headRefresh
 {
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];

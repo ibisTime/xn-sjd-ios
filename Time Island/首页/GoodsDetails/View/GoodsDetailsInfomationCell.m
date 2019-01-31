@@ -80,7 +80,8 @@
     self.TheLabel.text = TreeModel.status;
 //    self.priceLabel.text = [NSString stringWithFormat:@"¥ %@",TreeModel.productSpecsList[0][@"price"] ];
     if (TreeModel.productSpecsList.count > 0) {
-        NSString *str= [NSString stringWithFormat:@"¥ %@",TreeModel.productSpecsList[0][@"price"] ];
+        float money = [TreeModel.productSpecsList[0][@"price"] floatValue] / 1000.00;
+        NSString *str= [NSString stringWithFormat:@"¥ %.2f",money];
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:str];
         [attrStr addAttribute:NSFontAttributeName value:FONT(11) range:NSMakeRange(0, 1)];
         self.priceLabel.attributedText = attrStr;

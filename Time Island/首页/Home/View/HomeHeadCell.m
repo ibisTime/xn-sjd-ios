@@ -27,7 +27,7 @@
 }
 
 //轮播图
-@property (nonatomic,strong) TLBannerView *bannerView;
+//@property (nonatomic,strong) TLBannerView *bannerView;
 //统计
 @property (nonatomic, strong) UIView *statisticsView;
 //数据
@@ -279,7 +279,11 @@
 }
 
 
-
+-(void)bannerView:(SLBannerView *)banner didClickImagesAtIndex:(NSInteger)index{
+    if (self.clickimage) {
+        self.clickimage(index);
+    }
+}
 
 -(void)HW3DBannerViewClick
 {

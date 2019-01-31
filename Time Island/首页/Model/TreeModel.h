@@ -42,11 +42,14 @@
 @property (nonatomic , copy)NSString *remark;
 @property (nonatomic , copy)NSString *curOrderCode;
 @property (nonatomic , copy)NSString *ownerName;
+@property (nonatomic , copy)NSString *maxPrice;
+@property (nonatomic , copy)NSString *minPrice;
 
 @property (nonatomic,copy) NSString * name;
 @property (nonatomic , copy)NSString *code;
 @property (nonatomic,copy) NSString * sellType;
 @property (nonatomic , copy)NSString *ownerId;
+@property (nonatomic , copy)NSString *userId;
 @property (nonatomic,copy) NSString * categoryCode;
 @property (nonatomic,copy) NSString * listPic;
 @property (nonatomic,copy) NSString * bannerPic;
@@ -58,4 +61,5 @@
 @property (nonatomic,copy) NSString * Description;
 @property (nonatomic,strong) NSArray * productSpecsList;
 @property (nonatomic,strong) NSArray * treeList;
+@property (nonatomic,strong) NSDictionary * ownerInfo;
 @end
