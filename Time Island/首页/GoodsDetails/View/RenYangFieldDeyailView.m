@@ -288,6 +288,10 @@
 -(void)setTreeModel:(TreeModel *)TreeModel
 {
 
+    
+//    self.TreeModel = TreeModel;
+
+
     _TreeModel = TreeModel;
 
     if (self.bannaArray.count > 0) {

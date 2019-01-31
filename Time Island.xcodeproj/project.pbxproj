@@ -1532,6 +1532,21 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		1F19AC1522029D550090BF84 /* GoodsDetails */ = {
+			isa = PBXGroup;
+			children = (
+				B8226F6C21F6DBD9002F450F /* MallGoodDetailVC.h */,
+				B8226F6D21F6DBD9002F450F /* MallGoodDetailVC.m */,
+				B8226F6F21F6E230002F450F /* MallGoodIntroduceVC.h */,
+				B8226F7021F6E230002F450F /* MallGoodIntroduceVC.m */,
+				B8226F7B21F70E3D002F450F /* GoodsDetailWebView.h */,
+				B8226F7C21F70E3D002F450F /* GoodsDetailWebView.m */,
+				B8226F7E21F70E66002F450F /* GoodsEditVC.h */,
+				B8226F7F21F70E66002F450F /* GoodsEditVC.m */,
+			);
+			path = GoodsDetails;
+			sourceTree = "<group>";
+		};
 		1F1B001621E6E21D000BEBD3 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -3219,10 +3234,11 @@
 		B81E5FA621DC8FC200873AB9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				1F19AC1522029D550090BF84 /* GoodsDetails */,
+				B85F891021FC2F9B00D5B7A4 /* 搜索 */,
 				B8F3724421FED7B20078B03B /* Model */,
 				B85F892421FC2FC100D5B7A4 /* PYTempViewController.h */,
 				B85F892321FC2FC100D5B7A4 /* PYTempViewController.m */,
-				B85F891021FC2F9B00D5B7A4 /* 搜索 */,
 				1F9361C821F174D0007E522A /* MallHomeVC.h */,
 				1F9361C921F174D0007E522A /* MallHomeVC.m */,
 				1F9361D421F178FA007E522A /* GoodsListVC.h */,
@@ -3489,14 +3505,6 @@
 				B8712E7C21F577FA00039086 /* MallClassificationVC.m */,
 				B8712EA221F5CC0800039086 /* MallGoodListViewController.h */,
 				B8712EA321F5CC0800039086 /* MallGoodListViewController.m */,
-				B8226F6C21F6DBD9002F450F /* MallGoodDetailVC.h */,
-				B8226F6D21F6DBD9002F450F /* MallGoodDetailVC.m */,
-				B8226F6F21F6E230002F450F /* MallGoodIntroduceVC.h */,
-				B8226F7021F6E230002F450F /* MallGoodIntroduceVC.m */,
-				B8226F7B21F70E3D002F450F /* GoodsDetailWebView.h */,
-				B8226F7C21F70E3D002F450F /* GoodsDetailWebView.m */,
-				B8226F7E21F70E66002F450F /* GoodsEditVC.h */,
-				B8226F7F21F70E66002F450F /* GoodsEditVC.m */,
 				B80D384121F8403800206B55 /* MallStoreListVC.h */,
 				B80D384221F8403800206B55 /* MallStoreListVC.m */,
 			);
