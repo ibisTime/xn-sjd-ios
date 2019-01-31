@@ -7,11 +7,11 @@
 //
 
 #import "TLBaseVC.h"
-
+#import "OrderModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OrderDetailsVC : TLBaseVC<UITableViewDelegate,UITableViewDataSource>
-
+@property (nonatomic,strong) OrderModel * OrderModel;
 @end
 
 NS_ASSUME_NONNULL_END

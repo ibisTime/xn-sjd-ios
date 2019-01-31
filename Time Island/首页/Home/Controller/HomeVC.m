@@ -178,9 +178,9 @@
     
     GoodsListCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GoodsListCollCell" forIndexPath:indexPath];
 //    cell.model =
-    TreeModel * model = self.Models[indexPath.row];
-    cell.model = model;
-
+//    TreeModel * model = self.Models[indexPath.row];
+//    cell.model = model;
+    cell.model = self.Models[indexPath.row];
     cell.SellTypeArray = self.SellTypeArray;
     cell.ProductStatusArray = self.ProductStatusArray;
     

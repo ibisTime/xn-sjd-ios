@@ -62,7 +62,7 @@
     [view addSubview:ZanBtn];
     self.ZanBtn = ZanBtn;
     
-    
+
     [self.view addSubview:view];
     
     

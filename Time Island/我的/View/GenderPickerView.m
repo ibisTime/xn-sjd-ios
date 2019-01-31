@@ -18,6 +18,7 @@
         self.layer.borderColor = [UIColor grayColor].CGColor;
         self.layer.borderWidth = 2.0;
         [self reloadAllComponents];
+        
     }
     return self;
 }

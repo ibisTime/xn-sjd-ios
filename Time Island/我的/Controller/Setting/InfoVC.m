@@ -16,6 +16,8 @@
 @property (nonatomic,strong) TLTextField * gender;
 @property (nonatomic,strong) TLTextField * age;
 @property (nonatomic,strong) TLTextField * more;
+@property (nonatomic,assign) NSInteger genderindex;
+
 @end
 
 @implementation InfoVC
@@ -188,13 +190,42 @@
     
 }
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
-    [textField resignFirstResponder];
+//    [textField resignFirstResponder];
+//
+//    GenderPickerView * view = [[GenderPickerView alloc]initWithFrame:CGRectMake(15, SCREEN_HEIGHT / 2 - 25, SCREEN_WIDTH - 30, 50)];
+//    __weak typeof(self) weakSelf = self;
+//    view.genderblock = ^(NSString * _Nonnull Gender) {
+//        self.gender.text = Gender;
+//    };
+//    [self.view addSubview:view];
     
-    GenderPickerView * view = [[GenderPickerView alloc]initWithFrame:CGRectMake(15, SCREEN_HEIGHT / 2 - 25, SCREEN_WIDTH - 30, 50)];
-    __weak typeof(self) weakSelf = self;
-    view.genderblock = ^(NSString * _Nonnull Gender) {
-        self.gender.text = Gender;
+    NSMutableArray *array = [NSMutableArray array];
+//    for (int i = 0;  i < 2; i ++) {
+//        [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@",@"男",@"女"]]];
+//    }
+    [array addObject:[[SelectedListModel alloc] initWithSid:0 Title:[NSString stringWithFormat:@"%@",@"男"]]];
+    [array addObject:[[SelectedListModel alloc] initWithSid:1 Title:[NSString stringWithFormat:@"%@",@"女"]]];
+    
+    SelectedListView *view = [[SelectedListView alloc] initWithFrame:CGRectMake(0, 0, 280, 0) style:UITableViewStylePlain];
+    view.isSingle = YES;
+    view.array = array;
+    view.selectedBlock = ^(NSArray<SelectedListModel *> *array) {
+        [LEEAlert closeWithCompletionBlock:^{
+            SelectedListModel *model = array[0];
+            NSLog(@"选中第%ld行" , model.sid);
+            self.genderindex = model.sid;
+            self.gender.text = model.title;
+        }];
     };
-    [self.view addSubview:view];
+    [LEEAlert alert].config
+    .LeeTitle(@"选择性别")
+    .LeeItemInsets(UIEdgeInsetsMake(20, 0, 20, 0))
+    .LeeCustomView(view)
+    .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
+    .LeeHeaderInsets(UIEdgeInsetsMake(10, 0, 0, 0))
+    .LeeClickBackgroundClose(YES)
+    .LeeShow();
+    
+//    [self.view addSubview:view];
 }
 @end

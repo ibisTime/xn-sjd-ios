@@ -132,6 +132,8 @@
 		3610EEC121EDC3A300FD345D /* AddCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC021EDC3A300FD345D /* AddCardVC.m */; };
 		3610EEC421EDCEBD00FD345D /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC321EDCEBD00FD345D /* InfoVC.m */; };
 		3610EEC721EDD6A800FD345D /* GetAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC621EDD6A800FD345D /* GetAddVC.m */; };
+		363CD5E022029B9B00A81CFA /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 363CD5DF22029B9B00A81CFA /* OrderModel.m */; };
+		363CD5E32202D44600A81CFA /* ConnectTreeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 363CD5E22202D44600A81CFA /* ConnectTreeModel.m */; };
 		363E291421F84530003981CD /* CertifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 363E291321F84530003981CD /* CertifyVC.m */; };
 		363E291721F84984003981CD /* CertifyVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 363E291621F84984003981CD /* CertifyVCCell.m */; };
 		363E291B21F84D46003981CD /* PersonalCertifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 363E291A21F84D46003981CD /* PersonalCertifyVC.m */; };
@@ -710,6 +712,10 @@
 		3610EEC321EDCEBD00FD345D /* InfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoVC.m; sourceTree = "<group>"; };
 		3610EEC521EDD6A800FD345D /* GetAddVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAddVC.h; sourceTree = "<group>"; };
 		3610EEC621EDD6A800FD345D /* GetAddVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAddVC.m; sourceTree = "<group>"; };
+		363CD5DE22029B9B00A81CFA /* OrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
+		363CD5DF22029B9B00A81CFA /* OrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
+		363CD5E12202D44600A81CFA /* ConnectTreeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectTreeModel.h; sourceTree = "<group>"; };
+		363CD5E22202D44600A81CFA /* ConnectTreeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectTreeModel.m; sourceTree = "<group>"; };
 		363E291221F84530003981CD /* CertifyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CertifyVC.h; sourceTree = "<group>"; };
 		363E291321F84530003981CD /* CertifyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CertifyVC.m; sourceTree = "<group>"; };
 		363E291521F84984003981CD /* CertifyVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CertifyVCCell.h; sourceTree = "<group>"; };
@@ -3154,6 +3160,10 @@
 				3689768621EF0435005F1177 /* InviteModel.m */,
 				365514D021FADC9A00E54996 /* CardModel.h */,
 				365514D121FADC9A00E54996 /* CardModel.m */,
+				363CD5DE22029B9B00A81CFA /* OrderModel.h */,
+				363CD5DF22029B9B00A81CFA /* OrderModel.m */,
+				363CD5E12202D44600A81CFA /* ConnectTreeModel.h */,
+				363CD5E22202D44600A81CFA /* ConnectTreeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4092,6 +4102,7 @@
 				B87C211E21FAF2DE00EFD0B0 /* ExpressCell.m in Sources */,
 				B81E5FBB21DC8FC200873AB9 /* TLPickerTextField.m in Sources */,
 				B87C213221FB047000EFD0B0 /* HDragItemListView.m in Sources */,
+				363CD5E022029B9B00A81CFA /* OrderModel.m in Sources */,
 				3610EEC721EDD6A800FD345D /* GetAddVC.m in Sources */,
 				36F841D521F05B3B00BAC88A /* CardVCCell.m in Sources */,
 				B81E602321DC906D00873AB9 /* UserDefaultsUtil.m in Sources */,
@@ -4190,6 +4201,7 @@
 				B81E5FB521DC8FC200873AB9 /* SortBar.m in Sources */,
 				B81E5FC321DC8FC200873AB9 /* TLTextField.m in Sources */,
 				1F93610321EDFD8F007E522A /* ToClaimTheGiftVC.m in Sources */,
+				363CD5E32202D44600A81CFA /* ConnectTreeModel.m in Sources */,
 				36DB50DC21F5A11F009D56EF /* MallOrderVC.m in Sources */,
 				B80D384021F813D000206B55 /* GoodsEditModel.m in Sources */,
 				3689767421EEE28C005F1177 /* CollectTreeCell.m in Sources */,

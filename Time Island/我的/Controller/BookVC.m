@@ -9,8 +9,10 @@
 #import "BookVC.h"
 #import "BookView.h"
 #import "IssueBook.h"
-@interface BookVC ()<RefreshDelegate>
+#import "BookModel.h"
+@interface BookVC ()<RefreshDelegate,UITextFieldDelegate>
 @property (nonatomic,strong) BookView * bookview;
+@property (nonatomic,strong) NSMutableArray<BookModel *> * BookModels;
 @end
 
 @implementation BookVC
@@ -29,9 +31,6 @@
     [self.RightButton addTarget:self action:@selector(myRecodeClick) forControlEvents:(UIControlEventTouchUpInside)];
     
     
-    
-    
-    
     self.view.backgroundColor = kWhiteColor;
     self.bookview = [[BookView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - kTabBarHeight) style:UITableViewStyleGrouped];
     self.bookview.backgroundColor = kWhiteColor;
@@ -45,6 +44,16 @@
     IssueBook * issue = [[IssueBook alloc]init];
     [self.navigationController pushViewController:issue animated:YES];
 }
-
+-(void)refresh{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629345";
+    http.parameters[@"start"] = @(1);
+    http.parameters[@"limit"] = @(10);
+    http.parameters[@"publishUserId"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
+        self.BookModels = [BookModel mj_objectWithKeyValues:responseObject[@"data"][@"list"]];
+    } failure:^(NSError *error) {
+    }];
+}
 
 @end

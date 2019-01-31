@@ -222,8 +222,8 @@
             break;
         case 1:
         {
-            TLUserLoginVC * login = [[TLUserLoginVC alloc]init];
-            [self.navigationController pushViewController:login animated:YES];
+//            TLUserLoginVC * login = [[TLUserLoginVC alloc]init];
+//            [self.navigationController pushViewController:login animated:YES];
         }
             break;
         case 2:

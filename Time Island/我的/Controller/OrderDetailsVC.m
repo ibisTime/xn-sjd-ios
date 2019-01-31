@@ -8,7 +8,12 @@
 
 #import "OrderDetailsVC.h"
 #import "OrderFootCell.h"
-@interface OrderDetailsVC ()
+@interface OrderDetailsVC (){
+    UIImageView * State;
+    UILabel * StateLab;
+    UILabel * BeginTime;
+    UILabel * EndTime;
+}
 @property (nonatomic,strong) UIView * HeadView;
 @property (nonatomic,strong) UIView * FootView;
 @property (nonatomic,strong) TLTableView * TableView;
@@ -33,14 +38,27 @@
 -(void)SetHeadView{
     self.HeadView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 135)];
     
-    UIImageView * State = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 24, 28, 48, 48)];
+    State = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 24, 28, 48, 48)];
     State.layer.cornerRadius = 24;
     State.layer.masksToBounds = YES;
     State.image = kImage(@"订单过期");
     [self.HeadView addSubview:State];
     
-    UILabel * StateLab = [UILabel labelWithFrame:CGRectMake(0, State.yy + 10, SCREEN_WIDTH, 21) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(15) textColor:kHexColor(@"#2D2D2D")];
-    StateLab.text = @"订单过期";
+    StateLab = [UILabel labelWithFrame:CGRectMake(0, State.yy + 10, SCREEN_WIDTH, 21) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(15) textColor:kHexColor(@"#2D2D2D")];
+//    StateLab.text = @"订单过期";
+    int status = [self.OrderModel.status intValue];
+    switch (status) {
+        case 3:
+            StateLab.text = @"认养中";
+            State.image = kImage(@"订单完成");
+            break;
+        case 1:
+            StateLab.text = @"已取消";
+            State.image = kImage(@"订单已取消");
+            break;
+        default:
+            break;
+    }
     [self.HeadView addSubview:StateLab];
     
 }
@@ -50,8 +68,9 @@
     label1.text = @"起始时间";
     [self.FootView addSubview:label1];
     
-    UILabel * BeginTime = [UILabel labelWithFrame:CGRectMake(label1.xx + 38, 17.5, 79.5, 18.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(13) textColor:kHexColor(@"#2D2D2D")];
-    BeginTime.text = @"2018-10-10";
+    BeginTime = [UILabel labelWithFrame:CGRectMake(label1.xx + 38, 17.5, SCREEN_WIDTH - label1.xx + 38 - 15, 18.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(13) textColor:kHexColor(@"#2D2D2D")];
+//    BeginTime.text = @"2018-10-10";
+    BeginTime.text = [self.OrderModel.product[@"raiseStartDatetime"] convertToDetailDate];
     [self.FootView addSubview:BeginTime];
     
     [self.FootView addSubview:[self createview:CGRectMake(15, 54, SCREEN_WIDTH - 30, 1)]];
@@ -60,8 +79,9 @@
     label2.text = @"终止时间";
     [self.FootView addSubview:label2];
     
-    UILabel * EndTime = [UILabel labelWithFrame:CGRectMake(label2.xx + 38, 72.5 , 79.5, 18.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(13) textColor:kHexColor(@"#2D2D2D")];
-    EndTime.text = @"2019-10-10";
+    EndTime = [UILabel labelWithFrame:CGRectMake(label2.xx + 38, 72.5 , SCREEN_WIDTH - label2.xx + 38 - 15, 18.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(13) textColor:kHexColor(@"#2D2D2D")];
+//    EndTime.text = @"2019-10-10";
+    EndTime.text = [self.OrderModel.product[@"raiseEndDatetime"] convertToDetailDate];
     [self.FootView addSubview:EndTime];
     [self.FootView addSubview:[self createview:CGRectMake(15, 109, SCREEN_WIDTH - 30, 1)]];
     
@@ -76,7 +96,8 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     //    OrderFootCell * cell = [[OrderFootCell alloc]init];
     OrderFootCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.OrderCount = 1;
+    cell.OrderModel = self.OrderModel;
+//    cell.OrderCount = 1;
     cell.selectionStyle = UIAccessibilityTraitNone;
     return cell;
 }
@@ -91,4 +112,9 @@
     view.backgroundColor = kLineColor;
     return view;
 }
+-(void)setOrderModel:(OrderModel *)OrderModel{
+    _OrderModel = OrderModel;
+    
+}
+
 @end

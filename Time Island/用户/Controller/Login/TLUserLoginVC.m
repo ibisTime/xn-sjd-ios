@@ -51,17 +51,34 @@
     
     [super viewWillAppear:animated];
     //    [self.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
-    [self navigationwhiteColor];
+//    [self navigationwhiteColor];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [self navigationSetDefault];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [[UIApplicationshared Application]setStatusBarHidden:NOwithAnimation:UIStatusBarAnimationFade];
+    
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    
+    UIButton * back = [[UIButton alloc]initWithFrame:CGRectMake(20, 32.4, 12, 21.2)];
+    [back setImage:kImage(@"返回黑色") forState:(UIControlStateNormal)];
+    [back addTarget:self action:@selector(back) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:back];
+    
+    
     
     //    self.title = [LangSwitcher switchLang:@"登录" key:nil];
     self.title = @"登录";
@@ -80,12 +97,18 @@
     
     
 }
+//-(void)back{
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//}
 
+- (BOOL)prefersStatusBarHidden {
+    return NO;
+}
 #pragma mark - Init
 
 - (void)setUpUI {
     
-    self.view.backgroundColor = kBackgroundColor;
+//    self.view.backgroundColor = kBackgroundColor;
     
     CGFloat w = kScreenWidth;
     CGFloat h = ACCOUNT_HEIGHT;
@@ -207,26 +230,29 @@
 }
 
 - (void)goLogin {
-    TLNetworking *http = [TLNetworking new];
-    http.showView = self.view;
-    http.code = USER_LOGIN_CODE;
-    http.parameters[@"loginName"] = self.phone.text;
-    http.parameters[@"loginPwd"] = self.pwd.text;
+    if (self.phone.text || self.pwd.text) {
+        TLNetworking *http = [TLNetworking new];
+        http.showView = self.view;
+        http.code = USER_LOGIN_CODE;
+        http.parameters[@"loginName"] = self.phone.text;
+        http.parameters[@"loginPwd"] = self.pwd.text;
+        
+        [http postWithSuccess:^(id responseObject) {
+            NSDictionary * userinfo = responseObject[@"data"];
+            [TLUser user].userId = userinfo[@"userId"];
+            [TLUser user].token = userinfo[@"token"];
+            //        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+            self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+            self.window.backgroundColor = [UIColor whiteColor];
+            [self.window makeKeyAndVisible];
+            TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
+            self.window.rootViewController = tabBarCtrl;
+            
+        } failure:^(NSError *error) {
+            
+        }];
+    }
     
-    [http postWithSuccess:^(id responseObject) {
-        NSDictionary * userinfo = responseObject[@"data"];
-        [TLUser user].userId = userinfo[@"userId"];
-        [TLUser user].token = userinfo[@"token"];
-//        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        self.window.backgroundColor = [UIColor whiteColor];
-        [self.window makeKeyAndVisible];
-        TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
-        self.window.rootViewController = tabBarCtrl;
-        
-    } failure:^(NSError *error) {
-        
-    }];
 
 }
 
@@ -318,10 +344,10 @@
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     if (textField.tag == 0) {
-        self.phoneview.backgroundColor = [UIColor grayColor];
+        self.phoneview.backgroundColor = kLineColor;
     }
     else{
-        self.pwdview.backgroundColor = [UIColor grayColor];
+        self.pwdview.backgroundColor = kLineColor;
     }
 }
 
