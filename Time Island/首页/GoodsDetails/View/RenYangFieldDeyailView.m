@@ -271,7 +271,7 @@
 -(void)setTreeModel:(TreeModel *)TreeModel
 {
     
-    self.TreeModel = TreeModel;
+//    self.TreeModel = TreeModel;
     
     if (self.bannaArray.count > 0) {
         [self.treeImage sd_setImageWithURL:[NSURL URLWithString:self.bannaArray[0]]];
