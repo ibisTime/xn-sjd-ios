@@ -54,6 +54,7 @@
     [super viewDidLoad];
     self.title = @"商品详情";
     self.itemsTitles = @[@"商品",@"图文详情",@"评价"];
+    
     self.selectSV = [[PushSelectScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kSuperViewHeight - kTabBarHeight) itemTitles:self.itemsTitles];
     [self.view addSubview:self.selectSV];
     [self initBottomView];
@@ -92,21 +93,19 @@
 //    [self loadData];
     
 }
-- (void)loadData
-{
-    TLNetworking *http = [TLNetworking new];
-    http.code = @"629707";
-    http.parameters[@"code"] = self.code;
-    [http postWithSuccess:^(id responseObject) {
-        self.treeModel = [MallTreeModel mj_objectWithKeyValues:responseObject[@"data"]];
-        NSLog(@"%@",responseObject);
-    } failure:^(NSError *error) {
-      
-    }];
-    
-}
-- (void)initTestModel
-{
+//- (void)loadData{
+//    TLNetworking *http = [TLNetworking new];
+//    http.code = @"629707";
+//    http.parameters[@"code"] = self.code;
+//    [http postWithSuccess:^(id responseObject) {
+//        self.treeModel = [MallTreeModel mj_objectWithKeyValues:responseObject[@"data"]];
+//        NSLog(@"%@",responseObject);
+//    } failure:^(NSError *error) {
+//
+//    }];
+//
+//}
+- (void)initTestModel{
     model = [[GoodsModel alloc] init];
     model.imageId = [self.treeModel.bannerPic convertImageUrl];
     model.goodsNo = self.treeModel.name;
@@ -146,8 +145,9 @@
 }
 - (void)initDetailView
 {
-    self.detailView = [[MallGoodDetailView alloc] initWithFrame:CGRectMake(0, 45, kScreenWidth, kSuperViewHeight - kTabBarHeight-(kHeight(40+30+10)))];
+    self.detailView = [[MallGoodDetailView alloc] initWithFrame:CGRectMake(0, 45, kScreenWidth, SCREEN_HEIGHT - kTabBarHeight-kNavigationBarHeight)];
     [self.view addSubview:self.detailView];
+    
     self.commentTB = [[MallCommentTB alloc] initWithFrame:CGRectMake(0, self.detailView.yy, kScreenWidth, kScreenHeight)];
     [self.view addSubview:self.commentTB];
     self.commentTB.refreshDelegate = self;
@@ -234,12 +234,5 @@
     
     
 }
--(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 0) {
-        CoinWeakSelf;
-       
-    }
-    
-}
+
 @end

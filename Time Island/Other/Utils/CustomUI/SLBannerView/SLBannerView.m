@@ -387,7 +387,10 @@ static int imagesCount = 3;
 /** 开始定时器 */
 - (void)startTimer
 {
-    [self startTimerWithTimeInterval:_imgStayTimeInterval];
+    if (self.timer == YES) {
+        [self startTimerWithTimeInterval:_imgStayTimeInterval];
+    }
+    
 }
 
 /** 结束定时器 */

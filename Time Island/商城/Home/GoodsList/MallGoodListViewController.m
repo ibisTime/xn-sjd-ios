@@ -29,7 +29,7 @@
 -(UICollectionView *)collectionView{
     if (_collectionView==nil) {
         UICollectionViewFlowLayout *flowayout = [[UICollectionViewFlowLayout alloc]init];
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.comBoBoxView.yy, SCREEN_WIDTH, SCREEN_HEIGHT-kNavigationBarHeight-40-40-10) collectionViewLayout:flowayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.comBoBoxView.yy, SCREEN_WIDTH, SCREEN_HEIGHT-self.comBoBoxView.yy-kNavigationBarHeight) collectionViewLayout:flowayout];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.backgroundColor = kWhiteColor;
@@ -42,7 +42,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [UIBarButtonItem addLeftItemWithImageName:@"返回白色" frame:CGRectMake(-10, 0, 44, 40) vc:self action:@selector(backButtonClick)];
+//    [UIBarButtonItem addLeftItemWithImageName:@"返回白色" frame:CGRectMake(-10, 0, 44, 40) vc:self action:@selector(backButtonClick)];
     [self initSearchBar];
     [self initComboBox];
     [self.view addSubview:self.collectionView];
@@ -82,7 +82,9 @@
     http.code = @"629706";
     http.parameters[@"start"] = [NSString stringWithFormat:@"%ld",self.start];
     http.parameters[@"limit"] = @"10";
-    http.parameters[@"location"] = @"0";
+    http.parameters[@"orderColumn"] = @"order_no";
+    http.parameters[@"orderDir"] = @"asc";
+    http.parameters[@"location"] = @"1";
     [http postWithSuccess:^(id responseObject) {
         self.TreeModels = [MallTreeModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
         [self.collectionView reloadData];
@@ -141,9 +143,10 @@
         //        searchField.clipsToBounds = YES;
     }
 }
-- (void)backButtonClick {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+//- (void)backButtonClick {
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//}
+
 #pragma mark - MMComBoBoxViewDataSource
 - (NSUInteger)numberOfColumnsIncomBoBoxView :(MMComBoBoxView *)comBoBoxView {
     return self.mutableArray.count;
@@ -323,7 +326,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return CGSizeMake((SCREEN_WIDTH - 45)/2, kHeight(226));
+    return CGSizeMake((SCREEN_WIDTH - 45)/2, (SCREEN_WIDTH - 45)/2/330*230 + 111);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
@@ -348,7 +351,7 @@
 //定义每个Section的四边间距
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(10, 15, -10, 15);//分别为上、左、下、右
+    return UIEdgeInsetsMake(15, 15, 15, 15);//分别为上、左、下、右
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {

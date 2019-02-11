@@ -35,6 +35,7 @@
 @property (nonatomic,copy) NSString * sellType;
 @property (nonatomic,copy) NSString * listPic;
 @property (nonatomic,copy) NSString * bannerPic;
+@property (nonatomic,copy) NSArray * bannerPics;
 @property (nonatomic,copy) NSString *Description;
 @property (nonatomic,strong) NSMutableArray *specsList;
 

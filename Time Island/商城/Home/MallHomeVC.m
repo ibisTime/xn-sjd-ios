@@ -356,20 +356,10 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
--(void)ClassifyClick : (UIButton * )btn{
-//    NSLog(@"%d",(int)btn.tag);
+-(void)ClassifyClick:(UIButton * )btn{
+    MallGoodListViewController *list = [MallGoodListViewController new];
+    list.title = @"商品列表";
+    [self.navigationController pushViewController:list animated:YES];
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-//-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
-//{
-//    [self.view endEditing:YES];
-//
-//    return NO;
-//
-//}
 @end
