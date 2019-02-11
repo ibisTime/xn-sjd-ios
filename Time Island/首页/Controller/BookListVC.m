@@ -26,6 +26,12 @@
     self.tableView.refreshDelegate = self;
 //    self.tableView.BookModel = self.BookModel;
 //    self.tableView.scrollEnabled = NO;
+    CoinWeakSelf
+    [self.tableView addRefreshAction:^{
+        [weakSelf refresh];
+        [weakSelf.tableView reloadData];
+        [weakSelf.tableView endRefreshHeader];
+    }];
     [self.view addSubview:self.tableView];
 }
 
@@ -36,6 +42,35 @@
     detailavc.title =@"文章详情";
     [self.navigationController pushViewController:detailavc animated:YES];
 }
+
+//-(void)headRefresh
+//{
+//    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+//    header.automaticallyChangeAlpha = YES;
+//    header.lastUpdatedTimeLabel.hidden = YES;
+//    header.stateLabel.hidden = YES;
+//    self.tableView.mj_header = header;
+//    [_collectionView.mj_header beginRefreshing];
+//
+//    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewDataFooter)];
+//    footer.arrowView.hidden = YES;
+//    footer.stateLabel.hidden = YES;
+//    _collectionView.mj_footer = footer;
+//}
+//
+//-(void)loadNewData
+//{
+//    self.treemMuArray = [NSMutableArray array];
+//    self.start = 1;
+//    [self requestBannerList];
+//    [self refresh];
+//}
+//
+//-(void)loadNewDataFooter
+//{
+//    self.start ++;
+//    [self refresh];
+//}
 
 -(void)refresh{
     

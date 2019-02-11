@@ -64,8 +64,16 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [self navigationwhiteColor];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
-
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [self navigationSetDefault];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+}
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -75,6 +83,12 @@
     self.welcome.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:24];
     self.welcome.textColor = [UIColor colorWithHexString:@"#333333"];
     [self.view addSubview:self.welcome];
+    
+    
+    UIButton * back = [[UIButton alloc]initWithFrame:CGRectMake(20, 32.4, 12, 21.2)];
+    [back setImage:kImage(@"返回黑色") forState:(UIControlStateNormal)];
+    [back addTarget:self action:@selector(back) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:back];
     
     [self setUpUI];
     
@@ -213,7 +227,11 @@
     }];
 }
 
-
+- (void)back {
+    [self.view endEditing:YES];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark - Events
 - (void)sendCaptcha {

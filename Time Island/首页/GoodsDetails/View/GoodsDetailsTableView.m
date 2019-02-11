@@ -122,7 +122,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0) {
-        return 180;
+        if ([self.TreeModel.sellType isEqualToString:@"4"]) {
+            return 180;
+        }else{
+            return 90;
+        }
+        
     }
     if (indexPath.section == 1) {
         if (self.SelectHeader == 0) {

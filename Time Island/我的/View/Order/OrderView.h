@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OrderView : TLBaseVC<UITableViewDataSource,UITableViewDelegate,RefreshDelegate>
+@property (nonatomic,strong) NSString * status;
 
 @end
 

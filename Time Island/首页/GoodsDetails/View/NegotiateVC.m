@@ -52,6 +52,7 @@
         vc.TreeSizeCount = self.TreeSize;
         vc.PayCount = self.count;
         vc.TreeModel = self.TreeModel;
+        vc.Code = responseObject[@"data"][@"code"];
         [self.navigationController pushViewController:vc animated:YES];
     } failure:^(NSError *error) {
     }];

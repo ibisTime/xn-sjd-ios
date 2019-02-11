@@ -28,6 +28,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString * content;
 @property (nonatomic,copy) NSString * treeNumber;
 @property (nonatomic,copy) NSString * pointCount;
+@property (nonatomic,copy) NSString * openLevel;
+@property (nonatomic,copy) NSString * productName;
+@property (nonatomic,copy) NSString * productStatus;
+@property (nonatomic,copy) NSString * status;
+@property (nonatomic,copy) NSString * treeNo;
+@property (nonatomic,copy) NSString * type;
+@property (nonatomic,copy) NSString * updater;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -111,10 +111,9 @@
     }
 }
 -(void)logout{
-    NSLog(@"%s",__func__);
     [[TLUser user]loginOut];
-    TLUserLoginVC * login = [TLUserLoginVC new];
-    [self.navigationController pushViewController:login animated:YES];
-    
+//    TLUserLoginVC * login = [TLUserLoginVC new];
+//    [self.navigationController pushViewController:login animated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

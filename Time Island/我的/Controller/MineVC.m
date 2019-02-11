@@ -222,8 +222,8 @@
             break;
         case 1:
         {
-            TLUserLoginVC * login = [[TLUserLoginVC alloc]init];
-            [self.navigationController pushViewController:login animated:YES];
+//            TLUserLoginVC * login = [[TLUserLoginVC alloc]init];
+//            [self.navigationController pushViewController:login animated:YES];
         }
             break;
         case 2:
@@ -296,7 +296,6 @@
     [http1 postWithSuccess:^(id responseObject) {
         self.array = responseObject[@"data"][@"list"];
         for (int i = 0; i < 3; i ++) {
-            NSLog(@"%@",self.array[i][@"amount"]);
             float amount1 = [self.array[0][@"amount"] floatValue] / 1000;
             NSString * str1 = [NSString stringWithFormat:@"%.2f",amount1];
             self.numberLbl1.text = str1;

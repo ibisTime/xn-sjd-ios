@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) TreeModel * TreeModel;
 @property (nonatomic,assign) int TreeSizeCount;
 @property (nonatomic,assign) int PayCount;
+@property (nonatomic,strong) NSString * Code;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -46,29 +46,31 @@
         lineView.backgroundColor = RGB(244, 244, 244);
         [self addSubview:lineView];
         
-        UIView *progressBottomView = [[UIView alloc]initWithFrame:CGRectMake(15, 110, SCREEN_WIDTH - 15 - 60, 5)];
-        progressBottomView.backgroundColor = RGB(244, 244, 244);
-        kViewRadius(progressBottomView, 2.5);
-        [self addSubview:progressBottomView];
-        
-        UIView *progressView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2 , 5)];
-        progressView.backgroundColor = kRedColor;
-        kViewRadius(progressView, 2.5);
-        [progressBottomView addSubview:progressView];
-        self.progressView = progressView;
         
         
-        
-        UILabel *numberLbl = [UILabel labelWithFrame:CGRectMake(progressBottomView.xx + 10, progressBottomView.y - 5, 40, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:kTextBlack];
-        numberLbl.text = @"50%";
-        [self addSubview:numberLbl];
-        self.numberLbl = numberLbl;
+//        UIView *progressBottomView = [[UIView alloc]initWithFrame:CGRectMake(15, 110, SCREEN_WIDTH - 15 - 60, 5)];
+//        progressBottomView.backgroundColor = RGB(244, 244, 244);
+//        kViewRadius(progressBottomView, 2.5);
+//        [self addSubview:progressBottomView];
+//
+//        UIView *progressView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2 , 5)];
+//        progressView.backgroundColor = kRedColor;
+//        kViewRadius(progressView, 2.5);
+//        [progressBottomView addSubview:progressView];
+//        self.progressView = progressView;
+//
+//
+//
+//        UILabel *numberLbl = [UILabel labelWithFrame:CGRectMake(progressBottomView.xx + 10, progressBottomView.y - 5, 40, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:kTextBlack];
+//        numberLbl.text = @"50%";
+//        [self addSubview:numberLbl];
+//        self.numberLbl = numberLbl;
         
 
         
-        UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(0, 172, SCREEN_WIDTH, 8)];
-        lineView1.backgroundColor = RGB(244, 244, 244);
-        [self addSubview:lineView1];
+//        UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(0, 172, SCREEN_WIDTH, 8)];
+//        lineView1.backgroundColor = RGB(244, 244, 244);
+//        [self addSubview:lineView1];
         
     }
     return self;
@@ -95,21 +97,43 @@
     NSString * now = TreeModel.nowCount;
     self.targetNumber = [NSArray arrayWithObjects:raise,now,nil];
     
-    NSArray *targetName = @[@"目标份数/份",@"已募集份数/份"];
-    if (self.targetNumber.count > 0) {
-        for (int i = 0; i < 2; i ++) {
-            UILabel *targetNameLbl = [UILabel labelWithFrame:CGRectMake(50 + i % 2 * (SCREEN_WIDTH - 100)/2, self.numberLbl.yy + 10, (SCREEN_WIDTH - 100)/2, 11) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(11) textColor:RGB(153, 153, 153)];
-            targetNameLbl.text = targetName[i];
-            [self addSubview:targetNameLbl];
+    if ([TreeModel.sellType isEqualToString:@"4"]) {
+        NSArray *targetName = @[@"目标份数/份",@"已募集份数/份"];
+        if (self.targetNumber.count > 0) {
+            for (int i = 0; i < 2; i ++) {
+                UILabel *targetNameLbl = [UILabel labelWithFrame:CGRectMake(50 + i % 2 * (SCREEN_WIDTH - 100)/2, self.numberLbl.yy + 10, (SCREEN_WIDTH - 100)/2, 11) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(11) textColor:RGB(153, 153, 153)];
+                targetNameLbl.text = targetName[i];
+                [self addSubview:targetNameLbl];
+                
+                UILabel *targetNumberLbl = [UILabel labelWithFrame:CGRectMake(50 + i % 2 * (SCREEN_WIDTH - 100)/2, targetNameLbl.yy + 5, (SCREEN_WIDTH - 100)/2, 13) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(13) textColor:kTextBlack];
+                targetNumberLbl.text = self.targetNumber[i];
+                [self addSubview:targetNumberLbl];
+            }
+            UIView *progressBottomView = [[UIView alloc]initWithFrame:CGRectMake(15, 110, SCREEN_WIDTH - 15 - 60, 5)];
+            progressBottomView.backgroundColor = RGB(244, 244, 244);
+            kViewRadius(progressBottomView, 2.5);
+            [self addSubview:progressBottomView];
+            
+            UIView *progressView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH/2 , 5)];
+            progressView.backgroundColor = kRedColor;
+            kViewRadius(progressView, 2.5);
+            [progressBottomView addSubview:progressView];
+            self.progressView = progressView;
             
             
-            UILabel *targetNumberLbl = [UILabel labelWithFrame:CGRectMake(50 + i % 2 * (SCREEN_WIDTH - 100)/2, targetNameLbl.yy + 5, (SCREEN_WIDTH - 100)/2, 13) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(13) textColor:kTextBlack];
-            targetNumberLbl.text = self.targetNumber[i];
-            [self addSubview:targetNumberLbl];
+            
+            UILabel *numberLbl = [UILabel labelWithFrame:CGRectMake(progressBottomView.xx + 10, progressBottomView.y - 5, 40, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:kTextBlack];
+            numberLbl.text = @"50%";
+            [self addSubview:numberLbl];
+            self.numberLbl = numberLbl;
+            self.progressView.width = [TreeModel.nowCount intValue]/ [TreeModel.raiseCount intValue] * (kScreenWidth - 15 - 60);
+            self.numberLbl.text = [NSString stringWithFormat:@"%d%@", [TreeModel.nowCount intValue]/ [TreeModel.raiseCount intValue] * 100,@"%"];
         }
-        self.progressView.width = [TreeModel.nowCount intValue]/ [TreeModel.raiseCount intValue] * (kScreenWidth - 15 - 60);
-        self.numberLbl.text = [NSString stringWithFormat:@"%d%@", [TreeModel.nowCount intValue]/ [TreeModel.raiseCount intValue] * 100,@"%"];
+        UIView *lineView1 = [[UIView alloc]initWithFrame:CGRectMake(0, 172, SCREEN_WIDTH, 8)];
+        lineView1.backgroundColor = RGB(244, 244, 244);
+        [self addSubview:lineView1];
     }
+    
     
     
     
