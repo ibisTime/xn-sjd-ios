@@ -66,6 +66,8 @@
     self.priceLable = [UILabel labelWithFrame:CGRectMake(15, self.bgView.yy+15, kScreenWidth-30, 22) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#F68646")];
     [self addSubview:self.priceLable];
     self.priceLable.text = @"¥1000.00-¥2000.00";
+    
+    
     self.info = [UILabel labelWithFrame:CGRectMake(15, self.priceLable.yy+10, kScreenWidth-30, 44) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:FONT(15) textColor:kBlackColor];
     self.info.numberOfLines =0;
     self.info.text = @"新品发布新品发布新品发布新品发布新品发布新品发布新品发布新品发布新品发布";
@@ -110,6 +112,8 @@
     self.sellLab.text = [NSString stringWithFormat:@"月销%@",treeModel.monthSellCount];
     self.addressLab.text = treeModel.originalPlace;
 }
+
+
 - (void)chooseClick
 {
     if (self.CategoryBlock) {

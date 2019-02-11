@@ -35,6 +35,9 @@
 
 @property (nonatomic, weak) id <SLBannerViewDelegate> delegate;
 
+
+@property (nonatomic , assign)BOOL isTimer;
+
 /** xib快速构造方法 */
 + (instancetype)bannerViewXib;
 /** 代码快速构造方法 */
