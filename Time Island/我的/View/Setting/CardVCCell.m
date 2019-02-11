@@ -36,7 +36,7 @@
         [self addSubview:view];
         
         //银行名称
-        self.CardName= [[UILabel alloc]initWithFrame:CGRectMake(view.xx + 12, 24, SCREEN_WIDTH - 105, 32)];
+        self.CardName= [[UILabel alloc]initWithFrame:CGRectMake(view.xx + 12, 37.5, SCREEN_WIDTH - 105, 22.5)];
         self.CardName.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
         self.CardName.textColor = [UIColor whiteColor];
         self.CardName.textAlignment = NSTextAlignmentLeft;

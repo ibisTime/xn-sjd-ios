@@ -20,7 +20,7 @@
 #import "MallTabbar.h"
 #import "TLUploadManager.h"
 #import "AppConfig.h"
-
+#import "BalanceVC.h"
 #import "CertifyVC.h"
 
 #define titlearray @[@"我的碳泡泡",@"我的认养",@"我的订单",@"我的文章",@"我的收藏",@"邀请有礼",@"设置"]
@@ -156,6 +156,13 @@
 //        numberLbl3.text = @"0.00";
         [self.topview addSubview:numberLbl3];
         self.numberLbl3 = numberLbl3;
+        
+        
+        UIButton * btn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 3 * i, sign.yy + 28, SCREEN_WIDTH / 3, 27) title:@"" backgroundColor:kClearColor];
+        btn.tag = 100 + i;
+        [btn addTarget:self action:@selector(btnclick:) forControlEvents:(UIControlEventTouchUpInside)];
+        [self.topview addSubview:btn];
+        
     }
     
     [self.topview addSubview:[self createview:CGRectMake(SCREEN_WIDTH/3-1, sign.yy + 33, 1, 20)]];
@@ -168,6 +175,38 @@
     [self.topview addSubview:name];
     [self.topview addSubview:sign];
     
+}
+-(void)btnclick : (UIButton * )sender{
+    NSLog(@"%s",__func__);
+    int a = (int)sender.tag - 100;
+    switch (a) {
+        case 0:{
+            BalanceVC * vc = [BalanceVC new];
+            vc.accountNumber = self.array[0][@"accountNumber"];
+            vc.title = @"余额";
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 1:{
+            MyCarbonBubbleVC * vc = [MyCarbonBubbleVC new];
+            vc.accountNumber = self.array[1][@"accountNumber"];
+            vc.state = 1;
+            vc.title = @"积分";
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 2:{
+            MyCarbonBubbleVC * vc = [MyCarbonBubbleVC new];
+            vc.accountNumber = self.array[2][@"accountNumber"];
+            vc.state = 2;
+            vc.title = @"我的碳泡泡";
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -263,10 +302,8 @@
 //刷新信息
 -(void)RefreshInfo{
     
-    
     [self.logoimage sd_setImageWithURL: [NSURL URLWithString:[[TLUser user].photo convertImageUrl]]];
 
-    
     if ([TLUser user].idNo) {
         self.nameLbl.text = @"已认证";
     }
@@ -283,6 +320,7 @@
         self.name.text = [TLUser user].nickname;
         self.sign.text = [TLUser user].introduce;
     } failure:^(NSError *error) {
+        self.logoimage.image = [UIImage imageNamed:@"果树预售"];
         self.name.text = @"王大锤" ;
         self.logoimage.image =  [UIImage imageNamed:@"果树预售"];
         self.sign.text = @"此人很懒，没留下什么";

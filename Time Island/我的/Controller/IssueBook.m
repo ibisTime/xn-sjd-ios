@@ -169,11 +169,11 @@
     http.parameters[@"type"] = @"2";
     http.parameters[@"dealType"] = @"1";
     [http postWithSuccess:^(id responseObject) {
-        
+        [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {
-
+        [TLAlert alertWithError:@"发布失败，请重新发布"];
     }];
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)saveBook{
     NSLog(@"%s",__func__);

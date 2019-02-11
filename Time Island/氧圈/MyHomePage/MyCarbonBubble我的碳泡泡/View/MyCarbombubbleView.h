@@ -12,4 +12,7 @@
 @property (nonatomic,strong) CarbonModel * CarbonModel;
 @property (nonatomic,strong) UILabel *amountLbl;
 @property (nonatomic,strong) NSArray * array;
+@property (nonatomic,strong) UILabel *currentLbl;
+@property (nonatomic,assign) int state;
+
 @end

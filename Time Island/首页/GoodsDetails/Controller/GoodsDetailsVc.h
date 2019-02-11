@@ -12,5 +12,5 @@
 @interface GoodsDetailsVc : TLBaseVC
 @property (nonatomic,strong) TreeModel * treemodel;
 @property (nonatomic,strong) BannerModel * BannerModel;
-
+@property (strong, nonatomic) UIWindow *window;
 @end

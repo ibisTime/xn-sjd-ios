@@ -24,7 +24,7 @@
         
         [self.view addSubview:label];
         
-        TLTextField * mailadd = [[TLTextField alloc]initWithFrame:CGRectMake(15, label.yy, SCREEN_WIDTH, 55) placeholder:@"请输入新邮箱地址"];
+        TLTextField * mailadd = [[TLTextField alloc]initWithFrame:CGRectMake(15, label.yy, SCREEN_WIDTH - 30, 55) placeholder:@"请输入新邮箱地址"];
         [self.view addSubview:mailadd];
         self.mailadd = mailadd;
         
@@ -32,8 +32,6 @@
         [self.view addSubview:captchaView];
         self.captchaView = captchaView;
         [captchaView.captchaBtn addTarget:self action:@selector(sendCaptcha) forControlEvents:UIControlEventTouchUpInside];
-        
-        
         
         UIButton *confirmBtn = [UIButton buttonWithTitle:[LangSwitcher switchLang:@"确认" key:nil] titleColor:kWhiteColor backgroundColor:kAppCustomMainColor titleFont:16.0 cornerRadius:5];
         

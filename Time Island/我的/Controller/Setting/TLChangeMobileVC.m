@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    CGFloat leftW = 90;
+//    CGFloat leftW = 90;
     self.title = [LangSwitcher switchLang:@"修改手机号" key:nil];
     CGFloat leftMargin = 15;
     
@@ -43,18 +43,21 @@
     OldphoneTf.keyboardType = UIKeyboardTypeNumberPad;
     [self.bgSV addSubview:OldphoneTf];
     self.OldphoneTf = OldphoneTf;
+    [self createview:CGRectMake(15, self.OldphoneTf.xx - 1, SCREEN_WIDTH - 30, 1)];
 
     //新手机号
     TLTextField * NewphoneTf = [[TLTextField alloc]initWithFrame:CGRectMake(leftMargin, 55, kScreenWidth - 2*leftMargin, 55) placeholder:@"请输入新手机号"];
     NewphoneTf.keyboardType = UIKeyboardTypeNumberPad;
     [self.bgSV addSubview:NewphoneTf];
     self.NewphoneTf = NewphoneTf;
+    [self createview:CGRectMake(15, self.NewphoneTf.xx - 1, SCREEN_WIDTH - 30, 1)];
     
     //验证码
     TLCaptchaView *newcaptchaView = [[TLCaptchaView alloc] initWithFrame:CGRectMake(NewphoneTf.x, NewphoneTf.yy + 1, NewphoneTf.width, NewphoneTf.height)];
     [self.bgSV addSubview:newcaptchaView];
     self.newcaptchaView = newcaptchaView;
     [newcaptchaView.captchaBtn addTarget:self action:@selector(sendCaptcha) forControlEvents:UIControlEventTouchUpInside];
+    
 
 //    }
    
@@ -157,5 +160,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+//底部横线
+-(UIView*)createview:(CGRect)frame{
+    UIView * view = [[UIView alloc]initWithFrame:frame];
+    view.backgroundColor = kLineColor;
+    return view;
+}
 @end

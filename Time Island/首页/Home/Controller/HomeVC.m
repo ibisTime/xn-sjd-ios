@@ -167,10 +167,13 @@
             [weakSelf clickTagWithIndex:index];
         };
         _cell.clickimage = ^(NSInteger index) {
-            GoodsDetailsVc * vc = [GoodsDetailsVc new];
-//            vc.code = weakSelf.bannerRoom[index];
-            vc.BannerModel = weakSelf.bannerRoom[index];
-            [weakSelf.navigationController pushViewController:vc animated:YES];
+            BannerModel * banner = weakSelf.bannerRoom[index];
+            if (![banner.url isEqualToString:@""]) {
+                GoodsDetailsVc * vc = [GoodsDetailsVc new];
+                vc.BannerModel = weakSelf.bannerRoom[index];
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+            
         };
         return _cell;
     }

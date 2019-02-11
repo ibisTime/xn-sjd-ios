@@ -39,46 +39,7 @@
 #pragma mark - Init
 
 - (void)setUpUI {
-    
-    CGFloat leftW = 100;
-    
-    CGFloat height = 45;
-    
-    //谷歌验证码
-//    self.googleAuthTF = [[TLTextField alloc] initWithFrame:CGRectMake(0, 10, kScreenWidth, height)
-//                                                 leftTitle:[LangSwitcher switchLang:@"谷歌验证码" key:nil]
-//                                                titleWidth:leftW
-//                                               placeholder:[LangSwitcher switchLang:@"请输入谷歌验证码" key:nil]];
-//
-//    self.googleAuthTF.keyboardType = UIKeyboardTypeNumberPad;
-//
-//    [self.view addSubview:self.googleAuthTF];
-//
-//    self.googleAuthTF.hidden = ![TLUser user].isGoogleAuthOpen;
-//
-//    //复制
-//    UIView *authView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 95, self.googleAuthTF.height)];
-//
-//    UIButton *pasteBtn = [UIButton buttonWithTitle:[LangSwitcher switchLang:@"粘贴" key:nil] titleColor:kWhiteColor backgroundColor:kThemeColor titleFont:13.0 cornerRadius:5];
-//
-//    pasteBtn.frame = CGRectMake(0, 0, 85, self.googleAuthTF.height - 15);
-//
-//    pasteBtn.centerY = authView.height/2.0;
-//
-//    [pasteBtn addTarget:self action:@selector(clickPaste) forControlEvents:UIControlEventTouchUpInside];
-//
-//    [authView addSubview:pasteBtn];
-//
-//    self.googleAuthTF.rightView = authView;
-//
-//    CGFloat captchaViewY = [TLUser user].isGoogleAuthOpen ? self.googleAuthTF.yy + 1: 10;
-//
-    //旧密码
-//    TLTextField *oldPwdTf = [[TLTextField alloc] initWithFrame:CGRectMake(0, captchaViewY, kScreenWidth, height)
-//                                                  leftTitle:[LangSwitcher switchLang:@"旧密码" key:nil]
-//                                                 titleWidth:leftW
-//                                                placeholder:[LangSwitcher switchLang:@"请输入旧密码(不少于6位)" key:nil]];
-    
+
     TLTextField *oldPwdTf = [[TLTextField alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 55) placeholder:@"请输入原密码(不少于6位)"];
     oldPwdTf.returnKeyType = UIReturnKeyNext;
     oldPwdTf.secureTextEntry = YES;

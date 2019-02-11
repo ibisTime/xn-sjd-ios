@@ -1,23 +1,21 @@
 //
-//  MyCarbonBubbleCell.m
+//  BalanceCell.m
 //  Time Island
 //
-//  Created by 郑勤宝 on 2019/1/14.
-//  Copyright © 2019 ChengLian. All rights reserved.
+//  Created by 梅敏杰 on 2019/2/11.
+//  Copyright © 2019年 ChengLian. All rights reserved.
 //
 
-#import "MyCarbonBubbleCell.h"
+#import "BalanceCell.h"
 
-@implementation MyCarbonBubbleCell
+@implementation BalanceCell
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
-        
         UIImageView *iconImg = [[UIImageView alloc]initWithFrame:CGRectMake(15, 21, 33, 33)];
-        iconImg.image = kImage(@"收益");
+        iconImg.image = kImage(@"支出");
         [self addSubview:iconImg];
         self.iconImg = iconImg;
         
@@ -45,8 +43,9 @@
 -(void)setCarbonModel:(CarbonModel *)CarbonModel{
     self.nameLbl.text = CarbonModel.bizNote;
     float amount3 = [CarbonModel.transAmountString floatValue] / 1000.00;
-    NSString * str3 = [NSString stringWithFormat:@"+%.2f",amount3];
+    NSString * str3 = [NSString stringWithFormat:@"%.2f",amount3];
     self.numberLbl.text = str3;
     self.timeLbl.text = [CarbonModel.createDatetime convertToDetailDate];
 }
+
 @end

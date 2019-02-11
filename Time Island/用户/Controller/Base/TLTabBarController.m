@@ -136,8 +136,7 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     
-    CoinWeakSelf;
-    
+//    CoinWeakSelf;
     NSInteger idx = tabBarController.selectedIndex;
     
     self.selectedIndex = idx;
