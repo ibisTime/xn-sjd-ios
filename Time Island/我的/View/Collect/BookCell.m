@@ -94,7 +94,8 @@
 -(void)setBookModel:(BookModel *)BookModel{
     [self.iconImage sd_setImageWithURL:[NSURL URLWithString:[BookModel.photo convertImageUrl]]];
     self.moreLab.text = BookModel.title;
-    self.timeLab.text = [BookModel.publishDatetime convertToDetailDate];
+    NSString * timestr =[BookModel.publishDatetime convertToDetailDate];
+    self.timeLab.text = [timestr substringToIndex:10];
     
 }
 @end

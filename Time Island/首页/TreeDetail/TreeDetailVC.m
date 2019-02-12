@@ -74,17 +74,6 @@
 {
         CoinWeakSelf;
     self.renYangFieldDeyailView = [[RenYangFieldDeyailView alloc] initWithFrame:CGRectMake(0, 300, kScreenWidth, 500)];
-//    self.renYangFieldDeyailView.sureBlock = ^{
-//        [UIView animateWithDuration:0.01 animations:^{
-//            weakSelf.renYangFieldView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight);
-//            [weakSelf.view sendSubviewToBack:weakSelf.renYangFieldView];
-//            weakSelf.renYangFieldDeyailView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight);
-//            [weakSelf.view sendSubviewToBack:weakSelf.renYangFieldDeyailView];
-//            [weakSelf initRealNameView];
-//
-//        }];
-//    };
-
     self.renYangFieldDeyailView.sureBlock = ^(TreeModel *model, int quantity, int TreeSize) {
         [UIView animateWithDuration:0.01 animations:^{
             weakSelf.renYangFieldView.frame = CGRectMake(0, kScreenHeight, kScreenWidth, kScreenHeight);

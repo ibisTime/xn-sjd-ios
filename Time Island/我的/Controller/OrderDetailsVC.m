@@ -107,6 +107,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 10;
 }
+
 -(UIView*)createview:(CGRect)frame{
     UIView * view = [[UIView alloc]initWithFrame:frame];
     view.backgroundColor = kLineColor;

@@ -14,6 +14,7 @@
 #import "RealNameView.h"
 #import "RenYangUserModel.h"
 #import "NegotiateVC.h"
+#import "TLTabBarController.h"
 @interface GoodsDetailsVc ()<SLBannerViewDelegate,RefreshDelegate,PlatformButtonClickDelegate>
 @property (nonatomic, strong) UIButton *myButton;//推文
 @property (nonatomic, strong) UIButton *shareButton;
@@ -166,7 +167,12 @@
     switch (sender.tag - 100) {
         case 0:
         {
-            
+            self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+            self.window.backgroundColor = [UIColor whiteColor];
+            [self.window makeKeyAndVisible];
+            TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
+            tabBarCtrl.selectedIndex = 2;
+            self.window.rootViewController = tabBarCtrl;
         }
             break;
         case 1:
@@ -212,8 +218,11 @@
     http.code = @"629026";
     if (self.treemodel) {
         http.parameters[@"code"] = self.treemodel.code;
-    }else{
-        http.parameters[@"productCode"] = self.BannerModel.code;
+    }else if(self.BannerModel){
+        NSRange range = [self.BannerModel.url rangeOfString:@"code="];
+        NSLog(@"rang:%@",NSStringFromRange(range));
+        NSString * str = [self.BannerModel.url substringFromIndex:range.location + range.length];
+        http.parameters[@"code"] = str;
     }
     
     [http postWithSuccess:^(id responseObject) {
@@ -233,14 +242,38 @@
         self.renYangFieldDeyailView.slImages = arr;
         self.renYangFieldDeyailView.TreeModel = self.TreeModels;
 
+        [self getName];
+        
         [self.tableView reloadData];
     } failure:^(NSError *error) {
     }];
     
     
+//    TLNetworking * http1 = [[TLNetworking alloc]init];
+//    http1.code = @"629209";
+//    if (self.treemodel) {
+//        http1.parameters[@"productCode"] = self.treemodel.productSpecsList[0][@"productCode"];
+//    }else if (self.BannerModel){
+//        http1.parameters[@"productCode"] = self.TreeModels.productSpecsList[0][@"productCode"];
+//    }
+//
+//    http1.parameters[@"statusList"] = @[@2,@3,@4];
+//    [http1 postWithSuccess:^(id responseObject) {
+//        self.RenYangModel = [RenYangUserModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+//        self.tableView.RenYangModel = self.RenYangModel;
+//        [self.tableView reloadData];
+//    } failure:^(NSError *error) {
+//    }];
+}
+-(void)getName{
     TLNetworking * http1 = [[TLNetworking alloc]init];
     http1.code = @"629209";
-    http1.parameters[@"productCode"] = self.treemodel.productSpecsList[0][@"productCode"];
+    if (self.treemodel) {
+        http1.parameters[@"productCode"] = self.treemodel.productSpecsList[0][@"productCode"];
+    }else if (self.BannerModel){
+        http1.parameters[@"productCode"] = self.TreeModels.productSpecsList[0][@"productCode"];
+    }
+    
     http1.parameters[@"statusList"] = @[@2,@3,@4];
     [http1 postWithSuccess:^(id responseObject) {
         self.RenYangModel = [RenYangUserModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];

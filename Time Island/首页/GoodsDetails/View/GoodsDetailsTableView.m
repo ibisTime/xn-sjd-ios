@@ -79,7 +79,16 @@
         NSArray *titles = @[@"树木名称",@"树木学名",@"树木级别",@"树木品种",@"所在市县",@"乡镇街道",@"树木产地",@"认养时间",@"树木定位"];
         NSArray *details;
         if (self.TreeModel.treeList.count>0||self.TreeModel.productSpecsList.count>0) {
-             details = @[self.TreeModel.name,self.TreeModel.treeList[0][@"scientificName"],self.TreeModel.treeList[0][@"rank"],self.TreeModel.treeList[0][@"variety"],[NSString stringWithFormat:@"%@ %@",self.TreeModel.treeList[0][@"city"],self.TreeModel.treeList[0][@"area"]],self.TreeModel.treeList[0][@"town"],self.TreeModel.treeList[0][@"originPlace"],[NSString stringWithFormat:@"%@ - %@",[self.TreeModel.productSpecsList[0][@"startDatetime"] convertToDetailDate],[self.TreeModel.productSpecsList[0][@"endDatetime"] convertToDetailDate]],@""];
+//             details = @[self.TreeModel.name,self.TreeModel.treeList[0][@"scientificName"],self.TreeModel.treeList[0][@"rank"],self.TreeModel.treeList[0][@"variety"],[NSString stringWithFormat:@"%@ %@",self.TreeModel.treeList[0][@"city"],self.TreeModel.treeList[0][@"area"]],self.TreeModel.treeList[0][@"town"],self.TreeModel.treeList[0][@"originPlace"],[NSString stringWithFormat:@"%@ - %@",[self.TreeModel.productSpecsList[0][@"startDatetime"] convertToDetailDate],[self.TreeModel.productSpecsList[0][@"endDatetime"] convertToDetailDate]],@""];
+//            [TLUser convertNull:]
+            details = @[[TLUser convertNull:self.TreeModel.name],
+                        [TLUser convertNull:self.TreeModel.treeList[0][@"scientificName"]],
+                        [TLUser convertNull:self.TreeModel.treeList[0][@"rank"]],
+                        [TLUser convertNull:self.TreeModel.treeList[0][@"variety"]],
+                        [NSString stringWithFormat:@"%@ %@",[TLUser convertNull:self.TreeModel.city],[TLUser convertNull:self.TreeModel.treeList[0][@"area"]]],
+                        [TLUser convertNull:self.TreeModel.treeList[0][@"town"]],
+                        [TLUser convertNull:self.TreeModel.treeList[0][@"originPlace"]],
+                        [NSString stringWithFormat:@"%@ - %@",[TLUser convertNull:[self.TreeModel.productSpecsList[0][@"startDatetime"] convertToDetailDate]],[TLUser convertNull:[self.TreeModel.productSpecsList[0][@"endDatetime"] convertToDetailDate]]],@""];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.moreLab.text = [NSString stringWithFormat:@"[%@]",titles[indexPath.row]];

@@ -137,7 +137,7 @@
 //更新登录时间
 - (void)changLoginTime;
 - (void)loadTengxunYun;
-
++ (NSString*)convertNull:(id)object;
 @end
 
 FOUNDATION_EXTERN  NSString *const kUserLoginNotification;

@@ -26,6 +26,7 @@
 		1F19A90021FEFEF50090BF84 /* PersonalCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8FF21FEFEF50090BF84 /* PersonalCenterVC.m */; };
 		1F19A90321FEFF130090BF84 /* PersonalCenterHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A90221FEFF130090BF84 /* PersonalCenterHeadView.m */; };
 		1F19A90621FF07A50090BF84 /* PersonalCenterTableVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A90521FF07A50090BF84 /* PersonalCenterTableVIew.m */; };
+
 		1F19A90922001FE50090BF84 /* RankingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A90822001FE40090BF84 /* RankingModel.m */; };
 		1F19AC2C22114DDD0090BF84 /* MallGoodIntroduceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19AC2B22114DDD0090BF84 /* MallGoodIntroduceTableView.m */; };
 		1F19AC2F221157520090BF84 /* MallGoodsInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19AC2E221157520090BF84 /* MallGoodsInformationCell.m */; };
@@ -173,6 +174,15 @@
 		3689769C21EF3A4F005F1177 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3689769B21EF3A4F005F1177 /* AMap.bundle */; };
 		369C60CC21F71254001F9CBA /* MailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C60CB21F71254001F9CBA /* MailVC.m */; };
 		369C60CF21F717A9001F9CBA /* PayPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C60CE21F717A9001F9CBA /* PayPwdVC.m */; };
+		36A84B442211114C003CDE19 /* TLChangeMobileVC.h in Sources */ = {isa = PBXBuildFile; fileRef = B81E5FF521DC906C00873AB9 /* TLChangeMobileVC.h */; };
+		36A84B47221119D3003CDE19 /* RankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A84B46221119D3003CDE19 /* RankModel.m */; };
+		36A84B4B221125C1003CDE19 /* MineRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A84B4A221125C1003CDE19 /* MineRankCell.m */; };
+		36A84B4E22115B8B003CDE19 /* BalanceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A84B4D22115B8B003CDE19 /* BalanceView.m */; };
+		36A84B5122115DF7003CDE19 /* BalanceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A84B5022115DF7003CDE19 /* BalanceVC.m */; };
+		36A84B5422115F18003CDE19 /* BalanceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A84B5322115F18003CDE19 /* BalanceTableView.m */; };
+		36A84B5722115F98003CDE19 /* BalanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A84B5622115F98003CDE19 /* BalanceCell.m */; };
+		36A84B5C22116C89003CDE19 /* GetMoneyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A84B5B22116C89003CDE19 /* GetMoneyVC.m */; };
+		36A84B5F22117BAF003CDE19 /* RuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A84B5E22117BAF003CDE19 /* RuleModel.m */; };
 		36BB9F6B21FE9B2E0010E622 /* NoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB9F6A21FE9B2E0010E622 /* NoticeModel.m */; };
 		36BB9F6F21FEE1B70010E622 /* BookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB9F6E21FEE1B70010E622 /* BookModel.m */; };
 		36BB9F7221FEEC980010E622 /* BookDetailContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB9F7121FEEC980010E622 /* BookDetailContentView.m */; };
@@ -511,6 +521,7 @@
 		1F19A90221FEFF130090BF84 /* PersonalCenterHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterHeadView.m; sourceTree = "<group>"; };
 		1F19A90421FF07A50090BF84 /* PersonalCenterTableVIew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalCenterTableVIew.h; sourceTree = "<group>"; };
 		1F19A90521FF07A50090BF84 /* PersonalCenterTableVIew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterTableVIew.m; sourceTree = "<group>"; };
+
 		1F19A90722001FE40090BF84 /* RankingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RankingModel.h; sourceTree = "<group>"; };
 		1F19A90822001FE40090BF84 /* RankingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RankingModel.m; sourceTree = "<group>"; };
 		1F19AC2A22114DDD0090BF84 /* MallGoodIntroduceTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallGoodIntroduceTableView.h; sourceTree = "<group>"; };
@@ -523,6 +534,7 @@
 		1F19AC342211634C0090BF84 /* TeamPostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamPostCell.h; sourceTree = "<group>"; };
 		1F19AC3622116A720090BF84 /* EvaluationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EvaluationModel.h; sourceTree = "<group>"; };
 		1F19AC3722116A720090BF84 /* EvaluationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EvaluationModel.m; sourceTree = "<group>"; };
+
 		1F1B001721E6E23F000BEBD3 /* OxygenCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OxygenCircleView.h; sourceTree = "<group>"; };
 		1F1B001821E6E23F000BEBD3 /* OxygenCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OxygenCircleView.m; sourceTree = "<group>"; };
 		1F1B001E21E6F79C000BEBD3 /* MyTreeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTreeVC.h; sourceTree = "<group>"; };
@@ -794,6 +806,22 @@
 		369C60CB21F71254001F9CBA /* MailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MailVC.m; sourceTree = "<group>"; };
 		369C60CD21F717A9001F9CBA /* PayPwdVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayPwdVC.h; sourceTree = "<group>"; };
 		369C60CE21F717A9001F9CBA /* PayPwdVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayPwdVC.m; sourceTree = "<group>"; };
+		36A84B45221119D3003CDE19 /* RankModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RankModel.h; sourceTree = "<group>"; };
+		36A84B46221119D3003CDE19 /* RankModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RankModel.m; sourceTree = "<group>"; };
+		36A84B49221125C1003CDE19 /* MineRankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineRankCell.h; sourceTree = "<group>"; };
+		36A84B4A221125C1003CDE19 /* MineRankCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineRankCell.m; sourceTree = "<group>"; };
+		36A84B4C22115B8B003CDE19 /* BalanceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalanceView.h; sourceTree = "<group>"; };
+		36A84B4D22115B8B003CDE19 /* BalanceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BalanceView.m; sourceTree = "<group>"; };
+		36A84B4F22115DF7003CDE19 /* BalanceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalanceVC.h; sourceTree = "<group>"; };
+		36A84B5022115DF7003CDE19 /* BalanceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BalanceVC.m; sourceTree = "<group>"; };
+		36A84B5222115F18003CDE19 /* BalanceTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalanceTableView.h; sourceTree = "<group>"; };
+		36A84B5322115F18003CDE19 /* BalanceTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BalanceTableView.m; sourceTree = "<group>"; };
+		36A84B5522115F98003CDE19 /* BalanceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalanceCell.h; sourceTree = "<group>"; };
+		36A84B5622115F98003CDE19 /* BalanceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BalanceCell.m; sourceTree = "<group>"; };
+		36A84B5A22116C89003CDE19 /* GetMoneyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetMoneyVC.h; sourceTree = "<group>"; };
+		36A84B5B22116C89003CDE19 /* GetMoneyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetMoneyVC.m; sourceTree = "<group>"; };
+		36A84B5D22117BAF003CDE19 /* RuleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuleModel.h; sourceTree = "<group>"; };
+		36A84B5E22117BAF003CDE19 /* RuleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RuleModel.m; sourceTree = "<group>"; };
 		36BB9F6921FE9B2E0010E622 /* NoticeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoticeModel.h; sourceTree = "<group>"; };
 		36BB9F6A21FE9B2E0010E622 /* NoticeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeModel.m; sourceTree = "<group>"; };
 		36BB9F6D21FEE1B70010E622 /* BookModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookModel.h; sourceTree = "<group>"; };
@@ -2185,6 +2213,7 @@
 		1FF6398321EC7D6F00F5FF68 /* Ranking */ = {
 			isa = PBXGroup;
 			children = (
+				36A84B4822111FA9003CDE19 /* Model */,
 				1FF6398521EC7D9500F5FF68 /* Controller */,
 				1FF6398421EC7D9300F5FF68 /* View */,
 				1FF6398F21EC830E00F5FF68 /* FriendRequests */,
@@ -2199,8 +2228,8 @@
 				1FF6398A21EC7DC200F5FF68 /* RankingTableView.m */,
 				1FF6398C21EC7DD400F5FF68 /* RankingCell.h */,
 				1FF6398D21EC7DD400F5FF68 /* RankingCell.m */,
-				1F19A90722001FE40090BF84 /* RankingModel.h */,
-				1F19A90822001FE40090BF84 /* RankingModel.m */,
+				36A84B49221125C1003CDE19 /* MineRankCell.h */,
+				36A84B4A221125C1003CDE19 /* MineRankCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2239,11 +2268,11 @@
 		3610EEA321ED715600FD345D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				36A84B58221160A7003CDE19 /* Balance */,
 				1F19A8E121FAA6BA0090BF84 /* Address */,
 				3689769421EF3683005F1177 /* Order */,
 				3689768421EF00F8005F1177 /* Setting */,
 				3689768321EF00E5005F1177 /* Collect */,
-				3610EEA421ED716A00FD345D /* MineVCCell.h */,
 				3610EEA521ED716A00FD345D /* MineVCCell.m */,
 				3689768821EF0488005F1177 /* InviteVCCell.h */,
 				3689768921EF0488005F1177 /* InviteVCCell.m */,
@@ -2350,6 +2379,8 @@
 				369C60CB21F71254001F9CBA /* MailVC.m */,
 				369C60CD21F717A9001F9CBA /* PayPwdVC.h */,
 				369C60CE21F717A9001F9CBA /* PayPwdVC.m */,
+				B81E5FF521DC906C00873AB9 /* TLChangeMobileVC.h */,
+				B81E5FFA21DC906C00873AB9 /* TLChangeMobileVC.m */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -2357,6 +2388,7 @@
 		3689768321EF00E5005F1177 /* Collect */ = {
 			isa = PBXGroup;
 			children = (
+				3610EEA421ED716A00FD345D /* MineVCCell.h */,
 				3689766921EED882005F1177 /* BookView.h */,
 				3689766A21EED882005F1177 /* BookView.m */,
 				3689766C21EED9A3005F1177 /* BookCell.h */,
@@ -2391,6 +2423,42 @@
 				3689769921EF38E8005F1177 /* OrderFootCell.m */,
 			);
 			path = Order;
+			sourceTree = "<group>";
+		};
+		36A84B4822111FA9003CDE19 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				36A84B45221119D3003CDE19 /* RankModel.h */,
+				36A84B46221119D3003CDE19 /* RankModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		36A84B58221160A7003CDE19 /* Balance */ = {
+			isa = PBXGroup;
+			children = (
+				36A84B6022117BB6003CDE19 /* Model */,
+				36A84B4C22115B8B003CDE19 /* BalanceView.h */,
+				36A84B4D22115B8B003CDE19 /* BalanceView.m */,
+				36A84B4F22115DF7003CDE19 /* BalanceVC.h */,
+				36A84B5022115DF7003CDE19 /* BalanceVC.m */,
+				36A84B5222115F18003CDE19 /* BalanceTableView.h */,
+				36A84B5322115F18003CDE19 /* BalanceTableView.m */,
+				36A84B5522115F98003CDE19 /* BalanceCell.h */,
+				36A84B5622115F98003CDE19 /* BalanceCell.m */,
+				36A84B5A22116C89003CDE19 /* GetMoneyVC.h */,
+				36A84B5B22116C89003CDE19 /* GetMoneyVC.m */,
+			);
+			path = Balance;
+			sourceTree = "<group>";
+		};
+		36A84B6022117BB6003CDE19 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				36A84B5D22117BAF003CDE19 /* RuleModel.h */,
+				36A84B5E22117BAF003CDE19 /* RuleModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		36BB9F6C21FE9B340010E622 /* Model */ = {
@@ -3335,8 +3403,6 @@
 		B81E5FF421DC906C00873AB9 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
-				B81E5FF521DC906C00873AB9 /* TLChangeMobileVC.h */,
-				B81E5FFA21DC906C00873AB9 /* TLChangeMobileVC.m */,
 				B81E5FFB21DC906C00873AB9 /* BindMobileVC.h */,
 				B81E5FF621DC906C00873AB9 /* BindMobileVC.m */,
 				B81E5FFE21DC906C00873AB9 /* ChangeLoginPwdVC.h */,
@@ -4143,6 +4209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36A84B442211114C003CDE19 /* TLChangeMobileVC.h in Sources */,
 				1F1B006E21E71D26000BEBD3 /* UIColor+PlatformIndependence.m in Sources */,
 				B8A27AF121E5C44400914897 /* MMMultiFitlerView.m in Sources */,
 				3647C4A621F1D80100FB049D /* AddressCell.m in Sources */,
@@ -4204,6 +4271,7 @@
 				B80D388521F871CF00206B55 /* SubmitOrderAddressCell.m in Sources */,
 				B81E5FD721DC8FC200873AB9 /* NSString+Extension.m in Sources */,
 				1F1B00C621E8814F000BEBD3 /* MyArticleTableView.m in Sources */,
+				36A84B5422115F18003CDE19 /* BalanceTableView.m in Sources */,
 				1F93610621EDFD8F007E522A /* ToClaimTheGiftCell.m in Sources */,
 				B81E5FCE21DC8FC200873AB9 /* UIView+Extension.m in Sources */,
 				B81E5FBA21DC8FC200873AB9 /* HourPickerView.m in Sources */,
@@ -4233,6 +4301,7 @@
 				369C60CC21F71254001F9CBA /* MailVC.m in Sources */,
 				36F841D221F02B0D00BAC88A /* IssueBook.m in Sources */,
 				B81E608821DC9FCC00873AB9 /* LinCircleVC.m in Sources */,
+				36A84B5122115DF7003CDE19 /* BalanceVC.m in Sources */,
 				1F1B00A821E86B3C000BEBD3 /* UIButton+SGImagePosition.m in Sources */,
 				B81E603B21DC948900873AB9 /* CoinModel.m in Sources */,
 				B86CB6A721DDB7FF00C60AC7 /* BaseCollectionView.m in Sources */,
@@ -4298,6 +4367,7 @@
 				1F1B006B21E71D26000BEBD3 /* RBBCubicBezier.m in Sources */,
 				B81E5FC521DC8FC200873AB9 /* TLPageDataHelper.m in Sources */,
 				B81E60A021DCAB8F00873AB9 /* UIView+Banner.m in Sources */,
+				36A84B4E22115B8B003CDE19 /* BalanceView.m in Sources */,
 				1F1B007021E71D26000BEBD3 /* RBBAnimation.m in Sources */,
 				1F1B00DB21E89B67000BEBD3 /* EnergyCompeteCell.m in Sources */,
 				1F3EBAFE21F5A89A005BC837 /* GoodsDetailsInfomationCell.m in Sources */,
@@ -4314,6 +4384,7 @@
 				B80D385F21F85F1E00206B55 /* CountView.m in Sources */,
 				B81E5FD621DC8FC200873AB9 /* NSString+CGSize.m in Sources */,
 				B81E5FB721DC8FC200873AB9 /* PushSortBar.m in Sources */,
+				36A84B5C22116C89003CDE19 /* GetMoneyVC.m in Sources */,
 				1F19A8CE21FAA26D0090BF84 /* SignFinishView.m in Sources */,
 				B80D385B21F85F1E00206B55 /* GoodsTypeModel.m in Sources */,
 				3610EEA621ED716A00FD345D /* MineVCCell.m in Sources */,
@@ -4364,6 +4435,7 @@
 				1F1B006A21E71D26000BEBD3 /* RBBBlockBasedArray.m in Sources */,
 				B81E602421DC906D00873AB9 /* AccountTf.m in Sources */,
 				B81E5FB321DC8FC200873AB9 /* SelectScrollView.m in Sources */,
+				36A84B5F22117BAF003CDE19 /* RuleModel.m in Sources */,
 				B8A27AF021E5C44400914897 /* MMLeftCell.m in Sources */,
 				1F1B00A121E7456B000BEBD3 /* ZJAnimationPopView.m in Sources */,
 				B81E60A321DCAB9B00873AB9 /* BannerModel.m in Sources */,
@@ -4412,7 +4484,6 @@
 				1F3EBB0A21F5C42D005BC837 /* YSActionSheetButton.m in Sources */,
 				B88E544921F9BDF600C33040 /* JVShopcartBrandModel.m in Sources */,
 				1F19A8ED21FAA6BA0090BF84 /* AreaModel.m in Sources */,
-				1F19A90922001FE50090BF84 /* RankingModel.m in Sources */,
 				B8A27AEF21E5C44400914897 /* MMNormalCell.m in Sources */,
 				B81E601B21DC906D00873AB9 /* TLChangeMobileVC.m in Sources */,
 				B81E601A21DC906D00873AB9 /* TLPwdRelatedVC.m in Sources */,
@@ -4469,6 +4540,7 @@
 				3610EEC121EDC3A300FD345D /* AddCardVC.m in Sources */,
 				B8A27AA521E5A15100914897 /* TreeListVC.m in Sources */,
 				B80D389121F8754600206B55 /* USERXX.m in Sources */,
+				36A84B5722115F98003CDE19 /* BalanceCell.m in Sources */,
 				363E291721F84984003981CD /* CertifyVCCell.m in Sources */,
 				B81E605921DC981D00873AB9 /* NBBatchReqest.m in Sources */,
 				B85F891F21FC2F9C00D5B7A4 /* PYSearchSuggestionViewController.m in Sources */,
@@ -4527,9 +4599,11 @@
 				1F3EBAF721F5A621005BC837 /* SLBannerView.m in Sources */,
 				3689767A21EEF4B5005F1177 /* CollectTreeVC.m in Sources */,
 				B80D388321F871CF00206B55 /* SubmitOrderGoodsCell.m in Sources */,
+				36A84B47221119D3003CDE19 /* RankModel.m in Sources */,
 				367D68E921F95B920091177C /* SelectAdView.m in Sources */,
 				1F9361E421F3158F007E522A /* GoodsListCollCell.m in Sources */,
 				B87C213921FB047000EFD0B0 /* HDragItem.m in Sources */,
+				36A84B4B221125C1003CDE19 /* MineRankCell.m in Sources */,
 				B81E605621DC981D00873AB9 /* NBRequest.m in Sources */,
 				B81E5FD821DC8FC200873AB9 /* NSString+Date.m in Sources */,
 				B81E5FC121DC8FC200873AB9 /* ShareView.m in Sources */,

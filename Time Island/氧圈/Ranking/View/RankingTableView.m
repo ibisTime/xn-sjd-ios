@@ -8,8 +8,9 @@
 
 #import "RankingTableView.h"
 #import "RankingCell.h"
+#import "MineRankCell.h"
 #define Ranking @"RankingCell"
-
+#define MineRank @"MineRankCell"
 
 @interface RankingTableView()<UITableViewDelegate, UITableViewDataSource>
 {
@@ -28,7 +29,7 @@
         self.dataSource = self;
         self.delegate = self;
         [self registerClass:[RankingCell class] forCellReuseIdentifier:Ranking];
-
+        [self registerClass:[MineRankCell class] forCellReuseIdentifier:MineRank];
         
     }
     
@@ -43,7 +44,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (section == 1) {
-        return 100;
+        return self.RankModels.count;
     }
     return 1;
     
@@ -53,17 +54,22 @@
     
     
     if (indexPath.section == 0) {
-        RankingCell *cell = [tableView dequeueReusableCellWithIdentifier:Ranking forIndexPath:indexPath];
+        MineRankCell *cell = [tableView dequeueReusableCellWithIdentifier:MineRank forIndexPath:indexPath];
+        for (int i = 0; i < self.RankModels.count; i++) {
+            RankModel * model = self.RankModels[i];
+            if ([[TLUser user].userId isEqualToString:model.userId]) {
+                cell.RankModel = model;
+            }
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
         cell.numberImg.hidden = YES;
-        cell.numberLbl.text = @"99";
         return cell;
     }
     
     
     
     RankingCell *cell = [tableView dequeueReusableCellWithIdentifier:Ranking forIndexPath:indexPath];
+    cell.RankModel = self.RankModels[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     if (indexPath.row == 0) {
@@ -131,5 +137,7 @@
     
     return [UIView new];
 }
-
+-(void)setRankModels:(NSMutableArray<RankModel *> *)RankModels{
+    _RankModels = RankModels;
+}
 @end

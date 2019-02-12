@@ -27,7 +27,8 @@
     negativeSpacer.width = -10;
     [self.RightButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
     self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
-    self.RightButton.font = FONT(16);
+//    self.RightButton.font = FONT(16);
+    self.RightButton.titleLabel.font = FONT(16);
     [self.RightButton setFrame:CGRectMake(SCREEN_WIDTH-47.5, 30, 32.5, 45)];
     [self.RightButton setTitle:@"发布" forState:UIControlStateNormal];
     [self.RightButton addTarget:self action:@selector(myRecodeClick) forControlEvents:(UIControlEventTouchUpInside)];
@@ -47,7 +48,6 @@
 }
 
 -(void)myRecodeClick{
-    NSLog(@"%s",__func__);
     IssueBook * issue = [[IssueBook alloc]init];
     [self.navigationController pushViewController:issue animated:YES];
 }

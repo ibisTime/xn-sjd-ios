@@ -10,5 +10,7 @@
 
 @interface MyCarbonBubbleVC : TLBaseVC
 @property (nonatomic,strong) NSString * accountNumber;
+@property (nonatomic,assign) int state;
+
 
 @end

@@ -16,6 +16,7 @@
     UILabel *titleLab;
     UILabel *priceLabel;
     UILabel *addressLabel;
+    UILabel * label;
 }
 -(instancetype)initWithFrame:(CGRect)frame
 {
@@ -74,6 +75,17 @@
 //        addressLabel.text = @"浙江省 杭州市";
         [backView addSubview:addressLabel];
         
+        
+//        if ([self.model.sellType isEqualToString:@"4"]) {
+            label = [UILabel labelWithTitle: [NSString stringWithFormat:@"%@/%@",self.model.nowCount,self.model.raiseCount] frame:CGRectMake(0, headImage.height - 20, headImage.width, 20)];
+            label.alpha = 0.8;
+            label.font = FONT(13);
+            [label setTextColor:[UIColor whiteColor]];
+            [label setBackgroundColor:kTabbarColor];
+            [headImage addSubview:label];
+
+//        }
+        
     }
     return self;
 }
@@ -122,19 +134,16 @@
     addressLabel.text = [NSString stringWithFormat:@"%@ %@",model.province,model.city];
 
     
+    label.text = [NSString stringWithFormat:@"%@/%@",self.model.nowCount,self.model.raiseCount];
     if ([model.sellType isEqualToString:@"4"]) {
-        UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, headImage.height - 20, headImage.width, 20)];
-//        view.alpha = 0.8;
-        view.backgroundColor = kTabbarColor;
-//        UILabel * label = [UILabel labelWithFrame:CGRectMake(0, headImage.height - 20, headImage.width, 20) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(8) textColor:[UIColor whiteColor]];
-//        UILabel * label = [UILabel labelWithTitle: [NSString stringWithFormat:@"%@/%@",model.nowCount,model.raiseCount] frame:CGRectMake(0, headImage.height - 20, headImage.width, 20)];
-        UILabel * label = [UILabel labelWithTitle: @"12/12" frame:CGRectMake(0, headImage.height - 20, headImage.width, 20)];
-        [label setTextColor:[UIColor blackColor]];
-        
-//        label.text = [NSString stringWithFormat:@"%@/%@",model.nowCount,model.raiseCount];
-        [view addSubview:label];
-        [headImage addSubview:view];
+        label.hidden = NO;
     }
+    else{
+        label.hidden = YES;
+    }
+    
+    
+    
 }
 
 

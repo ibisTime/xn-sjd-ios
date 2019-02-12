@@ -1,14 +1,14 @@
 //
-//  RankingCell.m
+//  MineRankCell.m
 //  Time Island
 //
-//  Created by 郑勤宝 on 2019/1/14.
-//  Copyright © 2019 ChengLian. All rights reserved.
+//  Created by 梅敏杰 on 2019/2/11.
+//  Copyright © 2019年 ChengLian. All rights reserved.
 //
 
-#import "RankingCell.h"
+#import "MineRankCell.h"
 
-@implementation RankingCell{
+@implementation MineRankCell{
     UIImageView *headImg;
     UIButton *nameBtn;
     UILabel *cerNumberLbl;
@@ -38,9 +38,9 @@
         
         nameBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         nameBtn.frame = CGRectMake(headImg.xx + 10, 14, SCREEN_WIDTH - headImg.xx - 10 - 70, 17);
-//        [nameBtn SG_imagePositionStyle:(SGImagePositionStyleRight) spacing:6 imagePositionBlock:^(UIButton *button) {
-//            [button setImage:kImage(@"收  取") forState:(UIControlStateNormal)];
-//        }];
+        //        [nameBtn SG_imagePositionStyle:(SGImagePositionStyleRight) spacing:6 imagePositionBlock:^(UIButton *button) {
+        //            [button setImage:kImage(@"收  取") forState:(UIControlStateNormal)];
+        //        }];
         
         [self addSubview:nameBtn];
         
@@ -61,6 +61,7 @@
 }
 -(void)setRankModel:(RankModel *)RankModel{
     _RankModel = RankModel;
+    _numberLbl.text = RankModel.rowNo;
     if (RankModel.photo) {
         [headImg sd_setImageWithURL: [NSURL URLWithString:[RankModel.photo convertImageUrl]]];
     }
@@ -87,3 +88,4 @@
     
 }
 @end
+

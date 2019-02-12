@@ -95,6 +95,9 @@
         self.font = [UIFont systemFontOfSize:15];
         self.adjustsFontSizeToFitWidth = YES;
         
+        self.delegate = self;
+        self.view =[self createview:CGRectMake(0, frame.size.height - 1, SCREEN_WIDTH-30, 1)];
+        [self addSubview:self.view];
     }
     return self;
 }

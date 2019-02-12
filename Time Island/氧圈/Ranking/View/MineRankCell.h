@@ -1,18 +1,19 @@
 //
-//  RankingCell.h
+//  MineRankCell.h
 //  Time Island
 //
-//  Created by 郑勤宝 on 2019/1/14.
-//  Copyright © 2019 ChengLian. All rights reserved.
+//  Created by 梅敏杰 on 2019/2/11.
+//  Copyright © 2019年 ChengLian. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "RankModel.h"
+NS_ASSUME_NONNULL_BEGIN
 
-@interface RankingCell : UITableViewCell
-
-
+@interface MineRankCell : UITableViewCell
 @property (nonatomic , strong)UIImageView *numberImg;
 @property (nonatomic , strong)UILabel *numberLbl;
 @property (nonatomic,strong) RankModel * RankModel;
 @end
+
+NS_ASSUME_NONNULL_END
