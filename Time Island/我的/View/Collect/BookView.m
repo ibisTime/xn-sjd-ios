@@ -34,13 +34,14 @@ static NSString *identifierCell = @"BookVideoCell";
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     BookCell * cell = [tableView dequeueReusableCellWithIdentifier:identifierCell forIndexPath:indexPath];
+    cell.state = self.state;
     cell.BookModel = self.BookModels[indexPath.row];
     cell.selectionStyle = UIAccessibilityTraitNone;
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
+    return 115;
 }
 //-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 ////    NSLog(@"%s",__func__);
@@ -52,10 +53,11 @@ static NSString *identifierCell = @"BookVideoCell";
 //    }
 //}
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 15;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return 15;
+//}
 -(void)setBookModels:(NSMutableArray<BookModel *> *)BookModels{
     _BookModels = BookModels;
 }
+
 @end

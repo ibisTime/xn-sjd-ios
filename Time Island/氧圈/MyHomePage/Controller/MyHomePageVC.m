@@ -14,10 +14,13 @@
 #import "UIViewController+CWLateralSlide.h"
 #import "MyGiftVC.h"
 #import "TLNavigationController.h"
+#import "SettingVC.h"
+#import "MessageVC.h"
 
 @interface MyHomePageVC ()<RefreshDelegate>
 @property (nonatomic , strong)MyHomePageTableView *tableView;
 @property (nonatomic , strong)MyHomePageHeadView *headView;
+@property (nonatomic,strong) NSArray * array;
 @end
 
 @implementation MyHomePageVC
@@ -46,10 +49,38 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    NSDictionary *DIC = @{@"row":@(indexPath.row)};
-    NSNotification *notification =[NSNotification notificationWithName:@"SELECTROW" object:nil userInfo:DIC];
-    [[NSNotificationCenter defaultCenter] postNotification:notification];
+    switch (indexPath.row) {
+        case 0:{
+            MyCarbonBubbleVC * vc = [MyCarbonBubbleVC new];
+            vc.accountNumber = self.array[2][@"accountNumber"];
+            vc.state = 2;
+            [self cw_pushViewController:vc];
+//            [self cw_pushViewController:vc drewerHiddenDuration:0];
+        }
+            break;
+        case 1:
+            break;
+        case 2:{
+            MessageVC * vc = [MessageVC new];
+            //            [self.navigationController pushViewController:vc animated:YES];
+            [self cw_pushViewController:vc];
+        }
+            break;
+        case 3:{
+            SettingVC * vc = [SettingVC new];
+//            [self.navigationController pushViewController:vc animated:YES];
+            [self cw_pushViewController:vc];
+        }
+            break;
+        default:
+            break;
+    }
+    
+    
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//    NSDictionary *DIC = @{@"row":@(indexPath.row)};
+//    NSNotification *notification =[NSNotification notificationWithName:@"SELECTROW" object:nil userInfo:DIC];
+//    [[NSNotificationCenter defaultCenter] postNotification:notification];
     
 //    if (indexPath.row == 0) {
 //
@@ -68,10 +99,24 @@
 ////        [self cw_presentViewController:nav];
 //    }
 }
+-(void)refresh{
+    TLNetworking * http1 = [[TLNetworking alloc]init];
+    http1.code = @"802300";
+    http1.parameters[@"userId"] = [TLUser user].userId;
+    http1.parameters[@"start"] = @(1);
+    http1.parameters[@"limit"] = @(10);
+//    [http1 postWithSuccess:^(id responseObject) {
+//        self.array = responseObject[@"data"][@"list"];}
+//     [http]
+    [http1 postWithSuccess:^(id responseObject) {
+        self.array = responseObject[@"data"][@"list"];
+    } failure:^(NSError *error) {
+    }];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    [self refresh];
     [self.view addSubview:self.tableView];
     self.tableView.tableHeaderView = self.headView;
     

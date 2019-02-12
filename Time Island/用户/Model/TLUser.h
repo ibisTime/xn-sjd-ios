@@ -138,6 +138,7 @@
 - (void)changLoginTime;
 - (void)loadTengxunYun;
 + (NSString*)convertNull:(id)object;
+- (UIImage *)QRCodeMethod:(NSString *)qrCodeString;
 @end
 
 FOUNDATION_EXTERN  NSString *const kUserLoginNotification;

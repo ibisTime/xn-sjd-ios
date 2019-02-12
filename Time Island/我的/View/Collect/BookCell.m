@@ -26,8 +26,6 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
-        
-        
         UIImageView *image = [[UIImageView alloc] init];
         image.contentMode = UIViewContentModeScaleToFill;
         [self.contentView addSubview:image];
@@ -79,7 +77,7 @@
         UILabel *praiseLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor2 font:11];
         praiseLab.frame = CGRectMake(collectLab.xx, detailLab.yy+10, 60, 24);
         praiseLab.textAlignment = NSTextAlignmentLeft;
-        praiseLab.text = @"评论 100";
+        praiseLab.text = @"赞 100";
         praiseLab.yy = image.yy;
         self.praiseLab = praiseLab;
         [self.contentView addSubview:praiseLab];
@@ -91,11 +89,28 @@
     }
     return self;
 }
+
+
 -(void)setBookModel:(BookModel *)BookModel{
-    [self.iconImage sd_setImageWithURL:[NSURL URLWithString:[BookModel.photo convertImageUrl]]];
-    self.moreLab.text = BookModel.title;
-    NSString * timestr =[BookModel.publishDatetime convertToDetailDate];
+    
+    if (self.state == 1) {
+        [self.iconImage sd_setImageWithURL:[NSURL URLWithString:[BookModel.photo convertImageUrl]]];
+        self.moreLab.text = BookModel.title;
+        NSString * timestr =[BookModel.publishDatetime convertToDetailDate];
+        self.timeLab.text = [timestr substringToIndex:10];
+        
+        self.collectLab.text = [NSString stringWithFormat:@"收藏 %@",BookModel.collectCount];
+        self.praiseLab.text = [NSString stringWithFormat:@"赞 %@",BookModel.pointCount];
+    }
+    else{
+    [self.iconImage sd_setImageWithURL:[NSURL URLWithString:[BookModel.article[@"photo"] convertImageUrl]]];
+    self.moreLab.text = BookModel.article[@"title"];
+    NSString * timestr =[BookModel.article[@"publishDatetime"] convertToDetailDate];
     self.timeLab.text = [timestr substringToIndex:10];
+    
+    self.collectLab.text = [NSString stringWithFormat:@"收藏 %@",BookModel.article[@"collectCount"]];
+    self.praiseLab.text = [NSString stringWithFormat:@"赞 %@",BookModel.article[@"pointCount"]];
+    }
     
 }
 @end

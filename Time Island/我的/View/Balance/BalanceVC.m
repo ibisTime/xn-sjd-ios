@@ -11,6 +11,7 @@
 #import "CarbonModel.h"
 #import "BalanceTableView.h"
 #import "GetMoneyVC.h"
+#import "PostMoneyVC.h"
 @interface BalanceVC ()<RefreshDelegate,BalanceViewDelegate>
 @property (nonatomic , strong)BalanceView *headView;
 @property (nonatomic,strong) NSMutableArray<CarbonModel *> * CarbonModels;
@@ -69,6 +70,8 @@
 }
 -(void)postmoney{
     NSLog(@"%s",__func__);
+    PostMoneyVC * vc = [PostMoneyVC new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)refresh{
     

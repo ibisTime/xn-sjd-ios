@@ -10,10 +10,14 @@
 #import "MyNoticeTableView.h"
 #import "MyNoticeDetailsVC.h"
 #import "NoticeModel.h"
+#import <MJRefreshNormalHeader.h>
+#import <MJRefreshBackNormalFooter.h>
 @interface MyNoticeVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)MyNoticeTableView *tableView;
 @property (nonatomic,strong) NSMutableArray<NoticeModel *> * NoticeModels;
+@property (nonatomic,assign) int start;
+
 @end
 
 @implementation MyNoticeVC
@@ -38,6 +42,8 @@
     [self refresh];
     [self.view addSubview:self.tableView];
     self.title = @"公告";
+    self.start = 1;
+    [self headRefresh];
 }
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -51,21 +57,48 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void)headRefresh
+{
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    header.automaticallyChangeAlpha = YES;
+    header.lastUpdatedTimeLabel.hidden = YES;
+    header.stateLabel.hidden = YES;
+    _tableView.mj_header = header;
+    [_tableView.mj_header beginRefreshing];
+    
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewDataFooter)];
+    footer.arrowView.hidden = YES;
+    footer.stateLabel.hidden = YES;
+    _tableView.mj_footer = footer;
+}
 
+-(void)loadNewData
+{
+    self.start = 1;
+    [self refresh];
+    [_tableView endRefreshHeader];
+}
+-(void)loadNewDataFooter
+{
+    self.start ++;
+    [self refresh];
+    [_tableView endRefreshFooter];
+}
 -(void)refresh{
+    CoinWeakSelf
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"805305";
-    http.parameters[@"start"] = @(1);
+    http.parameters[@"start"] = @(self.start);
     http.parameters[@"limit"] = @(10);
     http.parameters[@"status"] = @"1";
     http.parameters[@"type"] = @"3";
     http.parameters[@"object"] = @"C";
     [http postWithSuccess:^(id responseObject) {
         self.NoticeModels = [NoticeModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-        
-         _tableView.NoticeModels = self.NoticeModels;
+         weakSelf.tableView.NoticeModels = self.NoticeModels;
         [self.tableView reloadData];
     } failure:^(NSError *error) {
     }];
 }
+
 @end

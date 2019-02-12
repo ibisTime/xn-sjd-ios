@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BookView : TLTableView<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong) NSMutableArray<BookModel *> * BookModels;
+@property (nonatomic,assign) int state;
+
 @end
 
 NS_ASSUME_NONNULL_END

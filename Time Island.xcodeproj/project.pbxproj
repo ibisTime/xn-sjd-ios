@@ -26,8 +26,6 @@
 		1F19A90021FEFEF50090BF84 /* PersonalCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A8FF21FEFEF50090BF84 /* PersonalCenterVC.m */; };
 		1F19A90321FEFF130090BF84 /* PersonalCenterHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A90221FEFF130090BF84 /* PersonalCenterHeadView.m */; };
 		1F19A90621FF07A50090BF84 /* PersonalCenterTableVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A90521FF07A50090BF84 /* PersonalCenterTableVIew.m */; };
-
-		1F19A90922001FE50090BF84 /* RankingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19A90822001FE40090BF84 /* RankingModel.m */; };
 		1F19AC2C22114DDD0090BF84 /* MallGoodIntroduceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19AC2B22114DDD0090BF84 /* MallGoodIntroduceTableView.m */; };
 		1F19AC2F221157520090BF84 /* MallGoodsInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19AC2E221157520090BF84 /* MallGoodsInformationCell.m */; };
 		1F19AC3222115C4D0090BF84 /* MallGoodsChooseSpecCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F19AC3122115C4D0090BF84 /* MallGoodsChooseSpecCell.m */; };
@@ -174,6 +172,7 @@
 		3689769C21EF3A4F005F1177 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3689769B21EF3A4F005F1177 /* AMap.bundle */; };
 		369C60CC21F71254001F9CBA /* MailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C60CB21F71254001F9CBA /* MailVC.m */; };
 		369C60CF21F717A9001F9CBA /* PayPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C60CE21F717A9001F9CBA /* PayPwdVC.m */; };
+		36A0C03B2212698400B751D0 /* PostMoneyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A0C03A2212698400B751D0 /* PostMoneyVC.m */; };
 		36A84B442211114C003CDE19 /* TLChangeMobileVC.h in Sources */ = {isa = PBXBuildFile; fileRef = B81E5FF521DC906C00873AB9 /* TLChangeMobileVC.h */; };
 		36A84B47221119D3003CDE19 /* RankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A84B46221119D3003CDE19 /* RankModel.m */; };
 		36A84B4B221125C1003CDE19 /* MineRankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A84B4A221125C1003CDE19 /* MineRankCell.m */; };
@@ -186,6 +185,10 @@
 		36BB9F6B21FE9B2E0010E622 /* NoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB9F6A21FE9B2E0010E622 /* NoticeModel.m */; };
 		36BB9F6F21FEE1B70010E622 /* BookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB9F6E21FEE1B70010E622 /* BookModel.m */; };
 		36BB9F7221FEEC980010E622 /* BookDetailContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB9F7121FEEC980010E622 /* BookDetailContentView.m */; };
+		36C85E872212A50A00DA26BE /* InviteGiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C85E862212A50A00DA26BE /* InviteGiftVC.m */; };
+		36C85E8A2212C9DF00DA26BE /* MessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C85E892212C9DF00DA26BE /* MessageVC.m */; };
+		36C85E8D2212CCEF00DA26BE /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C85E8C2212CCEF00DA26BE /* MessageCell.m */; };
+		36C85E902212CE4F00DA26BE /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C85E8F2212CE4F00DA26BE /* MessageModel.m */; };
 		36DB50D621F5993B009D56EF /* NewsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50D521F5993B009D56EF /* NewsVC.m */; };
 		36DB50D921F59AEF009D56EF /* NewsVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50D821F59AEF009D56EF /* NewsVCCell.m */; };
 		36DB50DC21F5A11F009D56EF /* MallOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50DB21F5A11F009D56EF /* MallOrderVC.m */; };
@@ -521,9 +524,6 @@
 		1F19A90221FEFF130090BF84 /* PersonalCenterHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterHeadView.m; sourceTree = "<group>"; };
 		1F19A90421FF07A50090BF84 /* PersonalCenterTableVIew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalCenterTableVIew.h; sourceTree = "<group>"; };
 		1F19A90521FF07A50090BF84 /* PersonalCenterTableVIew.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterTableVIew.m; sourceTree = "<group>"; };
-
-		1F19A90722001FE40090BF84 /* RankingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RankingModel.h; sourceTree = "<group>"; };
-		1F19A90822001FE40090BF84 /* RankingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RankingModel.m; sourceTree = "<group>"; };
 		1F19AC2A22114DDD0090BF84 /* MallGoodIntroduceTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallGoodIntroduceTableView.h; sourceTree = "<group>"; };
 		1F19AC2B22114DDD0090BF84 /* MallGoodIntroduceTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallGoodIntroduceTableView.m; sourceTree = "<group>"; };
 		1F19AC2D221157520090BF84 /* MallGoodsInformationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallGoodsInformationCell.h; sourceTree = "<group>"; };
@@ -534,7 +534,6 @@
 		1F19AC342211634C0090BF84 /* TeamPostCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamPostCell.h; sourceTree = "<group>"; };
 		1F19AC3622116A720090BF84 /* EvaluationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EvaluationModel.h; sourceTree = "<group>"; };
 		1F19AC3722116A720090BF84 /* EvaluationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EvaluationModel.m; sourceTree = "<group>"; };
-
 		1F1B001721E6E23F000BEBD3 /* OxygenCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OxygenCircleView.h; sourceTree = "<group>"; };
 		1F1B001821E6E23F000BEBD3 /* OxygenCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OxygenCircleView.m; sourceTree = "<group>"; };
 		1F1B001E21E6F79C000BEBD3 /* MyTreeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTreeVC.h; sourceTree = "<group>"; };
@@ -806,6 +805,8 @@
 		369C60CB21F71254001F9CBA /* MailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MailVC.m; sourceTree = "<group>"; };
 		369C60CD21F717A9001F9CBA /* PayPwdVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayPwdVC.h; sourceTree = "<group>"; };
 		369C60CE21F717A9001F9CBA /* PayPwdVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayPwdVC.m; sourceTree = "<group>"; };
+		36A0C0392212698400B751D0 /* PostMoneyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostMoneyVC.h; sourceTree = "<group>"; };
+		36A0C03A2212698400B751D0 /* PostMoneyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostMoneyVC.m; sourceTree = "<group>"; };
 		36A84B45221119D3003CDE19 /* RankModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RankModel.h; sourceTree = "<group>"; };
 		36A84B46221119D3003CDE19 /* RankModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RankModel.m; sourceTree = "<group>"; };
 		36A84B49221125C1003CDE19 /* MineRankCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineRankCell.h; sourceTree = "<group>"; };
@@ -828,6 +829,14 @@
 		36BB9F6E21FEE1B70010E622 /* BookModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookModel.m; sourceTree = "<group>"; };
 		36BB9F7021FEEC980010E622 /* BookDetailContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookDetailContentView.h; sourceTree = "<group>"; };
 		36BB9F7121FEEC980010E622 /* BookDetailContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookDetailContentView.m; sourceTree = "<group>"; };
+		36C85E852212A50A00DA26BE /* InviteGiftVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InviteGiftVC.h; sourceTree = "<group>"; };
+		36C85E862212A50A00DA26BE /* InviteGiftVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InviteGiftVC.m; sourceTree = "<group>"; };
+		36C85E882212C9DF00DA26BE /* MessageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageVC.h; sourceTree = "<group>"; };
+		36C85E892212C9DF00DA26BE /* MessageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageVC.m; sourceTree = "<group>"; };
+		36C85E8B2212CCEF00DA26BE /* MessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		36C85E8C2212CCEF00DA26BE /* MessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		36C85E8E2212CE4F00DA26BE /* MessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
+		36C85E8F2212CE4F00DA26BE /* MessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
 		36DB50D421F5993B009D56EF /* NewsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsVC.h; sourceTree = "<group>"; };
 		36DB50D521F5993B009D56EF /* NewsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsVC.m; sourceTree = "<group>"; };
 		36DB50D721F59AEF009D56EF /* NewsVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsVCCell.h; sourceTree = "<group>"; };
@@ -1730,6 +1739,8 @@
 				1F9360BB21EDFD8E007E522A /* MyCarbonBubble我的碳泡泡 */,
 				1F9360D821EDFD8E007E522A /* MyGift我的礼物 */,
 				1F9360EC21EDFD8F007E522A /* MyNotice我的通知 */,
+				36C85E8E2212CE4F00DA26BE /* MessageModel.h */,
+				36C85E8F2212CE4F00DA26BE /* MessageModel.m */,
 			);
 			path = MyHomePage;
 			sourceTree = "<group>";
@@ -2039,6 +2050,10 @@
 				1F93616321EE01B4007E522A /* MyHomePageHeadView.m */,
 				1F93616121EE01B3007E522A /* MyHomePageTableView.h */,
 				1F93616221EE01B4007E522A /* MyHomePageTableView.m */,
+				36C85E882212C9DF00DA26BE /* MessageVC.h */,
+				36C85E892212C9DF00DA26BE /* MessageVC.m */,
+				36C85E8B2212CCEF00DA26BE /* MessageCell.h */,
+				36C85E8C2212CCEF00DA26BE /* MessageCell.m */,
 				1F93614D21EE0139007E522A /* Navication */,
 			);
 			path = View;
@@ -2273,7 +2288,6 @@
 				3689769421EF3683005F1177 /* Order */,
 				3689768421EF00F8005F1177 /* Setting */,
 				3689768321EF00E5005F1177 /* Collect */,
-				3610EEA521ED716A00FD345D /* MineVCCell.m */,
 				3689768821EF0488005F1177 /* InviteVCCell.h */,
 				3689768921EF0488005F1177 /* InviteVCCell.m */,
 				363E291521F84984003981CD /* CertifyVCCell.h */,
@@ -2389,6 +2403,7 @@
 			isa = PBXGroup;
 			children = (
 				3610EEA421ED716A00FD345D /* MineVCCell.h */,
+				3610EEA521ED716A00FD345D /* MineVCCell.m */,
 				3689766921EED882005F1177 /* BookView.h */,
 				3689766A21EED882005F1177 /* BookView.m */,
 				3689766C21EED9A3005F1177 /* BookCell.h */,
@@ -2448,6 +2463,8 @@
 				36A84B5622115F98003CDE19 /* BalanceCell.m */,
 				36A84B5A22116C89003CDE19 /* GetMoneyVC.h */,
 				36A84B5B22116C89003CDE19 /* GetMoneyVC.m */,
+				36A0C0392212698400B751D0 /* PostMoneyVC.h */,
+				36A0C03A2212698400B751D0 /* PostMoneyVC.m */,
 			);
 			path = Balance;
 			sourceTree = "<group>";
@@ -3281,6 +3298,8 @@
 				3689766121EED58A005F1177 /* CollectVC.m */,
 				3689768021EF00D3005F1177 /* InviteVC.h */,
 				3689768121EF00D3005F1177 /* InviteVC.m */,
+				36C85E852212A50A00DA26BE /* InviteGiftVC.h */,
+				36C85E862212A50A00DA26BE /* InviteGiftVC.m */,
 				3689768B21EF1C1F005F1177 /* BookVC.h */,
 				3689768C21EF1C1F005F1177 /* BookVC.m */,
 				36F841D021F02B0D00BAC88A /* IssueBook.h */,
@@ -4281,6 +4300,7 @@
 				B8EE11FD21EDC98800B9DF0D /* LunarFormatter.m in Sources */,
 				3610EEC421EDCEBD00FD345D /* InfoVC.m in Sources */,
 				B80D384321F8403800206B55 /* MallStoreListVC.m in Sources */,
+				36C85E902212CE4F00DA26BE /* MessageModel.m in Sources */,
 				B81E5FE521DC8FC200873AB9 /* CoinUtil.m in Sources */,
 				B80D388B21F873F000206B55 /* AddressModel.m in Sources */,
 				B81E602521DC906D00873AB9 /* CaptchaView.m in Sources */,
@@ -4299,6 +4319,7 @@
 				B85F892521FC2FC200D5B7A4 /* PYTempViewController.m in Sources */,
 				1F1B006C21E71D26000BEBD3 /* RBBEasingFunction.m in Sources */,
 				369C60CC21F71254001F9CBA /* MailVC.m in Sources */,
+				36A0C03B2212698400B751D0 /* PostMoneyVC.m in Sources */,
 				36F841D221F02B0D00BAC88A /* IssueBook.m in Sources */,
 				B81E608821DC9FCC00873AB9 /* LinCircleVC.m in Sources */,
 				36A84B5122115DF7003CDE19 /* BalanceVC.m in Sources */,
@@ -4405,6 +4426,7 @@
 				360E09B822015790003467B8 /* RenYangUserModel.m in Sources */,
 				B81E5FD521DC8FC200873AB9 /* NSString+Check.m in Sources */,
 				B86CB6AC21DDB83A00C60AC7 /* PlateMineModel.m in Sources */,
+				36C85E8A2212C9DF00DA26BE /* MessageVC.m in Sources */,
 				B8A27AE621E5C44400914897 /* MMItem.m in Sources */,
 				B80D385C21F85F1E00206B55 /* SizeAttributeModel.m in Sources */,
 				B8A27AE821E5C44400914897 /* MMLayout.m in Sources */,
@@ -4441,6 +4463,7 @@
 				B81E60A321DCAB9B00873AB9 /* BannerModel.m in Sources */,
 				1F19AC2F221157520090BF84 /* MallGoodsInformationCell.m in Sources */,
 				B8ED2E8221E72E1900FADCCE /* TitleView.m in Sources */,
+				36C85E872212A50A00DA26BE /* InviteGiftVC.m in Sources */,
 				B87C211821FAE8C800EFD0B0 /* ExpressView.m in Sources */,
 				1FF6399221EC833000F5FF68 /* FriendRequestsVC.m in Sources */,
 				B81E5FB621DC8FC200873AB9 /* TopSegmentUtil.m in Sources */,
@@ -4531,6 +4554,7 @@
 				36BB9F7221FEEC980010E622 /* BookDetailContentView.m in Sources */,
 				1F9361D321F17507007E522A /* MallMyVC.m in Sources */,
 				B81E5FC421DC8FC200873AB9 /* TLNetworking.m in Sources */,
+				36C85E8D2212CCEF00DA26BE /* MessageCell.m in Sources */,
 				B8A27AF521E5C44400914897 /* UIView+ComboBoxExtension.m in Sources */,
 				3689768D21EF1C1F005F1177 /* BookVC.m in Sources */,
 				B815278C21EC8BFD00F89395 /* NoticeTableView.m in Sources */,

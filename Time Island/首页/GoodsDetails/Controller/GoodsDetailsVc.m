@@ -248,22 +248,7 @@
     } failure:^(NSError *error) {
     }];
     
-    
-//    TLNetworking * http1 = [[TLNetworking alloc]init];
-//    http1.code = @"629209";
-//    if (self.treemodel) {
-//        http1.parameters[@"productCode"] = self.treemodel.productSpecsList[0][@"productCode"];
-//    }else if (self.BannerModel){
-//        http1.parameters[@"productCode"] = self.TreeModels.productSpecsList[0][@"productCode"];
-//    }
-//
-//    http1.parameters[@"statusList"] = @[@2,@3,@4];
-//    [http1 postWithSuccess:^(id responseObject) {
-//        self.RenYangModel = [RenYangUserModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
-//        self.tableView.RenYangModel = self.RenYangModel;
-//        [self.tableView reloadData];
-//    } failure:^(NSError *error) {
-//    }];
+
 }
 -(void)getName{
     TLNetworking * http1 = [[TLNetworking alloc]init];

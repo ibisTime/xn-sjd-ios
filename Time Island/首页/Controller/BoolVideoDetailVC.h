@@ -10,4 +10,6 @@
 #import "BookModel.h"
 @interface BoolVideoDetailVC : TLBaseVC
 @property (nonatomic,strong) BookModel * BookModel;
+@property (nonatomic,strong) NSString * state;
+
 @end

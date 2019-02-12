@@ -16,11 +16,16 @@
     if (self) {
         
         UIImageView *headImage = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH * 0.75/2 - 65/2, 55, 65, 65)];
-        headImage.image = kImage(@"头像");
+//        headImage.image = kImage(@"头像");
+        headImage.layer.cornerRadius = 32.5;
+        headImage.layer.masksToBounds = YES;
+        
+        [headImage sd_setImageWithURL: [NSURL URLWithString:[[TLUser user].photo convertImageUrl]] placeholderImage:kImage(@"头像")];
         [self addSubview:headImage];
         
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(0, headImage.yy + 17, WIDTH, 16) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(16) textColor:kTextBlack];
-        nameLabel.text = @"KOALA";
+//        nameLabel.text = @"KOALA";
+        nameLabel.text = [TLUser user].nickname;
         [self addSubview:nameLabel];
         
         
