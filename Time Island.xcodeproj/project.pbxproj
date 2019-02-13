@@ -149,6 +149,8 @@
 		365514D821FB009000E54996 /* introduceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 365514D721FB009000E54996 /* introduceView.m */; };
 		366A59F122000007009FFA6E /* GoodsDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A59F022000007009FFA6E /* GoodsDetailsCell.m */; };
 		366A59F322003E35009FFA6E /* SelectAddress.json in Resources */ = {isa = PBXBuildFile; fileRef = 366A59F222003E35009FFA6E /* SelectAddress.json */; };
+		3671897C2213AEE60050488E /* MessageDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3671897B2213AEE60050488E /* MessageDetailsVC.m */; };
+		3671897F2213B7FF0050488E /* CompanyCertifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3671897E2213B7FF0050488E /* CompanyCertifyVC.m */; };
 		367D68E021F95A230091177C /* aiai_area.txt in Resources */ = {isa = PBXBuildFile; fileRef = 367D68DF21F95A230091177C /* aiai_area.txt */; };
 		367D68E921F95B920091177C /* SelectAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D68E821F95B920091177C /* SelectAdView.m */; };
 		367D694221F998A70091177C /* GenderPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D694121F998A70091177C /* GenderPickerView.m */; };
@@ -763,6 +765,10 @@
 		366A59EF22000007009FFA6E /* GoodsDetailsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsDetailsCell.h; sourceTree = "<group>"; };
 		366A59F022000007009FFA6E /* GoodsDetailsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailsCell.m; sourceTree = "<group>"; };
 		366A59F222003E35009FFA6E /* SelectAddress.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SelectAddress.json; sourceTree = "<group>"; };
+		3671897A2213AEE60050488E /* MessageDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDetailsVC.h; sourceTree = "<group>"; };
+		3671897B2213AEE60050488E /* MessageDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageDetailsVC.m; sourceTree = "<group>"; };
+		3671897D2213B7FF0050488E /* CompanyCertifyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyCertifyVC.h; sourceTree = "<group>"; };
+		3671897E2213B7FF0050488E /* CompanyCertifyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyCertifyVC.m; sourceTree = "<group>"; };
 		367D68DF21F95A230091177C /* aiai_area.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aiai_area.txt; sourceTree = "<group>"; };
 		367D68E721F95B920091177C /* SelectAdView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectAdView.h; sourceTree = "<group>"; };
 		367D68E821F95B920091177C /* SelectAdView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectAdView.m; sourceTree = "<group>"; };
@@ -1986,10 +1992,10 @@
 			children = (
 				1F9360DA21EDFD8E007E522A /* ToClaimTheGiftVC.m */,
 				1F9360DB21EDFD8E007E522A /* ToClaimTheGiftVC2.h */,
+				1F9360DF21EDFD8E007E522A /* MyGiftVC.h */,
 				1F9360DC21EDFD8E007E522A /* MyGiftVC.m */,
 				1F9360DD21EDFD8E007E522A /* ToClaimTheGiftVC.h */,
 				1F9360DE21EDFD8E007E522A /* ToClaimTheGiftVC2.m */,
-				1F9360DF21EDFD8E007E522A /* MyGiftVC.h */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2054,6 +2060,8 @@
 				36C85E892212C9DF00DA26BE /* MessageVC.m */,
 				36C85E8B2212CCEF00DA26BE /* MessageCell.h */,
 				36C85E8C2212CCEF00DA26BE /* MessageCell.m */,
+				3671897A2213AEE60050488E /* MessageDetailsVC.h */,
+				3671897B2213AEE60050488E /* MessageDetailsVC.m */,
 				1F93614D21EE0139007E522A /* Navication */,
 			);
 			path = View;
@@ -2305,6 +2313,8 @@
 				363E291321F84530003981CD /* CertifyVC.m */,
 				363E291921F84D46003981CD /* PersonalCertifyVC.h */,
 				363E291A21F84D46003981CD /* PersonalCertifyVC.m */,
+				3671897D2213B7FF0050488E /* CompanyCertifyVC.h */,
+				3671897E2213B7FF0050488E /* CompanyCertifyVC.m */,
 			);
 			path = Certify;
 			sourceTree = "<group>";
@@ -4281,6 +4291,7 @@
 				B80D385D21F85F1E00206B55 /* GoodsModel.m in Sources */,
 				B81E608B21DC9FE500873AB9 /* MallVC.m in Sources */,
 				1F93615F21EE017C007E522A /* MyHomePageVC.m in Sources */,
+				3671897C2213AEE60050488E /* MessageDetailsVC.m in Sources */,
 				B80D385A21F85F1E00206B55 /* GoodsPriceModel.m in Sources */,
 				B8ED2E7321E7133900FADCCE /* TreeFieldTB.m in Sources */,
 				B80D385E21F85F1E00206B55 /* JXUIKit.m in Sources */,
@@ -4490,6 +4501,7 @@
 				B81E5FC821DC8FC200873AB9 /* UILabel+Extension.m in Sources */,
 				B81E602021DC906D00873AB9 /* TLUserExt.m in Sources */,
 				B8F3724A21FEEA1E0078B03B /* SpecsListModel.m in Sources */,
+				3671897F2213B7FF0050488E /* CompanyCertifyVC.m in Sources */,
 				1F93616721EE01B4007E522A /* MyHomePageHeadView.m in Sources */,
 				B81E5FC021DC8FC200873AB9 /* TLCaptchaView.m in Sources */,
 				B88E542721F9AC4200C33040 /* TransportCell.m in Sources */,
@@ -4824,7 +4836,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = A7AR7GW3Q2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -4857,7 +4869,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = A7AR7GW3Q2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",

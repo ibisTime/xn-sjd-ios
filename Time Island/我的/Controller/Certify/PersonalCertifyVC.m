@@ -44,7 +44,7 @@
     CGFloat margin = 15;
     CGFloat height = 55;
     //姓名
-    TLTextField * Name = [[TLTextField alloc]initWithFrame:CGRectMake(margin, 0, SCREEN_WIDTH-30, height) leftTitle:@"真是姓名" placeholder:@"请输入您的姓名"];
+    TLTextField * Name = [[TLTextField alloc]initWithFrame:CGRectMake(margin, 0, SCREEN_WIDTH-30, height) leftTitle:@"真实姓名" placeholder:@"请输入您的姓名"];
     Name.font = FONT(15);
     Name.leftLbl.font = FONT(15);
     [self.view addSubview:Name];

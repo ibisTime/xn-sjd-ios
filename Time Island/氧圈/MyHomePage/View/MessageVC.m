@@ -11,6 +11,7 @@
 #import "MessageCell.h"
 #import <MJRefreshNormalHeader.h>
 #import <MJRefreshBackNormalFooter.h>
+#import "MessageDetailsVC.h"
 @interface MessageVC ()<UITableViewDelegate,UITableViewDataSource,RefreshDelegate>
 @property (nonatomic,strong) TLTableView * messagetable;
 @property (nonatomic,assign) int start;
@@ -24,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.start = 1;
+    self.title = @"我的通知";
     TLTableView * table = [[TLTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [table registerClass:[MessageCell class] forCellReuseIdentifier:@"cell"];
     table.delegate = self;
@@ -48,6 +50,13 @@
     cell.selectionStyle = UIAccessibilityTraitNone;
     return cell;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    MessageDetailsVC * vc = [MessageDetailsVC new];
+    MessageModel * model = self.MessageModels[indexPath.row];
+    vc.code = model.code;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 -(void)headRefresh
 {
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
@@ -62,7 +71,6 @@
     footer.stateLabel.hidden = YES;
     self.messagetable.mj_footer = footer;
 }
-
 -(void)loadNewData
 {
     self.start = 1;

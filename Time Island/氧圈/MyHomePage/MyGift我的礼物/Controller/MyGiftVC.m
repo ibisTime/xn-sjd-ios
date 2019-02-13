@@ -37,6 +37,7 @@
     [self.view addSubview:self.tableView];
     self.view.backgroundColor = kWhiteColor;
     
+    [self getdata];
 }
 
 
@@ -49,6 +50,18 @@
 }
 
 
-
+-(void)getdata{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629325";
+    http.parameters[@"adoptTreeCode"] = @"";
+    http.parameters[@"start"] = @(1);
+    http.parameters[@"limit"] = @(10);
+    http.parameters[@"toUser"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
 
 @end

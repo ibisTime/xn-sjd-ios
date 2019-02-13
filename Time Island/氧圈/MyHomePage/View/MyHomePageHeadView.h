@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MyHomePageHeadView : UIView
-
+@property (nonatomic,strong) void (^clickimage)();
 @end

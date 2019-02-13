@@ -19,6 +19,7 @@
 #import "MyGiftVC.h"
 #import "MyNoticeVC.h"
 #import "PersonalCenterVC.h"
+#import "BookVC.h"
 @interface LinCircleVC ()<OxygenCircleDelegate>
 
 @property (nonatomic , strong)OxygenCircleView *circleView;
@@ -115,7 +116,8 @@
         case 3:
         {
             //            我的文字
-            MyArticleViC *vc = [MyArticleViC new];
+//            MyArticleViC *vc = [MyArticleViC new];
+            BookVC * vc = [BookVC new];
             
             [self.navigationController pushViewController:vc animated:YES];
         }
