@@ -14,7 +14,7 @@
 #import "PYTempViewController.h"
 #import "BannerModel.h"
 #import "MallHomeHeadView.h"
-#import "MallTreeModel.h"
+#import "MallGoodsModel.h"
 #import "MallGoodDetailVC.h"
 #import "MallGoodListViewController.h"
 @interface MallHomeVC ()<PYSearchViewControllerDelegate>
@@ -28,7 +28,7 @@
 @property (nonatomic ,strong)  NSMutableArray *array;
 @property (nonatomic,strong) NSMutableArray <BannerModel *>*bannerRoom;
 @property (nonatomic,strong) MallHomeHeadView *mallHeader;
-@property (nonatomic,strong) NSMutableArray <MallTreeModel *>*HotTrees;
+@property (nonatomic,strong) NSMutableArray <MallGoodsModel *>*HotTrees;
 @property (nonatomic,strong) UIView * footview;
 
 @end
@@ -114,7 +114,7 @@
     http.parameters[@"orderDir"] = @"asc";
     http.tableView = self.table;
     http.isList = NO;
-    [http modelClass:[MallTreeModel class]];
+    [http modelClass:[MallGoodsModel class]];
     CoinWeakSelf;
 
     [self.table addRefreshAction:^{
@@ -157,7 +157,7 @@
     if (self.footview) {
         return;
     }
-    MallTreeModel *model = self.HotTrees[0];
+    MallGoodsModel *model = self.HotTrees[0];
     UIView * v1 = [self CreateViewWithFrame:CGRectMake(15, RecommendLab.yy + 10, (SCREEN_WIDTH - 30) / 2 , 200) GoodsNameFrame:CGRectMake(0, 26, (SCREEN_WIDTH - 30) / 2, 21) goodsname:model.name DescribeFrame:CGRectMake(0, 55, (SCREEN_WIDTH - 30) / 2, 16.5) describe:model.shopName Imageframe:CGRectMake((SCREEN_WIDTH - 30) / 2/2 - 60,55 + 16.5 + 26.5, 120, 90) ImageString:model.listPic];
     [self.headview addSubview:v1];
     v1.tag = 100;
@@ -167,7 +167,7 @@
     if (self.HotTrees.count < 2) {
         return;
     }
-    MallTreeModel *model1 = self.HotTrees[1];
+    MallGoodsModel *model1 = self.HotTrees[1];
 
     UIView * v2 = [self CreateViewWithFrame:CGRectMake(v1.xx, RecommendLab.yy + 10, (SCREEN_WIDTH - 30) / 2 , 100) GoodsNameFrame:CGRectMake(10, 30.5, 85, 20) goodsname:model1.name DescribeFrame:CGRectMake(10, 55.5, 85, 16.5) describe:model.shopName Imageframe:CGRectMake(105, 20.5, SCREEN_WIDTH / 2 - 30 - 105, 100 - 41) ImageString:model.listPic];
     [self.headview addSubview:v2];
@@ -178,7 +178,7 @@
     if (self.HotTrees.count < 3) {
         return;
     }
-    MallTreeModel *model2 = self.HotTrees[2];
+    MallGoodsModel *model2 = self.HotTrees[2];
     UIView * v3 = [self CreateViewWithFrame:CGRectMake(v1.xx, v2.yy, (SCREEN_WIDTH - 30) / 2 , 100) GoodsNameFrame:CGRectMake(10, 30.5, 85, 20) goodsname:model2.name DescribeFrame:CGRectMake(10, 55.5, 85, 16.5) describe:model2.shopName Imageframe:CGRectMake(105, 20.5, SCREEN_WIDTH / 2 - 30 - 105, 100 - 41) ImageString:model2.listPic];
     [self.headview addSubview:v3];
     v3.userInteractionEnabled = YES;
@@ -199,7 +199,7 @@
 {
     NSInteger inter = ta.view.tag-100;
     MallGoodDetailVC *detailVC = [MallGoodDetailVC new];
-    detailVC.treeModel = self.HotTrees[inter];
+    detailVC.MallGoodsModel = self.HotTrees[inter];
     [self.navigationController pushViewController:detailVC animated:YES];
     
 }

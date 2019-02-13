@@ -19,6 +19,7 @@ typedef void(^AddBlock)(NSString *Name, NSString *Phone, NSString *shengName, NS
 @property (nonatomic,strong) NSMutableArray * AddressArray;
 
 @property (nonatomic,copy) AddBlock AddressBlock;
+@property (nonatomic,strong) NSString * mallstate;
 @end
 
 NS_ASSUME_NONNULL_END

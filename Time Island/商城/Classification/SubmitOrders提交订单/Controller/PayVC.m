@@ -14,220 +14,211 @@
 //支付密码
 //#import "ModifyayPasswordVC.h"
 //#import "TheOrderVC.h"
-@interface PayVC ()<UITableViewDelegate,UITableViewDataSource,PayWayCellDelegate>
+@interface PayVC ()
 {
-    NSInteger payINT;
+    UIButton *selectBtn;
+    NSString * payType;
 }
-@property (nonatomic , strong)UITableView *tableView;
+//{
+//    NSInteger payINT;
+//}
+//@property (nonatomic , strong)UITableView *tableView;
+@property (nonatomic,strong)TLTextField * pwd;
 @end
 
 @implementation PayVC
 
--(UITableView *)tableView{
-    if (_tableView == nil) {
-        CGRect tableView_frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight);
-        _tableView = [[UITableView alloc] initWithFrame:tableView_frame style:UITableViewStyleGrouped];
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.backgroundColor=BackColor;
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        [_tableView registerClass:[PayAllPriceCell class] forCellReuseIdentifier:PayAllPrice];
-        [_tableView registerClass:[PayWayCell class] forCellReuseIdentifier:PayWay];
 
-    }
-    return _tableView;
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.title = @"支付";
-    [self.view addSubview:self.tableView];
-    payINT = 100;
-}
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 2;
-}
-
-#pragma mark -- 行数
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if(section == 2)
-    {
-        return 3;
-    }
-    return 1;
-}
-
-#pragma mark -- tableView
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-    if(indexPath.section == 0)
-    {
-        PayAllPriceCell *cell = [tableView dequeueReusableCellWithIdentifier:PayAllPrice forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.priceLbl.text = [NSString stringWithFormat:@"%.2f",_price];
-        return cell;
-    }
-    PayWayCell *cell = [tableView dequeueReusableCellWithIdentifier:PayWay forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.delegate = self;
-    return cell;
-
-
-}
-
--(void)PayWayCellButton:(NSInteger)tag
-{
-    payINT = tag;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-}
-
-#pragma mark -- 行高
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if(indexPath.section == 0)
-    {
-        return 50;
-    }
-    return 153;
-}
-
-#pragma mark -- 区头高度
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if(section == 0)
-    {
-        return 0.01;
-    }
-    return 30;
-}
-
-#pragma mark -- 区尾高度
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    if(section == 0)
-    {
-        return 10;
-    }
-    return 100;
-}
-
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if(section == 1)
-    {
-        UIView *headView = [[UIView alloc]init];
-        headView.backgroundColor = [UIColor whiteColor];
-
-        UILabel *nameLbl = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 30) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGfont(12) textColor:GaryTextColor];
-        nameLbl.text = @"支付方式";
-        [headView addSubview:nameLbl];
-
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 29, SCREEN_WIDTH, 1)];
-        lineView.backgroundColor = LineBackColor;
-        [headView addSubview:lineView];
-
-        return headView;
-    }
-    return nil;
-}
-
-
--(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    if(section == 1)
-    {
-        UIView *footerView = [[UIView alloc]init];
-
-        UIButton *confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        confirmButton.frame = CGRectMake(20, 40, SCREEN_WIDTH - 40, 45);
-        [confirmButton setTitle:@"立即支付" forState:(UIControlStateNormal)];
-        confirmButton.backgroundColor = kAppCustomMainColor;
-        kViewRadius(confirmButton, 5);
-        confirmButton.titleLabel.font = HGfont(16);
-        [confirmButton addTarget:self action:@selector(confirmButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
-        [footerView addSubview:confirmButton];
-
-        return footerView;
-    }
-    return nil;
-}
-
--(void)confirmButtonClick
-{
-
-    if (payINT == 100) {
-        if ([[USERDEFAULTS objectForKey:PAYPASSWORD] integerValue] == 0){
-
-            [TLAlert alertWithTitle:@"提示" msg:@"您还未设置支付密码,是否前去设置" confirmMsg:@"取消" cancleMsg:@"确认" cancle:^(UIAlertAction *action) {
-//                ModifyayPasswordVC *vc = [ModifyayPasswordVC new];
-//                [self.navigationController pushViewController:vc animated:YES];
-            } confirm:^(UIAlertAction *action) {
-
-            }];
-        }else
-        {
-
-            [TLAlert alertWithTitle:@"请输入支付密码"
-                                msg:@""
-                         confirmMsg:@"确定"
-                          cancleMsg:@"取消"
-                        placeHolder:@"请输入支付密码"
-                              maker:self cancle:^(UIAlertAction *action) {
-
-                              } confirm:^(UIAlertAction *action, UITextField *textField) {
-
-                                  [self confirmWithdrawalsWithPwd:textField.text];
-
-                              }];
-
-
+    
+    UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 110)];
+    //    view.backgroundColor = [
+    
+    UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 80, 80)];
+    image.layer.cornerRadius = 5;
+    image.layer.masksToBounds = YES;
+    [view addSubview:image];
+    //    image.image = kImage(@"树 跟背景");
+    [image sd_setImageWithURL:[NSURL URLWithString: [self.mallGoodsModel.listPic convertImageUrl]]];
+    self.IconImg = image;
+    
+    UILabel * TreeName = [UILabel labelWithFrame:CGRectMake(image.xx + 10, image.y, SCREEN_WIDTH * 1.5 / 3, 27) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:kBlackColor];
+    //    TreeName.text = @"古树名称";
+    TreeName.text = self.mallGoodsModel.name;
+    [view addSubview:TreeName];
+    self.TreeName = TreeName;
+    
+    UILabel * TreeAddress = [UILabel labelWithFrame:CGRectMake(image.xx + 10, TreeName.yy, SCREEN_WIDTH * 1.5 / 3, 27) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(13) textColor:kTextColor3];
+    //    TreeAddress.text = @"地址";
+    TreeAddress.text = self.mallGoodsModel.deliverPlace;
+    [view addSubview:TreeAddress];
+    self.TreeAddress = TreeAddress;
+    //
+    UILabel * TreeSize = [UILabel labelWithFrame:CGRectMake(image.xx + 10, TreeAddress.yy, SCREEN_WIDTH * 1.5 / 3, 27) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(13) textColor:kTextColor3];
+    //    TreeSize.text = @"规格";
+    TreeSize.text =[NSString stringWithFormat:@"规格: %@", self.mallGoodsModel.specsList[self.GoodsSizeCount][@"name"]];
+    [view addSubview:TreeSize];
+    self.TreeSize = TreeSize;
+    //
+    UILabel * TreeCount = [UILabel labelWithFrame:CGRectMake(TreeName.xx + 5, image.y, SCREEN_WIDTH - TreeName.xx -20, 27) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:FONT(15) textColor:kBlackColor];
+    //    TreeCount.text = @"x1";
+    TreeCount.text = [NSString stringWithFormat:@"X %ld", self.PayCount];
+    [view addSubview:TreeCount];
+    self.TreeCount = TreeCount;
+    
+    UILabel * TreeMoney = [UILabel labelWithFrame:CGRectMake(TreeAddress.xx + 5, TreeName.yy, SCREEN_WIDTH - TreeAddress.xx - 20, 27) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:FONT(13) textColor:kTextColor3];
+    //    TreeMoney.text = @"0.01";
+    TreeMoney.text = [NSString stringWithFormat:@"¥ %.2f",[self.mallGoodsModel.specsList[self.GoodsSizeCount][@"price"] floatValue]/ 1000.00];
+    [view addSubview:TreeMoney];
+    self.TreeMoney = TreeMoney;
+    
+    UILabel * PayMoney = [UILabel labelWithFrame:CGRectMake(TreeSize.xx + 5, TreeAddress.yy, SCREEN_WIDTH - TreeSize.xx - 20, 27) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:FONT(16) textColor:kBlackColor];
+    PayMoney.text = [NSString stringWithFormat:@"¥ %.2f",[self.mallGoodsModel.specsList[self.GoodsSizeCount][@"price"] floatValue]/ 1000.00 * self.PayCount];
+//    PayMoney.text = self.money;
+    [view addSubview:PayMoney];
+    self.PayMoney = PayMoney;
+    //
+    [self.view addSubview:view];
+    
+    
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 109, SCREEN_WIDTH, 1)];
+    lineView.backgroundColor = kLineColor;
+    [view addSubview:lineView];
+    
+    UILabel *namelbl = [UILabel labelWithFrame:CGRectMake(15, 110, SCREEN_WIDTH - 30, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGboldfont(15) textColor:kBlackColor];
+    namelbl.text = @"支付方式";
+    [view addSubview:namelbl];
+    
+    
+    NSArray *array = @[@"微信",@"支付宝",@"余额支付"];
+    NSArray * imagearray = @[@"微信",@"支付宝",@"余额"];
+    for (int i = 0; i < 3; i ++) {
+        UIButton *payButton = [UIButton buttonWithTitle:array[i] titleColor:kBlackColor backgroundColor:kClearColor titleFont:14];
+        payButton.frame = CGRectMake(15, namelbl.yy + i % 3 * 60, SCREEN_WIDTH - 80, 60);
+        payButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [payButton SG_imagePositionStyle:SGImagePositionStyleDefault spacing:8.5 imagePositionBlock:^(UIButton *button) {
+            [button setImage:kImage(imagearray[i]) forState:(UIControlStateNormal)];
+        }];
+        [self.view addSubview:payButton];
+        
+        UIButton *btn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        btn.frame = CGRectMake(SCREEN_WIDTH - 45, namelbl.yy + i % 3 * 60, 30, 60);
+        [btn setImage:kImage(@"未选中") forState:(UIControlStateNormal)];
+        [btn setImage:kImage(@"选中") forState:(UIControlStateSelected)];
+        
+        if (i == 0) {
+            btn.selected = YES;
+            selectBtn = btn;
+            payType = @"5";
         }
-
-    }else
-    {
-        [TLAlert alertWithInfo:@"暂无该支付方式"];
-        return;
+        [btn addTarget:self action:@selector(payBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        btn.tag = 100 + i;
+        [self.view addSubview:btn];
+        
+        UIView *paylineView = [[UIView alloc]initWithFrame:CGRectMake(15, payButton.yy , SCREEN_WIDTH - 30, 1)];
+        paylineView.backgroundColor = kLineColor;
+        [self.view addSubview:paylineView];
+        
     }
-
-
+    
+    
+    
+    
+    UILabel * paylabel = [UILabel labelWithFrame:CGRectMake(15, SCREEN_HEIGHT - kNavigationBarHeight - 60, SCREEN_WIDTH - 180, 45) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:kBlackColor];
+    paylabel.text = [NSString stringWithFormat:@"金额 %.2f 元",[self.mallGoodsModel.specsList[self.GoodsSizeCount][@"price"] floatValue]/ 1000.00];
+    [self.view addSubview:paylabel];
+    
+    UIView *paylineView = [[UIView alloc]initWithFrame:CGRectMake(15, paylabel.y + 2 , SCREEN_WIDTH - 30, 1)];
+    paylineView.backgroundColor = kLineColor;
+    [self.view addSubview:paylineView];
+    
+    UIButton *signBtn = [UIButton buttonWithTitle:@"支付" titleColor:[UIColor colorWithHexString:@"#FFFFFF"] backgroundColor:[UIColor colorWithHexString:@"#23AD8C"] titleFont:16.0 cornerRadius:4];
+    signBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:16.0];
+    [signBtn addTarget:self action:@selector(goNext) forControlEvents:UIControlEventTouchUpInside];
+    signBtn.frame = CGRectMake(paylabel.xx, SCREEN_HEIGHT - kNavigationBarHeight - 60, 150, 50);
+    [self.view addSubview:signBtn];
+    
 }
-
--(void)confirmWithdrawalsWithPwd:(NSString *)pwd
-{
-//    CGFloat f = [[USERDEFAULTS objectForKey:YY] floatValue]/1000;
-//        if (f < self.price) {
-//            [TLAlert alertWithInfo:@"账户余额不足"];
-//            return;
-//        }
-
-    TLNetworking *http = [TLNetworking new];
-    http.code = @"808052";
-    http.showView = self.view;
-    http.parameters[@"payType"] = @"1";
-    http.parameters[@"code"] = _code;
-    http.parameters[@"tradePwd"] = pwd;
-
-
+-(void)goNext{
+    UIView * pwdview = [[UIView alloc]initWithFrame:CGRectMake(50, SCREEN_HEIGHT / 2 - 50, SCREEN_WIDTH - 100, 150)];
+    pwdview.backgroundColor = kWhiteColor;
+    pwdview.layer.borderColor = kTextColor4.CGColor;
+    pwdview.layer.borderWidth = 1;
+    pwdview.layer.cornerRadius = 5;
+    pwdview.layer.masksToBounds = YES;
+    UILabel * title = [UILabel labelWithFrame:CGRectMake(0, 15, pwdview.width, 30) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(16) textColor:kTextColor4];
+    title.text = @"支付密码";
+    [pwdview addSubview:title];
+    
+    TLTextField * pwd = [[TLTextField alloc]initWithFrame:CGRectMake(15, title.yy + 10, pwdview.width - 30, 30) placeholder:@"请输入支付密码"];
+    pwd.layer.borderColor = kTextColor4.CGColor;
+    pwd.layer.borderWidth = 1;
+    pwd.layer.cornerRadius = 3;
+    pwd.layer.masksToBounds = YES;
+    pwd.secureTextEntry = YES;
+    [pwdview addSubview:pwd];
+    self.pwd = pwd;
+    
+    UIView * lineView = [[UIView alloc]initWithFrame:CGRectMake(0, pwd.yy + 15 , SCREEN_WIDTH - 30, 1)];
+    lineView.backgroundColor = kLineColor;
+    [pwdview addSubview:lineView];
+    
+    UIButton * canclebtn = [UIButton buttonWithTitle:@"取消" titleColor:kTextBlack backgroundColor:kClearColor titleFont:16];
+    canclebtn.frame = CGRectMake(0, lineView.yy, pwdview.width/2, 50);
+    [canclebtn addTarget:self action:@selector(cancel) forControlEvents:(UIControlEventTouchUpInside)];
+    [pwdview addSubview:canclebtn];
+    
+    UIView * lineview = [[UIView alloc]initWithFrame:CGRectMake(pwdview.width/2,lineView.yy,1, 50)];
+    lineview.backgroundColor = kLineColor;
+    [pwdview addSubview:lineview];
+    
+    UIButton * paybtn = [UIButton buttonWithTitle:@"确定" titleColor:kTabbarColor backgroundColor:kClearColor titleFont:16];
+    paybtn.frame = CGRectMake(pwdview.width/2, lineView.yy, pwdview.width/2, 50);
+    [paybtn addTarget:self action:@selector(payBtn) forControlEvents:(UIControlEventTouchUpInside)];
+    [pwdview addSubview:paybtn];
+    
+    [[UserModel user]showPopAnimationWithAnimationStyle:3 showView:pwdview BGAlpha:0.5 isClickBGDismiss:YES];
+    
+}
+-(void)cancel{
+    [[UserModel user].cusPopView dismiss];
+}
+-(void)payBtn{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629721";
+    http.parameters[@"code"] = self.Code;
+    http.parameters[@"isJfDeduct"] = @"0";
+    http.parameters[@"tradePwd"] = self.pwd.text;
+    http.parameters[@"payType"] = payType;
+    http.parameters[@"updater"] = [TLUser user].userId;
     [http postWithSuccess:^(id responseObject) {
-        if ([_state isEqualToString:@"100"]) {
-            [self.navigationController popViewControllerAnimated:YES];
-        }else
-        {
-//            TheOrderVC *vc = [[TheOrderVC alloc]init];
-//            [self.navigationController pushViewController:vc animated:YES];
-        }
-
+        [TLAlert alertWithSucces:@"支付成功"];
+        [[UserModel user].cusPopView dismiss];
     } failure:^(NSError *error) {
-//        WGLog(@"%@",error);
+        self.pwd.text = nil;
     }];
 }
-
+-(void)payBtnClick:(UIButton *)sender
+{
+    sender.selected = !sender.selected;
+    selectBtn.selected = !selectBtn.selected;
+    selectBtn = sender;
+    
+    switch ((int)sender.tag - 100) {
+        case 0:
+            payType = @"5";
+            break;
+        case 1:
+            payType = @"3";
+            break;
+        case 2:
+            payType = @"1";
+            break;
+            
+        default:
+            break;
+    }
+    
+}
 @end

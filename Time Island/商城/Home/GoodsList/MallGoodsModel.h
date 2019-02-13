@@ -1,14 +1,16 @@
 //
-//  MallTreeModel.h
+//  MallGoodsModel.h
 //  Time Island
 //
-//  Created by shaojianfei on 2019/1/28.
+//  Created by 梅敏杰 on 2019/2/13.
 //  Copyright © 2019年 ChengLian. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface MallTreeModel : NSObject
+NS_ASSUME_NONNULL_BEGIN
+
+@interface MallGoodsModel : NSObject
 @property (nonatomic , copy)NSString *location;
 @property (nonatomic , copy)NSString *weight;
 @property (nonatomic , copy)NSString *originalPrice;
@@ -37,6 +39,9 @@
 @property (nonatomic,copy) NSString * bannerPic;
 @property (nonatomic,copy) NSArray * bannerPics;
 @property (nonatomic,copy) NSString *Description;
-@property (nonatomic,strong) NSMutableArray *specsList;
+@property (nonatomic,strong) NSArray *specsList;
 
++ (NSString *)mj_replacedKeyFromPropertyName121:(NSString *)propertyName;
 @end
+
+NS_ASSUME_NONNULL_END

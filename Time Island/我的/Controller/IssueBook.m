@@ -77,6 +77,8 @@
     ges1.delegate = self;
     [image addGestureRecognizer:ges1];
     
+    
+    
     [self.view1 addSubview:image];
     self.image = image;
     
@@ -156,23 +158,39 @@
 #pragma 按钮点击
 -(void)IssueBook{
     NSLog(@"%s",__func__);
-    TLNetworking * http = [[TLNetworking alloc]init];
-    http.code = @"629340";
-    http.parameters[@"title"] = self.textfield.text;
-    http.parameters[@"content"] = self.textview.text;
-    http.parameters[@"photo"] = self.ImageKey[0];
-    http.parameters[@"openLevel"] = [NSString stringWithFormat:@"%d",(int)self.openLevel + 1];
-    http.parameters[@"adoptTreeCode"] = self.ConnectTreeModel.code;
-    http.parameters[@"treeNo"] = self.ConnectTreeModel.tree[@"treeNumber"];
-    http.parameters[@"updater"] = [TLUser user].userId;
-    http.parameters[@"publishUserId"] = [TLUser user].userId;
-    http.parameters[@"type"] = @"2";
-    http.parameters[@"dealType"] = @"1";
-    [http postWithSuccess:^(id responseObject) {
-        [self.navigationController popViewControllerAnimated:YES];
-    } failure:^(NSError *error) {
-        [TLAlert alertWithError:@"发布失败，请重新发布"];
-    }];
+    if (!self.textfield.text.length) {
+        [TLAlert alertWithError:@"请填写标题"];
+        return;
+    }
+    else if ([self.textview.text isEqualToString:@"发表下您的感想吧"]){
+        [TLAlert alertWithError:@"请填写内容"];
+        return;
+    }
+    else if (!self.ImageKey.count){
+        [TLAlert alertWithError:@"请选择图片"];
+        return;
+    }
+    else{
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"629340";
+        http.parameters[@"title"] = self.textfield.text;
+        http.parameters[@"content"] = self.textview.text;
+        http.parameters[@"photo"] = self.ImageKey[0];
+        http.parameters[@"openLevel"] = [NSString stringWithFormat:@"%d",(int)self.openLevel + 1];
+        http.parameters[@"adoptTreeCode"] = self.ConnectTreeModel.code;
+        http.parameters[@"treeNo"] = self.ConnectTreeModel.tree[@"treeNumber"];
+        http.parameters[@"updater"] = [TLUser user].userId;
+        http.parameters[@"publishUserId"] = [TLUser user].userId;
+        http.parameters[@"type"] = @"2";
+        http.parameters[@"dealType"] = @"1";
+        [http postWithSuccess:^(id responseObject) {
+            [self.navigationController popViewControllerAnimated:YES];
+        } failure:^(NSError *error) {
+            [TLAlert alertWithError:@"发布失败，请重新发布"];
+        }];
+    }
+    
+    
 //    [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)saveBook{
@@ -250,9 +268,6 @@
 }
 -(void)ChooseState{
     NSMutableArray *array = [NSMutableArray array];
-//    for (int i = 0;  i < self.ConnectTreeModels.count; i ++) {
-//        [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@(%@)",self.ConnectTreeModels[i].tree[@"productName"],self.ConnectTreeModels[i].treeNumber]]];
-//    }
     NSArray * arr = @[@"公开",@"私密",@"仅好友可看"];
     for (int i = 0;  i < arr.count; i ++) {
     [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@",arr[i]]]];

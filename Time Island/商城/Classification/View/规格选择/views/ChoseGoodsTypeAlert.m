@@ -23,6 +23,7 @@
     SizeAttributeModel *sizeModel;
     GoodsInfoView *goodsInfo;
     CountView *countView;
+    int selectnum;
 }
 
 -(instancetype)initWithFrame:(CGRect)frame andHeight:(float)height {
@@ -109,10 +110,15 @@
 {
     for (GoodsTypeModel *model in _dataSource) {
         if (model.selectIndex<0) {
+            selectnum = model.selectIndex;
+            NSLog(@"model.selectIndex123 %d",model.selectIndex);
             goodsInfo.promatLabel.text =[NSString stringWithFormat:@"请选择%@",model.typeName];
             break;
         }
+        selectnum = model.selectIndex;
+        NSLog(@"model.selectIndex %d",model.selectIndex);
     }
+    
     NSString *str = [self getSizeStr];
     NSLog(@"用户选择的属性是：%@",str);
     sizeModel = nil;
@@ -155,7 +161,7 @@
     if ([sizeModel.stock intValue]>0) {
         if (self.selectSize) {
             sizeModel.count = countView.countTextField.text;
-            self.selectSize(sizeModel,btn.tag);
+            self.selectSize(sizeModel,btn.tag,[countView.countTextField.text integerValue],selectnum);
         }
         [self hideView];
     }else

@@ -89,7 +89,7 @@
     return self;
 }
 
--(void)setModel:(MallTreeModel *)model
+-(void)setModel:(MallGoodsModel *)model
 {
     _model = model;
     self.titleLab.frame = CGRectMake(10, _headImage.yy + 10, (SCREEN_WIDTH - 45)/2 - 20, 0);

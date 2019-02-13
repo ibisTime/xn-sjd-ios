@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-#import "MallTreeModel.h"
+#import "MallGoodsModel.h"
 
 @interface MallGoodsInformationCell : UITableViewCell
 
-@property (nonatomic ,strong) MallTreeModel *treeModel;
+@property (nonatomic ,strong)  MallGoodsModel *treeModel;
 
 @end

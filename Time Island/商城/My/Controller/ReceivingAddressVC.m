@@ -153,6 +153,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"%d",(int)indexPath.row);
+    if (self.selectCellBlock) {
+        self.selectCellBlock(self.addressModels[indexPath.row]);
+    }
 }
 -(void)refresh{
     TLNetworking * http = [[TLNetworking alloc]init];

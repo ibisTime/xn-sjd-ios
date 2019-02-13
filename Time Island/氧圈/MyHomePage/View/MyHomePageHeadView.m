@@ -21,6 +21,9 @@
         headImage.layer.masksToBounds = YES;
         
         [headImage sd_setImageWithURL: [NSURL URLWithString:[[TLUser user].photo convertImageUrl]] placeholderImage:kImage(@"头像")];
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
+        headImage.userInteractionEnabled = YES;
+        [headImage addGestureRecognizer:tap];
         [self addSubview:headImage];
         
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(0, headImage.yy + 17, WIDTH, 16) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(16) textColor:kTextBlack];
@@ -32,5 +35,9 @@
     }
     return self;
 }
-
+-(void)tap{
+    if (self.clickimage) {
+        self.clickimage();
+    }
+}
 @end

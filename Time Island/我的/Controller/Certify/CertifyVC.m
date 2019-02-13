@@ -9,6 +9,7 @@
 #import "CertifyVC.h"
 #import "CertifyVCCell.h"
 #import "PersonalCertifyVC.h"
+#import "CompanyCertifyVC.h"
 @interface CertifyVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) TLTableView * table;
 @end
@@ -31,7 +32,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if ([TLUser user].idNo) {
-        return 1;
+        return 2;
     }
     else
         return 2;
@@ -45,6 +46,10 @@
         if (indexPath.row == 0) {
             cell.title.text = @"个人认证";
             cell.state.text = @"已认证";
+        }
+        if (indexPath.row == 1) {
+            cell.title.text = @"企业认证";
+            cell.state.text = @"未认证";
         }
     }
     else{
@@ -66,5 +71,10 @@
         PersonalCertifyVC * vc = [PersonalCertifyVC new];
         [self.navigationController pushViewController:vc animated:YES];
     }
+    if (indexPath.row == 1) {
+        CompanyCertifyVC * vc = [CompanyCertifyVC new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 @end

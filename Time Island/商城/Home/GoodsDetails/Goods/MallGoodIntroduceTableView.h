@@ -7,10 +7,10 @@
 //
 
 #import "TLTableView.h"
-#import "MallTreeModel.h"
+#import "MallGoodsModel.h"
 #import "EvaluationModel.h"
 @interface MallGoodIntroduceTableView : TLTableView
 
 @property (nonatomic , strong)NSMutableArray <EvaluationModel *>*evaluationModel;
-@property (nonatomic ,strong) MallTreeModel *treeModel;
+@property (nonatomic ,strong) MallGoodsModel *treeModel;
 @end

@@ -10,7 +10,7 @@
 #import "MMComBoBox.h"
 #import "MallListCollectionViewCell.h"
 #import "MallGoodDetailVC.h"
-#import "MallTreeModel.h"
+#import "MallGoodsModel.h"
 #import <MJRefresh.h>
 @interface MallGoodListViewController ()<UISearchBarDelegate,MMComBoBoxViewDataSource,MMComBoBoxViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) UISearchBar *searchBar;
@@ -20,7 +20,7 @@
 @property (nonatomic, strong) UIButton *nextPageBtn;
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic,strong)UICollectionView *collectionView;
-@property (nonatomic,strong) NSMutableArray <MallTreeModel *>*TreeModels;
+@property (nonatomic,strong) NSMutableArray <MallGoodsModel *>*TreeModels;
 @property (nonatomic, assign) NSInteger start;
 
 @end
@@ -86,7 +86,7 @@
     http.parameters[@"orderDir"] = @"asc";
     http.parameters[@"location"] = @"1";
     [http postWithSuccess:^(id responseObject) {
-        self.TreeModels = [MallTreeModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        self.TreeModels = [MallGoodsModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
         [self.collectionView reloadData];
         if ([responseObject[@"data"][@"totalPage"] intValue] <=1) {
             [self.collectionView.mj_header endRefreshing];
@@ -307,7 +307,7 @@
     CGPoint point = sender.center;
     point = [self.collectionView convertPoint:point fromView:sender.superview];
     NSIndexPath* indexpath = [self.collectionView indexPathForItemAtPoint:point];
-    MallTreeModel *model = self.TreeModels[indexpath.row];
+    MallGoodsModel *model = self.TreeModels[indexpath.row];
     NSLog(@"%@",model);
 }
 
@@ -315,7 +315,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MallGoodDetailVC *detail = [MallGoodDetailVC new];
-    detail.treeModel = self.TreeModels[indexPath.row];
+    detail.MallGoodsModel = self.TreeModels[indexPath.row];
     detail.title = @"产品详情";
     [self.navigationController pushViewController:detail animated:YES];
 }

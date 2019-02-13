@@ -10,12 +10,19 @@
 #import "AddressModel.h"
 #import "BankCardModel.h"
 #import "MallOrderModel.h"
+#import "MallGoodsModel.h"
 @interface SubmitOrdersTableView : TLTableView
 
 
 @property(nonatomic , strong)AddressModel *addressModel;
-@property(nonatomic , strong)BankCardModel *bankCardModel;
-@property(nonatomic , strong)MallOrderModel *homeModel;
+@property (nonatomic,strong) MallGoodsModel * mallGoodsModel;
 
 @property(nonatomic , copy)NSString *specificationsStr;
+@property (nonatomic,assign) NSInteger count;
+@property (nonatomic,strong) NSString * size;
+@property (nonatomic,assign) int selectnum;
+@property (nonatomic,strong) NSString * remarkstring;
+@property (nonatomic,strong) void (^returndata)(NSInteger count,int selectnum);
+@property (nonatomic,strong) void (^remark)(NSString * remark);
+
 @end

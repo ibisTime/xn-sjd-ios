@@ -23,6 +23,7 @@
 #import "BalanceVC.h"
 #import "CertifyVC.h"
 #import "InviteGiftVC.h"
+#import "InfoVC.h"
 
 #define titlearray @[@"我的碳泡泡",@"我的订单",@"我的文章",@"我的收藏",@"邀请有礼",@"设置"]
 #define imagearray @[@"泡泡",@"",@"",@"",@"",@"设置"]
@@ -114,6 +115,11 @@
     img.image = [UIImage imageNamed:@"果树预售"];
     img.layer.cornerRadius = 35;
     img.layer.masksToBounds = YES;
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
+    img.userInteractionEnabled = YES;
+    [img addGestureRecognizer:tap];
+    
     self.logoimage = img;
     
     
@@ -175,6 +181,12 @@
     [self.topview addSubview:img];
     [self.topview addSubview:name];
     [self.topview addSubview:sign];
+    
+}
+-(void)tap{
+    NSLog(@"%s",__func__);
+    InfoVC * vc = [InfoVC new];
+    [self.navigationController pushViewController: vc animated:YES];
     
 }
 -(void)btnclick : (UIButton * )sender{

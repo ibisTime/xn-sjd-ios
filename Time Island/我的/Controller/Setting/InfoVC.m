@@ -87,36 +87,48 @@
     
     TLTextField * more = [[TLTextField alloc]initWithFrame:CGRectMake(15, age.yy, SCREEN_WIDTH-30, 100) placeholder:@"请输入个人简介（最多输入20个字符）"];
     [self.view addSubview:more];
+//    more.delegate = self;
     self.more = more;
     
     [self.view addSubview:[self createview:CGRectMake(15, more.yy - 1, SCREEN_WIDTH - 30, 1)]];
     
 }
+//-(void)textFieldDidEndEditing:(UITextField *)textField{
+//    if (textField.text.length > 20) {
+//        [TLAlert alertWithMsg:@"最多输入20个字符，请重新输入"];
+//    }
+//}
 -(UIView*)createview:(CGRect)frame{
     UIView * view = [[UIView alloc]initWithFrame:frame];
     view.backgroundColor = kLineColor;
     return view;
 }
 -(void)myRecodeClick{
-    TLNetworking * http = [[TLNetworking alloc]init];
-    http.code = @"805070";
-    http.parameters[@"idNo"] = [TLUser user].idNo;
-    http.parameters[@"realName"] = [TLUser user].realName;
-    http.parameters[@"userId"] = [TLUser user].userId;
-    if ([self.gender.text  isEqual: @"男"]) {
-        http.parameters[@"gender"] = @"1";
-    }else{
-        http.parameters[@"gender"] = @"0";
+    if (self.more.text.length > 20) {
+        [TLAlert alertWithMsg:@"个人简介最多输入20个字符，请重新输入"];
     }
-    http.parameters[@"nickname"] = self.name.text;
-    http.parameters[@"age"] = self.age.text;
-    http.parameters[@"introduce"] = self.more.text;
-    [http postWithSuccess:^(id responseObject) {
-        [TLAlert alertWithSucces:@"修改成功！"];
-        [[TLUser user]updateUserInfo];
-        [self.navigationController popViewControllerAnimated:YES];
-    } failure:^(NSError *error) {
-    }];
+    else{
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"805070";
+        http.parameters[@"idNo"] = [TLUser user].idNo;
+        http.parameters[@"realName"] = [TLUser user].realName;
+        http.parameters[@"userId"] = [TLUser user].userId;
+        if ([self.gender.text  isEqual: @"男"]) {
+            http.parameters[@"gender"] = @"1";
+        }else{
+            http.parameters[@"gender"] = @"0";
+        }
+        http.parameters[@"nickname"] = self.name.text;
+        http.parameters[@"age"] = self.age.text;
+        http.parameters[@"introduce"] = self.more.text;
+        [http postWithSuccess:^(id responseObject) {
+            [TLAlert alertWithSucces:@"修改成功！"];
+            [[TLUser user]updateUserInfo];
+            [self.navigationController popViewControllerAnimated:YES];
+        } failure:^(NSError *error) {
+        }];
+    }
+    
     
 }
 
