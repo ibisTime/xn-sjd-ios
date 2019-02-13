@@ -13,5 +13,8 @@
 @property (nonatomic , strong)UILabel *countLbl;
 @property (nonatomic , strong)UIImageView *youImage;
 
+@property (nonatomic,strong) NSString * addressCode;
+@property (nonatomic,strong) NSString * commodityCodeList;
+
 
 @end

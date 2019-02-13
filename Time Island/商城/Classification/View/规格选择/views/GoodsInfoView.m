@@ -74,25 +74,15 @@
 -(void)resetData:(SizeAttributeModel *)sizeModel
 {
     //如果有图片就显示图片，没图片就显示默认图
-    if (sizeModel.imageId.length>0) {
-        [_goodsImage sd_setImageWithURL:[NSURL URLWithString:[sizeModel.imageId convertImageUrl]]];
-    }else
-        [_goodsImage setImage:[UIImage imageNamed:[_model.imageId convertImageUrl]]];
+//    if (sizeModel.imageId.length>0) {
+//        [_goodsImage sd_setImageWithURL:[NSURL URLWithString:[sizeModel.imageId convertImageUrl]]];
+//    }else
+//        [_goodsImage setImage:[UIImage imageNamed:[_model.imageId convertImageUrl]]];
     
     _goodsCountLabel.text = [NSString stringWithFormat:@"库存%@",sizeModel.stock];
-    _goodsPriceLabel.text = [NSString stringWithFormat:@"¥%@",sizeModel.price];
-//    NSMutableAttributedString *attritu = [[NSMutableAttributedString alloc]initWithString:_goodsPriceLabel.text];
-//    [attritu addAttributes:@{NSStrikethroughStyleAttributeName:@(NSUnderlineStyleThick), NSForegroundColorAttributeName: [UIColor lightGrayColor],NSBaselineOffsetAttributeName:@(0),
-//                             NSFontAttributeName: [UIFont systemFontOfSize:13]
-//                             } range:[_goodsPriceLabel.text rangeOfString:[NSString stringWithFormat:@"¥%@",sizeModel.originalPrice]]];
-//    _goodsPriceLabel.attributedText = attritu;
+    _goodsPriceLabel.text = [NSString stringWithFormat:@"¥%.2f",[sizeModel.price floatValue] / 1000];
+
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+
 
 @end

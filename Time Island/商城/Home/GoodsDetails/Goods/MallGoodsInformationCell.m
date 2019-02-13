@@ -56,11 +56,13 @@
     return self;
 }
 
--(void)setTreeModel:(MallTreeModel *)treeModel
+-(void)setTreeModel:(MallGoodsModel *)treeModel
 {
     _treeModel = treeModel;
-    self.priceLable.text = [NSString stringWithFormat:@"¥%@-¥%@",treeModel.minPrice,treeModel.maxPrice];
-    self.nameLab.text = treeModel.shopName;
+    CGFloat minPrice = [treeModel.minPrice floatValue] / 1000;
+    CGFloat maxPrice = [treeModel.maxPrice floatValue] / 1000;
+    self.priceLable.text = [NSString stringWithFormat:@"¥%.2f-¥%.2f",minPrice,maxPrice];
+    self.nameLab.text = treeModel.name;
     self.nameLab.numberOfLines = 2;
     [self.nameLab sizeToFit];
     

@@ -8,10 +8,27 @@
 
 #import "TLBaseVC.h"
 #import "MallOrderModel.h"
+#import "MallGoodsModel.h"
+#import "AddressModel.h"
 @interface SubmitOrdersVC : TLBaseVC
 
-@property (nonatomic,strong)MallOrderModel *model;
+//@property (nonatomic , strong) MallOrderModel *model;
 
 @property (nonatomic , strong)NSArray *selectArray;
+
+@property (nonatomic,strong) MallGoodsModel * MallGoodsModel;
+
+@property (nonatomic,assign) NSInteger count;
+
+@property (nonatomic,strong) NSString * size;
+
+@property (nonatomic,assign) int selectnum;
+
+@property (nonatomic,strong) NSString * remark;
+
+@property(nonatomic , strong)AddressModel *addressModel;
+
+@property (nonatomic,strong) NSString * code;
+
 
 @end

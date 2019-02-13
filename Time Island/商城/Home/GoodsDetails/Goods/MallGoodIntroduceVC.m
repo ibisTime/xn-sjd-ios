@@ -102,8 +102,12 @@
         _alert.alpha = 0;
         [[UIApplication sharedApplication].keyWindow addSubview:_alert];
         CoinWeakSelf;
-        _alert.selectSize = ^(SizeAttributeModel *sizeModel, NSInteger inter) {
-            //sizeModel 选择的属性模型
+//        _alert.selectSize = ^(SizeAttributeModel *sizeModel, NSInteger inter) {
+//            //sizeModel 选择的属性模型
+//            [JXUIKit showSuccessWithStatus:[NSString stringWithFormat:@"选择了：%@",sizeModel.goodsNo]];
+//            [weakSelf sumbitOrderWithIndex:inter];
+//        };
+        _alert.selectSize = ^(SizeAttributeModel *sizeModel, NSInteger inter, NSInteger count,int selectnum) {
             [JXUIKit showSuccessWithStatus:[NSString stringWithFormat:@"选择了：%@",sizeModel.goodsNo]];
             [weakSelf sumbitOrderWithIndex:inter];
         };

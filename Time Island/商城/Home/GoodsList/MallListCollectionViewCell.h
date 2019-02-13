@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MallTreeModel.h"
+#import "MallGoodsModel.h"
 @interface MallListCollectionViewCell : UICollectionViewCell
 @property (nonatomic , strong)UIView *backView;
-@property (nonatomic , strong) MallTreeModel *model;
+@property (nonatomic , strong) MallGoodsModel *model;
 @property (nonatomic , strong) UIButton *shopping;
 @end

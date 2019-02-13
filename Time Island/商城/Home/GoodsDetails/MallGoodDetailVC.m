@@ -46,6 +46,11 @@
 @property (nonatomic,strong) GoodsDetailWebView * goodDetailVC;
 
 @property (nonatomic,strong) GoodsEditVC * editVC;
+
+@property (nonatomic,assign) NSInteger count;
+@property (nonatomic,strong) NSString * size;
+@property (nonatomic,assign) int selectnum;
+
 @end
 
 @implementation MallGoodDetailVC
@@ -61,7 +66,7 @@
     for (NSInteger index = 0; index < self.itemsTitles.count; index ++) {
         if (index == 0) {
             MallGoodIntroduceVC * bookview = [[MallGoodIntroduceVC alloc] init];
-            bookview.treeModel = self.treeModel;
+            bookview.treeModel = self.MallGoodsModel;
 
             bookview.title = self.itemsTitles[index];
             [self addChildViewController:bookview];
@@ -71,7 +76,7 @@
         }else if (index ==1)
         {
             GoodsDetailWebView * bookview = [[GoodsDetailWebView alloc] init];
-            bookview.htmlStr = self.treeModel.Description;
+            bookview.htmlStr = self.MallGoodsModel.Description;
 
             bookview.title = self.itemsTitles[index];
             [self addChildViewController:bookview];
@@ -84,7 +89,7 @@
             [self addChildViewController:bookview];
             bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
             self.editVC = bookview;
-            bookview.treeModel = self.treeModel;
+            bookview.treeModel = self.MallGoodsModel;
             [self.selectSV.scrollView addSubview:bookview.view];
         }
     }
@@ -107,19 +112,19 @@
 //}
 - (void)initTestModel{
     model = [[GoodsModel alloc] init];
-    model.imageId = [self.treeModel.bannerPic convertImageUrl];
-    model.goodsNo = self.treeModel.name;
+    model.imageId = [self.MallGoodsModel.bannerPic convertImageUrl];
+    model.goodsNo = self.MallGoodsModel.name;
     model.title = @"商品标题";
     //价格信息
     model.price = [[GoodsPriceModel alloc] init];
-    model.price.minPrice = self.treeModel.specsList[0][@"price"];
+    model.price.minPrice = self.MallGoodsModel.specsList[0][@"price"];
     //属性-应该从服务器获取属性列表
     GoodsTypeModel *type = [[GoodsTypeModel alloc] init];
     type.selectIndex = 0;
     type.typeName = @"规格分类";
     type.typeArray = [NSMutableArray array];
-    for (int i = 0; i < self.treeModel.specsList.count; i++) {
-        [type.typeArray addObject:self.treeModel.specsList[i][@"name"]];
+    for (int i = 0; i < self.MallGoodsModel.specsList.count; i++) {
+        [type.typeArray addObject:self.MallGoodsModel.specsList[i][@"name"]];
     }
    
     model.itemsList = @[type];
@@ -127,18 +132,18 @@
     //属性组合数组-有时候不同的属性组合价格库存都会有差异，选择完之后要对应修改商品的价格、库存图片等信息，可能是获得商品信息时将属性数组一并返回，也可能属性选择后再请求服务器获得属性组合对应的商品信息，根据自己的实际情况调整
     model.sizeAttribute = [[NSMutableArray alloc] init];
     NSArray *valueArr = [type.typeArray copy];
-    for (int i = 0; i<self.treeModel.specsList.count; i++) {
+    for (int i = 0; i<self.MallGoodsModel.specsList.count; i++) {
         SizeAttributeModel *type = [[SizeAttributeModel alloc] init];
-        type.price = self.treeModel.specsList[i][@"price"];
-        type.originalPrice = self.treeModel.specsList[i][@"price"];
-        type.stock = [NSString stringWithFormat:@"%@", self.treeModel.specsList[i][@"inventory"]];
-        type.goodsNo = self.treeModel.specsList[i][@"name"];
-        type.code = self.treeModel.specsList[i][@"code"];
-        type.id = self.treeModel.specsList[i][@"id"];
-        type.inventory = self.treeModel.specsList[i][@"inventory"];
-        type.commodityCode = self.treeModel.specsList[i][@"commodityCode"];
+        type.price = self.MallGoodsModel.specsList[i][@"price"];
+        type.originalPrice = self.MallGoodsModel.specsList[i][@"price"];
+        type.stock = [NSString stringWithFormat:@"%@", self.MallGoodsModel.specsList[i][@"inventory"]];
+        type.goodsNo = self.MallGoodsModel.specsList[i][@"name"];
+        type.code = self.MallGoodsModel.specsList[i][@"code"];
+        type.id = self.MallGoodsModel.specsList[i][@"id"];
+        type.inventory = self.MallGoodsModel.specsList[i][@"inventory"];
+        type.commodityCode = self.MallGoodsModel.specsList[i][@"commodityCode"];
 
-        type.imageId =[NSString stringWithFormat:@"%@",self.treeModel.bannerPic];
+        type.imageId =[NSString stringWithFormat:@"%@",self.MallGoodsModel.bannerPic];
         [model.sizeAttribute addObject:type];
     }
     self.bookVC.model = model;
@@ -199,9 +204,15 @@
     _alert.alpha = 0;
     [[UIApplication sharedApplication].keyWindow addSubview:_alert];
     CoinWeakSelf;
-    _alert.selectSize = ^(SizeAttributeModel *sizeModel, NSInteger inter) {
-        //sizeModel 选择的属性模型
-        [JXUIKit showSuccessWithStatus:[NSString stringWithFormat:@"选择了：%@",sizeModel.goodsNo]];
+//    _alert.selectSize = ^(SizeAttributeModel *sizeModel, NSInteger intern) {
+//        [JXUIKit showSuccessWithStatus:[NSString stringWithFormat:@"选择了：%@",sizeModel.goodsNo]];
+//        [weakSelf sumbitOrderWithTag:inter];
+//    };
+    _alert.selectSize = ^(SizeAttributeModel *sizeModel, NSInteger inter, NSInteger count,int selectnum) {
+//        [JXUIKit showSuccessWithStatus:[NSString stringWithFormat:@"选择了：%@",sizeModel.goodsNo]];
+        weakSelf.count = count;
+        weakSelf.size = sizeModel.goodsNo;
+        weakSelf.selectnum = selectnum;
         [weakSelf sumbitOrderWithTag:inter];
     };
     [_alert initData:model];
@@ -216,7 +227,10 @@
         //购物车
     }else{
         SubmitOrdersVC *orderVc = [SubmitOrdersVC new];
-        orderVc.title = @"确认订单";
+        orderVc.MallGoodsModel = self.MallGoodsModel;
+        orderVc.count = self.count;
+        orderVc.size = self.size;
+        orderVc.selectnum = self.selectnum;
         [self.navigationController pushViewController:orderVc animated:YES];
     }
    
@@ -226,7 +240,7 @@
 {
     MallStoreListVC *store = [MallStoreListVC new];
     store.title = @"商铺";
-    store.treeModel = self.treeModel;
+    store.treeModel = self.MallGoodsModel;
     [self.navigationController pushViewController:store animated:YES];
     
 }

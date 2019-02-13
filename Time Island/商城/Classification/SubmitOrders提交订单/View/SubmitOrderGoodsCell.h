@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MallOrderModel.h"
+#import "MallGoodsModel.h"
 @interface SubmitOrderGoodsCell : UITableViewCell
 
-@property (nonatomic , strong)MallOrderModel *model;
+@property (nonatomic , strong)MallGoodsModel *model;
 
 @property (nonatomic , copy)NSDictionary *dic;
 
@@ -25,5 +25,11 @@
 @property (nonatomic , strong)UILabel *numberLabel;
 
 @property (nonatomic , strong)UILabel *shopLabel;
+
+@property (nonatomic,assign) NSInteger count;
+
+@property (nonatomic,strong) NSString * size;
+
+@property (nonatomic,assign) int selectnum;
 
 @end

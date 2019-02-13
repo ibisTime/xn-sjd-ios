@@ -25,6 +25,7 @@
 {
     SubmitOrderAddressCell *_cell;
     NSDictionary *dataDic;
+    NSInteger num;
 }
 @end
 
@@ -70,7 +71,8 @@
         if ([USERXX isBlankString:self.addressModel.addressee] == NO) {
             _cell.model = self.addressModel;
             _cell.backLabel.hidden = YES;
-        }else
+        }
+        else
         {
             _cell.backLabel.hidden = NO;
         }
@@ -80,7 +82,10 @@
     {
         SubmitOrderGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:SubmitOrderGoods forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.model = self.homeModel;
+        cell.count = self.count;
+        cell.size = self.size;
+        cell.selectnum = self.selectnum;
+        cell.model = self.mallGoodsModel;
         if ([USERXX isBlankString:_specificationsStr] == NO) {
             cell.dic = dataDic;
         }
@@ -90,7 +95,15 @@
     {
         BuyCountCell *cell = [tableView dequeueReusableCellWithIdentifier:buyCountCell forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.count = self.homeModel.GoodsCount;
+        cell.count = self.count;
+        cell.buycount = ^(NSInteger i) {
+            self.count = i;
+            if (self.returndata) {
+                self.returndata(i, self.selectnum);
+            };
+            
+            [self reloadData];
+        };
         return cell;
     }
     if(indexPath.section == 3)
@@ -99,7 +112,15 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
+    
     BuyRemarkCell *cell = [tableView dequeueReusableCellWithIdentifier:buyRemarkCell forIndexPath:indexPath];
+    cell.remark = ^(NSString *remark) {
+        self.remarkstring = remark;
+        if (self.remark) {
+            self.remark(remark);
+        };
+    };
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 
@@ -122,7 +143,7 @@
     if(indexPath.section == 0)
     {
         if ([USERXX isBlankString:self.addressModel.addressee] == NO) {
-            return 57 + _cell.addressLbl.frame.size.height;
+            return 70;
         }else
         {
             return 50;
@@ -131,17 +152,16 @@
     if(indexPath.section == 1)
     {
        
-            return kHeight(140);
+            return 140;
     
-
     }
     if(indexPath.section == 2)
     {
-        return kHeight(55);
+        return 62;
     }
     if(indexPath.section == 3)
     {
-        return kHeight(55);
+        return 62;
     }
     return 50;
 }

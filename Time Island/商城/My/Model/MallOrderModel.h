@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MallOrderModel : NSObject
-@property (nonatomic,strong) UIImageView * GoodsImage;
+@property (nonatomic,strong) NSString * GoodsImage;
 @property (nonatomic,strong) NSString * ShopName;
 @property (nonatomic,strong) NSString * GoodsName;
 @property (nonatomic,strong) NSString * GoodsDescribe;

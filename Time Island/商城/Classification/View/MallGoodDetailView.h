@@ -7,9 +7,9 @@
 //
 
 #import "BaseView.h"
-#import "MallTreeModel.h"
+#import "MallGoodsModel.h"
 @interface MallGoodDetailView : BaseView
-@property (nonatomic ,strong) MallTreeModel *treeModel;
+@property (nonatomic ,strong) MallGoodsModel *treeModel;
 @property (nonatomic ,copy)void(^CategoryBlock)(void);
 
 @end

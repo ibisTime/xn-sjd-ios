@@ -15,6 +15,7 @@
     if(!_goodsImage)
     {
         _goodsImage = [[UIImageView alloc]initWithFrame:CGRectMake(15, 50, 75, 75)];
+        kViewRadius(_goodsImage, 2);
     }
     return _goodsImage;
 }
@@ -69,7 +70,8 @@
     if(!_numberLabel)
     {
         _numberLabel = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH - 65, 50, 50, 20) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:HGfont(12) textColor:kTextColor2];
-        _numberLabel.text = @"x1";
+//        _numberLabel.text = @"x1";
+        _numberLabel.text = [NSString stringWithFormat:@"x%d",(int)self.count];
     }
     return _numberLabel;
 
@@ -91,25 +93,30 @@
 
         [self addSubview:self.priceLabel];
         [self addSubview:self.numberLabel];
+//        self.nameLabel.text = [NSString stringWithFormat:@"x%d",(int)self.count];
     }
     return self;
 }
 
--(void)setModel:(MallOrderModel *)model
+-(void)setModel:(MallGoodsModel *)model
 {
-    _goodsImage.image = kImage(@"我的背景");
-//    [_goodsImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[@"" convertImageUrl]]] placeholderImage:kImage(@"我的背景")];
-    _nameLabel.text = model.GoodsName;
+//    _goodsImage.image = kImage(@"我的背景");
+    
+    [_goodsImage sd_setImageWithURL:[NSURL URLWithString:[model.listPic convertImageUrl]] placeholderImage:kImage(@"我的背景")];
+    _nameLabel.text = model.specsList[0][@"name"];
     _nameLabel.frame = CGRectMake(115, 50, SCREEN_WIDTH - 130, 0);
-    _shopLabel.text = model.ShopName;
+    _shopLabel.text = model.shopName;
     [_nameLabel sizeToFit];
  
-    _nameLabel.text = model.GoodsName;
+    _nameLabel.text = model.specsList[0][@"name"];
 
-    _priceLabel.text = [NSString stringWithFormat:@"¥%.2f",[model.GoodsMoney floatValue]/1000];
+    _priceLabel.text = [NSString stringWithFormat:@"¥%.2f",[ model.specsList[self.selectnum][@"price"] floatValue]/1000];
     _nameLabel.frame = CGRectMake(115, 50, SCREEN_WIDTH - 130, 0);
     [_nameLabel sizeToFit];
+    _introduceLabel.text = [NSString stringWithFormat:@"规格分类: %@",self.size];
     _introduceLabel.frame = CGRectMake(117, 50 +35, SCREEN_WIDTH - 152, 15);
+    _numberLabel.text = [NSString stringWithFormat:@"x%d",(int)self.count];
+    
 
 }
 

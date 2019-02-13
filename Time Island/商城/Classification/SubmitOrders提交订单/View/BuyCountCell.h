@@ -9,7 +9,7 @@
 #import "BaseTableViewCell.h"
 
 @interface BuyCountCell : BaseTableViewCell
-@property (nonatomic , copy) NSString *count;
+@property (nonatomic,assign) NSInteger count;
 @property (nonatomic , strong)UIButton *minButton;
 
 @property (nonatomic , strong)UILabel *nameLbl;
@@ -17,4 +17,5 @@
 @property (nonatomic , strong)UILabel *countLbl;
 
 @property (nonatomic , strong)UIButton *MaxButton;
+@property (nonatomic,strong) void (^buycount)(NSInteger i);
 @end

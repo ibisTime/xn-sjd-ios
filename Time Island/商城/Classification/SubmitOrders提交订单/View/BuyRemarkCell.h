@@ -8,7 +8,8 @@
 
 #import "BaseTableViewCell.h"
 #import "TLTextView.h"
-@interface BuyRemarkCell : BaseTableViewCell
+@interface BuyRemarkCell : BaseTableViewCell<UITextFieldDelegate>
 @property (nonatomic , strong)TLTextField *filed;
+@property (nonatomic,strong) void (^remark)(NSString * remark);
 
 @end

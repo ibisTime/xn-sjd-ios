@@ -103,7 +103,7 @@
     lineView1.frame = CGRectMake(0, self.chooseLab.yy+10, kScreenWidth, 10);
     [self addSubview:lineView1];
 }
--(void)setTreeModel:(MallTreeModel *)treeModel
+-(void)setTreeModel:(MallGoodsModel *)treeModel
 {
     _treeModel = treeModel;
     [self.bgImage sd_setImageWithURL:[NSURL URLWithString:[treeModel.bannerPic convertImageUrl]]];

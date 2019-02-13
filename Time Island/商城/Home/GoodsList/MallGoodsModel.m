@@ -1,14 +1,14 @@
 //
-//  MallTreeModel.m
+//  MallGoodsModel.m
 //  Time Island
 //
-//  Created by shaojianfei on 2019/1/28.
+//  Created by 梅敏杰 on 2019/2/13.
 //  Copyright © 2019年 ChengLian. All rights reserved.
 //
 
-#import "MallTreeModel.h"
+#import "MallGoodsModel.h"
 #import "SpecsListModel.h"
-@implementation MallTreeModel
+@implementation MallGoodsModel
 +(NSDictionary *)mj_replacedKeyFromPropertyName
 {
     return @{@"Description": @"description"};
@@ -16,6 +16,14 @@
 + (NSDictionary *)mj_objectClassInArray{
     return @{ @"courses" : [SpecsListModel class]};
 }
+//+ (NSString *)mj_replacedKeyFromPropertyName121:(NSString *)propertyName {
+//    
+//    if ([propertyName isEqualToString:@"id"]) {
+//        return @"sizeid";
+//    }
+//    
+//    return propertyName;
+//}
 
 - (NSArray *)bannerPics {
     
@@ -36,5 +44,4 @@
     
     return _bannerPics;
 }
-
 @end

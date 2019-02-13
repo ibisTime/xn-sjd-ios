@@ -47,23 +47,29 @@
 - (void)minButtonClick
 {
     NSInteger inter = [self.countLbl.text integerValue];
-    if (inter == 0) {
+    if ((inter - 1) == 0) {
         return;
     }
     inter--;
     self.countLbl.text = [NSString stringWithFormat:@"%ld",inter];
+    if (self.buycount) {
+        self.buycount(inter);
+    }
 }
 - (void)maxButtonClick
 {
     NSInteger inter = [self.countLbl.text integerValue];
     inter++;
     self.countLbl.text = [NSString stringWithFormat:@"%ld",inter];
+    if (self.buycount) {
+        self.buycount(inter);
+    }
 }
--(void)setCount:(NSString *)count
+-(void)setCount:(NSInteger )count
 {
-    _count = [count copy];
+    _count = count;
     
-    self.countLbl.text = [NSString stringWithFormat:@"%@",count];
+    self.countLbl.text = [NSString stringWithFormat:@"%ld",count];
 
     self.nameLbl.text = @"购买数量";
 }
