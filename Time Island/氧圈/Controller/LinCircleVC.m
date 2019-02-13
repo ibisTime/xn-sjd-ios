@@ -19,10 +19,12 @@
 #import "MyGiftVC.h"
 #import "MyNoticeVC.h"
 #import "PersonalCenterVC.h"
+#import "SettingVC.h"
+#import "MessageVC.h"
 @interface LinCircleVC ()<OxygenCircleDelegate>
 
 @property (nonatomic , strong)OxygenCircleView *circleView;
-
+@property (nonatomic , strong)NSArray *array;
 @end
 
 
@@ -58,7 +60,7 @@
         }
     }];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(InfoNotificationAction:) name:@"SELECTROW" object:nil];
-    
+    [self refresh];
 }
 
 
@@ -68,7 +70,9 @@
     
     
     if (row == 0) {
-        MyCarbonBubbleVC *vc = [MyCarbonBubbleVC new];
+        MyCarbonBubbleVC * vc = [MyCarbonBubbleVC new];
+        vc.accountNumber = self.array[2][@"accountNumber"];
+        vc.state = 2;
         [self.navigationController pushViewController:vc animated:YES];
     }
     if (row == 1) {
@@ -76,9 +80,28 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     if (row == 2) {
-        MyNoticeVC *vc = [MyNoticeVC new];
+        MessageVC * vc = [MessageVC new];
         [self.navigationController pushViewController:vc animated:YES];
     }
+    if (row == 3) {
+        SettingVC * vc = [SettingVC new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+-(void)refresh{
+    TLNetworking * http1 = [[TLNetworking alloc]init];
+    http1.code = @"802300";
+    http1.parameters[@"userId"] = [TLUser user].userId;
+    http1.parameters[@"start"] = @(1);
+    http1.parameters[@"limit"] = @(10);
+    //    [http1 postWithSuccess:^(id responseObject) {
+    //        self.array = responseObject[@"data"][@"list"];}
+    //     [http]
+    [http1 postWithSuccess:^(id responseObject) {
+        self.array = responseObject[@"data"][@"list"];
+    } failure:^(NSError *error) {
+    }];
 }
 
 #pragma mark -- 删除通知
@@ -138,7 +161,7 @@
     MyHomePageVC *vc = [MyHomePageVC new];
     //    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
     //    [self cw_showDefaultDrawerViewController:vc];
-    
+//    [self cw_pushViewController:vc];
     [self cw_showDrawerViewController:vc animationType:CWDrawerAnimationTypeDefault configuration:nil];
 }
 
