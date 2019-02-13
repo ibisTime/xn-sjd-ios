@@ -7,7 +7,7 @@
 //
 
 #import "TLBaseVC.h"
-
+#import "MallTreeModel.h"
 @interface MallStoreListVC : TLBaseVC
-
+@property (nonatomic,strong) MallTreeModel * treeModel;
 @end

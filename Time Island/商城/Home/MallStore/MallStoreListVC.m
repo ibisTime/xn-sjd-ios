@@ -9,12 +9,19 @@
 #import "MallStoreListVC.h"
 #import "MallListCollectionViewCell.h"
 #import "MallGoodDetailVC.h"
+#import "SLBannerView.h"
 @interface MallStoreListVC ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
-@property (nonatomic,strong) UIView * headerView;
-@property (nonatomic,strong) UIImageView * image;
-@property (nonatomic,strong) UIImageView * backgroundimage;
-@property (nonatomic,strong) UICollectionView *collectionView;
+{
+    
+    
+}
 
+@property (nonatomic,strong) SLBannerView *topImage;
+@property (nonatomic,strong) UIImageView * headImage;
+@property (nonatomic,strong) UILabel *nameLable;
+@property (nonatomic,strong) UILabel *introduceLable;
+@property (nonatomic,strong) UIView * headerView;
+@property (nonatomic,strong) UICollectionView *collectionView;
 @end
 
 @implementation MallStoreListVC
@@ -36,9 +43,7 @@
     
     if (!_headerView) {
         
-        CoinWeakSelf;
-        //头部
-        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/750*370 + 140 +  (SCREEN_WIDTH - 30)/690*230 + 247.5+kNavigationBarHeight)];
+        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/750*300  + SCREEN_WIDTH/4 + 149)];
        
     }
     return _headerView;
@@ -46,46 +51,63 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupImage];
-    [self SetupClassify];
     [self initTop];
     [self.view addSubview:self.collectionView];
-    
+    [self loadData];
+    [self topImageLoadData];
 }
+
+
+
 
 - (void)initTop
 {
-    UILabel *titltLab = [UILabel labelWithFrame:CGRectMake((kScreenWidth-130)/2, self.image.yy+10, kWidth(130), 22) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(16) textColor:kBlackColor];
-    titltLab.text = @"商铺名称";
-    [titltLab setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
-    [self.headerView addSubview:titltLab];
-    UILabel *introduceLab = [UILabel labelWithFrame:CGRectMake(kWidth(130)/2, titltLab.yy+5, (kScreenWidth-130), 22) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(12) textColor:kTextColor2];
-    introduceLab.text = @"十年老店十年老店十年老店十年老店十年老店";
-    [self.headerView addSubview:introduceLab];
-    introduceLab.centerX = titltLab.centerX;
-}
--(void)setupImage{
-    UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/750*kHeight(150))];
-    image.image = kImage(@"树 跟背景");
-    //    [self.view addSubview:image];
-    [self.headerView addSubview:image];
-    self.backgroundimage = image;
-    UIImageView * image1 = [[UIImageView alloc]initWithFrame:CGRectMake((kScreenWidth-80)/2, self.backgroundimage.yy-40, 80, 80)];
-    image1.layer.cornerRadius = 40;
-    image1.clipsToBounds = YES;
-    image1.image = kImage(@"我的背景");
-    //    [self.view addSubview:image];
-    [self.headerView addSubview:image1];
-    self.image = image1;
-}
--(void)SetupClassify{
+//    UIImageView * topImage;
+//    UIImageView * headImage;
+//    UILabel *nameLable;
+//    UILabel *introduceLable;
+    
+    
+    _topImage = [SLBannerView bannerView];
+    _topImage.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/750*300);
+    //工程图片
+    
+    
+
+    [self.headerView addSubview:_topImage];
+    
+    
+    
+    _headImage = [[UIImageView alloc]initWithFrame:CGRectMake((kScreenWidth-80)/2, _topImage.yy-40, 80, 80)];
+    _headImage.layer.cornerRadius = 40;
+    _headImage.clipsToBounds = YES;
+    _headImage.image = kImage(@"分类三");
+    [self.headerView addSubview:_headImage];
+    
+    _nameLable = [UILabel labelWithFrame:CGRectMake(0, _headImage.yy+11, SCREEN_WIDTH, 22.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(16) textColor:kBlackColor];
+    _nameLable.text = self.treeModel.shopName;
+    [_nameLable setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
+    [self.headerView addSubview:_nameLable];
+    
+    
+    
+    
+    _introduceLable = [UILabel labelWithFrame:CGRectMake(15, _nameLable.yy+7, (kScreenWidth-30), 16.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(12) textColor:kTextColor2];
+    _introduceLable.text = @"";
+    [self.headerView addSubview:_introduceLable];
+    
+    
+    
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, _introduceLable.yy + 20, SCREEN_WIDTH, 10)];
+    lineView.backgroundColor = kBackgroundColor;
+    [self.headerView addSubview:lineView];
     
     NSArray * ClassifyName = @[@"分类一",@"分类二",@"分类三",@"分类四"];
     
     
     for (int i = 0; i < 4; i ++) {
         UIButton *iconBtn = [UIButton buttonWithTitle:ClassifyName[i] titleColor:kHexColor(@"#666666") backgroundColor:kClearColor titleFont:12];
-        iconBtn.frame = CGRectMake(i % 4 * SCREEN_WIDTH/4, self.image.yy + kHeight(100), SCREEN_WIDTH/4, 55 + 16.5);
+        iconBtn.frame = CGRectMake(i % 4 * SCREEN_WIDTH/4, lineView.yy, SCREEN_WIDTH/4, SCREEN_WIDTH/4);
         [iconBtn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
             [button setImage:kImage(ClassifyName[i]) forState:(UIControlStateNormal)];
         }];
@@ -94,15 +116,48 @@
         [self.headerView addSubview:iconBtn];
     }
     
-    UILabel *hotLable = [UILabel labelWithFrame:CGRectMake(15, self.image.yy + kHeight(100)+kHeight(55 + 16.5)+5, kWidth(130), 22) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:FONT(16) textColor:kBlackColor];
+    UILabel *hotLable = [UILabel labelWithFrame:CGRectMake(15, lineView.yy + SCREEN_WIDTH/4, SCREEN_WIDTH - 30, 22) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:HGboldfont(16) textColor:kBlackColor];
     hotLable.text = @"热销商品";
-    [hotLable setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
+    ;
     [self.headerView addSubview:hotLable];
-    UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, self.backgroundimage.yy + 22 + 55 + 16.5 + 21.5, SCREEN_WIDTH, 10)];
-    view.backgroundColor = kLineColor;
-    [self.headerView addSubview:view];
+    
+}
+
+-(void)topImageLoadData
+{
+    TLNetworking *http = [TLNetworking new];
+    http.code = @"630506";
+    http.parameters[@"shopCode"] = self.treeModel.shopCode;
+    http.parameters[@"type"] = @"7";
+    [http postWithSuccess:^(id responseObject) {
+        
+        NSArray *dataAry = responseObject[@"data"];
+        NSMutableArray *imageArraay = [NSMutableArray array];
+        for (int i = 0; i < dataAry.count; i ++) {
+            [imageArraay addObject:[dataAry[i][@"pic"] convertImageUrl]];
+        }
+        
+        self.topImage.slImages = imageArraay;
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+-(void)loadData
+{
     
     
+    TLNetworking *http = [TLNetworking new];
+    http.code = @"630307";
+    http.parameters[@"code"] = self.treeModel.shopCode;
+    [http postWithSuccess:^(id responseObject) {
+        
+        _introduceLable.text = responseObject[@"data"][@"description"];
+        
+    } failure:^(NSError *error) {
+       
+    }];
 }
 
 - (void)ClassifyClick
@@ -122,14 +177,6 @@
     
     MallListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MallListCollectionViewCell" forIndexPath:indexPath];
     
-    if (indexPath.row % 2 == 0) {
-        cell.backView.frame = CGRectMake(12, 0, (SCREEN_WIDTH - 30)/2, kHeight(226));
-    }else
-    {
-        cell.backView.frame = CGRectMake(3, 0, (SCREEN_WIDTH - 30)/2, kHeight(226));
-    }
-    
-    
     return cell;
 }
 
@@ -139,10 +186,6 @@
     MallGoodDetailVC *detail = [MallGoodDetailVC new];
     detail.title = @"产品详情";
     [self.navigationController pushViewController:detail animated:YES];
-    //    GoodsDetailsVc *detailVC = [GoodsDetailsVc new];
-    //    //    detailVC.title = @"古树详情";
-    //    //    detailVC.mineModel = self.models[indexPath.row];
-    //    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
@@ -159,12 +202,12 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return CGSizeMake((SCREEN_WIDTH - 1)/2, kHeight(226));
+    return CGSizeMake((SCREEN_WIDTH - 45)/2, (SCREEN_WIDTH - 45)/2/330*230 + 111);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH/750*370+(SCREEN_WIDTH - 30)/690*230+kNavigationBarHeight);
+    return CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH/750*300  + SCREEN_WIDTH/4 + 149);
     
 }
 
@@ -185,7 +228,7 @@
 
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(0.1, 0.1, 0.1, 0.1);
+    return UIEdgeInsetsMake(15, 15, 15, 15);
 }
 
 

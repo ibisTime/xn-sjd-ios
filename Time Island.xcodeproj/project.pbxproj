@@ -75,6 +75,7 @@
 		1F3EBB0921F5C42D005BC837 /* YSActionSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3EBB0621F5C42D005BC837 /* YSActionSheetView.m */; };
 		1F3EBB0A21F5C42D005BC837 /* YSActionSheetButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3EBB0721F5C42D005BC837 /* YSActionSheetButton.m */; };
 		1F3EBB0B21F5C42D005BC837 /* ShareTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3EBB0821F5C42D005BC837 /* ShareTableViewCell.m */; };
+		1F4731942212C59E007B5908 /* GoodsEditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4731932212C59E007B5908 /* GoodsEditTableView.m */; };
 		1F9360AC21EDFCA5007E522A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360AA21EDFCA4007E522A /* MapViewController.m */; };
 		1F93610321EDFD8F007E522A /* ToClaimTheGiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360DA21EDFD8E007E522A /* ToClaimTheGiftVC.m */; };
 		1F93610421EDFD8F007E522A /* MyGiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360DC21EDFD8E007E522A /* MyGiftVC.m */; };
@@ -623,6 +624,8 @@
 		1F3EBB0621F5C42D005BC837 /* YSActionSheetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSActionSheetView.m; sourceTree = "<group>"; };
 		1F3EBB0721F5C42D005BC837 /* YSActionSheetButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSActionSheetButton.m; sourceTree = "<group>"; };
 		1F3EBB0821F5C42D005BC837 /* ShareTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareTableViewCell.m; sourceTree = "<group>"; };
+		1F4731922212C59E007B5908 /* GoodsEditTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsEditTableView.h; sourceTree = "<group>"; };
+		1F4731932212C59E007B5908 /* GoodsEditTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsEditTableView.m; sourceTree = "<group>"; };
 		1F9360AA21EDFCA4007E522A /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		1F9360AB21EDFCA4007E522A /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		1F9360AD21EDFCDA007E522A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -1635,6 +1638,8 @@
 			children = (
 				B8226F7E21F70E66002F450F /* GoodsEditVC.h */,
 				B8226F7F21F70E66002F450F /* GoodsEditVC.m */,
+				1F4731922212C59E007B5908 /* GoodsEditTableView.h */,
+				1F4731932212C59E007B5908 /* GoodsEditTableView.m */,
 			);
 			path = Evaluation;
 			sourceTree = "<group>";
@@ -1957,6 +1962,15 @@
 				1F3EBB0821F5C42D005BC837 /* ShareTableViewCell.m */,
 			);
 			path = ShareLib;
+			sourceTree = "<group>";
+		};
+		1F4731952212C74B007B5908 /* MallStore */ = {
+			isa = PBXGroup;
+			children = (
+				B80D384121F8403800206B55 /* MallStoreListVC.h */,
+				B80D384221F8403800206B55 /* MallStoreListVC.m */,
+			);
+			path = MallStore;
 			sourceTree = "<group>";
 		};
 		1F9360A921EDFCA4007E522A /* Map地图 */ = {
@@ -3393,6 +3407,7 @@
 		B81E5FA621DC8FC200873AB9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				1F4731952212C74B007B5908 /* MallStore */,
 				1F19AC39221174FB0090BF84 /* GoodsList */,
 				1F19AC1522029D550090BF84 /* GoodsDetails */,
 				B85F891021FC2F9B00D5B7A4 /* 搜索 */,
@@ -3661,8 +3676,6 @@
 				B8712E8421F578AB00039086 /* QWCategoryMenuController.m */,
 				B8712E7D21F577FA00039086 /* MallClassificationVC.h */,
 				B8712E7C21F577FA00039086 /* MallClassificationVC.m */,
-				B80D384121F8403800206B55 /* MallStoreListVC.h */,
-				B80D384221F8403800206B55 /* MallStoreListVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4445,6 +4458,7 @@
 				B81E5FAD21DC8FC200873AB9 /* ZMChineseConvert.m in Sources */,
 				B8A27AFC21E5D24F00914897 /* TreeDetailVC.m in Sources */,
 				1F3EBAD721F59A75005BC837 /* GoodsDetailsVc.m in Sources */,
+				1F4731942212C59E007B5908 /* GoodsEditTableView.m in Sources */,
 				B8A27AED21E5C44400914897 /* MMHeaderView.m in Sources */,
 				B8226F8321F71168002F450F /* GoodsBottomView.m in Sources */,
 				B8A27AF321E5C44400914897 /* MMDropDownBox.m in Sources */,

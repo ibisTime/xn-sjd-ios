@@ -9,59 +9,54 @@
 #import "GoodsEditVC.h"
 #import "AllCommentTB.h"
 #import "GoodsEditModel.h"
+#import "GoodsEditTableView.h"
+#import "EvaluationModel.h"
+
 @interface GoodsEditVC ()<RefreshDelegate>
-@property (nonatomic ,strong) AllCommentTB *commentTb;
-
-@property (nonatomic ,strong) NSMutableArray *models;
-
+@property (nonatomic , strong)NSMutableArray <EvaluationModel *>*evaluationModel;
+@property (nonatomic , strong)GoodsEditTableView *tableView;
 @end
 
 @implementation GoodsEditVC
 
+- (GoodsEditTableView *)tableView {
+    
+    if (!_tableView) {
+        
+        _tableView = [[GoodsEditTableView alloc] initWithFrame:CGRectMake(0, 0 , SCREEN_WIDTH, kSuperViewHeight - kTabBarHeight - 45) style:UITableViewStyleGrouped];
+        
+        _tableView.refreshDelegate = self;
+        _tableView.backgroundColor = kBackgroundColor;
+    }
+    return _tableView;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.commentTb = [[AllCommentTB alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-kTabBarHeight-45)];
-    [self.view addSubview:self.commentTb];
-   
-    self.models = [NSMutableArray array];
-    self.commentTb.refreshDelegate = self;
-    for (int i = 0; i <10; i++) {
-      
-        if (i == 1) {
-            GoodsEditModel *model = [GoodsEditModel new];
-            model.images = @[@"baner1"];
-            model.Rowheight = 0;
-            [self.models addObject:model];
-        }else if (i == 3)
-        {
-            GoodsEditModel *model = [GoodsEditModel new];
-            model.images = @[@"baner1",@"我的背景",@"baner2",@"我的背景",@"baner2"];
-            model.Rowheight = 0;
-            [self.models addObject:model];
-        }else if (i == 5)
-        {
-            GoodsEditModel *model = [GoodsEditModel new];
-            model.images = @[@"baner1",@"我的背景",@"baner2",@"我的背景",@"baner2",@"我的背景",@"baner2",@"我的背景",@"baner2"];
-            model.Rowheight = 0;
-            [self.models addObject:model];
-        }else if (i == 7)
-        {
-            GoodsEditModel *model = [GoodsEditModel new];
-            model.images = @[@"baner1",@"我的背景",@"baner2",@"我的背景",@"baner2",@"我的背景",@"baner2",@"我的背景"];
-            model.Rowheight = 0;
-            [self.models addObject:model];
-        }else{
-            GoodsEditModel *model = [GoodsEditModel new];
-            model.images = @[@"baner1",@"我的背景",@"baner2"];
-            model.Rowheight = 0;
-            [self.models addObject:model];
-        }
-    }
-    self.commentTb.models = self.models;
-    [self.commentTb reloadData];
+    //    [self initDetailView];
+    [self.view addSubview:self.tableView];
+    [self loadData];
+    
     // Do any additional setup after loading the view.
 }
 
+- (void)loadData{
+    TLNetworking *http = [TLNetworking new];
+    http.code = @"629755";
+    http.parameters[@"start"] = @"1";
+    http.parameters[@"limit"] = @"10";
+    http.parameters[@"statusList"] = @[@"D",@"B"];
+    http.parameters[@"commodityCode"] = self.treeModel.code;
+    //    http.parameters[@"code"] = self.code;
+    [http postWithSuccess:^(id responseObject) {
+        self.evaluationModel = [EvaluationModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        NSLog(@"%@",responseObject);
+        self.tableView.evaluationModel = self.evaluationModel;
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

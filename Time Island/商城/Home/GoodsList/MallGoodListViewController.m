@@ -310,16 +310,14 @@
     MallTreeModel *model = self.TreeModels[indexpath.row];
     NSLog(@"%@",model);
 }
+
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MallGoodDetailVC *detail = [MallGoodDetailVC new];
     detail.treeModel = self.TreeModels[indexPath.row];
     detail.title = @"产品详情";
     [self.navigationController pushViewController:detail animated:YES];
-//    GoodsDetailsVc *detailVC = [GoodsDetailsVc new];
-//    //    detailVC.title = @"古树详情";
-//    //    detailVC.mineModel = self.models[indexPath.row];
-//    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 
@@ -334,13 +332,7 @@
     return CGSizeMake(SCREEN_WIDTH, 0.001);
 }
 
-//- (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-//{
-//    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
-//    [headerView addSubview:self.headerView];
 
-//    return nil;
-//}
 
 
 

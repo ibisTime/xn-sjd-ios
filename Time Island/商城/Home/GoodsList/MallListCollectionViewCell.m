@@ -92,6 +92,7 @@
 -(void)setModel:(MallTreeModel *)model
 {
     _model = model;
+    self.titleLab.frame = CGRectMake(10, _headImage.yy + 10, (SCREEN_WIDTH - 45)/2 - 20, 0);
     self.titleLab.text = model.name;
 //    self.priceLabel.text = [NSString stringWithFormat:@"¥%@",model.originalPrice];
     _titleLab.numberOfLines = 2;

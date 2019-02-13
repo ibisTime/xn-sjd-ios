@@ -226,6 +226,7 @@
 {
     MallStoreListVC *store = [MallStoreListVC new];
     store.title = @"商铺";
+    store.treeModel = self.treeModel;
     [self.navigationController pushViewController:store animated:YES];
     
 }
