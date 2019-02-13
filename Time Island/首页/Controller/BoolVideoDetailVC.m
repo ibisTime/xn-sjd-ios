@@ -24,8 +24,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.headView = [[BookDetailHeadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
+    self.headView.state = self.state;
     self.headView.BookModel = self.BookModel;
+    
     self.ContentView = [[BookDetailContentView alloc]initWithFrame:CGRectMake(0, 150, SCREEN_WIDTH, SCREEN_HEIGHT - 150 - 64 - 50)];
+    self.ContentView.state = self.state;
     self.ContentView.BookModel = self.BookModel;
     [self.view addSubview:self.headView];
     [self.view addSubview:self.ContentView];
@@ -38,7 +41,14 @@
     
     
     UIButton * CollectBtn = [UIButton buttonWithTitle:@"" titleColor:kTextColor3 backgroundColor:kClearColor titleFont:12 cornerRadius:0];
-    [CollectBtn setTitle: self.BookModel.collectCount forState:UIControlStateNormal];
+//    NSString * str = [NSString stringWithFormat:@"%@",self.BookModel.article[@"collectCount"]];
+    if ([self.state isEqualToString:@"collect"]) {
+        [CollectBtn setTitle: [NSString stringWithFormat:@"%@",self.BookModel.article[@"collectCount"]] forState:UIControlStateNormal];
+    }
+    else{
+        [CollectBtn setTitle: self.BookModel.collectCount forState:UIControlStateNormal];
+    }
+    
     CollectBtn.frame = CGRectMake(0, 0, SCREEN_WIDTH / 2, 50);
     [CollectBtn SG_imagePositionStyle:SGImagePositionStyleDefault spacing:4 imagePositionBlock:^(UIButton *button) {
         [button setImage: kImage(@"收藏（未点击）") forState:UIControlStateNormal];
@@ -52,7 +62,12 @@
     [self CreateViewWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 1, self.ContentView.yy + 15, 1, 20)];
     
     UIButton * ZanBtn = [UIButton buttonWithTitle:@"" titleColor:kTextColor3 backgroundColor:kClearColor titleFont:12 cornerRadius:0];
-    [ZanBtn setTitle: self.BookModel.pointCount forState:UIControlStateNormal];
+    
+    if ([self.state isEqualToString:@"collect"]) {
+        [ZanBtn setTitle: [NSString stringWithFormat:@"%@",self.BookModel.article[@"pointCount"]] forState:UIControlStateNormal];
+    }else{
+        [ZanBtn setTitle: self.BookModel.pointCount forState:UIControlStateNormal];
+    }
     ZanBtn.frame = CGRectMake(SCREEN_WIDTH / 2 + 1, 0, SCREEN_WIDTH / 2, 50);
     [ZanBtn SG_imagePositionStyle:SGImagePositionStyleDefault spacing:4 imagePositionBlock:^(UIButton *button) {
         [button setImage: kImage(@"点赞（未点击）") forState:UIControlStateNormal];
@@ -123,7 +138,13 @@
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629348";
     http.parameters[@"userId"] = [TLUser user].userId;
-    http.parameters[@"code"] = self.BookModel.code;
+    
+    if ([self.state isEqualToString:@"collect"]) {
+        http.parameters[@"code"] = self.BookModel.article[@"code"];
+    }
+    else{
+        http.parameters[@"code"] = self.BookModel.code;
+    }
     http.parameters[@"type"] = @(1);
     [http postWithSuccess:^(id responseObject) {
         if ([responseObject[@"data"][@"isPointCollect"] isEqualToString:@"1"]) {
@@ -135,7 +156,13 @@
 //    TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629348";
     http.parameters[@"userId"] = [TLUser user].userId;
-    http.parameters[@"code"] = self.BookModel.code;
+//    http.parameters[@"code"] = self.BookModel.code;
+    if ([self.state isEqualToString:@"collect"]) {
+        http.parameters[@"code"] = self.BookModel.article[@"code"];
+    }
+    else{
+        http.parameters[@"code"] = self.BookModel.code;
+    }
     http.parameters[@"type"] = @(2);
     [http postWithSuccess:^(id responseObject) {
         if ([responseObject[@"data"][@"isPointCollect"] isEqualToString:@"1"]) {

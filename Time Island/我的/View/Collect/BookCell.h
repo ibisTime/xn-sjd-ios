@@ -27,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,strong) BookModel * BookModel;
 
+@property (nonatomic,assign) int state;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

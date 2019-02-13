@@ -22,9 +22,10 @@
 #import "AppConfig.h"
 #import "BalanceVC.h"
 #import "CertifyVC.h"
+#import "InviteGiftVC.h"
 
-#define titlearray @[@"我的碳泡泡",@"我的认养",@"我的订单",@"我的文章",@"我的收藏",@"邀请有礼",@"设置"]
-#define imagearray @[@"泡泡",@"",@"",@"",@"",@"",@"设置"]
+#define titlearray @[@"我的碳泡泡",@"我的订单",@"我的文章",@"我的收藏",@"邀请有礼",@"设置"]
+#define imagearray @[@"泡泡",@"",@"",@"",@"",@"设置"]
 #define array1 @[@"余额",@"积分",@"碳泡泡"]
 @interface MineVC ()
 @property (nonatomic,retain) UIView * topview;
@@ -259,37 +260,37 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case 1:
-        {
-//            TLUserLoginVC * login = [[TLUserLoginVC alloc]init];
-//            [self.navigationController pushViewController:login animated:YES];
-        }
+//        case 1:
+//        {
+////            TLUserLoginVC * login = [[TLUserLoginVC alloc]init];
+////            [self.navigationController pushViewController:login animated:YES];
+//        }
             break;
-        case 2:
+        case 1:
         {
             OrderVC * vc = [[OrderVC alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case 3:
+        case 2:
         {
             BookVC * bookview = [[BookVC alloc]init];
             [self.navigationController pushViewController:bookview animated:YES];
         }
             break;
-        case 4:
+        case 3:
         {
             CollectVC * vc = [CollectVC new];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case 5:
+        case 4:
         {
-            InviteVC * vc = [InviteVC alloc];
+            InviteGiftVC * vc = [InviteGiftVC alloc];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case 6:{
+        case 5:{
             SettingVC * vc = [SettingVC new];
             [self.navigationController pushViewController:vc animated:YES];
         }
@@ -302,7 +303,7 @@
 //刷新信息
 -(void)RefreshInfo{
     
-    [self.logoimage sd_setImageWithURL: [NSURL URLWithString:[[TLUser user].photo convertImageUrl]]];
+    [self.logoimage sd_setImageWithURL: [NSURL URLWithString:[[TLUser user].photo convertImageUrl]] placeholderImage:kImage(@"果树预售")];
 
     if ([TLUser user].idNo) {
         self.nameLbl.text = @"已认证";

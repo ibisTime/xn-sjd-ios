@@ -41,11 +41,13 @@
         _headView = [[MyCarbombubbleView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 160)];
         _headView.backgroundColor = kWhiteColor;
         if (self.state == 1) {
+            self.title = @"积分";
             _headView.currentLbl.text = @"积分";
             _headView.state = 1;
         }
         else if(self.state == 2)
         {
+            self.title = @"我的碳泡泡";
              _headView.currentLbl.text = @"我的碳泡泡";
             _headView.state = 2;
         }

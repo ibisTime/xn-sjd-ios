@@ -24,4 +24,6 @@
 //
 //@property (nonatomic ,strong) UILabel *praiseLab;
 @property (nonatomic,strong) BookModel * BookModel;
+@property (nonatomic,strong) NSString * state;
+
 @end

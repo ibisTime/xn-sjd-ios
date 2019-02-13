@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UILabel * content;
 @property (nonatomic,strong) UIImageView * photo;
 @property (nonatomic,strong) BookModel * BookModel;
+@property (nonatomic,strong) NSString * state;
 @end
 
 NS_ASSUME_NONNULL_END

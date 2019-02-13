@@ -38,6 +38,7 @@
     self.bookview = [[BookView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - kTabBarHeight) style:UITableViewStyleGrouped];
     self.bookview.backgroundColor = kWhiteColor;
     self.bookview.refreshDelegate = self;
+    self.bookview.state = 1;
     [self.view addSubview:self.bookview];
     CoinWeakSelf
     [self.bookview addRefreshAction:^{

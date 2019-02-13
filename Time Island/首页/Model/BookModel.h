@@ -35,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString * treeNo;
 @property (nonatomic,copy) NSString * type;
 @property (nonatomic,copy) NSString * updater;
+@property (nonatomic,copy) NSDictionary * article;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -33,11 +33,20 @@
     self.photo = photo;
 }
 -(void)setBookModel:(BookModel *)BookModel{
-    self.content.text = BookModel.content;
-    [_content sizeToFit];
-    _content.frame = CGRectMake(15, 0, _content.width, 50);
+    if ([self.state isEqualToString:@"collect"]) {
+        self.content.text = BookModel.article[@"content"];
+        [_content sizeToFit];
+        _content.frame = CGRectMake(15, 0, _content.width, 50);
+        
+        [self.photo sd_setImageWithURL:[NSURL URLWithString:[BookModel.article[@"photo"] convertImageUrl]]];
+    }else{
+        self.content.text = BookModel.content;
+        [_content sizeToFit];
+        _content.frame = CGRectMake(15, 0, _content.width, 50);
+        
+        [self.photo sd_setImageWithURL:[NSURL URLWithString:[BookModel.photo convertImageUrl]]];
+    }
     
-    [self.photo sd_setImageWithURL:[NSURL URLWithString:[BookModel.photo convertImageUrl]]];
     
 }
 @end

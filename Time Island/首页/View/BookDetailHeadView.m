@@ -52,29 +52,30 @@
     self.timeLab = timeLab;
     [self addSubview:timeLab];
     
-//    UILabel *collectLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor2 font:13];
-//    collectLab.frame = CGRectMake(moneyLab.x, moneyLab.yy+12, 80, 24);
-//    collectLab.textAlignment = NSTextAlignmentLeft;
-//    collectLab.text = @"收藏 100";
-//    self.collectLab = collectLab;
-//    [self addSubview:collectLab];
-//
-//    UILabel *praiseLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor2 font:13];
-//    praiseLab.frame = CGRectMake(collectLab.xx, detailLab.yy+12, 80, 24);
-//    praiseLab.textAlignment = NSTextAlignmentLeft;
-//    praiseLab.text = @"评论 100";
-//    self.praiseLab = praiseLab;
-//    [self addSubview:praiseLab];
-    
     UIView *line = [UIView new];
     line.frame = CGRectMake(0, timeLab.yy+20, kScreenWidth, 1);
     line.backgroundColor = RGB(244, 244, 244);
     [self addSubview:line];
     
-}-(void)setBookModel:(BookModel *)BookModel{
-    self.moreLab.text = BookModel.title;
+}
+-(void)setBookModel:(BookModel *)BookModel{
     
-    self.detailLab.text = [NSString stringWithFormat:@"作者 %@",BookModel.publishUserName];
+    if ([self.state isEqualToString:@"collect"]) {
+        self.moreLab.text = BookModel.article[@"title"];
+        
+        self.detailLab.text = [NSString stringWithFormat:@"作者 %@",BookModel.publishUserName];
+        [_detailLab sizeToFit];
+        _detailLab.frame = CGRectMake(15, _moreLab.yy+10, _detailLab.width + 10, 24);
+        if (BookModel.treeName) {
+            self.moneyLab.text = [NSString stringWithFormat:@"关联古树 %@ >",BookModel.treeName];
+            [_moneyLab sizeToFit];
+            _moneyLab.frame = CGRectMake(SCREEN_WIDTH - _moneyLab.width - 15, _moreLab.yy+10, _moneyLab.width + 10, 24);
+        }
+        self.timeLab.text = [BookModel.article[@"publishDatetime"] convertToDetailDate];
+    }
+    else{
+        self.moreLab.text = BookModel.title;
+        self.detailLab.text = [NSString stringWithFormat:@"作者 %@",BookModel.publishUserName];
     [_detailLab sizeToFit];
     _detailLab.frame = CGRectMake(15, _moreLab.yy+10, _detailLab.width + 10, 24);
     if (BookModel.treeName) {
@@ -83,12 +84,7 @@
         _moneyLab.frame = CGRectMake(SCREEN_WIDTH - _moneyLab.width - 15, _moreLab.yy+10, _moneyLab.width + 10, 24);
     }
     self.timeLab.text = [BookModel.publishDatetime convertToDetailDate];
-//    self.praiseLab.text = [NSString stringWithFormat:@"阅读 %@",BookModel.readCount];
-//    [_praiseLab sizeToFit];
-//    _praiseLab.frame = CGRectMake(SCREEN_WIDTH - _praiseLab.width - 15, _detailLab.yy+10, _praiseLab.width, 24);
-//    self.collectLab.text = [NSString stringWithFormat:@"收藏 %@",BookModel.collectCount];
-//    [_collectLab sizeToFit];
-//    _collectLab.frame = CGRectMake(SCREEN_WIDTH - _praiseLab.width - 30 - _collectLab.width, _detailLab.yy+10, _collectLab.width, 24);
+    }
 }
 
 @end

@@ -81,10 +81,14 @@
     
     
     NSArray *array = @[@"微信",@"支付宝",@"余额支付"];
+    NSArray * imagearray = @[@"微信",@"支付宝",@"余额"];
     for (int i = 0; i < 3; i ++) {
         UIButton *payButton = [UIButton buttonWithTitle:array[i] titleColor:kBlackColor backgroundColor:kClearColor titleFont:14];
         payButton.frame = CGRectMake(15, namelbl.yy + i % 3 * 60, SCREEN_WIDTH - 80, 60);
         payButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [payButton SG_imagePositionStyle:SGImagePositionStyleDefault spacing:8.5 imagePositionBlock:^(UIButton *button) {
+            [button setImage:kImage(imagearray[i]) forState:(UIControlStateNormal)];
+        }];
         [self.view addSubview:payButton];
         
         UIButton *btn = [UIButton buttonWithType:(UIButtonTypeCustom)];

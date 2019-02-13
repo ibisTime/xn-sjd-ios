@@ -29,7 +29,7 @@
         
         
         UILabel *currentLbl = [UILabel labelWithBackgroundColor:kClearColor textColor:kHexColor(@"#656565") font:13.0];
-        currentLbl.frame = CGRectMake(0, 29, SCREEN_WIDTH - 30, 18.5);
+        currentLbl.frame = CGRectMake(15, 29, SCREEN_WIDTH - 30, 18.5);
         currentLbl.textAlignment = NSTextAlignmentCenter;
         currentLbl.text = @"碳泡泡数量";
         [bgImage addSubview:currentLbl];
@@ -37,7 +37,7 @@
         
         UILabel *amountLbl = [UILabel labelWithBackgroundColor:kClearColor textColor:kTextColor font:22.0];
         amountLbl.font = HGboldfont(24);
-        amountLbl.frame = CGRectMake(0, currentLbl.yy + 7.5, SCREEN_WIDTH - 30, 29.5);
+        amountLbl.frame = CGRectMake(15, currentLbl.yy + 7.5, SCREEN_WIDTH - 30, 29.5);
         amountLbl.textAlignment = NSTextAlignmentCenter;
         //        amountLbl.text = @"2480";
         [bgImage addSubview:amountLbl];
@@ -54,7 +54,7 @@
         [self addSubview:btn1];
         
         UIButton * btn2 = [UIButton buttonWithTitle:@"充值" titleColor:[UIColor whiteColor] backgroundColor:kTabbarColor titleFont:15];
-        btn2.frame = CGRectMake(btn1.xx + 63, amountLbl.yy + 27.5, 67, 30);
+        btn2.frame = CGRectMake(SCREEN_WIDTH - 87 - 67, amountLbl.yy + 27.5, 67, 30);
         btn2.layer.cornerRadius = 2;
         btn2.layer.masksToBounds = YES;
         btn2.tag = 102;
