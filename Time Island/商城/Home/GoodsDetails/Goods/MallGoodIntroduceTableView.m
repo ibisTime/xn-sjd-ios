@@ -130,8 +130,7 @@
             [button setImage:kImage(@"积分更多") forState:(UIControlStateNormal)];
         }];
         [backView addSubview:allBtn];
-//        [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH - 120, 15, 105, 21) textAligment:(NSTextAlignmentRight) backgroundColor:<#(UIColor *)#> font:<#(UIFont *)#> textColor:<#(UIColor *)#>]
-        
+
         return headView;
     }
     return [UIView new];
