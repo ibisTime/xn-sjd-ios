@@ -27,7 +27,7 @@
         [self addGestureRecognizer:tap];
         
         //add subView
-        self.arrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pulldown.png"]];
+        self.arrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pulldown"]];
         self.arrow.frame = CGRectMake(self.width - ArrowSide - ArrowToRight -ArrowSide ,(self.height - ArrowSide)/2  , ArrowSide , ArrowSide);
         [self addSubview:self.arrow];
         
@@ -39,17 +39,17 @@
         self.titleLabel.frame = CGRectMake(DropDownBoxTitleHorizontalToLeft, 0 ,self.arrow.left - DropDownBoxTitleHorizontalToArrow - DropDownBoxTitleHorizontalToLeft  , self.height);
         [self addSubview:self.titleLabel];
         
-        UIColor *dark = [UIColor colorWithWhite:0 alpha:0.2];
-        UIColor *clear = [UIColor colorWithWhite:0 alpha:0];
-        NSArray *colors = @[(id)clear.CGColor,(id)dark.CGColor, (id)clear.CGColor];
-        NSArray *locations = @[@0.2, @0.5, @0.8];
-        self.line = [CAGradientLayer layer];
-        self.line.colors = colors;
-        self.line.locations = locations;
-        self.line.startPoint = CGPointMake(0, 0);
-        self.line.endPoint = CGPointMake(0, 1);
-        self.line.frame = CGRectMake(self.arrow.right + ArrowToRight - 1.0/scale , 0, 1.0/scale, self.height);
-        [self.layer addSublayer:self.line];
+//        UIColor *dark = [UIColor colorWithWhite:0 alpha:0.2];
+//        UIColor *clear = [UIColor colorWithWhite:0 alpha:0];
+//        NSArray *colors = @[(id)clear.CGColor,(id)dark.CGColor, (id)clear.CGColor];
+//        NSArray *locations = @[@0.2, @0.5, @0.8];
+//        self.line = [CAGradientLayer layer];
+//        self.line.colors = colors;
+//        self.line.locations = locations;
+//        self.line.startPoint = CGPointMake(0, 0);
+//        self.line.endPoint = CGPointMake(0, 1);
+//        self.line.frame = CGRectMake(self.arrow.right + ArrowToRight - 1.0/scale , 0, 1.0/scale, self.height);
+//        [self.layer addSublayer:self.line];
     }
     return self;
 
@@ -58,7 +58,7 @@
 - (void)updateTitleState:(BOOL)isSelected {
     if (isSelected) {
         self.titleLabel.textColor = [UIColor colorWithHexString:titleSelectedColor];
-        self.arrow.image = [UIImage imageNamed:@"pullup"];
+        self.arrow.image = [UIImage imageNamed:@"pulldown"];
     } else{
         self.titleLabel.textColor = [UIColor blackColor];
         self.arrow.image = [UIImage imageNamed:@"pulldown"];

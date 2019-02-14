@@ -69,7 +69,7 @@
     
 //    _mutableArray = [NSMutableArray array];
     
-    self.comBoBoxView = [[MMComBoBoxView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 160, 180 - 65, 160, 40)];
+    self.comBoBoxView = [[MMComBoBoxView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 200, 180 - 65, 200, 40)];
     self.comBoBoxView.dataSource = self;
     self.comBoBoxView.delegate = self;
     [self.view addSubview:self.comBoBoxView];
