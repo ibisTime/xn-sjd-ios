@@ -137,6 +137,7 @@
 		3610EEC121EDC3A300FD345D /* AddCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC021EDC3A300FD345D /* AddCardVC.m */; };
 		3610EEC421EDCEBD00FD345D /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC321EDCEBD00FD345D /* InfoVC.m */; };
 		3610EEC721EDD6A800FD345D /* GetAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC621EDD6A800FD345D /* GetAddVC.m */; };
+		361396032215386600F6F2F3 /* FriendsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 361396022215386600F6F2F3 /* FriendsModel.m */; };
 		363CD5E022029B9B00A81CFA /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 363CD5DF22029B9B00A81CFA /* OrderModel.m */; };
 		363CD5E32202D44600A81CFA /* ConnectTreeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 363CD5E22202D44600A81CFA /* ConnectTreeModel.m */; };
 		363E291421F84530003981CD /* CertifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 363E291321F84530003981CD /* CertifyVC.m */; };
@@ -743,6 +744,8 @@
 		3610EEC321EDCEBD00FD345D /* InfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoVC.m; sourceTree = "<group>"; };
 		3610EEC521EDD6A800FD345D /* GetAddVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAddVC.h; sourceTree = "<group>"; };
 		3610EEC621EDD6A800FD345D /* GetAddVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAddVC.m; sourceTree = "<group>"; };
+		361396012215386600F6F2F3 /* FriendsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsModel.h; sourceTree = "<group>"; };
+		361396022215386600F6F2F3 /* FriendsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsModel.m; sourceTree = "<group>"; };
 		363CD5DE22029B9B00A81CFA /* OrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		363CD5DF22029B9B00A81CFA /* OrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
 		363CD5E12202D44600A81CFA /* ConnectTreeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectTreeModel.h; sourceTree = "<group>"; };
@@ -2469,6 +2472,8 @@
 			children = (
 				36A84B45221119D3003CDE19 /* RankModel.h */,
 				36A84B46221119D3003CDE19 /* RankModel.m */,
+				361396012215386600F6F2F3 /* FriendsModel.h */,
+				361396022215386600F6F2F3 /* FriendsModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4340,6 +4345,7 @@
 				B81E5FD421DC8FC200873AB9 /* NSDictionary+Extension.m in Sources */,
 				B81E5FBC21DC8FC200873AB9 /* CustomPickerView.m in Sources */,
 				B80D388621F871CF00206B55 /* SubmitOrdersTableView.m in Sources */,
+				361396032215386600F6F2F3 /* FriendsModel.m in Sources */,
 				B815278621EC8BAE00F89395 /* BaseTableViewCell.m in Sources */,
 				B85F892521FC2FC200D5B7A4 /* PYTempViewController.m in Sources */,
 				1F1B006C21E71D26000BEBD3 /* RBBEasingFunction.m in Sources */,
