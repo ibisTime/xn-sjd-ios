@@ -28,7 +28,13 @@
         
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(0, headImage.yy + 17, WIDTH, 16) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(16) textColor:kTextBlack];
 //        nameLabel.text = @"KOALA";
-        nameLabel.text = [TLUser user].nickname;
+        if ([USERXX isBlankString:[TLUser user].nickname] == YES) {
+            nameLabel.text = @"未设置昵称";
+        }else
+        {
+            nameLabel.text = [TLUser user].nickname;
+        }
+        
         [self addSubview:nameLabel];
         
         

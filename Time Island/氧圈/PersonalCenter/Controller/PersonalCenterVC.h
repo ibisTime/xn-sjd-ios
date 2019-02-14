@@ -9,5 +9,5 @@
 #import "TLBaseVC.h"
 
 @interface PersonalCenterVC : TLBaseVC
-
+@property (nonatomic, assign) BOOL isMultiSelection;
 @end

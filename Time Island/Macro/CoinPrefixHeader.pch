@@ -55,7 +55,7 @@
 #import "UIImage+GIF.h"
 #import "NSData+ImageContentType.h"
 #import "TLTabBarController.h"
-
+#import "USERXX.h"
 #import "TLUploadManager.h"
 #endif /* CoinPrefixHeader_h */
 
