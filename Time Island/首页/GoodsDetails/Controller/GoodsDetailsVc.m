@@ -167,12 +167,13 @@
     switch (sender.tag - 100) {
         case 0:
         {
-            self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-            self.window.backgroundColor = [UIColor whiteColor];
-            [self.window makeKeyAndVisible];
+//            self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//            self.window.backgroundColor = [UIColor whiteColor];
+//            [self.window makeKeyAndVisible];
             TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
             tabBarCtrl.selectedIndex = 2;
-            self.window.rootViewController = tabBarCtrl;
+//            self.window.rootViewController = tabBarCtrl;
+            [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
         }
             break;
         case 1:

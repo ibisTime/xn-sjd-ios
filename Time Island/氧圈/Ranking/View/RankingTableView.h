@@ -8,6 +8,9 @@
 
 #import "TLTableView.h"
 #import "RankModel.h"
+#import "FriendsModel.h"
 @interface RankingTableView : TLTableView
 @property (nonatomic,strong) NSMutableArray<RankModel * > * RankModels;
+@property (nonatomic,strong) NSMutableArray<FriendsModel *> * FriendsModels;
+@property (nonatomic,strong) NSString * state;
 @end

@@ -43,10 +43,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if (section == 1) {
-        
-    }
-    return 100;
+    return self.FriendsModels.count;
     
 }
 
@@ -54,21 +51,15 @@
     
     
     FriendRequestsCell *cell = [tableView dequeueReusableCellWithIdentifier:FriendRequests forIndexPath:indexPath];
+    cell.FriendsModel = self.FriendsModels[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    
     return cell;
-    
-    
-    
 }
 
 
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
     return 80;
 }
 

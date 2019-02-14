@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "RankModel.h"
-
+#import "FriendsModel.h"
 @interface RankingCell : UITableViewCell
 
 
 @property (nonatomic , strong)UIImageView *numberImg;
 @property (nonatomic , strong)UILabel *numberLbl;
 @property (nonatomic,strong) RankModel * RankModel;
+@property (nonatomic,strong) FriendsModel * FriendsModel;
 @end

@@ -29,7 +29,7 @@
     self.content = content;
     
     UIImageView * photo = [[UIImageView alloc]initWithFrame:CGRectMake(15, self.content.yy + 25, SCREEN_WIDTH - 30, 200)];
-    [self addSubview:photo];
+//    [self addSubview:photo];
     self.photo = photo;
 }
 -(void)setBookModel:(BookModel *)BookModel{
@@ -44,7 +44,16 @@
         [_content sizeToFit];
         _content.frame = CGRectMake(15, 0, _content.width, 50);
         
-        [self.photo sd_setImageWithURL:[NSURL URLWithString:[BookModel.photo convertImageUrl]]];
+        NSArray * arr = [BookModel.photo componentsSeparatedByString:@"||"];
+        for (int i = 0; i < arr.count; i ++) {
+//            [self.photo sd_setImageWithURL:[NSURL URLWithString:[arr[i] convertImageUrl]]];
+            UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(15 , self.content.yy + 25 + 200 * i, SCREEN_WIDTH - 30, 200)];
+            [image sd_setImageWithURL:[NSURL URLWithString:[arr[i] convertImageUrl]]];
+            [self addSubview:image];
+            
+        }
+        
+        
     }
     
     

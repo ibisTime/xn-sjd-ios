@@ -185,20 +185,22 @@
     [http postWithSuccess:^(id responseObject) {
         [TLAlert alertWithSucces:@"提现成功，等待后台审核"];
         [[UserModel user].cusPopView dismiss];
-        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        self.window.backgroundColor = [UIColor whiteColor];
-        [self.window makeKeyAndVisible];
+//        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//        self.window.backgroundColor = [UIColor whiteColor];
+//        [self.window makeKeyAndVisible];
         TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
         tabBarCtrl.selectedIndex = 2;
-        self.window.rootViewController = tabBarCtrl;
+        [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
+//        self.window.rootViewController = tabBarCtrl;
     } failure:^(NSError *error) {
         [[UserModel user].cusPopView dismiss];
-        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        self.window.backgroundColor = [UIColor whiteColor];
-        [self.window makeKeyAndVisible];
+//        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//        self.window.backgroundColor = [UIColor whiteColor];
+//        [self.window makeKeyAndVisible];
         TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
         tabBarCtrl.selectedIndex = 2;
-        self.window.rootViewController = tabBarCtrl;
+//        self.window.rootViewController = tabBarCtrl;
+        [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
     }];
 }
 -(void)SelectCard{

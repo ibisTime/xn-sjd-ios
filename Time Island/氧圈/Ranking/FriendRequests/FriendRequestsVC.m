@@ -8,9 +8,11 @@
 
 #import "FriendRequestsVC.h"
 #import "FriendRequestsTableView.h"
+#import "FriendsModel.h"
 @interface FriendRequestsVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)FriendRequestsTableView *tableView;
+@property (nonatomic,strong) NSMutableArray<FriendsModel *> * FriendsModels;
 
 @end
 
@@ -34,6 +36,7 @@
     // Do any additional setup after loading the view.
     [self.view addSubview:self.tableView];
     self.title = @"好友审核";
+    [self getdata];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,7 +53,9 @@
     http.parameters[@"type"] = @"2";
     http.parameters[@"isMySelf"] = @(0);
     [http postWithSuccess:^(id responseObject) {
-        
+        self.FriendsModels = [FriendsModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        self.tableView.FriendsModels = self.FriendsModels;
+        [self.tableView reloadData];
     } failure:^(NSError *error) {
         
     }];

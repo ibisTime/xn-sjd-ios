@@ -242,11 +242,8 @@
             [TLUser user].userId = userinfo[@"userId"];
             [TLUser user].token = userinfo[@"token"];
             //        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-            self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-            self.window.backgroundColor = [UIColor whiteColor];
-            [self.window makeKeyAndVisible];
             TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
-            self.window.rootViewController = tabBarCtrl;
+            [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
             
         } failure:^(NSError *error) {
             

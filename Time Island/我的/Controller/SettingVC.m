@@ -18,6 +18,7 @@
 #import "PayPwdVC.h"
 #import "ChangeLoginPwdVC.h"
 #import "TLUserLoginVC.h"
+#import "TLTabBarController.h"
 #define titlearray @[@"修改手机号",@"绑定邮箱",@"我的银行卡",@"设置支付密码",@"修改登录密码",@"完善资料",@"收货地址"]
 @interface SettingVC ()
 @property (nonatomic,strong) UITableView *table;
@@ -114,6 +115,12 @@
     [[TLUser user]loginOut];
 //    TLUserLoginVC * login = [TLUserLoginVC new];
 //    [self.navigationController pushViewController:login animated:YES];
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    [self.window makeKeyAndVisible];
+    TLTabBarController * tabBarCtrl = [[TLTabBarController alloc] init];
+//    self.navigationController.rootViewController = tabBarCtrl;
+    [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
 }
 @end

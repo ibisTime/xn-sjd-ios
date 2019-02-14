@@ -19,6 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSString * toUser;
 @property (nonatomic,strong) NSString * type;
 @property (nonatomic,strong) NSString * userId;
+@property (nonatomic,strong) NSString * nickname;
+@property (nonatomic,strong) NSString * tppAmount;
+@property (nonatomic,strong) NSDictionary * fromUserInfo;
+@property (nonatomic,strong) NSDictionary * toUserInfo;
 @end
 
 NS_ASSUME_NONNULL_END
