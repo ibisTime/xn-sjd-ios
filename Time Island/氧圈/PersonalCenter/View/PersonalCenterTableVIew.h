@@ -7,7 +7,10 @@
 //
 
 #import "TLTableView.h"
-
+#import "PersonalCenterModel.h"
+#import "DynamicModel.h"
 @interface PersonalCenterTableVIew : TLTableView
 
+@property (nonatomic , strong)NSMutableArray <PersonalCenterModel *>*models;
+@property (nonatomic , strong)NSArray *dynamicArray;
 @end

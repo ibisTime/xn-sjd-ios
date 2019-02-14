@@ -11,6 +11,7 @@
 #import "PersonalCenterTableVIew.h"
 #import "MMComBoBoxView.h"
 #import "MMComBoBox.h"
+#import "PersonalCenterModel.h"
 @interface PersonalCenterVC ()<RefreshDelegate,MMComBoBoxViewDelegate,MMComBoBoxViewDataSource>
 
 @property (nonatomic , strong)PersonalCenterHeadView *headView;
@@ -19,6 +20,10 @@
 
 @property (nonatomic, strong) MMComBoBoxView *comBoBoxView;
 @property (nonatomic, strong) NSArray *mutableArray;
+
+@property (nonatomic , strong)NSMutableArray <PersonalCenterModel *>*models;
+@property (nonatomic , strong)NSMutableArray <DynamicModel *>*dynamicModel;
+
 @end
 
 @implementation PersonalCenterVC
@@ -64,7 +69,7 @@
     // Do any additional setup after loading the view.
     [self.view addSubview:self.headView];
     [self.view addSubview:self.tableView];
-    [self tableViewTopView];
+   
     
     
 //    _mutableArray = [NSMutableArray array];
@@ -74,8 +79,156 @@
     self.comBoBoxView.delegate = self;
     [self.view addSubview:self.comBoBoxView];
     [self.comBoBoxView reload];
+    [self LoadData];
+    
+    
+    
+    
     
 }
+
+-(void)LoadData
+{
+    
+    
+    
+    
+    CoinWeakSelf;
+    TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
+    
+    helper.code = @"629305";
+    helper.parameters[@"queryUserId"] = [TLUser user].userId;
+   
+
+    
+    [helper modelClass:[DynamicModel class]];
+    
+    [self.tableView addRefreshAction:^{
+        [weakSelf myTreeLoadData];
+        [weakSelf TheLog];
+        [helper refresh:^(NSMutableArray *objs, BOOL stillHave) {
+            
+            if (weakSelf.tl_placeholderView.superview != nil) {
+                
+                [weakSelf removePlaceholderView];
+            }
+            
+//            weakSelf.tableView.dynamicArray = [NSMutableArray array];
+            NSMutableArray <DynamicModel *>*array = [NSMutableArray array];
+            for (int i = 0; i < objs.count; i ++) {
+                DynamicModel *model = objs[i];
+                [model setValue:[model.createDatetime convertDate] forKey:@"createDatetime"];
+                [array addObject:model];
+            }
+            
+            weakSelf.tableView.dynamicArray = [PersonalCenterVC filterMaxItemsArray:array filterKey:@"createDatetime"];
+            
+            [weakSelf.tableView endRefreshHeader];
+            [weakSelf.tableView reloadData_tl];
+        } failure:^(NSError *error) {
+            
+            [weakSelf addPlaceholderView];
+            [weakSelf.tableView endRefreshHeader];
+        }];
+    }];
+    
+    [self.tableView beginRefreshing];
+    
+    [self.tableView addLoadMoreAction:^{
+        
+        [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
+            
+            if (weakSelf.tl_placeholderView.superview != nil) {
+                
+                [weakSelf removePlaceholderView];
+            }
+            
+            NSMutableArray <DynamicModel *>*array = [NSMutableArray array];
+            for (int i = 0; i < objs.count; i ++) {
+                DynamicModel *model = objs[i];
+                [model setValue:[model.createDatetime convertDate] forKey:@"createDatetime"];
+                [array addObject:model];
+            }
+            
+            weakSelf.tableView.dynamicArray = [PersonalCenterVC filterMaxItemsArray:array filterKey:@"createDatetime"];
+            [weakSelf.tableView endRefreshHeader];
+        } failure:^(NSError *error) {
+            [weakSelf.tableView endRefreshHeader];
+            [weakSelf addPlaceholderView];
+            
+        }];
+        
+    }];
+    
+    [self.tableView endRefreshingWithNoMoreData_tl];
+    
+    
+    
+    
+}
+
+
+
++ (NSMutableArray *)filterMaxItemsArray:(NSArray *)array filterKey:(NSString *)key {
+    NSMutableArray *origArray = [NSMutableArray arrayWithArray:array];
+    NSMutableArray *filerArray = [NSMutableArray array];
+//    key = [key convertDate];
+    while (origArray.count > 0) {
+        id obj = origArray.firstObject;
+        NSPredicate *predic = nil;
+        
+        id value = [obj valueForKey:key];
+        predic = [NSPredicate predicateWithFormat:@"self.%@ == %@",key,value];
+        
+        NSArray *pArray = [origArray filteredArrayUsingPredicate:predic];
+        [filerArray addObject:pArray];
+        [origArray removeObjectsInArray:pArray];
+    }
+    return filerArray;
+}
+
+
+//我认养的树
+-(void)myTreeLoadData
+{
+    CoinWeakSelf;
+    TLNetworking *http = [TLNetworking new];
+    http.showView = self.view;
+    http.isUploadToken = NO;
+    http.code = @"629207";
+    http.parameters[@"currentHolder"] = [TLUser user].userId;
+    http.parameters[@"statusList"] = @[@"1",@"2",@"3"];
+    
+    [http postWithSuccess:^(id responseObject) {
+        self.models = [PersonalCenterModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        self.tableView.models = self.models;
+        [self.tableView reloadData];
+        
+    } failure:^(NSError *error) {
+
+    }];
+    
+    
+}
+
+
+-(void)TheLog
+{
+    CoinWeakSelf;
+    TLNetworking *http = [TLNetworking new];
+    http.showView = self.view;
+    http.isUploadToken = NO;
+    http.code = @"629305";
+    http.parameters[@"start"] = @"1";
+    http.parameters[@"limit"] = @"100";
+    [http postWithSuccess:^(id responseObject) {
+
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+
+    }];
+}
+
 
 
 #pragma mark - MMComBoBoxViewDataSource
@@ -229,23 +382,7 @@
     return JsonObject;
 }
 
--(void)tableViewTopView
-{
-    UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 62.5)];
 
-    footView.backgroundColor = kWhiteColor;
-    
-    UIView *footlineView = [[UIView alloc]initWithFrame:CGRectMake(15, 21, 3, 15)];
-    footlineView.backgroundColor = kHexColor(@"#23AD8C");
-    kViewRadius(footlineView, 1.5);
-    [footView addSubview:footlineView];
-    
-    UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(footlineView.xx + 6, 20, SCREEN_WIDTH - footlineView.xx - 21, 17) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGboldfont(17) textColor:kTextBlack];
-    nameLabel.text = [LangSwitcher switchLang:@"TA的动态" key:nil];
-    [footView addSubview:nameLabel];
-    
-    self.tableView.tableHeaderView = footView;
-}
 
 
 

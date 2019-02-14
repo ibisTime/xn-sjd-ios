@@ -76,6 +76,9 @@
 		1F3EBB0A21F5C42D005BC837 /* YSActionSheetButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3EBB0721F5C42D005BC837 /* YSActionSheetButton.m */; };
 		1F3EBB0B21F5C42D005BC837 /* ShareTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3EBB0821F5C42D005BC837 /* ShareTableViewCell.m */; };
 		1F4731942212C59E007B5908 /* GoodsEditTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4731932212C59E007B5908 /* GoodsEditTableView.m */; };
+		1F47319922153B54007B5908 /* PersonalCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F47319822153B54007B5908 /* PersonalCenterModel.m */; };
+		1F47319C22153F0A007B5908 /* PersonalCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F47319B22153F0A007B5908 /* PersonalCenterCell.m */; };
+		1F4731A2221570AE007B5908 /* DynamicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4731A1221570AE007B5908 /* DynamicModel.m */; };
 		1F9360AC21EDFCA5007E522A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360AA21EDFCA4007E522A /* MapViewController.m */; };
 		1F93610321EDFD8F007E522A /* ToClaimTheGiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360DA21EDFD8E007E522A /* ToClaimTheGiftVC.m */; };
 		1F93610421EDFD8F007E522A /* MyGiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360DC21EDFD8E007E522A /* MyGiftVC.m */; };
@@ -626,6 +629,12 @@
 		1F3EBB0821F5C42D005BC837 /* ShareTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareTableViewCell.m; sourceTree = "<group>"; };
 		1F4731922212C59E007B5908 /* GoodsEditTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsEditTableView.h; sourceTree = "<group>"; };
 		1F4731932212C59E007B5908 /* GoodsEditTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsEditTableView.m; sourceTree = "<group>"; };
+		1F47319722153B54007B5908 /* PersonalCenterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalCenterModel.h; sourceTree = "<group>"; };
+		1F47319822153B54007B5908 /* PersonalCenterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterModel.m; sourceTree = "<group>"; };
+		1F47319A22153F0A007B5908 /* PersonalCenterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalCenterCell.h; sourceTree = "<group>"; };
+		1F47319B22153F0A007B5908 /* PersonalCenterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterCell.m; sourceTree = "<group>"; };
+		1F4731A0221570AE007B5908 /* DynamicModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicModel.h; sourceTree = "<group>"; };
+		1F4731A1221570AE007B5908 /* DynamicModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicModel.m; sourceTree = "<group>"; };
 		1F9360AA21EDFCA4007E522A /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		1F9360AB21EDFCA4007E522A /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		1F9360AD21EDFCDA007E522A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -1568,6 +1577,7 @@
 			isa = PBXGroup;
 			children = (
 				1F19A8FD21FEFED20090BF84 /* Controller */,
+				1F47319622153B40007B5908 /* Model */,
 				1F19A8FC21FEFECF0090BF84 /* View */,
 			);
 			path = PersonalCenter;
@@ -1580,6 +1590,8 @@
 				1F19A90221FEFF130090BF84 /* PersonalCenterHeadView.m */,
 				1F19A90421FF07A50090BF84 /* PersonalCenterTableVIew.h */,
 				1F19A90521FF07A50090BF84 /* PersonalCenterTableVIew.m */,
+				1F47319A22153F0A007B5908 /* PersonalCenterCell.h */,
+				1F47319B22153F0A007B5908 /* PersonalCenterCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1971,6 +1983,17 @@
 				B80D384221F8403800206B55 /* MallStoreListVC.m */,
 			);
 			path = MallStore;
+			sourceTree = "<group>";
+		};
+		1F47319622153B40007B5908 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F47319722153B54007B5908 /* PersonalCenterModel.h */,
+				1F47319822153B54007B5908 /* PersonalCenterModel.m */,
+				1F4731A0221570AE007B5908 /* DynamicModel.h */,
+				1F4731A1221570AE007B5908 /* DynamicModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		1F9360A921EDFCA4007E522A /* Map地图 */ = {
@@ -4299,6 +4322,7 @@
 				B81E5FCB21DC8FC200873AB9 /* UIButton+Custom.m in Sources */,
 				B88E544F21F9BDF600C33040 /* JVShopcartViewController.m in Sources */,
 				B81E5FBF21DC8FC200873AB9 /* TLTimeButton.m in Sources */,
+				1F47319C22153F0A007B5908 /* PersonalCenterCell.m in Sources */,
 				B8ED2E6D21E6EA3400FADCCE /* TreeRenYangVC.m in Sources */,
 				B81E608521DC9FB200873AB9 /* MineVC.m in Sources */,
 				B80D385D21F85F1E00206B55 /* GoodsModel.m in Sources */,
@@ -4520,6 +4544,7 @@
 				1F93616721EE01B4007E522A /* MyHomePageHeadView.m in Sources */,
 				B81E5FC021DC8FC200873AB9 /* TLCaptchaView.m in Sources */,
 				B88E542721F9AC4200C33040 /* TransportCell.m in Sources */,
+				1F47319922153B54007B5908 /* PersonalCenterModel.m in Sources */,
 				B81E60A621DCAC0F00873AB9 /* HomeFindModel.m in Sources */,
 				B80D386121F85F1E00206B55 /* ChoseGoodsTypeAlert.m in Sources */,
 				B8A27AF621E5C44400914897 /* UIColor+ComboBoxExtension.m in Sources */,
@@ -4660,6 +4685,7 @@
 				1F19A8CB21FAA26D0090BF84 /* OpenPushView.m in Sources */,
 				B8712E9021F5797200039086 /* QWCollectionHeaderView.m in Sources */,
 				B80D388F21F8742700206B55 /* HomeModel.m in Sources */,
+				1F4731A2221570AE007B5908 /* DynamicModel.m in Sources */,
 				360E09B42201351C003467B8 /* CarbonModel.m in Sources */,
 				B8A27AEC21E5C44400914897 /* MMCombineCell.m in Sources */,
 				1F19A8D121FAA26D0090BF84 /* LEEAlert.m in Sources */,
@@ -4850,7 +4876,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3ZCW993X44;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -4883,7 +4909,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3ZCW993X44;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
