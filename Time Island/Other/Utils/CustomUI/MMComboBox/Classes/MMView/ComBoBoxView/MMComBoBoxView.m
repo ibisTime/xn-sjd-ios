@@ -68,15 +68,15 @@
 
 #pragma mark - Private Method
 - (void)_addLine {
-    self.topLine = [CALayer layer];
-    self.topLine.frame = CGRectMake(0, 0 , self.width, 1.0/scale);
-    self.topLine.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.3].CGColor;
-    [self.layer addSublayer:self.topLine];
-    
-    self.bottomLine = [CALayer layer];
-    self.bottomLine.frame = CGRectMake(0, self.height - 1.0/scale , self.width, 1.0/scale);
-    self.bottomLine.backgroundColor = [UIColor colorWithHexString:@"e8e8e8"].CGColor;
-    [self.layer addSublayer:self.bottomLine];
+//    self.topLine = [CALayer layer];
+//    self.topLine.frame = CGRectMake(0, 0 , self.width, 1.0/scale);
+//    self.topLine.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.3].CGColor;
+//    [self.layer addSublayer:self.topLine];
+//    
+//    self.bottomLine = [CALayer layer];
+//    self.bottomLine.frame = CGRectMake(0, self.height - 1.0/scale , self.width, 1.0/scale);
+////    self.bottomLine.backgroundColor = [UIColor colorWithHexString:@"e8e8e8"].CGColor;
+//    [self.layer addSublayer:self.bottomLine];
 }
 #pragma mark - MMDropDownBoxDelegate
 - (void)didTapDropDownBox:(MMDropDownBox *)dropDownBox atIndex:(NSUInteger)index {

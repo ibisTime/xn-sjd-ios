@@ -51,26 +51,6 @@
         [self addSubview:titleLbl];
         
         
-        UIButton *screeningBtn = [UIButton buttonWithTitle:@"筛选" titleColor:RGB(153, 153, 153) backgroundColor:kClearColor titleFont:13];
-        screeningBtn.frame = CGRectMake(SCREEN_WIDTH - 15 - 50, topView.yy , 50, 40);
-        screeningBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-        [screeningBtn SG_imagePositionStyle:(SGImagePositionStyleRight) spacing:4 imagePositionBlock:^(UIButton *button) {
-            [button setImage:kImage(@"下拉") forState:(UIControlStateNormal)];
-        }];
-        [self addSubview:screeningBtn];
-
-        
-        UIButton *addressBtn = [UIButton buttonWithTitle:@"所在地区" titleColor:RGB(153, 153, 153) backgroundColor:kClearColor titleFont:13];
-        addressBtn.frame = CGRectMake(SCREEN_WIDTH - 15 - 50 - 15 - 80, topView.yy , 80, 40);
-        addressBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-        [addressBtn SG_imagePositionStyle:(SGImagePositionStyleRight) spacing:4 imagePositionBlock:^(UIButton *button) {
-            [button setImage:kImage(@"下拉") forState:(UIControlStateNormal)];
-        }];
-        [self addSubview:addressBtn];
-        
-        UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, topView.yy + 39, SCREEN_WIDTH, 1)];
-        bottomView.backgroundColor = kLineColor;
-        [self addSubview:bottomView];
         
     }
     return self;
