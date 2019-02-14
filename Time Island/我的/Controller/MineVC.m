@@ -26,7 +26,7 @@
 #import "InfoVC.h"
 
 #define titlearray @[@"我的碳泡泡",@"我的订单",@"我的文章",@"我的收藏",@"邀请有礼",@"设置"]
-#define imagearray @[@"泡泡",@"",@"",@"",@"",@"设置"]
+#define imagearray @[@"泡泡",@"我的订单",@"我的文章",@"我的收藏",@"邀请有礼",@"设置"]
 #define array1 @[@"余额",@"积分",@"碳泡泡"]
 @interface MineVC ()
 @property (nonatomic,retain) UIView * topview;
@@ -58,9 +58,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [[NSString alloc]convertImageUrl];
-//    NSString * str = [[NSString alloc]init];
-//    NSLog(@" convertImageUrl = %@",[str convertImageUrl]);
     
     
     self.title = @"我的";
@@ -112,7 +109,7 @@
     
     //头像框
     UIImageView * img = [[UIImageView alloc]initWithFrame:CGRectMake(kScreenWidth/2 - 35, 170/2 - 64 + kNavigationBarHeight  , 70, 70)];
-    img.image = [UIImage imageNamed:@"果树预售"];
+    img.image = [UIImage imageNamed:@"头像"];
     img.layer.cornerRadius = 35;
     img.layer.masksToBounds = YES;
     
@@ -127,7 +124,7 @@
     UILabel * name = [[UILabel alloc]initWithFrame:CGRectMake(0, img.yy+14, SCREEN_WIDTH, 16)];
     name.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:16];
     name.textColor = [UIColor whiteColor];
-    name.text = @"王大锤";
+    name.text = @"未设置昵称";
     name.textAlignment = NSTextAlignmentCenter;
     name.adjustsFontSizeToFitWidth = YES;
     self.name = name;
@@ -315,7 +312,7 @@
 //刷新信息
 -(void)RefreshInfo{
     
-    [self.logoimage sd_setImageWithURL: [NSURL URLWithString:[[TLUser user].photo convertImageUrl]] placeholderImage:kImage(@"果树预售")];
+    [self.logoimage sd_setImageWithURL: [NSURL URLWithString:[[TLUser user].photo convertImageUrl]] placeholderImage:kImage(@"头像")];
 
     if ([TLUser user].idNo) {
         self.nameLbl.text = @"已认证";
@@ -330,13 +327,27 @@
         NSDictionary * dic = responseObject[@"data"];
         [[TLUser user]saveUserInfo:dic];
         [[TLUser user]setUserInfoWithDict:dic];
-        self.name.text = [TLUser user].nickname;
-        self.sign.text = [TLUser user].introduce;
+        
+        
+        if ([USERXX isBlankString:[TLUser user].nickname] == YES) {
+            self.name.text = @"未设置昵称";
+        }else
+        {
+            self.name.text = [TLUser user].nickname;
+        }
+        
+        if ([USERXX isBlankString:[TLUser user].introduce] == YES) {
+            self.sign.text = @"此人很懒，没留下什么";
+        }else
+        {
+            self.sign.text = [TLUser user].introduce;
+        }
+        
+        
     } failure:^(NSError *error) {
-        self.logoimage.image = [UIImage imageNamed:@"果树预售"];
-        self.name.text = @"王大锤" ;
-        self.logoimage.image =  [UIImage imageNamed:@"果树预售"];
-        self.sign.text = @"此人很懒，没留下什么";
+
+        
+        
     }];
     
     TLNetworking * http1 = [[TLNetworking alloc]init];

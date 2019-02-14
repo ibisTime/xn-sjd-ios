@@ -129,8 +129,8 @@
         case 1:
         {
             //            我的树
-//            PersonalCenterVC *vc = [PersonalCenterVC new];
-            MyTreeVC *vc = [MyTreeVC new];
+            PersonalCenterVC *vc = [PersonalCenterVC new];
+//            MyTreeVC *vc = [MyTreeVC new];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
