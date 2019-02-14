@@ -118,8 +118,10 @@
             NSIndexSet *indexSet=[[NSIndexSet alloc] initWithIndex:0];
             [weakSelf.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationNone];
             [self.navigationController popViewControllerAnimated:YES];
+            [weakSelf.tableView reloadData];
         };
         [self.navigationController pushViewController:address animated:YES];
+        
     }
     
 }

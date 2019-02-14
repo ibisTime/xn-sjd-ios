@@ -15,6 +15,8 @@
 #import "FriendsTheTreeVC.h"
 #import "MapViewController.h"
 #import "MyTreeEnergyModel.h"
+#import "MyArticleViC.h"
+#import "BookVideoVC.h"
 @interface MyTreeVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)MyTreeTableView *tableView;
@@ -124,6 +126,14 @@
         {
             //            赠送
             GivingVC *vc = [[GivingVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 5:
+        {
+            //            情感频道
+            BookVideoVC * vc = [[BookVideoVC alloc]init];
+            vc.state = @"tree";
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

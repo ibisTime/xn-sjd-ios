@@ -32,7 +32,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = kWhiteColor;
     [self.view addSubview:self.tableView];
-    self.title = @"我的文章";
+    self.title = @"情感频道";
     
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = -10;

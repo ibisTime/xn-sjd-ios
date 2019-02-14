@@ -125,21 +125,25 @@
     
     
     
-    UILabel * paylabel = [UILabel labelWithFrame:CGRectMake(15, SCREEN_HEIGHT - kNavigationBarHeight - 60, SCREEN_WIDTH - 180, 45) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:kBlackColor];
-    paylabel.text = [NSString stringWithFormat:@"金额 %.2f 元",[self.mallGoodsModel.specsList[self.GoodsSizeCount][@"price"] floatValue]/ 1000.00];
+    UILabel * paylabel = [UILabel labelWithFrame:CGRectMake(15, SCREEN_HEIGHT - kNavigationBarHeight - 60, SCREEN_WIDTH - 180, 55) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:kBlackColor];
+    paylabel.text = [NSString stringWithFormat:@"金额 %.2f 元",[self.mallGoodsModel.specsList[self.GoodsSizeCount][@"price"] floatValue]/ 1000.00 * self.PayCount];
     [self.view addSubview:paylabel];
     
-    UIView *paylineView = [[UIView alloc]initWithFrame:CGRectMake(15, paylabel.y + 2 , SCREEN_WIDTH - 30, 1)];
-    paylineView.backgroundColor = kLineColor;
-    [self.view addSubview:paylineView];
+    
     
     UIButton *signBtn = [UIButton buttonWithTitle:@"支付" titleColor:[UIColor colorWithHexString:@"#FFFFFF"] backgroundColor:[UIColor colorWithHexString:@"#23AD8C"] titleFont:16.0 cornerRadius:4];
     signBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:16.0];
     [signBtn addTarget:self action:@selector(goNext) forControlEvents:UIControlEventTouchUpInside];
-    signBtn.frame = CGRectMake(paylabel.xx, SCREEN_HEIGHT - kNavigationBarHeight - 60, 150, 50);
+    signBtn.frame = CGRectMake(paylabel.xx, SCREEN_HEIGHT - kNavigationBarHeight - 60, 150, 55);
     [self.view addSubview:signBtn];
     
+    UIView *paylineView = [[UIView alloc]initWithFrame:CGRectMake(15, signBtn.y - 5 , SCREEN_WIDTH - 30, 1)];
+    paylineView.backgroundColor = kLineColor;
+    [self.view addSubview:paylineView];
+    
 }
+
+
 -(void)goNext{
     UIView * pwdview = [[UIView alloc]initWithFrame:CGRectMake(50, SCREEN_HEIGHT / 2 - 50, SCREEN_WIDTH - 100, 150)];
     pwdview.backgroundColor = kWhiteColor;

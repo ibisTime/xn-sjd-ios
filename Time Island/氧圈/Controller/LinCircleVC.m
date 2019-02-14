@@ -122,6 +122,7 @@
         {
             //
             RankingVC *vc = [RankingVC new];
+            vc.state = @"rank";
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
@@ -136,6 +137,7 @@
         case 2:
         {
             RankingVC *vc = [RankingVC new];
+            vc.state = @"friend";
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

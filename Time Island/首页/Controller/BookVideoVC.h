@@ -9,5 +9,6 @@
 #import "TLBaseVC.h"
 
 @interface BookVideoVC : TLBaseVC
+@property (nonatomic,strong) NSString * state;
 
 @end

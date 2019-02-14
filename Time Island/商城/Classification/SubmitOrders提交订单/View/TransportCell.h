@@ -15,6 +15,6 @@
 
 @property (nonatomic,strong) NSString * addressCode;
 @property (nonatomic,strong) NSString * commodityCodeList;
-
+@property (nonatomic,strong) NSString * postalFee;
 
 @end

@@ -43,18 +43,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"排行榜";
+    
     [self refresh];
     
     [self.view addSubview:self.tableView];
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -10;
-    [self.RightButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-    self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
-    [self.RightButton setTitle:@"好友审核" forState:(UIControlStateNormal)];
-//    [self.RightButton setImage:kImage(@"好友审核") forState:(UIControlStateNormal)];
-    [self.RightButton addTarget:self action:@selector(myRecodeClick) forControlEvents:(UIControlEventTouchUpInside)];
-//    [self loadData];
+    
+    if ([self.state isEqualToString:@"rank"]) {
+        self.title = @"排行榜";
+    }
+    else if ([self.state isEqualToString:@"friend"]){
+        self.title = @"好友排行榜";
+        UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+        negativeSpacer.width = -10;
+        [self.RightButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+        self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
+        [self.RightButton setTitle:@"好友审核" forState:(UIControlStateNormal)];
+        //    [self.RightButton setImage:kImage(@"好友审核") forState:(UIControlStateNormal)];
+        [self.RightButton addTarget:self action:@selector(myRecodeClick) forControlEvents:(UIControlEventTouchUpInside)];
+    }
+
 }
 
 //-(void)loadData
@@ -120,6 +127,7 @@
 }
 
 -(void)refresh{
+    if ([self.state isEqualToString:@"rank"]) {
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"805159";
     http.parameters[@"start"] = @(1);
@@ -132,6 +140,22 @@
         [self.tableView reloadData];
     } failure:^(NSError *error) {
     }];
+    }
+    else if ([self.state isEqualToString:@"friend"]){
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"805157";
+        http.parameters[@"start"] = @(1);
+        http.parameters[@"limit"] = @(30);
+        http.parameters[@"userId"] = [TLUser user].userId;
+        http.parameters[@"orderDir"] = @"asc";
+        http.parameters[@"orderColumn"] = @"row_no";
+        [http postWithSuccess:^(id responseObject) {
+            self.RankModels = [RankModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+            self.tableView.RankModels = self.RankModels;
+            [self.tableView reloadData];
+        } failure:^(NSError *error) {
+        }];
+    }
 }
 
 @end

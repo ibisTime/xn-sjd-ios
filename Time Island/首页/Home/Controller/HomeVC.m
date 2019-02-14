@@ -389,6 +389,7 @@
         
     }else{
         RankingVC *vc = [RankingVC new];
+        vc.state = @"rank";
         [self.navigationController pushViewController:vc animated:YES];
     }
     

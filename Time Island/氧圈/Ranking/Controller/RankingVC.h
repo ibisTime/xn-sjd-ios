@@ -9,5 +9,5 @@
 #import "TLBaseVC.h"
 
 @interface RankingVC : TLBaseVC
-
+@property (nonatomic,strong) NSString * state;
 @end
