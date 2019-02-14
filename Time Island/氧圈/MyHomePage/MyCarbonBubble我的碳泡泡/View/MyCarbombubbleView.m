@@ -56,7 +56,7 @@
     [http1 postWithSuccess:^(id responseObject) {
         self.array = responseObject[@"data"][@"list"];
         for (int i = 0; i < 3; i ++) {
-            float amount3 = [self.array[self.state][@"totalAmount"] floatValue] / 1000.00;
+            float amount3 = [self.array[self.state][@"amount"] floatValue] / 1000.00;
             NSString * str3 = [NSString stringWithFormat:@"%.2f",amount3];
             self.amountLbl.text = str3;
         }

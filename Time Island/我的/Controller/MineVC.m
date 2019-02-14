@@ -265,6 +265,7 @@
     switch (indexPath.row) {
         case 0:{
             MyCarbonBubbleVC * vc = [MyCarbonBubbleVC new];
+            vc.state = 2;
             vc.accountNumber = self.array[2][@"accountNumber"];
             [self.navigationController pushViewController:vc animated:YES];
         }
