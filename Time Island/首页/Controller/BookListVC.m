@@ -96,6 +96,10 @@
             
             break;
     }
+    if ([self.httpstate isEqualToString:@"tree"]) {
+        http.parameters[@"treeNo"] = @"树木编号";
+    }
+    
     [http postWithSuccess:^(id responseObject) {
         self.BookModel = [BookModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
         self.tableView.BookModel = self.BookModel;

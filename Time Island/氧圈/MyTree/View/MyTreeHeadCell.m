@@ -43,7 +43,10 @@
         
         UIImageView *headImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 207/2 + 4.5, 72.5 - 64 + kNavigationBarHeight + 4.5, 30, 30)];
         kViewBorderRadius(headImg, 15, 1, kTabbarColor);
-        headImg.image = kImage(@"头像");
+//        headImg.image = kImage(@"头像");
+//        ;
+//        NSString * str = [[TLUser user].photo convertImageUrl];
+        [headImg sd_setImageWithURL:[NSURL URLWithString:[[TLUser user].photo convertImageUrl]] placeholderImage:kImage(@"头像")];
         [self addSubview:headImg];
         
         UILabel *nameLbl = [UILabel labelWithFrame:CGRectMake(headImg.xx + 7.5, 72.5 - 64 + kNavigationBarHeight, SCREEN_WIDTH - headImg.xx - 7.5 - 5, 39) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:kHexColor(@"#23AD8C")];

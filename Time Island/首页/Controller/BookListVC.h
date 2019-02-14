@@ -10,5 +10,6 @@
 //#import "BookModel.h"
 @interface BookListVC : TLBaseVC
 @property (nonatomic,assign) NSInteger state;
+@property (nonatomic,strong) NSString * httpstate;
 //@property (nonatomic,strong) BookModel * BookModel;
 @end

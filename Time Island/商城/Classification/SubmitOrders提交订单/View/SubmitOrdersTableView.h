@@ -24,5 +24,6 @@
 @property (nonatomic,strong) NSString * remarkstring;
 @property (nonatomic,strong) void (^returndata)(NSInteger count,int selectnum);
 @property (nonatomic,strong) void (^remark)(NSString * remark);
+@property (nonatomic,strong) NSString * postalFee;
 
 @end

@@ -89,6 +89,9 @@
 //邀请人个数
 @property (nonatomic, copy) NSString *referrerNum;
 
+//朋友个数
+@property (nonatomic,strong) NSString * friendCount;
+
 //支付宝账号
 @property (nonatomic, copy) NSString *zfbAccount;
 

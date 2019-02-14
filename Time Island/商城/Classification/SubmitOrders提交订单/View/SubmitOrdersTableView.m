@@ -71,11 +71,13 @@
         if ([USERXX isBlankString:self.addressModel.addressee] == NO) {
             _cell.model = self.addressModel;
             _cell.backLabel.hidden = YES;
+            
         }
         else
         {
             _cell.backLabel.hidden = NO;
         }
+        
         return _cell;
     }
     if(indexPath.section == 1)
@@ -108,7 +110,11 @@
     }
     if(indexPath.section == 3)
     {
+//        [self getdata];
         TransportCell *cell = [tableView dequeueReusableCellWithIdentifier:transportCell forIndexPath:indexPath];
+        cell.addressCode = self.addressModel.code;
+        cell.commodityCodeList = self.mallGoodsModel.code;
+        cell.postalFee = self.postalFee;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -125,6 +131,22 @@
     return cell;
 
 
+}
+-(void)getdata{
+    NSArray * commodityCodeList = [[NSArray alloc]initWithObjects:self.mallGoodsModel.code, nil];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629801";
+    if (self.addressModel.code) {
+        http.parameters[@"addressCode"] = self.addressModel.code;
+        http.parameters[@"commodityCodeList"] = commodityCodeList;
+        [http postWithSuccess:^(id responseObject) {
+            self.postalFee = responseObject[@"data"];
+            [self reloadData];
+        } failure:^(NSError *error) {
+            
+        }];
+    }
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

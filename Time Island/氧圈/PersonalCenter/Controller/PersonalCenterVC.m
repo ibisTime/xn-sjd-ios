@@ -143,25 +143,6 @@
                     //                    [varietys appendString:[NSString stringWithFormat:@"%@",secondItem.title]];
                 }
                 NSLog(@"当title为%@时，所选字段为 %@",title,subtitles);
-//                if (subtitles) {
-//                    if ([subtitles isEqualToString:@"不可认养"]) {
-//                        self.adoptStatus = @"0";
-//                    }
-//                    else if ([subtitles isEqualToString:@"可认养"]){
-//                        self.adoptStatus = @"1";
-//                    }
-//                    else if ([subtitles isEqualToString:@"柏树"]){
-//                        self.variety = @"柏树";
-//                    }
-//                    else if ([subtitles isEqualToString:@"樟树"]){
-//                        self.variety = @"樟树";
-//                    }
-//
-//                    [self refresh];
-//                }
-                
-                
-                
             }];
             
             break;
@@ -178,46 +159,6 @@
 - (NSArray *)mutableArray {
     if (_mutableArray == nil) {
         NSMutableArray *mutableArray = [NSMutableArray array];
-        //root 1
-//        MMSingleItem *rootItem1 = [MMSingleItem itemWithItemType:MMPopupViewDisplayTypeUnselected titleName:nil];
-//
-//        NSMutableString *title = [NSMutableString string];
-//        [rootItem1 addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:YES titleName:@"全部" subtitleName:[NSString stringWithFormat:@"%ld",random()%10000] code:nil]];
-//        [title appendString:@"全部"];
-//        for (int i = 0; i < 20; i ++) {
-//            MMItem *subItem = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:[NSString stringWithFormat:@"蛋糕系列%d",i] subtitleName:[NSString stringWithFormat:@"%ld",random()%10000] code:nil];
-//            [rootItem1 addNode:subItem];
-//        }
-//        rootItem1.title = title;
-        
-        //root 2
-//        MMSingleItem *rootItem2 = [MMSingleItem itemWithItemType:MMPopupViewDisplayTypeUnselected titleName:@"树龄排序"];
-//
-//        if (self.isMultiSelection)
-//            rootItem2.selectedType = MMPopupViewMultilSeMultiSelection;
-//
-//        [rootItem2  addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:YES titleName:@"树龄排序" subtitleName:nil code:nil]];
-//        [rootItem2 addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected titleName:[NSString stringWithFormat:@"100年"]]];
-//        [rootItem2 addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected titleName:[NSString stringWithFormat:@"200年"]]];
-//        [rootItem2 addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected titleName:[NSString stringWithFormat:@"300年"]]];
-//        [rootItem2 addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected titleName:[NSString stringWithFormat:@"500年"]]];
-//
-//
-//        //root 3
-//        MMMultiItem *rootItem3 = [MMMultiItem itemWithItemType:MMPopupViewDisplayTypeUnselected titleName:@"树级"];
-//
-//        rootItem3.displayType = MMPopupViewDisplayTypeMultilayer;
-//        NSArray *name = @[@"全部",@"一级",@"二级",@"三级"];
-//        NSArray *nameSub = @[@"全部",@"一级",@"二级",@"三级"];
-//
-//        for (int i = 0; i < 4; i++){
-//            MMItem *item3_A = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:[NSString stringWithFormat:@"%@",name[i]] subtitleName:nameSub[i]];
-//            item3_A.isSelected = (i == 0);
-//            [rootItem3 addNode:item3_A];
-//            MMItem *item3_B = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:[NSString stringWithFormat:@"%@",nameSub[i]] subtitleName:nil];
-//            item3_B.isSelected = (i == 0);
-//            [item3_A addNode:item3_B];
-//        }
         
         //root 4
         MMCombinationItem *rootItem4 = [MMCombinationItem itemWithItemType:MMPopupViewDisplayTypeUnselected isSelected:NO titleName:@"筛选" subtitleName:nil];
