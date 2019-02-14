@@ -8,7 +8,9 @@
 
 #import "IssueBook.h"
 #import "ConnectTreeModel.h"
-@interface IssueBook ()<UITextFieldDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+#import "CollectionCell1.h"
+#import "CollectionViewCell.h"
+@interface IssueBook ()<UITextFieldDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITableViewDelegate,UITableViewDataSource,CustomCollectionDelegate>
 @property (nonatomic,strong) UIView * view1;
 @property (nonatomic,strong) UIView * view2;
 @property (nonatomic,strong) UITextField * textfield;
@@ -20,7 +22,8 @@
 @property (nonatomic,strong) ConnectTreeModel * ConnectTreeModel;
 @property (nonatomic,strong) NSMutableArray * ImageKey;
 @property (nonatomic,assign) NSInteger openLevel;
-
+@property (nonatomic,strong) UITableView * tableview;
+@property (nonatomic , strong)NSMutableArray *imageView;
 @end
 
 @implementation IssueBook
@@ -29,7 +32,7 @@
     [super viewDidLoad];
     self.title = @"发布文章";
     self.ImageKey = [NSMutableArray array];
-    
+    self.imageView = [NSMutableArray array];
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = -10;
     [self.RightButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
@@ -43,15 +46,58 @@
     [self setupview1];
     [self setupview2];
     
-    UIButton * issuebtn = [[UIButton alloc]initWithFrame:CGRectMake(15, self.view2.yy + 81, SCREEN_WIDTH - 30, 42) title:@"发布" backgroundColor:kTabbarColor];
-    [issuebtn addTarget:self action:@selector(IssueBook) forControlEvents:UIControlEventTouchUpInside];
-    issuebtn.layer.cornerRadius = 4;
-    issuebtn.layer.masksToBounds = YES;
-    [self.view addSubview:issuebtn];
+    
+    self.tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-kNavigationBarHeight)];
+    self.tableview.tableHeaderView = self.view1;
+    self.tableview.tableFooterView = self.view2;
+    self.tableview.delegate = self;
+    self.tableview.dataSource = self;
+    
+    [self.tableview registerClass:[CollectionViewCell class] forCellReuseIdentifier:@"CollectionCell1"];
+    
+    [self.view addSubview:self.tableview];
 }
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CollectionViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"CollectionCell1" forIndexPath:indexPath];
+    cell.collectDataArray = self.ImageKey;
+    cell.delegate = self;
+    return cell;
+}
+
+-(void)CustomCollection:(UICollectionView *)collectionView didSelectRowAtIndexPath:(NSIndexPath *)indexPath str:(NSString *)str
+{
+    if (indexPath.row == 0) {
+        [self ChooseImage];
+    }
+}
+-(void)UploadImagesBtn:(UIButton *)sender str:(NSString *)str{
+    [self.ImageKey removeObjectAtIndex:sender.tag - 1000];
+    [self.tableview reloadData];
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    float numberToRound;
+    int result;
+    CGFloat picNumber = self.ImageKey.count + 1;
+    numberToRound = (picNumber)/3.0;
+    result = (int)ceilf(numberToRound);
+    if (result > 0) {
+        return result * ((SCREEN_WIDTH - 50)/3 + 10) + 20;
+    }else
+    {
+        return 0.01;
+    }
+}
+
+
 -(void)setupview1{
-    self.view1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 301.5)];
+    self.view1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
     self.view1.backgroundColor = kWhiteColor;
     UITextField * textfield = [[UITextField alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 55)];
     textfield.placeholder = @"标题";
@@ -61,7 +107,7 @@
     
     [self.view1 addSubview:[self createview:CGRectMake(15, textfield.yy - 1, SCREEN_WIDTH - 30, 1)]];
     
-    UITextView * textview = [[UITextView alloc]initWithFrame:CGRectMake(15, textfield.yy + 2, SCREEN_WIDTH - 30, 156.5)];
+    UITextView * textview = [[UITextView alloc]initWithFrame:CGRectMake(15, textfield.yy + 2, SCREEN_WIDTH - 30, 150)];
     textview.font = FONT(13);
     textview.delegate = self;
     textview.text = @"发表下您的感想吧";
@@ -69,32 +115,20 @@
     [self.view1 addSubview:textview];
     self.textview = textview;
     
-    UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(15, textfield.yy + 156.5, 80, 80)];
-    image.image = kImage(@"上传图片");
-    
-    image.userInteractionEnabled = YES;
-    UITapGestureRecognizer * ges1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(ChooseImage)];
-    ges1.delegate = self;
-    [image addGestureRecognizer:ges1];
-    
-    
-    
-    [self.view1 addSubview:image];
-    self.image = image;
-    
-    [self.view addSubview:self.view1];
 }
 
 -(void)setupview2{
-    self.view2 = [[UIView alloc]initWithFrame:CGRectMake(0, self.view1.yy + 10, SCREEN_WIDTH, 110)];
+    self.view2 = [[UIView alloc]initWithFrame:CGRectMake(0, self.view1.yy + 10, SCREEN_WIDTH, 110 +  + 81 + 42 + 30)];
     self.view2.backgroundColor = kWhiteColor;
-    
-    TLTextField *textfield1 = [[TLTextField alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 55) placeholder:@"关联古树"];
+    UIView * v1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
+    v1.backgroundColor = kLineColor;
+    [self.view2 addSubview:v1];
+    TLTextField *textfield1 = [[TLTextField alloc]initWithFrame:CGRectMake(15, 10, SCREEN_WIDTH - 30, 55) placeholder:@"关联古树"];
     textfield1.enabled = NO;
     [self.view2 addSubview:textfield1];
     self.textfield1 = textfield1;
     
-    UIButton * btn = [[UIButton alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 55)];
+    UIButton * btn = [[UIButton alloc]initWithFrame:CGRectMake(15, 10, SCREEN_WIDTH - 30, 55)];
     [self.view2 addSubview:btn];
     [btn addTarget:self action:@selector(ChooseTree) forControlEvents:UIControlEventTouchUpInside];
     
@@ -121,14 +155,17 @@
     image2.image = kImage(@"下拉");
     [textfield2 addSubview:image2];
     
-    
-//    [textfield2 addTarget:self action:@selector(ChooseState) forControlEvents:(UIControlEventTouchUpInside)];
-    
     [self.view2 addSubview:[self createview:CGRectMake(15, textfield2.yy - 1, SCREEN_WIDTH - 30, 1)]];
     
+    UIButton * issuebtn = [[UIButton alloc]initWithFrame:CGRectMake(15, self.textfield2.yy + 81, SCREEN_WIDTH - 30, 42) title:@"发布" backgroundColor:kTabbarColor];
+    issuebtn.layer.cornerRadius = 4;
+    issuebtn.layer.masksToBounds = YES;
+    [self.view2 addSubview:issuebtn];
+    [issuebtn addTarget:self action:@selector(IssueBook) forControlEvents:UIControlEventTouchUpInside];
+
     
     
-    [self.view addSubview:self.view2];
+//    [self.view addSubview:self.view2];
 }
 
 
@@ -171,11 +208,24 @@
         return;
     }
     else{
+        NSString * str = [[NSString alloc]init];
+        for (int i = 0; i < self.ImageKey.count; i++) {
+            if (i < self.ImageKey.count - 1) {
+//                str = [NSString stringWithFormat:@"%@||",self.ImageKey[i]];
+                str = [str stringByAppendingString:self.ImageKey[i]];
+                str = [str stringByAppendingString:@"||"];
+            }
+            else{
+                str = [str stringByAppendingString:self.ImageKey[i]];
+            }
+            
+        }
+        NSLog(@"str  %@",str);
         TLNetworking * http = [[TLNetworking alloc]init];
         http.code = @"629340";
         http.parameters[@"title"] = self.textfield.text;
         http.parameters[@"content"] = self.textview.text;
-        http.parameters[@"photo"] = self.ImageKey[0];
+        http.parameters[@"photo"] = str;
         http.parameters[@"openLevel"] = [NSString stringWithFormat:@"%d",(int)self.openLevel + 1];
         http.parameters[@"adoptTreeCode"] = self.ConnectTreeModel.code;
         http.parameters[@"treeNo"] = self.ConnectTreeModel.tree[@"treeNumber"];
@@ -211,17 +261,20 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    
+    [picker dismissViewControllerAnimated:YES completion:nil];
     UIImage * image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [TLProgressHUD show];
     TLUploadManager * manager = [TLUploadManager manager];
     manager.imgData = UIImageJPEGRepresentation(image, 1.0);;
     manager.image = image;
     [manager getTokenShowView:self.view succes:^(NSString *key) {
         [self.ImageKey addObject:key];
 //        self.image.frame = CGRectMake(15 + 90 * self.ImageKey.count, self.textfield.yy + 156.5, 80, 80);
-        [TLAlert alertWithSucces:[LangSwitcher switchLang:@"设置成功" key:nil]];
+//        [TLAlert alertWithSucces:[LangSwitcher switchLang:@"设置成功" key:nil]];
         self.image.image = image;
-        [picker dismissViewControllerAnimated:YES completion:nil];
+//        [self.imageView addObject:key];
+        
+        [self.tableview reloadData];
     } failure:^(NSError *error) {
         
     }];

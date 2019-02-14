@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FriendsModel.h"
 
 @interface FriendRequestsCell : UITableViewCell
-
+@property (nonatomic,strong) FriendsModel * FriendsModel;
+@property (nonatomic,strong) UILabel *stateLbl;
+@property (nonatomic,strong) UIButton *RefusedBtn;
+@property (nonatomic,strong) UIButton *agreeBtn;
 @end

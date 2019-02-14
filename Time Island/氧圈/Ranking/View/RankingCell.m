@@ -79,11 +79,35 @@
         [button setImage:kImage(@"收  取") forState:(UIControlStateNormal)];
     }];
     
-    
     cerNumberLbl.text = [NSString stringWithFormat:@"获得了%@个环保证书",RankModel.certificateCount];
     kgLabel.text = [ NSString stringWithFormat:@"%.2fKG碳泡泡",[RankModel.tppAmount floatValue] / 1000];
     [kgLabel sizeToFit];
     kgLabel.frame = CGRectMake(SCREEN_WIDTH - kgLabel.width - 15 , 0, kgLabel.width, 65);
     
+}
+-(void)setFriendsModel:(FriendsModel *)FriendsModel{
+    _FriendsModel = FriendsModel;
+    if (FriendsModel.toUserInfo[@"photo"]) {
+        [headImg sd_setImageWithURL: [NSURL URLWithString:[FriendsModel.toUserInfo[@"photo"] convertImageUrl]]];
+    }
+    else{
+        headImg.image = kImage(@"头像");
+    }
+    if (FriendsModel.toUserInfo[@"nickname"]) {
+        [nameBtn setTitle:FriendsModel.toUserInfo[@"nickname"] forState:(UIControlStateNormal)];
+    }else{
+        [nameBtn setTitle:[FriendsModel.toUserInfo[@"loginName"] stringByReplacingOccurrencesOfString:[FriendsModel.toUserInfo[@"loginName"] substringWithRange:NSMakeRange(3,4)] withString:@" **** "] forState:(UIControlStateNormal)];
+    }
+    
+    [nameBtn.titleLabel sizeToFit];
+    nameBtn.frame = CGRectMake(headImg.xx + 10, 14,nameBtn.width, 17);
+    [nameBtn SG_imagePositionStyle:(SGImagePositionStyleRight) spacing:6 imagePositionBlock:^(UIButton *button) {
+        [button setImage:kImage(@"收  取") forState:(UIControlStateNormal)];
+    }];
+    
+    cerNumberLbl.text = [NSString stringWithFormat:@"获得了%@个环保证书",FriendsModel.toUserInfo[@"certificateCount"]];
+    kgLabel.text = [ NSString stringWithFormat:@"%.2fKG碳泡泡",[FriendsModel.tppAmount floatValue] / 1000];
+    [kgLabel sizeToFit];
+    kgLabel.frame = CGRectMake(SCREEN_WIDTH - kgLabel.width - 15 , 0, kgLabel.width, 65);
 }
 @end

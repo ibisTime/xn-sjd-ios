@@ -44,7 +44,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (section == 1) {
-        return self.RankModels.count;
+        if ([self.state isEqualToString:@"rank"]) {
+            return self.RankModels.count;
+        }
+        else if ([self.state isEqualToString:@"friend"]){
+            return self.FriendsModels.count;
+        }
+    
     }
     return 1;
     
@@ -69,7 +75,12 @@
     
     
     RankingCell *cell = [tableView dequeueReusableCellWithIdentifier:Ranking forIndexPath:indexPath];
-    cell.RankModel = self.RankModels[indexPath.row];
+    if ([self.state isEqualToString:@"rank"]) {
+        cell.RankModel = self.RankModels[indexPath.row];
+    }
+    else if ([self.state isEqualToString:@"friend"]){
+        cell.FriendsModel = self.FriendsModels[indexPath.row];
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     if (indexPath.row == 0) {

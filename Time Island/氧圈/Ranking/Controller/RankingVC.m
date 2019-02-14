@@ -10,12 +10,13 @@
 #import "RankingTableView.h"
 #import "FriendRequestsVC.h"
 #import "RankModel.h"
-
+#import "FriendsModel.h"
 @interface RankingVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)RankingTableView *tableView;
 
 @property (nonatomic,strong) NSMutableArray<RankModel * > * RankModels;
+@property (nonatomic,strong) NSMutableArray<FriendsModel *> * FriendsModels;
 
 @end
 
@@ -64,57 +65,6 @@
 
 }
 
-//-(void)loadData
-//{
-//    CoinWeakSelf;
-//    TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
-//    helper.code = @"805159";
-//    helper.parameters[@"userId"] = [TLUser user].userId;
-//    helper.parameters[@"orderDir"] = @"asc";
-//    helper.parameters[@"orderColumn"] = @"row_no";
-//    helper.isCurrency = YES;
-//    helper.tableView = self.tableView;
-//    [helper modelClass:[RankingModel class]];
-//
-//    [self.tableView addRefreshAction:^{
-//        [helper refresh:^(NSMutableArray *objs, BOOL stillHave) {
-//            NSMutableArray <RankingModel *> *shouldDisplayCoins = [[NSMutableArray alloc] init];
-//            [objs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//                RankingModel *model = (RankingModel *)obj;
-//                [shouldDisplayCoins addObject:model];
-//            }];
-//
-//            weakSelf.models = shouldDisplayCoins;
-//            [weakSelf.tableView.models removeAllObjects];
-//            [weakSelf.tableView reloadData];
-//            weakSelf.tableView.models = shouldDisplayCoins;
-//            [weakSelf.tableView reloadData_tl];
-//        } failure:^(NSError *error) {
-//
-//        }];
-//    }];
-//    [self.tableView addLoadMoreAction:^{
-//
-//        [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
-//            NSLog(@" ==== %@",objs);
-//            NSMutableArray <RankingModel *> *shouldDisplayCoins = [[NSMutableArray alloc] init];
-//            [objs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//
-//                RankingModel *model = (RankingModel *)obj;
-//                [shouldDisplayCoins addObject:model];
-//            }];
-//            weakSelf.models = shouldDisplayCoins;
-//
-//            weakSelf.tableView.models = shouldDisplayCoins;
-//            //        weakSelf.tableView.bills = objs;
-//            [weakSelf.tableView reloadData_tl];
-//
-//        } failure:^(NSError *error) {
-//        }];
-//    }];
-//    [self.tableView beginRefreshing];
-//}
-
 -(void)myRecodeClick
 {
     FriendRequestsVC *vc = [FriendRequestsVC new];
@@ -136,6 +86,7 @@
     http.parameters[@"orderColumn"] = @"row_no";
     [http postWithSuccess:^(id responseObject) {
         self.RankModels = [RankModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        self.tableView.state = self.state;
          self.tableView.RankModels = self.RankModels;
         [self.tableView reloadData];
     } failure:^(NSError *error) {
@@ -150,8 +101,9 @@
         http.parameters[@"orderDir"] = @"asc";
         http.parameters[@"orderColumn"] = @"row_no";
         [http postWithSuccess:^(id responseObject) {
-            self.RankModels = [RankModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-            self.tableView.RankModels = self.RankModels;
+            self.FriendsModels = [FriendsModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+            self.tableView.state = self.state;
+            self.tableView.FriendsModels = self.FriendsModels;
             [self.tableView reloadData];
         } failure:^(NSError *error) {
         }];

@@ -140,6 +140,13 @@
 		3610EEC121EDC3A300FD345D /* AddCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC021EDC3A300FD345D /* AddCardVC.m */; };
 		3610EEC421EDCEBD00FD345D /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC321EDCEBD00FD345D /* InfoVC.m */; };
 		3610EEC721EDD6A800FD345D /* GetAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3610EEC621EDD6A800FD345D /* GetAddVC.m */; };
+		361396032215386600F6F2F3 /* FriendsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 361396022215386600F6F2F3 /* FriendsModel.m */; };
+		361396062215558C00F6F2F3 /* CollectionCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 361396042215558C00F6F2F3 /* CollectionCell1.m */; };
+		361396092215572200F6F2F3 /* ImageBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 361396072215572200F6F2F3 /* ImageBrowserViewController.m */; };
+		3613960C221557D700F6F2F3 /* PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3613960B221557D700F6F2F3 /* PhotoView.m */; };
+		3613960F22155CEB00F6F2F3 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3613960D22155CEB00F6F2F3 /* CollectionViewCell.m */; };
+		3613961222156FF400F6F2F3 /* BookImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3613961122156FF400F6F2F3 /* BookImageCell.m */; };
+		361396152215700900F6F2F3 /* BookContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 361396142215700900F6F2F3 /* BookContentCell.m */; };
 		363CD5E022029B9B00A81CFA /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 363CD5DF22029B9B00A81CFA /* OrderModel.m */; };
 		363CD5E32202D44600A81CFA /* ConnectTreeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 363CD5E22202D44600A81CFA /* ConnectTreeModel.m */; };
 		363E291421F84530003981CD /* CertifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 363E291321F84530003981CD /* CertifyVC.m */; };
@@ -752,6 +759,20 @@
 		3610EEC321EDCEBD00FD345D /* InfoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoVC.m; sourceTree = "<group>"; };
 		3610EEC521EDD6A800FD345D /* GetAddVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAddVC.h; sourceTree = "<group>"; };
 		3610EEC621EDD6A800FD345D /* GetAddVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAddVC.m; sourceTree = "<group>"; };
+		361396012215386600F6F2F3 /* FriendsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendsModel.h; sourceTree = "<group>"; };
+		361396022215386600F6F2F3 /* FriendsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendsModel.m; sourceTree = "<group>"; };
+		361396042215558C00F6F2F3 /* CollectionCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollectionCell1.m; path = ../../../../../Downloads/CollectionCell1.m; sourceTree = "<group>"; };
+		361396052215558C00F6F2F3 /* CollectionCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollectionCell1.h; path = ../../../../../Downloads/CollectionCell1.h; sourceTree = "<group>"; };
+		361396072215572200F6F2F3 /* ImageBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageBrowserViewController.m; path = ../../../../../Downloads/ImageBrowserViewController.m; sourceTree = "<group>"; };
+		361396082215572200F6F2F3 /* ImageBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageBrowserViewController.h; path = ../../../../../Downloads/ImageBrowserViewController.h; sourceTree = "<group>"; };
+		3613960A221557D700F6F2F3 /* PhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoView.h; path = ../../../../../Downloads/PhotoView.h; sourceTree = "<group>"; };
+		3613960B221557D700F6F2F3 /* PhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoView.m; path = ../../../../../Downloads/PhotoView.m; sourceTree = "<group>"; };
+		3613960D22155CEB00F6F2F3 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollectionViewCell.m; path = ../../../../../Downloads/CollectionViewCell.m; sourceTree = "<group>"; };
+		3613960E22155CEB00F6F2F3 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollectionViewCell.h; path = ../../../../../Downloads/CollectionViewCell.h; sourceTree = "<group>"; };
+		3613961022156FF400F6F2F3 /* BookImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookImageCell.h; sourceTree = "<group>"; };
+		3613961122156FF400F6F2F3 /* BookImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookImageCell.m; sourceTree = "<group>"; };
+		361396132215700900F6F2F3 /* BookContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookContentCell.h; sourceTree = "<group>"; };
+		361396142215700900F6F2F3 /* BookContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookContentCell.m; sourceTree = "<group>"; };
 		363CD5DE22029B9B00A81CFA /* OrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		363CD5DF22029B9B00A81CFA /* OrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
 		363CD5E12202D44600A81CFA /* ConnectTreeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectTreeModel.h; sourceTree = "<group>"; };
@@ -2328,6 +2349,14 @@
 		3610EEA321ED715600FD345D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3613960E22155CEB00F6F2F3 /* CollectionViewCell.h */,
+				3613960D22155CEB00F6F2F3 /* CollectionViewCell.m */,
+				3613960A221557D700F6F2F3 /* PhotoView.h */,
+				3613960B221557D700F6F2F3 /* PhotoView.m */,
+				361396082215572200F6F2F3 /* ImageBrowserViewController.h */,
+				361396072215572200F6F2F3 /* ImageBrowserViewController.m */,
+				361396052215558C00F6F2F3 /* CollectionCell1.h */,
+				361396042215558C00F6F2F3 /* CollectionCell1.m */,
 				36A84B58221160A7003CDE19 /* Balance */,
 				1F19A8E121FAA6BA0090BF84 /* Address */,
 				3689769421EF3683005F1177 /* Order */,
@@ -2492,6 +2521,8 @@
 			children = (
 				36A84B45221119D3003CDE19 /* RankModel.h */,
 				36A84B46221119D3003CDE19 /* RankModel.m */,
+				361396012215386600F6F2F3 /* FriendsModel.h */,
+				361396022215386600F6F2F3 /* FriendsModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3320,6 +3351,10 @@
 				B8EE11F621ED777300B9DF0D /* BookDetailHeadView.m */,
 				36BB9F7021FEEC980010E622 /* BookDetailContentView.h */,
 				36BB9F7121FEEC980010E622 /* BookDetailContentView.m */,
+				3613961022156FF400F6F2F3 /* BookImageCell.h */,
+				3613961122156FF400F6F2F3 /* BookImageCell.m */,
+				361396132215700900F6F2F3 /* BookContentCell.h */,
+				361396142215700900F6F2F3 /* BookContentCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4364,6 +4399,7 @@
 				B81E5FD421DC8FC200873AB9 /* NSDictionary+Extension.m in Sources */,
 				B81E5FBC21DC8FC200873AB9 /* CustomPickerView.m in Sources */,
 				B80D388621F871CF00206B55 /* SubmitOrdersTableView.m in Sources */,
+				361396032215386600F6F2F3 /* FriendsModel.m in Sources */,
 				B815278621EC8BAE00F89395 /* BaseTableViewCell.m in Sources */,
 				B85F892521FC2FC200D5B7A4 /* PYTempViewController.m in Sources */,
 				1F1B006C21E71D26000BEBD3 /* RBBEasingFunction.m in Sources */,
@@ -4454,6 +4490,7 @@
 				B80D385F21F85F1E00206B55 /* CountView.m in Sources */,
 				B81E5FD621DC8FC200873AB9 /* NSString+CGSize.m in Sources */,
 				B81E5FB721DC8FC200873AB9 /* PushSortBar.m in Sources */,
+				3613961222156FF400F6F2F3 /* BookImageCell.m in Sources */,
 				36A84B5C22116C89003CDE19 /* GetMoneyVC.m in Sources */,
 				1F19A8CE21FAA26D0090BF84 /* SignFinishView.m in Sources */,
 				B80D385B21F85F1E00206B55 /* GoodsTypeModel.m in Sources */,
@@ -4550,6 +4587,7 @@
 				B8A27AF621E5C44400914897 /* UIColor+ComboBoxExtension.m in Sources */,
 				B8EE11F421ED76C700B9DF0D /* BoolVideoDetailVC.m in Sources */,
 				1F93616821EE01B4007E522A /* MyHomePageCell.m in Sources */,
+				3613960F22155CEB00F6F2F3 /* CollectionViewCell.m in Sources */,
 				B81E5FEE21DC8FC200873AB9 /* BaseButton.m in Sources */,
 				B86CB6A021DDAA1500C60AC7 /* XBTextLoopView.m in Sources */,
 				B87C211521FAE83D00EFD0B0 /* ViewExpressVC.m in Sources */,
@@ -4577,6 +4615,7 @@
 				1F1B00C321E88121000BEBD3 /* MyArticleViC.m in Sources */,
 				B81E5FE321DC8FC200873AB9 /* HttpLogger.m in Sources */,
 				B81E603621DC93EC00873AB9 /* ImageUtil.m in Sources */,
+				361396152215700900F6F2F3 /* BookContentCell.m in Sources */,
 				36BB9F6F21FEE1B70010E622 /* BookModel.m in Sources */,
 				367D694221F998A70091177C /* GenderPickerView.m in Sources */,
 				B81E601821DC906D00873AB9 /* ChangeLoginPwdVC.m in Sources */,
@@ -4590,10 +4629,12 @@
 				B81E5FEB21DC8FC200873AB9 /* TLTabBarController.m in Sources */,
 				1F93610521EDFD8F007E522A /* ToClaimTheGiftVC2.m in Sources */,
 				3689767121EEE176005F1177 /* CollectTreeModel.m in Sources */,
+				3613960C221557D700F6F2F3 /* PhotoView.m in Sources */,
 				B88E542D21F9B08A00C33040 /* GoodsDetailsBottomView.m in Sources */,
 				B8712E8021F577FA00039086 /* MallClassificationVC.m in Sources */,
 				B87C211B21FAF22B00EFD0B0 /* ExpressTableView.m in Sources */,
 				B81E5FD921DC8FC200873AB9 /* NSNumber+Extension.m in Sources */,
+				361396092215572200F6F2F3 /* ImageBrowserViewController.m in Sources */,
 				B8ED2E8521E8352B00FADCCE /* TeamView.m in Sources */,
 				B815279521EC946100F89395 /* BookVideoCell.m in Sources */,
 				1F19A8FA21FED86B0090BF84 /* MyTreeEnergyModel.m in Sources */,
@@ -4602,6 +4643,7 @@
 				B80D386021F85F1E00206B55 /* GoodsInfoView.m in Sources */,
 				1F93610921EDFD8F007E522A /* MyGiftCell.m in Sources */,
 				1F19A8CC21FAA26D0090BF84 /* SelectedListModel.m in Sources */,
+				361396062215558C00F6F2F3 /* CollectionCell1.m in Sources */,
 				36BB9F7221FEEC980010E622 /* BookDetailContentView.m in Sources */,
 				1F9361D321F17507007E522A /* MallMyVC.m in Sources */,
 				B81E5FC421DC8FC200873AB9 /* TLNetworking.m in Sources */,

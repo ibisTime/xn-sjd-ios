@@ -45,7 +45,7 @@
     
     UIImageView *headImg = [[UIImageView alloc]initWithFrame:CGRectMake(14.5, 18.5, 30, 30)];
     kViewBorderRadius(headImg, 15, 1, kTabbarColor);
-//    headImg.image = kImage(@"头像");
+
     [headImg sd_setImageWithURL: [NSURL URLWithString:[[TLUser user].photo convertImageUrl]] placeholderImage:kImage(@"头像")];
     [self addSubview:headImg];
     
