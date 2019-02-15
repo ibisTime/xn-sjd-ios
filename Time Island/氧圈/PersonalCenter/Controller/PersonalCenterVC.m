@@ -114,14 +114,16 @@
             }
             
 //            weakSelf.tableView.dynamicArray = [NSMutableArray array];
-            NSMutableArray <DynamicModel *>*array = [NSMutableArray array];
-            for (int i = 0; i < objs.count; i ++) {
-                DynamicModel *model = objs[i];
-                [model setValue:[model.createDatetime convertDate] forKey:@"createDatetime"];
-                [array addObject:model];
-            }
+//            NSMutableArray <DynamicModel *>*array = [NSMutableArray array];
+//            for (int i = 0; i < objs.count; i ++) {
+//                DynamicModel *model = objs[i];
+//                [model setValue:[model.createDatetime convertDate] forKey:@"createDatetime"];
+//                model.time = [model.createDatetime convertDate];
+//                [array addObject:model];
+//
+//            }
             
-            weakSelf.tableView.dynamicArray = [PersonalCenterVC filterMaxItemsArray:array filterKey:@"createDatetime"];
+            weakSelf.tableView.dynamicArray = [PersonalCenterVC filterMaxItemsArray:objs filterKey:@"time"];
             
             [weakSelf.tableView endRefreshHeader];
             [weakSelf.tableView reloadData_tl];
@@ -143,14 +145,14 @@
                 [weakSelf removePlaceholderView];
             }
             
-            NSMutableArray <DynamicModel *>*array = [NSMutableArray array];
-            for (int i = 0; i < objs.count; i ++) {
-                DynamicModel *model = objs[i];
-                [model setValue:[model.createDatetime convertDate] forKey:@"createDatetime"];
-                [array addObject:model];
-            }
+//            NSMutableArray <DynamicModel *>*array = [NSMutableArray array];
+//            for (int i = 0; i < objs.count; i ++) {
+//                DynamicModel *model = objs[i];
+//                [model setValue:[model.createDatetime convertDate] forKey:@"createDatetime"];
+//                [array addObject:model];
+//            }
             
-            weakSelf.tableView.dynamicArray = [PersonalCenterVC filterMaxItemsArray:array filterKey:@"createDatetime"];
+            weakSelf.tableView.dynamicArray = [PersonalCenterVC filterMaxItemsArray:objs filterKey:@"time"];
             [weakSelf.tableView endRefreshHeader];
         } failure:^(NSError *error) {
             [weakSelf.tableView endRefreshHeader];

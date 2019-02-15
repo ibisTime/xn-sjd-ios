@@ -10,4 +10,12 @@
 
 @implementation DynamicModel
 
+-(NSString *)time
+{
+    if (!_time) {
+        _time = [_createDatetime convertDate];
+    }
+    return _time;
+}
+
 @end

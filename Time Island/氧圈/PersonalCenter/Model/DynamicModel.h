@@ -28,7 +28,7 @@
 @property (nonatomic , copy)NSString *adoptTreeCode;
 @property (nonatomic , strong)NSDictionary *userInfo;
 @property (nonatomic , strong)NSDictionary *adoptUserInfo;
-
-
+@property (nonatomic , copy)NSString *note;
+@property (nonatomic , copy)NSString *time;
 
 @end
