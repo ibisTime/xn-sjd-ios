@@ -12,6 +12,7 @@
 #import "MMComBoBoxView.h"
 #import "MMComBoBox.h"
 #import "PersonalCenterModel.h"
+#import "MyTreeVC.h"
 @interface PersonalCenterVC ()<RefreshDelegate,MMComBoBoxViewDelegate,MMComBoBoxViewDataSource>
 
 @property (nonatomic , strong)PersonalCenterHeadView *headView;
@@ -80,10 +81,19 @@
     [self.view addSubview:self.comBoBoxView];
     [self.comBoBoxView reload];
     [self LoadData];
-    
-    
-    
-    
+
+}
+
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        if (self.models.count > 0) {
+            MyTreeVC *vc = [MyTreeVC new];
+            vc.model = self.models[indexPath.row];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
+    }
     
 }
 
