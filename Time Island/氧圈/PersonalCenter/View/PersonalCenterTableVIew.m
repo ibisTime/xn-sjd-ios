@@ -77,8 +77,10 @@
     {
         cell.bottomLineView.hidden = NO;
     }
+    NSArray *dynamicArray = self.dynamicArray[indexPath.section - 1];
+    DynamicModel *model = [DynamicModel mj_objectWithKeyValues:dynamicArray[indexPath.row]];
+    cell.dynamicArray = model;
     return cell;
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -118,12 +120,12 @@
             [dateFormatter setDateFormat:@"YYYY-MM-dd"];
             NSString *dateString = [dateFormatter stringFromDate:currentDate];
             
-            if ([dateString isEqualToString:model.createDatetime]) {
+            if ([dateString isEqualToString:model.time]) {
                 nameLabel.text = @"今天";
             }
             else
             {
-                NSString *time = [model.createDatetime substringWithRange:NSMakeRange(5, model.createDatetime.length - 5)];
+                NSString *time = [model.time substringWithRange:NSMakeRange(5, model.time.length - 5)];
                 nameLabel.text = time;
             }
             

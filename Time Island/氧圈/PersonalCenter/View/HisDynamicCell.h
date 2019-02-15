@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DynamicModel.h"
 @interface HisDynamicCell : UITableViewCell
 
 @property (nonatomic , strong)UIView *bottomLineView;
-
+@property (nonatomic , strong)DynamicModel *dynamicArray;
 @end

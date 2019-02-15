@@ -1608,6 +1608,8 @@
 				1F19A90221FEFF130090BF84 /* PersonalCenterHeadView.m */,
 				1F19A90421FF07A50090BF84 /* PersonalCenterTableVIew.h */,
 				1F19A90521FF07A50090BF84 /* PersonalCenterTableVIew.m */,
+				1FF6396E21EC35C500F5FF68 /* HisDynamicCell.h */,
+				1FF6396F21EC35C500F5FF68 /* HisDynamicCell.m */,
 				1F47319A22153F0A007B5908 /* PersonalCenterCell.h */,
 				1F47319B22153F0A007B5908 /* PersonalCenterCell.m */,
 			);
@@ -1897,8 +1899,6 @@
 				1F1B00D721E896A3000BEBD3 /* FriendsTreeHeadCell.m */,
 				1F1B00D921E89B67000BEBD3 /* EnergyCompeteCell.h */,
 				1F1B00DA21E89B67000BEBD3 /* EnergyCompeteCell.m */,
-				1FF6396E21EC35C500F5FF68 /* HisDynamicCell.h */,
-				1FF6396F21EC35C500F5FF68 /* HisDynamicCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2346,12 +2346,14 @@
 		3610EEA321ED715600FD345D /* View */ = {
 			isa = PBXGroup;
 			children = (
+
 				3680126C22165B4700A7FB0B /* CollectionViewCell.h */,
 				3680126822165B4700A7FB0B /* CollectionViewCell.m */,
 				3680126D22165B4800A7FB0B /* ImageBrowserViewController.h */,
 				3680126922165B4700A7FB0B /* ImageBrowserViewController.m */,
 				3680126A22165B4700A7FB0B /* PhotoView.h */,
 				3680126B22165B4700A7FB0B /* PhotoView.m */,
+
 				36A84B58221160A7003CDE19 /* Balance */,
 				1F19A8E121FAA6BA0090BF84 /* Address */,
 				3689769421EF3683005F1177 /* Order */,
@@ -4912,7 +4914,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< HEAD
 				DEVELOPMENT_TEAM = "";
+=======
+
+				DEVELOPMENT_TEAM = A7AR7GW3Q2;
+
+>>>>>>> e5a53ff4710aa6c9dbffdae3fd669782ad0ae085
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -4945,7 +4953,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
