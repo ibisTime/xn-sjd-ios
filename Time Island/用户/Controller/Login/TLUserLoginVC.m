@@ -244,7 +244,6 @@
             //        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
             TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
             [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
-            
         } failure:^(NSError *error) {
             
         }];

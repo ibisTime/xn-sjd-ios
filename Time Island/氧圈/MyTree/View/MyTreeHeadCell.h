@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FloatingBallHeader.h"
 #import "MyTreeEnergyModel.h"
+#import "PersonalCenterModel.h"
 @protocol MyTreeHeadDelegate <NSObject>
 
 -(void)MyTreeHeadButton:(NSInteger )tag;
@@ -23,4 +24,5 @@
 
 @property (nonatomic , strong)NSMutableArray <MyTreeEnergyModel *>*energyModels;
 
+@property (nonatomic , strong)PersonalCenterModel *model;
 @end

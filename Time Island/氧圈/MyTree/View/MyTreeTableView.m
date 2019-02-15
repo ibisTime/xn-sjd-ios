@@ -27,6 +27,7 @@
     
     if (self = [super initWithFrame:frame style:style]) {
         
+        
         self.dataSource = self;
         self.delegate = self;
         [self registerClass:[MyTreeHeadCell class] forCellReuseIdentifier:MyTreeHead];
@@ -45,7 +46,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 2) {
-        return 10;
+        return self.DynamicModels.count;
     }
     return 1;
     
@@ -59,6 +60,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
         cell.energyModels = self.energyModels;
+        cell.model = self.model;
         return cell;
     }
     
@@ -70,6 +72,8 @@
     }
     
     CollectEnergyDetailsCell *cell = [tableView dequeueReusableCellWithIdentifier:CollectEnergyDetails forIndexPath:indexPath];
+    cell.model = self.model;
+    cell.DynamicModel = self.DynamicModels[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
@@ -189,4 +193,42 @@
     return [UIView new];
 }
 
+
+-(void)getdata{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629355";
+    http.parameters[@"status"] = @(0);
+    http.parameters[@"limit"] = @(5);
+    http.parameters[@"start"] = @(1);
+    http.parameters[@"adoptTreeCode"] = self.model.code;
+    if (self.model.code) {
+        [http postWithSuccess:^(id responseObject) {
+            self.energyModels = [MyTreeEnergyModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        } failure:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
+    }
+    
+}
+
+-(void)getCollectEnergyDetailsdata{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629305";
+    http.parameters[@"status"] = @(0);
+    http.parameters[@"limit"] = @(5);
+    http.parameters[@"start"] = @(1);
+    http.parameters[@"adoptTreeCode"] = self.model.code;
+    http.parameters[@"queryUserId"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
+        self.DynamicModels = [DynamicModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+-(void)setModel:(PersonalCenterModel *)model{
+    _model = model;
+    [self getdata];
+    [self getCollectEnergyDetailsdata];
+}
 @end

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "PersonalCenterModel.h"
+#import "DynamicModel.h"
 @interface CollectEnergyDetailsCell : UITableViewCell
-
+@property (nonatomic , strong)PersonalCenterModel *model;
+@property (nonatomic,strong)  DynamicModel * DynamicModel;
 @end

@@ -9,6 +9,9 @@
 #import "CollectEnergyDetailsCell.h"
 
 @implementation CollectEnergyDetailsCell
+{
+    UILabel *numberLb;
+}
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -54,6 +57,10 @@
         
     }
     return self;
+}
+
+-(void)setDynamicModel:(DynamicModel *)DynamicModel{
+    
 }
 
 @end
