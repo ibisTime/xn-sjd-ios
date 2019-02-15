@@ -30,5 +30,6 @@
 @property (nonatomic , strong)NSDictionary *adoptUserInfo;
 @property (nonatomic , copy)NSString *note;
 @property (nonatomic , copy)NSString *time;
-
+@property (nonatomic , copy)NSString *barragePic;
+@property (nonatomic , copy)NSString *barrageContent;
 @end

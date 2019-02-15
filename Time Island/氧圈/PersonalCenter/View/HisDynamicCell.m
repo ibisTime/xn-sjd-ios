@@ -42,17 +42,6 @@
             make.height.equalTo(@48);
         }];
         
-//        UILabel *numberLbl = [[UILabel alloc]init];
-//        numberLbl.textColor = kTextBlack;
-//        numberLbl.text = @"收取9g";
-//        numberLbl.font = FONT(14);
-//        [self addSubview:numberLbl];
-//
-//        [numberLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.top.equalTo(self.mas_top).offset(0);
-//            make.left.equalTo(nameLbl.mas_right).offset(5);
-//            make.height.equalTo(@48);
-//        }];
         
         
         timeLbl = [[UILabel alloc]init];
@@ -75,18 +64,27 @@
     return self;
 }
 
--(void)setDynamicArray:(DynamicModel *)dynamicArray
+-(void)setDynamicModel:(DynamicModel *)dynamicModel
 {
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"MMM dd, yyyy hh:mm:ss aa";
     formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    NSDate *date01 = [formatter dateFromString:dynamicArray.createDatetime];
+    NSDate *date01 = [formatter dateFromString:dynamicModel.createDatetime];
     formatter.dateFormat = @"HH:mm:ss";
     formatter.locale = [NSLocale currentLocale];
     timeLbl.text = [formatter stringFromDate:date01];
     
-    nameLbl.text = dynamicArray.note;
+    if ([dynamicModel.type isEqualToString:@"3"]) {
+        nameLbl.text = [NSString stringWithFormat:@"我 收取%@ %.2fg",dynamicModel.adoptUserInfo[@"nickname"],[dynamicModel.quantity floatValue]/1000];
+    }else
+    {
+        nameLbl.text = dynamicModel.note;
+    }
+    
+    
+    
+    
     
 }
 

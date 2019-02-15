@@ -242,8 +242,10 @@
             [TLUser user].userId = userinfo[@"userId"];
             [TLUser user].token = userinfo[@"token"];
             //        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+             [self requesUserInfoWithResponseObject:responseObject];
             TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
             [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
+
         } failure:^(NSError *error) {
             
         }];
