@@ -37,7 +37,7 @@
         [self registerClass:[EnergyCompeteCell class] forCellReuseIdentifier:EnergyCompete];
         [self registerClass:[HisDynamicCell class] forCellReuseIdentifier:HisDynamic];
         [self registerClass:[PersonalCenterCell class] forCellReuseIdentifier:PersonalCenter];
-        
+//        self.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     
     return self;
@@ -80,6 +80,8 @@
     NSArray *dynamicArray = self.dynamicArray[indexPath.section - 1];
     DynamicModel *model = [DynamicModel mj_objectWithKeyValues:dynamicArray[indexPath.row]];
     cell.dynamicArray = model;
+    
+    
     return cell;
 }
 
