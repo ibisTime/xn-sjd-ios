@@ -162,6 +162,9 @@
 		367D68E021F95A230091177C /* aiai_area.txt in Resources */ = {isa = PBXBuildFile; fileRef = 367D68DF21F95A230091177C /* aiai_area.txt */; };
 		367D68E921F95B920091177C /* SelectAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D68E821F95B920091177C /* SelectAdView.m */; };
 		367D694221F998A70091177C /* GenderPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D694121F998A70091177C /* GenderPickerView.m */; };
+		3680126E22165B4800A7FB0B /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3680126822165B4700A7FB0B /* CollectionViewCell.m */; };
+		3680126F22165B4800A7FB0B /* ImageBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3680126922165B4700A7FB0B /* ImageBrowserViewController.m */; };
+		3680127022165B4800A7FB0B /* PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3680126B22165B4700A7FB0B /* PhotoView.m */; };
 		3689763A21EEC550005F1177 /* MAMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3689763821EEC550005F1177 /* MAMapKit.framework */; };
 		3689763B21EEC550005F1177 /* AMapFoundationKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3689763921EEC550005F1177 /* AMapFoundationKit.framework */; };
 		3689766221EED58A005F1177 /* CollectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3689766121EED58A005F1177 /* CollectVC.m */; };
@@ -797,6 +800,12 @@
 		367D68E821F95B920091177C /* SelectAdView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectAdView.m; sourceTree = "<group>"; };
 		367D694021F998A70091177C /* GenderPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenderPickerView.h; sourceTree = "<group>"; };
 		367D694121F998A70091177C /* GenderPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenderPickerView.m; sourceTree = "<group>"; };
+		3680126822165B4700A7FB0B /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
+		3680126922165B4700A7FB0B /* ImageBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBrowserViewController.m; sourceTree = "<group>"; };
+		3680126A22165B4700A7FB0B /* PhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoView.h; sourceTree = "<group>"; };
+		3680126B22165B4700A7FB0B /* PhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoView.m; sourceTree = "<group>"; };
+		3680126C22165B4700A7FB0B /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
+		3680126D22165B4800A7FB0B /* ImageBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBrowserViewController.h; sourceTree = "<group>"; };
 		3689763821EEC550005F1177 /* MAMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAMapKit.framework; sourceTree = "<group>"; };
 		3689763921EEC550005F1177 /* AMapFoundationKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMapFoundationKit.framework; sourceTree = "<group>"; };
 		3689766021EED58A005F1177 /* CollectVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectVC.h; sourceTree = "<group>"; };
@@ -2337,6 +2346,14 @@
 		3610EEA321ED715600FD345D /* View */ = {
 			isa = PBXGroup;
 			children = (
+
+				3680126C22165B4700A7FB0B /* CollectionViewCell.h */,
+				3680126822165B4700A7FB0B /* CollectionViewCell.m */,
+				3680126D22165B4800A7FB0B /* ImageBrowserViewController.h */,
+				3680126922165B4700A7FB0B /* ImageBrowserViewController.m */,
+				3680126A22165B4700A7FB0B /* PhotoView.h */,
+				3680126B22165B4700A7FB0B /* PhotoView.m */,
+
 				36A84B58221160A7003CDE19 /* Balance */,
 				1F19A8E121FAA6BA0090BF84 /* Address */,
 				3689769421EF3683005F1177 /* Order */,
@@ -4355,6 +4372,7 @@
 				B81E5FD721DC8FC200873AB9 /* NSString+Extension.m in Sources */,
 				1F1B00C621E8814F000BEBD3 /* MyArticleTableView.m in Sources */,
 				36A84B5422115F18003CDE19 /* BalanceTableView.m in Sources */,
+				3680126E22165B4800A7FB0B /* CollectionViewCell.m in Sources */,
 				1F93610621EDFD8F007E522A /* ToClaimTheGiftCell.m in Sources */,
 				B81E5FCE21DC8FC200873AB9 /* UIView+Extension.m in Sources */,
 				B81E5FBA21DC8FC200873AB9 /* HourPickerView.m in Sources */,
@@ -4473,6 +4491,7 @@
 				3613961222156FF400F6F2F3 /* BookImageCell.m in Sources */,
 				36A84B5C22116C89003CDE19 /* GetMoneyVC.m in Sources */,
 				1F19A8CE21FAA26D0090BF84 /* SignFinishView.m in Sources */,
+				3680127022165B4800A7FB0B /* PhotoView.m in Sources */,
 				B80D385B21F85F1E00206B55 /* GoodsTypeModel.m in Sources */,
 				3610EEA621ED716A00FD345D /* MineVCCell.m in Sources */,
 				B87C210F21FAD12F00EFD0B0 /* orderDetailCell.m in Sources */,
@@ -4653,6 +4672,7 @@
 				1F1B00CF21E89651000BEBD3 /* FriendsTheTreeVC.m in Sources */,
 				B87C210621FAA92800EFD0B0 /* MallOrderDetailVC.m in Sources */,
 				B8EE11FA21EDB0EA00B9DF0D /* CalendarCustomVC.m in Sources */,
+				3680126F22165B4800A7FB0B /* ImageBrowserViewController.m in Sources */,
 				B81E601921DC906D00873AB9 /* TLAccountSetBaseVC.m in Sources */,
 				B81E5FDD21DC8FC200873AB9 /* TLAlipayManager.m in Sources */,
 				B88E544B21F9BDF600C33040 /* JVShopcartBottomView.m in Sources */,
@@ -4894,7 +4914,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+
+				DEVELOPMENT_TEAM = A7AR7GW3Q2;
+
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -4927,7 +4949,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+
+				DEVELOPMENT_TEAM = A7AR7GW3Q2;
+
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",

@@ -8,7 +8,6 @@
 
 #import "IssueBook.h"
 #import "ConnectTreeModel.h"
-#import "CollectionCell1.h"
 #import "CollectionViewCell.h"
 @interface IssueBook ()<UITextFieldDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITableViewDelegate,UITableViewDataSource,CustomCollectionDelegate>
 @property (nonatomic,strong) UIView * view1;

@@ -193,7 +193,7 @@
 //我认养的树
 -(void)myTreeLoadData
 {
-    CoinWeakSelf;
+//    CoinWeakSelf;
     TLNetworking *http = [TLNetworking new];
     http.showView = self.view;
     http.isUploadToken = NO;
