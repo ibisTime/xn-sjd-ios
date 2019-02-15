@@ -7,7 +7,10 @@
 //
 
 #import "TLBaseVC.h"
-
+#import "PersonalCenterModel.h"
 @interface MyTreeVC : TLBaseVC
+
+
+@property (nonatomic , strong)PersonalCenterModel *model;
 
 @end

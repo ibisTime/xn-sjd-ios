@@ -37,6 +37,7 @@
         [self registerClass:[EnergyCompeteCell class] forCellReuseIdentifier:EnergyCompete];
         [self registerClass:[HisDynamicCell class] forCellReuseIdentifier:HisDynamic];
         [self registerClass:[PersonalCenterCell class] forCellReuseIdentifier:PersonalCenter];
+        [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 //        self.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     
@@ -64,10 +65,19 @@
 //    PersonalCenterCell
     
     if (indexPath.section == 0) {
-        PersonalCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:PersonalCenter forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.models = self.models[indexPath.row];
-        return cell;
+        if (self.models.count > 0) {
+            PersonalCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:PersonalCenter forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.models = self.models[indexPath.row];
+            return cell;
+        }else
+        {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            //        cell.models = self.models[indexPath.row];
+            return cell;
+        }
+        
     }
     HisDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:HisDynamic forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -88,11 +98,20 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0) {
+        if(self.models.count > 0)
+        {
+            return 150;
+        }
         return 70;
     }
     return 48;
 }
 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.refreshDelegate refreshTableView:self didSelectRowAtIndexPath:indexPath];
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section >= 1) {
