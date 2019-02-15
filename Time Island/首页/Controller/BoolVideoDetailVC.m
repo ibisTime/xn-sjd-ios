@@ -16,7 +16,7 @@
     UIView * FootView;
 }
 @property (nonatomic , strong) BookDetailHeadView *headView;
-@property (nonatomic,strong) BookDetailContentView * ContentView;
+//@property (nonatomic,strong) BookDetailContentView * ContentView;
 @property (nonatomic,strong) UITableView * TableView;
 @property (nonatomic,assign) NSInteger count;
 @property (nonatomic,strong) UIButton * CollectBtn;
@@ -37,22 +37,23 @@
     
     self.imagearr = [self.BookModel.photo componentsSeparatedByString:@"||"];
     
-    self.ContentView = [[BookDetailContentView alloc]initWithFrame:CGRectMake(0, 150, SCREEN_WIDTH, SCREEN_HEIGHT - 150 - 64 - 50)];
-    self.ContentView.state = self.state;
-    self.ContentView.BookModel = self.BookModel;
-    [self.view addSubview:self.ContentView];
+//    self.ContentView = [[BookDetailContentView alloc]initWithFrame:CGRectMake(0, 150, SCREEN_WIDTH, SCREEN_HEIGHT - 150 - 64 - 50)];
+//    self.ContentView.state = self.state;
+//    self.ContentView.BookModel = self.BookModel;
+//    [self.view addSubview:self.ContentView];
     
     [self CreateHeadView];
     [self CreateFootView];
     
    self.height = [self heightForString:self.BookModel.content andWidth:SCREEN_WIDTH - 30];
     
-    self.TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight)];
+    self.TableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 50) style:(UITableViewStylePlain)];
     self.TableView.delegate = self;
     self.TableView.dataSource = self;
     self.TableView.tableHeaderView = self.headView;
-    self.TableView.tableFooterView = FootView;
-    
+//    self.TableView.tableFooterView = FootView;
+    self.TableView.backgroundColor = [UIColor whiteColor];
+    self.TableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.TableView registerClass:[BookImageCell class] forCellReuseIdentifier:@"BookImageCell"];
     [self.TableView registerClass:[BookContentCell class] forCellReuseIdentifier:@"BookContentCell"];
     
@@ -65,9 +66,11 @@
     self.headView.BookModel = self.BookModel;
 //    [self.view addSubview:self.headView];
 }
+
 -(void)CreateFootView{
-    [self CreateViewWithFrame:CGRectMake(15, self.ContentView.yy - 1, SCREEN_WIDTH - 30, 1)];
-    FootView = [[UIView alloc]initWithFrame:CGRectMake(0, self.ContentView.yy, SCREEN_WIDTH, 50)];
+    [self CreateViewWithFrame:CGRectMake(15, SCREEN_HEIGHT - 50 - kNavigationBarHeight, SCREEN_WIDTH - 30, 1)];
+    
+    FootView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 50 - kNavigationBarHeight, SCREEN_WIDTH, 50)];
     UIButton * CollectBtn = [UIButton buttonWithTitle:@"" titleColor:kTextColor3 backgroundColor:kClearColor titleFont:12 cornerRadius:0];
     if ([self.state isEqualToString:@"collect"]) {
         [CollectBtn setTitle: [NSString stringWithFormat:@"%@",self.BookModel.article[@"collectCount"]] forState:UIControlStateNormal];
@@ -86,7 +89,7 @@
     self.CollectBtn = CollectBtn;
     
     
-    [self CreateViewWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 1, self.ContentView.yy + 15, 1, 20)];
+    [self CreateViewWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 1, SCREEN_HEIGHT - 50 - kNavigationBarHeight + 15, 1, 20)];
     
     UIButton * ZanBtn = [UIButton buttonWithTitle:@"" titleColor:kTextColor3 backgroundColor:kClearColor titleFont:12 cornerRadius:0];
     
@@ -104,7 +107,7 @@
     [FootView addSubview:ZanBtn];
     self.ZanBtn = ZanBtn;
     
-//    [self.view addSubview:view];
+    [self.view addSubview:FootView];
     
 }
 
@@ -124,9 +127,9 @@
     if (indexPath.section == 0) {
         BookContentCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"BookContentCell" forIndexPath:indexPath];
         cell.BookModel = self.BookModel;
-        cell.selectionStyle = UIAccessibilityTraitNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        
+//        cell.sp
 //        cell.cellheight = ^(float height) {
 //            self.height = height;
 //            [self.TableView reloadData];
@@ -136,7 +139,8 @@
     
     BookImageCell * cell = [tableView dequeueReusableCellWithIdentifier:@"BookImageCell" forIndexPath:indexPath];
     cell.BookModel = self.BookModel;
-    cell.selectionStyle = UIAccessibilityTraitNone;
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
 }
