@@ -245,7 +245,7 @@
              [self requesUserInfoWithResponseObject:responseObject];
             TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
             [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
-           
+
         } failure:^(NSError *error) {
             
         }];

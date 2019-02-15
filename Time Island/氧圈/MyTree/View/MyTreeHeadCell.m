@@ -22,7 +22,7 @@
         FloatingBallHeader *floatingBallHeader = [[FloatingBallHeader alloc] initWithFrame:CGRectMake(0, kNavigationBarHeight, SCREEN_WIDTH, (kHeight(432) - kNavigationBarHeight) - kHeight(200))];
         floatingBallHeader.delegate = self;
 
-        floatingBallHeader.dataList = @[@{@"number":@"68g",@"name":@"BTC"},        @{@"number":@"68g",@"name":@"线下"}, @{@"number":@"2g",@"name":@"线下支付"}, @{@"number":@"268g",@"name":@"支付"},@{@"number":@"63g",@"name":@"线下支付"}, @{@"number":@"638g",@"name":@"线下"}, @{@"number":@"168g",@"name":@"线下支付"}];
+//        floatingBallHeader.dataList = @[@{@"number":@"68g",@"name":@"BTC"},        @{@"number":@"68g",@"name":@"线下"}, @{@"number":@"2g",@"name":@"线下支付"}, @{@"number":@"268g",@"name":@"支付"},@{@"number":@"63g",@"name":@"线下支付"}, @{@"number":@"638g",@"name":@"线下"}, @{@"number":@"168g",@"name":@"线下支付"}];
         
         [self addSubview:floatingBallHeader];
         self.floatingBallHeader = floatingBallHeader;
@@ -78,7 +78,15 @@
 
 -(void)setEnergyModels:(NSMutableArray<MyTreeEnergyModel *> *)energyModels
 {
-    
+    NSMutableArray * array = [NSMutableArray array];
+    for (int i = 0; i < energyModels.count; i++) {
+        MyTreeEnergyModel * model = energyModels[i];
+        
+        [array addObject:@{@"number":model.quantity,@"name":model.status}];
+        
+    }
+    self.floatingBallHeader.dataList = array;
+    NSLog(@"self.floatingBallHeader.dataList = %@",self.floatingBallHeader.dataList);
 }
 
 -(void)buttonClick:(UIButton *)sender
@@ -94,5 +102,30 @@
     }
     
 }
+
+//-(void)getdata{
+//    TLNetworking * http = [[TLNetworking alloc]init];
+//    http.code = @"629355";
+//    http.parameters[@"status"] = @"0";
+//    http.parameters[@"limit"] = @(5);
+//    http.parameters[@"start"] = @(1);
+//    http.parameters[@"adoptTreeCode"] = self.model.code;
+//    [http postWithSuccess:^(id responseObject) {
+//        self.energyModels = [MyTreeEnergyModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+//        for (int i = 0; i < self.energyModels.count; i++) {
+//            MyTreeEnergyModel * model = self.energyModels[i];
+////            [self.floatingBallHeader.dataList arrayByAddingObjectsFromArray:@[@{@"number":model.quantity,@"name":model.status}]];
+//        }
+//        NSLog(@"self.floatingBallHeader.dataList = %@",self.floatingBallHeader.dataList);
+//    } failure:^(NSError *error) {
+//        NSLog(@"%@",error);
+//    }];
+//}
+
+
+//-(void)setModel:(PersonalCenterModel *)model{
+//    _model = model;
+//    [self getdata];
+//}
 
 @end

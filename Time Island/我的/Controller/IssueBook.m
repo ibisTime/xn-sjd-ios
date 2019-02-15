@@ -122,14 +122,24 @@
     UIView * v1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
     v1.backgroundColor = kLineColor;
     [self.view2 addSubview:v1];
+    
+    
+    
     TLTextField *textfield1 = [[TLTextField alloc]initWithFrame:CGRectMake(15, 10, SCREEN_WIDTH - 30, 55) placeholder:@"关联古树"];
     textfield1.enabled = NO;
     [self.view2 addSubview:textfield1];
     self.textfield1 = textfield1;
     
-    UIButton * btn = [[UIButton alloc]initWithFrame:CGRectMake(15, 10, SCREEN_WIDTH - 30, 55)];
-    [self.view2 addSubview:btn];
-    [btn addTarget:self action:@selector(ChooseTree) forControlEvents:UIControlEventTouchUpInside];
+    if ([self.state isEqualToString:@"tree"]) {
+        self.textfield1.text = [NSString stringWithFormat:@"%@(%@)",self.model.tree[@"productName"],self.model.tree[@"treeNumber"]];
+    }
+    else{
+        UIButton * btn = [[UIButton alloc]initWithFrame:CGRectMake(15, 10, SCREEN_WIDTH - 30, 55)];
+        [self.view2 addSubview:btn];
+        [btn addTarget:self action:@selector(ChooseTree) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+
     
     UIImageView * image1 = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 30 - 24.5, 22.5, 9.65, 9.65)];
     image1.image = kImage(@"下拉");
@@ -226,8 +236,21 @@
         http.parameters[@"content"] = self.textview.text;
         http.parameters[@"photo"] = str;
         http.parameters[@"openLevel"] = [NSString stringWithFormat:@"%d",(int)self.openLevel + 1];
-        http.parameters[@"adoptTreeCode"] = self.ConnectTreeModel.code;
-        http.parameters[@"treeNo"] = self.ConnectTreeModel.tree[@"treeNumber"];
+        
+//
+        if ([self.state isEqualToString:@"tree"]) {
+        http.parameters[@"adoptTreeCode"] = self.model.code;
+        }
+        else{
+            http.parameters[@"adoptTreeCode"] = self.ConnectTreeModel.code;
+        }
+        if ([self.state isEqualToString:@"tree"]) {
+            http.parameters[@"treeNo"] = self.model.tree[@"treeNumber"];
+        }
+        else{
+            http.parameters[@"treeNo"] = self.ConnectTreeModel.tree[@"treeNumber"];
+        }
+        
         http.parameters[@"updater"] = [TLUser user].userId;
         http.parameters[@"publishUserId"] = [TLUser user].userId;
         http.parameters[@"type"] = @"2";

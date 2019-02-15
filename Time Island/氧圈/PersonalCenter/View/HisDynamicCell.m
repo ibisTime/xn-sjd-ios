@@ -79,6 +79,13 @@
         nameLbl.text = [NSString stringWithFormat:@"我 收取%@ %.2fg",dynamicModel.adoptUserInfo[@"nickname"],[dynamicModel.quantity floatValue]/1000];
         iconImg.image = kImage(@"收  取");
     }
+    else if ([dynamicModel.type isEqualToString:@"1"]){
+        if (dynamicModel.userInfo[@"nickname"]) {
+            nameLbl.text = [NSString stringWithFormat:@"我 赠送%@ %.2fg",dynamicModel.adoptUserInfo[@"nickname"],[dynamicModel.quantity floatValue]/1000];
+        }else{
+            nameLbl.text = [dynamicModel.adoptUserInfo[@"loginName"] stringByReplacingOccurrencesOfString:[dynamicModel.adoptUserInfo[@"loginName"] substringWithRange:NSMakeRange(3,4)] withString:@" **** "];
+        }
+    }
     else
     {
         nameLbl.text = dynamicModel.note;

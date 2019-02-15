@@ -17,6 +17,7 @@
 #import "MyTreeEnergyModel.h"
 #import "MyArticleViC.h"
 #import "BookVideoVC.h"
+#import "PersonalCenterVC.h"
 @interface MyTreeVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)MyTreeTableView *tableView;
@@ -24,6 +25,9 @@
 @property (nonatomic , strong)ThePropsView *propsView;
 
 @property (nonatomic , strong)NSMutableArray <MyTreeEnergyModel *>*energyModels;
+
+@property (nonatomic,strong) NSString * state;
+@property (nonatomic,strong) NSString * tag;
 
 @end
 
@@ -47,7 +51,7 @@
     if (!_tableView) {
         
         _tableView = [[MyTreeTableView alloc] initWithFrame:CGRectMake(0, -kNavigationBarHeight , SCREEN_WIDTH,SCREEN_HEIGHT) style:UITableViewStyleGrouped];
-        
+        _tableView.model = self.model;
         _tableView.refreshDelegate = self;
         _tableView.backgroundColor = kWhiteColor;
         //        [self.view addSubview:_tableView];
@@ -134,6 +138,7 @@
             //            情感频道
             BookVideoVC * vc = [[BookVideoVC alloc]init];
             vc.state = @"tree";
+            vc.model = self.model;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
@@ -146,8 +151,28 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 2) {
-        FriendsTheTreeVC *vc = [FriendsTheTreeVC new];
-        [self.navigationController pushViewController:vc animated:YES];
+        if ([self.state isEqualToString:@"认养人介绍"]) {
+            PersonalCenterVC *vc = [PersonalCenterVC new];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.state = nil;
+        }
+//        else{
+//            FriendsTheTreeVC *vc = [FriendsTheTreeVC new];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        }
+        
+    }
+}
+
+-(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender state:(NSString *)state
+{
+    if ([state isEqualToString:@"点击"]) {
+        if (sender.tag == 101) {
+            self.state = @"认养人介绍";
+        }
+        else{
+            self.state = nil;
+        }
     }
 }
 
@@ -172,7 +197,8 @@
         
         //        [self.treeArray addObjectsFromArray:responseObject[@"data"][@"list"]];
         self.energyModels = [MyTreeEnergyModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
-        self.tableView.energyModels = self.energyModels;
+//        self.tableView.energyModels = self.energyModels;
+        self.tableView.model = self.model;
         [self.tableView reloadData];
         
     } failure:^(NSError *error) {

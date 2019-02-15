@@ -147,12 +147,6 @@
                 [weakSelf removePlaceholderView];
             }
             
-//            NSMutableArray <DynamicModel *>*array = [NSMutableArray array];
-//            for (int i = 0; i < objs.count; i ++) {
-//                DynamicModel *model = objs[i];
-//                [model setValue:[model.createDatetime convertDate] forKey:@"createDatetime"];
-//                [array addObject:model];
-//            }
             
             weakSelf.tableView.dynamicArray = [PersonalCenterVC filterMaxItemsArray:objs filterKey:@"time"];
             [weakSelf.tableView endRefreshHeader];

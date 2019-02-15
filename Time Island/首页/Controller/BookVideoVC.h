@@ -7,8 +7,8 @@
 //
 
 #import "TLBaseVC.h"
-
+#import "PersonalCenterModel.h"
 @interface BookVideoVC : TLBaseVC
 @property (nonatomic,strong) NSString * state;
-
+@property (nonatomic , strong)PersonalCenterModel *model;
 @end

@@ -71,6 +71,8 @@
 -(void)myRecodeClick{
     NSLog(@"%s",__func__);
     IssueBook * issue = [IssueBook new];
+    issue.model = self.model;
+    issue.state = self.state;
     [self.navigationController pushViewController:issue animated:YES];
 }
 
