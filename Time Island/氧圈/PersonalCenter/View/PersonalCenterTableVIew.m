@@ -17,6 +17,10 @@
 #define HisDynamic @"HisDynamicCell"
 #import "PersonalCenterCell.h"
 #define PersonalCenter @"PersonalCenterCell"
+#import "NotAdoptedCell.h"
+#define NotAdopted @"NotAdoptedCell"
+#import "PersonalCenterExpressionCell.h"
+#define PersonalCenterExpression @"PersonalCenterExpressionCell"
 @interface PersonalCenterTableVIew()<UITableViewDelegate, UITableViewDataSource,FriendsTreeHeadDelegate>
 {
     UIButton *selectBtn;
@@ -37,7 +41,9 @@
         [self registerClass:[EnergyCompeteCell class] forCellReuseIdentifier:EnergyCompete];
         [self registerClass:[HisDynamicCell class] forCellReuseIdentifier:HisDynamic];
         [self registerClass:[PersonalCenterCell class] forCellReuseIdentifier:PersonalCenter];
-        [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+        [self registerClass:[NotAdoptedCell class] forCellReuseIdentifier:NotAdopted];
+        [self registerClass:[PersonalCenterExpressionCell class] forCellReuseIdentifier:PersonalCenterExpression];
+        
 //        self.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     
@@ -72,27 +78,41 @@
             return cell;
         }else
         {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            NotAdoptedCell *cell = [tableView dequeueReusableCellWithIdentifier:NotAdopted forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            //        cell.models = self.models[indexPath.row];
             return cell;
         }
         
     }
+    
+    NSArray *dynamicArray = self.dynamicArray[indexPath.section - 1];
+    DynamicModel *model = [DynamicModel mj_objectWithKeyValues:dynamicArray[indexPath.row]];
+    
+    if ([model.type isEqualToString:@"7"]) {
+        PersonalCenterExpressionCell *cell = [tableView dequeueReusableCellWithIdentifier:PersonalCenterExpression forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.dynamicModel = model;
+        
+        
+        return cell;
+    }
+    
     HisDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:HisDynamic forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (indexPath.row == 4) {
+    if (indexPath.row == dynamicArray.count - 1) {
         cell.bottomLineView.hidden = YES;
     }else
     {
         cell.bottomLineView.hidden = NO;
     }
-    NSArray *dynamicArray = self.dynamicArray[indexPath.section - 1];
-    DynamicModel *model = [DynamicModel mj_objectWithKeyValues:dynamicArray[indexPath.row]];
-    cell.dynamicArray = model;
+    
+    cell.dynamicModel = model;
     
     
     return cell;
+    
+    
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -100,9 +120,14 @@
     if (indexPath.section == 0) {
         if(self.models.count > 0)
         {
-            return 150;
+            return 70;
         }
-        return 70;
+        return 150;
+    }
+    NSArray *dynamicArray = self.dynamicArray[indexPath.section - 1];
+    DynamicModel *model = [DynamicModel mj_objectWithKeyValues:dynamicArray[indexPath.row]];
+    if ([model.type isEqualToString:@"7"]) {
+        return 65;
     }
     return 48;
 }

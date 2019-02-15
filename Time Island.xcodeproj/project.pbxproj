@@ -79,6 +79,8 @@
 		1F47319922153B54007B5908 /* PersonalCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F47319822153B54007B5908 /* PersonalCenterModel.m */; };
 		1F47319C22153F0A007B5908 /* PersonalCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F47319B22153F0A007B5908 /* PersonalCenterCell.m */; };
 		1F4731A2221570AE007B5908 /* DynamicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4731A1221570AE007B5908 /* DynamicModel.m */; };
+		1F4731B122166BFD007B5908 /* NotAdoptedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4731B022166BFD007B5908 /* NotAdoptedCell.m */; };
+		1F4731B422168AF2007B5908 /* PersonalCenterExpressionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4731B322168AF2007B5908 /* PersonalCenterExpressionCell.m */; };
 		1F9360AC21EDFCA5007E522A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360AA21EDFCA4007E522A /* MapViewController.m */; };
 		1F93610321EDFD8F007E522A /* ToClaimTheGiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360DA21EDFD8E007E522A /* ToClaimTheGiftVC.m */; };
 		1F93610421EDFD8F007E522A /* MyGiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360DC21EDFD8E007E522A /* MyGiftVC.m */; };
@@ -641,6 +643,10 @@
 		1F47319B22153F0A007B5908 /* PersonalCenterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterCell.m; sourceTree = "<group>"; };
 		1F4731A0221570AE007B5908 /* DynamicModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicModel.h; sourceTree = "<group>"; };
 		1F4731A1221570AE007B5908 /* DynamicModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicModel.m; sourceTree = "<group>"; };
+		1F4731AF22166BFD007B5908 /* NotAdoptedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotAdoptedCell.h; sourceTree = "<group>"; };
+		1F4731B022166BFD007B5908 /* NotAdoptedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotAdoptedCell.m; sourceTree = "<group>"; };
+		1F4731B222168AF2007B5908 /* PersonalCenterExpressionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalCenterExpressionCell.h; sourceTree = "<group>"; };
+		1F4731B322168AF2007B5908 /* PersonalCenterExpressionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterExpressionCell.m; sourceTree = "<group>"; };
 		1F9360AA21EDFCA4007E522A /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		1F9360AB21EDFCA4007E522A /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		1F9360AD21EDFCDA007E522A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -1608,10 +1614,14 @@
 				1F19A90221FEFF130090BF84 /* PersonalCenterHeadView.m */,
 				1F19A90421FF07A50090BF84 /* PersonalCenterTableVIew.h */,
 				1F19A90521FF07A50090BF84 /* PersonalCenterTableVIew.m */,
-				1FF6396E21EC35C500F5FF68 /* HisDynamicCell.h */,
-				1FF6396F21EC35C500F5FF68 /* HisDynamicCell.m */,
 				1F47319A22153F0A007B5908 /* PersonalCenterCell.h */,
 				1F47319B22153F0A007B5908 /* PersonalCenterCell.m */,
+				1FF6396E21EC35C500F5FF68 /* HisDynamicCell.h */,
+				1FF6396F21EC35C500F5FF68 /* HisDynamicCell.m */,
+				1F4731AF22166BFD007B5908 /* NotAdoptedCell.h */,
+				1F4731B022166BFD007B5908 /* NotAdoptedCell.m */,
+				1F4731B222168AF2007B5908 /* PersonalCenterExpressionCell.h */,
+				1F4731B322168AF2007B5908 /* PersonalCenterExpressionCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4356,6 +4366,7 @@
 				B8ED2E6D21E6EA3400FADCCE /* TreeRenYangVC.m in Sources */,
 				B81E608521DC9FB200873AB9 /* MineVC.m in Sources */,
 				B80D385D21F85F1E00206B55 /* GoodsModel.m in Sources */,
+				1F4731B422168AF2007B5908 /* PersonalCenterExpressionCell.m in Sources */,
 				B81E608B21DC9FE500873AB9 /* MallVC.m in Sources */,
 				1F93615F21EE017C007E522A /* MyHomePageVC.m in Sources */,
 				3671897C2213AEE60050488E /* MessageDetailsVC.m in Sources */,
@@ -4647,6 +4658,7 @@
 				B88E542A21F9AE2D00C33040 /* BuyRemarkCell.m in Sources */,
 				B81E5EA821DC8B3C00873AB9 /* ViewController.m in Sources */,
 				B81E5FF021DC8FC200873AB9 /* BaseLabel.m in Sources */,
+				1F4731B122166BFD007B5908 /* NotAdoptedCell.m in Sources */,
 				3610EEC121EDC3A300FD345D /* AddCardVC.m in Sources */,
 				B8A27AA521E5A15100914897 /* TreeListVC.m in Sources */,
 				B80D389121F8754600206B55 /* USERXX.m in Sources */,
