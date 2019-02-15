@@ -14,6 +14,9 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - AMapFoundation (1.5.5)
+  - AMapSearch (6.5.0):
+    - AMapFoundation (~> 1.4)
   - FSCalendar (2.7.9)
   - HappyDNS (0.3.14)
   - IQKeyboardManager (5.0.2)
@@ -32,6 +35,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
+  - AMapSearch
   - FSCalendar (~> 2.7.9)
   - IQKeyboardManager (= 5.0.2)
   - JSONModel (~> 1.1.0)
@@ -46,6 +50,8 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - AMapFoundation
+    - AMapSearch
     - FSCalendar
     - HappyDNS
     - IQKeyboardManager
@@ -60,6 +66,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AMapFoundation: 652bd70ba579f48a98bdf0c74d6e62a89a06ca58
+  AMapSearch: c22d8c98e04aad30615834e567781ec1367c4f36
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   HappyDNS: dc6a164ee81979093123c241c6353bcf0218add6
   IQKeyboardManager: 5ab84749f20f682f784160c2c63bef4f19d10d26
@@ -72,6 +80,6 @@ SPEC CHECKSUMS:
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SVProgressHUD: 3f37f3409ddb15f35c99315ae7dc33c474aa3256
 
-PODFILE CHECKSUM: 2a3cdc2b2f371bcd74a4be9e11c913f7da8a9a86
+PODFILE CHECKSUM: 6b6709fd40a856e78198722d4fe8f85917ab6cab
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3

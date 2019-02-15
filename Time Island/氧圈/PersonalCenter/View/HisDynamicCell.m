@@ -27,7 +27,7 @@
         
         
         iconImg = [[UIImageView alloc]initWithFrame:CGRectMake(topLineView.x - 8.5, topLineView.yy, 18, 18)];
-        iconImg.image = kImage(@"收  取");
+        
         [self addSubview:iconImg];
         
         nameLbl = [[UILabel alloc]init];
@@ -77,9 +77,12 @@
     
     if ([dynamicModel.type isEqualToString:@"3"]) {
         nameLbl.text = [NSString stringWithFormat:@"我 收取%@ %.2fg",dynamicModel.adoptUserInfo[@"nickname"],[dynamicModel.quantity floatValue]/1000];
-    }else
+        iconImg.image = kImage(@"收  取");
+    }
+    else
     {
         nameLbl.text = dynamicModel.note;
+        iconImg.image = kImage(@"地址（选择）");
     }
     
     

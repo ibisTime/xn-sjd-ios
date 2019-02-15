@@ -15,6 +15,6 @@ pod 'JSONModel' , '~>1.1.0'
 pod 'IQKeyboardManager',    '5.0.2'
 pod 'MBProgressHUD',        '0.9.2’
 pod 'SVProgressHUD',        '2.2'
-
+pod 'AMapSearch'
 end
 

@@ -10,4 +10,9 @@
 
 @interface MapViewController : TLBaseVC
 
+//维度
+@property (nonatomic , assign)CGFloat latitude;
+
+//经度
+@property (nonatomic , assign)CGFloat longitude;
 @end
