@@ -143,10 +143,10 @@
 /**
  @method 获取指定宽度width,字体大小fontSize,字符串value的高度
  @param value 待计算的字符串
- @param fontSize 字体的大小
- @param Width 限制字符串显示区域的宽度
+ @param width 限制字符串显示区域的宽度
  @result float 返回的高度
  */
+
 - (float) heightForString:(NSString *)value andWidth:(float)width{
     //根据label文字获取CGRect
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];

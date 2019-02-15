@@ -43,18 +43,73 @@
 
 -(void)setModels:(PersonalCenterModel *)models
 {
-    _nameLable.text = models.tree[@"productName"];
-    _timeLbl.text = [NSString stringWithFormat:@"%@-%@",[models.startDatetime convertDate],[models.endDatetime convertDate]];
-    _addressLable.text = [NSString stringWithFormat:@"%@ %@",models.tree[@"city"],models.tree[@"area"]];
     
-    NSString *prompt1 = @"还剩余";
-    NSString *time = @"14";
-    NSString *prompt2 = @"天认养到期";
-    NSString *promptAll = [NSString stringWithFormat:@"%@%@%@",prompt1,time,prompt2];
-   
-    NSMutableAttributedString *poundageAttrStr = [[NSMutableAttributedString alloc] initWithString:promptAll];
-    [poundageAttrStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(prompt1.length,time.length)];
-    _promptLbl.attributedText = poundageAttrStr;
+    if (models) {
+        _nameLable.text = models.tree[@"productName"];
+        _timeLbl.text = [NSString stringWithFormat:@"%@-%@",[models.startDatetime convertDate],[models.endDatetime convertDate]];
+        _addressLable.text = [NSString stringWithFormat:@"%@ %@",models.tree[@"city"],models.tree[@"area"]];
+        
+        NSString *prompt1 = @"还剩余";
+        NSString *time =  [self intervalSinceNow:[models.endDatetime convertToDetailDate]];
+        NSString *prompt2 = @"天认养到期";
+        NSString *promptAll = [NSString stringWithFormat:@"%@%@%@",prompt1,time,prompt2];
+        
+       
+        
+        NSMutableAttributedString *poundageAttrStr = [[NSMutableAttributedString alloc] initWithString:promptAll];
+        [poundageAttrStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(prompt1.length,time.length)];
+        _promptLbl.attributedText = poundageAttrStr;
+    }
+    else{
+        
+    }
+    
+    
 }
-
+- (NSString *)intervalSinceNow: (NSString *) theDate
+{
+//    NSString *timeString=@"";
+    NSDateFormatter *format=[[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *fromdate=[format dateFromString:theDate];
+    NSTimeZone *fromzone = [NSTimeZone systemTimeZone];
+    NSInteger frominterval = [fromzone secondsFromGMTForDate: fromdate];
+    NSDate *fromDate = [fromdate dateByAddingTimeInterval: frominterval];
+    
+    //获取当前时间
+    NSDate *adate = [NSDate date];
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate: adate];
+    NSDate *localeDate = [adate dateByAddingTimeInterval: interval];
+    
+    double intervalTime = [fromDate timeIntervalSinceReferenceDate] - [localeDate timeIntervalSinceReferenceDate];
+    long lTime = labs((long)intervalTime);
+//    NSInteger iSeconds = lTime % 60;
+//    NSInteger iMinutes = (lTime / 60) % 60;
+//    NSInteger iHours = fabs(lTime/3600);
+    NSInteger iDays = lTime/60/60/24;
+//    NSInteger iMonth = lTime/60/60/24/12;
+//    NSInteger iYears = lTime/60/60/24/384;
+    NSString * day = [NSString stringWithFormat:@"%ld",iDays];
+    return day;
+    
+//    NSLog(@"相差%ld年%ld月 或者 %ld日%ld时%ld分%ld秒", iYears,iMonth,iDays,iHours,iMinutes,iSeconds);
+//    if (iHours<1 && iMinutes>0)
+//    {
+//        timeString=[NSString stringWithFormat:@"%ld分",iMinutes];
+//    }else if (iHours>0&&iDays<1 && iMinutes>0) {
+//        timeString=[NSString stringWithFormat:@"%ld时%ld分",iHours,iMinutes];
+//    }
+//    else if (iHours>0&&iDays<1) {
+//        timeString=[NSString stringWithFormat:@"%ld时",iHours];
+//    }else if (iDays>0 && iHours>0)
+//    {
+//        timeString=[NSString stringWithFormat:@"%ld天%ld时",iDays,iHours];
+//    }
+//    else if (iDays>0)
+//    {
+//        timeString=[NSString stringWithFormat:@"%ld天",iDays];
+//    }
+//    return timeString;
+}
 @end
