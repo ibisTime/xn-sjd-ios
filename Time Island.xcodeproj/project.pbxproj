@@ -145,6 +145,9 @@
 		361396032215386600F6F2F3 /* FriendsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 361396022215386600F6F2F3 /* FriendsModel.m */; };
 		3613961222156FF400F6F2F3 /* BookImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3613961122156FF400F6F2F3 /* BookImageCell.m */; };
 		361396152215700900F6F2F3 /* BookContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 361396142215700900F6F2F3 /* BookContentCell.m */; };
+		362341742216A6A400143683 /* DanmuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 362341732216A6A400143683 /* DanmuCell.m */; };
+		362341772216AAED00143683 /* IntroduceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 362341762216AAED00143683 /* IntroduceCell.m */; };
+		3623417A2216AB8E00143683 /* TreeDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 362341792216AB8E00143683 /* TreeDetailCell.m */; };
 		363CD5E022029B9B00A81CFA /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 363CD5DF22029B9B00A81CFA /* OrderModel.m */; };
 		363CD5E32202D44600A81CFA /* ConnectTreeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 363CD5E22202D44600A81CFA /* ConnectTreeModel.m */; };
 		363E291421F84530003981CD /* CertifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 363E291321F84530003981CD /* CertifyVC.m */; };
@@ -770,6 +773,12 @@
 		3613961122156FF400F6F2F3 /* BookImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookImageCell.m; sourceTree = "<group>"; };
 		361396132215700900F6F2F3 /* BookContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookContentCell.h; sourceTree = "<group>"; };
 		361396142215700900F6F2F3 /* BookContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookContentCell.m; sourceTree = "<group>"; };
+		362341722216A6A400143683 /* DanmuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DanmuCell.h; sourceTree = "<group>"; };
+		362341732216A6A400143683 /* DanmuCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DanmuCell.m; sourceTree = "<group>"; };
+		362341752216AAED00143683 /* IntroduceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroduceCell.h; sourceTree = "<group>"; };
+		362341762216AAED00143683 /* IntroduceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroduceCell.m; sourceTree = "<group>"; };
+		362341782216AB8E00143683 /* TreeDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeDetailCell.h; sourceTree = "<group>"; };
+		362341792216AB8E00143683 /* TreeDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeDetailCell.m; sourceTree = "<group>"; };
 		363CD5DE22029B9B00A81CFA /* OrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		363CD5DF22029B9B00A81CFA /* OrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
 		363CD5E12202D44600A81CFA /* ConnectTreeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectTreeModel.h; sourceTree = "<group>"; };
@@ -1735,6 +1744,12 @@
 				1F1B007421E72B24000BEBD3 /* MyFreeDynamicCell.m */,
 				1F1B007621E72D92000BEBD3 /* CollectEnergyDetailsCell.h */,
 				1F1B007721E72D92000BEBD3 /* CollectEnergyDetailsCell.m */,
+				362341722216A6A400143683 /* DanmuCell.h */,
+				362341732216A6A400143683 /* DanmuCell.m */,
+				362341752216AAED00143683 /* IntroduceCell.h */,
+				362341762216AAED00143683 /* IntroduceCell.m */,
+				362341782216AB8E00143683 /* TreeDetailCell.h */,
+				362341792216AB8E00143683 /* TreeDetailCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4499,6 +4514,7 @@
 				B81E5FB721DC8FC200873AB9 /* PushSortBar.m in Sources */,
 				3613961222156FF400F6F2F3 /* BookImageCell.m in Sources */,
 				36A84B5C22116C89003CDE19 /* GetMoneyVC.m in Sources */,
+				362341772216AAED00143683 /* IntroduceCell.m in Sources */,
 				1F19A8CE21FAA26D0090BF84 /* SignFinishView.m in Sources */,
 				3680127022165B4800A7FB0B /* PhotoView.m in Sources */,
 				B80D385B21F85F1E00206B55 /* GoodsTypeModel.m in Sources */,
@@ -4585,6 +4601,7 @@
 				B81E5FC821DC8FC200873AB9 /* UILabel+Extension.m in Sources */,
 				B81E602021DC906D00873AB9 /* TLUserExt.m in Sources */,
 				B8F3724A21FEEA1E0078B03B /* SpecsListModel.m in Sources */,
+				3623417A2216AB8E00143683 /* TreeDetailCell.m in Sources */,
 				3671897F2213B7FF0050488E /* CompanyCertifyVC.m in Sources */,
 				1F93616721EE01B4007E522A /* MyHomePageHeadView.m in Sources */,
 				B81E5FC021DC8FC200873AB9 /* TLCaptchaView.m in Sources */,
@@ -4645,6 +4662,7 @@
 				1F19A8FA21FED86B0090BF84 /* MyTreeEnergyModel.m in Sources */,
 				B815278F21EC8C1300F89395 /* NoticeCell.m in Sources */,
 				B81E5FE421DC8FC200873AB9 /* HttpRequestObject.m in Sources */,
+				362341742216A6A400143683 /* DanmuCell.m in Sources */,
 				B80D386021F85F1E00206B55 /* GoodsInfoView.m in Sources */,
 				1F93610921EDFD8F007E522A /* MyGiftCell.m in Sources */,
 				1F19A8CC21FAA26D0090BF84 /* SelectedListModel.m in Sources */,

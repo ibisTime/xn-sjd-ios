@@ -15,4 +15,6 @@
 @property (nonatomic , strong)NSMutableArray <MyTreeEnergyModel *>*energyModels;
 @property (nonatomic , strong)PersonalCenterModel *model;
 @property (nonatomic,strong) NSMutableArray<DynamicModel *> * DynamicModels;
+
+@property (nonatomic,strong) NSMutableArray<DynamicModel *> * DynamicPhotoModels;
 @end

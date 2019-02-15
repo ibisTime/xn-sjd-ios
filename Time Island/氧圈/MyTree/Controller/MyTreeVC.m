@@ -17,6 +17,7 @@
 #import "MyTreeEnergyModel.h"
 #import "MyArticleViC.h"
 #import "BookVideoVC.h"
+#import "PersonalCenterVC.h"
 @interface MyTreeVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)MyTreeTableView *tableView;
@@ -24,6 +25,9 @@
 @property (nonatomic , strong)ThePropsView *propsView;
 
 @property (nonatomic , strong)NSMutableArray <MyTreeEnergyModel *>*energyModels;
+
+@property (nonatomic,strong) NSString * state;
+@property (nonatomic,strong) NSString * tag;
 
 @end
 
@@ -147,8 +151,28 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 2) {
-        FriendsTheTreeVC *vc = [FriendsTheTreeVC new];
-        [self.navigationController pushViewController:vc animated:YES];
+        if ([self.state isEqualToString:@"认养人介绍"]) {
+            PersonalCenterVC *vc = [PersonalCenterVC new];
+            [self.navigationController pushViewController:vc animated:YES];
+            self.state = nil;
+        }
+//        else{
+//            FriendsTheTreeVC *vc = [FriendsTheTreeVC new];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        }
+        
+    }
+}
+
+-(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender state:(NSString *)state
+{
+    if ([state isEqualToString:@"点击"]) {
+        if (sender.tag == 101) {
+            self.state = @"认养人介绍";
+        }
+        else{
+            self.state = nil;
+        }
     }
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DynamicModel.h"
 
 @protocol MyFreeDynamicDelegate <NSObject>
 
@@ -19,4 +19,5 @@
 
 @property (nonatomic, assign) id <MyFreeDynamicDelegate> delegate;
 
+@property (nonatomic,strong) NSMutableArray<DynamicModel *> * DynamicPhotoModels;
 @end
