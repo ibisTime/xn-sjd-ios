@@ -13,6 +13,7 @@
 @protocol MyTreeHeadDelegate <NSObject>
 
 -(void)MyTreeHeadButton:(NSInteger )tag;
+-(void)paopaoclick:(MyTreeEnergyModel *)model;
 
 @end
 
@@ -25,4 +26,6 @@
 @property (nonatomic , strong)NSMutableArray <MyTreeEnergyModel *>*energyModels;
 
 @property (nonatomic , strong)PersonalCenterModel *model;
+
+@property (nonatomic,strong) NSString * protect;
 @end

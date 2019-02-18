@@ -250,6 +250,17 @@ NSString  * const kCDSysTimeFormat = @"MMM dd, yyyy hh:mm:ss aa";
     return [formatter stringFromDate:date01];
     
 }
+-(NSString *)convertToChineseDate{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"MMM dd, yyyy hh:mm:ss aa";
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    
+    NSDate *date01 = [formatter dateFromString:self];
+    formatter.dateFormat = @"yyyy年MM月dd日";
+    formatter.locale = [NSLocale currentLocale];
+    
+    return [formatter stringFromDate:date01];
+}
 
 - (NSDate *)convertToSysDate {
     

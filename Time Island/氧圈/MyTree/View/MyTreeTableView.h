@@ -17,4 +17,6 @@
 @property (nonatomic,strong) NSMutableArray<DynamicModel *> * DynamicModels;
 
 @property (nonatomic,strong) NSMutableArray<DynamicModel *> * DynamicPhotoModels;
+
+@property (nonatomic,strong) NSString * protect;
 @end

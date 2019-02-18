@@ -146,6 +146,9 @@
 		361396032215386600F6F2F3 /* FriendsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 361396022215386600F6F2F3 /* FriendsModel.m */; };
 		3613961222156FF400F6F2F3 /* BookImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3613961122156FF400F6F2F3 /* BookImageCell.m */; };
 		361396152215700900F6F2F3 /* BookContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 361396142215700900F6F2F3 /* BookContentCell.m */; };
+		3622C372221A7B3900087EDD /* ThePropsDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3622C371221A7B3900087EDD /* ThePropsDetailsView.m */; };
+		3622C375221A8FBE00087EDD /* BuyPropsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3622C374221A8FBE00087EDD /* BuyPropsView.m */; };
+		3622C378221AB55A00087EDD /* HistroyUserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3622C377221AB55A00087EDD /* HistroyUserVC.m */; };
 		362341742216A6A400143683 /* DanmuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 362341732216A6A400143683 /* DanmuCell.m */; };
 		362341772216AAED00143683 /* IntroduceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 362341762216AAED00143683 /* IntroduceCell.m */; };
 		3623417A2216AB8E00143683 /* TreeDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 362341792216AB8E00143683 /* TreeDetailCell.m */; };
@@ -776,6 +779,12 @@
 		3613961122156FF400F6F2F3 /* BookImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookImageCell.m; sourceTree = "<group>"; };
 		361396132215700900F6F2F3 /* BookContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookContentCell.h; sourceTree = "<group>"; };
 		361396142215700900F6F2F3 /* BookContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookContentCell.m; sourceTree = "<group>"; };
+		3622C370221A7B3900087EDD /* ThePropsDetailsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThePropsDetailsView.h; sourceTree = "<group>"; };
+		3622C371221A7B3900087EDD /* ThePropsDetailsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThePropsDetailsView.m; sourceTree = "<group>"; };
+		3622C373221A8FBE00087EDD /* BuyPropsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyPropsView.h; sourceTree = "<group>"; };
+		3622C374221A8FBE00087EDD /* BuyPropsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuyPropsView.m; sourceTree = "<group>"; };
+		3622C376221AB55A00087EDD /* HistroyUserVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistroyUserVC.h; sourceTree = "<group>"; };
+		3622C377221AB55A00087EDD /* HistroyUserVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistroyUserVC.m; sourceTree = "<group>"; };
 		362341722216A6A400143683 /* DanmuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DanmuCell.h; sourceTree = "<group>"; };
 		362341732216A6A400143683 /* DanmuCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DanmuCell.m; sourceTree = "<group>"; };
 		362341752216AAED00143683 /* IntroduceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroduceCell.h; sourceTree = "<group>"; };
@@ -1753,6 +1762,8 @@
 				362341762216AAED00143683 /* IntroduceCell.m */,
 				362341782216AB8E00143683 /* TreeDetailCell.h */,
 				362341792216AB8E00143683 /* TreeDetailCell.m */,
+				3622C376221AB55A00087EDD /* HistroyUserVC.h */,
+				3622C377221AB55A00087EDD /* HistroyUserVC.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1865,6 +1876,10 @@
 			children = (
 				1F1B00A321E83CA4000BEBD3 /* ThePropsView.h */,
 				1F1B00A421E83CA4000BEBD3 /* ThePropsView.m */,
+				3622C370221A7B3900087EDD /* ThePropsDetailsView.h */,
+				3622C371221A7B3900087EDD /* ThePropsDetailsView.m */,
+				3622C373221A8FBE00087EDD /* BuyPropsView.h */,
+				3622C374221A8FBE00087EDD /* BuyPropsView.m */,
 			);
 			path = "TheProps道具";
 			sourceTree = "<group>";
@@ -4376,6 +4391,7 @@
 				36DB50D921F59AEF009D56EF /* NewsVCCell.m in Sources */,
 				3689766E21EED9A3005F1177 /* BookCell.m in Sources */,
 				365514D821FB009000E54996 /* introduceView.m in Sources */,
+				3622C378221AB55A00087EDD /* HistroyUserVC.m in Sources */,
 				B81E609F21DCAB8F00873AB9 /* HW3DBannerView.m in Sources */,
 				B81E5FE121DC8FC200873AB9 /* HttpSign.m in Sources */,
 				1F3EBB0121F5BB55005BC837 /* GoodsDetailsHeadView.m in Sources */,
@@ -4392,6 +4408,7 @@
 				B81E5FBF21DC8FC200873AB9 /* TLTimeButton.m in Sources */,
 				1F47319C22153F0A007B5908 /* PersonalCenterCell.m in Sources */,
 				B8ED2E6D21E6EA3400FADCCE /* TreeRenYangVC.m in Sources */,
+				3622C372221A7B3900087EDD /* ThePropsDetailsView.m in Sources */,
 				B81E608521DC9FB200873AB9 /* MineVC.m in Sources */,
 				B80D385D21F85F1E00206B55 /* GoodsModel.m in Sources */,
 				1F4731B422168AF2007B5908 /* PersonalCenterExpressionCell.m in Sources */,
@@ -4690,6 +4707,7 @@
 				B88E542A21F9AE2D00C33040 /* BuyRemarkCell.m in Sources */,
 				B81E5EA821DC8B3C00873AB9 /* ViewController.m in Sources */,
 				B81E5FF021DC8FC200873AB9 /* BaseLabel.m in Sources */,
+				3622C375221A8FBE00087EDD /* BuyPropsView.m in Sources */,
 				1F4731B122166BFD007B5908 /* NotAdoptedCell.m in Sources */,
 				3610EEC121EDC3A300FD345D /* AddCardVC.m in Sources */,
 				B8A27AA521E5A15100914897 /* TreeListVC.m in Sources */,

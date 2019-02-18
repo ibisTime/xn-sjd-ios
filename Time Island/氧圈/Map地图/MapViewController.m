@@ -10,7 +10,7 @@
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 //#import <AMapLocationKit/AMapLocationKit.h>
-#import <AMapSearchKit/AMapSearchAPI.h>
+//#import <AMapSearchKit/AMapSearchAPI.h>
 #import "JZLocationConverter.h"//坐标转换
 
 @import MapKit;//ios7 使用苹果自带的框架使用@import导入则不用在Build Phases 导入框架了
@@ -18,7 +18,7 @@
 @interface MapViewController ()<MAMapViewDelegate>
 
 @property (nonatomic , strong)MAMapView *mapView;
-@property (nonatomic , strong)AMapSearchAPI *search;
+//@property (nonatomic , strong)AMapSearchAPI *search;
 @end
 
 @implementation MapViewController

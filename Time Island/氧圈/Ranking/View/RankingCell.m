@@ -105,8 +105,8 @@
         [button setImage:kImage(@"收  取") forState:(UIControlStateNormal)];
     }];
     
-    cerNumberLbl.text = [NSString stringWithFormat:@"获得了%@个环保证书",FriendsModel.toUserInfo[@"certificateCount"]];
-    kgLabel.text = [ NSString stringWithFormat:@"%.2fKG碳泡泡",[FriendsModel.tppAmount floatValue] / 1000];
+    cerNumberLbl.text = [NSString stringWithFormat:@"获得了%@个环保证书",FriendsModel.certificateCount];
+    kgLabel.text = [ NSString stringWithFormat:@"%.2f碳泡泡",[FriendsModel.tppAmount floatValue] / 1000];
     [kgLabel sizeToFit];
     kgLabel.frame = CGRectMake(SCREEN_WIDTH - kgLabel.width - 15 , 0, kgLabel.width, 65);
 }
