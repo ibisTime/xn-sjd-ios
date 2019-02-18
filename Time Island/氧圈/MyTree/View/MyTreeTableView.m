@@ -131,6 +131,8 @@
     NSArray * detail = @[self.model.tree[@"productName"],self.model.tree[@"rank"],self.model.tree[@"area"],[NSString stringWithFormat:@"%@-%@",[self.model.startDatetime convertToDetailDateWithoutHour],[self.model.endDatetime convertToDetailDateWithoutHour] ],self.model.tree[@"maintainer"][@"company"][@"name"],self.model.tree[@"maintainer"][@"company"][@"charger"],@"",@""];
     TreeDetailCell * cell = [tableView dequeueReusableCellWithIdentifier:TreeDetail forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.separatorInset = UITableViewCellSeparatorStyleSingleLine;
+    self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     cell.titlearr = arr[indexPath.row];
     cell.detailstr = detail[indexPath.row];
     return cell;
@@ -148,7 +150,20 @@
 {
     [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:tag];
 }
+-(void)paopaoclick:(MyTreeEnergyModel *)model{
+    NSLog(@"%s",__func__);
+    
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629350";
+    http.parameters[@"code"] = model.code;
+    http.parameters[@"userId"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
+        [self reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
 
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0) {

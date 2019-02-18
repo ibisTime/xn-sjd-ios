@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-
+#import "PersonalCenterModel.h"
 
 @interface CertificateOfPlantView : UIView
 
 @property (nonatomic , strong)UIButton *ShutDownBtn;
+
+@property (nonatomic , strong)PersonalCenterModel *model;
+@property (nonatomic,assign) int count;
+
 
 @end

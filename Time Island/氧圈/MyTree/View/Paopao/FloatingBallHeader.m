@@ -50,7 +50,7 @@ static NSInteger const PaopaoMaxNum = 10;
         PaopaoButton *paopao = self.paopaoBtnArray[i];
         paopao.tag = i;
         paopao.hidden = NO;
-        [paopao setTitle:dataList[i][@"name"]];
+//        [paopao setTitle:dataList[i][@"name"]];
         [paopao setNumber:dataList[i][@"number"]];
         CGPoint randomPoint = [self getRandomPoint];
         paopao.center = randomPoint;
@@ -132,6 +132,9 @@ static NSInteger const PaopaoMaxNum = 10;
 #pragma mark - 泡泡点击
 
 - (void)paopaoClick:(PaopaoButton *)sender {
+    
+    NSLog(@"%s",__func__);
+    
     [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         sender.frame = CGRectMake(sender.frame.origin.x, 0, sender.frame.size.width, sender.frame.size.height);
     } completion:^(BOOL finished) {

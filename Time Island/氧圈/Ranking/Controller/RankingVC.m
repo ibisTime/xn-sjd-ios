@@ -78,19 +78,19 @@
 
 -(void)refresh{
     if ([self.state isEqualToString:@"rank"]) {
-    TLNetworking * http = [[TLNetworking alloc]init];
-    http.code = @"805159";
-    http.parameters[@"start"] = @(1);
-    http.parameters[@"limit"] = @(30);
-    http.parameters[@"orderDir"] = @"asc";
-    http.parameters[@"orderColumn"] = @"row_no";
-    [http postWithSuccess:^(id responseObject) {
-        self.RankModels = [RankModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-        self.tableView.state = self.state;
-         self.tableView.RankModels = self.RankModels;
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
-    }];
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"805159";
+        http.parameters[@"start"] = @(1);
+        http.parameters[@"limit"] = @(30);
+        http.parameters[@"orderDir"] = @"asc";
+        http.parameters[@"orderColumn"] = @"row_no";
+        [http postWithSuccess:^(id responseObject) {
+            self.RankModels = [RankModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+            self.tableView.state = self.state;
+            self.tableView.RankModels = self.RankModels;
+            [self.tableView reloadData];
+        } failure:^(NSError *error) {
+        }];
     }
     else if ([self.state isEqualToString:@"friend"]){
         TLNetworking * http = [[TLNetworking alloc]init];

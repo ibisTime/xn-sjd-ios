@@ -61,14 +61,24 @@
     
     if (indexPath.section == 0) {
         MineRankCell *cell = [tableView dequeueReusableCellWithIdentifier:MineRank forIndexPath:indexPath];
-        for (int i = 0; i < self.RankModels.count; i++) {
-            RankModel * model = self.RankModels[i];
-            if ([[TLUser user].userId isEqualToString:model.userId]) {
-                cell.RankModel = model;
+        
+            if ([self.state isEqualToString:@"friend"]){
+                for (int i = 0; i < self.FriendsModels.count; i++) {
+                    FriendsModel * model = self.FriendsModels[i];
+                    if ([[TLUser user].userId isEqualToString:model.toUser]) {
+                        cell.FriendsModel = model;
+                    }
+                }
+            }
+            else if ([self.state isEqualToString:@"rank"]){
+                for (int i = 0; i < self.RankModels.count; i++) {
+                RankModel * model = self.RankModels[i];
+                if ([[TLUser user].userId isEqualToString:model.userId]) {
+                    cell.RankModel = model;
+                }
             }
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.numberImg.hidden = YES;
         return cell;
     }
     

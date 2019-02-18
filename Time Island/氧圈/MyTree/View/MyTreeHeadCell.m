@@ -9,6 +9,9 @@
 #import "MyTreeHeadCell.h"
 
 @implementation MyTreeHeadCell
+{
+    UIImageView * img;
+}
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -19,11 +22,14 @@
         backImg.image = kImage(@"树 跟背景");
         [self addSubview:backImg];
         
+        
+        img = [[UIImageView alloc]initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH,  kHeight(432) - 100)];
+        [self addSubview:img];
+
+        
         FloatingBallHeader *floatingBallHeader = [[FloatingBallHeader alloc] initWithFrame:CGRectMake(0, kNavigationBarHeight, SCREEN_WIDTH, (kHeight(432) - kNavigationBarHeight) - kHeight(200))];
         floatingBallHeader.delegate = self;
-
-//        floatingBallHeader.dataList = @[@{@"number":@"68g",@"name":@"BTC"},        @{@"number":@"68g",@"name":@"线下"}, @{@"number":@"2g",@"name":@"线下支付"}, @{@"number":@"268g",@"name":@"支付"},@{@"number":@"63g",@"name":@"线下支付"}, @{@"number":@"638g",@"name":@"线下"}, @{@"number":@"168g",@"name":@"线下支付"}];
-        
+  
         [self addSubview:floatingBallHeader];
         self.floatingBallHeader = floatingBallHeader;
         
@@ -54,7 +60,7 @@
         [self addSubview:nameLbl];
         
         
-        NSArray *iconImgArray = @[@"地图",@"道具",@"攻略",@"赠送"];
+        NSArray *iconImgArray = @[@"地图",@"道具",@"攻略"];
         for (int i = 0; i < iconImgArray.count; i ++) {
             UIButton *iconBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
             iconBtn.frame = CGRectMake(18 + i%iconImgArray.count * 56.5, kHeight(432) - 50.5, 36, 38);
@@ -78,6 +84,7 @@
 
 -(void)setEnergyModels:(NSMutableArray<MyTreeEnergyModel *> *)energyModels
 {
+    _energyModels = energyModels;
     NSMutableArray * array = [NSMutableArray array];
     for (int i = 0; i < energyModels.count; i++) {
         MyTreeEnergyModel * model = energyModels[i];
@@ -89,12 +96,40 @@
     NSLog(@"self.floatingBallHeader.dataList = %@",self.floatingBallHeader.dataList);
 }
 
+-(void)setModel:(PersonalCenterModel *)model{
+    
+    if ([model.isShelter isEqualToString:@"1"]) {
+        
+        img.image = kImage(@"保护罩");
+    }
+}
+
 -(void)buttonClick:(UIButton *)sender
 {
+    NSLog(@"%s",__func__);
     [_delegate MyTreeHeadButton:sender.tag - 100];
 }
 
 - (void)floatingBallHeader:(FloatingBallHeader *)floatingBallHeader didPappaoAtIndex:(NSInteger)index isLastOne:(BOOL)isLastOne {
+    
+    MyTreeEnergyModel * model = self.energyModels[index];
+    
+    if ([self.delegate respondsToSelector:@selector(floatingBallHeader:didPappaoAtIndex:isLastOne:)]) {
+        [self.delegate paopaoclick:model];
+    }
+    
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629350";
+    http.parameters[@"code"] = model.code;
+    http.parameters[@"userId"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
+        [TLAlert alertWithSucces:@"收取成功!"];
+    } failure:^(NSError *error) {
+        
+    }];
+    
+    
+    
     NSLog(@"点了%zd", index);
     if (isLastOne) {
         
@@ -103,29 +138,6 @@
     
 }
 
-//-(void)getdata{
-//    TLNetworking * http = [[TLNetworking alloc]init];
-//    http.code = @"629355";
-//    http.parameters[@"status"] = @"0";
-//    http.parameters[@"limit"] = @(5);
-//    http.parameters[@"start"] = @(1);
-//    http.parameters[@"adoptTreeCode"] = self.model.code;
-//    [http postWithSuccess:^(id responseObject) {
-//        self.energyModels = [MyTreeEnergyModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-//        for (int i = 0; i < self.energyModels.count; i++) {
-//            MyTreeEnergyModel * model = self.energyModels[i];
-////            [self.floatingBallHeader.dataList arrayByAddingObjectsFromArray:@[@{@"number":model.quantity,@"name":model.status}]];
-//        }
-//        NSLog(@"self.floatingBallHeader.dataList = %@",self.floatingBallHeader.dataList);
-//    } failure:^(NSError *error) {
-//        NSLog(@"%@",error);
-//    }];
-//}
 
-
-//-(void)setModel:(PersonalCenterModel *)model{
-//    _model = model;
-//    [self getdata];
-//}
 
 @end
