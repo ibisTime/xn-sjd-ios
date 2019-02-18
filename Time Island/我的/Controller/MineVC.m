@@ -24,7 +24,7 @@
 #import "CertifyVC.h"
 #import "InviteGiftVC.h"
 #import "InfoVC.h"
-
+#import "CollectBookVC.h"
 #define titlearray @[@"我的碳泡泡",@"我的订单",@"我的文章",@"我的收藏",@"邀请有礼",@"设置"]
 #define imagearray @[@"泡泡",@"我的订单",@"我的文章",@"我的收藏",@"邀请有礼",@"设置"]
 #define array1 @[@"余额",@"积分",@"碳泡泡"]
@@ -290,7 +290,7 @@
             break;
         case 3:
         {
-            CollectVC * vc = [CollectVC new];
+            CollectBookVC * vc = [CollectBookVC new];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

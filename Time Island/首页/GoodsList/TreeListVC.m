@@ -201,13 +201,14 @@
     [searchbar setTintColor:[UIColor lightGrayColor]];
     [searchbar setPlaceholder:@"搜索商品信息"];
     [new addSubview:searchbar];
+    
     self.searchBar = searchbar;
     self.navigationItem.titleView = new;
     UITextField *searchField = [searchbar valueForKey:@"searchField"];
     
     if (searchField) {
-        [searchField setValue:[UIFont systemFontOfSize:11] forKeyPath:@"_placeholderLabel.font"];
-
+        [searchField setValue:FONT(11) forKeyPath:@"_placeholderLabel.font"];
+        searchField.font= FONT(11);
         [searchField setBackgroundColor:[UIColor whiteColor]];
         
         searchField.layer.cornerRadius = 15.5;//设置圆角具体根据实际情况来设置

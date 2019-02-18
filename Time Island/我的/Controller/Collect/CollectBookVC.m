@@ -23,8 +23,9 @@
     [super viewDidLoad];
     CoinWeakSelf
     [self refresh];
+    self.title = @"我的收藏";
     self.view.backgroundColor = kWhiteColor;
-    self.bookview = [[BookView alloc] initWithFrame:CGRectMake(0, -30, kScreenWidth, kScreenHeight - kTabBarHeight - 10) style:UITableViewStyleGrouped];
+    self.bookview = [[BookView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - kNavigationBarHeight) style:UITableViewStyleGrouped];
     self.bookview.backgroundColor = kWhiteColor;
     self.bookview.refreshDelegate = self;
     [self.bookview addRefreshAction:^{
@@ -46,6 +47,7 @@
 -(void)refresh{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629349";
+    http.showView = self.view;
     http.parameters[@"userId"] = [TLUser user].userId;
     [http postWithSuccess:^(id responseObject) {
         self.BookModels = [BookModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];

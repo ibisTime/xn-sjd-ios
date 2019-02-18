@@ -4956,7 +4956,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3ZCW993X44;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -4967,6 +4967,7 @@
 					"$(PROJECT_DIR)/Time\\ Island/Map",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
+					"$(PROJECT_DIR)/Time\\ Island",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Time Island/Macro/CoinPrefixHeader.pch";
 				INFOPLIST_FILE = "Time Island/Info.plist";
@@ -4975,7 +4976,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wzhy.111;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Time\\ Island/WechatSDK1.8.2",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.TimeIsland;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -4989,7 +4994,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3ZCW993X44;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -5000,6 +5005,7 @@
 					"$(PROJECT_DIR)/Time\\ Island/Map",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
+					"$(PROJECT_DIR)/Time\\ Island",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Time Island/Macro/CoinPrefixHeader.pch";
 				INFOPLIST_FILE = "Time Island/Info.plist";
@@ -5008,7 +5014,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wzhy.111;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Time\\ Island/WechatSDK1.8.2",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.TimeIsland;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

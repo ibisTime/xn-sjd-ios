@@ -34,11 +34,11 @@
     [self refresh];
     
     UIButton * backbtn = [UIButton buttonWithImageName:@"详情-返回"];
-    backbtn.frame = CGRectMake(15, 25, 40, 40);
+    backbtn.frame = CGRectMake(10, kStatusBarHeight, 44, 44);
     [backbtn addTarget:self action:@selector(back) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:backbtn];
     
-    UILabel * label = [UILabel labelWithFrame:CGRectMake(15, 25, SCREEN_WIDTH - 30, 40) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(17) textColor:kBlackColor];
+    UILabel * label = [UILabel labelWithFrame:CGRectMake(15, kStatusBarHeight, SCREEN_WIDTH - 30, 44) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(17) textColor:kBlackColor];
     label.text = @"分享二维码";
     [self.view addSubview:label];
     
@@ -49,7 +49,7 @@
 
     
     UIButton * button = [UIButton buttonWithTitle:@"保存到本地" titleColor:kWhiteColor backgroundColor:kTabbarColor titleFont:16];
-    button.frame = CGRectMake(30, SCREEN_HEIGHT - 90, SCREEN_WIDTH - 60, 40);
+    button.frame = CGRectMake(30, SCREEN_HEIGHT - 100, SCREEN_WIDTH - 60, 50);
     button.layer.cornerRadius = 20;
     button.layer.masksToBounds = YES;
     [button addTarget:self action:@selector(save) forControlEvents:(UIControlEventTouchUpInside)];

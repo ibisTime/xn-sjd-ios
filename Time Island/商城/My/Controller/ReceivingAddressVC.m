@@ -32,20 +32,20 @@
         self.navigationController.navigationBar.barTintColor = kHexColor(@"#23AD8C");
     }
     
-    self.table = [[TLTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 45.5 - 3.5 - kNavigationBarHeight)];
+    self.table = [[TLTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 50 - kNavigationBarHeight - kDevice_Is_iPhoneX)];
     [self.table registerClass:[AddressCell class] forCellReuseIdentifier:@"cell"];
     self.table.delegate = self;
     self.table.dataSource = self;
     self.table.refreshDelegate = self;
     [self.view addSubview:self.table];
     
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -10;
-    [self.RightButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-    self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
-    self.RightButton.titleLabel.font = FONT(16);
-    [self.RightButton setFrame:CGRectMake(SCREEN_WIDTH-47.5, 30, 32.5, 45)];
-    [self.RightButton setTitle:@"···" forState:UIControlStateNormal];
+//    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    negativeSpacer.width = -10;
+//    [self.RightButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+//    self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
+//    self.RightButton.titleLabel.font = FONT(16);
+//    [self.RightButton setFrame:CGRectMake(SCREEN_WIDTH-47.5, 30, 32.5, 45)];
+//    [self.RightButton setTitle:@"···" forState:UIControlStateNormal];
     
 
     UIButton * addbtn = [UIButton buttonWithTitle:@"新增地址" titleColor:kHexColor(@"#FFFFFF") backgroundColor:kHexColor(@"#F68646") titleFont:15 cornerRadius:4];
@@ -66,7 +66,7 @@
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 137.5;
+    return 150;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     AddressCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
@@ -78,6 +78,7 @@
         cell.UserAddress.text = [NSString stringWithFormat:@"%@ %@ %@ %@",model.province,model.city,model.district,model.detailAddress];
         if ([model.isDefault isEqualToString:@"0"]) {
             cell.checkBtn.selected = NO;
+            
         }else{
             cell.checkBtn.selected = YES;
         }
