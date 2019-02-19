@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BarrageModel.h"
 @interface BarrageView : UIView
 
 @property (nonatomic , strong)UIButton *ShutDownBtn;
-
+@property (nonatomic,strong) NSMutableArray<BarrageModel *> * BarrageModels;
 @end

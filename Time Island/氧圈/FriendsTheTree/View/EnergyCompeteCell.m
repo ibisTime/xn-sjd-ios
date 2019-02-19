@@ -9,6 +9,12 @@
 #import "EnergyCompeteCell.h"
 
 @implementation EnergyCompeteCell
+{
+    UIImageView *friendHeadImg;
+    UILabel *friendNumberLabel;
+    UIImageView *myHeadImg;
+    UILabel *myNumberLabel;
+}
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -29,7 +35,7 @@
         [backImg addSubview:VSLabel];
         
         
-        UIImageView *friendHeadImg = [[UIImageView alloc]initWithFrame:CGRectMake(kWidth(20), height/2 + y - kHeight(20), kHeight(40), kHeight(40))];
+        friendHeadImg = [[UIImageView alloc]initWithFrame:CGRectMake(kWidth(20), height/2 + y - kHeight(20), kHeight(40), kHeight(40))];
         friendHeadImg.image = kImage(@"保护罩小图");
         kViewRadius(friendHeadImg, kHeight(20));
         [backImg addSubview:friendHeadImg];
@@ -40,14 +46,14 @@
         [backImg addSubview:friendNameLabel];
         
         
-        UILabel *friendNumberLabel = [UILabel labelWithFrame:CGRectMake(friendHeadImg.xx + 10, friendHeadImg.yy - 22 - 3, kWidth(295)/2 - friendHeadImg.xx - 15, 22) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(19) textColor:kHexColor(@"#333333")];
+        friendNumberLabel = [UILabel labelWithFrame:CGRectMake(friendHeadImg.xx + 10, friendHeadImg.yy - 22 - 3, kWidth(295)/2 - friendHeadImg.xx - 15, 22) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(19) textColor:kHexColor(@"#333333")];
         friendNumberLabel.text = @"22g";
         [backImg addSubview:friendNumberLabel];
         
         
         
         
-        UIImageView *myHeadImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - kWidth(30) -kWidth(60), height/2 + y - kHeight(20), kHeight(40), kHeight(40))];
+        myHeadImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - kWidth(30) -kWidth(60), height/2 + y - kHeight(20), kHeight(40), kHeight(40))];
         myHeadImg.image = kImage(@"保护罩小图");
         kViewRadius(myHeadImg, kHeight(20));
         [backImg addSubview:myHeadImg];
@@ -58,14 +64,25 @@
         [backImg addSubview:myNameLabel];
         
         
-        UILabel *myNumberLabel = [UILabel labelWithFrame:CGRectMake(VSLabel.xx + 5, friendHeadImg.yy - 22 - 3, kWidth(295)/2 - friendHeadImg.xx - 15, 22) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:FONT(19) textColor:kHexColor(@"#CCCCCC")];
+        myNumberLabel = [UILabel labelWithFrame:CGRectMake(VSLabel.xx + 5, friendHeadImg.yy - 22 - 3, kWidth(295)/2 - friendHeadImg.xx - 15, 22) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:FONT(19) textColor:kHexColor(@"#CCCCCC")];
         myNumberLabel.text = @"1122g";
         [backImg addSubview:myNumberLabel];
-        
         
         
     }
     return self;
 }
-
+-(void)setCompeteModel:(CompeteModel *)CompeteModel{
+    
+    [friendHeadImg sd_setImageWithURL:[NSURL URLWithString:[CompeteModel.toUserInfo[@"photo"] convertImageUrl]] placeholderImage:kImage(@"头像")];
+    NSString * str =[NSString stringWithFormat:@"%.2f",[CompeteModel.toUserWeekQuantity floatValue] / 1000];
+    friendNumberLabel.text = str;
+    
+    
+    
+    [myHeadImg sd_setImageWithURL: [NSURL URLWithString:[CompeteModel.userInfo[@"photo"] convertImageUrl]] placeholderImage:kImage(@"头像")];
+    
+    NSString * str1 =[NSString stringWithFormat:@"%.2f",[CompeteModel.userWeekQuantity floatValue] / 1000];
+    myNumberLabel.text = str1;
+}
 @end

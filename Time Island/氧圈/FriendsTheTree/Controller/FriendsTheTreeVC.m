@@ -10,6 +10,7 @@
 #import "FriendsTheTreeTableView.h"
 #import "DonationView.h"
 #import "BarrageView.h"
+#import "BarrageModel.h"
 @interface FriendsTheTreeVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)FriendsTheTreeTableView *tableView;
@@ -18,6 +19,8 @@
 @property (nonatomic , strong)DonationView *donationView;
 
 @property (nonatomic , strong)BarrageView *barrageView;
+
+@property (nonatomic,strong) NSMutableArray<BarrageModel *> * BarrageModels;
 @end
 
 @implementation FriendsTheTreeVC
@@ -84,11 +87,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self getbarrageData];
     // Do any additional setup after loading the view.
     [self.view addSubview:self.tableView];
+    self.tableView.model = self.model;
+    
     [self.view addSubview:self.donationView];
     [self.view addSubview:self.barrageView];
-    self.title = @"ALEN的树";
+    self.title = [NSString stringWithFormat:@"%@的树",self.model.user[@"nickname"]];
 }
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index
@@ -146,14 +152,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)getbarrageData{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629387";
+    http.parameters[@"status"] = @(1);
+    http.parameters[@"orderColumn"] = @"order_no";
+    http.parameters[@"orderDir"] = @"asc";
+    [http postWithSuccess:^(id responseObject) {
+        self.BarrageModels = [BarrageModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        self.barrageView.BarrageModels = self.BarrageModels;
+    } failure:^(NSError *error) {
+        
+    }];
 }
-*/
-
 @end

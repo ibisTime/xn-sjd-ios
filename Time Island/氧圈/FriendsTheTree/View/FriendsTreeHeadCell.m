@@ -8,7 +8,10 @@
 
 #import "FriendsTreeHeadCell.h"
 
-@implementation FriendsTreeHeadCell
+@implementation FriendsTreeHeadCell{
+    UIImageView *headImg;
+    UILabel *nameLbl;
+}
 
 
 
@@ -34,7 +37,7 @@
         FloatingBallHeader *floatingBallHeader = [[FloatingBallHeader alloc] initWithFrame:CGRectMake(0, kNavigationBarHeight, SCREEN_WIDTH, (kHeight(432) - kNavigationBarHeight) - kHeight(200))];
         floatingBallHeader.delegate = self;
         
-        floatingBallHeader.dataList = @[@{@"number":@"68g",@"name":@"BTC"},        @{@"number":@"68g",@"name":@"线下"}, @{@"number":@"2g",@"name":@"线下支付"}, @{@"number":@"268g",@"name":@"支付"},@{@"number":@"63g",@"name":@"线下支付"}, @{@"number":@"638g",@"name":@"线下"}, @{@"number":@"168g",@"name":@"线下支付"}];
+//        floatingBallHeader.dataList = @[@{@"number":@"68g",@"name":@"BTC"},        @{@"number":@"68g",@"name":@"线下"}, @{@"number":@"2g",@"name":@"线下支付"}, @{@"number":@"268g",@"name":@"支付"},@{@"number":@"63g",@"name":@"线下支付"}, @{@"number":@"638g",@"name":@"线下"}, @{@"number":@"168g",@"name":@"线下支付"}];
         
         [self addSubview:floatingBallHeader];
         self.floatingBallHeader = floatingBallHeader;
@@ -47,12 +50,12 @@
         headPortraitView.alpha = 0.3;
         [self addSubview:headPortraitView];
         
-        UIImageView *headImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 207/2 + 4.5, 72.5 - 64 + kNavigationBarHeight + 4.5, 30, 30)];
+        headImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 207/2 + 4.5, 72.5 - 64 + kNavigationBarHeight + 4.5, 30, 30)];
         kViewBorderRadius(headImg, 15, 1, kTabbarColor);
         headImg.image = kImage(@"头像");
         [self addSubview:headImg];
         
-        UILabel *nameLbl = [UILabel labelWithFrame:CGRectMake(headImg.xx + 7.5, 72.5 - 64 + kNavigationBarHeight, SCREEN_WIDTH - headImg.xx - 7.5 - 5, 39) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:kHexColor(@"#23AD8C")];
+        nameLbl = [UILabel labelWithFrame:CGRectMake(headImg.xx + 7.5, 72.5 - 64 + kNavigationBarHeight, SCREEN_WIDTH - headImg.xx - 7.5 - 5, 39) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:kHexColor(@"#23AD8C")];
         nameLbl.text = @"1125g";
         [self addSubview:nameLbl];
         
@@ -123,11 +126,50 @@
 
 - (void)floatingBallHeader:(FloatingBallHeader *)floatingBallHeader didPappaoAtIndex:(NSInteger)index isLastOne:(BOOL)isLastOne {
     NSLog(@"点了%zd", index);
+    
+    MyTreeEnergyModel * model = self.energyModels[index];
+    
+    if ([self.delegate respondsToSelector:@selector(floatingBallHeader:didPappaoAtIndex:isLastOne:)]) {
+        [self.delegate paopaoclick:model];
+    }
+    
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629350";
+    http.parameters[@"code"] = model.code;
+    http.parameters[@"userId"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
+        [TLAlert alertWithSucces:@"收取成功!"];
+    } failure:^(NSError *error) {
+        
+    }];
+    
+    
+    
+    NSLog(@"点了%zd", index);
+    if (isLastOne) {
+        
+        
+    }
     if (isLastOne) {
         
         
     }
     
 }
-
+-(void)setModel:(PersonalCenterModel *)model{
+    _model = model;
+    [headImg sd_setImageWithURL:[NSURL URLWithString:[model.user[@"photo"] convertImageUrl]] placeholderImage:kImage(@"头像")];
+}
+-(void)setEnergyModels:(NSMutableArray<MyTreeEnergyModel *> *)energyModels{
+    _energyModels = energyModels;
+    NSMutableArray * array = [NSMutableArray array];
+    for (int i = 0; i < energyModels.count; i++) {
+        MyTreeEnergyModel * model = energyModels[i];
+        
+        [array addObject:@{@"number":model.quantity,@"name":model.status}];
+        
+    }
+    self.floatingBallHeader.dataList = array;
+    NSLog(@"self.floatingBallHeader.dataList = %@",self.floatingBallHeader.dataList);
+}
 @end

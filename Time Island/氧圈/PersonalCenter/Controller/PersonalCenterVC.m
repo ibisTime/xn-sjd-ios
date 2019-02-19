@@ -13,7 +13,9 @@
 #import "MMComBoBox.h"
 #import "PersonalCenterModel.h"
 #import "MyTreeVC.h"
-@interface PersonalCenterVC ()<RefreshDelegate,MMComBoBoxViewDelegate,MMComBoBoxViewDataSource>
+#import "FriendInfoModel.h"
+#import "FriendsTheTreeVC.h"
+@interface PersonalCenterVC ()<RefreshDelegate,MMComBoBoxViewDelegate,MMComBoBoxViewDataSource,AddFriendBtn>
 
 @property (nonatomic , strong)PersonalCenterHeadView *headView;
 
@@ -24,6 +26,7 @@
 
 @property (nonatomic , strong)NSMutableArray <PersonalCenterModel *>*models;
 @property (nonatomic , strong)NSMutableArray <DynamicModel *>*dynamicModel;
+@property (nonatomic,strong) FriendInfoModel * FriendInfoModel;
 
 @end
 
@@ -47,7 +50,8 @@
 {
     if (!_headView) {
         _headView = [[PersonalCenterHeadView alloc]initWithFrame:CGRectMake(0, -kNavigationBarHeight, SCREEN_WIDTH, 180 - 65 + kNavigationBarHeight + 40)];
-        
+
+        _headView.delegate = self;
     }
     return _headView;
 }
@@ -68,6 +72,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self getInfo];
     [self.view addSubview:self.headView];
     [self.view addSubview:self.tableView];
    
@@ -88,26 +93,44 @@
 {
     if (indexPath.section == 0) {
         if (self.models.count > 0) {
-            MyTreeVC *vc = [MyTreeVC new];
-            vc.model = self.models[indexPath.row];
-            [self.navigationController pushViewController:vc animated:YES];
+            if ([self.state isEqualToString:@"rank"] || [self.state isEqualToString:@"friend"]) {
+                if ([self.FriendInfoModel.userId isEqualToString:[TLUser user].userId]) {
+                    MyTreeVC *vc = [MyTreeVC new];
+                    vc.model = self.models[indexPath.row];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                else{
+                    FriendsTheTreeVC * vc = [FriendsTheTreeVC new];
+                    vc.model = self.models[indexPath.row];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+            }
+            else{
+                MyTreeVC *vc = [MyTreeVC new];
+                vc.model = self.models[indexPath.row];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            
         }
         
+        
     }
-    
 }
 
 -(void)LoadData
 {
-    
-    
-    
-    
     CoinWeakSelf;
     TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
     
     helper.code = @"629305";
-    helper.parameters[@"queryUserId"] = [TLUser user].userId;
+    if ([self.state isEqualToString:@"rank"]) {
+        helper.parameters[@"queryUserId"] = self.RankModel.userId;
+    }
+    else if ([self.state isEqualToString:@"friend"]){
+        helper.parameters[@"queryUserId"] = self.FriendsModel.toUserInfo[@"userId"];
+    }
+    else
+        helper.parameters[@"queryUserId"] = [TLUser user].userId;
    
 
     
@@ -194,7 +217,17 @@
     http.showView = self.view;
     http.isUploadToken = NO;
     http.code = @"629207";
-    http.parameters[@"currentHolder"] = [TLUser user].userId;
+    
+//    http.parameters[@"currentHolder"] = [TLUser user].userId;
+    if ([self.state isEqualToString:@"rank"]) {
+        http.parameters[@"currentHolder"] = self.RankModel.userId;
+    }
+    else if ([self.state isEqualToString:@"friend"]){
+        http.parameters[@"currentHolder"] = self.FriendsModel.toUserInfo[@"userId"];
+    }
+    else
+        http.parameters[@"currentHolder"] = [TLUser user].userId;
+    
     http.parameters[@"statusList"] = @[@"1",@"2",@"3"];
     
     [http postWithSuccess:^(id responseObject) {
@@ -212,7 +245,7 @@
 
 -(void)TheLog
 {
-    CoinWeakSelf;
+    
     TLNetworking *http = [TLNetworking new];
     http.showView = self.view;
     http.isUploadToken = NO;
@@ -224,6 +257,26 @@
         [self.tableView reloadData];
     } failure:^(NSError *error) {
 
+    }];
+}
+
+-(void)getInfo{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = USER_INFO;
+    if ([self.state isEqualToString:@"rank"]) {
+        http.parameters[@"userId"] = self.RankModel.userId;
+        
+    }
+    else if ([self.state isEqualToString:@"friend"]){
+        http.parameters[@"userId"] = self.FriendsModel.toUserInfo[@"userId"];
+    }
+    [http postWithSuccess:^(id responseObject) {
+        self.FriendInfoModel = [FriendInfoModel mj_objectWithKeyValues:responseObject[@"data"]];
+        self.headView.state = self.state;
+        self.headView.FriendInfoModel = self.FriendInfoModel;
+        
+    } failure:^(NSError *error) {
+        
     }];
 }
 
@@ -382,6 +435,18 @@
 
 
 
-
+-(void)AddFriend:(NSString *)toUser{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"805150";
+    http.parameters[@"toUser"] = toUser;
+    http.parameters[@"userId"] = [TLUser user].userId;
+    http.parameters[@"type"] = @(2);
+    [http postWithSuccess:^(id responseObject) {
+        [TLAlert alertWithSucces:@"申请成功，等待验证通过"];
+        NSLog(@"%@",responseObject);
+    } failure:^(NSError *error) {
+        
+    }];
+}
 
 @end

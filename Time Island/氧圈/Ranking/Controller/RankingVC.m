@@ -11,6 +11,7 @@
 #import "FriendRequestsVC.h"
 #import "RankModel.h"
 #import "FriendsModel.h"
+#import "PersonalCenterVC.h"
 @interface RankingVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)RankingTableView *tableView;
@@ -108,6 +109,30 @@
         } failure:^(NSError *error) {
         }];
     }
+}
+
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSLog(@"%s",__func__);
+    if (indexPath.section == 1) {
+        if ([self.state isEqualToString:@"rank"]) {
+            RankModel * model = self.RankModels[indexPath.row];
+            NSLog(@"%@",model);
+            PersonalCenterVC * vc = [PersonalCenterVC new];
+            vc.state = @"rank";
+            vc.RankModel = model;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else if ([self.state isEqualToString:@"friend"]){
+            FriendsModel * model = self.FriendsModels[indexPath.row];
+            NSLog(@"%@",model);
+            PersonalCenterVC * vc = [PersonalCenterVC new];
+            vc.state = @"friend";
+            vc.FriendsModel = model;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
+    
 }
 
 @end
