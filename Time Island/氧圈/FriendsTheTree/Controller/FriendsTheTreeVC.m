@@ -11,6 +11,7 @@
 #import "DonationView.h"
 #import "BarrageView.h"
 #import "BarrageModel.h"
+#import "MapViewController.h"
 @interface FriendsTheTreeVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)FriendsTheTreeTableView *tableView;
@@ -102,7 +103,12 @@
     switch (index) {
         case 0:
         {
-            
+            MapViewController *vc = [[MapViewController alloc]init];
+            vc.latitude = [self.model.tree[@"latitude"] floatValue];
+            vc.longitude= [self.model.tree[@"longitude"] floatValue];
+            vc.namestr = self.model.tree[@"treeNumber"];
+            vc.address = [NSString stringWithFormat:@"%@ %@ %@",self.model.tree[@"province"],self.model.tree[@"city"],self.model.tree[@"area"]];
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 1:

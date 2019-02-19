@@ -79,8 +79,6 @@
         NSArray *titles = @[@"树木名称",@"树木学名",@"树木级别",@"树木品种",@"所在市县",@"乡镇街道",@"树木产地",@"认养时间",@"树木定位"];
         NSArray *details;
         if (self.TreeModel.treeList.count>0||self.TreeModel.productSpecsList.count>0) {
-//             details = @[self.TreeModel.name,self.TreeModel.treeList[0][@"scientificName"],self.TreeModel.treeList[0][@"rank"],self.TreeModel.treeList[0][@"variety"],[NSString stringWithFormat:@"%@ %@",self.TreeModel.treeList[0][@"city"],self.TreeModel.treeList[0][@"area"]],self.TreeModel.treeList[0][@"town"],self.TreeModel.treeList[0][@"originPlace"],[NSString stringWithFormat:@"%@ - %@",[self.TreeModel.productSpecsList[0][@"startDatetime"] convertToDetailDate],[self.TreeModel.productSpecsList[0][@"endDatetime"] convertToDetailDate]],@""];
-//            [TLUser convertNull:]
             details = @[[TLUser convertNull:self.TreeModel.name],
                         [TLUser convertNull:self.TreeModel.treeList[0][@"scientificName"]],
                         [TLUser convertNull:self.TreeModel.treeList[0][@"rank"]],
@@ -93,6 +91,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.moreLab.text = [NSString stringWithFormat:@"[%@]",titles[indexPath.row]];
         cell.detailLab.text = [NSString stringWithFormat:@"%@",details[indexPath.row]];
+        
         if (indexPath.row == 8) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator; //显示最右边的箭头
         }
@@ -126,6 +125,12 @@
 -(void)MyFreeDynamicButton:(NSInteger)tag
 {
     [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:tag];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+   
+//    [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:indexPath];
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

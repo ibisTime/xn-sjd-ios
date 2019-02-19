@@ -137,6 +137,10 @@
         {
             //            地图
             MapViewController *vc = [[MapViewController alloc]init];
+            vc.latitude = [self.model.tree[@"latitude"] floatValue];
+            vc.longitude= [self.model.tree[@"longitude"] floatValue];
+            vc.namestr = self.model.tree[@"treeNumber"];
+            vc.address = [NSString stringWithFormat:@"%@ %@ %@",self.model.tree[@"province"],self.model.tree[@"city"],self.model.tree[@"area"]];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
