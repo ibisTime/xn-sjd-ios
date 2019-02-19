@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "FloatingBallHeader.h"
 #import "DonationAnimationView.h"
+#import "PersonalCenterModel.h"
+#import "MyTreeEnergyModel.h"
 @protocol FriendsTreeHeadDelegate <NSObject>
 
 -(void)FriendsTreeHeadButton:(NSInteger )tag;
+-(void)paopaoclick:(MyTreeEnergyModel *)model;
 
 @end
 
@@ -24,5 +27,8 @@
 @property (nonatomic, assign) id <FriendsTreeHeadDelegate> delegate;
 
 @property (nonatomic , strong)DonationAnimationView *animationView;
+
+@property (nonatomic , strong)PersonalCenterModel *model;
+@property (nonatomic , strong)NSMutableArray <MyTreeEnergyModel *>*energyModels;
 
 @end

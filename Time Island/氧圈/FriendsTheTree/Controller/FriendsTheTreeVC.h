@@ -7,7 +7,7 @@
 //
 
 #import "TLBaseVC.h"
-
+#import "PersonalCenterModel.h"
 @interface FriendsTheTreeVC : TLBaseVC
-
+@property (nonatomic , strong)PersonalCenterModel *model;
 @end

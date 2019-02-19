@@ -7,7 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RankModel.h"
+#import "FriendsModel.h"
+#import "FriendInfoModel.h"
+
+@protocol AddFriendBtn <NSObject>
+
+-(void)AddFriend:(NSString *)toUser;
+
+@end
 
 @interface PersonalCenterHeadView : UIView
 
+//@property (nonatomic,strong) RankModel * RankModel;
+//@property (nonatomic,strong) FriendsModel * FriendsModel;
+@property (nonatomic,strong) FriendInfoModel * FriendInfoModel;
+@property (nonatomic,strong) NSString * state;
+@property (nonatomic,weak) id<AddFriendBtn> delegate;
 @end

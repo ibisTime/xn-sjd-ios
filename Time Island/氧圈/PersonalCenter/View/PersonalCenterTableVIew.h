@@ -13,4 +13,5 @@
 
 @property (nonatomic , strong)NSMutableArray <PersonalCenterModel *>*models;
 @property (nonatomic , strong)NSArray *dynamicArray;
+@property (nonatomic,strong) NSString * state;
 @end

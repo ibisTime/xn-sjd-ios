@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CompeteModel.h"
 @interface EnergyCompeteCell : UITableViewCell
-
+@property (nonatomic,strong) CompeteModel * CompeteModel;
 @end

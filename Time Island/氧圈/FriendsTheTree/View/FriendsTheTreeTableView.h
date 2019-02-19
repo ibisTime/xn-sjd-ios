@@ -7,9 +7,15 @@
 //
 
 #import "TLTableView.h"
-
+#import "PersonalCenterModel.h"
+#import "MyTreeEnergyModel.h"
+#import "CompeteModel.h"
+#import "DynamicModel.h"
 @interface FriendsTheTreeTableView : TLTableView
 
 @property (nonatomic , assign)NSInteger donation;
-
+@property (nonatomic , strong)PersonalCenterModel *model;
+@property (nonatomic , strong)NSMutableArray <MyTreeEnergyModel *>*energyModels;
+@property (nonatomic,strong) CompeteModel * CompeteModel;
+@property (nonatomic,strong) NSMutableArray<DynamicModel *> * DynamicModels;
 @end

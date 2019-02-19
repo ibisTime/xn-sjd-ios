@@ -225,13 +225,10 @@
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629357";
     http.parameters[@"status"] = @"0";
-//    http.parameters[@"limit"] = @(1);
-//    http.parameters[@""] = []
     [http postWithSuccess:^(id responseObject) {
         
-        //        [self.treeArray addObjectsFromArray:responseObject[@"data"][@"list"]];
         self.energyModels = [MyTreeEnergyModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
-//        self.tableView.energyModels = self.energyModels;
+        
         self.tableView.model = self.model;
         [self.tableView reloadData];
         

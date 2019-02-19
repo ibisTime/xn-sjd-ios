@@ -55,10 +55,17 @@
         NSString *promptAll = [NSString stringWithFormat:@"%@%@%@",prompt1,time,prompt2];
         
        
-        
         NSMutableAttributedString *poundageAttrStr = [[NSMutableAttributedString alloc] initWithString:promptAll];
         [poundageAttrStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(prompt1.length,time.length)];
-        _promptLbl.attributedText = poundageAttrStr;
+        
+        
+        if ([[self intervalSinceNow:[models.endDatetime convertToDetailDate]] isEqualToString:@"已到期"]) {
+            _promptLbl.text = @"已到期";
+        }else{
+            _promptLbl.attributedText = poundageAttrStr;
+        }
+        
+        
     }
     
     
@@ -82,8 +89,11 @@
     NSDate *localeDate = [adate dateByAddingTimeInterval: interval];
     
     double intervalTime = [fromDate timeIntervalSinceReferenceDate] - [localeDate timeIntervalSinceReferenceDate];
+    if (intervalTime < 0) {
+        return @"已到期";
+    }
     long lTime = labs((long)intervalTime);
-    NSInteger iDays = lTime/60/60/24 + 1;
+    NSInteger iDays = lTime/60/60/24;
     NSString * day = [NSString stringWithFormat:@"%ld",iDays];
     return day;
     

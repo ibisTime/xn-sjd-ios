@@ -12,7 +12,7 @@
 #define Ranking @"RankingCell"
 #define MineRank @"MineRankCell"
 
-@interface RankingTableView()<UITableViewDelegate, UITableViewDataSource>
+@interface RankingTableView()<UITableViewDelegate, UITableViewDataSource,RefreshDelegate>
 {
     UIButton *selectBtn;
     UIView *lineView;
@@ -55,7 +55,9 @@
     return 1;
     
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.refreshDelegate refreshTableView:self didSelectRowAtIndexPath:indexPath];
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     

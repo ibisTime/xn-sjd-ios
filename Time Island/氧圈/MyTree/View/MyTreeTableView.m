@@ -131,8 +131,7 @@
     NSArray * detail = @[self.model.tree[@"productName"],self.model.tree[@"rank"],self.model.tree[@"area"],[NSString stringWithFormat:@"%@-%@",[self.model.startDatetime convertToDetailDateWithoutHour],[self.model.endDatetime convertToDetailDateWithoutHour] ],self.model.tree[@"maintainer"][@"company"][@"name"],self.model.tree[@"maintainer"][@"company"][@"charger"],@"",@""];
     TreeDetailCell * cell = [tableView dequeueReusableCellWithIdentifier:TreeDetail forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    cell.separatorInset = UITableViewCellSeparatorStyleSingleLine;
-    self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    
     cell.titlearr = arr[indexPath.row];
     cell.detailstr = detail[indexPath.row];
     return cell;
@@ -311,7 +310,6 @@
                 [self.DynamicPhotoModels addObject:self.DynamicModels[i]];
             }
         }
-        NSLog(@"self.DynamicPhotoModels %@",self.DynamicPhotoModels);
         
         [self reloadData_tl];
     } failure:^(NSError *error) {
@@ -325,13 +323,6 @@
     [self getCollectEnergyDetailsdata];
     
     
-//    DynamicModel * model1;
-//    for (int i = 0; i < self.DynamicModels.count; i ++) {
-//        model1 = self.DynamicModels[i];
-//        if ([model1.type isEqualToString:@"3"]) {
-//            [self.DynamicPhotoModels addObject:self.DynamicModels[i]];
-//        }
-//    }
-//    NSLog(@"self.DynamicPhotoModels %@",self.DynamicPhotoModels);
+
 }
 @end

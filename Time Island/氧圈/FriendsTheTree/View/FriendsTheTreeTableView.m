@@ -13,6 +13,8 @@
 #define EnergyCompete @"EnergyCompeteCell"
 #import "HisDynamicCell.h"
 #define HisDynamic @"HisDynamicCell"
+#import "DanmuCell.h"
+#define Danmucell @"DanmuCell"
 @interface FriendsTheTreeTableView()<UITableViewDelegate, UITableViewDataSource,FriendsTreeHeadDelegate>
 {
     UIButton *selectBtn;
@@ -32,6 +34,8 @@
         [self registerClass:[FriendsTreeHeadCell class] forCellReuseIdentifier:FriendsTreeHead];
         [self registerClass:[EnergyCompeteCell class] forCellReuseIdentifier:EnergyCompete];
         [self registerClass:[HisDynamicCell class] forCellReuseIdentifier:HisDynamic];
+        [self registerClass:[DanmuCell class] forCellReuseIdentifier:Danmucell];
+        
         
     }
     
@@ -40,13 +44,13 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 6;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (section >= 2) {
-        return 5;
+        return self.DynamicModels.count;
     }
     return 1;
     
@@ -60,23 +64,29 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
         cell.donation = self.donation;
+        cell.model = self.model;
+        cell.energyModels = self.energyModels;
         return cell;
     }
     if (indexPath.section == 1) {
         EnergyCompeteCell *cell = [tableView dequeueReusableCellWithIdentifier:EnergyCompete forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.CompeteModel = self.CompeteModel;
         return cell;
     }
 
     
+    DynamicModel * model = self.DynamicModels[indexPath.row];
+    if ([model.type isEqualToString:@"7"]) {
+        DanmuCell *cell = [tableView dequeueReusableCellWithIdentifier:Danmucell forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.dynamicModel = model;
+        return cell;
+    }
+    
     HisDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:HisDynamic forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (indexPath.row == 4) {
-        cell.bottomLineView.hidden = YES;
-    }else
-    {
-        cell.bottomLineView.hidden = NO;
-    }
+    cell.dynamicModel = self.DynamicModels[indexPath.row];
     return cell;
     
     
@@ -87,8 +97,17 @@
 {
     [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:tag];
 }
-
-
+-(void)paopaoclick:(MyTreeEnergyModel *)model{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629350";
+    http.parameters[@"code"] = model.code;
+    http.parameters[@"userId"] = self.model.user[@"userId"];
+    [http postWithSuccess:^(id responseObject) {
+        [self reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0) {
@@ -130,8 +149,6 @@
         UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35)];
         backView.backgroundColor = kWhiteColor;
         [headerView addSubview:backView];
-        
-        
         
         
         UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 6, SCREEN_WIDTH - 30, 18) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGboldfont(18) textColor:kTextBlack];
@@ -177,5 +194,61 @@
     }
     return [UIView new];
 }
+-(void)getdata{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629355";
+    http.parameters[@"status"] = @(0);
+    http.parameters[@"limit"] = @(5);
+    http.parameters[@"start"] = @(1);
+    http.parameters[@"adoptTreeCode"] = self.model.code;
+    if (self.model.code) {
+        [http postWithSuccess:^(id responseObject) {
+            self.energyModels = [MyTreeEnergyModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+            [self reloadData_tl];
+        } failure:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
+    }
+    NSLog(@"123");
+}
+
+-(void)getcompetedata{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629900";
+    http.parameters[@"toUserId"] = self.model.user[@"userId"];
+    http.parameters[@"userId"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
+//        NSMutableArray * arr = responseObject[@"data"];
+        self.CompeteModel = [CompeteModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self reloadData_tl];
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+-(void)getHistory{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629305";
+//    http.parameters[@"status"] = @(0);
+    http.parameters[@"limit"] = @(10);
+    http.parameters[@"start"] = @(1);
+    http.parameters[@"adoptTreeCode"] = self.model.code;
+    http.parameters[@"adoptUserId"]= self.model.user[@"userId"];
+    http.parameters[@"queryUserId"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
+        self.DynamicModels = [DynamicModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        [self reloadData_tl];
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+
+-(void)setModel:(PersonalCenterModel *)model{
+    _model = model;
+    [self getdata];
+    [self getcompetedata];
+    [self getHistory];
+}
+
 
 @end
