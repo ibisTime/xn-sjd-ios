@@ -29,7 +29,7 @@
 @property (nonatomic , copy)NSString *orderCode;
 @property (nonatomic , copy)NSString *parentCategoryCode;
 @property (nonatomic , copy)NSString *quantity;
-
+@property (nonatomic , copy)NSString *adoptTreeCode;
 @property (nonatomic , strong)NSDictionary *tree;
 @property (nonatomic , strong)NSDictionary *user;
 @property (nonatomic , copy)NSString *categoryCode;

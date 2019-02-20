@@ -25,7 +25,7 @@
 #import "AccountTf.h"
 
 //腾讯云
-
+#import <WXApi.h>
 //#import <ImSDK/TIMManager.h>
 
 @interface TLUserLoginVC ()
@@ -73,7 +73,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     
-    UIButton * back = [[UIButton alloc]initWithFrame:CGRectMake(20, 32.4, 12, 21.2)];
+    UIButton * back = [[UIButton alloc]initWithFrame:CGRectMake(10, kStatusBarHeight, 44, 44)];
     [back setImage:kImage(@"返回黑色") forState:(UIControlStateNormal)];
     [back addTarget:self action:@selector(back) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:back];
@@ -82,7 +82,8 @@
     
     //    self.title = [LangSwitcher switchLang:@"登录" key:nil];
     self.title = @"登录";
-    self.welcome = [[UILabel alloc]initWithFrame:CGRectMake(30, 139-64, 97, 33.5)];
+    
+    self.welcome = [[UILabel alloc]initWithFrame:CGRectMake(30, 139-64 + kStatusBarHeight, 97, 33.5)];
     self.welcome.text = @"欢迎回来";
     self.welcome.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:24];
     self.welcome.textColor = [UIColor colorWithHexString:@"#2D2D2D"];
@@ -190,19 +191,37 @@
     
     [self.view addSubview: [self createview:CGRectMake(113, 510, 15, 1)]];
     
-    UIImageView * weichatlogin = [[UIImageView alloc]initWithFrame:CGRectMake(136, 502, 20, 17)];
-    weichatlogin.image = [UIImage imageNamed:@"微信登录"];
-    [self.view addSubview:weichatlogin];
+//    UIImageView * weichatlogin = [[UIImageView alloc]initWithFrame:CGRectMake(136, 502, 20, 17)];
+//    weichatlogin.image = [UIImage imageNamed:@"微信登录"];
+//    [self.view addSubview:weichatlogin];
+//
+//    self.weichat = [[UILabel alloc]initWithFrame:CGRectMake(163, 501, 78, 19)];
+//    self.weichat.text = @"微信快速登录";
+//    self.weichat.textAlignment = NSTextAlignmentCenter;
+//    self.weichat.textColor = kTextColor2;
+//    self.weichat.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:13];
+//    [self.view addSubview:self.weichat];
     
-    self.weichat = [[UILabel alloc]initWithFrame:CGRectMake(163, 501, 78, 19)];
-    self.weichat.text = @"微信快速登录";
-    self.weichat.textAlignment = NSTextAlignmentCenter;
-    self.weichat.textColor = kTextColor2;
-    self.weichat.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:13];
-    [self.view addSubview:self.weichat];
+    UIButton *weichatlogin  = [UIButton buttonWithTitle:@"微信快速登录" titleColor:kTextColor2 backgroundColor:kClearColor titleFont:13];
+    weichatlogin.frame = CGRectMake(100, 501, SCREEN_WIDTH - 200, 19);
+    [weichatlogin SG_imagePositionStyle:(SGImagePositionStyleDefault) spacing:3 imagePositionBlock:^(UIButton *button) {
+        [button setImage:kImage(@"微信登录") forState:(UIControlStateNormal)];
+    }];
+    [weichatlogin addTarget:self action:@selector(weichatloginClick) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:weichatlogin];
     
     [self.view addSubview: [self createview:CGRectMake(249, 510, 15, 1)]];
     
+}
+
+-(void)weichatloginClick
+{
+    //构造SendAuthReq结构体
+    SendAuthReq* req =[[SendAuthReq alloc]init];
+    req.scope = @"snsapi_userinfo";
+    req.state = @"123";
+    //第三方向微信终端发送一个SendAuthReq消息结构
+    [WXApi sendReq:req];
 }
 
 #pragma mark - Events

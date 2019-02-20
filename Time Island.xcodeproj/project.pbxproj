@@ -82,6 +82,8 @@
 		1F4731B122166BFD007B5908 /* NotAdoptedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4731B022166BFD007B5908 /* NotAdoptedCell.m */; };
 		1F4731B422168AF2007B5908 /* PersonalCenterExpressionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4731B322168AF2007B5908 /* PersonalCenterExpressionCell.m */; };
 		1F4731B82216C271007B5908 /* JZLocationConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4731B62216C270007B5908 /* JZLocationConverter.m */; };
+		1F4731C9221C0F74007B5908 /* BarrageCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4731C8221C0F74007B5908 /* BarrageCollCell.m */; };
+		1F4731CF221CF887007B5908 /* UICollectionViewLeftAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4731CE221CF887007B5908 /* UICollectionViewLeftAlignedLayout.m */; };
 		1F9360AC21EDFCA5007E522A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360AA21EDFCA4007E522A /* MapViewController.m */; };
 		1F93610321EDFD8F007E522A /* ToClaimTheGiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360DA21EDFD8E007E522A /* ToClaimTheGiftVC.m */; };
 		1F93610421EDFD8F007E522A /* MyGiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360DC21EDFD8E007E522A /* MyGiftVC.m */; };
@@ -660,6 +662,10 @@
 		1F4731B322168AF2007B5908 /* PersonalCenterExpressionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalCenterExpressionCell.m; sourceTree = "<group>"; };
 		1F4731B62216C270007B5908 /* JZLocationConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZLocationConverter.m; sourceTree = "<group>"; };
 		1F4731B72216C270007B5908 /* JZLocationConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZLocationConverter.h; sourceTree = "<group>"; };
+		1F4731C7221C0F74007B5908 /* BarrageCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarrageCollCell.h; sourceTree = "<group>"; };
+		1F4731C8221C0F74007B5908 /* BarrageCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BarrageCollCell.m; sourceTree = "<group>"; };
+		1F4731CD221CF887007B5908 /* UICollectionViewLeftAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionViewLeftAlignedLayout.h; sourceTree = "<group>"; };
+		1F4731CE221CF887007B5908 /* UICollectionViewLeftAlignedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionViewLeftAlignedLayout.m; sourceTree = "<group>"; };
 		1F9360AA21EDFCA4007E522A /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		1F9360AB21EDFCA4007E522A /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		1F9360AD21EDFCDA007E522A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -2352,6 +2358,10 @@
 			children = (
 				1FF6397D21EC712C00F5FF68 /* BarrageView.h */,
 				1FF6397E21EC712C00F5FF68 /* BarrageView.m */,
+				1F4731C7221C0F74007B5908 /* BarrageCollCell.h */,
+				1F4731C8221C0F74007B5908 /* BarrageCollCell.m */,
+				1F4731CD221CF887007B5908 /* UICollectionViewLeftAlignedLayout.h */,
+				1F4731CE221CF887007B5908 /* UICollectionViewLeftAlignedLayout.m */,
 				1FF6398021EC716400F5FF68 /* BarrageEncapsulationView.h */,
 				1FF6398121EC716400F5FF68 /* BarrageEncapsulationView.m */,
 			);
@@ -4405,6 +4415,7 @@
 				B86CB6A921DDB7FF00C60AC7 /* TLTopCollectionView.m in Sources */,
 				B85F892021FC2F9C00D5B7A4 /* PYSearchConst.m in Sources */,
 				1FF6397821EC3E8300F5FF68 /* DonationView.m in Sources */,
+				1F4731C9221C0F74007B5908 /* BarrageCollCell.m in Sources */,
 				B80D386221F85F1E00206B55 /* ChoosTypeTableViewCell.m in Sources */,
 				B8A27AEE21E5C44400914897 /* MMCombinationFitlerView.m in Sources */,
 				B87C211E21FAF2DE00EFD0B0 /* ExpressCell.m in Sources */,
@@ -4644,6 +4655,7 @@
 				B81E60AC21DCAC7500873AB9 /* HomeTbleView.m in Sources */,
 				B81E605221DC981D00873AB9 /* RespHandler.m in Sources */,
 				B80D386921F8607900206B55 /* UIView+SDAutoLayout.m in Sources */,
+				1F4731CF221CF887007B5908 /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				1F93614A21EE0105007E522A /* MyCarbonBubbleCell.m in Sources */,
 				B8ED2E7621E7139E00FADCCE /* TreeFiledCell.m in Sources */,
 				1F19A8F321FADF9B0090BF84 /* TreeModel.m in Sources */,
