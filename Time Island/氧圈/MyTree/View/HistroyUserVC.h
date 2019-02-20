@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HistroyUserVC : TLBaseVC
-
+@property (nonatomic,strong) NSString * productCode;
 @end
 
 NS_ASSUME_NONNULL_END

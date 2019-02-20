@@ -128,6 +128,9 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 1) {
+            [self.refreshDelegate refreshTableView:self didSelectRowAtIndexPath:indexPath WithState:[NSString stringWithFormat:@"%ld",self.SelectHeader]];
+    }
    
 //    [self.refreshDelegate refreshTableViewButtonClick:self button:sender selectRowAtIndex:indexPath];
     

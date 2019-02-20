@@ -15,6 +15,7 @@
 #import "RenYangUserModel.h"
 #import "NegotiateVC.h"
 #import "TLTabBarController.h"
+#import "MapViewController.h"
 @interface GoodsDetailsVc ()<SLBannerViewDelegate,RefreshDelegate,PlatformButtonClickDelegate>
 @property (nonatomic, strong) UIButton *myButton;//推文
 @property (nonatomic, strong) UIButton *shareButton;
@@ -111,14 +112,7 @@
 {
     CoinWeakSelf;
     self.renYangFieldDeyailView = [[RenYangFieldDeyailView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, SCREEN_HEIGHT)];
-//    self.renYangFieldDeyailView.sureBlock = ^{
-//
-//
-////        [[UserModel user].cusPopView dismiss];
-////        [[UserModel user]showPopAnimationWithAnimationStyle:3 showView:weakSelf.realNameView BGAlpha:0.5 isClickBGDismiss:YES];
-//
-//    };
-
+    
     self.renYangFieldDeyailView.sureBlock = ^(TreeModel *model, int quantity,int TreeSize) {
         [[UserModel user].cusPopView dismiss];
         NegotiateVC * vc = [NegotiateVC new];
@@ -214,10 +208,25 @@
 }
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    NSLog(@"++++++++++songlei 点击了%ld ++++++++++", indexPath.row);
 }
--(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index{
-    sender.tag;
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath WithState:(NSString *)state{
+    if ([state isEqualToString:@"1"]) {
+        if (indexPath.row == 8) {
+            NSLog(@"++++++++++songlei 点击了%ld ++++++++++", indexPath.row);
+            MapViewController * vc = [MapViewController new];
+            vc.latitude = [self.TreeModels.latitude floatValue];
+            vc.longitude = [self.TreeModels.longitude floatValue];
+            vc.namestr = self.TreeModels.name;
+            vc.address = [NSString stringWithFormat:@"%@ %@ %@",self.TreeModels.province,self.TreeModels.city,self.TreeModels.area];
+            
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
+    else if ([state isEqualToString:@"2"]){
+        NSLog(@"++++++++++songlei 点击了%ld ++++++++++", indexPath.row);
+    }
+    
 }
 
 -(void)refresh{

@@ -194,6 +194,7 @@
             else if (indexPath.row == 7){
                 NSLog(@"%s%ld",__func__,indexPath.row);
                 HistroyUserVC * vc = [HistroyUserVC new];
+                vc.productCode = self.model.tree[@"productCode"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
         }

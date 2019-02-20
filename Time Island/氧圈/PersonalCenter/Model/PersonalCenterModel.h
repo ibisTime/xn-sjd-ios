@@ -17,6 +17,7 @@
 @property (nonatomic , copy)NSString *status;
 @property (nonatomic , copy)NSString *code;
 @property (nonatomic , copy)NSString *amount;
+@property (nonatomic , copy)NSString *userAdoptTreeCount;
 @property (nonatomic , copy)NSString *isShelter;
 @property (nonatomic , copy)NSString *treeNumber;
 @property (nonatomic , copy)NSString *specsName;

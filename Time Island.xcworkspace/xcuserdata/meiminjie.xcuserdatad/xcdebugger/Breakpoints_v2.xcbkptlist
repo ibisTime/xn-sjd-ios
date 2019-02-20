@@ -189,13 +189,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Time Island/&#x9996;&#x9875;/GoodsDetails/View/GoodsDetailsTableView.m"
-            timestampString = "572262896.1573451"
+            filePath = "Time Island/&#x6c27;&#x5708;/MyHomePage/MyCarbonBubble&#x6211;&#x7684;&#x78b3;&#x6ce1;&#x6ce1;/View/MyCarbonBubbleCell.m"
+            timestampString = "572327775.748547"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "-setCarbonModel:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -205,61 +205,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Time Island/&#x9996;&#x9875;/GoodsDetails/Controller/GoodsDetailsVc.m"
-            timestampString = "572263174.570304"
+            filePath = "Time Island/&#x6c27;&#x5708;/MyHomePage/MyCarbonBubble&#x6211;&#x7684;&#x78b3;&#x6ce1;&#x6ce1;/View/MyCarbonBubbleCell.m"
+            timestampString = "572327775.748602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
-            landmarkName = "-refreshTableView:didSelectRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Time Island/&#x9996;&#x9875;/GoodsDetails/Controller/GoodsDetailsVc.m"
-            timestampString = "572263175.293231"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
-            landmarkName = "-bannerView:didClickImagesAtIndex:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Time Island/&#x9996;&#x9875;/GoodsDetails/Controller/GoodsDetailsVc.m"
-            timestampString = "572263176.375427"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
-            landmarkName = "-customActionSheetButtonClick:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Time Island/&#x9996;&#x9875;/GoodsDetails/Controller/GoodsDetailsVc.m"
-            timestampString = "572263268.34816"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
-            landmarkName = "-refreshTableViewButtonClick:button:selectRowAtIndex:"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-setCarbonModel:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

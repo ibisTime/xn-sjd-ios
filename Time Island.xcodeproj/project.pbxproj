@@ -163,6 +163,7 @@
 		3647C4A621F1D80100FB049D /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3647C4A521F1D80100FB049D /* AddressCell.m */; };
 		365514D221FADC9A00E54996 /* CardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 365514D121FADC9A00E54996 /* CardModel.m */; };
 		365514D821FB009000E54996 /* introduceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 365514D721FB009000E54996 /* introduceView.m */; };
+		3663F290221CF7270053B3C8 /* HistoryUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3663F28F221CF7270053B3C8 /* HistoryUserCell.m */; };
 		366A59F122000007009FFA6E /* GoodsDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A59F022000007009FFA6E /* GoodsDetailsCell.m */; };
 		366A59F322003E35009FFA6E /* SelectAddress.json in Resources */ = {isa = PBXBuildFile; fileRef = 366A59F222003E35009FFA6E /* SelectAddress.json */; };
 		3671897C2213AEE60050488E /* MessageDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3671897B2213AEE60050488E /* MessageDetailsVC.m */; };
@@ -816,6 +817,8 @@
 		365514D121FADC9A00E54996 /* CardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardModel.m; sourceTree = "<group>"; };
 		365514D621FB009000E54996 /* introduceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = introduceView.h; sourceTree = "<group>"; };
 		365514D721FB009000E54996 /* introduceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = introduceView.m; sourceTree = "<group>"; };
+		3663F28E221CF7270053B3C8 /* HistoryUserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryUserCell.h; sourceTree = "<group>"; };
+		3663F28F221CF7270053B3C8 /* HistoryUserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryUserCell.m; sourceTree = "<group>"; };
 		366A59EF22000007009FFA6E /* GoodsDetailsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsDetailsCell.h; sourceTree = "<group>"; };
 		366A59F022000007009FFA6E /* GoodsDetailsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailsCell.m; sourceTree = "<group>"; };
 		366A59F222003E35009FFA6E /* SelectAddress.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SelectAddress.json; sourceTree = "<group>"; };
@@ -1773,6 +1776,8 @@
 				362341792216AB8E00143683 /* TreeDetailCell.m */,
 				3622C376221AB55A00087EDD /* HistroyUserVC.h */,
 				3622C377221AB55A00087EDD /* HistroyUserVC.m */,
+				3663F28E221CF7270053B3C8 /* HistoryUserCell.h */,
+				3663F28F221CF7270053B3C8 /* HistoryUserCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4597,6 +4602,7 @@
 				B8ED2E8B21E878BB00FADCCE /* RenYangFieldDeyailView.m in Sources */,
 				B81E5FAD21DC8FC200873AB9 /* ZMChineseConvert.m in Sources */,
 				B8A27AFC21E5D24F00914897 /* TreeDetailVC.m in Sources */,
+				3663F290221CF7270053B3C8 /* HistoryUserCell.m in Sources */,
 				1F3EBAD721F59A75005BC837 /* GoodsDetailsVc.m in Sources */,
 				1F4731942212C59E007B5908 /* GoodsEditTableView.m in Sources */,
 				B8A27AED21E5C44400914897 /* MMHeaderView.m in Sources */,

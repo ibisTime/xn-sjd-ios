@@ -129,19 +129,21 @@
     
     MyTreeEnergyModel * model = self.energyModels[index];
     
-    if ([self.delegate respondsToSelector:@selector(floatingBallHeader:didPappaoAtIndex:isLastOne:)]) {
-        [self.delegate paopaoclick:model];
-    }
+//    if ([self.delegate respondsToSelector:@selector(floatingBallHeader:didPappaoAtIndex:isLastOne:)]) {
+//        [self.delegate paopaoclick:model];
+//    }
+    [self.delegate paopaoclick:model];
     
-    TLNetworking * http = [[TLNetworking alloc]init];
-    http.code = @"629350";
-    http.parameters[@"code"] = model.code;
-    http.parameters[@"userId"] = [TLUser user].userId;
-    [http postWithSuccess:^(id responseObject) {
-        [TLAlert alertWithSucces:@"收取成功!"];
-    } failure:^(NSError *error) {
-        
-    }];
+    
+//    TLNetworking * http = [[TLNetworking alloc]init];
+//    http.code = @"629350";
+//    http.parameters[@"code"] = model.code;
+//    http.parameters[@"userId"] = [TLUser user].userId;
+//    [http postWithSuccess:^(id responseObject) {
+//        [TLAlert alertWithSucces:@"收取成功!"];
+//    } failure:^(NSError *error) {
+//
+//    }];
     
     
     
