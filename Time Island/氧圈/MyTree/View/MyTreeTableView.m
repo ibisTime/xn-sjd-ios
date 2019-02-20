@@ -157,7 +157,8 @@
     http.parameters[@"code"] = model.code;
     http.parameters[@"userId"] = [TLUser user].userId;
     [http postWithSuccess:^(id responseObject) {
-        [self reloadData];
+        [self getdata];
+        [self getCollectEnergyDetailsdata];
     } failure:^(NSError *error) {
         
     }];

@@ -130,21 +130,21 @@
 - (void)floatingBallHeader:(FloatingBallHeader *)floatingBallHeader didPappaoAtIndex:(NSInteger)index isLastOne:(BOOL)isLastOne {
     NSLog(@"点了%zd", index);
     
+    
     MyTreeEnergyModel * model = self.energyModels[index];
+    [_delegate paopaoclick:model];
+//    TLNetworking * http = [[TLNetworking alloc]init];
+//    http.code = @"629350";
+//    http.parameters[@"code"] = model.code;
+//    http.parameters[@"userId"] = [TLUser user].userId;
+//    [http postWithSuccess:^(id responseObject) {
+//        [TLAlert alertWithSucces:@"收取成功!"];
+//
+//
     
-    if ([self.delegate respondsToSelector:@selector(floatingBallHeader:didPappaoAtIndex:isLastOne:)]) {
-        [self.delegate paopaoclick:model];
-    }
-    
-    TLNetworking * http = [[TLNetworking alloc]init];
-    http.code = @"629350";
-    http.parameters[@"code"] = model.code;
-    http.parameters[@"userId"] = [TLUser user].userId;
-    [http postWithSuccess:^(id responseObject) {
-        [TLAlert alertWithSucces:@"收取成功!"];
-    } failure:^(NSError *error) {
-        
-    }];
+//    } failure:^(NSError *error) {
+//
+//    }];
     
     
     

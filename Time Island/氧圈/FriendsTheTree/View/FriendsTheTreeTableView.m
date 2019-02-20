@@ -63,8 +63,11 @@
         FriendsTreeHeadCell *cell = [tableView dequeueReusableCellWithIdentifier:FriendsTreeHead forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
+        
+        
         cell.donation = self.donation;
         cell.model = self.model;
+        
         cell.energyModels = self.energyModels;
         
         if ([USERXX isBlankString:self.barrageModel.content] == NO) {
@@ -103,13 +106,21 @@
 {
     [self.refreshDelegate refreshTableViewButtonClick:self button:nil selectRowAtIndex:tag];
 }
+
+//泡泡点击
 -(void)paopaoclick:(MyTreeEnergyModel *)model{
+    
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629350";
     http.parameters[@"code"] = model.code;
-    http.parameters[@"userId"] = self.model.user[@"userId"];
+    http.parameters[@"userId"] = [TLUser user].userId;
     [http postWithSuccess:^(id responseObject) {
-        [self reloadData];
+//        [self reloadData];
+        
+        [self getdata];
+        [self getcompetedata];
+        [self getHistory];
+        
     } failure:^(NSError *error) {
         
     }];
@@ -200,6 +211,8 @@
     }
     return [UIView new];
 }
+
+//泡泡
 -(void)getdata{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629355";
@@ -218,13 +231,14 @@
     NSLog(@"123");
 }
 
+
+//比拼数据
 -(void)getcompetedata{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629900";
     http.parameters[@"toUserId"] = self.model.user[@"userId"];
     http.parameters[@"userId"] = [TLUser user].userId;
     [http postWithSuccess:^(id responseObject) {
-//        NSMutableArray * arr = responseObject[@"data"];
         self.CompeteModel = [CompeteModel mj_objectWithKeyValues:responseObject[@"data"]];
         [self reloadData_tl];
     } failure:^(NSError *error) {
@@ -232,6 +246,7 @@
     }];
 }
 
+//动态
 -(void)getHistory{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629305";
@@ -239,7 +254,7 @@
     http.parameters[@"limit"] = @(10);
     http.parameters[@"start"] = @(1);
     http.parameters[@"adoptTreeCode"] = self.model.code;
-    http.parameters[@"adoptUserId"]= self.model.user[@"userId"];
+    http.parameters[@"adoptUserId"] = self.model.user[@"userId"];
     http.parameters[@"queryUserId"] = [TLUser user].userId;
     [http postWithSuccess:^(id responseObject) {
         self.DynamicModels = [DynamicModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
