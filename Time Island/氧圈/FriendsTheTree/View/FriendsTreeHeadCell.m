@@ -145,7 +145,7 @@
 //    if ([self.delegate respondsToSelector:@selector(floatingBallHeader:didPappaoAtIndex:isLastOne:)]) {
 //        [self.delegate paopaoclick:model];
 //    }
-    [self.delegate paopaoclick:model];
+//    [self.delegate paopaoclick:model];
     
     
 //    TLNetworking * http = [[TLNetworking alloc]init];

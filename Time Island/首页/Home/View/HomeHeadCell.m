@@ -363,10 +363,8 @@
 {
     if (self.clicknewsBlock) {
         self.clicknewsBlock(index);
-        
     }
     NSLog(@"点击快报");
-    
 }
 
 -(void)setTextLoopArray:(NSMutableArray *)TextLoopArray{
@@ -376,7 +374,7 @@
 
         [weakSelf fastNewClickWithIndex:index];
     }];
-    loopView.backgroundColor = RGB(252, 240, 240);;
+    loopView.backgroundColor = RGB(252, 240, 240);
     loopView.clipsToBounds = YES;
     [self.fastNews addSubview:loopView];
     loopView.centerY = self.imageView.centerY;
