@@ -11,6 +11,8 @@
 @implementation FriendsTreeHeadCell{
     UIImageView *headImg;
     UILabel *nameLbl;
+    
+    
 }
 
 
@@ -86,6 +88,7 @@
         [self addSubview:self.animationView];
 //        [self animationView];
         
+       
     }
     return self;
 }
@@ -172,4 +175,21 @@
     self.floatingBallHeader.dataList = array;
     NSLog(@"self.floatingBallHeader.dataList = %@",self.floatingBallHeader.dataList);
 }
+
+-(void)setBarrageModel:(BarrageModel *)barrageModel
+{
+    CGSize size = [barrageModel.content sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:FONT(14),NSFontAttributeName,nil]];
+    // 名字的H
+    CGFloat nameW = size.width;
+    _barrView = [[BarrageEncapsulationView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, kHeight(432) - 100, nameW + 65, 40)];
+    [self addSubview:_barrView];
+    [UIView animateWithDuration:4 animations:^{
+        self.barrView.frame = CGRectMake(- nameW - 65, kHeight(432) - 100, nameW + 65, 40);
+        self.barrView.model = barrageModel;
+    } completion:^(BOOL finished) {
+        [self.barrView removeFromSuperview];
+    }];
+    
+}
+
 @end

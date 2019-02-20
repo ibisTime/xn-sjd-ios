@@ -9,6 +9,7 @@
 #import "BarrageView.h"
 #import "BarrageCollCell.h"
 #define BarrageColl @"BarrageCollCell"
+#import "UICollectionViewLeftAlignedLayout.h"
 @interface BarrageView () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 @end
 
@@ -80,27 +81,33 @@
     self = [super initWithFrame:frame];
     if (self) {
 //        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.backgroundColor = [UIColor whiteColor];
+//        self.backgroundColor = [UIColor whiteColor];
         
         UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT - kHeight(635)/2, SCREEN_WIDTH, kHeight(635)/2 + 100)];
+//        backView.alpha = 0.5;
         backView.backgroundColor = kWhiteColor;
         [self addSubview:backView];
         
+        UIButton *ShutDownBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        ShutDownBtn.frame = CGRectMake(SCREEN_WIDTH - 15 - 25, backView.y + 15, 25, 25);
+        [ShutDownBtn setImage:kImage(@"删除 灰色") forState:(UIControlStateNormal)];
+        self.ShutDownBtn = ShutDownBtn;
+        [self addSubview:ShutDownBtn];
         
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-//        layout.itemSize = CGSizeMake((SCREEN_WIDTH - 50)/3  , (SCREEN_WIDTH - 50)/3);
-//        layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-        
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, kHeight(635)/2) collectionViewLayout:layout];
-        _collectionView.backgroundColor = [UIColor redColor];
-        _collectionView.delegate = self;
-        _collectionView.dataSource = self;
+        UICollectionViewLeftAlignedLayout *layout = [[UICollectionViewLeftAlignedLayout alloc] init];
+        layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+        layout.minimumLineSpacing = 15;
+        // 2.设置 最小列间距
+        layout. minimumInteritemSpacing  = 15;
+        layout.sectionInset = UIEdgeInsetsMake(15,15,15,15);
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 55, SCREEN_WIDTH, kHeight(635)/2 - 55) collectionViewLayout:layout];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
-        [_collectionView setBackgroundColor:[UIColor whiteColor]];
+        _collectionView.backgroundColor = kWhiteColor;
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
         [_collectionView registerClass:[BarrageCollCell class] forCellWithReuseIdentifier:BarrageColl];
-        [self addSubview:self.collectionView];
-//        NSLog(@"%@",self.collectDataArray);
+        [backView addSubview:self.collectionView];
     }
     return self;
 }
@@ -111,47 +118,57 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     BarrageCollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:BarrageColl forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor clearColor];
+//    cell.backgroundColor = [UIColor redColor];
+    if (self.BarrageModels.count > 0) {
+        cell.model = self.BarrageModels[indexPath.row];
+    }
     
     return cell;
 }
 
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 0.01;
-}
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
-    
-    return 0.01;
-}
+
+
+
+//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+//{
+//    return 0.01;
+//}
+//
+//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+//{
+//
+//    return 0.01;
+//}
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    return CGSizeMake((SCREEN_WIDTH - 1)/2, 40);
+    CGSize size = [self.BarrageModels[indexPath.row].content sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:FONT(14),NSFontAttributeName,nil]];
+    // 名字的H
+    CGFloat nameW = size.width;
+
+    return CGSizeMake(nameW + 65, 40);
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-{
-    return CGSizeMake(SCREEN_WIDTH, 0.001);
-}
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
-{
-    return CGSizeMake(SCREEN_WIDTH, 0.001);
-}
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+//{
+//    return CGSizeMake(SCREEN_WIDTH, 0.001);
+//}
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
+//{
+//    return CGSizeMake(SCREEN_WIDTH, 0.001);
+//}
 
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-    return UIEdgeInsetsMake(0.1, 0.1, 0.1, 0.1);
-}
+//-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+//{
+//    return UIEdgeInsetsMake(10, 10, 10, 10);
+//}
 
 
 #pragma mark -- Collection delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    [_delegate BarrageViewSelectRow:indexPath.row];
 }
 
 

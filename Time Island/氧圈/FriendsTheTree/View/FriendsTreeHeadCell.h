@@ -11,6 +11,8 @@
 #import "DonationAnimationView.h"
 #import "PersonalCenterModel.h"
 #import "MyTreeEnergyModel.h"
+#import "BarrageModel.h"
+#import "BarrageEncapsulationView.h"
 @protocol FriendsTreeHeadDelegate <NSObject>
 
 -(void)FriendsTreeHeadButton:(NSInteger )tag;
@@ -20,6 +22,7 @@
 
 @interface FriendsTreeHeadCell : UITableViewCell<FloatingBallHeaderDelegate>
 
+@property (nonatomic , strong)BarrageModel *barrageModel;
 @property (nonatomic , assign)NSInteger donation;
 
 @property (nonatomic, strong) FloatingBallHeader *floatingBallHeader;
@@ -30,5 +33,7 @@
 
 @property (nonatomic , strong)PersonalCenterModel *model;
 @property (nonatomic , strong)NSMutableArray <MyTreeEnergyModel *>*energyModels;
+
+@property (nonatomic , strong)BarrageEncapsulationView *barrView;
 
 @end

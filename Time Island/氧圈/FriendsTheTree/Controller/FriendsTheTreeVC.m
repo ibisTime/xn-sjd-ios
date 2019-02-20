@@ -12,7 +12,7 @@
 #import "BarrageView.h"
 #import "BarrageModel.h"
 #import "MapViewController.h"
-@interface FriendsTheTreeVC ()<RefreshDelegate>
+@interface FriendsTheTreeVC ()<RefreshDelegate,BarrageViewDelegate>;
 
 @property (nonatomic , strong)FriendsTheTreeTableView *tableView;
 
@@ -63,10 +63,7 @@
     return _donationView;
 }
 
--(void)ShutDownBtnClick
-{
-    [[UserModel user].cusPopView dismiss];
-}
+
 
 
 -(BarrageView *)barrageView
@@ -74,9 +71,40 @@
     if (!_barrageView) {
         _barrageView = [[BarrageView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT)];
         [_barrageView.ShutDownBtn addTarget:self action:@selector(ShutDownBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+        _barrageView.delegate = self;
         //        [_donationView.confirmBtn addTarget:self action:@selector(confirmBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return _barrageView;
+}
+
+-(void)ShutDownBtnClick
+{
+    [[UserModel user].cusPopView dismiss];
+}
+
+-(void)BarrageViewSelectRow:(NSInteger)row
+{
+    
+//    TLNetworking * http = [[TLNetworking alloc]init];
+//    http.code = @"629384";
+//    http.parameters[@"status"] = @(1);
+//    http.parameters[@"adoptTreeCode"] = self.model.adoptTreeCode;
+//    http.parameters[@"code"] = self.BarrageModels[row].code;
+//    http.parameters[@"userId"] = [TLUser user].userId;
+//    [http postWithSuccess:^(id responseObject) {
+    
+        
+        
+        [[UserModel user].cusPopView dismiss];
+        self.tableView.barrageModel = self.BarrageModels[row];
+        [self.tableView reloadData];
+//    } failure:^(NSError *error) { 2
+//
+//    }];
+    
+    
+    
+    
 }
 
 -(void)confirmBtnClick

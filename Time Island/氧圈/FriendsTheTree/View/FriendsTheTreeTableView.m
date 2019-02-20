@@ -66,6 +66,12 @@
         cell.donation = self.donation;
         cell.model = self.model;
         cell.energyModels = self.energyModels;
+        
+        if ([USERXX isBlankString:self.barrageModel.content] == NO) {
+            cell.barrageModel = self.barrageModel;
+            self.barrageModel = nil;
+        }
+        
         return cell;
     }
     if (indexPath.section == 1) {
