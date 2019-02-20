@@ -82,4 +82,71 @@
     [confirmBtn addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
 }
 
+-(void)confirm{
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSLog(@"key1 = %@ key2 = %@",self.key1,self.key2);
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"805072";
+        http.parameters[@"idPic"] = self.key1;
+        http.parameters[@"backIdPic"] = self.key2;
+        http.parameters[@"realName"] = self.Name.text;
+        http.parameters[@"userId"] = [TLUser user].userId;
+        http.parameters[@"idNo"] = self.ID.text;
+        http.parameters[@"introduce"] = [TLUser user].introduce;
+        [http postWithSuccess:^(id responseObject) {
+            [TLAlert alertWithSucces:[LangSwitcher switchLang:@"设置成功" key:nil]];
+            [[TLUser user] updateUserInfo];
+            [self.navigationController popViewControllerAnimated:YES];
+        } failure:^(NSError *error) {
+            NSLog(@"%@",error);
+            [TLAlert alertWithSucces:[LangSwitcher switchLang:@"设置失败" key:nil]];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+    });
+    
+}
+-(void)seleckImage:(UITapGestureRecognizer * )image{
+    self.state = (int)image.view.tag;
+    NSLog(@"%s",__func__);
+    //这部分代码是用来打开相册的
+    UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;//是否允许编辑
+    picker.sourceType = sourceType;
+    [self presentViewController:picker animated:YES completion:nil];
+}
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    //    [picker dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissModalViewControllerAnimated:YES];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage * image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    if (self.state == 1) {
+        self.idPic.image = nil;
+        self.idPic.image = image;
+        TLUploadManager * manager = [TLUploadManager manager];
+        manager.imgData = UIImageJPEGRepresentation(self.idPic.image, 1.0);
+        manager.image = self.idPic.image;
+        [manager getTokenShowView:self.idPic succes:^(NSString *token) {
+            self.key1 = token;
+        } failure:^(NSError *error) {
+        }];
+    }
+    else{
+        self.backIdPic.image = nil;
+        self.backIdPic.image = image;
+        TLUploadManager * manager1 = [TLUploadManager manager];
+        manager1.imgData = UIImageJPEGRepresentation(self.backIdPic.image, 11.0);
+        manager1.image = self.backIdPic.image;
+        [manager1 getTokenShowView:self.backIdPic succes:^(NSString *token) {
+            self.key2 = token;
+        } failure:^(NSError *error) {
+        }];
+    }
+    //    [picker dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissModalViewControllerAnimated:YES];
+}
 @end

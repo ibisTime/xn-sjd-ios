@@ -358,7 +358,7 @@
     http1.parameters[@"limit"] = @(10);
     [http1 postWithSuccess:^(id responseObject) {
         self.array = responseObject[@"data"][@"list"];
-        for (int i = 0; i < 3; i ++) {
+//        for (int i = 0; i < 3; i ++) {
             float amount1 = [self.array[0][@"amount"] floatValue] / 1000;
             NSString * str1 = [NSString stringWithFormat:@"%.2f",amount1];
             self.numberLbl1.text = str1;
@@ -367,12 +367,12 @@
             NSString * str2 = [NSString stringWithFormat:@"%.2f",amount2];
             self.numberLbl2.text = str2;
             
-            if (self.array[2][@"totalAmount"]) {
-                float amount3 = [self.array[2][@"totalAmount"] floatValue] / 1000;
+            if (self.array[2][@"amount"]) {
+                float amount3 = [self.array[2][@"amount"] floatValue] / 1000;
                 NSString * str3 = [NSString stringWithFormat:@"%.2f",amount3];
                 self.numberLbl3.text = str3;
             }
-        }
+//        }
         [self.table1 reloadData];
     } failure:^(NSError *error) {
         

@@ -131,9 +131,11 @@
     NSArray * detail = @[self.model.tree[@"productName"],self.model.tree[@"rank"],self.model.tree[@"area"],[NSString stringWithFormat:@"%@-%@",[self.model.startDatetime convertToDetailDateWithoutHour],[self.model.endDatetime convertToDetailDateWithoutHour] ],self.model.tree[@"maintainer"][@"company"][@"name"],self.model.tree[@"maintainer"][@"company"][@"charger"],@"",@""];
     TreeDetailCell * cell = [tableView dequeueReusableCellWithIdentifier:TreeDetail forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     cell.titlearr = arr[indexPath.row];
     cell.detailstr = detail[indexPath.row];
+    if (indexPath.row == 6 || indexPath.row == 7) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     return cell;
     
     

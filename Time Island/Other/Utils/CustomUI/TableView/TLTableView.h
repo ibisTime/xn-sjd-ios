@@ -27,6 +27,8 @@
 - (void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender state:(NSString *)state;
 
 -(void)refreshTableView:(TLTableView *)refreshTableview scrollView:(UIScrollView *)scroll;
+
+- (void)refreshTableView:(TLTableView*)refreshTableview didSelectRowAtIndexPath:(NSIndexPath*)indexPath WithState : (NSString * )state;
 @end
 
 @interface  TLTableView: UITableView

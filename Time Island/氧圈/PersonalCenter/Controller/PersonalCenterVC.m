@@ -74,6 +74,7 @@
     // Do any additional setup after loading the view.
     [self getInfo];
     [self.view addSubview:self.headView];
+    self.tableView.state = self.state;
     [self.view addSubview:self.tableView];
    
     

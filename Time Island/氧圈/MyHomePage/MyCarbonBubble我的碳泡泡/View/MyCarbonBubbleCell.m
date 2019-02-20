@@ -45,7 +45,7 @@
 -(void)setCarbonModel:(CarbonModel *)CarbonModel{
     self.nameLbl.text = CarbonModel.bizNote;
     float amount3 = [CarbonModel.transAmountString floatValue] / 1000.00;
-    NSString * str3 = [NSString stringWithFormat:@"+%.2f",amount3];
+    NSString * str3 = [NSString stringWithFormat:@"%.2f",amount3];
     self.numberLbl.text = str3;
     self.timeLbl.text = [CarbonModel.createDatetime convertToDetailDate];
 }
