@@ -89,7 +89,7 @@
     NSArray *dynamicArray = self.dynamicArray[indexPath.section - 1];
     DynamicModel *model = [DynamicModel mj_objectWithKeyValues:dynamicArray[indexPath.row]];
     
-    if ([model.type isEqualToString:@"7"]) {
+    if ([model.type isEqualToString:@"7"] || [model.type isEqualToString:@"4"]) {
         PersonalCenterExpressionCell *cell = [tableView dequeueReusableCellWithIdentifier:PersonalCenterExpression forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.dynamicModel = model;

@@ -85,31 +85,49 @@
         nameLabel.frame = CGRectMake(headImage.xx + 8, 10, nameLabel.width, 14);
     }
     
-    
-    expressionLabel.text = dynamicModel.barrageContent;
-    [expressionLabel sizeToFit];
-    
-    if (expressionLabel.width > SCREEN_WIDTH - 70 - 15 - headImage.xx - 60) {
-        expressionLabel.frame = CGRectMake(headImage.xx + 8, 24, SCREEN_WIDTH - 70 - 15 - headImage.xx - 60, 16);
+    if (dynamicModel.barrageContent) {
+        expressionLabel.text = dynamicModel.barrageContent;
+        [expressionLabel sizeToFit];
+        
+        if (expressionLabel.width > SCREEN_WIDTH - 70 - 15 - headImage.xx - 60) {
+            expressionLabel.frame = CGRectMake(headImage.xx + 8, 24, SCREEN_WIDTH - 70 - 15 - headImage.xx - 60, 16);
+        }
+        else
+        {
+            expressionLabel.frame = CGRectMake(headImage.xx + 8, 24, expressionLabel.width, 16);
+        }
+        
+        [expressionImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dynamicModel.barragePic convertImageUrl]]]];
+        
+        if (nameLabel.width > expressionLabel.width)
+        {
+            expressionImage.frame = CGRectMake(nameLabel.xx + 10 , 5, 40, 40);
+        }else
+        {
+            expressionImage.frame = CGRectMake(expressionLabel.xx + 5, 5, 40, 40);
+        }
+        
+        backView.frame = CGRectMake(24, 0, expressionImage.xx + 10, 50);
+    }else{
+        expressionLabel.text = @"来收取能量，被保护罩阻挡啦！";
+        [expressionLabel sizeToFit];
+        
+        if (expressionLabel.width > SCREEN_WIDTH - 70 - 15 - headImage.xx - 60) {
+            expressionLabel.frame = CGRectMake(headImage.xx + 8, 24, SCREEN_WIDTH - 70 - 15 - headImage.xx - 60, 16);
+        }
+        else
+        {
+            expressionLabel.frame = CGRectMake(headImage.xx + 8, 24, expressionLabel.width, 16);
+            
+        }
+        backView.frame = CGRectMake(24, 0, expressionLabel.xx + 10, 50);
     }
-    else
-    {
-        expressionLabel.frame = CGRectMake(headImage.xx + 8, 24, expressionLabel.width, 16);
-    }
     
     
     
-    [expressionImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dynamicModel.barragePic convertImageUrl]]]];
     
-    if (nameLabel.width > expressionLabel.width)
-    {
-        expressionImage.frame = CGRectMake(nameLabel.xx + 10 , 5, 40, 40);
-    }else
-    {
-        expressionImage.frame = CGRectMake(expressionLabel.xx + 5, 5, 40, 40);
-    }
     
-    backView.frame = CGRectMake(24, 0, expressionImage.xx + 10, 50);
+    
     
 }
 
