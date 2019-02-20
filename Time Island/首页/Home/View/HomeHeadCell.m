@@ -20,7 +20,7 @@
 #import "TLBannerView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "SLBannerView.h"
-
+#import "SGAdvertScrollView.h"
 @interface HomeHeadCell()<HW3DBannerViewDelegate,SLBannerViewDelegate>
 {
     NSInteger selectNum;
@@ -228,6 +228,15 @@
     [fastNews addSubview:imageView];
     self.imageView = imageView;
 
+    _advertScrollView = [[SGAdvertScrollView alloc]initWithFrame: CGRectMake(self.imageView.xx + 10, 0, kScreenWidth - self.imageView.xx - 10 - 50, 30)];
+    _advertScrollView.titleFont = [UIFont systemFontOfSize:12];
+    _advertScrollView.delegate = self;
+    _advertScrollView.scrollTimeInterval = 5.0;
+    _advertScrollView.advertScrollViewStyle = SGAdvertScrollViewStyleNormal;
+    _advertScrollView.titleColor = kHexColor(@"#666666");
+
+    [fastNews addSubview:_advertScrollView];
+    
     
     UILabel *moreLab = [UILabel labelWithBackgroundColor:kClearColor textColor:[UIColor redColor] font:12];
     moreLab.frame = CGRectMake(kScreenWidth-36, 9, 26, 12);
@@ -369,15 +378,23 @@
 
 -(void)setTextLoopArray:(NSMutableArray *)TextLoopArray{
     _TextLoopArray = TextLoopArray;
+    _advertScrollView.titles = TextLoopArray;
     CoinWeakSelf;
-    XBTextLoopView *loopView = [XBTextLoopView textLoopViewWith:TextLoopArray loopInterval:3.0 initWithFrame:CGRectMake(self.imageView.xx, 0, kScreenWidth-105, 30) selectBlock:^(NSString *selectString, NSInteger index) {
+//    XBTextLoopView *loopView = [XBTextLoopView textLoopViewWith:TextLoopArray loopInterval:3.0 initWithFrame:CGRectMake(self.imageView.xx, 0, kScreenWidth-105, 30) selectBlock:^(NSString *selectString, NSInteger index) {
+//
+//        [weakSelf fastNewClickWithIndex:index];
+//    }];
+//    loopView.backgroundColor = RGB(252, 240, 240);
+//    loopView.clipsToBounds = YES;
+//    [self.fastNews addSubview:loopView];
+//    loopView.centerY = self.imageView.centerY;
+}
 
-        [weakSelf fastNewClickWithIndex:index];
-    }];
-    loopView.backgroundColor = RGB(252, 240, 240);
-    loopView.clipsToBounds = YES;
-    [self.fastNews addSubview:loopView];
-    loopView.centerY = self.imageView.centerY;
+- (void)advertScrollView:(SGAdvertScrollView *)advertScrollView didSelectedItemAtIndex:(NSInteger)index {
+    [self fastNewClickWithIndex:index];
+//    [_delegate HomeAnnouncementButton:index];
+//    WGLog(@"%ld",index);
+    
 }
 
 @end

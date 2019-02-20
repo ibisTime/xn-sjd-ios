@@ -84,6 +84,7 @@
 		1F4731B82216C271007B5908 /* JZLocationConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4731B62216C270007B5908 /* JZLocationConverter.m */; };
 		1F4731C9221C0F74007B5908 /* BarrageCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4731C8221C0F74007B5908 /* BarrageCollCell.m */; };
 		1F4731CF221CF887007B5908 /* UICollectionViewLeftAlignedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4731CE221CF887007B5908 /* UICollectionViewLeftAlignedLayout.m */; };
+		1F4731D2221D5AC2007B5908 /* SGAdvertScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F4731D1221D5AC1007B5908 /* SGAdvertScrollView.m */; };
 		1F9360AC21EDFCA5007E522A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360AA21EDFCA4007E522A /* MapViewController.m */; };
 		1F93610321EDFD8F007E522A /* ToClaimTheGiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360DA21EDFD8E007E522A /* ToClaimTheGiftVC.m */; };
 		1F93610421EDFD8F007E522A /* MyGiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360DC21EDFD8E007E522A /* MyGiftVC.m */; };
@@ -666,6 +667,8 @@
 		1F4731C8221C0F74007B5908 /* BarrageCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BarrageCollCell.m; sourceTree = "<group>"; };
 		1F4731CD221CF887007B5908 /* UICollectionViewLeftAlignedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionViewLeftAlignedLayout.h; sourceTree = "<group>"; };
 		1F4731CE221CF887007B5908 /* UICollectionViewLeftAlignedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionViewLeftAlignedLayout.m; sourceTree = "<group>"; };
+		1F4731D0221D5AC1007B5908 /* SGAdvertScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGAdvertScrollView.h; sourceTree = "<group>"; };
+		1F4731D1221D5AC1007B5908 /* SGAdvertScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGAdvertScrollView.m; sourceTree = "<group>"; };
 		1F9360AA21EDFCA4007E522A /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		1F9360AB21EDFCA4007E522A /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		1F9360AD21EDFCDA007E522A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -2312,6 +2315,8 @@
 		1F9361DB21F3115E007E522A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1F4731D0221D5AC1007B5908 /* SGAdvertScrollView.h */,
+				1F4731D1221D5AC1007B5908 /* SGAdvertScrollView.m */,
 				B81E609321DCAB8F00873AB9 /* Banner */,
 				1F19A8F521FB23980090BF84 /* HomeHeadCell.h */,
 				1F19A8F621FB23980090BF84 /* HomeHeadCell.m */,
@@ -4663,6 +4668,7 @@
 				B81E5FB021DC8FC200873AB9 /* TLTableView.m in Sources */,
 				B81E5FDE21DC8FC200873AB9 /* AppConfig.m in Sources */,
 				B81E5FE221DC8FC200873AB9 /* HttpRequestService.m in Sources */,
+				1F4731D2221D5AC2007B5908 /* SGAdvertScrollView.m in Sources */,
 				3647C4A321F1D57400FB049D /* ReceivingAddressVC.m in Sources */,
 				B8A27AF421E5C44400914897 /* MMComBoBoxView.m in Sources */,
 				B80D388C21F873F000206B55 /* BankCardModel.m in Sources */,

@@ -10,6 +10,7 @@
 #import "BannerModel.h"
 #import "HomeFindModel.h"
 #import "HW3DBannerView.h"
+#import "SGAdvertScrollView.h"
 
 typedef NS_ENUM(NSInteger, HomeEventsType) {
     
@@ -23,7 +24,7 @@ typedef void(^HomeHeaderEventsBlock)(HomeEventsType type, NSInteger index, HomeF
 
 
 
-@interface HomeHeadCell : UICollectionViewCell
+@interface HomeHeadCell : UICollectionViewCell<SGAdvertScrollViewDelegate>
 
 
 @property (nonatomic, copy) HomeHeaderEventsBlock headerBlock;
@@ -54,5 +55,5 @@ typedef void(^HomeHeaderEventsBlock)(HomeEventsType type, NSInteger index, HomeF
 //@property UIImageView * imageView;
 @property (nonatomic,strong) NSString * ImageString;
 @property (nonatomic,strong) UIImageView * tuiwenimage;
-
+@property (nonatomic , strong)SGAdvertScrollView *advertScrollView;
 @end
