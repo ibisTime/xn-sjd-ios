@@ -34,8 +34,12 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if ([self.state isEqualToString:@"collect"]) {
+        self.imagearr = [self.BookModel.article[@"photo"] componentsSeparatedByString:@"||"];
+    }else{
+        self.imagearr = [self.BookModel.photo componentsSeparatedByString:@"||"];
+    }
     
-    self.imagearr = [self.BookModel.photo componentsSeparatedByString:@"||"];
     
 //    self.ContentView = [[BookDetailContentView alloc]initWithFrame:CGRectMake(0, 150, SCREEN_WIDTH, SCREEN_HEIGHT - 150 - 64 - 50)];
 //    self.ContentView.state = self.state;
@@ -126,19 +130,17 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         BookContentCell  *cell = [tableView dequeueReusableCellWithIdentifier:@"BookContentCell" forIndexPath:indexPath];
+        cell.state = self.state;
         cell.BookModel = self.BookModel;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-//        cell.sp
-//        cell.cellheight = ^(float height) {
-//            self.height = height;
-//            [self.TableView reloadData];
-//        };
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     
     BookImageCell * cell = [tableView dequeueReusableCellWithIdentifier:@"BookImageCell" forIndexPath:indexPath];
+    cell.state = self.state;
     cell.BookModel = self.BookModel;
+    
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -181,7 +183,13 @@
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629811";
     http.parameters[@"userId"] = [TLUser user].userId;
-    http.parameters[@"code"] = self.BookModel.code;
+//    http.parameters[@"code"] = self.BookModel.code;
+    if ([self.state isEqualToString:@"collect"]) {
+        http.parameters[@"code"] = self.BookModel.article[@"code"];
+    }
+    else{
+        http.parameters[@"code"] = self.BookModel.code;
+    }
     self.count = [self.BookModel.collectCount integerValue];
     [http postWithSuccess:^(id responseObject) {
         
@@ -201,7 +209,13 @@
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629810";
     http.parameters[@"userId"] = [TLUser user].userId;
-    http.parameters[@"code"] = self.BookModel.code;
+//    http.parameters[@"code"] = self.BookModel.code;
+    if ([self.state isEqualToString:@"collect"]) {
+        http.parameters[@"code"] = self.BookModel.article[@"code"];
+    }
+    else{
+        http.parameters[@"code"] = self.BookModel.code;
+    }
     self.count = [self.BookModel.collectCount integerValue];
     [http postWithSuccess:^(id responseObject) {
         
@@ -244,10 +258,8 @@
     } failure:^(NSError *error) {
     }];
     
-//    TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629348";
     http.parameters[@"userId"] = [TLUser user].userId;
-//    http.parameters[@"code"] = self.BookModel.code;
     if ([self.state isEqualToString:@"collect"]) {
         http.parameters[@"code"] = self.BookModel.article[@"code"];
     }

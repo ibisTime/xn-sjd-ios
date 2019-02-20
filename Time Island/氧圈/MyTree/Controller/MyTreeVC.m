@@ -21,6 +21,7 @@
 #import "ThePropsDetailsView.h"
 #import "BuyPropsView.h"
 #import "HistroyUserVC.h"
+#import "RecordVC.h"
 @interface MyTreeVC ()<RefreshDelegate,ClickDelegate,ClickConvertDelegrate,BuyPropsdelegate>
 
 @property (nonatomic , strong)MyTreeTableView *tableView;
@@ -190,6 +191,9 @@
         else{
             if (indexPath.row == 6) {
                 NSLog(@"%s,%ld",__func__,indexPath.row);
+                RecordVC * vc = [RecordVC new];
+                vc.treeNumber = self.model.tree[@"treeNumber"];
+                [self.navigationController pushViewController:vc animated:YES];
             }
             else if (indexPath.row == 7){
                 NSLog(@"%s%ld",__func__,indexPath.row);

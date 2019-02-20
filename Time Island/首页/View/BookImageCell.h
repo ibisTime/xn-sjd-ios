@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BookImageCell : UITableViewCell
 @property (nonatomic,strong) BookModel * BookModel;
+@property (nonatomic,strong) NSString * state;
 @end
 
 NS_ASSUME_NONNULL_END

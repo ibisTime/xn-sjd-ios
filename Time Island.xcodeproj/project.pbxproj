@@ -167,6 +167,9 @@
 		365514D221FADC9A00E54996 /* CardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 365514D121FADC9A00E54996 /* CardModel.m */; };
 		365514D821FB009000E54996 /* introduceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 365514D721FB009000E54996 /* introduceView.m */; };
 		3663F290221CF7270053B3C8 /* HistoryUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3663F28F221CF7270053B3C8 /* HistoryUserCell.m */; };
+		3663F293221D4C150053B3C8 /* RecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3663F292221D4C150053B3C8 /* RecordVC.m */; };
+		3663F296221D4D860053B3C8 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3663F295221D4D860053B3C8 /* RecordCell.m */; };
+		3663F299221D4DB30053B3C8 /* RecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3663F298221D4DB30053B3C8 /* RecordModel.m */; };
 		366A59F122000007009FFA6E /* GoodsDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A59F022000007009FFA6E /* GoodsDetailsCell.m */; };
 		366A59F322003E35009FFA6E /* SelectAddress.json in Resources */ = {isa = PBXBuildFile; fileRef = 366A59F222003E35009FFA6E /* SelectAddress.json */; };
 		3671897C2213AEE60050488E /* MessageDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3671897B2213AEE60050488E /* MessageDetailsVC.m */; };
@@ -828,6 +831,12 @@
 		365514D721FB009000E54996 /* introduceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = introduceView.m; sourceTree = "<group>"; };
 		3663F28E221CF7270053B3C8 /* HistoryUserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryUserCell.h; sourceTree = "<group>"; };
 		3663F28F221CF7270053B3C8 /* HistoryUserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryUserCell.m; sourceTree = "<group>"; };
+		3663F291221D4C150053B3C8 /* RecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordVC.h; sourceTree = "<group>"; };
+		3663F292221D4C150053B3C8 /* RecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordVC.m; sourceTree = "<group>"; };
+		3663F294221D4D860053B3C8 /* RecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordCell.h; sourceTree = "<group>"; };
+		3663F295221D4D860053B3C8 /* RecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordCell.m; sourceTree = "<group>"; };
+		3663F297221D4DB30053B3C8 /* RecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordModel.h; sourceTree = "<group>"; };
+		3663F298221D4DB30053B3C8 /* RecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordModel.m; sourceTree = "<group>"; };
 		366A59EF22000007009FFA6E /* GoodsDetailsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsDetailsCell.h; sourceTree = "<group>"; };
 		366A59F022000007009FFA6E /* GoodsDetailsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailsCell.m; sourceTree = "<group>"; };
 		366A59F222003E35009FFA6E /* SelectAddress.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SelectAddress.json; sourceTree = "<group>"; };
@@ -1787,6 +1796,10 @@
 				3622C377221AB55A00087EDD /* HistroyUserVC.m */,
 				3663F28E221CF7270053B3C8 /* HistoryUserCell.h */,
 				3663F28F221CF7270053B3C8 /* HistoryUserCell.m */,
+				3663F291221D4C150053B3C8 /* RecordVC.h */,
+				3663F292221D4C150053B3C8 /* RecordVC.m */,
+				3663F294221D4D860053B3C8 /* RecordCell.h */,
+				3663F295221D4D860053B3C8 /* RecordCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1796,6 +1809,8 @@
 			children = (
 				1F19A8F821FED86B0090BF84 /* MyTreeEnergyModel.h */,
 				1F19A8F921FED86B0090BF84 /* MyTreeEnergyModel.m */,
+				3663F297221D4DB30053B3C8 /* RecordModel.h */,
+				3663F298221D4DB30053B3C8 /* RecordModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -4425,6 +4440,7 @@
 				B8A27AEE21E5C44400914897 /* MMCombinationFitlerView.m in Sources */,
 				B87C211E21FAF2DE00EFD0B0 /* ExpressCell.m in Sources */,
 				B81E5FBB21DC8FC200873AB9 /* TLPickerTextField.m in Sources */,
+				3663F293221D4C150053B3C8 /* RecordVC.m in Sources */,
 				B87C213221FB047000EFD0B0 /* HDragItemListView.m in Sources */,
 				363CD5E022029B9B00A81CFA /* OrderModel.m in Sources */,
 				3610EEC721EDD6A800FD345D /* GetAddVC.m in Sources */,
@@ -4629,8 +4645,10 @@
 				B81E5FB921DC8FC200873AB9 /* TLDatePicker.m in Sources */,
 				B88E544821F9BDF600C33040 /* JVShopcartProductModel.m in Sources */,
 				B8226F7721F701D6002F450F /* CommentCell.m in Sources */,
+				3663F299221D4DB30053B3C8 /* RecordModel.m in Sources */,
 				1F19AC3222115C4D0090BF84 /* MallGoodsChooseSpecCell.m in Sources */,
 				1F1B00C921E88169000BEBD3 /* MyArticleCell.m in Sources */,
+				3663F296221D4D860053B3C8 /* RecordCell.m in Sources */,
 				B8ED2E7F21E7218E00FADCCE /* TreeBottomView.m in Sources */,
 				B8A27AE521E5C44400914897 /* MMSingleItem.m in Sources */,
 				B8712E9621F5898B00039086 /* QWCategory.m in Sources */,

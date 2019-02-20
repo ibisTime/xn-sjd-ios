@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"支付";
     
     UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 110)];
 //    view.backgroundColor = [
@@ -114,18 +115,36 @@
     
     
     
-    UILabel * paylabel = [UILabel labelWithFrame:CGRectMake(15, SCREEN_HEIGHT - kNavigationBarHeight - 60, SCREEN_WIDTH - 180, 45) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:kBlackColor];
-    paylabel.text = [NSString stringWithFormat:@"金额 %.2f 元",[self.TreeModel.productSpecsList[self.TreeSizeCount][@"price"] floatValue]/ 1000.00 * self.PayCount];
-    [self.view addSubview:paylabel];
-    
-    UIView *paylineView = [[UIView alloc]initWithFrame:CGRectMake(15, paylabel.y + 2 , SCREEN_WIDTH - 30, 1)];
+    UIView *paylineView = [[UIView alloc]initWithFrame:CGRectMake(15, SCREEN_HEIGHT - kNavigationBarHeight - 60 + 1 , SCREEN_WIDTH - 30, 1)];
     paylineView.backgroundColor = kLineColor;
     [self.view addSubview:paylineView];
+    
+    UILabel * paylabel = [UILabel labelWithFrame:CGRectMake(15, SCREEN_HEIGHT - kNavigationBarHeight - 60, SCREEN_WIDTH - 180, 60) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:kBlackColor];
+//    paylabel.text = [NSString stringWithFormat:@"金额 %.2f 元",[self.TreeModel.productSpecsList[self.TreeSizeCount][@"price"] floatValue]/ 1000.00 * self.PayCount];
+    
+    
+    NSString * str = [NSString stringWithFormat:@"合计 ：%.2f 元",[self.TreeModel.productSpecsList[self.TreeSizeCount][@"price"] floatValue]/ 1000.00 * self.PayCount];
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:str];
+    [attrStr addAttribute:NSForegroundColorAttributeName
+                    value:kTextColor
+                    range:NSMakeRange(0, 4)];
+    [attrStr addAttribute:NSForegroundColorAttributeName
+                    value:kHexColor(@"#F68646")
+                    range:NSMakeRange(4, str.length - 4 - 1)];
+    [attrStr addAttribute:NSForegroundColorAttributeName
+                    value:kTextColor
+                    range:NSMakeRange( str.length - 4 - 1,1)];
+    paylabel.attributedText = attrStr;
+    
+    
+    [self.view addSubview:paylabel];
+    
+    
     
     UIButton *signBtn = [UIButton buttonWithTitle:@"支付" titleColor:[UIColor colorWithHexString:@"#FFFFFF"] backgroundColor:[UIColor colorWithHexString:@"#23AD8C"] titleFont:16.0 cornerRadius:4];
     signBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:16.0];
     [signBtn addTarget:self action:@selector(goNext) forControlEvents:UIControlEventTouchUpInside];
-    signBtn.frame = CGRectMake(paylabel.xx, SCREEN_HEIGHT - kNavigationBarHeight - 60, 150, 50);
+    signBtn.frame = CGRectMake(paylabel.xx, SCREEN_HEIGHT - kNavigationBarHeight - 60 + 5, 150, 50);
     [self.view addSubview:signBtn];
     
 }
@@ -183,6 +202,9 @@
     [http postWithSuccess:^(id responseObject) {
         [TLAlert alertWithSucces:@"支付成功"];
         [[UserModel user].cusPopView dismiss];
+        
+        TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
+        [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
     } failure:^(NSError *error) {
         self.pwd.text = nil;
     }];

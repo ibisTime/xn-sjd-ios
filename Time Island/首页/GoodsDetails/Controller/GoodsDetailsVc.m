@@ -16,6 +16,8 @@
 #import "NegotiateVC.h"
 #import "TLTabBarController.h"
 #import "MapViewController.h"
+#import "PersonalCenterVC.h"
+#import "MyTreeVC.h"
 @interface GoodsDetailsVc ()<SLBannerViewDelegate,RefreshDelegate,PlatformButtonClickDelegate>
 @property (nonatomic, strong) UIButton *myButton;//推文
 @property (nonatomic, strong) UIButton *shareButton;
@@ -192,28 +194,12 @@
     
 }
 
-
-
-
-- (void) customActionSheetButtonClick:(YSActionSheetButton *) btn
-{
-
-    
-    
-}
-
-- (void)bannerView:(SLBannerView *)banner didClickImagesAtIndex:(NSInteger)index
-{
-    NSLog(@"++++++++++songlei 点击了%ld ++++++++++", index);
-}
-
--(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"++++++++++songlei 点击了%ld ++++++++++", indexPath.row);
-}
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath WithState:(NSString *)state{
     if ([state isEqualToString:@"1"]) {
         if (indexPath.row == 8) {
             NSLog(@"++++++++++songlei 点击了%ld ++++++++++", indexPath.row);
+            
+            //树木定位cell点击事件
             MapViewController * vc = [MapViewController new];
             vc.latitude = [self.TreeModels.latitude floatValue];
             vc.longitude = [self.TreeModels.longitude floatValue];
@@ -224,11 +210,45 @@
         }
     }
     else if ([state isEqualToString:@"2"]){
+        //认养记录
         NSLog(@"++++++++++songlei 点击了%ld ++++++++++", indexPath.row);
+        RenYangUserModel * model = self.RenYangModel[indexPath.row];
+        [self myTreeLoadData:model.user[@"userId"]];
     }
     
 }
-
+//我认养的树
+-(void)myTreeLoadData : (NSString *)index
+{
+    //    CoinWeakSelf;
+    TLNetworking *http = [TLNetworking new];
+    http.showView = self.view;
+    http.isUploadToken = NO;
+    http.code = @"629207";
+    http.parameters[@"currentHolder"] = index;
+    
+    http.parameters[@"statusList"] = @[@"1",@"2",@"3"];
+    
+    [http postWithSuccess:^(id responseObject) {
+        self.models = [PersonalCenterModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        PersonalCenterModel * m = self.models[0];
+        if ([m.user[@"userId"] isEqualToString:[TLUser user].userId]) {
+            MyTreeVC * vc = [MyTreeVC new];
+            vc.model = m;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else{
+            FriendsTheTreeVC * vc = [FriendsTheTreeVC new];
+            vc.model = m;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
+    } failure:^(NSError *error) {
+        
+    }];
+    
+    
+}
 -(void)refresh{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629026";
@@ -263,8 +283,6 @@
         [self.tableView reloadData];
     } failure:^(NSError *error) {
     }];
-    
-
 }
 -(void)getName{
     TLNetworking * http1 = [[TLNetworking alloc]init];
@@ -283,5 +301,15 @@
     } failure:^(NSError *error) {
     }];
 }
+- (void) customActionSheetButtonClick:(YSActionSheetButton *) btn
+{
+}
+- (void)bannerView:(SLBannerView *)banner didClickImagesAtIndex:(NSInteger)index
+{
+    NSLog(@"++++++++++songlei 点击了%ld ++++++++++", index);
+}
 
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"++++++++++songlei 点击了%ld ++++++++++", indexPath.row);
+}
 @end

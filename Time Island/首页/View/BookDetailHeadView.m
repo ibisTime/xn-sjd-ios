@@ -8,7 +8,9 @@
 
 #import "BookDetailHeadView.h"
 
-@implementation BookDetailHeadView
+@implementation BookDetailHeadView{
+    NSString * Name;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame {
     
@@ -62,8 +64,8 @@
     
     if ([self.state isEqualToString:@"collect"]) {
         self.moreLab.text = BookModel.article[@"title"];
-        
-        self.detailLab.text = [NSString stringWithFormat:@"作者 %@",BookModel.publishUserName];
+        [self getName:BookModel.article[@"publishUserId"]];
+//        self.detailLab.text = [NSString stringWithFormat:@"作者 %@",[self getName:BookModel.article[@"publishUserId"]]];
         [_detailLab sizeToFit];
         _detailLab.frame = CGRectMake(15, _moreLab.yy+10, _detailLab.width + 10, 24);
         if (BookModel.treeName) {
@@ -73,6 +75,7 @@
         }
         self.timeLab.text = [BookModel.article[@"publishDatetime"] convertToDetailDate];
     }
+    
     else{
         self.moreLab.text = BookModel.title;
         self.detailLab.text = [NSString stringWithFormat:@"作者 %@",BookModel.publishUserName];
@@ -85,6 +88,21 @@
     }
     self.timeLab.text = [BookModel.publishDatetime convertToDetailDate];
     }
+}
+
+-(void)getName:(NSString *)userid{
+    CoinWeakSelf;
+    TLNetworking * http = [TLNetworking new];
+    http.code = USER_INFO;
+    http.parameters[@"userId"] = userid;
+    [http postWithSuccess:^(id responseObject) {
+        NSString * name = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"nickname"]];
+//        Name = name;
+        weakSelf.detailLab.text = [NSString stringWithFormat:@"作者 %@",name];
+    } failure:^(NSError *error) {
+        
+    }];
+//    return Name;
 }
 
 @end

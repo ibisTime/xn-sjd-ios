@@ -42,7 +42,7 @@
         [self registerClass:[MyTreeHeadCell class] forCellReuseIdentifier:MyTreeHead];
         [self registerClass:[MyFreeDynamicCell class] forCellReuseIdentifier:MyFreeDynamic];
         [self registerClass:[CollectEnergyDetailsCell class] forCellReuseIdentifier:CollectEnergyDetails];
-//        [self registerClass:[PersonalCenterExpressionCell class] forCellReuseIdentifier:PersonalCenterExpression];
+        [self registerClass:[PersonalCenterExpressionCell class] forCellReuseIdentifier:PersonalCenterExpression];
         [self registerClass:[DanmuCell class] forCellReuseIdentifier:Danmucell];
         [self registerClass:[IntroduceCell class] forCellReuseIdentifier:Introduce];
         [self registerClass:[TreeDetailCell class] forCellReuseIdentifier:TreeDetail];
@@ -111,6 +111,12 @@
             cell.dynamicModel = model;
             
             
+            return cell;
+        }
+        else if ([model.type isEqualToString:@"4"]){
+            PersonalCenterExpressionCell *cell = [tableView dequeueReusableCellWithIdentifier:PersonalCenterExpression forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.dynamicModel = model;
             return cell;
         }
         

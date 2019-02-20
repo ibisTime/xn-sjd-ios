@@ -104,9 +104,9 @@
     
     [nameBtn.titleLabel sizeToFit];
     nameBtn.frame = CGRectMake(headImg.xx + 10, 14,nameBtn.width, 17);
-    [nameBtn SG_imagePositionStyle:(SGImagePositionStyleRight) spacing:6 imagePositionBlock:^(UIButton *button) {
-        [button setImage:kImage(@"收  取") forState:(UIControlStateNormal)];
-    }];
+//    [nameBtn SG_imagePositionStyle:(SGImagePositionStyleRight) spacing:6 imagePositionBlock:^(UIButton *button) {
+//        [button setImage:kImage(@"收  取") forState:(UIControlStateNormal)];
+//    }];
     
     cerNumberLbl.text = [NSString stringWithFormat:@"获得了%@个环保证书",FriendsModel.certificateCount];
     kgLabel.text = [ NSString stringWithFormat:@"%.2f碳泡泡",[FriendsModel.tppAmount floatValue] / 1000];

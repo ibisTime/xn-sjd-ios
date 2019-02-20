@@ -98,6 +98,7 @@
         return cell;
     }
     
+    
     HisDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:HisDynamic forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.row == dynamicArray.count - 1) {

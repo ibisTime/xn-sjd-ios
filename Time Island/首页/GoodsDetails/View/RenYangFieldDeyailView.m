@@ -200,24 +200,24 @@
     int value = [self.countLable.text intValue];
     self.quantity = value;
 
-    self.codeLab = [UILabel labelWithBackgroundColor:kWhiteColor textColor:kBlackColor font:15.0];
-    [self.scrollView addSubview:self.codeLab];
-
-    self.codeLab.text = @"下单识别码";
-
-    self.inputField = [[TLTextField alloc] initWithFrame:CGRectMake(100, 0, kScreenWidth -120, 40) leftTitle:@"" titleWidth:10 placeholder:@""];
-    self.inputField.layer.borderWidth = 1;
-    self.inputField.layer.borderColor = kLineColor.CGColor;
-    [self.scrollView addSubview:self.inputField];
-    
-    
-    
-    UILabel *descLab = [UILabel labelWithBackgroundColor:kWhiteColor textColor:kTextColor2 font:12.0];
-    [self.scrollView addSubview:descLab];
-    descLab.frame = CGRectMake(20, SCREEN_HEIGHT - 100, kScreenWidth-40, 20);
-    descLab.numberOfLines = 0;
-    descLab.text = @"此树已开启集体认养! 发起人: xxx,获得识别码即可一同参与";
-    self.descLab = descLab;
+//    self.codeLab = [UILabel labelWithBackgroundColor:kWhiteColor textColor:kBlackColor font:15.0];
+//    [self.scrollView addSubview:self.codeLab];
+//
+//    self.codeLab.text = @"下单识别码";
+//
+//    self.inputField = [[TLTextField alloc] initWithFrame:CGRectMake(100, 0, kScreenWidth -120, 40) leftTitle:@"" titleWidth:10 placeholder:@""];
+//    self.inputField.layer.borderWidth = 1;
+//    self.inputField.layer.borderColor = kLineColor.CGColor;
+//    [self.scrollView addSubview:self.inputField];
+//
+//
+//
+//    UILabel *descLab = [UILabel labelWithBackgroundColor:kWhiteColor textColor:kTextColor2 font:12.0];
+//    [self.scrollView addSubview:descLab];
+//    descLab.frame = CGRectMake(20, SCREEN_HEIGHT - 100, kScreenWidth-40, 20);
+//    descLab.numberOfLines = 0;
+//    descLab.text = @"此树已开启集体认养! 发起人: xxx,获得识别码即可一同参与";
+//    self.descLab = descLab;
     
     
     
@@ -344,12 +344,12 @@
     self.numberLineView.frame = CGRectMake(20, self.countLab.yy+10, kScreenWidth-40, 1);
     
     
-    self.codeLab.frame = CGRectMake(20, self.countLable.yy+20, 80, 40);
-    self.inputField.frame = CGRectMake(self.codeLab.xx + 10, self.countLable.yy+20, SCREEN_WIDTH - self.codeLab.xx - 30, 40);
-    self.descLab.frame = CGRectMake(20, self.inputField.yy + 20, kScreenWidth-40, 20);
+//    self.codeLab.frame = CGRectMake(20, self.countLable.yy+20, 80, 40);
+//    self.inputField.frame = CGRectMake(self.codeLab.xx + 10, self.countLable.yy+20, SCREEN_WIDTH - self.codeLab.xx - 30, 40);
+//    self.descLab.frame = CGRectMake(20, self.inputField.yy + 20, kScreenWidth-40, 20);
     
     
-    self.scrollView.contentSize = CGSizeMake(0, self.descLab.yy + 30);
+    self.scrollView.contentSize = CGSizeMake(0, self.numberLineView.yy + 30);
     
 }
 

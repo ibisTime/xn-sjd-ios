@@ -86,6 +86,7 @@
 -(void)refresh{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"802026";
+    http.parameters[@"userId"] = [TLUser user].userId;
     [http postWithSuccess:^(id responseObject) {
         self.CardModels = [CardModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
         [self.table reloadData];
