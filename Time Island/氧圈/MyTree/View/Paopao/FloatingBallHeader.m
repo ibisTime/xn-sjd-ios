@@ -8,6 +8,9 @@
 static NSInteger const PaopaoMaxNum = 10;
 
 @interface FloatingBallHeader ()
+{
+    NSArray *array;
+}
 
 // 背景图
 @property (nonatomic, strong) UIImageView *bgIcon;
@@ -52,11 +55,16 @@ static NSInteger const PaopaoMaxNum = 10;
         paopao.hidden = NO;
 //        [paopao setTitle:dataList[i][@"name"]];
         [paopao setNumber:dataList[i][@"number"]];
-        CGPoint randomPoint = [self getRandomPoint];
-        paopao.center = randomPoint;
+        if (array.count != dataList.count) {
+            CGPoint randomPoint = [self getRandomPoint];
+            paopao.center = randomPoint;
+        }
+       
         [self addFloatAnimationWithPaopao:paopao];
         [self.showDatas addObject:dataList[i]];
     }
+    
+    array = dataList;
 }
 
 
@@ -135,28 +143,55 @@ static NSInteger const PaopaoMaxNum = 10;
     
     NSLog(@"%s",__func__);
     
-    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        sender.frame = CGRectMake(sender.frame.origin.x, 0, sender.frame.size.width, sender.frame.size.height);
-    } completion:^(BOOL finished) {
-        if (finished) {
-            sender.hidden = YES;
-            NSInteger num = 0;
-            for (NSInteger i = 0; i < self.paopaoBtnArray.count; i++) {
-                PaopaoButton *paopao = self.paopaoBtnArray[i];
-                if (paopao.isHidden) {
-                    num++;
+    if ([_state isEqualToString:@"1"]) {
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                    sender.frame = CGRectMake(sender.frame.origin.x, 0, sender.frame.size.width, sender.frame.size.height);
+        } completion:^(BOOL finished) {
+            if (finished) {
+            
+                sender.hidden = YES;
+                NSInteger num = 0;
+                for (NSInteger i = 0; i < self.paopaoBtnArray.count; i++) {
+                    PaopaoButton *paopao = self.paopaoBtnArray[i];
+                    if (paopao.isHidden) {
+                        num++;
+                    }
+                }
+                if (num == PaopaoMaxNum) {
+                                    [self.showDatas removeAllObjects];
+                                    self.xFactors = nil;
+                                    self.yFactors = nil;
+                }
+                if ([self.delegate respondsToSelector:@selector(floatingBallHeader:didPappaoAtIndex:isLastOne:)]) {
+                    [self.delegate floatingBallHeader:self didPappaoAtIndex:sender.tag isLastOne:num == PaopaoMaxNum];
                 }
             }
-            if (num == PaopaoMaxNum) {
-                [self.showDatas removeAllObjects];
-                self.xFactors = nil;
-                self.yFactors = nil;
+        }];
+    }else
+    {
+        [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            //        sender.frame = CGRectMake(sender.frame.origin.x, 0, sender.frame.size.width, sender.frame.size.height);
+        } completion:^(BOOL finished) {
+            if (finished) {
+                //            sender.hidden = YES;
+                NSInteger num = 0;
+                for (NSInteger i = 0; i < self.paopaoBtnArray.count; i++) {
+                    PaopaoButton *paopao = self.paopaoBtnArray[i];
+                    if (paopao.isHidden) {
+                        num++;
+                    }
+                }
+                if (num == PaopaoMaxNum) {
+                    //                [self.showDatas removeAllObjects];
+                    //                self.xFactors = nil;
+                    //                self.yFactors = nil;
+                }
+                if ([self.delegate respondsToSelector:@selector(floatingBallHeader:didPappaoAtIndex:isLastOne:)]) {
+                    [self.delegate floatingBallHeader:self didPappaoAtIndex:sender.tag isLastOne:num == PaopaoMaxNum];
+                }
             }
-            if ([self.delegate respondsToSelector:@selector(floatingBallHeader:didPappaoAtIndex:isLastOne:)]) {
-                [self.delegate floatingBallHeader:self didPappaoAtIndex:sender.tag isLastOne:num == PaopaoMaxNum];
-            }
-        }
-    }];
+        }];
+    }
 }
 
 #pragma mark - Get

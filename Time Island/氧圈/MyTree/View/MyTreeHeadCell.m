@@ -29,6 +29,7 @@
         
         FloatingBallHeader *floatingBallHeader = [[FloatingBallHeader alloc] initWithFrame:CGRectMake(0, kNavigationBarHeight, SCREEN_WIDTH, (kHeight(432) - kNavigationBarHeight) - kHeight(200))];
         floatingBallHeader.delegate = self;
+        floatingBallHeader.state = @"1";
   
         [self addSubview:floatingBallHeader];
         self.floatingBallHeader = floatingBallHeader;
@@ -114,27 +115,27 @@
     
     MyTreeEnergyModel * model = self.energyModels[index];
     
-    if ([self.delegate respondsToSelector:@selector(floatingBallHeader:didPappaoAtIndex:isLastOne:)]) {
-        [self.delegate paopaoclick:model];
-    }
+//    if ([self.delegate respondsToSelector:@selector(floatingBallHeader:didPappaoAtIndex:isLastOne:)]) {
+    [self.delegate paopaoclick:model];
+//    }
     
-    TLNetworking * http = [[TLNetworking alloc]init];
-    http.code = @"629350";
-    http.parameters[@"code"] = model.code;
-    http.parameters[@"userId"] = [TLUser user].userId;
-    [http postWithSuccess:^(id responseObject) {
-        [TLAlert alertWithSucces:@"收取成功!"];
-    } failure:^(NSError *error) {
-        
-    }];
+//    TLNetworking * http = [[TLNetworking alloc]init];
+//    http.code = @"629350";
+//    http.parameters[@"code"] = model.code;
+//    http.parameters[@"userId"] = [TLUser user].userId;
+//    [http postWithSuccess:^(id responseObject) {
+//        [TLAlert alertWithSucces:@"收取成功!"];
+//    } failure:^(NSError *error) {
+//
+//    }];
     
     
     
-    NSLog(@"点了%zd", index);
-    if (isLastOne) {
-        
-        
-    }
+//    NSLog(@"点了%zd", index);
+//    if (isLastOne) {
+//
+//
+//    }
     
 }
 

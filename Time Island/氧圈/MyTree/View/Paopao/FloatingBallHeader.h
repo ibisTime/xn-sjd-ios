@@ -16,6 +16,9 @@ static CGFloat const FloatingBallHeaderHeight = 430;
 @property (nonatomic, weak) id<FloatingBallHeaderDelegate> delegate;
 @property (nonatomic, strong) NSArray *dataList;
 @property (nonatomic, strong) NSArray *numberList;
+
+@property (nonatomic, strong) NSString *state;
+
 // 重置动画，因为页面disappear会将layer动画移除
 - (void)resetAnimation;
 // 移除所有泡泡
