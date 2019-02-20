@@ -56,8 +56,8 @@
     
 
     CLLocationCoordinate2D coor ;
-    coor.latitude = 30.28;
-    coor.longitude = 120.15;
+    coor.latitude = self.latitude;
+    coor.longitude = self.longitude;
     MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
     pointAnnotation.coordinate = coor;//设置地图的定位中心点坐标
     self.mapView.centerCoordinate = coor;//将点添加到地图上，即所谓的大头针
@@ -66,7 +66,7 @@
 
   
 //
-    [self CreateSquareLatitude:30.28 AndLongitude:120.15];
+    [self CreateSquareLatitude:self.latitude AndLongitude:self.longitude];
 }
 
 - (void)CreateSquareLatitude:(CLLocationDegrees)latitude AndLongitude:(CLLocationDegrees)longitude
@@ -108,7 +108,7 @@
         
 //        MACustomCalloutView *leftView
         
-        MACustomCalloutView *customView = [[MACustomCalloutView alloc]initWithFrame:CGRectMake(0, 0, 175, 51 + 20)];
+        MACustomCalloutView *customView = [[MACustomCalloutView alloc]initWithFrame:CGRectMake(0, 0, 200, 51 + 20)];
         customView.backgroundColor = kClearColor;
         
         UIView *leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 175, 51)];
@@ -117,18 +117,27 @@
         kViewRadius(leftView, 4);
         [customView addSubview:leftView];
         
-        UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(10, 9, 100, 16) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(16) textColor:kWhiteColor];
-        nameLabel.text = @"爱情林";
-        [leftView addSubview:nameLabel];
+        self.nameLabel = [UILabel labelWithFrame:CGRectMake(10, 9, 100, 16) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(16) textColor:kWhiteColor];
+//        self.nameLabel.text = @"爱情林";
+        self.nameLabel.text = self.namestr;
+        [self.nameLabel sizeToFit];
+        self.nameLabel.frame = CGRectMake(10, 9, self.nameLabel.width, 16);
+        [leftView addSubview:self.nameLabel];
         
-        UILabel *codeLabel = [UILabel labelWithFrame:CGRectMake(10, nameLabel.yy + 5, 100, 12) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(12) textColor:kWhiteColor];
-        codeLabel.text = @"爱情林12号林";
-        [leftView addSubview:codeLabel];
+        self.codeLabel = [UILabel labelWithFrame:CGRectMake(10, self.nameLabel.yy + 5, 100, 12) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(12) textColor:kWhiteColor];
+//        self.codeLabel.text = @"爱情林12号林";
+        self.codeLabel.text = self.address;
+        [self.codeLabel sizeToFit];
+        self.codeLabel.frame = CGRectMake(10, self.nameLabel.yy + 5, self.codeLabel.width, 12);
+        [leftView addSubview:self.codeLabel];
+        
+        customView.frame = CGRectMake(0, 0, self.codeLabel.width + 70, 51 + 20);
+        leftView.frame = CGRectMake(0, 0, self.codeLabel.width + 70, 51);
 
         
         UIButton *navigationBtn = [UIButton  buttonWithTitle:@"导航" titleColor:kWhiteColor backgroundColor:kHexColor(@"#23AD8C") titleFont:11];
         kViewRadius(navigationBtn, 3);
-        navigationBtn.frame = CGRectMake(175 - 60, 13.5, 50, 51 - 27);
+        navigationBtn.frame = CGRectMake(self.codeLabel.width + 70 - 60, 8.5, 50, 51 - 27+10);
         [navigationBtn SG_imagePositionStyle:(SGImagePositionStyleDefault) spacing:5 imagePositionBlock:^(UIButton *button) {
             [button setImage:kImage(@"导航") forState:(UIControlStateNormal)];
         }];
@@ -150,7 +159,7 @@
 {
     NSString *urlScheme = @"MapJump://";
     NSString *appName = @"MapJump";
-    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(30.28, 120.15);//要导航的终点的经纬度
+    CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(self.latitude, self.longitude);//要导航的终点的经纬度
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"选择地图" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     

@@ -15,4 +15,12 @@
 
 //经度
 @property (nonatomic , assign)CGFloat longitude;
+
+//树木名称
+@property (nonatomic,strong) UILabel *nameLabel;
+@property (nonatomic,strong) NSString * namestr;
+
+//地址
+@property (nonatomic,strong) UILabel *codeLabel;
+@property (nonatomic,strong) NSString * address;
 @end

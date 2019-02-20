@@ -213,6 +213,12 @@
     NSLog(@"++++++++++songlei 点击了%ld ++++++++++", index);
 }
 
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+-(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index{
+    sender.tag;
+}
 
 -(void)refresh{
     TLNetworking * http = [[TLNetworking alloc]init];
