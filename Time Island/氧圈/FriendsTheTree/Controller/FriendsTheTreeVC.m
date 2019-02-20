@@ -152,6 +152,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+//弹幕
 -(void)getbarrageData{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629387";

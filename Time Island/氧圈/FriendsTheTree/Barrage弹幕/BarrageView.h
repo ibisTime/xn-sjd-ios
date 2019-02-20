@@ -11,5 +11,9 @@
 @interface BarrageView : UIView
 
 @property (nonatomic , strong)UIButton *ShutDownBtn;
+
 @property (nonatomic,strong) NSMutableArray<BarrageModel *> * BarrageModels;
+
+@property (nonatomic,strong)UICollectionView *collectionView;
+
 @end
