@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) BookModel * BookModel;
 @property (nonatomic,strong) UILabel * content;
 @property (nonatomic,strong) void (^cellheight)(float height);
+@property (nonatomic,strong) NSString * state;
 @end
 
 NS_ASSUME_NONNULL_END

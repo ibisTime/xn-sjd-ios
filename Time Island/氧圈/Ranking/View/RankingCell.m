@@ -10,7 +10,7 @@
 
 @implementation RankingCell{
     UIImageView *headImg;
-    UIButton *nameBtn;
+    UILabel *nameLab;
     UILabel *cerNumberLbl;
     UILabel *kgLabel;
 }
@@ -33,22 +33,15 @@
         headImg.image = kImage(@"头像");
         [self addSubview:headImg];
         
+    
+        nameLab = [UILabel labelWithFrame:CGRectMake(headImg.xx + 10, 14, SCREEN_WIDTH - headImg.xx - 10 - 70, 17) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(14) textColor:kTextBlack];
+        [self addSubview:nameLab];
         
-        nameBtn = [UIButton buttonWithTitle:@"庭院深深" titleColor:kTextBlack backgroundColor:kClearColor titleFont:14];
-        
-        nameBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        nameBtn.frame = CGRectMake(headImg.xx + 10, 14, SCREEN_WIDTH - headImg.xx - 10 - 70, 17);
-//        [nameBtn SG_imagePositionStyle:(SGImagePositionStyleRight) spacing:6 imagePositionBlock:^(UIButton *button) {
-//            [button setImage:kImage(@"收  取") forState:(UIControlStateNormal)];
-//        }];
-        
-        [self addSubview:nameBtn];
-        
-        cerNumberLbl = [UILabel labelWithFrame:CGRectMake(headImg.xx + 10, nameBtn.yy + 7 - 1.5, SCREEN_WIDTH - headImg.xx - 10 - 70, 13) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(13) textColor:kHexColor(@"#999999")];
+        cerNumberLbl = [UILabel labelWithFrame:CGRectMake(headImg.xx + 10, nameLab.yy + 7 - 1.5, SCREEN_WIDTH - headImg.xx - 10 - 70, 13) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(13) textColor:kHexColor(@"#999999")];
         cerNumberLbl.text = @"获得了7个环保证书";
         [self addSubview:cerNumberLbl];
         
-        kgLabel = [UILabel labelWithFrame:CGRectMake(nameBtn.xx + 5 , 0, SCREEN_WIDTH - nameBtn.xx - 5 - 15, 65) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:FONT(14) textColor:kTextBlack];
+        kgLabel = [UILabel labelWithFrame:CGRectMake(nameLab.xx + 5 , 0, SCREEN_WIDTH - nameLab.xx - 5 - 15, 65) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:FONT(14) textColor:kTextBlack];
         kgLabel.text = @"14.6kg";
         [self addSubview:kgLabel];
         
@@ -68,19 +61,20 @@
         headImg.image = kImage(@"头像");
     }
     if (RankModel.nickname) {
-        [nameBtn setTitle:RankModel.nickname forState:(UIControlStateNormal)];
+        nameLab.text = RankModel.nickname;
     }else{
-        [nameBtn setTitle:RankModel.mobile forState:(UIControlStateNormal)];
+        nameLab.text = RankModel.mobile;
     }
     
-    [nameBtn.titleLabel sizeToFit];
-    nameBtn.frame = CGRectMake(headImg.xx + 10, 14,nameBtn.width, 17);
-    [nameBtn SG_imagePositionStyle:(SGImagePositionStyleRight) spacing:6 imagePositionBlock:^(UIButton *button) {
-        [button setImage:kImage(@"收  取") forState:(UIControlStateNormal)];
-    }];
+    [nameLab sizeToFit];
+    nameLab.frame = CGRectMake(headImg.xx + 10, 14,nameLab.width + 17, 17);
+//    UIImageView * img = [[UIImageView alloc]initWithFrame:CGRectMake(nameLab.width - 17, 0, 17, 17)];
+//    img.image = kImage(@"收  取");
+//    [nameLab addSubview:img];
     
+
     cerNumberLbl.text = [NSString stringWithFormat:@"获得了%@个环保证书",RankModel.certificateCount];
-    kgLabel.text = [ NSString stringWithFormat:@"%.2fKG碳泡泡",[RankModel.tppAmount floatValue] / 1000];
+    kgLabel.text = [ NSString stringWithFormat:@"%.2f碳泡泡",[RankModel.tppAmount floatValue] / 1000];
     [kgLabel sizeToFit];
     kgLabel.frame = CGRectMake(SCREEN_WIDTH - kgLabel.width - 15 , 0, kgLabel.width, 65);
     
@@ -94,16 +88,18 @@
         headImg.image = kImage(@"头像");
     }
     if (FriendsModel.toUserInfo[@"nickname"]) {
-        [nameBtn setTitle:FriendsModel.toUserInfo[@"nickname"] forState:(UIControlStateNormal)];
+        nameLab.text = FriendsModel.toUserInfo[@"nickname"];
+//        [nameLab setTitle:FriendsModel.toUserInfo[@"nickname"] forState:(UIControlStateNormal)];
     }else{
-        [nameBtn setTitle:[FriendsModel.toUserInfo[@"loginName"] stringByReplacingOccurrencesOfString:[FriendsModel.toUserInfo[@"loginName"] substringWithRange:NSMakeRange(3,4)] withString:@" **** "] forState:(UIControlStateNormal)];
+        nameLab.text = [FriendsModel.toUserInfo[@"loginName"] stringByReplacingOccurrencesOfString:[FriendsModel.toUserInfo[@"loginName"] substringWithRange:NSMakeRange(3,4)] withString:@" **** "];
+//        [nameBtn setTitle:[FriendsModel.toUserInfo[@"loginName"] stringByReplacingOccurrencesOfString:[FriendsModel.toUserInfo[@"loginName"] substringWithRange:NSMakeRange(3,4)] withString:@" **** "] forState:(UIControlStateNormal)];
     }
     
-    [nameBtn.titleLabel sizeToFit];
-    nameBtn.frame = CGRectMake(headImg.xx + 10, 14,nameBtn.width, 17);
-    [nameBtn SG_imagePositionStyle:(SGImagePositionStyleRight) spacing:6 imagePositionBlock:^(UIButton *button) {
-        [button setImage:kImage(@"收  取") forState:(UIControlStateNormal)];
-    }];
+    [nameLab sizeToFit];
+    nameLab.frame = CGRectMake(headImg.xx + 10, 14,nameLab.width + 17, 17);
+//    UIImageView * img = [[UIImageView alloc]initWithFrame:CGRectMake(nameLab.width - 17, 0, 17, 17)];
+//    img.image = kImage(@"收  取");
+//    [nameLab addSubview:img];
     
     cerNumberLbl.text = [NSString stringWithFormat:@"获得了%@个环保证书",FriendsModel.certificateCount];
     kgLabel.text = [ NSString stringWithFormat:@"%.2f碳泡泡",[FriendsModel.tppAmount floatValue] / 1000];

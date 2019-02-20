@@ -18,14 +18,17 @@
 @end
 
 @implementation CollectBookVC
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self refresh];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     CoinWeakSelf
-    [self refresh];
+//    [self refresh];
     self.title = @"我的收藏";
     self.view.backgroundColor = kWhiteColor;
-    self.bookview = [[BookView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - kNavigationBarHeight) style:UITableViewStyleGrouped];
+    self.bookview = [[BookView alloc] initWithFrame:CGRectMake(0,-25, kScreenWidth, kScreenHeight - kNavigationBarHeight) style:UITableViewStyleGrouped];
     self.bookview.backgroundColor = kWhiteColor;
     self.bookview.refreshDelegate = self;
     [self.bookview addRefreshAction:^{

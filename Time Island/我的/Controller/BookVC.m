@@ -17,11 +17,14 @@
 @end
 
 @implementation BookVC
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self refresh];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的的文章";
-    [self refresh];
+    self.title = @"我的文章";
+//    [self refresh];
     
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = -10;
@@ -35,7 +38,7 @@
     
     
     self.view.backgroundColor = kWhiteColor;
-    self.bookview = [[BookView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - kTabBarHeight) style:UITableViewStyleGrouped];
+    self.bookview = [[BookView alloc] initWithFrame:CGRectMake(0, -30, kScreenWidth, kScreenHeight - kTabBarHeight) style:UITableViewStyleGrouped];
     self.bookview.backgroundColor = kWhiteColor;
     self.bookview.refreshDelegate = self;
     self.bookview.state = 1;

@@ -21,14 +21,27 @@
     // Configure the view for the selected state
 }
 -(void)setBookModel:(BookModel *)BookModel{
-    NSArray * arr = [BookModel.photo componentsSeparatedByString:@"||"];
-    for (int i = 0; i < arr.count; i ++) {
-        //            [self.photo sd_setImageWithURL:[NSURL URLWithString:[arr[i] convertImageUrl]]];
-        UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(15 , 0 + 200 * i, SCREEN_WIDTH - 30, 200)];
-        [image sd_setImageWithURL:[NSURL URLWithString:[arr[i] convertImageUrl]]];
-        [self addSubview:image];
-        
+    if ([self.state isEqualToString:@"collect"]) {
+        NSArray * arr = [BookModel.article[@"photo"] componentsSeparatedByString:@"||"];
+        for (int i = 0; i < arr.count; i ++) {
+            //            [self.photo sd_setImageWithURL:[NSURL URLWithString:[arr[i] convertImageUrl]]];
+            UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(15 , 0 + 200 * i, SCREEN_WIDTH - 30, 200)];
+            [image sd_setImageWithURL:[NSURL URLWithString:[arr[i] convertImageUrl]]];
+            [self addSubview:image];
+            
+        }
     }
+    else{
+        NSArray * arr = [BookModel.photo componentsSeparatedByString:@"||"];
+        for (int i = 0; i < arr.count; i ++) {
+            //            [self.photo sd_setImageWithURL:[NSURL URLWithString:[arr[i] convertImageUrl]]];
+            UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(15 , 0 + 200 * i, SCREEN_WIDTH - 30, 200)];
+            [image sd_setImageWithURL:[NSURL URLWithString:[arr[i] convertImageUrl]]];
+            [self addSubview:image];
+            
+        }
+    }
+    
 }
 
 @end

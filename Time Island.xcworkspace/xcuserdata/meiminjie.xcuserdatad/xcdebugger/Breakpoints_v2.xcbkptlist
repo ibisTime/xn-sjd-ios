@@ -189,13 +189,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Time Island/&#x6c27;&#x5708;/MyHomePage/MyCarbonBubble&#x6211;&#x7684;&#x78b3;&#x6ce1;&#x6ce1;/View/MyCarbonBubbleCell.m"
-            timestampString = "572327775.748547"
+            filePath = "Time Island/&#x9996;&#x9875;/Controller/BoolVideoDetailVC.m"
+            timestampString = "572349159.041636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "-setCarbonModel:"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "-ZanBtnClick:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -205,13 +205,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Time Island/&#x6c27;&#x5708;/MyHomePage/MyCarbonBubble&#x6211;&#x7684;&#x78b3;&#x6ce1;&#x6ce1;/View/MyCarbonBubbleCell.m"
-            timestampString = "572327775.748602"
+            filePath = "Time Island/&#x9996;&#x9875;/Controller/BoolVideoDetailVC.m"
+            timestampString = "572349159.0416991"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "-setCarbonModel:"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "-ZanBtnClick:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

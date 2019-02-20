@@ -43,19 +43,7 @@ static NSString *identifierCell = @"BookVideoCell";
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 115;
 }
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-////    NSLog(@"%s",__func__);
-//    BoolVideoDetailVC * vc = [BoolVideoDetailVC new];
-//    vc.BookModel = self.BookModels[indexPath.row];
-//    
-//    if ([self.refreshDelegate respondsToSelector:@selector(refreshTableView:didSelectRowAtIndexPath:)]) {
-//        [self.refreshDelegate refreshTableView:self didSelectRowAtIndexPath:indexPath];
-//    }
-//}
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    return 15;
-//}
 -(void)setBookModels:(NSMutableArray<BookModel *> *)BookModels{
     _BookModels = BookModels;
 }

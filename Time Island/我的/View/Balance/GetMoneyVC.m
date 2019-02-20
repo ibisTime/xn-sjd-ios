@@ -185,27 +185,23 @@
     [http postWithSuccess:^(id responseObject) {
         [TLAlert alertWithSucces:@"提现成功，等待后台审核"];
         [[UserModel user].cusPopView dismiss];
-//        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//        self.window.backgroundColor = [UIColor whiteColor];
-//        [self.window makeKeyAndVisible];
         TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
         tabBarCtrl.selectedIndex = 2;
         [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
 //        self.window.rootViewController = tabBarCtrl;
     } failure:^(NSError *error) {
         [[UserModel user].cusPopView dismiss];
-//        self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//        self.window.backgroundColor = [UIColor whiteColor];
-//        [self.window makeKeyAndVisible];
         TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
         tabBarCtrl.selectedIndex = 2;
-//        self.window.rootViewController = tabBarCtrl;
         [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
     }];
 }
 -(void)SelectCard{
-    NSLog(@"%s",__func__);
-    CoinWeakSelf
+    if (self.CardModels.count == 0) {
+        [TLAlert alertWithInfo:@"请绑定银行卡！"];
+    }
+    else{
+        CoinWeakSelf
         NSMutableArray *array = [NSMutableArray array];
         for (int i = 0;  i < self.CardModels.count; i ++) {
             [array addObject:[[SelectedListModel alloc] initWithSid:i Title:[NSString stringWithFormat:@"%@ (%@)",self.CardModels[i].bankName,[self.CardModels[i].bankcardNumber substringFromIndex:15]]]];
@@ -222,13 +218,16 @@
             }];
         };
         [LEEAlert alert].config
-        .LeeTitle(@"")
+        .LeeTitle(@"请选择银行卡")
         .LeeItemInsets(UIEdgeInsetsMake(20, 0, 20, 0))
         .LeeCustomView(view)
         .LeeItemInsets(UIEdgeInsetsMake(0, 0, 0, 0))
         .LeeHeaderInsets(UIEdgeInsetsMake(0, 0, 0, 0))
         .LeeClickBackgroundClose(YES)
         .LeeShow();
+    }
+    
+    
 
 }
 -(void)refresh{
