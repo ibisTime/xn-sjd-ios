@@ -7,7 +7,7 @@
 //
 
 #import "BookDetailHeadView.h"
-
+#import "MyTreeVC.h"
 @implementation BookDetailHeadView{
     NSString * Name;
 }
@@ -44,6 +44,10 @@
     moneyLab.frame = CGRectMake(kScreenWidth-155, moreLab.yy+10, 140, 24);
     moneyLab.textAlignment = NSTextAlignmentLeft;
     moneyLab.text = @"关联古树: 爱心树";
+    UITapGestureRecognizer * ges = [[UITapGestureRecognizer alloc]init];
+    moneyLab.userInteractionEnabled = YES;
+    [ges addTarget:self action:@selector(connect)];
+    [moneyLab addGestureRecognizer:ges];
     self.moneyLab = moneyLab;
     [self addSubview:moneyLab];
     
@@ -64,7 +68,7 @@
     
     if ([self.state isEqualToString:@"collect"]) {
         self.moreLab.text = BookModel.article[@"title"];
-        [self getName:BookModel.article[@"publishUserId"]];
+        [self getName:BookModel.article[@"code"]];
 //        self.detailLab.text = [NSString stringWithFormat:@"作者 %@",[self getName:BookModel.article[@"publishUserId"]]];
         [_detailLab sizeToFit];
         _detailLab.frame = CGRectMake(15, _moreLab.yy+10, _detailLab.width + 10, 24);
@@ -85,24 +89,57 @@
         self.moneyLab.text = [NSString stringWithFormat:@"关联古树 %@ >",BookModel.treeName];
         [_moneyLab sizeToFit];
         _moneyLab.frame = CGRectMake(SCREEN_WIDTH - _moneyLab.width - 15, _moreLab.yy+10, _moneyLab.width + 10, 24);
+        [self getTreeWithTreeCode:BookModel.adoptTreeCode];
     }
     self.timeLab.text = [BookModel.publishDatetime convertToDetailDate];
+        
     }
 }
 
 -(void)getName:(NSString *)userid{
     CoinWeakSelf;
     TLNetworking * http = [TLNetworking new];
-    http.code = USER_INFO;
-    http.parameters[@"userId"] = userid;
+    http.code = @"629346";
+    http.parameters[@"code"] = userid;
     [http postWithSuccess:^(id responseObject) {
-        NSString * name = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"nickname"]];
-//        Name = name;
-        weakSelf.detailLab.text = [NSString stringWithFormat:@"作者 %@",name];
+        NSString * name = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"publishUserName"]];
+        weakSelf.detailLab.text = [NSString stringWithFormat:@"作者: %@",name];
+        [weakSelf.detailLab sizeToFit];
+        weakSelf.detailLab.frame = CGRectMake(15,weakSelf.moreLab.yy+11, weakSelf.detailLab.width, 24);
+        if (responseObject[@"data"][@"treeName"] ||responseObject[@"data"][@"productName"]) {
+            weakSelf.moneyLab.text = [NSString stringWithFormat:@"关联古树 %@(%@) >",responseObject[@"data"][@"productName"],responseObject[@"data"][@"treeName"]];
+            [weakSelf.moneyLab sizeToFit];
+            weakSelf.moneyLab.frame = CGRectMake(kScreenWidth-weakSelf.moneyLab.width-15, weakSelf.moreLab.yy+10, weakSelf.moneyLab.width, 24);
+            [weakSelf getTreeWithTreeCode:responseObject[@"data"][@"adoptTreeCode"]];
+        }
+        else{
+            [weakSelf.moneyLab setHidden:YES];
+        }
+        
     } failure:^(NSError *error) {
         
     }];
-//    return Name;
+}
+-(void)getTreeWithTreeCode:(NSString *)treeCode{
+    if (treeCode) {
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"629206";
+        http.parameters[@"code"] = treeCode;
+        [http postWithSuccess:^(id responseObject) {
+            self.model = [PersonalCenterModel mj_objectWithKeyValues:responseObject[@"data"]];
+        } failure:^(NSError *error) {
+            
+        }];
+    }
+   
 }
 
+-(void)connect{
+    NSLog(@"%s",__func__);
+    if (self.model) {
+        if (self.ConnectBlock) {
+            self.ConnectBlock(self.model);
+        }
+    }
+}
 @end

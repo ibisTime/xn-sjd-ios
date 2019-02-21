@@ -11,6 +11,8 @@
 #import "BookDetailContentView.h"
 #import "BookImageCell.h"
 #import "BookContentCell.h"
+#import "MyTreeVC.h"
+#import "FriendsTheTreeVC.h"
 @interface BoolVideoDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     UIView * FootView;
@@ -65,7 +67,20 @@
 }
 
 -(void)CreateHeadView{
+    CoinWeakSelf;
     self.headView = [[BookDetailHeadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
+    self.headView.ConnectBlock = ^(PersonalCenterModel *model) {
+            if ([model.user[@"userId"] isEqualToString:[TLUser user].userId]) {
+                MyTreeVC * vc = [MyTreeVC new];
+                vc.model = model;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+            else{
+                FriendsTheTreeVC * vc = [FriendsTheTreeVC new];
+                vc.model = model;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+    };
     self.headView.state = self.state;
     self.headView.BookModel = self.BookModel;
 //    [self.view addSubview:self.headView];

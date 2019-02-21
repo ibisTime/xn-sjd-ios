@@ -190,11 +190,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Time Island/&#x9996;&#x9875;/Controller/BoolVideoDetailVC.m"
-            timestampString = "572349159.041636"
+            timestampString = "572409256.051073"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
             landmarkName = "-ZanBtnClick:"
             landmarkType = "7">
          </BreakpointContent>
@@ -206,11 +206,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Time Island/&#x9996;&#x9875;/Controller/BoolVideoDetailVC.m"
-            timestampString = "572349159.0416991"
+            timestampString = "572409256.051131"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
             landmarkName = "-ZanBtnClick:"
             landmarkType = "7">
          </BreakpointContent>
