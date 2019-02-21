@@ -228,11 +228,11 @@
     [fastNews addSubview:imageView];
     self.imageView = imageView;
 
-    _advertScrollView = [[SGAdvertScrollView alloc]initWithFrame: CGRectMake(self.imageView.xx + 10, 0, kScreenWidth - self.imageView.xx - 10 - 50, 30)];
+    _advertScrollView = [[SGAdvertScrollView alloc]initWithFrame: CGRectMake(self.imageView.xx + 10, 0, kScreenWidth , 30)];
     _advertScrollView.titleFont = [UIFont systemFontOfSize:12];
     _advertScrollView.delegate = self;
-    _advertScrollView.scrollTimeInterval = 5.0;
-    _advertScrollView.advertScrollViewStyle = SGAdvertScrollViewStyleNormal;
+    _advertScrollView.scrollTimeInterval = 4.0;
+//    _advertScrollView.advertScrollViewStyle = SGAdvertScrollViewStyleNormal;
     _advertScrollView.titleColor = kHexColor(@"#666666");
 
     [fastNews addSubview:_advertScrollView];
