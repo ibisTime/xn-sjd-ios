@@ -48,6 +48,7 @@
 - (NSString *)convertToDetailDate; //带有时分秒
 - (NSString *)convertToDetailDateWithoutHour;//不带有时分秒
 -(NSString *)convertToChineseDate;//2019年2月18日
+-(NSString *)convertDateWithoutYear;//不带年、秒
 //时间线的时间，一周， 1小时后，
 - (NSString *)convertToTimelineDate;
 

@@ -20,19 +20,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = kWhiteColor;
-    [self refresh];
+    
     self.tableView = [[BookTableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - kTabBarHeight - GlobalRevenueListBottomHeight) style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = kWhiteColor;
     self.tableView.refreshDelegate = self;
 //    self.tableView.BookModel = self.BookModel;
 //    self.tableView.scrollEnabled = NO;
-    CoinWeakSelf
-    [self.tableView addRefreshAction:^{
-        [weakSelf refresh];
-        [weakSelf.tableView reloadData];
-        [weakSelf.tableView endRefreshHeader];
-    }];
+//    CoinWeakSelf
+//    [self.tableView addRefreshAction:^{
+//        [weakSelf refresh];
+//        [weakSelf.tableView reloadData];
+//        [weakSelf.tableView endRefreshHeader];
+//    }];
     [self.view addSubview:self.tableView];
+    
+    [self refresh];
 }
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -43,41 +45,14 @@
     [self.navigationController pushViewController:detailavc animated:YES];
 }
 
-//-(void)headRefresh
-//{
-//    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
-//    header.automaticallyChangeAlpha = YES;
-//    header.lastUpdatedTimeLabel.hidden = YES;
-//    header.stateLabel.hidden = YES;
-//    self.tableView.mj_header = header;
-//    [_collectionView.mj_header beginRefreshing];
-//
-//    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadNewDataFooter)];
-//    footer.arrowView.hidden = YES;
-//    footer.stateLabel.hidden = YES;
-//    _collectionView.mj_footer = footer;
-//}
-//
-//-(void)loadNewData
-//{
-//    self.treemMuArray = [NSMutableArray array];
-//    self.start = 1;
-//    [self requestBannerList];
-//    [self refresh];
-//}
-//
-//-(void)loadNewDataFooter
-//{
-//    self.start ++;
-//    [self refresh];
-//}
 
 -(void)refresh{
-    
-    TLNetworking * http = [[TLNetworking alloc]init];
+    CoinWeakSelf;
+//    TLNetworking * http = [[TLNetworking alloc]init];
+    TLPageDataHelper * http = [[TLPageDataHelper alloc]init];
     http.code = @"629345";
-    http.parameters[@"start"] = @(1);
-    http.parameters[@"limit"] = @(10);
+//    http.parameters[@"start"] = @(1);
+//    http.parameters[@"limit"] = @(10);
     http.parameters[@"status"] = @(5);
     http.parameters[@"openLevel"] = @(1);
     http.parameters[@"orderDir"] = @"desc";
@@ -99,13 +74,43 @@
     if ([self.httpstate isEqualToString:@"tree"]) {
         http.parameters[@"treeNo"] = @"树木编号";
     }
+    http.tableView = self.tableView;
+    [http modelClass:[BookModel class]];
+    http.isCurrency = YES;
     
-    [http postWithSuccess:^(id responseObject) {
-        self.BookModel = [BookModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-        self.tableView.BookModel = self.BookModel;
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
+    [self.tableView addRefreshAction:^{
+        [http refresh:^(NSMutableArray *objs, BOOL stillHave) {
+            if (objs.count > 0) {
+                weakSelf.BookModel = objs;
+                weakSelf.tableView.BookModel = objs;
+            }
+           
+            [weakSelf.tableView reloadData];
+            [weakSelf.tableView endRefreshHeader];
+        } failure:^(NSError *error) {
+            [weakSelf.tableView endRefreshHeader];
+        }];
     }];
+    [self.tableView addLoadMoreAction:^{
+        [http loadMore:^(NSMutableArray *objs, BOOL stillHave) {
+            if (objs.count > 0) {
+                weakSelf.BookModel = objs;
+                weakSelf.tableView.BookModel = objs;
+            }
+            
+            [weakSelf.tableView reloadData];
+            [weakSelf.tableView endRefreshFooter];
+        } failure:^(NSError *error) {
+            [weakSelf.tableView endRefreshFooter];
+        }];
+    }];
+    [self.tableView beginRefreshing];
+//    [http postWithSuccess:^(id responseObject) {
+//        self.BookModel = [BookModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+//        self.tableView.BookModel = self.BookModel;
+//        [self.tableView reloadData];
+//    } failure:^(NSError *error) {
+//    }];
 }
 
 @end

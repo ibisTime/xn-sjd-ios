@@ -11,6 +11,7 @@
 
 #import "MyCarbombubbleView.h"
 #import "CarbonModel.h"
+#import "RulesVC.h"
 @interface MyCarbonBubbleVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)MyCarbonBubbleTableView *tableView;
@@ -21,6 +22,7 @@
 @end
 
 @implementation MyCarbonBubbleVC
+
 
 - (MyCarbonBubbleTableView *)tableView {
     
@@ -61,28 +63,83 @@
     [self.view addSubview:self.tableView];
     self.tableView.tableHeaderView = self.headView;
     CoinWeakSelf
-    [self.tableView addRefreshAction:^{
-        [weakSelf.tableView beginRefreshing];
+//    [self.tableView addRefreshAction:^{
+//        [weakSelf.tableView beginRefreshing];
         [weakSelf refresh];
-        [weakSelf.tableView endRefreshHeader];
-    }];
-//    self.title = @"我的碳泡泡";
+//        [weakSelf.tableView endRefreshHeader];
+//    }];
+    
+    
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    negativeSpacer.width = -10;
+    [self.RightButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+    self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
+//    [self.RightButton setImage:kImage(@"氧圈分享") forState:(UIControlStateNormal)];
+    if (self.state == 1) {
+        [self.RightButton setTitle:@"积分规则" forState:(UIControlStateNormal)];
+    }
+    else if(self.state == 2)
+    {
+        [self.RightButton setTitle:@"碳泡泡规则" forState:(UIControlStateNormal)];
+    }
+    [self.RightButton addTarget:self action:@selector(myRecodeClick) forControlEvents:(UIControlEventTouchUpInside)];
+    
+}
+-(void)myRecodeClick{
+    NSLog(@"%s",__func__);
+    RulesVC * vc = [RulesVC new];
+    vc.state = self.state;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)refresh{
     
-    TLNetworking * http = [[TLNetworking alloc]init];
-    http.code = @"802322";
-    http.parameters[@"accountNumber"] = self.accountNumber;
-    http.parameters[@"start"] = @(1);
-    http.parameters[@"limit"] = @(10);
-    [http postWithSuccess:^(id responseObject) {
-        self.CarbonModels = [CarbonModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-        self.tableView.CarbonModels = self.CarbonModels;
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
+
+    CoinWeakSelf;
+
+    
+    
+    TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
+    helper.code = @"802322";
+    helper.parameters[@"accountNumber"] = self.accountNumber;
+    [helper modelClass:[CarbonModel class]];
+    helper.tableView = self.tableView;
+    helper.isCurrency = YES;
+
+    
+    [self.tableView addRefreshAction:^{
+        [helper refresh:^(NSMutableArray *objs, BOOL stillHave) {
+//            [objs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//
+//            }];
+            if (objs.count > 0) {
+                weakSelf.CarbonModels = objs;
+                weakSelf.tableView.CarbonModels = weakSelf.CarbonModels;
+                [weakSelf.tableView reloadData];
+            }
+
+//            [weakSelf.tableView reloadData];
+            [weakSelf.tableView reloadData_tl];
+        } failure:^(NSError *error) {
+            
+        }];
     }];
+    [self.tableView addLoadMoreAction:^{
+        [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
+            if (objs.count > 0) {
+                weakSelf.CarbonModels = objs;
+                weakSelf.tableView.CarbonModels = weakSelf.CarbonModels;
+                [weakSelf.tableView reloadData];
+            }
+            [weakSelf.tableView reloadData_tl];
+        } failure:^(NSError *error) {
+            
+        }];
+    }];
+
+    [self.tableView beginRefreshing];
 }
+
 
 
 @end

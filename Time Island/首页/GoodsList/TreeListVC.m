@@ -228,7 +228,7 @@
     [http postWithSuccess:^(id responseObject) {
         NSArray *array = responseObject[@"data"][@"list"];
         [self.treemMuArray addObjectsFromArray:array];
-        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:array];
+        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treemMuArray];
         [self.collectionView reloadData];
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
@@ -261,7 +261,7 @@
 -(void)loadNewData
 {
     self.start = 1;
-    self.treeArray = [NSMutableArray array];
+    self.treemMuArray = [NSMutableArray array];
     [self refresh];
     [self requestBannerList];
 }
@@ -513,6 +513,7 @@
 
 -(void)refresh{
     TLNetworking * http = [[TLNetworking alloc]init];
+//    TLPageDataHelper * http = [[TLPageDataHelper alloc]init];
     http.code = @"629025";
     http.parameters[@"start"] = @(self.start);
     http.parameters[@"limit"] = @(10);
@@ -542,10 +543,10 @@
     }
 //    http.parameters[@"variety"] = @"樟树";
     [http postWithSuccess:^(id responseObject) {
-        
+
         NSArray *array = responseObject[@"data"][@"list"];
         [self.treemMuArray addObjectsFromArray:array];
-        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:array];
+        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treemMuArray];
         [self.collectionView reloadData];
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
@@ -553,6 +554,16 @@
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
     }];
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     //专属

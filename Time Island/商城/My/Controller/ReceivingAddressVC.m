@@ -101,6 +101,7 @@
     http.parameters[@"code"] = self.addressModels[sender.tag].code;
     [http postWithSuccess:^(id responseObject) {
         [TLAlert alertWithSucces:@"设置成功"];
+        [self refresh];
     } failure:^(NSError *error) {
     }];
     [self.table reloadData];
@@ -130,6 +131,7 @@
         http.parameters[@"code"] = self.addressModels[sender.tag].code;
         [http postWithSuccess:^(id responseObject) {
             [TLAlert alertWithSucces:@"设置成功"];
+            [self refresh];
         } failure:^(NSError *error) {
         }];
         [self.table reloadData];
@@ -163,12 +165,7 @@
     http.code = @"805175";
     http.parameters[@"userId"] = [TLUser user].userId;
     [http postWithSuccess:^(id responseObject) {
-        
-        
-        
         self.addressModels = [AddressModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
-//        AddressModel *model = self.addressModels[0];
-//        NSLog(@"%@",model.userId);
         [self.table reloadData];
 
     } failure:^(NSError *error) {

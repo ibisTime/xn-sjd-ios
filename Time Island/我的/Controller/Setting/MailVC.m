@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"绑定邮箱";
     if ([[TLUser user]email]) {
         
         UILabel * label = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 55) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:FONT(18) textColor:kTextBlack];
