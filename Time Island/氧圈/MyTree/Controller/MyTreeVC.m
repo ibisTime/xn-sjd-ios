@@ -229,16 +229,16 @@
     [self LoadData];
 }
 
--(void)LoadData
-{
+
+//
+-(void)LoadData{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629357";
     http.parameters[@"status"] = @"0";
     [http postWithSuccess:^(id responseObject) {
         
         self.energyModels = [MyTreeEnergyModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
-        
-        self.tableView.model = self.model;
+
         [self.tableView reloadData];
         
     } failure:^(NSError *error) {

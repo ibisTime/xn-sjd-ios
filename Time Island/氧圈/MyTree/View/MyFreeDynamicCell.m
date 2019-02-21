@@ -118,7 +118,7 @@
             
             
             UILabel *numLbl = [UILabel labelWithFrame:CGRectMake(2, 2, 18, 18) textAligment:(NSTextAlignmentCenter) backgroundColor:kHexColor(@"#23AD8C") font:FONT(8) textColor:kWhiteColor];
-            numLbl.text = @"5g";
+            numLbl.text = @"0g";
             kViewRadius(numLbl, 9);
             [bottomView addSubview:numLbl];
             

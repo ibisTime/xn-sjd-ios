@@ -37,9 +37,13 @@
 @property (nonatomic,strong) NSString * variety;
 
 
+
 @property (nonatomic, strong) NSArray *mainKindArray;
 @property (nonatomic, strong) NSArray *subKindArray;
 @property (nonatomic, strong) YiceSlidelipPickerMenu *pickMenu;
+
+
+@property (nonatomic,strong) NSMutableArray * Array;
 
 @end
 
@@ -245,6 +249,7 @@
                 else{
                     FriendsTheTreeVC * vc = [FriendsTheTreeVC new];
                     vc.model = self.models[indexPath.row];
+//                    vc.Info = self.Array[indexPath.row];
                     [self.navigationController pushViewController:vc animated:YES];
                 }
             }
@@ -283,6 +288,10 @@
         [weakSelf myTreeLoadData];
         [weakSelf TheLog];
         [helper refresh:^(NSMutableArray *objs, BOOL stillHave) {
+            if (objs.count > 0) {
+//                weakSelf.Array = objs;
+                weakSelf.dynamicModel = objs;
+            }
             
             if (weakSelf.tl_placeholderView.superview != nil) {
                 

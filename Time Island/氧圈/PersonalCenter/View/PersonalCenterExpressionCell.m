@@ -55,10 +55,8 @@
             make.height.equalTo(@48);
         }];
         
-        UIView *bottomLineView = [[UIView alloc]initWithFrame:CGRectMake(32.5, backView.yy, 1, 15)];
-        bottomLineView.backgroundColor = kLineColor;
-        self.bottomLineView = bottomLineView;
-        [self addSubview:bottomLineView];
+        
+        
         
     }
     return self;
@@ -66,13 +64,13 @@
 
 -(void)setDynamicModel:(DynamicModel *)dynamicModel
 {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"MMM dd, yyyy hh:mm:ss aa";
-    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    NSDate *date01 = [formatter dateFromString:dynamicModel.createDatetime];
-    formatter.dateFormat = @"HH:mm:ss";
-    formatter.locale = [NSLocale currentLocale];
-    timeLbl.text = [formatter stringFromDate:date01];
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    formatter.dateFormat = @"MMM dd, yyyy hh:mm:ss aa";
+//    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+//    NSDate *date01 = [formatter dateFromString:dynamicModel.createDatetime];
+//    formatter.dateFormat = @"HH:mm:ss";
+//    formatter.locale = [NSLocale currentLocale];
+    timeLbl.text = [dynamicModel.createDatetime convertDateWithoutYear];
     
     [headImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dynamicModel.userInfo[@"photo"] convertImageUrl]]] placeholderImage:kImage(@"头像")];
     
@@ -124,7 +122,12 @@
     }
     
     
-    
+    if (![self.state isEqualToString:@"inside"]) {
+        UIView *bottomLineView = [[UIView alloc]initWithFrame:CGRectMake(32.5, backView.yy, 1, 15)];
+        bottomLineView.backgroundColor = kLineColor;
+        self.bottomLineView = bottomLineView;
+        [self addSubview:bottomLineView];
+    }
     
     
     

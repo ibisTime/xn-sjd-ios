@@ -177,6 +177,11 @@
 		361396032215386600F6F2F3 /* FriendsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 361396022215386600F6F2F3 /* FriendsModel.m */; };
 		3613961222156FF400F6F2F3 /* BookImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3613961122156FF400F6F2F3 /* BookImageCell.m */; };
 		361396152215700900F6F2F3 /* BookContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 361396142215700900F6F2F3 /* BookContentCell.m */; };
+		3615FE0D221E775D00D10F73 /* RulesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3615FE0C221E775D00D10F73 /* RulesVC.m */; };
+		3615FE10221E784400D10F73 /* RulesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3615FE0F221E784400D10F73 /* RulesTableView.m */; };
+		3615FE13221E793900D10F73 /* RulesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3615FE12221E793900D10F73 /* RulesCell.m */; };
+		3615FE16221E964A00D10F73 /* RulesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3615FE15221E964A00D10F73 /* RulesModel.m */; };
+		3615FE17221E9A5900D10F73 /* RecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3663F292221D4C150053B3C8 /* RecordVC.m */; };
 		3622C372221A7B3900087EDD /* ThePropsDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3622C371221A7B3900087EDD /* ThePropsDetailsView.m */; };
 		3622C375221A8FBE00087EDD /* BuyPropsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3622C374221A8FBE00087EDD /* BuyPropsView.m */; };
 		3622C378221AB55A00087EDD /* HistroyUserVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3622C377221AB55A00087EDD /* HistroyUserVC.m */; };
@@ -195,7 +200,6 @@
 		365514D221FADC9A00E54996 /* CardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 365514D121FADC9A00E54996 /* CardModel.m */; };
 		365514D821FB009000E54996 /* introduceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 365514D721FB009000E54996 /* introduceView.m */; };
 		3663F290221CF7270053B3C8 /* HistoryUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3663F28F221CF7270053B3C8 /* HistoryUserCell.m */; };
-		3663F293221D4C150053B3C8 /* RecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3663F292221D4C150053B3C8 /* RecordVC.m */; };
 		3663F296221D4D860053B3C8 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3663F295221D4D860053B3C8 /* RecordCell.m */; };
 		3663F299221D4DB30053B3C8 /* RecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3663F298221D4DB30053B3C8 /* RecordModel.m */; };
 		366A59F122000007009FFA6E /* GoodsDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A59F022000007009FFA6E /* GoodsDetailsCell.m */; };
@@ -856,6 +860,14 @@
 		3613961122156FF400F6F2F3 /* BookImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookImageCell.m; sourceTree = "<group>"; };
 		361396132215700900F6F2F3 /* BookContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookContentCell.h; sourceTree = "<group>"; };
 		361396142215700900F6F2F3 /* BookContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookContentCell.m; sourceTree = "<group>"; };
+		3615FE0B221E775D00D10F73 /* RulesVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RulesVC.h; sourceTree = "<group>"; };
+		3615FE0C221E775D00D10F73 /* RulesVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RulesVC.m; sourceTree = "<group>"; };
+		3615FE0E221E784400D10F73 /* RulesTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RulesTableView.h; sourceTree = "<group>"; };
+		3615FE0F221E784400D10F73 /* RulesTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RulesTableView.m; sourceTree = "<group>"; };
+		3615FE11221E793900D10F73 /* RulesCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RulesCell.h; sourceTree = "<group>"; };
+		3615FE12221E793900D10F73 /* RulesCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RulesCell.m; sourceTree = "<group>"; };
+		3615FE14221E964A00D10F73 /* RulesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RulesModel.h; sourceTree = "<group>"; };
+		3615FE15221E964A00D10F73 /* RulesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RulesModel.m; sourceTree = "<group>"; };
 		3622C370221A7B3900087EDD /* ThePropsDetailsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThePropsDetailsView.h; sourceTree = "<group>"; };
 		3622C371221A7B3900087EDD /* ThePropsDetailsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThePropsDetailsView.m; sourceTree = "<group>"; };
 		3622C373221A8FBE00087EDD /* BuyPropsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuyPropsView.h; sourceTree = "<group>"; };
@@ -1811,12 +1823,8 @@
 				362341762216AAED00143683 /* IntroduceCell.m */,
 				362341782216AB8E00143683 /* TreeDetailCell.h */,
 				362341792216AB8E00143683 /* TreeDetailCell.m */,
-				3622C376221AB55A00087EDD /* HistroyUserVC.h */,
-				3622C377221AB55A00087EDD /* HistroyUserVC.m */,
 				3663F28E221CF7270053B3C8 /* HistoryUserCell.h */,
 				3663F28F221CF7270053B3C8 /* HistoryUserCell.m */,
-				3663F291221D4C150053B3C8 /* RecordVC.h */,
-				3663F292221D4C150053B3C8 /* RecordVC.m */,
 				3663F294221D4D860053B3C8 /* RecordCell.h */,
 				3663F295221D4D860053B3C8 /* RecordCell.m */,
 			);
@@ -1839,6 +1847,10 @@
 			children = (
 				1F1B001E21E6F79C000BEBD3 /* MyTreeVC.h */,
 				1F1B001F21E6F79C000BEBD3 /* MyTreeVC.m */,
+				3622C376221AB55A00087EDD /* HistroyUserVC.h */,
+				3622C377221AB55A00087EDD /* HistroyUserVC.m */,
+				3663F291221D4C150053B3C8 /* RecordVC.h */,
+				3663F292221D4C150053B3C8 /* RecordVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2467,6 +2479,10 @@
 				1F93614121EE0105007E522A /* MyCarbonBubbleCell.m */,
 				1F93614521EE0105007E522A /* MyCarbombubbleView.h */,
 				1F93614221EE0105007E522A /* MyCarbombubbleView.m */,
+				3615FE0E221E784400D10F73 /* RulesTableView.h */,
+				3615FE0F221E784400D10F73 /* RulesTableView.m */,
+				3615FE11221E793900D10F73 /* RulesCell.h */,
+				3615FE12221E793900D10F73 /* RulesCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2476,6 +2492,8 @@
 			children = (
 				1F93614721EE0105007E522A /* MyCarbonBubbleVC.h */,
 				1F93614821EE0105007E522A /* MyCarbonBubbleVC.m */,
+				3615FE0B221E775D00D10F73 /* RulesVC.h */,
+				3615FE0C221E775D00D10F73 /* RulesVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2672,6 +2690,8 @@
 			children = (
 				360E09B22201351C003467B8 /* CarbonModel.h */,
 				360E09B32201351C003467B8 /* CarbonModel.m */,
+				3615FE14221E964A00D10F73 /* RulesModel.h */,
+				3615FE15221E964A00D10F73 /* RulesModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4454,6 +4474,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3615FE17221E9A5900D10F73 /* RecordVC.m in Sources */,
 				36A84B442211114C003CDE19 /* TLChangeMobileVC.h in Sources */,
 				1F1B006E21E71D26000BEBD3 /* UIColor+PlatformIndependence.m in Sources */,
 				3647C4A621F1D80100FB049D /* AddressCell.m in Sources */,
@@ -4461,9 +4482,11 @@
 				B81E5FBE21DC8FC200873AB9 /* TLAlert.m in Sources */,
 				3689769321EF367B005F1177 /* OrderView.m in Sources */,
 				B81E5FB821DC8FC200873AB9 /* TLProgressHUD.m in Sources */,
+				3615FE13221E793900D10F73 /* RulesCell.m in Sources */,
 				366A59F122000007009FFA6E /* GoodsDetailsCell.m in Sources */,
 				1F47329B221EA11A007B5908 /* NSString+AdjustSize.m in Sources */,
 				B8226F7121F6E230002F450F /* MallGoodIntroduceVC.m in Sources */,
+				3615FE16221E964A00D10F73 /* RulesModel.m in Sources */,
 				B81E5FED21DC8FC200873AB9 /* LangSwitcher.m in Sources */,
 				B85F891D21FC2F9C00D5B7A4 /* UIView+PYExtension.m in Sources */,
 				1F1B009A21E743B1000BEBD3 /* CertificateOfPlantView.m in Sources */,
@@ -4479,7 +4502,6 @@
 				B80D386221F85F1E00206B55 /* ChoosTypeTableViewCell.m in Sources */,
 				B87C211E21FAF2DE00EFD0B0 /* ExpressCell.m in Sources */,
 				B81E5FBB21DC8FC200873AB9 /* TLPickerTextField.m in Sources */,
-				3663F293221D4C150053B3C8 /* RecordVC.m in Sources */,
 				B87C213221FB047000EFD0B0 /* HDragItemListView.m in Sources */,
 				363CD5E022029B9B00A81CFA /* OrderModel.m in Sources */,
 				3610EEC721EDD6A800FD345D /* GetAddVC.m in Sources */,
@@ -4487,6 +4509,7 @@
 				B81E602321DC906D00873AB9 /* UserDefaultsUtil.m in Sources */,
 				3689766821EED7CF005F1177 /* CollectBookVC.m in Sources */,
 				1F1B002F21E71C5D000BEBD3 /* PaopaoButton.m in Sources */,
+				3615FE10221E784400D10F73 /* RulesTableView.m in Sources */,
 				36DB50D921F59AEF009D56EF /* NewsVCCell.m in Sources */,
 				3689766E21EED9A3005F1177 /* BookCell.m in Sources */,
 				365514D821FB009000E54996 /* introduceView.m in Sources */,
@@ -4721,6 +4744,7 @@
 				1F4731CF221CF887007B5908 /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				1F93614A21EE0105007E522A /* MyCarbonBubbleCell.m in Sources */,
 				B8ED2E7621E7139E00FADCCE /* TreeFiledCell.m in Sources */,
+				3615FE0D221E775D00D10F73 /* RulesVC.m in Sources */,
 				1F19A8F321FADF9B0090BF84 /* TreeModel.m in Sources */,
 				3610EEBB21EDBEBF00FD345D /* CardVC.m in Sources */,
 				B81E5FB021DC8FC200873AB9 /* TLTableView.m in Sources */,

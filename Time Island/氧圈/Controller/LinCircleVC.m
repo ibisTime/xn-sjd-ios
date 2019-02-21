@@ -56,7 +56,7 @@
 //    self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
 //    [self.RightButton setImage:kImage(@"氧圈分享") forState:(UIControlStateNormal)];
 //    [self.RightButton addTarget:self action:@selector(myRecodeClick) forControlEvents:(UIControlEventTouchUpInside)];
-    
+//    
     __weak typeof(self)weakSelf = self;
     [self cw_registerShowIntractiveWithEdgeGesture:YES transitionDirectionAutoBlock:^(CWDrawerTransitionDirection direction) {
         if (direction == CWDrawerTransitionFromLeft) { // 左侧滑出

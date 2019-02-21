@@ -7,6 +7,7 @@
 //
 
 #import "PayViewController.h"
+#import "OrderVC.h"
 
 @interface PayViewController ()
 {
@@ -203,8 +204,11 @@
         [TLAlert alertWithSucces:@"支付成功"];
         [[UserModel user].cusPopView dismiss];
         
-        TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
-        [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
+//        TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
+//        [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
+        OrderVC  *vc = [OrderVC new];
+        [self.navigationController pushViewController:vc animated:YES];
+        
     } failure:^(NSError *error) {
         self.pwd.text = nil;
     }];

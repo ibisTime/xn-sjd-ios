@@ -84,34 +84,49 @@
 
 -(void)BarrageViewSelectRow:(NSInteger)row
 {
-    
-//    TLNetworking * http = [[TLNetworking alloc]init];
-//    http.code = @"629384";
-//    http.parameters[@"status"] = @(1);
-//    http.parameters[@"adoptTreeCode"] = self.model.adoptTreeCode;
-//    http.parameters[@"code"] = self.BarrageModels[row].code;
-//    http.parameters[@"userId"] = [TLUser user].userId;
-//    [http postWithSuccess:^(id responseObject) {
-    
-        
-        
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629384";
+    http.parameters[@"status"] = @(1);
+    http.parameters[@"adoptTreeCode"] = self.model.code;
+    http.parameters[@"code"] = self.BarrageModels[row].code;
+    http.parameters[@"userId"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
         [[UserModel user].cusPopView dismiss];
         self.tableView.barrageModel = self.BarrageModels[row];
+//        self.tableView.model = self.model;
+        
         [self.tableView reloadData];
-//    } failure:^(NSError *error) { 2
-//
-//    }];
-    
-    
-    
-    
+        
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.tableView.model = self.model;
+            [self.tableView reloadData];
+        });
+        
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 -(void)confirmBtnClick
 {
-    [[UserModel user].cusPopView dismiss];
-    self.tableView.donation = 100;
-    [self.tableView reloadData];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629360";
+    http.parameters[@"toUserId"] = self.model.user[@"userId"];
+    http.parameters[@"adoptTreeCode"] = self.model.code;
+    http.parameters[@"userId"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
+        [[UserModel user].cusPopView dismiss];
+        self.tableView.donation = 100;
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        [[UserModel user].cusPopView dismiss];
+    }];
+    
+    
+    
+    
 }
 
 - (void)viewDidLoad {

@@ -174,6 +174,17 @@
 -(void)setModel:(PersonalCenterModel *)model{
     _model = model;
     [headImg sd_setImageWithURL:[NSURL URLWithString:[model.user[@"photo"] convertImageUrl]] placeholderImage:kImage(@"头像")];
+    if (model.user[@"nickname"]) {
+        nameLbl.text =model.user[@"nickname"];
+        [nameLbl sizeToFit];
+        if (nameLbl.width > SCREEN_WIDTH - headImg.xx - 7.5 - 5) {
+            nameLbl.frame = CGRectMake(headImg.xx + 7.5, 72.5 - 64 + kNavigationBarHeight, SCREEN_WIDTH - headImg.xx - 7.5 - 5, 39);
+        }
+        else{
+            nameLbl.frame = CGRectMake(headImg.xx + 7.5, 72.5 - 64 + kNavigationBarHeight, nameLbl.width, 39);
+        }
+        
+    }
 }
 -(void)setEnergyModels:(NSMutableArray<MyTreeEnergyModel *> *)energyModels{
     _energyModels = energyModels;

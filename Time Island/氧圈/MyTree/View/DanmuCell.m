@@ -61,13 +61,13 @@
 
 -(void)setDynamicModel:(DynamicModel *)dynamicModel
 {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"MMM dd, yyyy hh:mm:ss aa";
-    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    NSDate *date01 = [formatter dateFromString:dynamicModel.createDatetime];
-    formatter.dateFormat = @"HH:mm:ss";
-    formatter.locale = [NSLocale currentLocale];
-    timeLbl.text = [formatter stringFromDate:date01];
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    formatter.dateFormat = @"MMM dd, yyyy hh:mm:ss aa";
+//    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+//    NSDate *date01 = [formatter dateFromString:dynamicModel.createDatetime];
+//    formatter.dateFormat = @"HH:mm:ss";
+//    formatter.locale = [NSLocale currentLocale];
+    timeLbl.text = [dynamicModel.createDatetime convertDateWithoutYear];
     
     [headImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[dynamicModel.userInfo[@"photo"] convertImageUrl]]] placeholderImage:kImage(@"头像")];
     

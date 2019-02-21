@@ -61,9 +61,9 @@
     [self.view addSubview:namelbl];
     
     
-    NSArray *array = @[@"微信",@"支付宝",@"余额支付"];
-    NSArray * imagearray = @[@"微信",@"支付宝",@"余额"];
-    for (int i = 0; i < 3; i ++) {
+    NSArray *array = @[@"微信",@"支付宝"];
+    NSArray * imagearray = @[@"微信",@"支付宝"];
+    for (int i = 0; i < 2; i ++) {
         UIButton *payButton = [UIButton buttonWithTitle:array[i] titleColor:kBlackColor backgroundColor:kClearColor titleFont:14];
         [payButton SG_imagePositionStyle:SGImagePositionStyleDefault spacing:8.5 imagePositionBlock:^(UIButton *button) {
             [button setImage:kImage(imagearray[i]) forState:(UIControlStateNormal)];

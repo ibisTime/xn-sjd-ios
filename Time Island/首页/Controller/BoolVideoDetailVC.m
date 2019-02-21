@@ -11,6 +11,8 @@
 #import "BookDetailContentView.h"
 #import "BookImageCell.h"
 #import "BookContentCell.h"
+#import "MyTreeVC.h"
+#import "FriendsTheTreeVC.h"
 @interface BoolVideoDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 {
     UIView * FootView;
@@ -18,7 +20,9 @@
 @property (nonatomic , strong) BookDetailHeadView *headView;
 //@property (nonatomic,strong) BookDetailContentView * ContentView;
 @property (nonatomic,strong) UITableView * TableView;
-@property (nonatomic,assign) NSInteger count;
+@property (nonatomic,assign) NSInteger Collectcount;
+@property (nonatomic,assign) NSInteger ZanCount;
+
 @property (nonatomic,strong) UIButton * CollectBtn;
 @property (nonatomic,strong) UIButton * ZanBtn;
 @property (nonatomic,strong) NSArray * imagearr;
@@ -65,7 +69,20 @@
 }
 
 -(void)CreateHeadView{
+    CoinWeakSelf;
     self.headView = [[BookDetailHeadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
+    self.headView.ConnectBlock = ^(PersonalCenterModel *model) {
+            if ([model.user[@"userId"] isEqualToString:[TLUser user].userId]) {
+                MyTreeVC * vc = [MyTreeVC new];
+                vc.model = model;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+            else{
+                FriendsTheTreeVC * vc = [FriendsTheTreeVC new];
+                vc.model = model;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+    };
     self.headView.state = self.state;
     self.headView.BookModel = self.BookModel;
 //    [self.view addSubview:self.headView];
@@ -178,10 +195,11 @@
 
 -(void)CollectBtnClick:(UIButton *)sender
 {
-    sender.selected = !sender.selected;
+    
     
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629811";
+    http.showView = self.view;
     http.parameters[@"userId"] = [TLUser user].userId;
 //    http.parameters[@"code"] = self.BookModel.code;
     if ([self.state isEqualToString:@"collect"]) {
@@ -190,24 +208,26 @@
     else{
         http.parameters[@"code"] = self.BookModel.code;
     }
-    self.count = [self.BookModel.collectCount integerValue];
+    self.Collectcount = [self.BookModel.collectCount integerValue];
     [http postWithSuccess:^(id responseObject) {
-        
+        sender.selected = !sender.selected;
         if (sender.selected == YES) {
-            self.count = self.count + 1;
-            [sender setTitle: [NSString stringWithFormat:@"%d",(int)self.count] forState:(UIControlStateNormal)];
+            self.Collectcount = [sender.titleLabel.text integerValue]  + 1;
+            [sender setTitle: [NSString stringWithFormat:@"%d",(int)self.Collectcount] forState:(UIControlStateNormal)];
         }else
         {
-            [sender setTitle: [NSString stringWithFormat:@"%d",(int)self.count] forState:(UIControlStateNormal)];
+            self.Collectcount = [sender.titleLabel.text integerValue] - 1;
+            [sender setTitle: [NSString stringWithFormat:@"%d",(int)self.Collectcount] forState:(UIControlStateNormal)];
         }
         
     } failure:^(NSError *error) {
     }];
 }
 -(void)ZanBtnClick:(UIButton * )sender{
-    sender.selected = !sender.selected;
+    
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629810";
+    http.showView = self.view;
     http.parameters[@"userId"] = [TLUser user].userId;
 //    http.parameters[@"code"] = self.BookModel.code;
     if ([self.state isEqualToString:@"collect"]) {
@@ -216,15 +236,18 @@
     else{
         http.parameters[@"code"] = self.BookModel.code;
     }
-    self.count = [self.BookModel.collectCount integerValue];
+    
+    self.ZanCount = [self.BookModel.pointCount integerValue];
+    
     [http postWithSuccess:^(id responseObject) {
-        
+        sender.selected = !sender.selected;
         if (sender.selected == YES) {
-            self.count = self.count + 1;
-            [sender setTitle: [NSString stringWithFormat:@"%d",(int)self.count] forState:(UIControlStateNormal)];
+            self.ZanCount = [sender.titleLabel.text integerValue] + 1;
+            [sender setTitle: [NSString stringWithFormat:@"%d",(int)self.ZanCount] forState:(UIControlStateNormal)];
         }else
         {
-            [sender setTitle: [NSString stringWithFormat:@"%d",(int)self.count] forState:(UIControlStateNormal)];
+            self.ZanCount = [sender.titleLabel.text integerValue] - 1;
+            [sender setTitle: [NSString stringWithFormat:@"%d",(int)self.ZanCount] forState:(UIControlStateNormal)];
         }
         
     } failure:^(NSError *error) {

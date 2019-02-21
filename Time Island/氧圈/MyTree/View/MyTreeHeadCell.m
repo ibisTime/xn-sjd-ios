@@ -11,6 +11,7 @@
 @implementation MyTreeHeadCell
 {
     UIImageView * img;
+    UILabel *nameLbl;
 }
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -57,7 +58,13 @@
         [self addSubview:headImg];
         
         UILabel *nameLbl = [UILabel labelWithFrame:CGRectMake(headImg.xx + 7.5, 72.5 - 64 + kNavigationBarHeight, SCREEN_WIDTH - headImg.xx - 7.5 - 5, 39) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:kHexColor(@"#23AD8C")];
-        nameLbl.text = @"礼物";
+//        nameLbl.text = @"礼物";
+        if ([TLUser user].nickname) {
+            nameLbl.text = [TLUser user].nickname;
+        }else
+            nameLbl.text = @"";
+        
+        
         [self addSubview:nameLbl];
         
         

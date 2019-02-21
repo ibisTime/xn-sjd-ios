@@ -10,6 +10,9 @@
 #import "PersonalCenterModel.h"
 #import "HistoryUserCell.h"
 #define historycell @"HistoryUserCell"
+#import "PersonalCenterVC.h"
+#import "FriendsTheTreeVC.h"
+#import "MyTreeVC.h"
 @interface HistroyUserVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) TLTableView * tableview;
 @property (nonatomic , strong)NSMutableArray <PersonalCenterModel *> *PersonalCenterModels;
@@ -41,11 +44,26 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HistoryUserCell * cell = [tableView dequeueReusableCellWithIdentifier:historycell forIndexPath:indexPath];
     cell.PersonalCenterModel = self.PersonalCenterModels[indexPath.row];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 55;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    PersonalCenterModel * model = self.PersonalCenterModels[indexPath.row];
+    if ([model.user[@"userId"] isEqualToString:[TLUser user].userId]) {
+        MyTreeVC * vc = [MyTreeVC new];
+        vc.model = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else{
+        FriendsTheTreeVC * vc = [FriendsTheTreeVC new];
+        vc.model = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
 -(void)getdata{
     TLNetworking * http = [TLNetworking new];
     http.code = @"629209";

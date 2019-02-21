@@ -116,6 +116,7 @@
         else if ([model.type isEqualToString:@"4"]){
             PersonalCenterExpressionCell *cell = [tableView dequeueReusableCellWithIdentifier:PersonalCenterExpression forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.state = @"inside";
             cell.dynamicModel = model;
             return cell;
         }
@@ -180,6 +181,14 @@
     else if (indexPath.section == 1) {
         return kHeight(60);
     }
+    
+    DynamicModel *model = [DynamicModel mj_objectWithKeyValues:self.DynamicModels[indexPath.row]];
+    
+    if ([model.type isEqualToString:@"7"] || [model.type isEqualToString:@"4"]) {
+        return 65;
+    }
+    
+    
     return 50;
 }
 
@@ -261,26 +270,26 @@
     return 0.1;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if (section == 2) {
-        if (state == 0) {
-            UIView *footView = [[UIView alloc]init];
-            
-            
-            UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
-            lineView.backgroundColor = kLineColor;
-            [footView addSubview:lineView];
-            
-            UIButton *moreBtn = [UIButton buttonWithTitle:@"更多查看" titleColor:kTextBlack backgroundColor:kClearColor titleFont:13];
-            moreBtn.frame = CGRectMake(0, 1, SCREEN_WIDTH, 40);
-            [footView addSubview:moreBtn];
-            
-            return footView;
-        }
-        
-    }
-    return [UIView new];
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+//    if (section == 2) {
+//        if (state == 0) {
+//            UIView *footView = [[UIView alloc]init];
+//            
+//            
+//            UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+//            lineView.backgroundColor = kLineColor;
+//            [footView addSubview:lineView];
+//            
+//            UIButton *moreBtn = [UIButton buttonWithTitle:@"更多查看" titleColor:kTextBlack backgroundColor:kClearColor titleFont:13];
+//            moreBtn.frame = CGRectMake(0, 1, SCREEN_WIDTH, 40);
+//            [footView addSubview:moreBtn];
+//            
+//            return footView;
+//        }
+//        
+//    }
+//    return [UIView new];
+//}
 
 
 -(void)getdata{
@@ -302,28 +311,73 @@
 }
 
 -(void)getCollectEnergyDetailsdata{
-    TLNetworking * http = [[TLNetworking alloc]init];
-    http.code = @"629305";
-    http.parameters[@"status"] = @(0);
-    http.parameters[@"limit"] = @(10);
-    http.parameters[@"start"] = @(1);
-    http.parameters[@"adoptTreeCode"] = self.model.code;
-    http.parameters[@"queryUserId"] = [TLUser user].userId;
-    [http postWithSuccess:^(id responseObject) {
-        self.DynamicModels = [DynamicModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-        self.DynamicPhotoModels = [NSMutableArray array];
-        DynamicModel * model1;
-        for (int i = 0; i < self.DynamicModels.count; i ++) {
-            model1 = self.DynamicModels[i];
-            if ([model1.type isEqualToString:@"3"]) {
-                [self.DynamicPhotoModels addObject:self.DynamicModels[i]];
+    CoinWeakSelf;
+    
+    
+    
+    TLPageDataHelper *helper = [[TLPageDataHelper alloc] init];
+    helper.code = @"629305";
+    helper.parameters[@"status"] = @(0);
+    helper.parameters[@"queryUserId"] = [TLUser user].userId;
+    helper.parameters[@"adoptTreeCode"] = self.model.code;
+    [helper modelClass:[DynamicModel class]];
+    helper.tableView = self;
+    helper.isCurrency = YES;
+    
+    
+    [self addRefreshAction:^{
+        [helper refresh:^(NSMutableArray *objs, BOOL stillHave) {
+            //            [objs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            //
+            //            }];
+            if (objs.count > 0) {
+                weakSelf.DynamicModels = objs;
+                weakSelf.DynamicPhotoModels = [NSMutableArray array];
+                DynamicModel * model1;
+                for (int i = 0; i < weakSelf.DynamicModels.count; i ++) {
+                    model1 = weakSelf.DynamicModels[i];
+                    if ([model1.type isEqualToString:@"3"]) {
+                        [weakSelf.DynamicPhotoModels addObject:weakSelf.DynamicModels[i]];
+                    }
+                }
+//                weakSelf.tableView.CarbonModels = weakSelf.CarbonModels;
+//                [weakSelf reloadData];
+                
             }
-        }
-        
-        [self reloadData_tl];
-    } failure:^(NSError *error) {
-        NSLog(@"%@",error);
+            
+            //            [weakSelf.tableView reloadData];
+            [weakSelf reloadData_tl];
+            [weakSelf endRefreshHeader];
+        } failure:^(NSError *error) {
+            [weakSelf endRefreshHeader];
+        }];
     }];
+    [self addLoadMoreAction:^{
+        [helper loadMore:^(NSMutableArray *objs, BOOL stillHave) {
+            if (objs.count > 0) {
+                weakSelf.DynamicModels = objs;
+                weakSelf.DynamicPhotoModels = [NSMutableArray array];
+                DynamicModel * model1;
+                for (int i = 0; i < weakSelf.DynamicModels.count; i ++) {
+                    model1 = weakSelf.DynamicModels[i];
+                    if ([model1.type isEqualToString:@"3"]) {
+                        [weakSelf.DynamicPhotoModels addObject:weakSelf.DynamicModels[i]];
+                    }
+                }
+                //                weakSelf.tableView.CarbonModels = weakSelf.CarbonModels;
+                [weakSelf reloadData];
+                [weakSelf endRefreshHeader];
+            }
+            [weakSelf reloadData_tl];
+        } failure:^(NSError *error) {
+            [weakSelf endRefreshHeader];
+        }];
+    }];
+    
+    [self beginRefreshing];
+    
+    
+    
 }
 -(void)setModel:(PersonalCenterModel *)model{
     _model = model;

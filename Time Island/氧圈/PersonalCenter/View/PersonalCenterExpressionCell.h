@@ -11,4 +11,5 @@
 @interface PersonalCenterExpressionCell : UITableViewCell
 @property (nonatomic , strong)DynamicModel *dynamicModel;
 @property (nonatomic , strong)UIView *bottomLineView;
+@property (nonatomic,strong) NSString * state;
 @end

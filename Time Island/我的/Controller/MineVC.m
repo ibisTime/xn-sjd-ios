@@ -359,6 +359,7 @@
     [http1 postWithSuccess:^(id responseObject) {
         self.array = responseObject[@"data"][@"list"];
 //        for (int i = 0; i < 3; i ++) {
+        if (self.array.count > 0) {
             float amount1 = [self.array[0][@"amount"] floatValue] / 1000;
             NSString * str1 = [NSString stringWithFormat:@"%.2f",amount1];
             self.numberLbl1.text = str1;
@@ -372,6 +373,8 @@
                 NSString * str3 = [NSString stringWithFormat:@"%.2f",amount3];
                 self.numberLbl3.text = str3;
             }
+        }
+        
 //        }
         [self.table1 reloadData];
     } failure:^(NSError *error) {

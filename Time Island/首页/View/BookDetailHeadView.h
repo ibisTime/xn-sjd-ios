@@ -8,6 +8,8 @@
 
 #import "BaseView.h"
 #import "BookModel.h"
+#import "PersonalCenterModel.h"
+
 
 @interface BookDetailHeadView : BaseView
 @property (nonatomic ,strong) UILabel *moreLab;
@@ -25,5 +27,6 @@
 //@property (nonatomic ,strong) UILabel *praiseLab;
 @property (nonatomic,strong) BookModel * BookModel;
 @property (nonatomic,strong) NSString * state;
-
+@property (nonatomic , strong)PersonalCenterModel *model;
+@property (nonatomic,strong) void (^ConnectBlock)(PersonalCenterModel * model);
 @end
