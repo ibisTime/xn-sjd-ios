@@ -15,7 +15,10 @@
 #import "MyTreeVC.h"
 #import "FriendInfoModel.h"
 #import "FriendsTheTreeVC.h"
-@interface PersonalCenterVC ()<RefreshDelegate,MMComBoBoxViewDelegate,MMComBoBoxViewDataSource,AddFriendBtn>
+#import "YiceSlidelipPickerMenu.h"
+#import "YiceSlidelipPickPch.h"
+#import "YiceSlidelipPickCommonModel.h"
+@interface PersonalCenterVC ()<RefreshDelegate,MMComBoBoxViewDelegate,MMComBoBoxViewDataSource,AddFriendBtn,YiceSlidelipPickerMenuDelegate,YiceSlidelipPickerMenuDataSource>
 
 @property (nonatomic , strong)PersonalCenterHeadView *headView;
 
@@ -32,15 +35,22 @@
 @property (nonatomic,strong) NSString * area;
 @property (nonatomic,strong) NSString * treeLevel;
 @property (nonatomic,strong) NSString * variety;
+
+
+@property (nonatomic, strong) NSArray *mainKindArray;
+@property (nonatomic, strong) NSArray *subKindArray;
+@property (nonatomic, strong) YiceSlidelipPickerMenu *pickMenu;
+
 @end
 
 @implementation PersonalCenterVC
 
 
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [self navigationTransparentClearColor];
-    [self getType];
+    
     //    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
 }
@@ -79,22 +89,148 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self getInfo];
+    [self getType];
     [self.view addSubview:self.headView];
     self.tableView.state = self.state;
     [self.view addSubview:self.tableView];
    
+    NSArray *screeningAry = @[@"所在地区",@"筛选"];
     
+    UIButton *screeningBtn = [UIButton buttonWithTitle:@"筛选" titleColor:kTextColor backgroundColor:kClearColor titleFont:12];
+    screeningBtn.frame = CGRectMake(SCREEN_WIDTH - 100, 180 - 65, 100, 40);
+    [screeningBtn SG_imagePositionStyle:(SGImagePositionStyleRight) spacing:5 imagePositionBlock:^(UIButton *button) {
+        [screeningBtn setImage:kImage(@"下拉") forState:(UIControlStateNormal)];
+    }];
+    [screeningBtn addTarget:self action:@selector(screeningBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+
+    [self.view addSubview:screeningBtn];
     
-//    _mutableArray = [NSMutableArray array];
+    _mutableArray = [NSMutableArray array];
     
-    self.comBoBoxView = [[MMComBoBoxView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 200, 180 - 65, 200, 40)];
+    self.comBoBoxView = [[MMComBoBoxView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 200, 180 - 65, 100, 40)];
     self.comBoBoxView.dataSource = self;
     self.comBoBoxView.delegate = self;
     [self.view addSubview:self.comBoBoxView];
     [self.comBoBoxView reload];
     [self LoadData];
+    
+    [self array];
 
 }
+
+-(void)screeningBtnClick:(UIButton *)sender
+{
+    self.pickMenu.frame = CGRectMake([UIScreen mainScreen].bounds.size.width, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    [[[UIApplication sharedApplication].delegate window] addSubview:self.pickMenu];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationRepeatAutoreverses:NO];
+    [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.pickMenu cache:YES];
+    [UIView setAnimationDuration:0.3];
+    self.pickMenu.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    [UIView commitAnimations];
+    
+}
+
+
+
+-(YiceSlidelipPickerMenu *)pickMenu
+{
+    if (_pickMenu==nil) {
+        _pickMenu=[[YiceSlidelipPickerMenu alloc] init];
+        _pickMenu.delegate = self;
+        _pickMenu.datasource = self;
+    }
+    return _pickMenu;
+}
+
+
+#pragma mark ---- pickDatasource
+- (NSInteger)menu:(YiceSlidelipPickerMenu *)menu numberOfRowsInSection:(NSInteger)section{
+    return ((NSArray*)(self.subKindArray[section])).count;
+}
+
+
+- (NSInteger)numberOfSectionsInMenu:(YiceSlidelipPickerMenu *)menu{
+    return self.mainKindArray.count;
+}
+
+
+- (NSString *)menu:(YiceSlidelipPickerMenu *)menu titleForSection:(NSInteger)section{
+    return self.mainKindArray[section];
+}
+
+- (YiceSlidelipPickCommonModel *)menu:(YiceSlidelipPickerMenu *)menu titleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSArray * arraySectionData = self.subKindArray[indexPath.section];
+    return arraySectionData[indexPath.row];
+}
+
+#pragma mark ---- pickdelegate
+
+- (void)menu:(YiceSlidelipPickerMenu *)menu didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //选中
+    
+    NSMutableArray <YiceSlidelipPickCommonModel *> *arrayModel = self.subKindArray[indexPath.section];
+    for (YiceSlidelipPickCommonModel *model in arrayModel) {
+        model.isSelected = @"";
+    }
+    YiceSlidelipPickCommonModel *model = arrayModel[indexPath.row];
+    model.isSelected = @"YES";
+    
+}
+
+- (void)menu:(YiceSlidelipPickerMenu *)menu didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //取消选中
+    YiceSlidelipPickCommonModel *model = self.subKindArray[indexPath.section][indexPath.row];
+    model.isSelected = @"";
+}
+
+- (void)reloadDataWithMenu:(YiceSlidelipPickerMenu *)menu{
+    //重置
+    for (NSMutableArray <YiceSlidelipPickCommonModel*> *array in self.subKindArray) {
+        for (YiceSlidelipPickCommonModel *model in array) {
+            model.isSelected = @"";
+        }
+    }
+}
+
+- (void)menu:(YiceSlidelipPickerMenu *)menu submmitSelectedIndexPaths:(NSArray<NSIndexPath *> *)indexpaths{
+    //同步数据
+    if (indexpaths.count == 0) {
+        self.treeLevel = @"";
+        self.variety = @"";
+    }else
+    {
+        NSIndexPath *inde;
+        for (int i = 0; i < indexpaths.count; i ++) {
+            inde = indexpaths[i];
+            if (inde.section == 0) {
+                YiceSlidelipPickCommonModel *model = [YiceSlidelipPickCommonModel new];
+                model = self.subKindArray[inde.section][inde.row];
+                self.treeLevel = model.text;
+            }
+            if (inde.section == 1) {
+                YiceSlidelipPickCommonModel *model = [YiceSlidelipPickCommonModel new];
+                model = self.subKindArray[inde.section][inde.row];
+                self.variety = model.text;
+                //            self.variety = self.subKindArray[inde.section][inde.row];
+            }
+        }
+    }
+    
+    [self myTreeLoadData];
+}
+
+
+-(YiceSlidelipPickCommonModel*)creatPcikMenuItemModelWithString:(NSString*)str{
+    
+    YiceSlidelipPickCommonModel*model = [YiceSlidelipPickCommonModel new];
+    model.isSelected = @"";
+    model.text = str;
+    return model;
+}
+
+
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -239,7 +375,10 @@
     if ([self.area isEqualToString:@"全国"]) {
         http.parameters[@"area"] = @"";
     }else
+    {
         http.parameters[@"area"] = self.area;
+    }
+    
     http.parameters[@"treeLevel"] = self.treeLevel;
     http.parameters[@"variety"] = self.variety;
     
@@ -341,40 +480,42 @@
             }
             //            [self.collectionView reloadData];
             
-            break;}
-        case MMPopupViewDisplayTypeFilters:{
-            MMCombinationItem * combineItem = (MMCombinationItem *)rootItem;
-            [array enumerateObjectsUsingBlock:^(NSMutableArray*  _Nonnull subArray, NSUInteger idx, BOOL * _Nonnull stop) {
-                if (combineItem.isHasSwitch && idx == 0) {
-                    for (MMSelectedPath *path in subArray) {
-                        MMAlternativeItem *alternativeItem = combineItem.alternativeArray[path.firstPath];
-                        NSLog(@"当title为: %@ 时，选中状态为: %d",alternativeItem.title,alternativeItem.isSelected);
-                    }
-                    return;
-                }
-                NSString *title;
-                NSMutableString *subtitles = [NSMutableString string];
-                //                NSMutableString *varietys = [NSMutableString string];
-                for (MMSelectedPath *path in subArray) {
-                    MMItem *firstItem = combineItem.childrenNodes[path.firstPath];
-                    MMItem *secondItem = combineItem.childrenNodes[path.firstPath].childrenNodes[path.secondPath];
-                    title = firstItem.title;
-                    [subtitles appendString:[NSString stringWithFormat:@"%@",secondItem.title]];
-                    //                    [varietys appendString:[NSString stringWithFormat:@"%@",secondItem.title]];
-                }
-                
-                NSLog(@"当title为%@时，所选字段为 %@",title,subtitles);
-                if ([title isEqualToString:@"树级"]) {
-                    self.treeLevel = subtitles;
-                }
-                else{
-                    self.variety = subtitles;
-                }
-            }];
-            
             break;
             
         }
+//        case MMPopupViewDisplayTypeFilters:{
+//            MMCombinationItem * combineItem = (MMCombinationItem *)rootItem;
+//            [array enumerateObjectsUsingBlock:^(NSMutableArray*  _Nonnull subArray, NSUInteger idx, BOOL * _Nonnull stop) {
+//                if (combineItem.isHasSwitch && idx == 0) {
+//                    for (MMSelectedPath *path in subArray) {
+//                        MMAlternativeItem *alternativeItem = combineItem.alternativeArray[path.firstPath];
+//                        NSLog(@"当title为: %@ 时，选中状态为: %d",alternativeItem.title,alternativeItem.isSelected);
+//                    }
+//                    return;
+//                }
+//                NSString *title;
+//                NSMutableString *subtitles = [NSMutableString string];
+//                //                NSMutableString *varietys = [NSMutableString string];
+//                for (MMSelectedPath *path in subArray) {
+//                    MMItem *firstItem = combineItem.childrenNodes[path.firstPath];
+//                    MMItem *secondItem = combineItem.childrenNodes[path.firstPath].childrenNodes[path.secondPath];
+//                    title = firstItem.title;
+//                    [subtitles appendString:[NSString stringWithFormat:@"%@",secondItem.title]];
+//                    //                    [varietys appendString:[NSString stringWithFormat:@"%@",secondItem.title]];
+//                }
+//
+//                NSLog(@"当title为%@时，所选字段为 %@",title,subtitles);
+//                if ([title isEqualToString:@"树级"]) {
+//                    self.treeLevel = subtitles;
+//                }
+//                else{
+//                    self.variety = subtitles;
+//                }
+//            }];
+//
+//            break;
+//
+//        }
         default:
             break;
     }
@@ -393,10 +534,20 @@
         arr = responseObject[@"data"];
         NSMutableArray * array = [NSMutableArray array];
         for (int i = 0; i < arr.count; i ++) {
-            [array addObject:arr[i][@"variety"]];
+            [array addObject:[self creatPcikMenuItemModelWithString:arr[i][@"variety"]]];
         }
         self.TreeTypeArray = array;
-        [self array];
+        
+        self.mainKindArray = @[@"树级",@"树种"];
+        self.subKindArray = [NSMutableArray arrayWithArray:@[
+                    [NSMutableArray arrayWithArray:@[
+                        [self creatPcikMenuItemModelWithString:@"一级"],
+                        [self creatPcikMenuItemModelWithString:@"二级"],
+                        [self creatPcikMenuItemModelWithString:@"三级"]]],
+                    [NSMutableArray arrayWithArray:self.TreeTypeArray]]];
+        
+//        [self array];
+        
         NSLog(@"%@",array);
     } failure:^(NSError *error) {
         
@@ -405,32 +556,6 @@
 
 -(void)array{
     NSMutableArray *mutableArray = [NSMutableArray array];
-    //root 4
-    MMCombinationItem *rootItem4 = [MMCombinationItem itemWithItemType:MMPopupViewDisplayTypeUnselected isSelected:NO titleName:@"筛选" subtitleName:nil];
-    rootItem4.displayType = MMPopupViewDisplayTypeFilters;
-    
-    if (self.isMultiSelection)
-        rootItem4.selectedType = MMPopupViewMultilSeMultiSelection;
-    
-    //        NSArray *arr = @[@{@"认养状态":@[@"可认养",@"不可认养"]},
-    //                         @{@"认养模式":@[@"专属",@"定向",@"捐赠",@"集体"]},
-    //                         @{@"树种":@[@"樟树",@"柏树"]} ];
-    
-    NSArray *arr = @[@{@"树级":@[@"一级",@"二级",@"三级"]},
-//                     @{@"认养模式":self.TreeTypeArray},
-                     @{@"树种":self.TreeTypeArray} ];
-    for (NSDictionary *itemDic in arr) {
-        MMItem *item4_A = [MMItem itemWithItemType:MMPopupViewDisplayTypeUnselected titleName:[itemDic.allKeys lastObject]];
-        [rootItem4 addNode:item4_A];
-        for (int i = 0; i <  [[itemDic.allValues lastObject] count]; i++) {
-            NSString *title = [itemDic.allValues lastObject][i];
-            MMItem *item4_B = [MMItem itemWithItemType:MMPopupViewDisplayTypeUnselected titleName:title];
-            if (i == 0) {
-                item4_B.isSelected = NO;
-            }
-            [item4_A addNode:item4_B];
-        }
-    }
     
     MMMultiItem *rootItem5 = [MMMultiItem itemWithItemType:MMPopupViewDisplayTypeUnselected titleName:@"所在地区"];
     rootItem5.numberOflayers = 1;
@@ -460,7 +585,6 @@
     }
     
     [mutableArray addObject:rootItem5];
-    [mutableArray addObject:rootItem4];
     
     
     _mutableArray  = mutableArray;

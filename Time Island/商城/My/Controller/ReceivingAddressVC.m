@@ -164,8 +164,6 @@
     http.parameters[@"userId"] = [TLUser user].userId;
     [http postWithSuccess:^(id responseObject) {
         
-        
-        
         self.addressModels = [AddressModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
 //        AddressModel *model = self.addressModels[0];
 //        NSLog(@"%@",model.userId);

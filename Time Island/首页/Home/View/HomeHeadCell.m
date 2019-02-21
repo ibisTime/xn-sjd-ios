@@ -228,7 +228,7 @@
     [fastNews addSubview:imageView];
     self.imageView = imageView;
 
-    _advertScrollView = [[SGAdvertScrollView alloc]initWithFrame: CGRectMake(self.imageView.xx + 10, 0, kScreenWidth , 30)];
+    _advertScrollView = [[SGAdvertScrollView alloc]initWithFrame: CGRectMake(self.imageView.xx + 10, 0, kScreenWidth - 40, 30)];
     _advertScrollView.titleFont = [UIFont systemFontOfSize:12];
     _advertScrollView.delegate = self;
     _advertScrollView.scrollTimeInterval = 4.0;

@@ -189,6 +189,8 @@
         [self.view addSubview:self.nextPageBtn];
     
 }
+
+
 - (void)initSearchBar {
     
     UIView *new = [UIView new];

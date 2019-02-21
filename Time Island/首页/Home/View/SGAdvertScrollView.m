@@ -297,7 +297,7 @@ static NSString *const advertScrollViewMoreCell = @"advertScrollViewMoreCell";
             cell.bottomSignImageView.image = [UIImage imageNamed:imagePath];
         }
         cell.bottomLabel.text = self.bottomTitleArr[indexPath.item];
-
+        
         if (self.titleFont) {
             cell.topLabel.font = self.titleFont;
             cell.bottomLabel.font = self.titleFont;
@@ -316,12 +316,11 @@ static NSString *const advertScrollViewMoreCell = @"advertScrollViewMoreCell";
         NSString *imagePath = self.imageArr[indexPath.item];
         if ([imagePath hasPrefix:@"http"]) {
             [cell.signImageView sd_setImageWithURL:[NSURL URLWithString:imagePath]];
-
         } else {
             cell.signImageView.image = [UIImage imageNamed:imagePath];
         }
-        
         cell.titleLabel.text = self.titleArr[indexPath.item];
+//        cell.titleLabel.backgroundColor = [UIColor redColor];
         if (self.textAlignment) {
             cell.titleLabel.textAlignment = self.textAlignment;
         }
