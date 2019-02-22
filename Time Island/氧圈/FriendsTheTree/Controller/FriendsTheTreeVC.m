@@ -85,6 +85,7 @@
 -(void)BarrageViewSelectRow:(NSInteger)row
 {
     TLNetworking * http = [[TLNetworking alloc]init];
+    http.showView = self.view;
     http.code = @"629384";
     http.parameters[@"status"] = @(1);
     http.parameters[@"adoptTreeCode"] = self.model.code;
@@ -99,6 +100,7 @@
         
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.tableView.state = @"Barrage";
             self.tableView.model = self.model;
             [self.tableView reloadData];
         });
@@ -112,6 +114,7 @@
 -(void)confirmBtnClick
 {
     TLNetworking * http = [[TLNetworking alloc]init];
+    http.showView = self.view;
     http.code = @"629360";
     http.parameters[@"toUserId"] = self.model.user[@"userId"];
     http.parameters[@"adoptTreeCode"] = self.model.code;

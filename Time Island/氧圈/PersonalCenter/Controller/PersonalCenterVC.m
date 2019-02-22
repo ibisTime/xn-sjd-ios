@@ -492,39 +492,6 @@
             break;
             
         }
-//        case MMPopupViewDisplayTypeFilters:{
-//            MMCombinationItem * combineItem = (MMCombinationItem *)rootItem;
-//            [array enumerateObjectsUsingBlock:^(NSMutableArray*  _Nonnull subArray, NSUInteger idx, BOOL * _Nonnull stop) {
-//                if (combineItem.isHasSwitch && idx == 0) {
-//                    for (MMSelectedPath *path in subArray) {
-//                        MMAlternativeItem *alternativeItem = combineItem.alternativeArray[path.firstPath];
-//                        NSLog(@"当title为: %@ 时，选中状态为: %d",alternativeItem.title,alternativeItem.isSelected);
-//                    }
-//                    return;
-//                }
-//                NSString *title;
-//                NSMutableString *subtitles = [NSMutableString string];
-//                //                NSMutableString *varietys = [NSMutableString string];
-//                for (MMSelectedPath *path in subArray) {
-//                    MMItem *firstItem = combineItem.childrenNodes[path.firstPath];
-//                    MMItem *secondItem = combineItem.childrenNodes[path.firstPath].childrenNodes[path.secondPath];
-//                    title = firstItem.title;
-//                    [subtitles appendString:[NSString stringWithFormat:@"%@",secondItem.title]];
-//                    //                    [varietys appendString:[NSString stringWithFormat:@"%@",secondItem.title]];
-//                }
-//
-//                NSLog(@"当title为%@时，所选字段为 %@",title,subtitles);
-//                if ([title isEqualToString:@"树级"]) {
-//                    self.treeLevel = subtitles;
-//                }
-//                else{
-//                    self.variety = subtitles;
-//                }
-//            }];
-//
-//            break;
-//
-//        }
         default:
             break;
     }

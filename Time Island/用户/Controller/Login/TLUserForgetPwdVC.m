@@ -11,7 +11,7 @@
 #import "NSString+Check.h"
 #import "APICodeMacro.h"
 
-@interface TLUserForgetPwdVC ()
+@interface TLUserForgetPwdVC ()<UITextFieldDelegate>
 
 @property (nonatomic,strong) TLTextField *phoneTf;
 
@@ -20,6 +20,7 @@
 @property (nonatomic,strong) TLTextField *rePwdTf;
 
 @property (nonatomic, strong) CaptchaView *captchaView;
+@property (nonatomic,strong) UIView * checkview;
 
 @end
 
@@ -51,15 +52,21 @@
     [self.view addSubview:phoneTf];
     self.phoneTf = phoneTf;
     
+
     //验证码
-    CaptchaView *captchaView = [[CaptchaView alloc] initWithFrame:CGRectMake(margin, phoneTf.yy + 1, w, h)];
-    [captchaView.captchaBtn addTarget:self action:@selector(sendCaptcha) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:captchaView];
+    self.captchaView = [[CaptchaView alloc]initWithFrame:CGRectMake(margin + 15, self.phoneTf.yy+10, w, h) leftTitleWidth:96];
+    [self.captchaView.captchaBtn addTarget:self action:@selector(sendCaptcha) forControlEvents:UIControlEventTouchUpInside];
+    self.captchaView.captchaTf.delegate = self;
+    [self.captchaView setBackgroundColor:kWhiteColor];
+    [self.view addSubview:self.captchaView];
     
-    self.captchaView = captchaView;
+    
+    //checkview
+    self.checkview = [self createview:CGRectMake(margin, self.captchaView.yy, w, 1)];
+    [self.view addSubview:self.checkview];
     
     //密码
-    TLTextField *pwdTf = [[TLTextField alloc] initWithFrame:CGRectMake(margin, captchaView.yy + 10, w, h) leftTitle:[LangSwitcher switchLang:@"新密码" key:nil] titleWidth:100 placeholder:[LangSwitcher switchLang:@"请输入密码" key:nil]];
+    TLTextField *pwdTf = [[TLTextField alloc] initWithFrame:CGRectMake(margin, self.captchaView.yy + 10, w, h) leftTitle:[LangSwitcher switchLang:@"新密码" key:nil] titleWidth:100 placeholder:[LangSwitcher switchLang:@"请输入密码" key:nil]];
     pwdTf.secureTextEntry = YES;
     
     [self.view addSubview:pwdTf];
@@ -197,6 +204,11 @@
         
     }];
     
+}
+-(UIView * )createview:(CGRect)frame{
+    UIView * view = [[UIView alloc]initWithFrame:frame];
+    view.backgroundColor = kLineColor;
+    return view;
 }
 
 - (void)didReceiveMemoryWarning {

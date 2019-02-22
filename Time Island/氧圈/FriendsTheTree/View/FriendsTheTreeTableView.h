@@ -21,5 +21,5 @@
 @property (nonatomic,strong) NSMutableArray<DynamicModel *> * DynamicModels;
 
 @property (nonatomic , strong)BarrageModel *barrageModel;
-
+@property (nonatomic,strong) NSString * state;
 @end

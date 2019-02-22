@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString * currency;
 @property (nonatomic,copy) NSString * bankcardNumber;
 @property (nonatomic,copy) NSString * bindMobile;
+@property (nonatomic,copy) NSString * code;
 @end
 
 NS_ASSUME_NONNULL_END

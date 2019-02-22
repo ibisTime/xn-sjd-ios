@@ -18,6 +18,7 @@
 @implementation CardVC
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self refresh];
     
 }
 - (void)viewDidLoad {
@@ -82,7 +83,18 @@
 }
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"删除");
+    CardModel * model = self.CardModels[indexPath.row];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.showView = self.view;
+    http.code = @"802021";
+    http.parameters[@"code"] = model.code;
+    [http postWithSuccess:^(id responseObject) {
+        [TLAlert alertWithSucces:@"删除成功!"];
+        [self refresh];
+    } failure:^(NSError *error) {
+    }];
 }
+
 -(void)refresh{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"802026";

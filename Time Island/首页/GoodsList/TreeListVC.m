@@ -228,9 +228,12 @@
     http.parameters[@"userId"] = [TLUser user].userId;
     http.parameters[@"statusList"] = @[@"4",@"5",@"6"];
     [http postWithSuccess:^(id responseObject) {
-        NSArray *array = responseObject[@"data"][@"list"];
-        [self.treemMuArray addObjectsFromArray:array];
-        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treemMuArray];
+//        NSArray *array = responseObject[@"data"][@"list"];
+//        [self.treemMuArray addObjectsFromArray:array];
+//        self.treeArray = array;
+//        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treemMuArray];
+        [self.models removeAllObjects];
+        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
         [self.collectionView reloadData];
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
@@ -238,6 +241,35 @@
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
     }];
+}
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    NSLog(@"%s",__func__);
+}
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+//    if ([searchBar.text isEqualToString:@""]) {
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"629025";
+        http.parameters[@"start"] = @(self.start);
+        http.parameters[@"limit"] = @(10);
+        http.parameters[@"type"]= @(1);
+        http.parameters[@"name"] = searchText;
+        http.parameters[@"userId"] = [TLUser user].userId;
+        http.parameters[@"statusList"] = @[@"4",@"5",@"6"];
+        [http postWithSuccess:^(id responseObject) {
+                    NSArray *array = responseObject[@"data"][@"list"];
+                    [self.treemMuArray addObjectsFromArray:array];
+            //        self.treeArray = array;
+            //        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treemMuArray];
+            [self.models removeAllObjects];
+            self.models = [TreeModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+            [self.collectionView reloadData];
+            [self.collectionView.mj_header endRefreshing];
+            [self.collectionView.mj_footer endRefreshing];
+        } failure:^(NSError *error) {
+            [self.collectionView.mj_header endRefreshing];
+            [self.collectionView.mj_footer endRefreshing];
+        }];
+//    }
 }
 -(void)headRefresh
 {
@@ -265,38 +297,14 @@
     self.start = 1;
     self.treemMuArray = [NSMutableArray array];
     [self refresh];
-    [self requestBannerList];
 }
 
 -(void)loadNewDataFooter
 {
     self.start ++;
     [self refresh];
-    [self requestBannerList];
 }
 
-- (void)requestBannerList {
-    
-//    TLNetworking *http = [TLNetworking new];
-//
-//    http.code = @"629035";
-//    http.parameters[@"start"] = [NSString stringWithFormat:@"%ld",self.start];
-//    http.parameters[@"limit"] = @"10";
-//
-//    [http postWithSuccess:^(id responseObject) {
-//
-//        [self.treeArray addObjectsFromArray:responseObject[@"data"][@"list"]];
-//        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treeArray];
-//
-//        [self.collectionView reloadData];
-//        [self.collectionView.mj_footer endRefreshing];
-//        [self.collectionView.mj_header endRefreshing];
-//
-//    } failure:^(NSError *error) {
-//        [self.collectionView.mj_footer endRefreshing];
-//        [self.collectionView.mj_header endRefreshing];
-//    }];
-}
 
 
 #pragma mark - MMComBoBoxViewDataSource
@@ -343,49 +351,49 @@
 //            [self.collectionView reloadData];
             
             break;}
-        case MMPopupViewDisplayTypeFilters:{
-            MMCombinationItem * combineItem = (MMCombinationItem *)rootItem;
-            [array enumerateObjectsUsingBlock:^(NSMutableArray*  _Nonnull subArray, NSUInteger idx, BOOL * _Nonnull stop) {
-                if (combineItem.isHasSwitch && idx == 0) {
-                    for (MMSelectedPath *path in subArray) {
-                        MMAlternativeItem *alternativeItem = combineItem.alternativeArray[path.firstPath];
-                        NSLog(@"当title为: %@ 时，选中状态为: %d",alternativeItem.title,alternativeItem.isSelected);
-                    }
-                    return;
-                }
-                    NSString *title;
-                    NSMutableString *subtitles = [NSMutableString string];
-                    //                NSMutableString *varietys = [NSMutableString string];
-                    for (MMSelectedPath *path in subArray) {
-                        MMItem *firstItem = combineItem.childrenNodes[path.firstPath];
-                        MMItem *secondItem = combineItem.childrenNodes[path.firstPath].childrenNodes[path.secondPath];
-                        title = firstItem.title;
-                        [subtitles appendString:[NSString stringWithFormat:@"%@",secondItem.title]];
-                        //                    [varietys appendString:[NSString stringWithFormat:@"%@",secondItem.title]];
-                    }
-                    NSLog(@"当title为%@时，所选字段为 %@",title,subtitles);
-                    if (subtitles) {
-                        if ([subtitles isEqualToString:@"不可认养"]) {
-                            self.adoptStatus = @"0";
-                        }
-                        else if ([subtitles isEqualToString:@"可认养"]){
-                            self.adoptStatus = @"1";
-                        }
-                        else if ([subtitles isEqualToString:@"柏树"]){
-                            self.variety = @"柏树";
-                        }
-                        else if ([subtitles isEqualToString:@"樟树"]){
-                            self.variety = @"樟树";
-                        }
-                        
-                        [self refresh];
-                    }
-                
-                
-                
-            }];
-            
-            break;}
+//        case MMPopupViewDisplayTypeFilters:{
+//            MMCombinationItem * combineItem = (MMCombinationItem *)rootItem;
+//            [array enumerateObjectsUsingBlock:^(NSMutableArray*  _Nonnull subArray, NSUInteger idx, BOOL * _Nonnull stop) {
+//                if (combineItem.isHasSwitch && idx == 0) {
+//                    for (MMSelectedPath *path in subArray) {
+//                        MMAlternativeItem *alternativeItem = combineItem.alternativeArray[path.firstPath];
+//                        NSLog(@"当title为: %@ 时，选中状态为: %d",alternativeItem.title,alternativeItem.isSelected);
+//                    }
+//                    return;
+//                }
+//                    NSString *title;
+//                    NSMutableString *subtitles = [NSMutableString string];
+//                    //                NSMutableString *varietys = [NSMutableString string];
+//                    for (MMSelectedPath *path in subArray) {
+//                        MMItem *firstItem = combineItem.childrenNodes[path.firstPath];
+//                        MMItem *secondItem = combineItem.childrenNodes[path.firstPath].childrenNodes[path.secondPath];
+//                        title = firstItem.title;
+//                        [subtitles appendString:[NSString stringWithFormat:@"%@",secondItem.title]];
+//                        //                    [varietys appendString:[NSString stringWithFormat:@"%@",secondItem.title]];
+//                    }
+//                    NSLog(@"当title为%@时，所选字段为 %@",title,subtitles);
+//                    if (subtitles) {
+//                        if ([subtitles isEqualToString:@"不可认养"]) {
+//                            self.adoptStatus = @"0";
+//                        }
+//                        else if ([subtitles isEqualToString:@"可认养"]){
+//                            self.adoptStatus = @"1";
+//                        }
+//                        else if ([subtitles isEqualToString:@"柏树"]){
+//                            self.variety = @"柏树";
+//                        }
+//                        else if ([subtitles isEqualToString:@"樟树"]){
+//                            self.variety = @"樟树";
+//                        }
+//
+//                        [self refresh];
+//                    }
+//
+//
+//
+//            }];
+//
+//            break;}
         default:
             break;
     }
@@ -501,6 +509,8 @@
 }
 
 
+
+
 - (id)JsonObject:(NSString *)jsonStr{
     NSString *jsonPath = [[NSBundle mainBundle] pathForResource:jsonStr ofType:nil];
     NSData *jsonData = [[NSData alloc] initWithContentsOfFile:jsonPath];
@@ -546,9 +556,14 @@
 //    http.parameters[@"variety"] = @"樟树";
     [http postWithSuccess:^(id responseObject) {
 
+//        NSArray *array = responseObject[@"data"][@"list"];
+//        [self.treemMuArray addObjectsFromArray:array];
+//        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treemMuArray];
         NSArray *array = responseObject[@"data"][@"list"];
         [self.treemMuArray addObjectsFromArray:array];
-        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treemMuArray];
+        
+        [self.models removeAllObjects];
+        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
         [self.collectionView reloadData];
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];

@@ -38,6 +38,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"文章详情";
     if ([self.state isEqualToString:@"collect"]) {
         self.imagearr = [self.BookModel.article[@"photo"] componentsSeparatedByString:@"||"];
     }else{

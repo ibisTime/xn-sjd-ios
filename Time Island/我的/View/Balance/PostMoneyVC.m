@@ -93,7 +93,7 @@
     }
     
     
-    UILabel * paylabel1 = [UILabel labelWithFrame:CGRectMake(15, SCREEN_HEIGHT - kNavigationBarHeight - 60, SCREEN_WIDTH - 180, 45) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:kBlackColor];
+    UILabel * paylabel1 = [UILabel labelWithFrame:CGRectMake(15, SCREEN_HEIGHT - kNavigationBarHeight - 60, SCREEN_WIDTH - 180, 60) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:kBlackColor];
     paylabel1.text = [NSString stringWithFormat:@"金额 %.2f 元",[self.moneytext.text floatValue]];
     [self.view addSubview:paylabel1];
     self.paylabel = paylabel1;

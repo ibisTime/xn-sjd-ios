@@ -29,6 +29,7 @@
 #import "NoticeModel.h"
 #import "GoodsDetailsVc.h"
 #import "RankingVC.h"
+#import "MoreIntroduceVC.h"
 @interface HomeVC ()<RefreshDelegate,RefreshCollectionViewDelegate,UIScrollViewDelegate,UITextFieldDelegate,UISearchBarDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 //@property (nonatomic, strong) HomeHeaderView *headerView;
@@ -162,6 +163,9 @@
         };
         _cell.tapintroduce = ^{
             [weakSelf detailIntroduce];
+        };
+        _cell.tapMoreIntroduce = ^{
+            [weakSelf MoreIntroduce];
         };
         _cell.clickTagBlock = ^(NSInteger index) {
             [weakSelf clickTagWithIndex:index];
@@ -338,15 +342,17 @@
 
 
 
-
+//公告详情
 -(void)detailIntroduce{
     introduceView * vc = [introduceView new];
+    vc.title = @"公告详情";
     vc.web = self.IntroduceArray[0][@"content"];
     vc.IntroduceTitle = self.IntroduceArray[0][@"title"];
     vc.time = [self.IntroduceArray[0][@"createDatetime"] convertToDetailDate];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+//情感频道
 - (void)bookVideoClick
 {
     BookVideoVC *notice = [BookVideoVC new];
@@ -354,7 +360,7 @@
     [self.navigationController pushViewController:notice animated:YES];
     
 }
-
+//快报更多
 - (void)noticeClick
 {
     MyNoticeVC *notice = [MyNoticeVC new];
@@ -362,13 +368,20 @@
     [self.navigationController pushViewController:notice animated:YES];
     
 }
+
+//快报详情
 -(void)detailsClick : (NSInteger)index{
     MyNoticeDetailsVC * vc = [MyNoticeDetailsVC new];
-    vc.title = @"公告详情";
+    vc.title = @"快报详情";
     vc.model = self.newsarray[index];
     [self.navigationController pushViewController:vc animated:YES];
 }
-
+//公告更多
+-(void)MoreIntroduce{
+    MoreIntroduceVC * vc = [[MoreIntroduceVC alloc]init];
+    vc.title = @"公告";
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)jumpTreeVC
 {

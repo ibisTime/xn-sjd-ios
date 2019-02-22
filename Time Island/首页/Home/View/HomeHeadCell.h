@@ -35,6 +35,7 @@ typedef void(^HomeHeaderEventsBlock)(HomeEventsType type, NSInteger index, HomeF
 //点击公告更多
 @property (nonatomic, copy) void (^clickNoticeBlock)(void);
 @property (nonatomic,copy) void (^tapintroduce)(void);
+@property (nonatomic,strong) void (^tapMoreIntroduce)(void);
 //点击tag标签
 @property (nonatomic, copy) void (^clickTagBlock)(NSInteger index);
 //点击推文更多

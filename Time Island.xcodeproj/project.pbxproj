@@ -256,6 +256,9 @@
 		36DB50DF21F5B355009D56EF /* MallOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50DE21F5B355009D56EF /* MallOrderView.m */; };
 		36DB50E221F5B606009D56EF /* MallOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50E121F5B606009D56EF /* MallOrderCell.m */; };
 		36DB50E521F5B720009D56EF /* MallOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50E421F5B720009D56EF /* MallOrderModel.m */; };
+		36DFD828221FA1E600DC5E0F /* MoreIntroduceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DFD827221FA1E600DC5E0F /* MoreIntroduceVC.m */; };
+		36DFD831221FB07100DC5E0F /* MoreIntroduceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DFD830221FB07100DC5E0F /* MoreIntroduceCell.m */; };
+		36DFD834221FC4AC00DC5E0F /* IntroduceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DFD833221FC4AC00DC5E0F /* IntroduceModel.m */; };
 		36F4D80B221BA0B100206AAE /* FriendInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F4D80A221BA0B100206AAE /* FriendInfoModel.m */; };
 		36F4D80E221BE17000206AAE /* CompeteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F4D80D221BE17000206AAE /* CompeteModel.m */; };
 		36F4D812221BF82B00206AAE /* BarrageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F4D811221BF82B00206AAE /* BarrageModel.m */; };
@@ -1011,6 +1014,12 @@
 		36DB50E121F5B606009D56EF /* MallOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallOrderCell.m; sourceTree = "<group>"; };
 		36DB50E321F5B720009D56EF /* MallOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallOrderModel.h; sourceTree = "<group>"; };
 		36DB50E421F5B720009D56EF /* MallOrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallOrderModel.m; sourceTree = "<group>"; };
+		36DFD826221FA1E600DC5E0F /* MoreIntroduceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoreIntroduceVC.h; sourceTree = "<group>"; };
+		36DFD827221FA1E600DC5E0F /* MoreIntroduceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoreIntroduceVC.m; sourceTree = "<group>"; };
+		36DFD82F221FB07100DC5E0F /* MoreIntroduceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoreIntroduceCell.h; sourceTree = "<group>"; };
+		36DFD830221FB07100DC5E0F /* MoreIntroduceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoreIntroduceCell.m; sourceTree = "<group>"; };
+		36DFD832221FC4AC00DC5E0F /* IntroduceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroduceModel.h; sourceTree = "<group>"; };
+		36DFD833221FC4AC00DC5E0F /* IntroduceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroduceModel.m; sourceTree = "<group>"; };
 		36F4D809221BA0B100206AAE /* FriendInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendInfoModel.h; sourceTree = "<group>"; };
 		36F4D80A221BA0B100206AAE /* FriendInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendInfoModel.m; sourceTree = "<group>"; };
 		36F4D80C221BE17000206AAE /* CompeteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompeteModel.h; sourceTree = "<group>"; };
@@ -2574,6 +2583,8 @@
 			children = (
 				1F9361DC21F31162007E522A /* Controller */,
 				1F9361DB21F3115E007E522A /* View */,
+				36DFD832221FC4AC00DC5E0F /* IntroduceModel.h */,
+				36DFD833221FC4AC00DC5E0F /* IntroduceModel.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -2590,6 +2601,8 @@
 				1F9361E321F3158F007E522A /* GoodsListCollCell.m */,
 				365514D621FB009000E54996 /* introduceView.h */,
 				365514D721FB009000E54996 /* introduceView.m */,
+				36DFD82F221FB07100DC5E0F /* MoreIntroduceCell.h */,
+				36DFD830221FB07100DC5E0F /* MoreIntroduceCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2599,6 +2612,8 @@
 			children = (
 				B81E608C21DC9FFC00873AB9 /* HomeVC.h */,
 				B81E608D21DC9FFC00873AB9 /* HomeVC.m */,
+				36DFD826221FA1E600DC5E0F /* MoreIntroduceVC.h */,
+				36DFD827221FA1E600DC5E0F /* MoreIntroduceVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4484,6 +4499,7 @@
 				B81E5FB821DC8FC200873AB9 /* TLProgressHUD.m in Sources */,
 				3615FE13221E793900D10F73 /* RulesCell.m in Sources */,
 				366A59F122000007009FFA6E /* GoodsDetailsCell.m in Sources */,
+				36DFD828221FA1E600DC5E0F /* MoreIntroduceVC.m in Sources */,
 				1F47329B221EA11A007B5908 /* NSString+AdjustSize.m in Sources */,
 				B8226F7121F6E230002F450F /* MallGoodIntroduceVC.m in Sources */,
 				3615FE16221E964A00D10F73 /* RulesModel.m in Sources */,
@@ -4696,6 +4712,7 @@
 				B81E5FD521DC8FC200873AB9 /* NSString+Check.m in Sources */,
 				B86CB6AC21DDB83A00C60AC7 /* PlateMineModel.m in Sources */,
 				36C85E8A2212C9DF00DA26BE /* MessageVC.m in Sources */,
+				36DFD831221FB07100DC5E0F /* MoreIntroduceCell.m in Sources */,
 				B80D385C21F85F1E00206B55 /* SizeAttributeModel.m in Sources */,
 				B8ED2E8B21E878BB00FADCCE /* RenYangFieldDeyailView.m in Sources */,
 				B81E5FAD21DC8FC200873AB9 /* ZMChineseConvert.m in Sources */,
@@ -4936,6 +4953,7 @@
 				1F473383221F88E0007B5908 /* MMSingleItem.m in Sources */,
 				B8712E8621F578AB00039086 /* QWCategoryMenuController.m in Sources */,
 				B81E5FAB21DC8FC200873AB9 /* HTMLStrVC.m in Sources */,
+				36DFD834221FC4AC00DC5E0F /* IntroduceModel.m in Sources */,
 				B80D388021F871CF00206B55 /* PayVC.m in Sources */,
 				B815279821EC95E600F89395 /* BookTableView.m in Sources */,
 				B87C213721FB047000EFD0B0 /* UIButton+Ex.m in Sources */,
