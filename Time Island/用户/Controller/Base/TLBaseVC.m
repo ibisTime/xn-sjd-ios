@@ -26,7 +26,7 @@
 {
     if (!_RightButton) {
         _RightButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        //        _RightButton.frame = CGRectMake(0, 0, 44, 44);
+//                _RightButton.frame = CGRectMake(0, 0, 100, 44);
         _RightButton.height = 44;
         _RightButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         _RightButton.titleLabel.font = FONT(15);

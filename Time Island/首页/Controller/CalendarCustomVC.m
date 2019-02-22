@@ -286,7 +286,8 @@
 
 - (void)initTopView
 {
-    UIView *content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kHeight(300))];
+//    UIView *content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kHeight(300))];
+     UIView *content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 300)];
     self.content = content;
     content.backgroundColor = kCalendarColor;
     [self.view addSubview:content];
@@ -328,7 +329,7 @@
     signCount.backgroundColor = RGB(25, 118, 112);
     signCount.centerY = signLab.centerY;
     self.SignLab = signCount;
-    CGFloat totalWidth = kScreenWidth-40;
+//    CGFloat totalWidth = kScreenWidth-40;
 //    CGFloat marge = (totalWidth - 6*23)/5;
     CGFloat buttonW = kScreenWidth-20;
     buttonW = (buttonW - 44*6)/5;
@@ -370,11 +371,6 @@
         
         if (cache.count >= [self.RuleArray[i][@"ckey"] integerValue]) {
             circle.backgroundColor = kWhiteColor;
-            
-            
-            
-            
-            
             if (cache.count == [self.RuleArray[i][@"ckey"] integerValue]) {
                 WIDTH =  i%self.RuleArray.count*(SCREEN_WIDTH - 30)/self.RuleArray.count + (SCREEN_WIDTH - 30)/7/2-6 + 12;
             }
@@ -384,16 +380,6 @@
                     WIDTH =  i%self.RuleArray.count*(SCREEN_WIDTH - 30)/self.RuleArray.count + (SCREEN_WIDTH - 30)/7/2-6 + (SCREEN_WIDTH - 30)/7/([self.RuleArray[i][@"ckey"] integerValue] - cache.count)/([self.RuleArray[i + 1][@"ckey"] integerValue] - [self.RuleArray[i][@"ckey"] integerValue]) + 12;
                 }
             }
-            
-                
-            
-            
-            
-            
-            
-            
-            
-            
         }else
         {
             circle.backgroundColor = RGB(86, 185, 168);

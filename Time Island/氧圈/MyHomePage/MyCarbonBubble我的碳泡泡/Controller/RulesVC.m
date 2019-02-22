@@ -52,6 +52,7 @@
 //    help.tableView = self.tableview;
 
     TLNetworking * http = [[TLNetworking alloc]init];
+    http.showView = self.view;
     http.code = @"630045";
     if (self.state == 1) {
         http.parameters[@"type"] = @"JF_RULE";

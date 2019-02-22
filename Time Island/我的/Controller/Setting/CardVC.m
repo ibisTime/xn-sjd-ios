@@ -31,8 +31,11 @@
     negativeSpacer.width = -10;
     [self.RightButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
     self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
-    self.RightButton.font = FONT(16);
-    [self.RightButton setFrame:CGRectMake(SCREEN_WIDTH-47.5, 30, 32.5, 45)];
+//    self.RightButton.font = FONT(16);
+    self.RightButton.titleLabel.font = FONT(16);
+    self.RightButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    
+    [self.RightButton setFrame:CGRectMake(SCREEN_WIDTH-57.5, 30, 42.5, 45)];
     [self.RightButton setTitle:@"绑定" forState:UIControlStateNormal];
     [self.RightButton addTarget:self action:@selector(myRecodeClick) forControlEvents:(UIControlEventTouchUpInside)];
     

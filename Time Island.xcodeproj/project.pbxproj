@@ -259,6 +259,7 @@
 		36DFD828221FA1E600DC5E0F /* MoreIntroduceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DFD827221FA1E600DC5E0F /* MoreIntroduceVC.m */; };
 		36DFD831221FB07100DC5E0F /* MoreIntroduceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DFD830221FB07100DC5E0F /* MoreIntroduceCell.m */; };
 		36DFD834221FC4AC00DC5E0F /* IntroduceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DFD833221FC4AC00DC5E0F /* IntroduceModel.m */; };
+		36DFD836221FF8E000DC5E0F /* IntroduceModel.h in Sources */ = {isa = PBXBuildFile; fileRef = 36DFD832221FC4AC00DC5E0F /* IntroduceModel.h */; };
 		36F4D80B221BA0B100206AAE /* FriendInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F4D80A221BA0B100206AAE /* FriendInfoModel.m */; };
 		36F4D80E221BE17000206AAE /* CompeteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F4D80D221BE17000206AAE /* CompeteModel.m */; };
 		36F4D812221BF82B00206AAE /* BarrageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F4D811221BF82B00206AAE /* BarrageModel.m */; };
@@ -2581,10 +2582,9 @@
 		1F9361DA21F31158007E522A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				36DFD835221FF7EC00DC5E0F /* Model */,
 				1F9361DC21F31162007E522A /* Controller */,
 				1F9361DB21F3115E007E522A /* View */,
-				36DFD832221FC4AC00DC5E0F /* IntroduceModel.h */,
-				36DFD833221FC4AC00DC5E0F /* IntroduceModel.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -2924,6 +2924,15 @@
 			children = (
 				36BB9F6921FE9B2E0010E622 /* NoticeModel.h */,
 				36BB9F6A21FE9B2E0010E622 /* NoticeModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		36DFD835221FF7EC00DC5E0F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				36DFD832221FC4AC00DC5E0F /* IntroduceModel.h */,
+				36DFD833221FC4AC00DC5E0F /* IntroduceModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4489,6 +4498,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36DFD836221FF8E000DC5E0F /* IntroduceModel.h in Sources */,
 				3615FE17221E9A5900D10F73 /* RecordVC.m in Sources */,
 				36A84B442211114C003CDE19 /* TLChangeMobileVC.h in Sources */,
 				1F1B006E21E71D26000BEBD3 /* UIColor+PlatformIndependence.m in Sources */,
@@ -5129,7 +5139,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = A7AR7GW3Q2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -5167,7 +5177,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = A7AR7GW3Q2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",

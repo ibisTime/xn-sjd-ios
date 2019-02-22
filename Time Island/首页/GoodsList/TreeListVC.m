@@ -14,7 +14,11 @@
 #import "GoodsListCollCell.h"
 #import "GoodsDetailsVc.h"
 #import "TreeModel.h"
-@interface TreeListVC ()<UITextFieldDelegate,UISearchBarDelegate,UIScrollViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MMComBoBoxViewDelegate,MMComBoBoxViewDataSource>
+
+#import "YiceSlidelipPickerMenu.h"
+#import "YiceSlidelipPickPch.h"
+#import "YiceSlidelipPickCommonModel.h"
+@interface TreeListVC ()<UITextFieldDelegate,UISearchBarDelegate,UIScrollViewDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MMComBoBoxViewDelegate,MMComBoBoxViewDataSource,YiceSlidelipPickerMenuDelegate,YiceSlidelipPickerMenuDataSource>
 //@property (nonatomic, strong) TLTopCollectionView *topView;
 
 
@@ -47,37 +51,34 @@
 @property (nonatomic,strong) NSArray * SellTypeArray;
 @property (nonatomic,strong) NSArray * ProductStatusArray;
 //选择参数
+@property (nonatomic,strong) NSString * orderDir;
+@property (nonatomic,strong) NSString * orderColumn;
 @property (nonatomic,strong) NSString * area;
 @property (nonatomic,strong) NSString * treeLevel;
 @property (nonatomic,strong) NSString * adoptStatus;
 @property (nonatomic,strong) NSString * variety;
+
+@property (nonatomic, strong) NSArray *mainKindArray;
+@property (nonatomic, strong) NSArray *subKindArray;
+@property (nonatomic,strong) NSMutableArray * TreeTypeArray;
+@property (nonatomic, strong) YiceSlidelipPickerMenu *pickMenu;
 @end
 
 @implementation TreeListVC
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-//    [self headRefresh];
 }
 
-//如果仅设置当前页导航透明，需加入下面方法
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBarHidden = NO;
-    [self.comBoBoxView dimissPopView];
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+-(YiceSlidelipPickerMenu *)pickMenu
+{
+    if (_pickMenu==nil) {
+        _pickMenu=[[YiceSlidelipPickerMenu alloc] init];
+        _pickMenu.delegate = self;
+        _pickMenu.datasource = self;
+    }
+    return _pickMenu;
 }
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.title = @"";
-    self.treeArray = [NSMutableArray array];
-    [self initSearchBar];
-    [self initComboBox];
-    [self.view addSubview:self.collectionView];
-    [self headRefresh];
-}
-
 
 -(UICollectionView *)collectionView{
     if (_collectionView==nil) {
@@ -94,9 +95,140 @@
     return _collectionView;
 }
 
+//如果仅设置当前页导航透明，需加入下面方法
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = NO;
+    [self.comBoBoxView dimissPopView];
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"";
+    self.treeArray = [NSMutableArray array];
+    [self getType];
+    [self initSearchBar];
+    [self initComboBox];
+    [self.view addSubview:self.collectionView];
+    [self headRefresh];
+    
+    
+    UIButton *screeningBtn = [UIButton buttonWithTitle:@"筛选" titleColor:kTextColor backgroundColor:kClearColor titleFont:12];
+    screeningBtn.frame = CGRectMake(SCREEN_WIDTH * 3 / 4, 0, SCREEN_WIDTH / 4, 40);
+    [screeningBtn SG_imagePositionStyle:(SGImagePositionStyleRight) spacing:5 imagePositionBlock:^(UIButton *button) {
+        [screeningBtn setImage:kImage(@"下拉") forState:(UIControlStateNormal)];
+    }];
+    [screeningBtn addTarget:self action:@selector(screeningBtnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    [self.view addSubview:screeningBtn];
+}
+
+-(void)screeningBtnClick:(UIButton *)sender
+{
+    self.pickMenu.frame = CGRectMake([UIScreen mainScreen].bounds.size.width, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    [[[UIApplication sharedApplication].delegate window] addSubview:self.pickMenu];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationRepeatAutoreverses:NO];
+    [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:self.pickMenu cache:YES];
+    [UIView setAnimationDuration:0.3];
+    self.pickMenu.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    [UIView commitAnimations];
+    
+}
+#pragma mark ---- pickdelegate
+- (void)menu:(YiceSlidelipPickerMenu *)menu didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //选中
+    
+    NSMutableArray <YiceSlidelipPickCommonModel *> *arrayModel = self.subKindArray[indexPath.section];
+    for (YiceSlidelipPickCommonModel *model in arrayModel) {
+        model.isSelected = @"";
+    }
+    YiceSlidelipPickCommonModel *model = arrayModel[indexPath.row];
+    model.isSelected = @"YES";
+    
+}
+
+- (void)menu:(YiceSlidelipPickerMenu *)menu didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //取消选中
+    YiceSlidelipPickCommonModel *model = self.subKindArray[indexPath.section][indexPath.row];
+    model.isSelected = @"";
+}
+
+- (void)reloadDataWithMenu:(YiceSlidelipPickerMenu *)menu{
+    //重置
+    for (NSMutableArray <YiceSlidelipPickCommonModel*> *array in self.subKindArray) {
+        for (YiceSlidelipPickCommonModel *model in array) {
+            model.isSelected = @"";
+        }
+    }
+}
+
+- (void)menu:(YiceSlidelipPickerMenu *)menu submmitSelectedIndexPaths:(NSArray<NSIndexPath *> *)indexpaths{
+    //同步数据
+    if (indexpaths.count == 0) {
+        self.treeLevel = @"";
+        self.variety = @"";
+    }else
+    {
+        NSIndexPath *inde;
+        for (int i = 0; i < indexpaths.count; i ++) {
+            inde = indexpaths[i];
+            if (inde.section == 0) {
+                YiceSlidelipPickCommonModel *model = [YiceSlidelipPickCommonModel new];
+                model = self.subKindArray[inde.section][inde.row];
+                if ([model.text isEqualToString:@"不可认养"]) {
+                    self.adoptStatus = @"0";
+                }
+                else
+                    self.adoptStatus = @"1";
+//                self.treeLevel = model.text;
+            }
+            if (inde.section == 1) {
+                YiceSlidelipPickCommonModel *model = [YiceSlidelipPickCommonModel new];
+                model = self.subKindArray[inde.section][inde.row];
+                self.variety = model.text;
+//                [self refresh];
+                //            self.variety = self.subKindArray[inde.section][inde.row];
+            }
+        }
+    }
+    
+    [self refresh];
+}
+
+
+-(YiceSlidelipPickCommonModel*)creatPcikMenuItemModelWithString:(NSString*)str{
+    
+    YiceSlidelipPickCommonModel*model = [YiceSlidelipPickCommonModel new];
+    model.isSelected = @"";
+    model.text = str;
+    return model;
+}
+
+
+
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
+}
+#pragma mark ---- pickDatasource
+- (NSInteger)menu:(YiceSlidelipPickerMenu *)menu numberOfRowsInSection:(NSInteger)section{
+    return ((NSArray*)(self.subKindArray[section])).count;
+}
+
+
+- (NSInteger)numberOfSectionsInMenu:(YiceSlidelipPickerMenu *)menu{
+    return self.mainKindArray.count;
+}
+
+
+- (NSString *)menu:(YiceSlidelipPickerMenu *)menu titleForSection:(NSInteger)section{
+    return self.mainKindArray[section];
+}
+
+- (YiceSlidelipPickCommonModel *)menu:(YiceSlidelipPickerMenu *)menu titleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSArray * arraySectionData = self.subKindArray[indexPath.section];
+    return arraySectionData[indexPath.row];
 }
 
 #pragma mark------CollectionView的代理方法
@@ -126,8 +258,6 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     GoodsDetailsVc *detailVC = [GoodsDetailsVc new];
-//    detailVC.title = @"古树详情";
-//    detailVC.mineModel = self.models[indexPath.row];
     detailVC.treemodel = self.models[indexPath.row];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
@@ -154,16 +284,6 @@
     return CGSizeMake(SCREEN_WIDTH, 0.001);
 }
 
-//- (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-//{
-//    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
-//    [headerView addSubview:self.headerView];
-    
-//    return nil;
-//}
-
-
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {
     return CGSizeMake(SCREEN_WIDTH, 0.001);
@@ -178,7 +298,7 @@
 
 - (void)initComboBox
 {
-    self.comBoBoxView = [[MMComBoBoxView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
+    self.comBoBoxView = [[MMComBoBoxView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth * 3 / 4, 40)];
     self.comBoBoxView.dataSource = self;
     self.comBoBoxView.delegate = self;
     [self.view addSubview:self.comBoBoxView];
@@ -191,6 +311,8 @@
 }
 
 
+
+//搜索框
 - (void)initSearchBar {
     
     UIView *new = [UIView new];
@@ -218,59 +340,7 @@
         
     }
 }
--(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    TLNetworking * http = [[TLNetworking alloc]init];
-    http.code = @"629025";
-    http.parameters[@"start"] = @(self.start);
-    http.parameters[@"limit"] = @(10);
-    http.parameters[@"type"]= @(1);
-    http.parameters[@"name"] = self.searchBar.text;
-    http.parameters[@"userId"] = [TLUser user].userId;
-    http.parameters[@"statusList"] = @[@"4",@"5",@"6"];
-    [http postWithSuccess:^(id responseObject) {
-//        NSArray *array = responseObject[@"data"][@"list"];
-//        [self.treemMuArray addObjectsFromArray:array];
-//        self.treeArray = array;
-//        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treemMuArray];
-        [self.models removeAllObjects];
-        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-        [self.collectionView reloadData];
-        [self.collectionView.mj_header endRefreshing];
-        [self.collectionView.mj_footer endRefreshing];
-    } failure:^(NSError *error) {
-        [self.collectionView.mj_header endRefreshing];
-        [self.collectionView.mj_footer endRefreshing];
-    }];
-}
--(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    NSLog(@"%s",__func__);
-}
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-//    if ([searchBar.text isEqualToString:@""]) {
-        TLNetworking * http = [[TLNetworking alloc]init];
-        http.code = @"629025";
-        http.parameters[@"start"] = @(self.start);
-        http.parameters[@"limit"] = @(10);
-        http.parameters[@"type"]= @(1);
-        http.parameters[@"name"] = searchText;
-        http.parameters[@"userId"] = [TLUser user].userId;
-        http.parameters[@"statusList"] = @[@"4",@"5",@"6"];
-        [http postWithSuccess:^(id responseObject) {
-                    NSArray *array = responseObject[@"data"][@"list"];
-                    [self.treemMuArray addObjectsFromArray:array];
-            //        self.treeArray = array;
-            //        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treemMuArray];
-            [self.models removeAllObjects];
-            self.models = [TreeModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-            [self.collectionView reloadData];
-            [self.collectionView.mj_header endRefreshing];
-            [self.collectionView.mj_footer endRefreshing];
-        } failure:^(NSError *error) {
-            [self.collectionView.mj_header endRefreshing];
-            [self.collectionView.mj_footer endRefreshing];
-        }];
-//    }
-}
+
 -(void)headRefresh
 {
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
@@ -345,55 +415,25 @@
                     self.treeLevel = title;
                     [self refresh];
                     break;
+                case 2:{
+                    if ([title isEqualToString:@"从小到大"]) {
+                        self.orderColumn = @"age";
+                        self.orderDir = @"asc";
+                    }
+                    else{
+                        self.orderDir = @"desc";
+                        self.orderColumn = @"age";
+                    }
+                    [self refresh];
+                }
+                    break;
                 default:
                     break;
             }
 //            [self.collectionView reloadData];
             
             break;}
-//        case MMPopupViewDisplayTypeFilters:{
-//            MMCombinationItem * combineItem = (MMCombinationItem *)rootItem;
-//            [array enumerateObjectsUsingBlock:^(NSMutableArray*  _Nonnull subArray, NSUInteger idx, BOOL * _Nonnull stop) {
-//                if (combineItem.isHasSwitch && idx == 0) {
-//                    for (MMSelectedPath *path in subArray) {
-//                        MMAlternativeItem *alternativeItem = combineItem.alternativeArray[path.firstPath];
-//                        NSLog(@"当title为: %@ 时，选中状态为: %d",alternativeItem.title,alternativeItem.isSelected);
-//                    }
-//                    return;
-//                }
-//                    NSString *title;
-//                    NSMutableString *subtitles = [NSMutableString string];
-//                    //                NSMutableString *varietys = [NSMutableString string];
-//                    for (MMSelectedPath *path in subArray) {
-//                        MMItem *firstItem = combineItem.childrenNodes[path.firstPath];
-//                        MMItem *secondItem = combineItem.childrenNodes[path.firstPath].childrenNodes[path.secondPath];
-//                        title = firstItem.title;
-//                        [subtitles appendString:[NSString stringWithFormat:@"%@",secondItem.title]];
-//                        //                    [varietys appendString:[NSString stringWithFormat:@"%@",secondItem.title]];
-//                    }
-//                    NSLog(@"当title为%@时，所选字段为 %@",title,subtitles);
-//                    if (subtitles) {
-//                        if ([subtitles isEqualToString:@"不可认养"]) {
-//                            self.adoptStatus = @"0";
-//                        }
-//                        else if ([subtitles isEqualToString:@"可认养"]){
-//                            self.adoptStatus = @"1";
-//                        }
-//                        else if ([subtitles isEqualToString:@"柏树"]){
-//                            self.variety = @"柏树";
-//                        }
-//                        else if ([subtitles isEqualToString:@"樟树"]){
-//                            self.variety = @"樟树";
-//                        }
-//
-//                        [self refresh];
-//                    }
-//
-//
-//
-//            }];
-//
-//            break;}
+
         default:
             break;
     }
@@ -424,10 +464,8 @@
             rootItem2.selectedType = MMPopupViewMultilSeMultiSelection;
         
         [rootItem2  addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:YES titleName:@"树龄排序" subtitleName:nil code:nil]];
-        [rootItem2 addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected titleName:[NSString stringWithFormat:@"100年"]]];
-        [rootItem2 addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected titleName:[NSString stringWithFormat:@"200年"]]];
-        [rootItem2 addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected titleName:[NSString stringWithFormat:@"300年"]]];
-        [rootItem2 addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected titleName:[NSString stringWithFormat:@"500年"]]];
+        [rootItem2 addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected titleName:[NSString stringWithFormat:@"从大到小"]]];
+        [rootItem2 addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected titleName:[NSString stringWithFormat:@"从小到大"]]];
         
         
         //root 3
@@ -435,7 +473,7 @@
         
         rootItem3.displayType = MMPopupViewDisplayTypeMultilayer;
         NSArray *name = @[@"全部",@"一级",@"二级",@"三级"];
-        NSArray *nameSub = @[@"全部",@"一级",@"二级",@"三级"];
+        NSArray *nameSub = @[@"全部",@"500年",@"300年",@"100年"];
 
         for (int i = 0; i < 4; i++){
             MMItem *item3_A = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:[NSString stringWithFormat:@"%@",name[i]] subtitleName:nameSub[i]];
@@ -444,30 +482,6 @@
             MMItem *item3_B = [MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:NO titleName:[NSString stringWithFormat:@"%@",nameSub[i]] subtitleName:nil];
             item3_B.isSelected = (i == 0);
             [item3_A addNode:item3_B];
-        }
-        
-        //root 4
-        MMCombinationItem *rootItem4 = [MMCombinationItem itemWithItemType:MMPopupViewDisplayTypeUnselected isSelected:NO titleName:@"筛选" subtitleName:nil];
-        rootItem4.displayType = MMPopupViewDisplayTypeFilters;
-        
-        if (self.isMultiSelection)
-            rootItem4.selectedType = MMPopupViewMultilSeMultiSelection;
-        
-        NSArray *arr = @[@{@"认养状态":@[@"可认养",@"不可认养"]},
-                         @{@"认养模式":@[@"专属",@"定向",@"捐赠",@"集体"]},
-                         @{@"树种":@[@"樟树",@"柏树"]} ];
-        
-        for (NSDictionary *itemDic in arr) {
-            MMItem *item4_A = [MMItem itemWithItemType:MMPopupViewDisplayTypeUnselected titleName:[itemDic.allKeys lastObject]];
-            [rootItem4 addNode:item4_A];
-            for (int i = 0; i <  [[itemDic.allValues lastObject] count]; i++) {
-                NSString *title = [itemDic.allValues lastObject][i];
-                MMItem *item4_B = [MMItem itemWithItemType:MMPopupViewDisplayTypeUnselected titleName:title];
-                if (i == 0) {
-                    item4_B.isSelected = NO;
-                }
-                [item4_A addNode:item4_B];
-            }
         }
         
         MMMultiItem *rootItem5 = [MMMultiItem itemWithItemType:MMPopupViewDisplayTypeUnselected titleName:@"所在地区"];
@@ -500,7 +514,7 @@
         [mutableArray addObject:rootItem5];
         [mutableArray addObject:rootItem3];
         [mutableArray addObject:rootItem2];
-        [mutableArray addObject:rootItem4];
+//        [mutableArray addObject:rootItem4];
 
 
         _mutableArray  = [mutableArray copy];
@@ -518,14 +532,16 @@
     id JsonObject= [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
     return JsonObject;
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma 获取数据
 -(void)refresh{
     TLNetworking * http = [[TLNetworking alloc]init];
-//    TLPageDataHelper * http = [[TLPageDataHelper alloc]init];
     http.code = @"629025";
     http.parameters[@"start"] = @(self.start);
     http.parameters[@"limit"] = @(10);
@@ -553,12 +569,14 @@
     if (self.variety) {
         http.parameters[@"variety"] = self.variety;
     }
+    if (self.orderColumn) {
+        http.parameters[@"orderColumn"] = self.orderColumn;
+    }
+    if (self.orderDir) {
+        http.parameters[@"orderDir"] = self.orderDir;
+    }
 //    http.parameters[@"variety"] = @"樟树";
     [http postWithSuccess:^(id responseObject) {
-
-//        NSArray *array = responseObject[@"data"][@"list"];
-//        [self.treemMuArray addObjectsFromArray:array];
-//        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treemMuArray];
         NSArray *array = responseObject[@"data"][@"list"];
         [self.treemMuArray addObjectsFromArray:array];
         
@@ -571,14 +589,6 @@
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
     }];
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -604,6 +614,82 @@
         self.ProductStatusArray = dic[@"data"];
         [self.collectionView reloadData];
     } failure:^(NSError *error) {
+    }];
+}
+
+//筛选条件下树种
+-(void)getType{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code= @"629210";
+    [http postWithSuccess:^(id responseObject) {
+        NSMutableArray * arr = [NSMutableArray array];
+        arr = responseObject[@"data"];
+        NSMutableArray * array = [NSMutableArray array];
+        for (int i = 0; i < arr.count; i ++) {
+            [array addObject:[self creatPcikMenuItemModelWithString:arr[i][@"variety"]]];
+        }
+        self.TreeTypeArray = array;
+        
+        self.mainKindArray = @[@"树级",@"树种"];
+        self.subKindArray = [NSMutableArray arrayWithArray:@[
+                                                             [NSMutableArray arrayWithArray:@[
+                                                                                              [self creatPcikMenuItemModelWithString:@"可认养"],
+                                                                                              [self creatPcikMenuItemModelWithString:@"不可认养"]]],
+                                                             [NSMutableArray arrayWithArray:self.TreeTypeArray]]];
+        
+        //        [self array];
+        
+        NSLog(@"%@",array);
+    } failure:^(NSError *error) {
+        
+    }];
+}
+#pragma 搜索功能数据
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629025";
+    http.parameters[@"start"] = @(self.start);
+    http.parameters[@"limit"] = @(10);
+    http.parameters[@"type"]= @(1);
+    http.parameters[@"name"] = self.searchBar.text;
+    http.parameters[@"userId"] = [TLUser user].userId;
+    http.parameters[@"statusList"] = @[@"4",@"5",@"6"];
+    [http postWithSuccess:^(id responseObject) {
+        //        NSArray *array = responseObject[@"data"][@"list"];
+        //        [self.treemMuArray addObjectsFromArray:array];
+        //        self.treeArray = array;
+        //        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treemMuArray];
+        [self.models removeAllObjects];
+        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        [self.collectionView reloadData];
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
+    } failure:^(NSError *error) {
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
+    }];
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629025";
+    http.parameters[@"start"] = @(self.start);
+    http.parameters[@"limit"] = @(10);
+    http.parameters[@"type"]= @(1);
+    http.parameters[@"name"] = searchText;
+    http.parameters[@"userId"] = [TLUser user].userId;
+    http.parameters[@"statusList"] = @[@"4",@"5",@"6"];
+    [http postWithSuccess:^(id responseObject) {
+        NSArray *array = responseObject[@"data"][@"list"];
+        [self.treemMuArray addObjectsFromArray:array];
+        [self.models removeAllObjects];
+        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        [self.collectionView reloadData];
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
+    } failure:^(NSError *error) {
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
     }];
 }
 @end
