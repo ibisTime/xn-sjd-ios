@@ -36,7 +36,7 @@
         self.SelectHeader = 0;
         [self registerClass:[RenYangListCell class] forCellReuseIdentifier:RenYangList];
         [self registerClass:[TreeFiledCell class] forCellReuseIdentifier:TreeFiled];
-        [self registerClass:[GoodsDetailsCell class] forCellReuseIdentifier:GoodsDetails];
+//        [self registerClass:[GoodsDetailsCell class] forCellReuseIdentifier:GoodsDetails];
     }
     
     return self;
@@ -97,10 +97,28 @@
         }
         return cell;
     }else if(self.SelectHeader == 0){
-        _cell = [tableView dequeueReusableCellWithIdentifier:GoodsDetails forIndexPath:indexPath];
-        _cell.TreeModel = self.TreeModel;
+        
+        
+        
+        static NSString *identifier = @"webCell";
+        _cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (!_cell){
+            _cell = [[GoodsDetailsCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            _cell.backgroundColor = kWhiteColor;
+        
+        
+        
+//        _cell = [tableView dequeueReusableCellWithIdentifier:GoodsDetails forIndexPath:indexPath];
+//        _cell.TreeModel = self.TreeModel;
+        
+            
+        }
+        
+        [_cell.detail loadHTMLString:self.TreeModel.Description baseURL:nil];
         [_cell.detail.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
         return _cell;
+        
+        
     }else{
         RenYangListCell *cell = [tableView dequeueReusableCellWithIdentifier:RenYangList forIndexPath:indexPath];
         cell.RenYangModel = self.RenYangModel[indexPath.row];
@@ -115,6 +133,7 @@
     if ([keyPath isEqualToString:@"contentSize"]) {
         _webViewHeight1 = [[_cell.detail stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
         _cell.detail.frame = CGRectMake(0, 0, SCREEN_WIDTH, _webViewHeight1);
+        [self reloadData];
     }
 }
 -(void)MyTreeHeadButton:(NSInteger)tag

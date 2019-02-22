@@ -13,19 +13,16 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.detail = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-        self.detail.delegate = self;
+        self.detail = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+        
+        self.detail.scrollView.bounces=NO;
+        self.detail.scrollView.showsHorizontalScrollIndicator = NO;
+        self.detail.scrollView.scrollEnabled = NO;
+        self.detail.backgroundColor = kWhiteColor;
+        self.detail.dataDetectorTypes=UIDataDetectorTypeNone;
+        
         [self addSubview:self.detail];
     }
     return self;
-}
--(void)setTreeModel:(TreeModel *)TreeModel{
-    [self.detail loadHTMLString:TreeModel.Description baseURL:nil];
-}
-//-(void)webViewDidFinishLoad:(UIWebView *)webView{
-//    CGSize * websize = [webView sizeThatFits:CGSizeZero];
-//}
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    
 }
 @end
