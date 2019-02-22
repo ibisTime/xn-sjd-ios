@@ -113,6 +113,9 @@
 		1F473395221F88E0007B5908 /* pulldown.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F47337F221F88DF007B5908 /* pulldown.png */; };
 		1F473396221F88E0007B5908 /* list_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F473380221F88DF007B5908 /* list_selected@2x.png */; };
 		1F473397221F88E0007B5908 /* pullup.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F473381221F88DF007B5908 /* pullup.png */; };
+		1F473425221FA3A8007B5908 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F473424221FA3A7007B5908 /* libsqlite3.0.tbd */; };
+		1F473427221FA3C3007B5908 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F473426221FA3C3007B5908 /* CFNetwork.framework */; };
+		1F473429221FA3D0007B5908 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F473428221FA3D0007B5908 /* CoreGraphics.framework */; };
 		1F9360AC21EDFCA5007E522A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360AA21EDFCA4007E522A /* MapViewController.m */; };
 		1F93610321EDFD8F007E522A /* ToClaimTheGiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360DA21EDFD8E007E522A /* ToClaimTheGiftVC.m */; };
 		1F93610421EDFD8F007E522A /* MyGiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360DC21EDFD8E007E522A /* MyGiftVC.m */; };
@@ -737,6 +740,9 @@
 		1F47337F221F88DF007B5908 /* pulldown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pulldown.png; sourceTree = "<group>"; };
 		1F473380221F88DF007B5908 /* list_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_selected@2x.png"; sourceTree = "<group>"; };
 		1F473381221F88DF007B5908 /* pullup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pullup.png; sourceTree = "<group>"; };
+		1F473424221FA3A7007B5908 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		1F473426221FA3C3007B5908 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		1F473428221FA3D0007B5908 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		1F9360AA21EDFCA4007E522A /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		1F9360AB21EDFCA4007E522A /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		1F9360AD21EDFCDA007E522A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -1527,6 +1533,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F473429221FA3D0007B5908 /* CoreGraphics.framework in Frameworks */,
+				1F473427221FA3C3007B5908 /* CFNetwork.framework in Frameworks */,
+				1F473425221FA3A8007B5908 /* libsqlite3.0.tbd in Frameworks */,
 				1F93617621EE07D8007E522A /* CoreTelephony.framework in Frameworks */,
 				3689763B21EEC550005F1177 /* AMapFoundationKit.framework in Frameworks */,
 				1F93617521EE07CE007E522A /* CoreLocation.framework in Frameworks */,
@@ -2927,6 +2936,9 @@
 		A27B85BBCC1D95F10D614566 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1F473428221FA3D0007B5908 /* CoreGraphics.framework */,
+				1F473426221FA3C3007B5908 /* CFNetwork.framework */,
+				1F473424221FA3A7007B5908 /* libsqlite3.0.tbd */,
 				1F9360B921EDFD2B007E522A /* libc++.tbd */,
 				1F9360B721EDFD1A007E522A /* libz.tbd */,
 				1F9360B521EDFD10007E522A /* GLKit.framework */,
@@ -5111,7 +5123,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3ZCW993X44;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -5149,7 +5161,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3ZCW993X44;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",

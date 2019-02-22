@@ -57,7 +57,7 @@
     return 10;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%d",(int)indexPath.section);
+//    NSLog(@"%d",(int)indexPath.section);
     OrderDetailsVC * vc = [[OrderDetailsVC alloc]init];
     vc.OrderModel = self.OrderModels[indexPath.section];
     [self.navigationController pushViewController:vc animated:YES];

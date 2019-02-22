@@ -18,10 +18,25 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.cdkj.TimeIsland</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wx4149de72eb4772ae</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>wechat</string>
+		<string>weixin</string>
 		<string>baidumap</string>
 		<string>iosamap</string>
 		<string>comgooglemaps</string>
@@ -69,5 +84,12 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>WXAppInfo</key>
+	<dict>
+		<key>AppDescription</key>
+		<string>氧林</string>
+		<key>AppId</key>
+		<string>wx4149de72eb4772ae</string>
+	</dict>
 </dict>
 </plist>

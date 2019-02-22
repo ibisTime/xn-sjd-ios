@@ -31,9 +31,10 @@
 //Extension
 
 #import "IQKeyboardManager.h"
-
-@interface AppDelegate ()
-//<WeiboSDKDelegate>
+#import <WXApi.h>
+#define WEIXINLOGIN @"https://api.weixin.qq.com/sns/oauth2"
+#define WEIXINUSERINFO @"https://api.weixin.qq.com/sns/userinfo"
+@interface AppDelegate ()<WXApiDelegate>
 
 //@property (nonatomic, strong) FBKVOController *chatKVOCtrl;   czy
 @property (nonatomic, strong) RespHandler *respHandler;
@@ -70,6 +71,7 @@
     //配置键盘
     [self configIQKeyboard];
     
+    [WXApi registerApp:@"wx4149de72eb4772ae"];
 //    [[TLWXManager manager] registerApp];
 //    [WeiboSDK registerApp:@"947817370"];
 //    [WeiboSDK enableDebugMode:YES];
@@ -130,6 +132,85 @@
     return YES;
     
     
+}
+
+
+- (void)onResp:(id)resp{
+    
+    if([resp isKindOfClass:[SendAuthResp class]]){//判断是否为授权登录类
+        
+        SendAuthResp *req = (SendAuthResp *)resp;
+        
+        if([req.state isEqualToString:@"wx_oauth_authorization_state"])
+        {//微信授权成功
+            
+            switch (req.errCode) {
+                case -4:
+                {
+                    [TLAlert alertWithError:@"已拒绝授权"];
+                }
+                    break;
+                case -2:
+                {
+                    [TLAlert alertWithError:@"已取消授权"];
+                }
+                    break;
+                case 0:
+                {
+
+                    [TLNetworking POST:[NSString stringWithFormat:@"%@/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",WEIXINLOGIN,weixinAPPID,weixinSECRET,req.code] parameters:nil success:^(id responseObject) {
+                        
+                        
+                        if ([USERXX isBlankString:responseObject[@"access_token"]] == YES && [USERXX isBlankString:responseObject[@"openid"]] == YES ) {
+                            [TLAlert alertWithError:@"授权失败"];
+                        }else
+                        {
+                            [TLNetworking POST:[NSString stringWithFormat:@"%@?access_token=%@&openid=%@",WEIXINUSERINFO,responseObject[@"access_token"],responseObject[@"openid"]] parameters:nil success:^(id responseObject) {
+                                
+                                TLNetworking *http = [TLNetworking new];
+                                http.showView = self.window;
+                                http.code = @"805051";
+                                http.parameters[@"isNeedMobile"] = @"1";
+                                http.parameters[@"kind"] = @"C";
+                                
+                                
+                                [http postWithSuccess:^(id responseObject) {
+                                    NSDictionary * userinfo = responseObject[@"data"];
+                                    [TLUser user].userId = userinfo[@"userId"];
+                                    [TLUser user].token = userinfo[@"token"];
+                                    //        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+//                                    [self requesUserInfoWithResponseObject:responseObject];
+//                                    TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
+//                                    [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
+                                    
+                                } failure:^(NSError *error) {
+                                    
+                                }];
+                                
+                            } failure:^(NSError *error) {
+                                
+                            }];
+                        }
+                        
+                        
+                        
+                        
+                    } failure:^(NSError *error) {
+                        
+                    }];
+                    
+                    
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+            
+            //            req.code //获得code
+        }
+    }
 }
 
 - (void)configWeibo
@@ -380,59 +461,20 @@
 //}
 
 
+//- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+//    return  [WXApi handleOpenURL:url delegate:self];
+//}
+
+
+
+
 #pragma mark - 微信和芝麻认证回调
 // iOS9 NS_AVAILABLE_IOS
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     
-    //    if ([url.host isEqualToString:@"certi.back"]) {
-    //
-    //        //查询是否认证成功
-    //        TLNetworking *http = [TLNetworking new];
-    //        http.showView = [UIApplication sharedApplication].keyWindow;
-    //        http.code = @"805196";
-    //        http.parameters[@"bizNo"] = [TLUser user].tempBizNo;
-    //        http.parameters[@"userId"] = [TLUser user].userId;
-    //        [http postWithSuccess:^(id responseObject) {
-    //
-    //            NSString *str = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"isSuccess"]];
-    //            [[NSNotificationCenter defaultCenter] postNotificationName:@"RealNameAuthResult" object:str];
-    //
-    //        } failure:^(NSError *error) {
-    //
-    //
-    //        }];
-    //
-    //        return YES;
-    //    }
+    return [WXApi handleOpenURL:url delegate:self];
     
-    //    if ([url.host isEqualToString:@"safepay"]) {
-    //
-    //        [TLAlipayManager hadleCallBackWithUrl:url];
-    //        return YES;
-    //
-    //    } else {
-    
-    //        return [WXApi handleOpenURL:url delegate:[TLWXManager manager]];
-    //    }
-    
-    
-    //    BOOL isQQ = [QQApiInterface handleOpenURL:url delegate:[QQManager manager]];
-    
-//    if ([url.host containsString:@"response"]) {
-//        [WeiboSDK handleOpenURL:url delegate:self];
-//
-//        //            if(response.statusCode == WeiboSDKResponseStatusCodeSuccess){
-//        //                [TLAlert alertWithSucces:[LangSwitcher switchLang:@"分享成功" key:nil]];
-//        //            }else{
-//        //                [TLAlert alertWithSucces:[LangSwitcher switchLang:@"分享失败" key:nil]];
-//
-//    }
-//    else {
-//
-//        return [WXApi handleOpenURL:url delegate:[TLWXManager manager]];
-//    }
-    
-    return YES;
+//    return YES;
     
 }
 

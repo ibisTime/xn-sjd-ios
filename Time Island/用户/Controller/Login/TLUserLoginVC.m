@@ -219,13 +219,21 @@
     //构造SendAuthReq结构体
     SendAuthReq* req =[[SendAuthReq alloc]init];
     req.scope = @"snsapi_userinfo";
-    req.state = @"123";
+    req.state = @"wx_oauth_authorization_state";
     //第三方向微信终端发送一个SendAuthReq消息结构
+//    req.appid = @"wx4149de72eb4772ae";
     [WXApi sendReq:req];
+    
+    
+    
+    
+    
+    
 }
 
-#pragma mark - Events
 
+
+#pragma mark - Events
 - (void)back {
     [self.view endEditing:YES];
     

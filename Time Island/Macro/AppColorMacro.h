@@ -142,6 +142,10 @@
 #define  KIS170 @"KIS170"
 #define  KISBuild @"KISBuild"
 
+
+#define weixinAPPID @"wx4149de72eb4772ae"
+#define weixinSECRET @"4f29753afdc8409ae942bee709f51e58"
+
 #pragma mark - 轮播图
 
 #define kCarouselHeight (kScreenWidth/5*3)
