@@ -34,12 +34,14 @@
     self.imageView = [NSMutableArray array];
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = -10;
-    [self.RightButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-    self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
-    self.RightButton.titleLabel.font = FONT(16);
-    [self.RightButton setFrame:CGRectMake(SCREEN_WIDTH-47.5, 30, 32.5, 45)];
-    [self.RightButton setTitle:@"保存" forState:UIControlStateNormal];
-    [self.RightButton addTarget:self action:@selector(saveBook) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    
+//    [self.RightButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+//    self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
+//    self.RightButton.titleLabel.font = FONT(16);
+//    [self.RightButton setFrame:CGRectMake(SCREEN_WIDTH-47.5, 30, 32.5, 45)];
+//    [self.RightButton setTitle:@"保存" forState:UIControlStateNormal];
+//    [self.RightButton addTarget:self action:@selector(saveBook) forControlEvents:(UIControlEventTouchUpInside)];
     
 
     [self setupview1];

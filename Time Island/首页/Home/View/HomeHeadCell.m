@@ -115,7 +115,8 @@
     [noticeView addSubview:moreLab];
     moreLab.userInteractionEnabled = YES;
     
-    
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moreIntroduce)];
+    [moreLab addGestureRecognizer:gesture];
     
     UIView *line1 = [UIView new];
     line1.backgroundColor = kLineColor;
@@ -123,7 +124,11 @@
     line1.backgroundColor = kTabbarColor;
     [noticeView addSubview:line1];
 }
-
+-(void)moreIntroduce{
+    if (self.tapMoreIntroduce) {
+        self.tapMoreIntroduce();
+    }
+}
 -(void)initRenLingTree
 {
     UIView *renLingTree = [UIView new];

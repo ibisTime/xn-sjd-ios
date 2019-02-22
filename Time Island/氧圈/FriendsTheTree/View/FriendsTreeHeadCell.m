@@ -191,8 +191,8 @@
     NSMutableArray * array = [NSMutableArray array];
     for (int i = 0; i < energyModels.count; i++) {
         MyTreeEnergyModel * model = energyModels[i];
-        
-        [array addObject:@{@"number":model.quantity,@"name":model.status}];
+        NSString * str = [NSString stringWithFormat:@"%.2f",[model.quantity floatValue]];
+        [array addObject:@{@"number":str,@"name":model.status}];
         
     }
     self.floatingBallHeader.dataList = array;

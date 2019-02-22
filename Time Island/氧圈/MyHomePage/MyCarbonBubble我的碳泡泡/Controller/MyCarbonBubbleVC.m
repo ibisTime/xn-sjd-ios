@@ -74,13 +74,17 @@
     negativeSpacer.width = -10;
     [self.RightButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
     self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
-//    [self.RightButton setImage:kImage(@"氧圈分享") forState:(UIControlStateNormal)];
+    [self.RightButton setFrame:CGRectMake(SCREEN_WIDTH-57.5, 30, 42.5, 45)];
     if (self.state == 1) {
         [self.RightButton setTitle:@"积分规则" forState:(UIControlStateNormal)];
+        [self.RightButton.titleLabel sizeToFit];
+        [self.RightButton setFrame:CGRectMake(SCREEN_WIDTH-self.RightButton.titleLabel.width - 15, 30, self.RightButton.titleLabel.width, 45)];
     }
     else if(self.state == 2)
     {
         [self.RightButton setTitle:@"碳泡泡规则" forState:(UIControlStateNormal)];
+        [self.RightButton.titleLabel sizeToFit];
+        [self.RightButton setFrame:CGRectMake(SCREEN_WIDTH-self.RightButton.titleLabel.width - 15, 30, self.RightButton.titleLabel.width, 45)];
     }
     [self.RightButton addTarget:self action:@selector(myRecodeClick) forControlEvents:(UIControlEventTouchUpInside)];
     

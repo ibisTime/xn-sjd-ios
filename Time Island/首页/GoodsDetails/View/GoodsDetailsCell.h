@@ -13,6 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GoodsDetailsCell : UITableViewCell<UIWebViewDelegate>
 @property (nonatomic,strong) UIWebView * detail;
 @property (nonatomic,strong) TreeModel * TreeModel;
+
+typedef void(^WebViewHeightChangedBlock)(int height);
+@property (nonatomic, strong) WebViewHeightChangedBlock webViewHeightChanged;
+
 @end
 
 NS_ASSUME_NONNULL_END

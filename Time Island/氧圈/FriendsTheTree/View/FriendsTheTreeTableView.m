@@ -120,7 +120,8 @@
         
         [self getdata];
         [self getcompetedata];
-        [self getHistory];
+//        [self getHistory];
+        [self getHistroyData];
         
     } failure:^(NSError *error) {
         
@@ -173,7 +174,7 @@
         [headerView addSubview:backView];
         
 //        UILabel *nameLabel;
-        if (self.DynamicModels.count > 1) {
+        if (self.DynamicModels.count > 0) {
             UILabel * nameLabel = [UILabel labelWithFrame:CGRectMake(15, 6, SCREEN_WIDTH - 30, 18) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGboldfont(18) textColor:kTextBlack];
             nameLabel.text = [LangSwitcher switchLang:@"今天" key:nil];
             [headerView addSubview:nameLabel];
@@ -255,7 +256,23 @@
         
     }];
 }
+-(void)getHistroyData{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629305";
+    //    http.parameters[@"status"] = @(0);
+    http.parameters[@"limit"] = @(10);
+    http.parameters[@"start"] = @(1);
+    http.parameters[@"adoptTreeCode"] = self.model.code;
+    http.parameters[@"adoptUserId"] = self.model.user[@"userId"];
+    http.parameters[@"queryUserId"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
+        self.DynamicModels = [DynamicModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        [self reloadData_tl];
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 
+}
 //动态
 -(void)getHistory{
 //    TLNetworking * http = [[TLNetworking alloc]init];
@@ -342,7 +359,11 @@
     _model = model;
     [self getdata];
     [self getcompetedata];
-    [self getHistory];
+    if ([self.state isEqualToString:@"Barrage"]) {
+        [self getHistroyData];
+    }
+    else
+        [self getHistory];
 }
 
 
