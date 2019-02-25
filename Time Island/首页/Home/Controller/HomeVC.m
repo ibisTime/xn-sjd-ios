@@ -98,7 +98,7 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
-
+    
 }
 
 
@@ -268,7 +268,7 @@
     searchbar.clipsToBounds = YES;
     searchbar.delegate = self;
     [searchbar setBackgroundColor:kWhiteColor];
-    [searchbar setPlaceholder:@"搜索商品信息"];
+    [searchbar setPlaceholder:@"请输入树木名称"];
     [Title addSubview:searchbar];
     self.searchBar = searchbar;
     [content addSubview:calendar];
@@ -287,8 +287,12 @@
 }
 
 - (void)calendarClick{
-    CalendarCustomVC *calendar = [CalendarCustomVC new];
-    [self.navigationController pushViewController:calendar animated:YES];
+    if (![TLUser user].checkLogin) {
+        [TLAlert alertWithMsg:@"请先登录，再进行此操作！谢谢！"];
+    }else{
+        CalendarCustomVC *calendar = [CalendarCustomVC new];
+        [self.navigationController pushViewController:calendar animated:YES];
+    }
 }
 
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
@@ -344,37 +348,49 @@
 
 //公告详情
 -(void)detailIntroduce{
-    introduceView * vc = [introduceView new];
-    vc.title = @"公告详情";
-    vc.web = self.IntroduceArray[0][@"content"];
-    vc.IntroduceTitle = self.IntroduceArray[0][@"title"];
-    vc.time = [self.IntroduceArray[0][@"createDatetime"] convertToDetailDate];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (self.IntroduceArray.count > 0) {
+        introduceView * vc = [introduceView new];
+        vc.title = @"公告详情";
+        vc.web = self.IntroduceArray[0][@"content"];
+        vc.IntroduceTitle = self.IntroduceArray[0][@"title"];
+        vc.time = [self.IntroduceArray[0][@"createDatetime"] convertToDetailDate];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 
 //情感频道
 - (void)bookVideoClick
 {
-    BookVideoVC *notice = [BookVideoVC new];
-    notice.title = @"情感频道";
-    [self.navigationController pushViewController:notice animated:YES];
+    if ([TLUser user].checkLogin) {
+        BookVideoVC *notice = [BookVideoVC new];
+        notice.title = @"情感频道";
+        [self.navigationController pushViewController:notice animated:YES];
+    }
+    
     
 }
 //快报更多
 - (void)noticeClick
 {
-    MyNoticeVC *notice = [MyNoticeVC new];
-    notice.title = @"公告";
-    [self.navigationController pushViewController:notice animated:YES];
+    if ([TLUser user].checkLogin) {
+        MyNoticeVC *notice = [MyNoticeVC new];
+        notice.title = @"公告";
+        [self.navigationController pushViewController:notice animated:YES];
+    }
+    
     
 }
 
 //快报详情
 -(void)detailsClick : (NSInteger)index{
-    MyNoticeDetailsVC * vc = [MyNoticeDetailsVC new];
-    vc.title = @"快报详情";
-    vc.model = self.newsarray[index];
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([TLUser user].checkLogin) {
+        MyNoticeDetailsVC * vc = [MyNoticeDetailsVC new];
+        vc.title = @"快报详情";
+        vc.model = self.newsarray[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 //公告更多
 -(void)MoreIntroduce{
@@ -399,9 +415,18 @@
         [self presentViewController:tabbar animated:YES completion:nil];
         
     }else{
-        RankingVC *vc = [RankingVC new];
-        vc.state = @"rank";
-        [self.navigationController pushViewController:vc animated:YES];
+        if (![TLUser user].checkLogin) {
+            [TLAlert alertWithMsg:@"请先登录，再进行此操作！谢谢！"];
+//            [TLAlert alertWithMsg:@"请先登录，再进行此操作！谢谢！" WithAction:^{
+//                NSLog(@"123456789");
+//            }];
+            
+            
+        }else{
+            RankingVC *vc = [RankingVC new];
+            vc.state = @"rank";
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
     
 }

@@ -113,9 +113,10 @@
         
             
         }
-        
-        [_cell.detail loadHTMLString:self.TreeModel.Description baseURL:nil];
-        [_cell.detail.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+        if (self.TreeModel.Description) {
+            [_cell.detail loadHTMLString:self.TreeModel.Description baseURL:nil];
+            [_cell.detail.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+        }
         return _cell;
         
         
@@ -135,6 +136,11 @@
         _cell.detail.frame = CGRectMake(0, 0, SCREEN_WIDTH, _webViewHeight1);
         [self reloadData];
     }
+}
+-(void)dealloc{
+//    [self removeObserver:self forKeyPath:@"contentSize"];
+    [_cell.detail.scrollView removeObserver:self forKeyPath:@"contentSize" context:nil];
+
 }
 -(void)MyTreeHeadButton:(NSInteger)tag
 {

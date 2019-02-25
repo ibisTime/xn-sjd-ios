@@ -16,11 +16,11 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        title = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH / 2 - 15, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:kTextBlack];
+        title = [UILabel labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH * 2 / 3 - 15, 50) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:kTextBlack];
         title.text = @"产生项";
         [self addSubview:title];
         
-        count = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH / 2, 0, SCREEN_WIDTH / 2 - 15, 50) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:FONT(15) textColor:kTextBlack];
+        count = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH * 2 / 3, 0, SCREEN_WIDTH / 3 - 15, 50) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:FONT(15) textColor:kTextBlack];
         count.text = @"分值项";
         [self addSubview:count];
         

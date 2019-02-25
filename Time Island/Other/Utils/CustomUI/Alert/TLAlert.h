@@ -35,6 +35,7 @@
 
 //--//基于系统的alertController
 + (void)alertWithMsg:(NSString * )message;
++ (void)alertWithMsg:(NSString * )message WithAction:(void(^)())confirmAction;
 + (void)alertWithMsg:(NSString * )message viewCtrl:(UIViewController *)vc;
 
 + (void)alertWithTitle:(NSString *)title

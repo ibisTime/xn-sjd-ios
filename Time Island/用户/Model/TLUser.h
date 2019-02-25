@@ -19,7 +19,11 @@
 @property (nonatomic, copy) NSString *userId;
 @property (nonatomic, copy) NSString *secretUserId;
 
-
+@property (nonatomic,strong) NSDictionary * userExt;
+//个人认证
+//@property (nonatomic,copy) NSString * personAuthStatus;
+////企业认证
+//@property (nonatomic,copy) NSString * companyAuthStatus;
 
 //Token
 @property (nonatomic, copy) NSString *token;

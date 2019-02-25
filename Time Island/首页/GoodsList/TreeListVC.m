@@ -193,7 +193,7 @@
         }
     }
     
-    [self refresh];
+    [self headRefresh];
 }
 
 
@@ -409,11 +409,19 @@
             switch (index) {
                 case 0:
                     self.area = title;
-                    [self refresh];
+                    [self headRefresh];
                     break;
                 case 1:
-                    self.treeLevel = title;
-                    [self refresh];
+                    if ([title isEqualToString:@"100年"]) {
+                        self.treeLevel = @"THIRD";
+                    }else if ([title isEqualToString:@"300年"]){
+                        self.treeLevel = @"SECOND";
+                    }
+                    else{
+                        self.treeLevel = @"FIRST";
+                    }
+                    
+                    [self headRefresh];
                     break;
                 case 2:{
                     if ([title isEqualToString:@"从小到大"]) {
@@ -424,7 +432,7 @@
                         self.orderDir = @"desc";
                         self.orderColumn = @"age";
                     }
-                    [self refresh];
+                    [self headRefresh];
                 }
                     break;
                 default:
@@ -575,13 +583,11 @@
     if (self.orderDir) {
         http.parameters[@"orderDir"] = self.orderDir;
     }
-//    http.parameters[@"variety"] = @"樟树";
     [http postWithSuccess:^(id responseObject) {
         NSArray *array = responseObject[@"data"][@"list"];
         [self.treemMuArray addObjectsFromArray:array];
+        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treemMuArray];
         
-        [self.models removeAllObjects];
-        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
         [self.collectionView reloadData];
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
@@ -655,10 +661,7 @@
     http.parameters[@"userId"] = [TLUser user].userId;
     http.parameters[@"statusList"] = @[@"4",@"5",@"6"];
     [http postWithSuccess:^(id responseObject) {
-        //        NSArray *array = responseObject[@"data"][@"list"];
-        //        [self.treemMuArray addObjectsFromArray:array];
-        //        self.treeArray = array;
-        //        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treemMuArray];
+
         [self.models removeAllObjects];
         self.models = [TreeModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
         [self.collectionView reloadData];

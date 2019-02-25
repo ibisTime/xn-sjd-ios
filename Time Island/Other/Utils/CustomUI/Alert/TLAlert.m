@@ -110,6 +110,14 @@
     [self alertWithTitle:title message:message confirmAction:nil];
 }
 
++(void)alertWithMsg:(NSString *)message WithAction:(void (^)())confirmAction{
+    [self alertWithTitle:nil message:message confirmAction:^{
+        if (confirmAction) {
+            confirmAction();
+        }
+    }];
+}
+
 + (void)alertWithTitle:(NSString *)title message:(NSString *)message confirmAction:(void(^)())confirmAction;
 {
     

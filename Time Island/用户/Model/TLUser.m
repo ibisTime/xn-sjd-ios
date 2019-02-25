@@ -217,6 +217,7 @@ NSString *const kGoogleAuthClose = @"0";
     self.introduce = nil;
     self.zfbAccount = nil;
     self.zfbQr = nil;
+    self.userExt = nil;
     
 //    [[NSUserDefaults standardUserDefaults] removeObjectForKey:USER_ID_KEY];
     
@@ -315,6 +316,7 @@ NSString *const kGoogleAuthClose = @"0";
     self.email = dict[@"email"];
     self.secretUserId =  dict[@"secretUserId"];
     self.zfbQr = dict[@"zfbQr"];
+    self.userExt = dict[@"userExt"];
 
     //腾讯云-设置昵称和头像
 //  [IMAPlatform sharedInstance].host.icon = [self.photo convertImageUrl];

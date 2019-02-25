@@ -24,6 +24,10 @@
 - (instancetype)initWithFrame:(CGRect)frame
                     leftTitle:(NSString *)leftTitle
                   placeholder:(NSString *)placeholder;
+
+-(instancetype)initWithFrameChangeLeftLbl:(CGRect)frame
+                                leftTitle:(NSString *)leftTitle
+                              placeholder:(NSString *)placeholder;
 //禁止复制粘贴等功能
 @property (nonatomic,assign) BOOL isSecurity;
 

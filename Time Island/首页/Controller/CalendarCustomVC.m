@@ -111,7 +111,8 @@
 {
     
     //创建日历类
-    FSCalendar *calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(20, self.content.yy-30, kScreenWidth - 40, 300)];
+    NSLog(@"25百分比 %.6f",25 / (SCREEN_HEIGHT * 2.2 / 5));
+    FSCalendar *calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(20, self.content.yy-(0.085185 * SCREEN_HEIGHT * 2.2 / 5), kScreenWidth - 40, 0.92638 * SCREEN_HEIGHT * 2.2 / 5)];
     calendar.backgroundColor = [UIColor whiteColor];
     calendar.dataSource = self;
     calendar.delegate = self;
@@ -245,7 +246,7 @@
     http.parameters[@"userId"] = [TLUser user].userId;
     http.parameters[@"createStartDatetime"] = [NSString stringWithFormat:@"%@",self.minimumDate];
     http.parameters[@"createEndDatetime"] = [NSString stringWithFormat:@"%@",self.maximumDate];
-    CoinWeakSelf
+//    CoinWeakSelf
     [http postWithSuccess:^(id responseObject) {
 //        weakSelf.signInList = responseObject[@"data"][0][@"signResList"];
 //        weakSelf.SignCount = weakSelf.signInList.count;
@@ -287,7 +288,7 @@
 - (void)initTopView
 {
 //    UIView *content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kHeight(300))];
-     UIView *content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 300)];
+     UIView * content = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, SCREEN_HEIGHT * 2.2 / 5)];
     self.content = content;
     content.backgroundColor = kCalendarColor;
     [self.view addSubview:content];
@@ -310,12 +311,19 @@
     NSArray *cache = [[NSUserDefaults standardUserDefaults] objectForKey:@"arrayDate"];
     UILabel *signLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kWhiteColor font:24];
     signLab.text = @"每日签到";
-    signLab.frame = CGRectMake(10, self.titleLab.yy+30, 120, 30);
+//    signLab.frame = CGRectMake(10, self.titleLab.yy+30, 120, 30);
+    //0.017935 * SCREEN_HEIGHT * 2.2 / 5
+    NSLog(@"百分比 = %.6f",30 / SCREEN_HEIGHT / 2.2 * 5);
+    signLab.frame = CGRectMake(10, self.titleLab.yy+30, 120, 0.092638 * SCREEN_HEIGHT * 2.2 / 5);
+    
     [self.content addSubview:signLab];
     
     UILabel *signLab2 = [UILabel labelWithBackgroundColor:kClearColor textColor:kWhiteColor font:14];
     signLab2.text = @"连续签到越多,奖励越丰富";
-    signLab2.frame = CGRectMake(10, signLab.yy+15, 180, 22);
+//    signLab2.frame = CGRectMake(10, signLab.yy+15, 180, 22);
+    //0.013152 * SCREEN_HEIGHT * 2.2 / 5
+    NSLog(@"180百分比 = %.6f",22 / SCREEN_HEIGHT / 2.2 * 5);
+    signLab2.frame = CGRectMake(10, signLab.yy+15, 180, 0.067935 * SCREEN_HEIGHT * 2.2 / 5);
     [self.content addSubview:signLab2];
     UILabel *signCount = [UILabel labelWithBackgroundColor:kClearColor textColor:kWhiteColor font:12];
     signCount.textAlignment = NSTextAlignmentCenter;
@@ -336,7 +344,10 @@
     
     for (int i = 0; i < self.RuleArray.count; i++) {
         UIButton *button = [UIButton buttonWithImageName:@"签到-礼物" cornerRadius:11.5];
-        button.frame = CGRectMake(15 + i%7*(SCREEN_WIDTH - 30)/7 + (SCREEN_WIDTH - 30)/7/2-6-5.5, signLab2.yy+20, 23, 23);
+//        button.frame = CGRectMake(15 + i%7*(SCREEN_WIDTH - 30)/7 + (SCREEN_WIDTH - 30)/7/2-6-5.5, signLab2.yy+20, 23, 23);
+        //0.013750 * SCREEN_HEIGHT * 2.2 / 5
+        NSLog(@"23百分比 = %.6f",23 / SCREEN_HEIGHT / 2.2 * 5);
+        button.frame = CGRectMake(15 + i%7*(SCREEN_WIDTH - 30)/7 + (SCREEN_WIDTH - 30)/7/2-6-5.5, signLab2.yy+20, 23, 0.071023 * SCREEN_HEIGHT * 2.2 / 5);
         [self.content addSubview:button];
         [button setBackgroundImage:kImage(@"签到-礼物") forState:UIControlStateNormal];
         [button setBackgroundColor:RGB(86, 185, 168) forState:UIControlStateNormal];
@@ -347,13 +358,18 @@
         circle.layer.cornerRadius = 6;
         circle.clipsToBounds = YES;
         circle.tag = 1000 + i;
-        circle.frame = CGRectMake(15 + i%self.RuleArray.count*(SCREEN_WIDTH - 30)/self.RuleArray.count + (SCREEN_WIDTH - 30)/7/2-6, button.yy+5, 12, 12);
+//        circle.frame = CGRectMake(15 + i%self.RuleArray.count*(SCREEN_WIDTH - 30)/self.RuleArray.count + (SCREEN_WIDTH - 30)/7/2-6, button.yy+5, 12, 12);
+        //0.007174 * SCREEN_HEIGHT * 2.2 / 5
+//        NSLog(@"12百分比 = %.6f",12 / SCREEN_HEIGHT / 2.2 * 5);
+        circle.frame = CGRectMake(15 + i%self.RuleArray.count*(SCREEN_WIDTH - 30)/self.RuleArray.count + (SCREEN_WIDTH - 30)/7/2-6, button.yy+5, 12, 0.037055 * SCREEN_HEIGHT * 2.2 / 5);
         [self.content addSubview:circle];
         circle.tag = i+100;
         
         UILabel *dayLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kWhiteColor font:14];
         [self.content addSubview:dayLab];
         dayLab.frame = CGRectMake(16+i%self.RuleArray.count*(SCREEN_WIDTH - 32)/self.RuleArray.count, circle.yy + 6, 40, 23);
+        //0.013750 * SCREEN_HEIGHT * 2.2 / 5
+        NSLog(@"23百分比 = %.6f",23 / SCREEN_HEIGHT * 2.2 / 5);
         dayLab.numberOfLines = 0;
         
         if (self.RuleArray) {

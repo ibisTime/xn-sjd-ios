@@ -83,6 +83,43 @@
     
     return self;
 }
+
+-(instancetype)initWithFrameChangeLeftLbl:(CGRect)frame
+                   leftTitle:(NSString *)leftTitle
+                 placeholder:(NSString *)placeholder{
+    if (self == [super init]) {
+        self.delegate = self;
+        UIView *leftBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, frame.size.height)];
+        
+        UILabel *leftLbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, frame.size.height)];
+        leftLbl.text = leftTitle;
+        leftLbl.textAlignment = NSTextAlignmentLeft;
+        leftLbl.font = Font(15.0);
+        leftLbl.textColor = [UIColor colorWithHexString:@"#484848"];
+        [leftBgView addSubview:leftLbl];
+        
+        self.leftLbl = leftLbl;
+        
+        self.leftView = leftBgView;
+        
+        
+        self.frame = frame;
+        //        self.backgroundColor = [UIColor whiteColor];
+        self.leftViewMode = UITextFieldViewModeAlways;
+        self.rightViewMode = UITextFieldViewModeAlways;
+        self.clearButtonMode = UITextFieldViewModeWhileEditing;
+        
+        self.placeholder = placeholder;
+        //    [tf addAction];
+        self.font = [UIFont systemFontOfSize:15];
+        
+        self.view =[self createview:CGRectMake(0, frame.size.height - 1, SCREEN_WIDTH-30, 1)];
+        [self addSubview: self.view];
+    }
+    
+    return self;
+}
+
 -(instancetype)initWithFrame:(CGRect)frame placeholder:(NSString *)placeholder{
     if (self = [super init]) {
         self.frame = frame;

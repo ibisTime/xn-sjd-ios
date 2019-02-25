@@ -31,8 +31,8 @@
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if ([TLUser user].idNo) {
-        return 2;
+    if ([[TLUser user].userExt[@"personAuthStatus"] isEqualToString:@"1"] ||[[TLUser user].userExt[@"companyAuthStatus"] isEqualToString:@"1"]) {
+        return 1;
     }
     else
         return 2;
@@ -42,12 +42,12 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     CertifyVCCell * cell = [tableView dequeueReusableCellWithIdentifier:@"CertifyVCCell" forIndexPath:indexPath];
-    if ([TLUser user].idNo) {
-        if (indexPath.row == 0) {
+    if ([[TLUser user].userExt[@"personAuthStatus"] isEqualToString:@"1"] ||[[TLUser user].userExt[@"companyAuthStatus"] isEqualToString:@"1"]) {
+        if ([[TLUser user].userExt[@"personAuthStatus"] isEqualToString:@"1"]) {
             cell.title.text = @"个人认证";
             cell.state.text = @"已认证";
         }
-        if (indexPath.row == 1) {
+        if ([[TLUser user].userExt[@"companyAuthStatus"] isEqualToString:@"1"]) {
             cell.title.text = @"企业认证";
             cell.state.text = @"未认证";
         }

@@ -25,10 +25,13 @@
 #import "InviteGiftVC.h"
 #import "InfoVC.h"
 #import "CollectBookVC.h"
-#define titlearray @[@"我的碳泡泡",@"我的订单",@"我的文章",@"我的收藏",@"邀请有礼",@"设置"]
+#import "PersonalCenterVC.h"
+#define titlearray @[@"我的认养",@"我的认养订单",@"我的文章",@"我的收藏",@"邀请有礼",@"设置"]
 #define imagearray @[@"泡泡",@"我的订单",@"我的文章",@"我的收藏",@"邀请有礼",@"设置"]
-#define array1 @[@"余额",@"积分",@"碳泡泡"]
-@interface MineVC ()
+#define array1 @[@"余额",@"碳泡泡",@"积分"]
+@interface MineVC (){
+    UIImageView *headImg;
+}
 @property (nonatomic,retain) UIView * topview;
 @property (nonatomic,strong) TLTableView *table1;
 @property (nonatomic,strong) UILabel * name;
@@ -82,7 +85,7 @@
     [self.view addSubview:self.table1];
     
     
-//    [self.navigationController pushViewController:tabbar animated:YES];
+
 }
 
 -(void)setupview{
@@ -100,7 +103,7 @@
     [headPortraitView addGestureRecognizer:ges];
 
     
-    UIImageView *headImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 171/2 + 12, 72.5 - 64 + kNavigationBarHeight + 8, 15, 15)];
+    headImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 171/2 + 12, 72.5 - 64 + kNavigationBarHeight + 8, 15, 15)];
     headImg.image = kImage(@"支付完成");
     
     UILabel *nameLbl = [UILabel labelWithFrame:CGRectMake(headImg.xx + 4, 72.5 - 64 + kNavigationBarHeight + 8, SCREEN_WIDTH - headImg.xx - 5, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:[UIColor whiteColor]];
@@ -240,7 +243,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MineVCCell * cell = [[MineVCCell alloc]initWithfirstimage:imagearray[indexPath.row] title:titlearray[indexPath.row]];
-    cell.selectionStyle = UIAccessibilityTraitNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -264,17 +267,9 @@
 {
     switch (indexPath.row) {
         case 0:{
-            MyCarbonBubbleVC * vc = [MyCarbonBubbleVC new];
-            vc.state = 2;
-            vc.accountNumber = self.array[2][@"accountNumber"];
+            PersonalCenterVC * vc = [[PersonalCenterVC alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
         }
-            break;
-//        case 1:
-//        {
-////            TLUserLoginVC * login = [[TLUserLoginVC alloc]init];
-////            [self.navigationController pushViewController:login animated:YES];
-//        }
             break;
         case 1:
         {
@@ -315,12 +310,7 @@
     
     [self.logoimage sd_setImageWithURL: [NSURL URLWithString:[[TLUser user].photo convertImageUrl]] placeholderImage:kImage(@"头像")];
 
-    if ([TLUser user].idNo) {
-        self.nameLbl.text = @"已认证";
-    }
-    else{
-        self.nameLbl.text = @"未认证";
-    }
+    
     TLNetworking * http = [TLNetworking new];
     http.code = USER_INFO;
     http.parameters[@"userId"] = [TLUser user].userId;
@@ -328,7 +318,18 @@
         NSDictionary * dic = responseObject[@"data"];
         [[TLUser user]saveUserInfo:dic];
         [[TLUser user]setUserInfoWithDict:dic];
-        
+        NSLog(@"%@",[TLUser user].userExt[@"personAuthStatus"]);
+        if ([[TLUser user].userExt[@"personAuthStatus"] isEqualToString:@"1"]) {
+            self.nameLbl.text = @"已个人认证";
+            [self.nameLbl sizeToFit];
+            
+        }
+        else if([[TLUser user].userExt[@"companyAuthStatus"] isEqualToString:@"1"]){
+            self.nameLbl.text = @"已企业认证";
+        }
+        else{
+            self.nameLbl.text = @"未认证";
+        }
         
         if ([USERXX isBlankString:[TLUser user].nickname] == YES) {
             self.name.text = @"未设置昵称";
@@ -338,7 +339,7 @@
         }
         
         if ([USERXX isBlankString:[TLUser user].introduce] == YES) {
-            self.sign.text = @"此人很懒，没留下什么";
+            self.sign.text = @"简介：此人很懒，没什么留言";
         }else
         {
             self.sign.text = [TLUser user].introduce;
@@ -366,12 +367,12 @@
             
             float amount2 = [self.array[1][@"totalAmount"] floatValue] / 1000;
             NSString * str2 = [NSString stringWithFormat:@"%.2f",amount2];
-            self.numberLbl2.text = str2;
+            self.numberLbl3.text = str2;
             
             if (self.array[2][@"amount"]) {
                 float amount3 = [self.array[2][@"amount"] floatValue] / 1000;
                 NSString * str3 = [NSString stringWithFormat:@"%.2f",amount3];
-                self.numberLbl3.text = str3;
+                self.numberLbl2.text = str3;
             }
         }
         
