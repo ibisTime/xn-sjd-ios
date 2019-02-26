@@ -47,7 +47,13 @@
     [self setup];
     self.tableview.tableFooterView = self.footview;
     [self.view addSubview:self.tableview];
-    // Do any additional setup after loading the view.
+    
+    
+    if ([TLUser user].userExt[@"companyChargerBackIdPic"]||[TLUser user].userExt[@"companyChargerIdPic"]||[TLUser user].userExt[@"bussinessLicense"]) {
+        [self.idPic sd_setImageWithURL: [NSURL URLWithString:[[TLUser user].userExt[@"companyChargerBackIdPic"] convertImageUrl]]];
+        [self.backIdPic sd_setImageWithURL:[NSURL URLWithString:[[TLUser user].userExt[@"companyChargerIdPic"] convertImageUrl]]];
+        [self.LicencePic sd_setImageWithURL:[NSURL URLWithString:[[TLUser user].userExt[@"bussinessLicense"] convertImageUrl]]];
+    }
 }
 -(CompanyCertifyTableView *)tableview{
     if (!_tableview) {
@@ -57,93 +63,7 @@
     return _tableview;
 }
 -(void)setup{
-//    CGFloat margin = 15;
-//    CGFloat height = 55;
-//
-//    //企业名称
-//    TLTextField * comname = [[TLTextField alloc]initWithFrame:CGRectMake(margin, 0, SCREEN_WIDTH-30, height) leftTitle:@"企业名称" placeholder:@"请输入企业名称(必填)"];
-//    comname.font = FONT(15);
-//    comname.leftLbl.font = FONT(15);
-//    [self.view addSubview:comname];
-//    self.ComName = comname;
-//
-//    //企业地址
-//    TLTextField * comadd = [[TLTextField alloc]initWithFrame:CGRectMake(margin, comname.yy, SCREEN_WIDTH-30, height) leftTitle:@"企业地址" placeholder:@"请输入企业地址（必填）"];
-//    comadd.font = FONT(15);
-//    comadd.leftLbl.font = FONT(13);
-//    [self.view addSubview:comadd];
-//    self.ComAddress = comadd;
-//
-//    //企业地址
-//    TLTextField * bossname = [[TLTextField alloc]initWithFrame:CGRectMake(margin, comadd.yy, SCREEN_WIDTH-30, height) leftTitle:@"企业地址" placeholder:@"请输入企业地址（必填）"];
-//    bossname.font = FONT(15);
-//    bossname.leftLbl.font = FONT(13);
-//    [self.view addSubview:bossname];
-//    self.BossName = bossname;
-//
-//    //企业地址
-//    TLTextField * bosstel = [[TLTextField alloc]initWithFrame:CGRectMake(margin, bossname.yy, SCREEN_WIDTH-30, height) leftTitle:@"企业地址" placeholder:@"请输入企业地址（必填）"];
-//    bosstel.font = FONT(15);
-//    bosstel.leftLbl.font = FONT(13);
-//    [self.view addSubview:bosstel];
-//    self.BossTel = bosstel;
-//
-//    //企业地址
-//    TLTextField * bossid = [[TLTextField alloc]initWithFrame:CGRectMake(margin, bosstel.yy, SCREEN_WIDTH-30, height) leftTitle:@"企业地址" placeholder:@"请输入企业地址（必填）"];
-//    bossid.font = FONT(15);
-//    bossid.leftLbl.font = FONT(13);
-//    [self.view addSubview:bossid];
-//    self.BossID = bossid;
-//
-//    //企业地址
-//    TLTextField * comuser = [[TLTextField alloc]initWithFrame:CGRectMake(margin, bossid.yy, SCREEN_WIDTH-30, height) leftTitle:@"企业地址" placeholder:@"请输入企业地址（必填）"];
-//    comuser.font = FONT(15);
-//    comuser.leftLbl.font = FONT(13);
-//    [self.view addSubview:comuser];
-//    self.ComUser = comuser;
-//
-//    //企业地址
-//    TLTextField * comusertel = [[TLTextField alloc]initWithFrame:CGRectMake(margin, comuser.yy, SCREEN_WIDTH-30, height) leftTitle:@"企业地址" placeholder:@"请输入企业地址（必填）"];
-//    comusertel.font = FONT(15);
-//    comusertel.leftLbl.font = FONT(13);
-//    [self.view addSubview:comusertel];
-//    self.ComUserTel = comusertel;
-//
-//    //企业地址
-//    TLTextField * comuseradd = [[TLTextField alloc]initWithFrame:CGRectMake(margin, comusertel.yy, SCREEN_WIDTH-30, height) leftTitle:@"企业地址" placeholder:@"请输入企业地址（必填）"];
-//    comuseradd.font = FONT(15);
-//    comuseradd.leftLbl.font = FONT(13);
-//    [self.view addSubview:comuseradd];
-//    self.ComUserAddress = comuseradd;
-//
-//    //企业地址
-//    TLTextField * combankname = [[TLTextField alloc]initWithFrame:CGRectMake(margin, comuseradd.yy, SCREEN_WIDTH-30, height) leftTitle:@"企业地址" placeholder:@"请输入企业地址（必填）"];
-//    combankname.font = FONT(15);
-//    combankname.leftLbl.font = FONT(13);
-//    [self.view addSubview:combankname];
-//    self.ComBankName = combankname;
-//
-//    //企业地址
-//    TLTextField * combankid = [[TLTextField alloc]initWithFrame:CGRectMake(margin, combankname.yy, SCREEN_WIDTH-30, height) leftTitle:@"企业地址" placeholder:@"请输入企业地址（必填）"];
-//    combankid.font = FONT(15);
-//    combankid.leftLbl.font = FONT(13);
-//    [self.view addSubview:combankid];
-//    self.ComBankID = combankid;
-//
-//    //企业地址
-//    TLTextField * comid = [[TLTextField alloc]initWithFrame:CGRectMake(margin, combankid.yy, SCREEN_WIDTH-30, height) leftTitle:@"企业地址" placeholder:@"请输入企业地址（必填）"];
-//    comid.font = FONT(15);
-//    comid.leftLbl.font = FONT(13);
-//    [self.view addSubview:comid];
-//    self.ComID = comid;
-    
-    
-    
-    
-    
-//    TLTextField * more = [[TLTextField alloc]initWithFrame:CGRectMake(15, comadd.yy, SCREEN_WIDTH-30, 100) placeholder:@"请输入企业简介（最多输入20个字符）"];
-//    [self.view addSubview:more];
-//    self.more = more;
+
     
     self.footview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 250)];
     

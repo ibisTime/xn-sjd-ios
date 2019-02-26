@@ -9,18 +9,14 @@
 #import "TLTableView.h"
 
 NS_ASSUME_NONNULL_BEGIN
-@protocol DicDelegrate <NSObject>
 
--(void)DicVlaueDelegrate:(NSMutableDictionary *)dic;
-
-@end
 
 @interface CompanyCertifyTableView : TLTableView<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (nonatomic,strong) NSArray * titleArray;
 @property (nonatomic,strong) NSArray * placeholderArray;
 @property (nonatomic,strong) NSArray * KeyArray;
+@property (nonatomic,strong) NSArray * ValueArray;
 @property (nonatomic,strong) NSMutableDictionary * ValueDic;
-@property (nonatomic,weak) id<DicDelegrate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

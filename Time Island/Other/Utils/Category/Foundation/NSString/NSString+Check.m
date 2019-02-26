@@ -249,7 +249,16 @@
     result = [pred evaluateWithObject:self];
     return result;
 }
-
+-(BOOL)isNumWithDot{
+    if (self.length == 0) {
+        return NO;
+    }
+    BOOL result = false;
+    NSString *regex =@"^[0-9.]";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    result = [pred evaluateWithObject:self];
+    return result;
+}
 - (BOOL)isChinese
 {
     if (![self valid]) {

@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString * transAmountString;
 @property (nonatomic,copy) NSString * workDate;
 @property (nonatomic,copy) NSString * preAmountString;
+@property (nonatomic,copy) NSString * type;
 @end
 
 NS_ASSUME_NONNULL_END

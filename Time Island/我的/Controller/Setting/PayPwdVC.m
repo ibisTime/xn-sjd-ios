@@ -38,8 +38,8 @@
     [captchaView.captchaBtn addTarget:self action:@selector(sendCaptcha) forControlEvents:UIControlEventTouchUpInside];
     
     
-    TLTextField * PayPwd = [[TLTextField alloc]initWithFrame:CGRectMake(15, captchaView.yy, SCREEN_WIDTH, 55) placeholder:@"请输入支付密码（至少6个字符）"];
-    PayPwd.isSecurity = YES;
+    TLTextField * PayPwd = [[TLTextField alloc]initWithFrame:CGRectMake(15, captchaView.yy, SCREEN_WIDTH - 30, 55) placeholder:@"请输入支付密码（至少6个字符）"];
+    PayPwd.secureTextEntry = YES;
     [self.view addSubview:PayPwd];
     self.PayPwd = PayPwd;
     

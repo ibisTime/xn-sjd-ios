@@ -44,6 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self refresh];
     [self.view addSubview:self.tableView];
     CoinWeakSelf
     self.headView.ClickBtn = ^(NSInteger t) {
@@ -56,11 +57,11 @@
     };
     self.tableView.tableHeaderView = self.headView;
 
-    [self.tableView addRefreshAction:^{
-        [weakSelf.tableView beginRefreshing];
-        [weakSelf refresh];
-        [weakSelf.tableView endRefreshHeader];
-    }];
+//    [self.tableView addRefreshAction:^{
+//        [weakSelf.tableView beginRefreshing];
+//        [weakSelf refresh];
+//        [weakSelf.tableView endRefreshHeader];
+//    }];
     // Do any additional setup after loading the view.
 }
 -(void)getmoney{
@@ -74,17 +75,45 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)refresh{
-    
-    TLNetworking * http = [[TLNetworking alloc]init];
+    CoinWeakSelf;
+//    TLNetworking * http = [[TLNetworking alloc]init];
+//    http.code = @"802322";
+//    http.parameters[@"accountNumber"] = self.accountNumber;
+//    http.parameters[@"start"] = @(1);
+//    http.parameters[@"limit"] = @(10);
+//    [http postWithSuccess:^(id responseObject) {
+//        self.CarbonModels = [CarbonModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+//        self.tableView.CarbonModels = self.CarbonModels;
+//        [self.tableView reloadData];
+//    } failure:^(NSError *error) {
+//    }];
+    TLPageDataHelper * http = [[TLPageDataHelper alloc]init];
     http.code = @"802322";
     http.parameters[@"accountNumber"] = self.accountNumber;
-    http.parameters[@"start"] = @(1);
-    http.parameters[@"limit"] = @(10);
-    [http postWithSuccess:^(id responseObject) {
-        self.CarbonModels = [CarbonModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-        self.tableView.CarbonModels = self.CarbonModels;
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
+    [http modelClass:[CarbonModel class]];
+    http.isCurrency = YES;
+    http.tableView = self.tableView;
+    [self.tableView addRefreshAction:^{
+        [http refresh:^(NSMutableArray *objs, BOOL stillHave) {
+            weakSelf.CarbonModels = objs;
+            weakSelf.tableView.CarbonModels = weakSelf.CarbonModels;
+            [weakSelf.tableView reloadData];
+            [weakSelf.tableView endRefreshHeader];
+        } failure:^(NSError *error) {
+            [weakSelf.tableView endRefreshHeader];
+        }];
+    }];
+    [self.tableView beginRefreshing];
+    
+    [self.tableView addLoadMoreAction:^{
+        [http loadMore:^(NSMutableArray *objs, BOOL stillHave) {
+            weakSelf.CarbonModels = objs;
+            weakSelf.tableView.CarbonModels = weakSelf.CarbonModels;
+            [weakSelf.tableView reloadData];
+            [weakSelf.tableView endRefreshHeader];
+        } failure:^(NSError *error) {
+            [weakSelf.tableView endRefreshFooter];
+        }];
     }];
 }
 -(void)BtnClick:(NSInteger)sender{

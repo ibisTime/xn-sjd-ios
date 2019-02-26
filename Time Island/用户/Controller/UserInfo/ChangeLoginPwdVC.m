@@ -184,7 +184,8 @@
             
             self.success();
         }
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+//        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {
         
         

@@ -53,19 +53,19 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    if (section == 1) {
+//        if (state == 0) {
+//            return 1;
+//        }else
+//        {
+//            return 0;
+//        }
+//    }
     if (section == 1) {
-        if (state == 0) {
-            return 1;
-        }else
-        {
-            return 0;
-        }
-    }
-    if (section == 2) {
         if (state == 0) {
             return self.DynamicModels.count;
         }
@@ -93,13 +93,13 @@
         return cell;
     }
     
-    if (indexPath.section == 1) {
-        MyFreeDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:MyFreeDynamic forIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.DynamicPhotoModels = self.DynamicPhotoModels;
-        cell.delegate = self;
-        return cell;
-    }
+//    if (indexPath.section == 1) {
+//        MyFreeDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:MyFreeDynamic forIndexPath:indexPath];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.DynamicPhotoModels = self.DynamicPhotoModels;
+//        cell.delegate = self;
+//        return cell;
+//    }
     
     
     if (state == 0) {
@@ -178,9 +178,9 @@
     if (indexPath.section == 0) {
         return kHeight(432);
     }
-    else if (indexPath.section == 1) {
-        return kHeight(60);
-    }
+//    else if (indexPath.section == 1) {
+//        return kHeight(60);
+//    }
     
     DynamicModel *model = [DynamicModel mj_objectWithKeyValues:self.DynamicModels[indexPath.row]];
     

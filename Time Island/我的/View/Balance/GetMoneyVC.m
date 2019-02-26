@@ -13,8 +13,9 @@
 @interface GetMoneyVC (){
     
     TLTextField * money;
-
-   
+    TLTextField * desc;
+    UIButton * button;
+    UILabel * label1;
 }
 @property (nonatomic,strong) NSMutableArray<RuleModel *> * RuleModels;
 @property (nonatomic,strong) NSMutableArray<CardModel *> * CardModels;
@@ -66,14 +67,16 @@
 }
 
 -(void)createview2{
-    UIView * view2 = [[UIView alloc]initWithFrame:CGRectMake(0, 65, SCREEN_WIDTH, 139)];
+    UIView * view2 = [[UIView alloc]initWithFrame:CGRectMake(0, 65, SCREEN_WIDTH, 246)];
     
-    UILabel * label1 = [UILabel labelWithFrame:CGRectMake(15, 17, SCREEN_WIDTH - 30, 18.5) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(13) textColor:kTextColor3];
-    label1.text = @"提现金额（收取 0.1%服务费）";
+    label1 = [UILabel labelWithFrame:CGRectMake(15, 17, SCREEN_WIDTH - 30, 18.5) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(13) textColor:kTextColor3];
+    label1.text = @"提现金额（收取 0元手续费）";
     [view2 addSubview:label1];
     
     money = [[TLTextField alloc]initWithFrame:CGRectMake(15, label1.yy + 7.5, SCREEN_WIDTH - 30, 63.5) placeholder:@""];
     money.font = boldFont(32);
+    money.tag = 1;
+    money.delegate = self;
     money.keyboardType = UIKeyboardTypeNumberPad;
     [view2 addSubview:money];
     
@@ -88,6 +91,17 @@
     [view2 addSubview:all];
     
     
+    
+    UILabel * label = [UILabel labelWithFrame:CGRectMake(15, money.yy + 40, SCREEN_WIDTH - 30, 18.5) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(13) textColor:kTextColor3];
+    label.text = @"提现说明";
+    [view2 addSubview:label];
+    
+    desc = [[TLTextField alloc]initWithFrame:CGRectMake(15, label.yy + 7.5, SCREEN_WIDTH - 30, 63.5) placeholder:@""];
+    desc.font = boldFont(20);
+    //    money.keyboardType = UIKeyboardTypeNumberPad;
+    [view2 addSubview:desc];
+    
+    
     [self.view addSubview:view2];
     
     UIView * backview = [[UIView alloc]initWithFrame:CGRectMake(0, view2.yy, SCREEN_WIDTH, 20)];
@@ -95,12 +109,12 @@
     [self.view addSubview:backview];
 }
 -(void)createview3{
-    self.label3 = [UILabel labelWithFrame:CGRectMake(15, 228, SCREEN_WIDTH - 30, 72) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(12) textColor:kTextColor2];
+    self.label3 = [UILabel labelWithFrame:CGRectMake(15, 266, SCREEN_WIDTH - 30, 72) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(12) textColor:kTextColor2];
     self.label3.numberOfLines = 0;
     self.label3.text = @"提取规则：\n1.每月最大提现次数100次；\n2.提现金额必须是5的倍数，单笔最高5000元；\n3.T+1到账";
     [self.view addSubview:self.label3];
     
-    UIButton * button = [UIButton buttonWithTitle:@"提现" titleColor:[UIColor whiteColor] backgroundColor:kTabbarColor titleFont:16];
+    button = [UIButton buttonWithTitle:@"提现" titleColor:[UIColor whiteColor] backgroundColor:kTabbarColor titleFont:16];
     button.frame = CGRectMake(15, self.label3.yy + 52, SCREEN_WIDTH - 30, 42);
     button.layer.cornerRadius = 4;
     button.layer.masksToBounds = YES;
@@ -116,50 +130,56 @@
     NSLog(@"%s",__func__);
     RuleModel * model = self.RuleModels[3];
     int value = [model.cvalue intValue];
-    if ([money.text intValue] % value == 0) {
-        [money endEditing:YES];
-        UIView * pwdview = [[UIView alloc]initWithFrame:CGRectMake(50, SCREEN_HEIGHT / 2 - 50, SCREEN_WIDTH - 100, 150)];
-        pwdview.backgroundColor = kWhiteColor;
-        pwdview.layer.borderColor = kTextColor4.CGColor;
-        pwdview.layer.borderWidth = 1;
-        pwdview.layer.cornerRadius = 5;
-        pwdview.layer.masksToBounds = YES;
-        UILabel * title = [UILabel labelWithFrame:CGRectMake(0, 15, pwdview.width, 30) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(16) textColor:kTextColor4];
-        title.text = @"支付密码";
-        [pwdview addSubview:title];
-        
-        TLTextField * pwd = [[TLTextField alloc]initWithFrame:CGRectMake(15, title.yy + 10, pwdview.width - 30, 30) placeholder:@"请输入支付密码"];
-        pwd.layer.borderColor = kTextColor4.CGColor;
-        pwd.layer.borderWidth = 1;
-        pwd.layer.cornerRadius = 3;
-        pwd.layer.masksToBounds = YES;
-        pwd.secureTextEntry = YES;
-        [pwdview addSubview:pwd];
-        self.pwd = pwd;
-        
-        UIView * lineView = [[UIView alloc]initWithFrame:CGRectMake(0, pwd.yy + 15 , SCREEN_WIDTH - 30, 1)];
-        lineView.backgroundColor = kLineColor;
-        [pwdview addSubview:lineView];
-        
-        UIButton * canclebtn = [UIButton buttonWithTitle:@"取消" titleColor:kTextBlack backgroundColor:kClearColor titleFont:16];
-        canclebtn.frame = CGRectMake(0, lineView.yy, pwdview.width/2, 50);
-        [canclebtn addTarget:self action:@selector(cancel) forControlEvents:(UIControlEventTouchUpInside)];
-        [pwdview addSubview:canclebtn];
-        
-        UIView * lineview = [[UIView alloc]initWithFrame:CGRectMake(pwdview.width/2,lineView.yy,1, 50)];
-        lineview.backgroundColor = kLineColor;
-        [pwdview addSubview:lineview];
-        
-        UIButton * paybtn = [UIButton buttonWithTitle:@"确定" titleColor:kTabbarColor backgroundColor:kClearColor titleFont:16];
-        paybtn.frame = CGRectMake(pwdview.width/2, lineView.yy, pwdview.width/2, 50);
-        [paybtn addTarget:self action:@selector(payBtn) forControlEvents:(UIControlEventTouchUpInside)];
-        [pwdview addSubview:paybtn];
-        
-        [[UserModel user]showPopAnimationWithAnimationStyle:3 showView:pwdview BGAlpha:0.5 isClickBGDismiss:YES];
-    }
-    else{
-        [TLAlert alertWithMsg:[NSString stringWithFormat:@"提现金额必须是 %d 的倍数",value]];
-    }
+//    if (![money.text isNumWithDot]) {
+//        [TLAlert alertWithError:@"请输入合法数字！"];
+//    }
+//    else{
+        if ([money.text intValue] % value == 0) {
+            [money endEditing:YES];
+            UIView * pwdview = [[UIView alloc]initWithFrame:CGRectMake(50, SCREEN_HEIGHT / 2 - 50, SCREEN_WIDTH - 100, 150)];
+            pwdview.backgroundColor = kWhiteColor;
+            pwdview.layer.borderColor = kTextColor4.CGColor;
+            pwdview.layer.borderWidth = 1;
+            pwdview.layer.cornerRadius = 5;
+            pwdview.layer.masksToBounds = YES;
+            UILabel * title = [UILabel labelWithFrame:CGRectMake(0, 15, pwdview.width, 30) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(16) textColor:kTextColor4];
+            title.text = @"支付密码";
+            [pwdview addSubview:title];
+            
+            TLTextField * pwd = [[TLTextField alloc]initWithFrame:CGRectMake(15, title.yy + 10, pwdview.width - 30, 30) placeholder:@"请输入支付密码"];
+            pwd.layer.borderColor = kTextColor4.CGColor;
+            pwd.layer.borderWidth = 1;
+            pwd.layer.cornerRadius = 3;
+            pwd.layer.masksToBounds = YES;
+            pwd.secureTextEntry = YES;
+            [pwdview addSubview:pwd];
+            self.pwd = pwd;
+            
+            UIView * lineView = [[UIView alloc]initWithFrame:CGRectMake(0, pwd.yy + 15 , SCREEN_WIDTH - 30, 1)];
+            lineView.backgroundColor = kLineColor;
+            [pwdview addSubview:lineView];
+            
+            UIButton * canclebtn = [UIButton buttonWithTitle:@"取消" titleColor:kTextBlack backgroundColor:kClearColor titleFont:16];
+            canclebtn.frame = CGRectMake(0, lineView.yy, pwdview.width/2, 50);
+            [canclebtn addTarget:self action:@selector(cancel) forControlEvents:(UIControlEventTouchUpInside)];
+            [pwdview addSubview:canclebtn];
+            
+            UIView * lineview = [[UIView alloc]initWithFrame:CGRectMake(pwdview.width/2,lineView.yy,1, 50)];
+            lineview.backgroundColor = kLineColor;
+            [pwdview addSubview:lineview];
+            
+            UIButton * paybtn = [UIButton buttonWithTitle:@"确定" titleColor:kTabbarColor backgroundColor:kClearColor titleFont:16];
+            paybtn.frame = CGRectMake(pwdview.width/2, lineView.yy, pwdview.width/2, 50);
+            [paybtn addTarget:self action:@selector(payBtn) forControlEvents:(UIControlEventTouchUpInside)];
+            [pwdview addSubview:paybtn];
+            
+            [[UserModel user]showPopAnimationWithAnimationStyle:3 showView:pwdview BGAlpha:0.5 isClickBGDismiss:YES];
+        }
+        else{
+            [TLAlert alertWithMsg:[NSString stringWithFormat:@"提现金额必须是 %d 的倍数",value]];
+        }
+//    }
+    
     
     
     
@@ -182,6 +202,7 @@
     http.parameters[@"applyNote"] = @"";
     http.parameters[@"bankcardNumber"] = @"";
     http.parameters[@"tradePwd"] = self.pwd.text;
+    http.parameters[@"applyNote"] = desc.text;
     [http postWithSuccess:^(id responseObject) {
         [TLAlert alertWithSucces:@"提现成功，等待后台审核"];
         [[UserModel user].cusPopView dismiss];
@@ -252,7 +273,8 @@
             self.label3.text = [self.label3.text stringByAppendingString:@"\n"];
         }
         [self.label3 sizeToFit];
-        self.label3.frame = CGRectMake(15, 228, SCREEN_WIDTH - 30, self.label3.height);
+        self.label3.frame = CGRectMake(15, 356, SCREEN_WIDTH - 30, self.label3.height);
+        button.frame = CGRectMake(15, self.label3.yy + 52, SCREEN_WIDTH - 30, 42);
     } failure:^(NSError *error) {
         
     }];
@@ -288,5 +310,19 @@
     }];
     
 }
+//-(void)textFieldDidEndEditing:(UITextField *)textField{
+//    //    label1.text =
+//    RuleModel * model = self.RuleModels[2];
+//
+////    CGFloat float = [textField.te]
+//}
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    RuleModel * model = self.RuleModels[1];
+    float value = [model.cvalue floatValue];
+    if (textField.tag == 1) {
+        CGFloat moneyfloat = [textField.text floatValue];
+            label1.text =[NSString stringWithFormat:@"提现金额（收取%.3f元手续费）",value * moneyfloat];
+    }
 
+}
 @end

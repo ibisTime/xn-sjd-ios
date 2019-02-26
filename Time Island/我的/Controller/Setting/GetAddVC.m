@@ -79,12 +79,7 @@
         DoorNum.text = self.DoorNumString;
     }
     self.DoorNum = DoorNum;
-//    UITextView * DoorNum = [[UITextView alloc]initWithFrame:CGRectMake(60, Address.yy, SCREEN_WIDTH-30, 80)];
-//    DoorNum.backgroundColor = kWhiteColor;
-//    DoorNum.font = [UIFont systemFontOfSize:15.0];
-//    DoorNum.text = @"10号楼5层501室";
-//    DoorNum.clearsOnInsertion = YES;
-//    [self.view addSubview:DoorNum];
+
     
     
     UIButton *confirmBtn = [UIButton buttonWithTitle:[LangSwitcher switchLang:@"确认" key:nil] titleColor:kWhiteColor backgroundColor:kAppCustomMainColor titleFont:16.0 cornerRadius:5];
@@ -98,6 +93,22 @@
     http.code = self.code;
     if (self.state == 1) {
         http.parameters[@"code"] = self.AddressCode;
+    }
+    if (![self.Phone.text isPhoneNum]) {
+        [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入正确的手机号" key:nil]];
+        return;
+    }
+    if (self.Name.text.length == 0) {
+        [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入姓名" key:nil]];
+        return;
+    }
+    if (self.Address.text.length == 0) {
+        [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入地址" key:nil]];
+        return;
+    }
+    if (self.DoorNum.text.length == 0) {
+        [TLAlert alertWithInfo:[LangSwitcher switchLang:@"请输入详细地址" key:nil]];
+        return;
     }
     http.parameters[@"addressee"] = self.Name.text;
     http.parameters[@"mobile"] = self.Phone.text;

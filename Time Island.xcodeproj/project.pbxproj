@@ -255,6 +255,7 @@
 		36C85E8A2212C9DF00DA26BE /* MessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C85E892212C9DF00DA26BE /* MessageVC.m */; };
 		36C85E8D2212CCEF00DA26BE /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C85E8C2212CCEF00DA26BE /* MessageCell.m */; };
 		36C85E902212CE4F00DA26BE /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C85E8F2212CE4F00DA26BE /* MessageModel.m */; };
+		36C894162224D7AC00B69214 /* SearchHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C894152224D7AC00B69214 /* SearchHistoryModel.m */; };
 		36DB50D621F5993B009D56EF /* NewsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50D521F5993B009D56EF /* NewsVC.m */; };
 		36DB50D921F59AEF009D56EF /* NewsVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50D821F59AEF009D56EF /* NewsVCCell.m */; };
 		36DB50DC21F5A11F009D56EF /* MallOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50DB21F5A11F009D56EF /* MallOrderVC.m */; };
@@ -1015,6 +1016,8 @@
 		36C85E8C2212CCEF00DA26BE /* MessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		36C85E8E2212CE4F00DA26BE /* MessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
 		36C85E8F2212CE4F00DA26BE /* MessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
+		36C894142224D7AC00B69214 /* SearchHistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchHistoryModel.h; sourceTree = "<group>"; };
+		36C894152224D7AC00B69214 /* SearchHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchHistoryModel.m; sourceTree = "<group>"; };
 		36DB50D421F5993B009D56EF /* NewsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsVC.h; sourceTree = "<group>"; };
 		36DB50D521F5993B009D56EF /* NewsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsVC.m; sourceTree = "<group>"; };
 		36DB50D721F59AEF009D56EF /* NewsVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsVCCell.h; sourceTree = "<group>"; };
@@ -2960,6 +2963,8 @@
 			children = (
 				36DFD832221FC4AC00DC5E0F /* IntroduceModel.h */,
 				36DFD833221FC4AC00DC5E0F /* IntroduceModel.m */,
+				36C894142224D7AC00B69214 /* SearchHistoryModel.h */,
+				36C894152224D7AC00B69214 /* SearchHistoryModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4627,6 +4632,7 @@
 				B81E5FF121DC8FC200873AB9 /* AppDelegate.m in Sources */,
 				B81E5FDB21DC8FC200873AB9 /* NSObject+Extension.m in Sources */,
 				B81E603821DC93EC00873AB9 /* DeviceUtil.m in Sources */,
+				36C894162224D7AC00B69214 /* SearchHistoryModel.m in Sources */,
 				1F473387221F88E0007B5908 /* MMAlternativeItem.m in Sources */,
 				1FF6397F21EC712C00F5FF68 /* BarrageView.m in Sources */,
 				1F19A8EA21FAA6BA0090BF84 /* CityModel.m in Sources */,

@@ -77,8 +77,10 @@
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
     if (error == nil) {
+        [TLAlert alertWithSucces:@"存入手机相册成功"];
         NSLog(@"存入手机相册成功");
     }else{
+        [TLAlert alertWithError:@"存入手机相册失败,请检查是否打开照片权限后再次保存，谢谢！"];
         NSLog(@"存入手机相册失败");
     }
 }
@@ -120,6 +122,7 @@
 
 -(void)refresh{
     TLNetworking * http = [[TLNetworking alloc]init];
+    http.showView = self.view;
     http.code = @"630047";
     http.parameters[@"ckey"] = @"REGISTER_URL";
     [http postWithSuccess:^(id responseObject) {

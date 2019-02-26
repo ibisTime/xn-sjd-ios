@@ -27,9 +27,9 @@
         _totalTime = total;
         [self setTitle:[LangSwitcher switchLang:@"获取验证码" key:nil] forState:UIControlStateNormal];
         
-        [self setTitleColor:kAppCustomMainColor forState:UIControlStateNormal];
-
-        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
+//        [self setTitleColor:kAppCustomMainColor forState:UIControlStateNormal];
+        self.backgroundColor = kTabbarColor;
+        [self setTitleColor:kWhiteColor forState:UIControlStateNormal];
         self.titleLabel.font = Font(15.0);
         self.enabled = YES;
 
@@ -56,10 +56,10 @@
 
     self.enabled = NO;
     
-    [self setTitle:[NSString stringWithFormat:@"%@(%ld)",[LangSwitcher switchLang:@"重新发送" key:nil],_totalTime] forState:UIControlStateDisabled];
+    [self setTitle:[NSString stringWithFormat:@"%@(%ld)",[LangSwitcher switchLang:@"重新发送" key:nil],_totalTime] forState:UIControlStateNormal];
     
     self.backgroundColor = kTextColor2;
-    
+//    [self setTitleColor:kWhiteColor forState:(UIControlStateNormal)];
     _timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(timeAction) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
     
@@ -71,10 +71,10 @@
 
     NSString *str = [NSString stringWithFormat:@"%@(%ld)",[LangSwitcher switchLang:@"重新发送" key:nil],_time];
     
-    [self setTitle:str forState:UIControlStateDisabled];
+    [self setTitle:str forState:UIControlStateNormal];
 
     if (_time == 0) {
-        
+        [self setTitle:@"重新发送" forState:UIControlStateNormal];
         [_timer invalidate];
         _timer = nil;
         _time = _totalTime;

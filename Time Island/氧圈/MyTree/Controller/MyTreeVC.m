@@ -182,7 +182,7 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 2) {
+    if (indexPath.section == 1) {
         if ([self.state isEqualToString:@"认养人介绍"]) {
             PersonalCenterVC *vc = [PersonalCenterVC new];
             [self.navigationController pushViewController:vc animated:YES];

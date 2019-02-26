@@ -43,7 +43,9 @@ static NSString *identifierCell = @"BookVideoCell";
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 115;
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.01;
+}
 -(void)setBookModels:(NSMutableArray<BookModel *> *)BookModels{
     _BookModels = BookModels;
 }

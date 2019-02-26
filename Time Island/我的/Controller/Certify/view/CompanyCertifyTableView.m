@@ -21,14 +21,23 @@
         [self registerClass:[CompanyCertifycell class] forCellReuseIdentifier:CompanyCertify];
         self.titleArray = @[@"企业名称",@"企业地址",@"企业法人姓名",@"企业法人联系方式",@"企业法人身份证",@"企业联系人",@"企业联系人电话",@"企业联系人地址",@"企业开户行",@"企业开户行帐号",@"企业注册统一码"];
         self.placeholderArray = @[@"请输入企业名称（必填）",@"请输入企业地址（必填）",@"请输入企业法人姓名（必填）",@"请输入企业法人联系方式（必填）",@"请输入企业法人身份证（必填）",@"请输入企业联系人（必填）",@"请输入企业联系人电话（必填）",@"请输入企业联系人地址（必填）",@"请输入企业开户行（必填）",@"请输入企业开户行帐号（必填）",@"请输入企业注册统一码（必填）"];
-//        self.KeyArray = @[@"ComName",@"ComAddress",@"BossName",@"BossTel",@"BossID",@"ComUser",@"ComUserTel",@"ComUserAddress",@"ComBankName",@"ComBankID",@"ComID"];
+        if ([[TLUser user].userExt[@"companyAuthStatus"] isEqualToString:@"1"]) {
+            self.ValueArray = @[[TLUser user].userExt[@"companyName"],[TLUser user].userExt[@"companyAddress"],[TLUser user].userExt[@"companyChargerName"],[TLUser user].userExt[@"companyChargerMobile"],[TLUser user].userExt[@"companyChargerIdNo"],[TLUser user].userExt[@"companyContactName"],[TLUser user].userExt[@"companyContactMobile"],[TLUser user].userExt[@"companyContactAddress"],[TLUser user].userExt[@"companyBank"],[TLUser user].userExt[@"companyBankNumber"],[TLUser user].userExt[@"bussinessLicenseId"]];
+        }
+
     }
     return self;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     cell = [tableView dequeueReusableCellWithIdentifier:CompanyCertify forIndexPath:indexPath];
     cell.title = self.titleArray[indexPath.row];
-    cell.placeholder = self.placeholderArray[indexPath.row];
+    if ([[TLUser user].userExt[@"companyAuthStatus"] isEqualToString:@"1"]) {
+        cell.placeholder = self.ValueArray[indexPath.row];
+    }
+    else{
+        cell.placeholder = self.placeholderArray[indexPath.row];
+    }
+    
     cell.keyStr = self.KeyArray[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 //    cell.Text = ^(NSString * _Nonnull text, NSString * _Nonnull key) {

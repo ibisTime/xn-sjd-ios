@@ -18,4 +18,6 @@
 @property (nonatomic ,strong) UILabel *moneyLab;
 
 @property (nonatomic,strong) RenYangUserModel * RenYangModel;
+
+@property (nonatomic,strong) UIView * view;
 @end

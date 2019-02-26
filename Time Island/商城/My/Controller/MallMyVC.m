@@ -11,7 +11,7 @@
 #import "ReceivingAddressVC.h"
 #import "NewsVC.h"
 #import "MallOrderVC.h"
-#define titlearray @[@"我的购物车",@"我的商场订单",@"我的商场消息",@"我的收货地址",@"设置"]
+#define titlearray @[@"我的购物车",@"我的商城订单",@"我的商城消息",@"我的收货地址",@"设置"]
 #define imagearray @[@"商场购物车-未选中",@"",@"",@"",@"设置"]
 @interface MallMyVC ()
 @property (nonatomic,retain) UIView * topview;

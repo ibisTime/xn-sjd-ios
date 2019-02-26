@@ -51,6 +51,7 @@ typedef NS_ENUM(NSInteger, PYSearchResultShowMode) { // 搜索结果显示方式
 
 @interface PYSearchViewController : UIViewController
 
+@property (nonatomic,copy) NSString * state;
 /** 
  * 排名标签背景色对应的16进制字符串（如：@"#ffcc99"）数组(四个颜色)
  * 前三个为分别为1、2、3 第四个为后续所有标签的背景色

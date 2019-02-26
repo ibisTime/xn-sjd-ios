@@ -143,26 +143,26 @@
     return _searchSuggestionVC;
 }
 
-- (UIButton *)emptyButton
-{
-    if (!_emptyButton) {
-        // 添加清空按钮
-        UIButton *emptyButton = [[UIButton alloc] init];
-        emptyButton.titleLabel.font = self.searchHistoryHeader.font;
-        [emptyButton setTitleColor:PYTextColor forState:UIControlStateNormal];
-        [emptyButton setTitle:@"清空" forState:UIControlStateNormal];
-        [emptyButton setImage:[UIImage imageNamed:@"PYSearch.bundle/empty"] forState:UIControlStateNormal];
-        [emptyButton addTarget:self action:@selector(emptySearchHistoryDidClick) forControlEvents:UIControlEventTouchUpInside];
-        [emptyButton sizeToFit];
-        emptyButton.py_width += PYMargin;
-        emptyButton.py_height += PYMargin;
-        emptyButton.py_centerY = self.searchHistoryHeader.py_centerY;
-        emptyButton.py_x = self.headerContentView.py_width - emptyButton.py_width;
-        [self.headerContentView addSubview:emptyButton];
-        _emptyButton = emptyButton;
-    }
-    return _emptyButton;
-}
+//- (UIButton *)emptyButton
+//{
+//    if (!_emptyButton) {
+//        // 添加清空按钮
+//        UIButton *emptyButton = [[UIButton alloc] init];
+//        emptyButton.titleLabel.font = self.searchHistoryHeader.font;
+//        [emptyButton setTitleColor:PYTextColor forState:UIControlStateNormal];
+//        [emptyButton setTitle:@"清空" forState:UIControlStateNormal];
+//        [emptyButton setImage:[UIImage imageNamed:@"PYSearch.bundle/empty"] forState:UIControlStateNormal];
+//        [emptyButton addTarget:self action:@selector(emptySearchHistoryDidClick) forControlEvents:UIControlEventTouchUpInside];
+//        [emptyButton sizeToFit];
+//        emptyButton.py_width += PYMargin;
+//        emptyButton.py_height += PYMargin;
+//        emptyButton.py_centerY = self.searchHistoryHeader.py_centerY;
+//        emptyButton.py_x = self.headerContentView.py_width - emptyButton.py_width;
+//        [self.headerContentView addSubview:emptyButton];
+//        _emptyButton = emptyButton;
+//    }
+//    return _emptyButton;
+//}
 
 - (UIView *)searchHistoryTagsContentView
 {
@@ -214,15 +214,25 @@
 /** 视图加载完毕 */
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    self.title=@"搜索";
+    UILabel * label = [UILabel labelWithFrame:CGRectMake(0, 0, 200, 44) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(19) textColor:kWhiteColor];
+    label.text = @"搜索";
+    self.navigationItem.titleView = label;
 }
 
 /** 视图将要显示 */
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
     
     // 没有热门搜索并且搜索历史为默认PYHotSearchStyleDefault就隐藏
-   
+    if ([self.state isEqualToString:@"home"]) {
+        [UINavigationBar appearance].barTintColor = kTabbarColor;
+    }
+    else{
+        [UINavigationBar appearance].barTintColor = kHexColor(@"#333333");
+    }
 }
 
 /** 视图完全显示 */
@@ -233,7 +243,9 @@
     // 弹出键盘
     [self.searchBar becomeFirstResponder];
 }
-
+-(void)viewWillDisappear:(BOOL)animated{
+    [UINavigationBar appearance].barTintColor = kTabbarColor;
+}
 /** 控制器销毁 */
 - (void)dealloc
 {
@@ -245,13 +257,15 @@
 {
     self.baseSearchTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(cancelDidClick)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(cancelDidClick)];
     
     //这里改变barbuttonitem的字体颜色
-    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+//    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     
     //改变导航背景颜色
-    [UINavigationBar appearance].barTintColor = MainColor;
+    
+    
+    
     
     // 热门搜索风格设置
     self.hotSearchStyle = PYHotSearchStyleDefault;
@@ -278,7 +292,7 @@
     
     [searchbar setBackgroundColor:RGB(237, 237, 237)];
     [searchbar setTintColor:[UIColor lightGrayColor]];
-    [searchbar setPlaceholder:@"搜索商品"];
+    [searchbar setPlaceholder:@"请输入树木名称"];
     //    [self.backgroundimage addSubview:searchbar];
     //    [self.headview bringSubviewToFront:searchbar];
     self.searchBar = searchbar;
@@ -313,14 +327,14 @@
     UILabel *titleLabel = [self setupTitleLabel:PYSearchHistoryText];
     self.hotSearchHeader = titleLabel;
     [contentView addSubview:titleLabel];
-    UIImageView *imageClear = [[UIImageView alloc] init];
-    self.imageClear = imageClear;
-    [contentView addSubview:imageClear];
-    imageClear.image = kImage(@"PYSearch.bundle/empty");
-    imageClear.frame = CGRectMake(kScreenWidth-50, 0, 20, 20);
-    imageClear.userInteractionEnabled = YES;
-    UITapGestureRecognizer *ta = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(emptySearchHistoryDidClick)];
-    [imageClear addGestureRecognizer:ta];
+//    UIImageView *imageClear = [[UIImageView alloc] init];
+//    self.imageClear = imageClear;
+//    [contentView addSubview:imageClear];
+//    imageClear.image = kImage(@"PYSearch.bundle/empty");
+//    imageClear.frame = CGRectMake(kScreenWidth-50, 0, 20, 20);
+//    imageClear.userInteractionEnabled = YES;
+//    UITapGestureRecognizer *ta = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(emptySearchHistoryDidClick)];
+//    [imageClear addGestureRecognizer:ta];
     // 创建热门搜索标签容器
     UIView *hotSearchTagsContentView = [[UIView alloc] init];
     hotSearchTagsContentView.py_width = contentView.py_width;
@@ -333,16 +347,16 @@
     // 设置底部(清除历史搜索)
     UIView *footerView = [[UIView alloc] init];
     footerView.py_width = PYScreenW;
-    UILabel *emptySearchHistoryLabel = [[UILabel alloc] init];
-    emptySearchHistoryLabel.textColor = [UIColor darkGrayColor];
-    emptySearchHistoryLabel.font = [UIFont systemFontOfSize:13];
-    emptySearchHistoryLabel.userInteractionEnabled = YES;
-    emptySearchHistoryLabel.text = PYEmptySearchHistoryText;
-    emptySearchHistoryLabel.textAlignment = NSTextAlignmentCenter;
-    emptySearchHistoryLabel.py_height = 30;
-    [emptySearchHistoryLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(emptySearchHistoryDidClick)]];
-    emptySearchHistoryLabel.py_width = PYScreenW;
-    [footerView addSubview:emptySearchHistoryLabel];
+//    UILabel *emptySearchHistoryLabel = [[UILabel alloc] init];
+//    emptySearchHistoryLabel.textColor = [UIColor darkGrayColor];
+//    emptySearchHistoryLabel.font = [UIFont systemFontOfSize:13];
+//    emptySearchHistoryLabel.userInteractionEnabled = YES;
+//    emptySearchHistoryLabel.text = PYEmptySearchHistoryText;
+//    emptySearchHistoryLabel.textAlignment = NSTextAlignmentCenter;
+//    emptySearchHistoryLabel.py_height = 30;
+//    [emptySearchHistoryLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(emptySearchHistoryDidClick)]];
+//    emptySearchHistoryLabel.py_width = PYScreenW;
+//    [footerView addSubview:emptySearchHistoryLabel];
     footerView.py_height = 50;
     self.baseSearchTableView.tableFooterView = footerView;
 }

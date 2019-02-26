@@ -49,7 +49,7 @@
         }
         if ([[TLUser user].userExt[@"companyAuthStatus"] isEqualToString:@"1"]) {
             cell.title.text = @"企业认证";
-            cell.state.text = @"未认证";
+            cell.state.text = @"已认证";
         }
     }
     else{
@@ -67,14 +67,26 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0) {
-        PersonalCertifyVC * vc = [PersonalCertifyVC new];
-        [self.navigationController pushViewController:vc animated:YES];
+    if ([[TLUser user].userExt[@"personAuthStatus"] isEqualToString:@"1"] ||[[TLUser user].userExt[@"companyAuthStatus"] isEqualToString:@"1"]) {
+        if ([[TLUser user].userExt[@"personAuthStatus"] isEqualToString:@"1"]) {
+            PersonalCertifyVC * vc = [PersonalCertifyVC new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        if ([[TLUser user].userExt[@"companyAuthStatus"] isEqualToString:@"1"]) {
+            CompanyCertifyVC * vc = [CompanyCertifyVC new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }else{
+        if (indexPath.row == 0) {
+            PersonalCertifyVC * vc = [PersonalCertifyVC new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        if (indexPath.row == 1) {
+            CompanyCertifyVC * vc = [CompanyCertifyVC new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
-    if (indexPath.row == 1) {
-        CompanyCertifyVC * vc = [CompanyCertifyVC new];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+    
     
 }
 @end

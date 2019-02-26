@@ -189,13 +189,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Time Island/&#x6211;&#x7684;/Controller/Certify/view/CompanyCertifycell.m"
-            timestampString = "572781723.652441"
+            filePath = "Time Island/&#x7528;&#x6237;/Controller/UserInfo/ChangeLoginPwdVC.m"
+            timestampString = "572867582.3734649"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "-textFieldDidEndEditing:"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "-confirm"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -205,13 +205,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Time Island/&#x6211;&#x7684;/Controller/Certify/view/CompanyCertifycell.m"
-            timestampString = "572781723.652527"
+            filePath = "Time Island/&#x7528;&#x6237;/Controller/UserInfo/ChangeLoginPwdVC.m"
+            timestampString = "572867582.373593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "-textFieldDidEndEditing:"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "-confirm"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -221,13 +221,76 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Time Island/&#x6211;&#x7684;/Controller/Certify/view/CompanyCertifycell.m"
-            timestampString = "572781723.652596"
+            filePath = "Time Island/&#x7528;&#x6237;/Controller/UserInfo/ChangeLoginPwdVC.m"
+            timestampString = "572867582.3736711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "-textFieldDidEndEditing:"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "-confirm"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ChangeLoginPwdVC confirm]"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/meiminjie/Desktop/xn-sjd-ios/Time%20Island/%E7%94%A8%E6%88%B7/Controller/UserInfo/ChangeLoginPwdVC.m"
+                  timestampString = "572867582.543388"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "173"
+                  endingLineNumber = "173"
+                  offsetFromSymbolStart = "2236">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__27-[ChangeLoginPwdVC confirm]_block_invoke"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/meiminjie/Desktop/xn-sjd-ios/Time%20Island/%E7%94%A8%E6%88%B7/Controller/UserInfo/ChangeLoginPwdVC.m"
+                  timestampString = "572867582.545738"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "173"
+                  endingLineNumber = "173"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_"
+                  moduleName = "Time Island"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/meiminjie/Desktop/xn-sjd-ios/Time%20Island/%E7%94%A8%E6%88%B7/Controller/UserInfo/ChangeLoginPwdVC.m"
+                  timestampString = "572867582.548125"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "173"
+                  endingLineNumber = "173"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Time Island/&#x6c27;&#x5708;/MyTree/Controller/MyTreeVC.m"
+            timestampString = "572867582.373747"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "-refreshTableViewButtonClick:button:selectRowAtIndex:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

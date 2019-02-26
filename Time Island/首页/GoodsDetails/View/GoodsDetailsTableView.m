@@ -58,6 +58,9 @@
         }
         else
         {
+            if (self.RenYangModel.count == 0) {
+                return 1;
+            }
             return self.RenYangModel.count;
         }
     }
@@ -86,7 +89,7 @@
                         [NSString stringWithFormat:@"%@ %@",[TLUser convertNull:self.TreeModel.city],[TLUser convertNull:self.TreeModel.treeList[0][@"area"]]],
                         [TLUser convertNull:self.TreeModel.treeList[0][@"town"]],
                         [TLUser convertNull:self.TreeModel.treeList[0][@"originPlace"]],
-                        [NSString stringWithFormat:@"%@ - %@",[TLUser convertNull:[self.TreeModel.productSpecsList[0][@"startDatetime"] convertToDetailDate]],[TLUser convertNull:[self.TreeModel.productSpecsList[0][@"endDatetime"] convertToDetailDate]]],@""];
+                        [NSString stringWithFormat:@"%@ - %@",[TLUser convertNull:[self.TreeModel.productSpecsList[0][@"startDatetime"] convertToDetailDateWithoutHour]],[TLUser convertNull:[self.TreeModel.productSpecsList[0][@"endDatetime"] convertToDetailDateWithoutHour]]],@""];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.moreLab.text = [NSString stringWithFormat:@"[%@]",titles[indexPath.row]];
@@ -121,8 +124,12 @@
         
         
     }else{
+        
         RenYangListCell *cell = [tableView dequeueReusableCellWithIdentifier:RenYangList forIndexPath:indexPath];
-        cell.RenYangModel = self.RenYangModel[indexPath.row];
+        if (self.RenYangModel.count > 0) {
+            cell.RenYangModel = self.RenYangModel[indexPath.row];
+        }
+        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
@@ -180,6 +187,9 @@
         }
         else
         {
+            if (self.RenYangModel.count == 0) {
+                return 200;
+            }
             return 50;
         }
     }
