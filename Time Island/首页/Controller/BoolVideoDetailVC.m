@@ -282,16 +282,18 @@
     } failure:^(NSError *error) {
     }];
     
-    http.code = @"629348";
-    http.parameters[@"userId"] = [TLUser user].userId;
+    
+    TLNetworking * http1 = [[TLNetworking alloc]init];
+    http1.code = @"629348";
+    http1.parameters[@"userId"] = [TLUser user].userId;
     if ([self.state isEqualToString:@"collect"]) {
-        http.parameters[@"code"] = self.BookModel.article[@"code"];
+        http1.parameters[@"code"] = self.BookModel.article[@"code"];
     }
     else{
-        http.parameters[@"code"] = self.BookModel.code;
+        http1.parameters[@"code"] = self.BookModel.code;
     }
-    http.parameters[@"type"] = @(2);
-    [http postWithSuccess:^(id responseObject) {
+    http1.parameters[@"type"] = @(2);
+    [http1 postWithSuccess:^(id responseObject) {
         if ([responseObject[@"data"][@"isPointCollect"] isEqualToString:@"1"]) {
             self.CollectBtn.selected = YES;
         }

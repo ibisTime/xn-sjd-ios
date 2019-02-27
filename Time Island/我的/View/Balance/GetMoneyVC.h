@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GetMoneyVC : TLBaseVC
+@interface GetMoneyVC : TLBaseVC<UITextFieldDelegate>
 @property (strong, nonatomic) UIWindow *window;
 @end
 

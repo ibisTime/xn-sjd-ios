@@ -14,4 +14,5 @@
 @property (nonatomic,copy) void(^loginSuccess)();
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic,strong) NSString * state;
 @end

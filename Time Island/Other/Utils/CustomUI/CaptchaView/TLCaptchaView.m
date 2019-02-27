@@ -44,10 +44,10 @@
     self.captchaTf.keyboardType = UIKeyboardTypeNumberPad;
     captchaBtn.layer.cornerRadius = 4;
     captchaBtn.clipsToBounds = YES;
-//    captchaBtn.backgroundColor = kAppCustomMainColor;
-    [captchaBtn setTitleColor:[UIColor colorWithHexString:@"#23AD8C"] forState:UIControlStateNormal];
-    [captchaBtn.layer setBorderWidth:1.0];
-    [captchaBtn.layer setBorderColor:[UIColor colorWithHexString:@"#23AD8C"].CGColor];
+    captchaBtn.backgroundColor = kAppCustomMainColor;
+//    [captchaBtn setTitleColor:[UIColor colorWithHexString:@"#23AD8C"] forState:UIControlStateNormal];
+//    [captchaBtn.layer setBorderWidth:1.0];
+//    [captchaBtn.layer setBorderColor:[UIColor colorWithHexString:@"#23AD8C"].CGColor];
     [rightView addSubview:captchaBtn];
     
     self.captchaTf.rightView = rightView;

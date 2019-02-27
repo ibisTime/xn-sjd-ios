@@ -68,6 +68,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
+    
 }
 
 -(YiceSlidelipPickerMenu *)pickMenu
@@ -110,6 +111,10 @@
     [self initComboBox];
     [self.view addSubview:self.collectionView];
     [self headRefresh];
+//    [self datafromsearch];
+    if ([self.state isEqualToString:@"search"]) {
+        self.searchBar.text = self.SearchContent;
+    }
     
     
     UIButton *screeningBtn = [UIButton buttonWithTitle:@"筛选" titleColor:kTextColor backgroundColor:kClearColor titleFont:12];
@@ -193,7 +198,7 @@
         }
     }
     
-    [self refresh];
+    [self headRefresh];
 }
 
 
@@ -409,11 +414,19 @@
             switch (index) {
                 case 0:
                     self.area = title;
-                    [self refresh];
+                    [self headRefresh];
                     break;
                 case 1:
-                    self.treeLevel = title;
-                    [self refresh];
+                    if ([title isEqualToString:@"100年"]) {
+                        self.treeLevel = @"THIRD";
+                    }else if ([title isEqualToString:@"300年"]){
+                        self.treeLevel = @"SECOND";
+                    }
+                    else{
+                        self.treeLevel = @"FIRST";
+                    }
+                    
+                    [self headRefresh];
                     break;
                 case 2:{
                     if ([title isEqualToString:@"从小到大"]) {
@@ -424,7 +437,7 @@
                         self.orderDir = @"desc";
                         self.orderColumn = @"age";
                     }
-                    [self refresh];
+                    [self headRefresh];
                 }
                     break;
                 default:
@@ -545,7 +558,7 @@
     http.code = @"629025";
     http.parameters[@"start"] = @(self.start);
     http.parameters[@"limit"] = @(10);
-    http.parameters[@"name"]= @"";
+    
     http.parameters[@"statusList"] = @[@"4",@"5",@"6"];
     if (self.area) {
         if ([self.area isEqualToString:@"全国"]) {
@@ -575,13 +588,16 @@
     if (self.orderDir) {
         http.parameters[@"orderDir"] = self.orderDir;
     }
-//    http.parameters[@"variety"] = @"樟树";
+    if ([self.state isEqualToString:@"search"]) {
+        http.parameters[@"name"] = self.SearchContent;
+    }else{
+        http.parameters[@"name"]= @"";
+    }
     [http postWithSuccess:^(id responseObject) {
         NSArray *array = responseObject[@"data"][@"list"];
         [self.treemMuArray addObjectsFromArray:array];
+        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treemMuArray];
         
-        [self.models removeAllObjects];
-        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
         [self.collectionView reloadData];
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshing];
@@ -651,14 +667,12 @@
     http.parameters[@"start"] = @(self.start);
     http.parameters[@"limit"] = @(10);
     http.parameters[@"type"]= @(1);
+    
     http.parameters[@"name"] = self.searchBar.text;
     http.parameters[@"userId"] = [TLUser user].userId;
     http.parameters[@"statusList"] = @[@"4",@"5",@"6"];
     [http postWithSuccess:^(id responseObject) {
-        //        NSArray *array = responseObject[@"data"][@"list"];
-        //        [self.treemMuArray addObjectsFromArray:array];
-        //        self.treeArray = array;
-        //        self.models = [TreeModel mj_objectArrayWithKeyValuesArray:self.treemMuArray];
+
         [self.models removeAllObjects];
         self.models = [TreeModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
         [self.collectionView reloadData];
@@ -669,7 +683,30 @@
         [self.collectionView.mj_footer endRefreshing];
     }];
 }
-
+-(void)datafromsearch{
+    if ([self.state isEqualToString:@"search"]) {
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"629025";
+        http.parameters[@"start"] = @(self.start);
+        http.parameters[@"limit"] = @(10);
+        http.parameters[@"type"]= @(1);
+        
+        http.parameters[@"name"] = self.SearchContent;
+        http.parameters[@"userId"] = [TLUser user].userId;
+        http.parameters[@"statusList"] = @[@"4",@"5",@"6"];
+        [http postWithSuccess:^(id responseObject) {
+            
+            [self.models removeAllObjects];
+            self.models = [TreeModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+            [self.collectionView reloadData];
+            [self.collectionView.mj_header endRefreshing];
+            [self.collectionView.mj_footer endRefreshing];
+        } failure:^(NSError *error) {
+            [self.collectionView.mj_header endRefreshing];
+            [self.collectionView.mj_footer endRefreshing];
+        }];
+    }
+}
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629025";

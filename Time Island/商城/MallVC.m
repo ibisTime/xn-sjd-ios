@@ -34,7 +34,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"商场";
+    self.title = @"商城";
     [UIBarButtonItem addLeftItemWithImageName:@"返回白色" frame:CGRectMake(-10, 0, 44, 40) vc:self action:@selector(backButtonClick)];
     [self initHeaderView];
 }

@@ -48,7 +48,7 @@
     [super viewDidLoad];
     self.title = @"氧圈";
     [self.view addSubview:self.circleView];
-    
+    NSLog(@"%.f",self.navigationController.navigationBar.frame.size.height);
 //    
 //    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
 //    negativeSpacer.width = -10;

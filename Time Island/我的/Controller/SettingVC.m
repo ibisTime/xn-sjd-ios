@@ -19,7 +19,7 @@
 #import "ChangeLoginPwdVC.h"
 #import "TLUserLoginVC.h"
 #import "TLTabBarController.h"
-#define titlearray @[@"修改手机号",@"绑定邮箱",@"我的银行卡",@"设置支付密码",@"修改登录密码",@"完善资料",@"收货地址"]
+#define titlearray @[@"修改手机号",@"绑定邮箱",@"我的银行卡",@"设置支付密码",@"修改登录密码",@"个人资料",@"收货地址"]
 @interface SettingVC ()
 @property (nonatomic,strong) UITableView *table;
 @end

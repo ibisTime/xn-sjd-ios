@@ -30,8 +30,10 @@
 #import "GoodsDetailsVc.h"
 #import "RankingVC.h"
 #import "MoreIntroduceVC.h"
-@interface HomeVC ()<RefreshDelegate,RefreshCollectionViewDelegate,UIScrollViewDelegate,UITextFieldDelegate,UISearchBarDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
-
+#import "PYSearch.h"
+#import "SearchHistoryModel.h"
+@interface HomeVC ()<RefreshDelegate,RefreshCollectionViewDelegate,UIScrollViewDelegate,UITextFieldDelegate,UISearchBarDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,PYSearchViewControllerDelegate>
+@property (nonatomic,strong) NSMutableArray<SearchHistoryModel *> * SearchHistoryModels;
 //@property (nonatomic, strong) HomeHeaderView *headerView;
 @property (nonatomic,strong)HomeHeadCell *cell;
 @property (nonatomic,strong) NSArray <HomeFindModel *>*findModels;
@@ -65,7 +67,7 @@
 @property (nonatomic,strong) NSArray * SellTypeArray;
 @property (nonatomic,strong) NSArray * ProductStatusArray;
 
-
+@property (nonatomic ,strong) PYSearchViewController *searchViewController;
 @end
 
 @implementation HomeVC
@@ -98,7 +100,7 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
-
+    
 }
 
 
@@ -268,7 +270,7 @@
     searchbar.clipsToBounds = YES;
     searchbar.delegate = self;
     [searchbar setBackgroundColor:kWhiteColor];
-    [searchbar setPlaceholder:@"搜索商品信息"];
+    [searchbar setPlaceholder:@"请输入树木名称"];
     [Title addSubview:searchbar];
     self.searchBar = searchbar;
     [content addSubview:calendar];
@@ -287,19 +289,66 @@
 }
 
 - (void)calendarClick{
-    CalendarCustomVC *calendar = [CalendarCustomVC new];
-    [self.navigationController pushViewController:calendar animated:YES];
+    if (![TLUser user].checkLogin) {
+        [TLAlert alertWithMsg:@"请先登录，再进行此操作！谢谢！"];
+    }else{
+        CalendarCustomVC *calendar = [CalendarCustomVC new];
+        [self.navigationController pushViewController:calendar animated:YES];
+    }
 }
 
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
     [self.view endEditing:YES];
-
-    TreeListVC *tree = [TreeListVC new];
-    [self.navigationController pushViewController:tree animated:YES];
+    
+    // 1. 创建热门搜索
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.showView = self.view;
+    http.code = @"629657";
+    http.parameters[@"userId"] = [TLUser user].userId;
+    http.parameters[@"type"] = @(1);
+    [http postWithSuccess:^(id responseObject) {
+        self.SearchHistoryModels = [SearchHistoryModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        NSMutableArray * arr = [NSMutableArray array];
+        for (int i = 0; i < self.SearchHistoryModels.count; i++) {
+            SearchHistoryModel * model = self.SearchHistoryModels[i];
+            [arr addObject:model.content];
+        }
+        PYSearchViewController *searchViewController ;
+        searchViewController.state = @"home";
+        searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:arr searchBarPlaceholder:@"搜索" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+            // 开始搜索执行以下代码
+            // 如：跳转到指定控制器
+            [arr insertObject:searchText atIndex:0];
+            searchViewController.hotSearches = arr;
+            return ;
+        }];
+        // 3. 设置风格
+        self.searchViewController = searchViewController;
+        
+        searchViewController.searchHistoryStyle = PYHotSearchStyleDefault; // 搜索历史风格为default
+        
+        // 4. 设置代理
+        searchViewController.delegate = self;
+        // 5. 跳转到搜索控制器
+        [self.navigationController pushViewController:searchViewController animated:YES];
+    } failure:^(NSError *error) {
+        
+    }];
+    
+    
+    // 2. 创建控制器
+    
     return NO;
 
 }
+-(void)searchViewController:(PYSearchViewController *)searchViewController didSearchWithsearchBar:(UISearchBar *)searchBar searchText:(NSString *)searchText{
+    TreeListVC * vc = [[TreeListVC alloc]init];
+    vc.state = @"search";
+    vc.SearchContent = searchText;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 -(void)headRefresh
 {
@@ -344,37 +393,49 @@
 
 //公告详情
 -(void)detailIntroduce{
-    introduceView * vc = [introduceView new];
-    vc.title = @"公告详情";
-    vc.web = self.IntroduceArray[0][@"content"];
-    vc.IntroduceTitle = self.IntroduceArray[0][@"title"];
-    vc.time = [self.IntroduceArray[0][@"createDatetime"] convertToDetailDate];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (self.IntroduceArray.count > 0) {
+        introduceView * vc = [introduceView new];
+        vc.title = @"公告详情";
+        vc.web = self.IntroduceArray[0][@"content"];
+        vc.IntroduceTitle = self.IntroduceArray[0][@"title"];
+        vc.time = [self.IntroduceArray[0][@"createDatetime"] convertToDetailDate];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 
 //情感频道
 - (void)bookVideoClick
 {
-    BookVideoVC *notice = [BookVideoVC new];
-    notice.title = @"情感频道";
-    [self.navigationController pushViewController:notice animated:YES];
+    if ([TLUser user].checkLogin) {
+        BookVideoVC *notice = [BookVideoVC new];
+        notice.title = @"情感频道";
+        [self.navigationController pushViewController:notice animated:YES];
+    }
+    
     
 }
 //快报更多
 - (void)noticeClick
 {
-    MyNoticeVC *notice = [MyNoticeVC new];
-    notice.title = @"公告";
-    [self.navigationController pushViewController:notice animated:YES];
+    if ([TLUser user].checkLogin) {
+        MyNoticeVC *notice = [MyNoticeVC new];
+        notice.title = @"公告";
+        [self.navigationController pushViewController:notice animated:YES];
+    }
+    
     
 }
 
 //快报详情
 -(void)detailsClick : (NSInteger)index{
-    MyNoticeDetailsVC * vc = [MyNoticeDetailsVC new];
-    vc.title = @"快报详情";
-    vc.model = self.newsarray[index];
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([TLUser user].checkLogin) {
+        MyNoticeDetailsVC * vc = [MyNoticeDetailsVC new];
+        vc.title = @"快报详情";
+        vc.model = self.newsarray[index];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 //公告更多
 -(void)MoreIntroduce{
@@ -399,9 +460,14 @@
         [self presentViewController:tabbar animated:YES completion:nil];
         
     }else{
-        RankingVC *vc = [RankingVC new];
-        vc.state = @"rank";
-        [self.navigationController pushViewController:vc animated:YES];
+        if (![TLUser user].checkLogin) {
+            [TLAlert alertWithMsg:@"请先登录，再进行此操作！谢谢！"];
+            
+        }else{
+            RankingVC *vc = [RankingVC new];
+            vc.state = @"rank";
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
     
 }

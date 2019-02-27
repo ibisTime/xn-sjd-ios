@@ -41,10 +41,20 @@
     return self;
 }
 -(void)setCarbonModel:(CarbonModel *)CarbonModel{
-    self.nameLbl.text = CarbonModel.bizNote;
     float amount3 = [CarbonModel.transAmountString floatValue] / 1000.00;
-    NSString * str3 = [NSString stringWithFormat:@"%.2f",amount3];
-    self.numberLbl.text = str3;
+    if (amount3 > 0) {
+        self.iconImg.image = kImage(@"收益");
+        NSString * str3 = [NSString stringWithFormat:@"+%.2f",amount3];
+        self.numberLbl.text = str3;
+    }
+    else{
+        self.iconImg.image = kImage(@"支出");
+        NSString * str3 = [NSString stringWithFormat:@"%.2f",amount3];
+        self.numberLbl.text = str3;
+    }
+    self.nameLbl.text = CarbonModel.bizNote;
+    
+    
     self.timeLbl.text = [CarbonModel.createDatetime convertToDetailDate];
 }
 

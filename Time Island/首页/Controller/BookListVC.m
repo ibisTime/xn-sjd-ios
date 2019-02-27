@@ -39,6 +39,7 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     BoolVideoDetailVC *detailavc = [[BoolVideoDetailVC alloc] init];
     detailavc.BookModel = self.BookModel[indexPath.row];
     detailavc.title =@"文章详情";

@@ -38,7 +38,7 @@
     
     
     self.view.backgroundColor = kWhiteColor;
-    self.bookview = [[BookView alloc] initWithFrame:CGRectMake(0, -30, kScreenWidth, kScreenHeight - kTabBarHeight) style:UITableViewStyleGrouped];
+    self.bookview = [[BookView alloc] initWithFrame:CGRectMake(0, -0, kScreenWidth, kScreenHeight - kTabBarHeight) style:UITableViewStyleGrouped];
     self.bookview.backgroundColor = kWhiteColor;
     self.bookview.refreshDelegate = self;
     self.bookview.state = 1;
@@ -48,6 +48,10 @@
         [weakSelf refresh];
         [weakSelf.bookview endRefreshHeader];
     }];
+    
+    
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -65,6 +69,16 @@
         self.BookModels = [BookModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
         self.bookview.BookModels = self.BookModels;
         [self.bookview reloadData];
+        if (self.BookModels.count == 0) {
+            UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0,0, kScreenWidth, kScreenHeight - kNavigationBarHeight)];
+            UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 25, 100, 50, 50)];
+            image.image = kImage(@"暂无订单");
+            [view addSubview:image];
+            UILabel * label = [UILabel labelWithFrame:CGRectMake(0, image.yy + 5, SCREEN_WIDTH, 30) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(16) textColor:kTextColor3];
+            label.text = @"抱歉，暂无文章";
+            [view addSubview:label];
+            [self.view addSubview:view];
+        }
     } failure:^(NSError *error) {
     }];
 }

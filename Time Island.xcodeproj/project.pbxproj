@@ -238,6 +238,8 @@
 		3689769C21EF3A4F005F1177 /* AMap.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3689769B21EF3A4F005F1177 /* AMap.bundle */; };
 		369C60CC21F71254001F9CBA /* MailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C60CB21F71254001F9CBA /* MailVC.m */; };
 		369C60CF21F717A9001F9CBA /* PayPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 369C60CE21F717A9001F9CBA /* PayPwdVC.m */; };
+		36A001A82223CD0500D84BD6 /* CompanyCertifyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A001A72223CD0500D84BD6 /* CompanyCertifyTableView.m */; };
+		36A001AE2223CD3800D84BD6 /* CompanyCertifycell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A001AD2223CD3800D84BD6 /* CompanyCertifycell.m */; };
 		36A0C03B2212698400B751D0 /* PostMoneyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A0C03A2212698400B751D0 /* PostMoneyVC.m */; };
 		36A84B442211114C003CDE19 /* TLChangeMobileVC.h in Sources */ = {isa = PBXBuildFile; fileRef = B81E5FF521DC906C00873AB9 /* TLChangeMobileVC.h */; };
 		36A84B47221119D3003CDE19 /* RankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A84B46221119D3003CDE19 /* RankModel.m */; };
@@ -255,6 +257,7 @@
 		36C85E8A2212C9DF00DA26BE /* MessageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C85E892212C9DF00DA26BE /* MessageVC.m */; };
 		36C85E8D2212CCEF00DA26BE /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C85E8C2212CCEF00DA26BE /* MessageCell.m */; };
 		36C85E902212CE4F00DA26BE /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C85E8F2212CE4F00DA26BE /* MessageModel.m */; };
+		36C894162224D7AC00B69214 /* SearchHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C894152224D7AC00B69214 /* SearchHistoryModel.m */; };
 		36DB50D621F5993B009D56EF /* NewsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50D521F5993B009D56EF /* NewsVC.m */; };
 		36DB50D921F59AEF009D56EF /* NewsVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50D821F59AEF009D56EF /* NewsVCCell.m */; };
 		36DB50DC21F5A11F009D56EF /* MallOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50DB21F5A11F009D56EF /* MallOrderVC.m */; };
@@ -983,6 +986,10 @@
 		369C60CB21F71254001F9CBA /* MailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MailVC.m; sourceTree = "<group>"; };
 		369C60CD21F717A9001F9CBA /* PayPwdVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayPwdVC.h; sourceTree = "<group>"; };
 		369C60CE21F717A9001F9CBA /* PayPwdVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PayPwdVC.m; sourceTree = "<group>"; };
+		36A001A62223CD0500D84BD6 /* CompanyCertifyTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyCertifyTableView.h; sourceTree = "<group>"; };
+		36A001A72223CD0500D84BD6 /* CompanyCertifyTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyCertifyTableView.m; sourceTree = "<group>"; };
+		36A001AC2223CD3800D84BD6 /* CompanyCertifycell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyCertifycell.h; sourceTree = "<group>"; };
+		36A001AD2223CD3800D84BD6 /* CompanyCertifycell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyCertifycell.m; sourceTree = "<group>"; };
 		36A0C0392212698400B751D0 /* PostMoneyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostMoneyVC.h; sourceTree = "<group>"; };
 		36A0C03A2212698400B751D0 /* PostMoneyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostMoneyVC.m; sourceTree = "<group>"; };
 		36A84B45221119D3003CDE19 /* RankModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RankModel.h; sourceTree = "<group>"; };
@@ -1015,6 +1022,8 @@
 		36C85E8C2212CCEF00DA26BE /* MessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		36C85E8E2212CE4F00DA26BE /* MessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
 		36C85E8F2212CE4F00DA26BE /* MessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
+		36C894142224D7AC00B69214 /* SearchHistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchHistoryModel.h; sourceTree = "<group>"; };
+		36C894152224D7AC00B69214 /* SearchHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchHistoryModel.m; sourceTree = "<group>"; };
 		36DB50D421F5993B009D56EF /* NewsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsVC.h; sourceTree = "<group>"; };
 		36DB50D521F5993B009D56EF /* NewsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsVC.m; sourceTree = "<group>"; };
 		36DB50D721F59AEF009D56EF /* NewsVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsVCCell.h; sourceTree = "<group>"; };
@@ -2766,6 +2775,7 @@
 		363E291821F84D28003981CD /* Certify */ = {
 			isa = PBXGroup;
 			children = (
+				36A001A52223CCEC00D84BD6 /* view */,
 				363E291221F84530003981CD /* CertifyVC.h */,
 				363E291321F84530003981CD /* CertifyVC.m */,
 				363E291921F84D46003981CD /* PersonalCertifyVC.h */,
@@ -2907,6 +2917,17 @@
 			path = Order;
 			sourceTree = "<group>";
 		};
+		36A001A52223CCEC00D84BD6 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				36A001A62223CD0500D84BD6 /* CompanyCertifyTableView.h */,
+				36A001A72223CD0500D84BD6 /* CompanyCertifyTableView.m */,
+				36A001AC2223CD3800D84BD6 /* CompanyCertifycell.h */,
+				36A001AD2223CD3800D84BD6 /* CompanyCertifycell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		36A84B4822111FA9003CDE19 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -2961,6 +2982,8 @@
 			children = (
 				36DFD832221FC4AC00DC5E0F /* IntroduceModel.h */,
 				36DFD833221FC4AC00DC5E0F /* IntroduceModel.m */,
+				36C894142224D7AC00B69214 /* SearchHistoryModel.h */,
+				36C894152224D7AC00B69214 /* SearchHistoryModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4605,6 +4628,7 @@
 				B80D388521F871CF00206B55 /* SubmitOrderAddressCell.m in Sources */,
 				B81E5FD721DC8FC200873AB9 /* NSString+Extension.m in Sources */,
 				1F1B00C621E8814F000BEBD3 /* MyArticleTableView.m in Sources */,
+				36A001A82223CD0500D84BD6 /* CompanyCertifyTableView.m in Sources */,
 				36A84B5422115F18003CDE19 /* BalanceTableView.m in Sources */,
 				3680126E22165B4800A7FB0B /* CollectionViewCell.m in Sources */,
 				1F93610621EDFD8F007E522A /* ToClaimTheGiftCell.m in Sources */,
@@ -4626,6 +4650,7 @@
 				B81E5FF121DC8FC200873AB9 /* AppDelegate.m in Sources */,
 				B81E5FDB21DC8FC200873AB9 /* NSObject+Extension.m in Sources */,
 				B81E603821DC93EC00873AB9 /* DeviceUtil.m in Sources */,
+				36C894162224D7AC00B69214 /* SearchHistoryModel.m in Sources */,
 				1F473387221F88E0007B5908 /* MMAlternativeItem.m in Sources */,
 				1FF6397F21EC712C00F5FF68 /* BarrageView.m in Sources */,
 				1F19A8EA21FAA6BA0090BF84 /* CityModel.m in Sources */,
@@ -4957,6 +4982,7 @@
 				B81E5FDC21DC8FC200873AB9 /* TLWXManager.m in Sources */,
 				B81E602121DC906D00873AB9 /* UserInfo.m in Sources */,
 				1FF6398B21EC7DC200F5FF68 /* RankingTableView.m in Sources */,
+				36A001AE2223CD3800D84BD6 /* CompanyCertifycell.m in Sources */,
 				1F47329A221EA11A007B5908 /* YiceSlidelipPickCommonModel.m in Sources */,
 				B85F891E21FC2F9C00D5B7A4 /* PYSearchViewController.m in Sources */,
 				1F473298221EA11A007B5908 /* YiceSlidelipPickerMenu.m in Sources */,
@@ -5171,7 +5197,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3ZCW993X44;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -5195,6 +5221,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/WechatSDK1.8.2",
 				);
+
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -5243,7 +5270,9 @@
 					"\"UIKit\"",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.TimeIsland;
+
+				PRODUCT_BUNDLE_IDENTIFIER = com.PublicServicePlatform.servicesb;
+
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -5257,7 +5286,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3ZCW993X44;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/Map",
@@ -5281,6 +5310,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/WechatSDK1.8.2",
 				);
+
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -5329,7 +5359,9 @@
 					"\"UIKit\"",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.TimeIsland;
+
+				PRODUCT_BUNDLE_IDENTIFIER = com.PublicServicePlatform.servicesb;
+
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

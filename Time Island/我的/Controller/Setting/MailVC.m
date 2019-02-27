@@ -41,7 +41,7 @@
         [confirmBtn addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
     }
     else{
-        TLTextField * mailadd = [[TLTextField alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH, 55) placeholder:@"请输入新邮箱地址"];
+        TLTextField * mailadd = [[TLTextField alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 55) placeholder:@"请输入新邮箱地址"];
         [self.view addSubview:mailadd];
         self.mailadd = mailadd;
         

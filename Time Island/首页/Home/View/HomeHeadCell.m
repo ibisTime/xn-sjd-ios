@@ -98,7 +98,7 @@
     UILabel *introduceLab = [UILabel labelWithBackgroundColor:kClearColor textColor:kHexColor(@"#666666") font:12];
     introduceLab.textAlignment = NSTextAlignmentLeft;
     introduceLab.frame = CGRectMake(imageView.xx + 15, 7, kScreenWidth - 120, 16);
-    introduceLab.text = @"氧林平台测试公告氧林平台测试公告氧林平台测试公告氧林平台测试公告";
+    introduceLab.text = @"暂无公告";
     introduceLab.centerY = imageView.centerY;
     
     UITapGestureRecognizer * ges = [[UITapGestureRecognizer alloc]init];
@@ -136,7 +136,7 @@
     [self addSubview:renLingTree];
     self.renLingTree = renLingTree;
     
-    NSArray *Names = @[@"古树认养",@"商场",@"排行榜"];
+    NSArray *Names = @[@"古树认养",@"商城",@"排行榜"];
     
     for (int i = 0; i < 3; i ++) {
         UIButton *btn = [UIButton buttonWithTitle:@"" titleColor:kTextColor backgroundColor:kClearColor titleFont:12];

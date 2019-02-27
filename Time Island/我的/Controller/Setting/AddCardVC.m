@@ -38,24 +38,24 @@
     CGFloat height = 55;
     
     //银行卡
-    TLTextField * CardType = [[TLTextField alloc]initWithFrame:CGRectMake(margin, 0, SCREEN_WIDTH-30, height) leftTitle:@"银行卡" placeholder:@"银行卡类型"];
-    [self.view addSubview:CardType];
-    self.CardType = CardType;
+//    TLTextField * CardType = [[TLTextField alloc]initWithFrame:CGRectMake(margin, 0, SCREEN_WIDTH-30, height) leftTitle:@"银行卡" placeholder:@"银行卡类型"];
+//    [self.view addSubview:CardType];
+//    self.CardType = CardType;
     
     //银行名称
-    TLTextField * BankName = [[TLTextField alloc]initWithFrame:CGRectMake(margin, CardType.yy, SCREEN_WIDTH - 30, height) leftTitle:@"银行名称" placeholder:@"银行名称"];
+    TLTextField * BankName = [[TLTextField alloc]initWithFrame:CGRectMake(margin, 0, SCREEN_WIDTH - 30, height) leftTitle:@"银行名称" placeholder:@"银行名称"];
     [self.view addSubview:BankName];
     BankName.delegate = self;
     self.BankName = BankName;
     
     
     //支行名称
-    TLTextField * CardName = [[TLTextField alloc]initWithFrame:CGRectMake(margin, BankName.yy, SCREEN_WIDTH-30, height) leftTitle:@"支行名称" placeholder:@"银行卡支行名称"];
-    [self.view addSubview:CardName];
-    self.CardName = CardName;
+//    TLTextField * CardName = [[TLTextField alloc]initWithFrame:CGRectMake(margin, BankName.yy, SCREEN_WIDTH-30, height) leftTitle:@"支行名称" placeholder:@"银行卡支行名称"];
+//    [self.view addSubview:CardName];
+//    self.CardName = CardName;
 
     //银行卡号
-    TLTextField * CardNum = [[TLTextField alloc]initWithFrame:CGRectMake(margin, CardName.yy, SCREEN_WIDTH-30, height) leftTitle:@"支行号" placeholder:@"银行卡号"];
+    TLTextField * CardNum = [[TLTextField alloc]initWithFrame:CGRectMake(margin, BankName.yy, SCREEN_WIDTH-30, height) leftTitle:@"卡号" placeholder:@"银行卡号"];
     [self.view addSubview:CardNum];
     self.CardNum = CardNum;
     
@@ -70,12 +70,12 @@
     
     
     //身份证
-     TLTextField * CardUserId = [[TLTextField alloc]initWithFrame:CGRectMake(margin, CardUserName.yy, SCREEN_WIDTH - 30, height) leftTitle:@"身份证" placeholder:@"持卡人身份证号"];
-    [self.view addSubview:CardUserId];
-    self.CardUserId = CardUserId;
+//     TLTextField * CardUserId = [[TLTextField alloc]initWithFrame:CGRectMake(margin, CardUserName.yy, SCREEN_WIDTH - 30, height) leftTitle:@"身份证" placeholder:@"持卡人身份证号"];
+//    [self.view addSubview:CardUserId];
+//    self.CardUserId = CardUserId;
     
     //手机号
-     TLTextField * CardUserPhone = [[TLTextField alloc]initWithFrame:CGRectMake(margin, CardUserId.yy + 10, SCREEN_WIDTH - 30, height) leftTitle:@"手机号" placeholder:@"银行预留手机号"];
+     TLTextField * CardUserPhone = [[TLTextField alloc]initWithFrame:CGRectMake(margin, CardUserName.yy + 10, SCREEN_WIDTH - 30, height) leftTitle:@"手机号" placeholder:@"银行预留手机号"];
     [self.view addSubview:CardUserPhone];
     self.CardUserPhone = CardUserPhone;
     
@@ -123,6 +123,27 @@
     }];
 }
 -(void)confirm{
+    if (self.BankName.text.length == 0) {
+        [TLAlert alertWithInfo:@"请选择银行名称！"];
+        return;
+    }
+    if (![self.CardNum.text isBankCardNo]) {
+        [TLAlert alertWithInfo:@"请输入正确的银行卡号！"];
+        return;
+    }
+    if (self.CardUserName.text.length == 0) {
+        [TLAlert alertWithInfo:@"请输入持卡人姓名！"];
+        return;
+    }
+    if (![self.CardUserPhone.text isPhoneNum]) {
+        [TLAlert alertWithInfo:@"请输入正确的手机号！"];
+        return;
+    }
+    if (self.captchaView.captchaTf.text.length == 0) {
+        [TLAlert alertWithInfo:@"请输入验证码！"];
+        return;
+    }
+    
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"802020";
     http.parameters[@"bankCode"] = self.CardModels[self.BankSelectIndex].bankCode;
@@ -132,7 +153,7 @@
     http.parameters[@"currency"] = @"CNY";
     http.parameters[@"realName"] = self.CardUserName.text;
     http.parameters[@"smsCaptcha"] = self.captchaView.captchaTf.text;
-    http.parameters[@"subbranch"] = self.CardName.text;
+    http.parameters[@"subbranch"] = @"";
     http.parameters[@"type"] = @"1";
     http.parameters[@"userId"] = [TLUser user].userId;
     

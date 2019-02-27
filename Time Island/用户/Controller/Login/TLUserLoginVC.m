@@ -221,7 +221,8 @@
 - (void)back {
     [self.view endEditing:YES];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)findPwd {
@@ -246,10 +247,15 @@
             NSDictionary * userinfo = responseObject[@"data"];
             [TLUser user].userId = userinfo[@"userId"];
             [TLUser user].token = userinfo[@"token"];
-            //        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+            
              [self requesUserInfoWithResponseObject:responseObject];
-            TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
-            [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
+            if ([self.state isEqualToString:@"GoodsDetails"]) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
+                [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
+            }
+            
 
         } failure:^(NSError *error) {
             

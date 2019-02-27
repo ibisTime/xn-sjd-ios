@@ -63,9 +63,9 @@
     cell.BackgroundImage.image = kImage(@"邮政银行");
     cell.CardName.text = self.CardModels[indexPath.row].bankName;
     NSString * str = self.CardModels[indexPath.row].bankcardNumber;
-//    NSString * str1 = [str substringToIndex:4];
-    NSString * str2 = [str substringFromIndex:15];
-    cell.CardCount.text = [NSString stringWithFormat:@"**** **** **** %@",str2];
+    NSString * str1 = [str substringToIndex:4];
+    NSString * str2 = [str substringFromIndex:str.length - 4];
+    cell.CardCount.text = [NSString stringWithFormat:@"%@ **** **** %@",str1,str2];
     cell.CardType.text = @"借记卡";
     cell.selectionStyle = UIAccessibilityTraitNone;
     return cell;

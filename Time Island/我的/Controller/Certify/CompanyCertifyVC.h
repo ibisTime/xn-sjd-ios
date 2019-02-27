@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CompanyCertifyVC : TLBaseVC
-
+@property (nonatomic,strong) NSMutableDictionary * ValueDic;
+@property (nonatomic,strong) NSArray * KeyArray;
 @end
 
 NS_ASSUME_NONNULL_END

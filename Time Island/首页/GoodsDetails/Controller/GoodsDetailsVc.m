@@ -18,6 +18,7 @@
 #import "MapViewController.h"
 #import "PersonalCenterVC.h"
 #import "MyTreeVC.h"
+#import "TLUserLoginVC.h"
 @interface GoodsDetailsVc ()<SLBannerViewDelegate,RefreshDelegate,PlatformButtonClickDelegate>
 @property (nonatomic, strong) UIButton *myButton;//推文
 @property (nonatomic, strong) UIButton *shareButton;
@@ -108,6 +109,8 @@
     
     self.realNameView = [[RealNameView alloc] initWithFrame:CGRectMake(20,150, kScreenWidth-40, 300)];
     kViewRadius(self.realNameView , 10);
+    
+    
 }
 
 - (void)initcustomRenYang
@@ -156,40 +159,65 @@
     self.renYangButton.tag = 102;
     [self.renYangButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     
+//    if (![TLUser user].checkLogin) {
+//        self.myButton.userInteractionEnabled = NO;
+//        self.myButton.alpha = 0.4;
+//        self.shareButton.userInteractionEnabled = NO;
+//        self.shareButton.alpha = 0.4;
+//        self.renYangButton.userInteractionEnabled = NO;
+//        self.renYangButton.alpha = 0.4;
+//    }
 }
 
 -(void)buttonClick:(UIButton *)sender
 {
-    switch (sender.tag - 100) {
-        case 0:
-        {
-//            self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//            self.window.backgroundColor = [UIColor whiteColor];
-//            [self.window makeKeyAndVisible];
-            TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
-            tabBarCtrl.selectedIndex = 2;
-//            self.window.rootViewController = tabBarCtrl;
-            [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
+    
+        switch (sender.tag - 100) {
+            case 0:
+            {
+                if (![TLUser user].checkLogin) {
+                    [TLAlert alertWithMsg:@"请先登录，再进行此操作！谢谢！"];
+            }
+                else{
+                    TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
+                    tabBarCtrl.selectedIndex = 2;
+                    [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
+                }
+            }
+                break;
+            case 1:
+            {
+                if (![TLUser user].checkLogin) {
+                    [TLAlert alertWithMsg:@"请先登录，再进行此操作！谢谢！"];
+                }else{
+                    YSActionSheetView * ysSheet=[[YSActionSheetView alloc]initNYSView];
+                    ysSheet.delegate=self;
+                    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+                    [window addSubview:ysSheet];
+                }
+            }
+                break;
+            case 2:
+            {
+                if (![TLUser user].checkLogin) {
+//                    [TLAlert alertWithMsg:@"请先登录，再进行此操作！谢谢！"];
+                    [TLAlert alertWithMsg:@"请先登录，再进行此操作！谢谢！" WithAction:^{
+                        TLUserLoginVC * vc = [TLUserLoginVC new];
+                        vc.state = @"GoodsDetails";
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }];
+                    
+                }else{
+                    [[UserModel user]showPopAnimationWithAnimationStyle:3 showView:self.renYangFieldDeyailView BGAlpha:0.5 isClickBGDismiss:YES];
+                }
+            }
+                break;
+                
+            default:
+                break;
         }
-            break;
-        case 1:
-        {
-            YSActionSheetView * ysSheet=[[YSActionSheetView alloc]initNYSView];
-            ysSheet.delegate=self;
-            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-            [window addSubview:ysSheet];
-        }
-            break;
-        case 2:
-        {
-
-            [[UserModel user]showPopAnimationWithAnimationStyle:3 showView:self.renYangFieldDeyailView BGAlpha:0.5 isClickBGDismiss:YES];
-        }
-            break;
-            
-        default:
-            break;
-    }
+    
+    
     
     
 }
@@ -210,10 +238,14 @@
         }
     }
     else if ([state isEqualToString:@"2"]){
-        //认养记录
-        NSLog(@"++++++++++songlei 点击了%ld ++++++++++", indexPath.row);
-        RenYangUserModel * model = self.RenYangModel[indexPath.row];
-        [self myTreeLoadData:model.user[@"userId"]];
+        if (![TLUser user].checkLogin) {
+            [TLAlert alertWithMsg:@"请先登录，再进行此操作！谢谢！"];
+        }else{
+            //认养记录
+            NSLog(@"++++++++++songlei 点击了%ld ++++++++++", indexPath.row);
+            RenYangUserModel * model = self.RenYangModel[indexPath.row];
+            [self myTreeLoadData:model.user[@"userId"]];
+        }
     }
     
 }

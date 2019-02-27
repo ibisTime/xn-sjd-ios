@@ -29,7 +29,7 @@
     
     NSArray *titles = @[
                         [LangSwitcher switchLang:@"首页" key:nil],
-                        [LangSwitcher switchLang:@"商场分类" key:nil],
+                        [LangSwitcher switchLang:@"商城分类" key:nil],
                         //                        [LangSwitcher switchLang:@"商城" key:nil],
                         [LangSwitcher switchLang:@"购物车" key:nil],
                         [LangSwitcher switchLang:@"我的" key:nil]
