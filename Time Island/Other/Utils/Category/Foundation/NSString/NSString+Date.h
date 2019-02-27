@@ -53,8 +53,10 @@
 - (NSString *)convertToTimelineDate;
 
 - (NSString *)convertDate;
-
-
+-(NSString *)convertDateWithYear;
+-(NSString *)convertDateWithMonth;
+-(NSString *)convertDateWithDay;
+-(NSString*)getCurrentTimes;
 
 - (NSDate *)convertToSysDate;
 //转为指定格式

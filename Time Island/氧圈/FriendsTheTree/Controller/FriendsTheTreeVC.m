@@ -141,7 +141,8 @@
     
     [self.view addSubview:self.donationView];
     [self.view addSubview:self.barrageView];
-    self.title = [NSString stringWithFormat:@"%@的树",self.model.user[@"nickname"]];
+//    self.title = [NSString stringWithFormat:@"%@的树",self.model.user[@"nickname"]];
+    self.title = @"TA的树";
 }
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index

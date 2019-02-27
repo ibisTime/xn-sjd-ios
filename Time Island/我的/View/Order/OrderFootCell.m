@@ -96,7 +96,7 @@
         [self addSubview:TreeMoney];
         
 //        if (i <  OrderCount - 1) {
-            [self addSubview:[self createview:CGRectMake(15,  TreeMoney.yy + 15, SCREEN_WIDTH - 30, 1)]];
+//            [self addSubview:[self createview:CGRectMake(15,  TreeMoney.yy + 15, SCREEN_WIDTH - 30, 1)]];
 //        }
         }
     return self;

@@ -343,10 +343,21 @@
 
 }
 -(void)searchViewController:(PYSearchViewController *)searchViewController didSearchWithsearchBar:(UISearchBar *)searchBar searchText:(NSString *)searchText{
-    TreeListVC * vc = [[TreeListVC alloc]init];
-    vc.state = @"search";
-    vc.SearchContent = searchText;
-    [self.navigationController pushViewController:vc animated:YES];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.showView = self.view;
+    http.code = @"629650";
+    http.parameters[@"userId"] = [TLUser user].userId;
+    http.parameters[@"type"] = @(1);
+    http.parameters[@"content"] = searchText;
+    [http postWithSuccess:^(id responseObject) {
+        TreeListVC * vc = [[TreeListVC alloc]init];
+        vc.state = @"search";
+        vc.SearchContent = searchText;
+        [self.navigationController pushViewController:vc animated:YES];
+    } failure:^(NSError *error) {
+        
+    }];
+    
 }
 
 
@@ -587,6 +598,14 @@
         [self.collectionView reloadData];
     } failure:^(NSError *error) {
     }];
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

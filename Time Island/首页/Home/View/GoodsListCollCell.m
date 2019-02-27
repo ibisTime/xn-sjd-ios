@@ -142,6 +142,77 @@
         label.hidden = YES;
     }
     
+    int selltype = [self.model.sellType intValue];
+    //专属
+    if (selltype == 1) {
+        //根据集齐数量进行判断
+        if ([self comparezCount]) {
+            adoptLbl.text = @"已被认养";
+            adoptLbl.backgroundColor = [UIColor grayColor];
+            return;
+            //根据时间判断
+        }else if (![self compareDate:[self.model.raiseStartDatetime convertToSysDate] date:[self getCurrentTime]] ||![self compareDate:[self getCurrentTime] date:[self.model.raiseEndDatetime convertToSysDate]] ) {
+            adoptLbl.text = @"不可认养";
+            adoptLbl.backgroundColor = [UIColor grayColor];
+            return;
+        }
+        else{
+            adoptLbl.text = @"可认养";
+            adoptLbl.backgroundColor = RGB(234, 85, 78);
+            return;
+        }
+         //定向
+    }else if (selltype == 2) {
+        //根据数量
+        if ([self comparezCount]) {
+            adoptLbl.text = @"已被认养";
+            adoptLbl.backgroundColor = [UIColor grayColor];
+            return;
+            //根据等级
+        }else if ([self.model.directType isEqualToString:@"1"]) {
+            if (self.model.directObject != [TLUser user].level) {
+                adoptLbl.text = @"不可认养";
+                adoptLbl.backgroundColor = [UIColor grayColor];
+                return;
+            }
+            //根据用户
+        }else if ([self.model.directType isEqualToString:@"2"]){
+            if (self.model.directObject != [TLUser user].userId) {
+                adoptLbl.text = @"不可认养";
+                adoptLbl.backgroundColor = [UIColor grayColor];
+                return;
+            }
+        }else{
+            adoptLbl.text = @"可认养";
+            adoptLbl.backgroundColor = RGB(234, 85, 78);
+            return;
+        }
+        
+    }else if (selltype == 3){
+        if (![self compareDate:[self.model.raiseStartDatetime convertToSysDate] date:[self getCurrentTime]] ||![self compareDate:[self getCurrentTime] date:[self.model.raiseEndDatetime convertToSysDate]] ) {
+            adoptLbl.text = @"不可认养";
+            adoptLbl.backgroundColor = [UIColor grayColor];
+            return;
+        }
+        else{
+            adoptLbl.text = @"可认养";
+            adoptLbl.backgroundColor = RGB(234, 85, 78);
+            return;
+        }
+    }
+    else if (selltype == 4){
+        if ([self comparezCount]) {
+            adoptLbl.text = @"已满标";
+            adoptLbl.backgroundColor = [UIColor grayColor];
+            return;
+            //根据等级
+        }
+        else{
+            adoptLbl.text = @"可认养";
+            adoptLbl.backgroundColor = RGB(234, 85, 78);
+            return;
+        }
+    }
     
     
 }
@@ -149,20 +220,50 @@
 
 
 -(void)setSellTypeArray:(NSArray *)SellTypeArray{
+    _SellTypeArray = SellTypeArray;
     for (int i = 0; i < SellTypeArray.count; i++) {
         if ([_model.sellType isEqualToString:SellTypeArray[i][@"dkey"]]) {
             statusLbl.text = SellTypeArray[i][@"dvalue"];
             //            adoptLbl.backgroundColor = RGB(179, 98, 188);
         }
+               
     }
-}
--(void)setProductStatusArray:(NSArray *)ProductStatusArray{
-    for (int i = 0; i < ProductStatusArray.count; i++) {
-        if ([_model.status isEqualToString:ProductStatusArray[i][@"dkey"]]) {
-            adoptLbl.text = ProductStatusArray[i][@"dvalue"];
-            //            adoptLbl.backgroundColor = RGB(179, 98, 188);
-        }
-    }
+    
+    
 }
 
+-(BOOL)comparezCount{
+    if (self.model.raiseCount == self.model.nowCount) {
+        return YES;
+    }
+    return NO;
+}
+
+
+#pragma mark ===================得到当前时间=============
+- (NSDate *)getCurrentTime{
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"dd-MM-yyyy-HHmmss"];
+    NSString *dateTime=[formatter stringFromDate:[NSDate date]];
+    NSDate *date = [formatter dateFromString:dateTime];
+    return date;
+}
+
+-(BOOL)compareDate:(NSDate *)date1 date:(NSDate *)date2
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    //比较准确度为“日”，如果提高比较准确度，可以在此修改时间格式
+    NSString *stringDate1 = [dateFormatter stringFromDate:date1];
+    NSString *stringDate2 = [dateFormatter stringFromDate:date2];
+    NSDate *dateA = [dateFormatter dateFromString:stringDate1];
+    NSDate *dateB = [dateFormatter dateFromString:stringDate2];
+    NSComparisonResult result = [dateA compare:dateB];
+    if (result == NSOrderedDescending) {
+        return NO;  //date1 比 date2 晚
+    } else if (result == NSOrderedAscending){
+        return YES; //date1 比 date2 早
+    }
+    return YES; //在当前准确度下，两个时间一致
+}
 @end

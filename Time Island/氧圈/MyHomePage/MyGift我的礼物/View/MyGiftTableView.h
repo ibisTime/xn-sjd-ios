@@ -7,7 +7,7 @@
 //
 
 #import "TLTableView.h"
-
+#import "GiftModel.h"
 @interface MyGiftTableView : TLTableView
-
+@property (nonatomic,strong) NSMutableArray<GiftModel *> * GiftModel;
 @end

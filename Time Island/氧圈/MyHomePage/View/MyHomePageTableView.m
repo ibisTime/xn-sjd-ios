@@ -38,7 +38,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 3;
+    return 4;
     
 }
 
@@ -48,8 +48,8 @@
     
     MyHomePageCell *cell = [tableView dequeueReusableCellWithIdentifier:MyHomePage forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSArray *imageAry = @[@"泡泡",@"我的通知",@"设置"];
-    NSArray *nameArray = @[@"我的碳泡泡",@"我的通知",@"设置"];
+    NSArray *imageAry = @[@"泡泡",@"我的礼物",@"我的通知",@"设置"];
+    NSArray *nameArray = @[@"我的碳泡泡",@"礼物",@"我的通知",@"设置"];
     cell.iconImage.image = kImage(imageAry[indexPath.row]);
     cell.nameLabel.text = nameArray[indexPath.row];
     return cell;

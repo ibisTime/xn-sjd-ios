@@ -318,6 +318,8 @@
         NSDictionary * dic = responseObject[@"data"];
         [[TLUser user]saveUserInfo:dic];
         [[TLUser user]setUserInfoWithDict:dic];
+        
+        
         NSLog(@"%@",[TLUser user].userExt[@"personAuthStatus"]);
         if ([[TLUser user].userExt[@"personAuthStatus"] isEqualToString:@"1"]) {
             self.nameLbl.text = @"已个人认证";

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "GiftModel.h"
 @interface MyGiftCell : UITableViewCell
-
+@property (nonatomic,strong) GiftModel * model;
 @end

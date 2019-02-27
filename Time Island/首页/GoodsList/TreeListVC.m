@@ -255,7 +255,7 @@
     }
     cell.model = self.models[indexPath.row];
     cell.SellTypeArray = self.SellTypeArray;
-    cell.ProductStatusArray = self.ProductStatusArray;
+//    cell.ProductStatusArray = self.ProductStatusArray;
     return cell;
 }
 

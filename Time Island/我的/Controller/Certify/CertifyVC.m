@@ -25,6 +25,17 @@
     [self.table registerClass:[CertifyVCCell class] forCellReuseIdentifier:@"CertifyVCCell"];
     [self.view addSubview:self.table];
     
+    TLNetworking * http = [TLNetworking new];
+    http.code = USER_INFO;
+    http.parameters[@"userId"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
+        NSDictionary * dic = responseObject[@"data"];
+        [[TLUser user]saveUserInfo:dic];
+        [[TLUser user]setUserInfoWithDict:dic];
+     } failure:^(NSError *error) {
+         
+     }];
+    
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -86,7 +97,5 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
-    
-    
 }
 @end

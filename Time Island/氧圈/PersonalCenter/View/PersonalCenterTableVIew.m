@@ -35,7 +35,7 @@
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     
     if (self = [super initWithFrame:frame style:style]) {
-        
+        [self getcompetedata];
         self.dataSource = self;
         self.delegate = self;
         [self registerClass:[FriendsTreeHeadCell class] forCellReuseIdentifier:FriendsTreeHead];
@@ -53,10 +53,27 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if ([self.state isEqualToString:@"state"]) {
+        return self.dynamicArray.count + 2;
+    }
     return self.dynamicArray.count + 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if ([self.state isEqualToString:@"rank"]) {
+        if (section == 0) {
+            if (self.models.count > 0) {
+                return self.models.count;
+            }
+            return 1;
+        }
+        if (section == 1) {
+            return 1;
+        }
+        NSArray *dynamicArray = self.dynamicArray[section - 1];
+        return dynamicArray.count;
+    }
+    
     if (section == 0) {
         if (self.models.count > 0) {
             return self.models.count;
@@ -68,8 +85,56 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-//    PersonalCenterCell
+    if ([self.state isEqualToString:@"rank"]) {
+        if (indexPath.section == 0) {
+            if (self.models.count > 0) {
+                PersonalCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:PersonalCenter forIndexPath:indexPath];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.models = self.models[indexPath.row];
+                return cell;
+            }else
+            {
+                NotAdoptedCell *cell = [tableView dequeueReusableCellWithIdentifier:NotAdopted forIndexPath:indexPath];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            }
+            
+        }
+        
+        if (indexPath.section == 1) {
+            EnergyCompeteCell * cell = [tableView dequeueReusableCellWithIdentifier:EnergyCompete forIndexPath:indexPath];
+            cell.CompeteModel = self.CompeteModel;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
+        NSArray *dynamicArray = self.dynamicArray[indexPath.section - 1];
+        DynamicModel *model = [DynamicModel mj_objectWithKeyValues:dynamicArray[indexPath.row]];
+        
+        if ([model.type isEqualToString:@"7"] || [model.type isEqualToString:@"4"]) {
+            PersonalCenterExpressionCell *cell = [tableView dequeueReusableCellWithIdentifier:PersonalCenterExpression forIndexPath:indexPath];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.dynamicModel = model;
+            
+            
+            return cell;
+        }
+        
+        
+        HisDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:HisDynamic forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if (indexPath.row == dynamicArray.count - 1) {
+            cell.bottomLineView.hidden = YES;
+        }else
+        {
+            cell.bottomLineView.hidden = NO;
+        }
+        
+        cell.dynamicModel = model;
+        
+        
+        return cell;
+        
+    }
     
     if (indexPath.section == 0) {
         if (self.models.count > 0) {
@@ -118,6 +183,24 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.state isEqualToString:@"rank"]) {
+        if (indexPath.section == 0) {
+            if(self.models.count > 0)
+            {
+                return 70;
+            }
+            return 150;
+        }
+        if (indexPath.section == 1) {
+            return kHeight(140);
+        }
+        NSArray *dynamicArray = self.dynamicArray[indexPath.section - 1];
+        DynamicModel *model = [DynamicModel mj_objectWithKeyValues:dynamicArray[indexPath.row]];
+        if ([model.type isEqualToString:@"7"] || [model.type isEqualToString:@"4"]) {
+            return 65;
+        }
+        return 48;
+    }
     
     if (indexPath.section == 0) {
         if(self.models.count > 0)
@@ -132,6 +215,8 @@
         return 65;
     }
     return 48;
+    
+    
 }
 
 
@@ -141,7 +226,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section >= 1) {
+    if (section >= 2) {
         
         
         return 35;
@@ -151,7 +236,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    if (section >= 1) {
+    if (section >= 2) {
         UIView *headerView = [UIView new];
         
         UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35)];
@@ -196,7 +281,7 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if (section == 1) {
         
         
         UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 62.5)];
@@ -218,11 +303,24 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (section == 0) {
+    if (section == 1) {
         return 62.5;
     }
     return 0.001;
 }
 
+//比拼数据
+-(void)getcompetedata{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629900";
+    http.parameters[@"toUserId"] = self.RankModel.userId;
+    http.parameters[@"userId"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
+        self.CompeteModel = [CompeteModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [self reloadData_tl];
+    } failure:^(NSError *error) {
+        
+    }];
+}
 
 @end

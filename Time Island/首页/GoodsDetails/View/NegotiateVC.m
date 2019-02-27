@@ -10,7 +10,7 @@
 #import "PayVC.h"
 #import "PayViewController.h"
 @interface NegotiateVC ()<UIWebViewDelegate>
-
+@property (nonatomic,strong) NSString * str;
 @end
 
 @implementation NegotiateVC
@@ -22,7 +22,6 @@
     [self refresh];
     self.web = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 60)];
     self.web.delegate = self;
-//    [self.web loadHTMLString:<#(nonnull NSString *)#> baseURL:<#(nullable NSURL *)#>];
     [self.view addSubview:self.web];
     
     //登录
@@ -31,14 +30,7 @@
     [signBtn addTarget:self action:@selector(goNext) forControlEvents:UIControlEventTouchUpInside];
     signBtn.frame = CGRectMake(15, self.web.yy + 5, SCREEN_WIDTH - 30, 50);
     [self.view addSubview:signBtn];
-//    [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.equalTo(@(30));
-//        make.height.equalTo(@(45));
-//        make.right.equalTo(@(-30));
-//        make.top.equalTo(self.web.mas_bottom).offset(40);
-//
-//    }];
+
     
     
 }
@@ -61,13 +53,80 @@
 -(void)refresh{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"630068";
+    http.showView = self.view;
     http.parameters[@"userId"] = self.TreeModel.ownerInfo[@"userId"];
     [http postWithSuccess:^(id responseObject) {
-        [self.web loadHTMLString:responseObject[@"data"][@"contractTemplate"] baseURL:nil];
+        NSString * str = responseObject[@"data"][@"contractTemplate"];
+        if (![USERXX isBlankString:responseObject[@"data"][@"name"]]) {
+           str = [str stringByReplacingOccurrencesOfString:@"##甲方名称##" withString:responseObject[@"data"][@"name"]];
+        }
+        
+        str = [str stringByReplacingOccurrencesOfString:@"##乙方名称##" withString:[TLUser user].realName];
+        
+        
+        
+        str = [str stringByReplacingOccurrencesOfString:@"##quantity##" withString:[NSString stringWithFormat:@" %d ",self.count]];
+        
+        str = [str stringByReplacingOccurrencesOfString:@"##y1##" withString:[NSString stringWithFormat:@" %@ ",[self.TreeModel.productSpecsList[self.TreeSize][@"startDatetime"] convertDateWithYear]]];
+        
+        str = [str stringByReplacingOccurrencesOfString:@"##m1##" withString:[NSString stringWithFormat:@" %@ ",[self.TreeModel.productSpecsList[self.TreeSize][@"startDatetime"] convertDateWithMonth]]];
+        
+        str = [str stringByReplacingOccurrencesOfString:@"##d1##" withString:[NSString stringWithFormat:@" %@ ",[self.TreeModel.productSpecsList[self.TreeSize][@"startDatetime"] convertDateWithDay]]];
+        
+        str = [str stringByReplacingOccurrencesOfString:@"##y2##" withString:[NSString stringWithFormat:@" %@ ",[self.TreeModel.productSpecsList[self.TreeSize][@"endDatetime"] convertDateWithYear]]];
+        
+        str = [str stringByReplacingOccurrencesOfString:@"##m2##" withString:[NSString stringWithFormat:@" %@ ",[self.TreeModel.productSpecsList[self.TreeSize][@"endDatetime"] convertDateWithMonth]]];
+        
+        str = [str stringByReplacingOccurrencesOfString:@"##d2##" withString:[NSString stringWithFormat:@" %@ ",[self.TreeModel.productSpecsList[self.TreeSize][@"endDatetime"] convertDateWithDay]]];
+        
+        str = [str stringByReplacingOccurrencesOfString:@"##price##" withString:[NSString stringWithFormat:@" %.2f ",self.count * [self.TreeModel.productSpecsList[self.TreeSize][@"price"] floatValue] / 1000.00]];
+        
+//
+        
+        str = [str stringByReplacingOccurrencesOfString:@"##cachet1##" withString:[NSString stringWithFormat:@"<img src = %@></img>",[responseObject[@"data"][@"commonSeal"] convertImageUrl]]];
+        
+        
+        str = [str stringByReplacingOccurrencesOfString:@"##date1##" withString:[self getCurrentTimes]];
+        str = [str stringByReplacingOccurrencesOfString:@"##date2##" withString:[self getCurrentTimes]];
+        str = [str stringByReplacingOccurrencesOfString:@"##date3##" withString:[self getCurrentTimes]];
+        self.str = str;
+        
+        
+        TLNetworking * h = [[TLNetworking alloc]init];
+        h.code = @"629677";
+        h.parameters[@"province"] = self.TreeModel.province;
+        h.parameters[@"city"] = self.TreeModel.city;
+        h.parameters[@"area"] = self.TreeModel.area;
+        [h postWithSuccess:^(id responseObject) {
+            NSMutableArray * arr = responseObject[@"data"];
+            if (arr.count > 0) {
+               
+                self.str = [self.str stringByReplacingOccurrencesOfString:@"##丙方名称##" withString:arr[0][@"department"]];
+                self.str = [self.str stringByReplacingOccurrencesOfString:@"##cachet3##" withString:[NSString stringWithFormat:@"<img src = %@></img>",[arr[0][@"pic"] convertImageUrl]]];
+            }
+            else{
+                self.str = [self.str stringByReplacingOccurrencesOfString:@"##丙方名称##" withString:@"    "];
+                self.str = [self.str stringByReplacingOccurrencesOfString:@"##cachet3##" withString:@"    "];
+            }
+             [self.web loadHTMLString:self.str baseURL:nil];
+        } failure:^(NSError *error) {
+            
+        }];
+        
+        
+       
     } failure:^(NSError *error) {
     }];
     
 }
 
-
+-(NSString*)getCurrentTimes{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY.MM.dd"];
+    NSDate *datenow = [NSDate date];
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    return currentTimeString;
+    
+}
 @end

@@ -79,15 +79,15 @@
         vc.state = 2;
         [self.navigationController pushViewController:vc animated:YES];
     }
-//    if (row == 1) {
-//        MyGiftVC *vc = [MyGiftVC new];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
     if (row == 1) {
-        MessageVC * vc = [MessageVC new];
+        MyGiftVC *vc = [MyGiftVC new];
         [self.navigationController pushViewController:vc animated:YES];
     }
     if (row == 2) {
+        MessageVC * vc = [MessageVC new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if (row == 3) {
         SettingVC * vc = [SettingVC new];
         [self.navigationController pushViewController:vc animated:YES];
     }
