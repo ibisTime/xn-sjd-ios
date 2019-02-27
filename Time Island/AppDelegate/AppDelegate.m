@@ -136,6 +136,10 @@
 }
 
 
+-(void) onReq:(BaseReq*)reqonReq{
+    
+}
+
 - (void)onResp:(id)resp{
     
     if([resp isKindOfClass:[SendAuthResp class]]){//判断是否为授权登录类
@@ -158,49 +162,21 @@
                     break;
                 case 0:
                 {
-
-                    [TLNetworking POST:[NSString stringWithFormat:@"%@/access_token?appid=%@&secret=%@&code=%@&grant_type=authorization_code",WEIXINLOGIN,weixinAPPID,weixinSECRET,req.code] parameters:nil success:^(id responseObject) {
-                        
-                        
-                        if ([USERXX isBlankString:responseObject[@"access_token"]] == YES && [USERXX isBlankString:responseObject[@"openid"]] == YES ) {
-                            [TLAlert alertWithError:@"授权失败"];
-                        }else
-                        {
-                            [TLNetworking POST:[NSString stringWithFormat:@"%@?access_token=%@&openid=%@",WEIXINUSERINFO,responseObject[@"access_token"],responseObject[@"openid"]] parameters:nil success:^(id responseObject) {
-                                
-                                TLNetworking *http = [TLNetworking new];
-                                http.showView = self.window;
-                                http.code = @"805051";
-                                http.parameters[@"isNeedMobile"] = @"1";
-                                http.parameters[@"kind"] = @"C";
-                                
-                                
-                                [http postWithSuccess:^(id responseObject) {
-                                    NSDictionary * userinfo = responseObject[@"data"];
-                                    [TLUser user].userId = userinfo[@"userId"];
-                                    [TLUser user].token = userinfo[@"token"];
-                                    //        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-//                                    [self requesUserInfoWithResponseObject:responseObject];
-//                                    TLTabBarController *tabBarCtrl = [[TLTabBarController alloc] init];
-//                                    [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
-                                    
-                                } failure:^(NSError *error) {
-                                    
-                                }];
-                                
-                            } failure:^(NSError *error) {
-                                
-                            }];
-                        }
-                        
+                    TLNetworking *http = [TLNetworking new];
+                    http.showView = self.window;
+                    http.code = @"805051";
+                    http.parameters[@"isNeedMobile"] = @"1";
+                    http.parameters[@"kind"] = @"C";
+                    http.parameters[@"type"] = @"wx_h5";
+                    http.parameters[@"code"] = req.code;
+                    //                            http.parameters[@"accessToken"] = responseObject[@"refresh_token"];
+                    [http postWithSuccess:^(id responseObject) {
                         
                         
                         
                     } failure:^(NSError *error) {
                         
                     }];
-                    
-                    
                 }
                     break;
                     

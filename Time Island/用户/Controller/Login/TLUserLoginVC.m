@@ -191,16 +191,6 @@
     
     [self.view addSubview: [self createview:CGRectMake(113, 510, 15, 1)]];
     
-//    UIImageView * weichatlogin = [[UIImageView alloc]initWithFrame:CGRectMake(136, 502, 20, 17)];
-//    weichatlogin.image = [UIImage imageNamed:@"微信登录"];
-//    [self.view addSubview:weichatlogin];
-//
-//    self.weichat = [[UILabel alloc]initWithFrame:CGRectMake(163, 501, 78, 19)];
-//    self.weichat.text = @"微信快速登录";
-//    self.weichat.textAlignment = NSTextAlignmentCenter;
-//    self.weichat.textColor = kTextColor2;
-//    self.weichat.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:13];
-//    [self.view addSubview:self.weichat];
     
     UIButton *weichatlogin  = [UIButton buttonWithTitle:@"微信快速登录" titleColor:kTextColor2 backgroundColor:kClearColor titleFont:13];
     weichatlogin.frame = CGRectMake(100, 501, SCREEN_WIDTH - 200, 19);
@@ -217,18 +207,12 @@
 -(void)weichatloginClick
 {
     //构造SendAuthReq结构体
-    SendAuthReq* req =[[SendAuthReq alloc]init];
+    SendAuthReq *req = [[SendAuthReq alloc]init];
     req.scope = @"snsapi_userinfo";
     req.state = @"wx_oauth_authorization_state";
     //第三方向微信终端发送一个SendAuthReq消息结构
 //    req.appid = @"wx4149de72eb4772ae";
     [WXApi sendReq:req];
-    
-    
-    
-    
-    
-    
 }
 
 
@@ -241,20 +225,14 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
 - (void)findPwd {
-    
     TLUserForgetPwdVC *vc = [[TLUserForgetPwdVC alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
-    
 }
 
 - (void)goReg {
-    
     TLUserRegisterVC *registerVC = [[TLUserRegisterVC alloc] init];
-    
     [self.navigationController pushViewController:registerVC animated:YES];
-    
 }
 
 - (void)goLogin {
