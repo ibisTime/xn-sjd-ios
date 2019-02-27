@@ -116,6 +116,8 @@
 		1F473425221FA3A8007B5908 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F473424221FA3A7007B5908 /* libsqlite3.0.tbd */; };
 		1F473427221FA3C3007B5908 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F473426221FA3C3007B5908 /* CFNetwork.framework */; };
 		1F473429221FA3D0007B5908 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F473428221FA3D0007B5908 /* CoreGraphics.framework */; };
+		1F58271322263F4000898864 /* CustomCalenderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F58271222263F4000898864 /* CustomCalenderView.m */; };
+		1F582716222642BE00898864 /* CalenderCollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F582715222642BE00898864 /* CalenderCollCell.m */; };
 		1F9360AC21EDFCA5007E522A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360AA21EDFCA4007E522A /* MapViewController.m */; };
 		1F93610321EDFD8F007E522A /* ToClaimTheGiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360DA21EDFD8E007E522A /* ToClaimTheGiftVC.m */; };
 		1F93610421EDFD8F007E522A /* MyGiftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9360DC21EDFD8E007E522A /* MyGiftVC.m */; };
@@ -747,6 +749,10 @@
 		1F473424221FA3A7007B5908 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		1F473426221FA3C3007B5908 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1F473428221FA3D0007B5908 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1F58271122263F4000898864 /* CustomCalenderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCalenderView.h; sourceTree = "<group>"; };
+		1F58271222263F4000898864 /* CustomCalenderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCalenderView.m; sourceTree = "<group>"; };
+		1F582714222642BE00898864 /* CalenderCollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalenderCollCell.h; sourceTree = "<group>"; };
+		1F582715222642BE00898864 /* CalenderCollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalenderCollCell.m; sourceTree = "<group>"; };
 		1F9360AA21EDFCA4007E522A /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		1F9360AB21EDFCA4007E522A /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		1F9360AD21EDFCDA007E522A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -2371,6 +2377,19 @@
 			path = Assetses;
 			sourceTree = "<group>";
 		};
+		1F5826F122262F5200898864 /* Calender */ = {
+			isa = PBXGroup;
+			children = (
+				B8EE11F821EDB0EA00B9DF0D /* CalendarCustomVC.h */,
+				B8EE11F921EDB0EA00B9DF0D /* CalendarCustomVC.m */,
+				1F58271122263F4000898864 /* CustomCalenderView.h */,
+				1F58271222263F4000898864 /* CustomCalenderView.m */,
+				1F582714222642BE00898864 /* CalenderCollCell.h */,
+				1F582715222642BE00898864 /* CalenderCollCell.m */,
+			);
+			path = Calender;
+			sourceTree = "<group>";
+		};
 		1F9360A921EDFCA4007E522A /* Map地图 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2591,8 +2610,8 @@
 		1F9361DA21F31158007E522A /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				36DFD835221FF7EC00DC5E0F /* Model */,
 				1F9361DC21F31162007E522A /* Controller */,
+				36DFD835221FF7EC00DC5E0F /* Model */,
 				1F9361DB21F3115E007E522A /* View */,
 			);
 			path = Home;
@@ -3667,6 +3686,7 @@
 			isa = PBXGroup;
 			children = (
 				1F9361DA21F31158007E522A /* Home */,
+				1F5826F122262F5200898864 /* Calender */,
 				1F9361E521F332AC007E522A /* GoodsList */,
 				1F3EBAD121F59936005BC837 /* GoodsDetails */,
 				1F3EBAD021F56760005BC837 /* TreeDetail */,
@@ -3686,8 +3706,6 @@
 				B815279121EC906A00F89395 /* BookVideoVC.m */,
 				B8EE11F221ED76C700B9DF0D /* BoolVideoDetailVC.h */,
 				B8EE11F321ED76C700B9DF0D /* BoolVideoDetailVC.m */,
-				B8EE11F821EDB0EA00B9DF0D /* CalendarCustomVC.h */,
-				B8EE11F921EDB0EA00B9DF0D /* CalendarCustomVC.m */,
 				B888333921F19F5400435B38 /* BookListVC.h */,
 				B888333A21F19F5400435B38 /* BookListVC.m */,
 			);
@@ -4703,6 +4721,7 @@
 				1F9361C721F17398007E522A /* MallTabbar.m in Sources */,
 				B8ED2E8E21E8934B00FADCCE /* RealNameView.m in Sources */,
 				B8ED2E8821E8516D00FADCCE /* RenYangFieldView.m in Sources */,
+				1F58271322263F4000898864 /* CustomCalenderView.m in Sources */,
 				B80D385F21F85F1E00206B55 /* CountView.m in Sources */,
 				36F4D812221BF82B00206AAE /* BarrageModel.m in Sources */,
 				B81E5FD621DC8FC200873AB9 /* NSString+CGSize.m in Sources */,
@@ -4821,6 +4840,7 @@
 				1F19A8ED21FAA6BA0090BF84 /* AreaModel.m in Sources */,
 				B81E601B21DC906D00873AB9 /* TLChangeMobileVC.m in Sources */,
 				36F4D80B221BA0B100206AAE /* FriendInfoModel.m in Sources */,
+				1F582716222642BE00898864 /* CalenderCollCell.m in Sources */,
 				B81E601A21DC906D00873AB9 /* TLPwdRelatedVC.m in Sources */,
 				1F4731B82216C271007B5908 /* JZLocationConverter.m in Sources */,
 				B8226F7D21F70E3D002F450F /* GoodsDetailWebView.m in Sources */,
@@ -5175,6 +5195,54 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/WechatSDK1.8.2",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"FSCalendar\"",
+					"-l\"HappyDNS\"",
+					"-l\"IQKeyboardManager\"",
+					"-l\"JSONModel\"",
+					"-l\"MBProgressHUD\"",
+					"-l\"MJExtension\"",
+					"-l\"MJRefresh\"",
+					"-l\"Masonry\"",
+					"-l\"Qiniu\"",
+					"-l\"SDWebImage\"",
+					"-l\"SVProgressHUD\"",
+					"-l\"WeChatSDK\"",
+					"-l\"c++\"",
+					"-l\"resolv\"",
+					"-l\"sqlite3.0\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AMapFoundationKit\"",
+					"-framework",
+					"\"AMapSearchKit\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-all_load",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.TimeIsland;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5212,6 +5280,54 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/WechatSDK1.8.2",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"FSCalendar\"",
+					"-l\"HappyDNS\"",
+					"-l\"IQKeyboardManager\"",
+					"-l\"JSONModel\"",
+					"-l\"MBProgressHUD\"",
+					"-l\"MJExtension\"",
+					"-l\"MJRefresh\"",
+					"-l\"Masonry\"",
+					"-l\"Qiniu\"",
+					"-l\"SDWebImage\"",
+					"-l\"SVProgressHUD\"",
+					"-l\"WeChatSDK\"",
+					"-l\"c++\"",
+					"-l\"resolv\"",
+					"-l\"sqlite3.0\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AMapFoundationKit\"",
+					"-framework",
+					"\"AMapSearchKit\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cdkj.TimeIsland;
 				PRODUCT_NAME = "$(TARGET_NAME)";
