@@ -45,7 +45,7 @@
 
 @property (nonatomic,strong) NSDictionary * dic;
 
-@property (nonatomic,strong) UILabel *signCount;
+//@property (nonatomic,strong) UILabel *signCount;
 
 
 @end
@@ -344,23 +344,12 @@
             circle.backgroundColor = RGB(86, 185, 168);
         }
     }
-    
-
     totleView.frame = CGRectMake(15, signLab2.yy+25+3+23, kScreenWidth-30, 5);
-    
-    
-    
     progressView.frame = CGRectMake(15, signLab2.yy+25+3+23, WIDTH, 5);
-    
-    
-    
-    
-    
-    
     UIView *view  = [self.view viewWithTag:100];
     view.backgroundColor = kWhiteColor;
-    
 }
+
 -(void)getgift{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"630045";
@@ -390,13 +379,9 @@
     }];
 }
 
-
 - (void)backToTopView
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-
-
 
 @end
