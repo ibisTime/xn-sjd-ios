@@ -9,10 +9,11 @@
 #import "MyGiftVC.h"
 #import "MyGiftTableView.h"
 #import "ToClaimTheGiftVC.h"
+#import "GiftModel.h"
 @interface MyGiftVC ()<RefreshDelegate>
 
 @property (nonatomic , strong)MyGiftTableView *tableView;
-
+@property (nonatomic,strong) NSMutableArray<GiftModel *> * GiftModel;
 @end
 
 @implementation MyGiftVC
@@ -51,16 +52,33 @@
 
 
 -(void)getdata{
-    TLNetworking * http = [[TLNetworking alloc]init];
+    CoinWeakSelf;
+//    TLNetworking * http = [[TLNetworking alloc]init];
+    TLPageDataHelper * http = [[TLPageDataHelper alloc]init];
     http.code = @"629325";
     http.parameters[@"adoptTreeCode"] = @"";
-    http.parameters[@"start"] = @(1);
-    http.parameters[@"limit"] = @(10);
+//    http.parameters[@"start"] = @(1);
+//    http.parameters[@"limit"] = @(10);
     http.parameters[@"toUser"] = [TLUser user].userId;
-    [http postWithSuccess:^(id responseObject) {
-        
-    } failure:^(NSError *error) {
-        
+    [self.tableView addRefreshAction:^{
+        [http refresh:^(NSMutableArray *objs, BOOL stillHave) {
+            weakSelf.GiftModel = objs;
+            weakSelf.tableView.GiftModel = weakSelf.GiftModel;
+            [weakSelf.tableView reloadData];
+            [weakSelf.tableView endRefreshHeader];
+        } failure:^(NSError *error) {
+            [weakSelf.tableView endRefreshHeader];
+        }];
+    }];
+    [self.tableView addLoadMoreAction:^{
+        [http loadMore:^(NSMutableArray *objs, BOOL stillHave) {
+            weakSelf.GiftModel = objs;
+            weakSelf.tableView.GiftModel = weakSelf.GiftModel;
+            [weakSelf.tableView reloadData];
+            [weakSelf.tableView endRefreshFooter];
+        } failure:^(NSError *error) {
+            [weakSelf.tableView endRefreshFooter];
+        }];
     }];
 }
 

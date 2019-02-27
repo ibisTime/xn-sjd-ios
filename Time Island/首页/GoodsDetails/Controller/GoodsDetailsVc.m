@@ -18,6 +18,7 @@
 #import "MapViewController.h"
 #import "PersonalCenterVC.h"
 #import "MyTreeVC.h"
+#import "CertifyVC.h"
 #import "TLUserLoginVC.h"
 @interface GoodsDetailsVc ()<SLBannerViewDelegate,RefreshDelegate,PlatformButtonClickDelegate>
 @property (nonatomic, strong) UIButton *myButton;//推文
@@ -32,6 +33,7 @@
 @property (nonatomic , strong) RealNameView *realNameView;
 @property (nonatomic , strong) RenYangFieldDeyailView *renYangFieldDeyailView;
 @property (nonatomic,strong) NSMutableArray<RenYangUserModel * > * RenYangModel;
+@property (nonatomic,strong) NSString * REALNAME_NOTIFI;
 
 @end
 
@@ -159,14 +161,76 @@
     self.renYangButton.tag = 102;
     [self.renYangButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     
-//    if (![TLUser user].checkLogin) {
-//        self.myButton.userInteractionEnabled = NO;
-//        self.myButton.alpha = 0.4;
-//        self.shareButton.userInteractionEnabled = NO;
-//        self.shareButton.alpha = 0.4;
-//        self.renYangButton.userInteractionEnabled = NO;
-//        self.renYangButton.alpha = 0.4;
-//    }
+    
+    int selltype = [self.treemodel.sellType intValue];
+    //专属
+    if (selltype == 1) {
+        //根据集齐数量进行判断
+        if ([self comparezCount]) {
+//            self.text = @"已被认养";
+            [self.renYangButton setTitle:@"不可认养" forState:(UIControlStateNormal)];
+            [self.renYangButton setEnabled:NO];
+            return;
+            //根据时间判断
+        }else if (![self compareDate:[self.treemodel.raiseStartDatetime convertToSysDate] date:[self getCurrentTime]] ||![self compareDate:[self getCurrentTime] date:[self.treemodel.raiseEndDatetime convertToSysDate]] ) {
+            [self.renYangButton setTitle:@"不可认养" forState:(UIControlStateNormal)];
+            [self.renYangButton setEnabled:NO];
+            return;
+        }
+        else{
+            [self.renYangButton setTitle:@"申请认养" forState:(UIControlStateNormal)];
+            return;
+        }
+        //定向
+    }else if (selltype == 2) {
+        //根据数量
+        if ([self comparezCount]) {
+            [self.renYangButton setTitle:@"已满标" forState:(UIControlStateNormal)];
+            [self.renYangButton setEnabled:NO];
+            return;
+            //根据等级
+        }else if ([self.treemodel.directType isEqualToString:@"1"]) {
+            if (self.treemodel.directObject != [TLUser user].level) {
+                [self.renYangButton setTitle:@"您不是此树的预约认养人" forState:(UIControlStateNormal)];
+                [self.renYangButton setEnabled:NO];
+                return;
+            }
+            //根据用户
+        }else if ([self.treemodel.directType isEqualToString:@"2"]){
+            if (self.treemodel.directObject != [TLUser user].userId) {
+                [self.renYangButton setTitle:@"您不是此树的预约认养人" forState:(UIControlStateNormal)];
+                [self.renYangButton setEnabled:NO];
+                return;
+            }
+        }else{
+            [self.renYangButton setTitle:@"可认养" forState:(UIControlStateNormal)];
+            return;
+        }
+        
+    }else if (selltype == 3){
+        if (![self compareDate:[self.treemodel.raiseStartDatetime convertToSysDate] date:[self getCurrentTime]] ||![self compareDate:[self getCurrentTime] date:[self.treemodel.raiseEndDatetime convertToSysDate]] ) {
+            [self.renYangButton setTitle:@"当前不在募集期内" forState:(UIControlStateNormal)];
+            [self.renYangButton setEnabled:NO];
+            return;
+        }
+        else{
+            [self.renYangButton setTitle:@"可认养" forState:(UIControlStateNormal)];
+            [self.renYangButton setEnabled:NO];
+            return;
+        }
+    }
+    else if (selltype == 4){
+        if ([self comparezCount]) {
+            [self.renYangButton setTitle:@"已满标" forState:(UIControlStateNormal)];
+            [self.renYangButton setEnabled:NO];
+            return;
+            //根据等级
+        }
+        else{
+            [self.renYangButton setTitle:@"可认养" forState:(UIControlStateNormal)];
+            return;
+        }
+    }
 }
 
 -(void)buttonClick:(UIButton *)sender
@@ -208,7 +272,16 @@
                     }];
                     
                 }else{
-                    [[UserModel user]showPopAnimationWithAnimationStyle:3 showView:self.renYangFieldDeyailView BGAlpha:0.5 isClickBGDismiss:YES];
+                     if ([TLUser user].userExt[@"personAuthStatus"]||[TLUser user].userExt[@"companyAuthStatus"]) {
+                         [[UserModel user]showPopAnimationWithAnimationStyle:3 showView:self.renYangFieldDeyailView BGAlpha:0.5 isClickBGDismiss:YES];
+                     }
+                     else{
+                         [TLAlert alertWithMsg:self.REALNAME_NOTIFI WithAction:^{
+                             CertifyVC * vc = [CertifyVC new];
+                             [self.navigationController pushViewController:vc animated:YES];
+                         }];
+                         
+                     }
                 }
             }
                 break;
@@ -216,10 +289,7 @@
             default:
                 break;
         }
-    
-    
-    
-    
+
 }
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath WithState:(NSString *)state{
@@ -315,6 +385,16 @@
         [self.tableView reloadData];
     } failure:^(NSError *error) {
     }];
+    
+    
+    TLNetworking * http1 = [[TLNetworking alloc]init];
+    http1.code = @"630047";
+    http1.parameters[@"ckey"] = @"REALNAME_NOTIFI";
+    [http1 postWithSuccess:^(id responseObject) {
+        self.REALNAME_NOTIFI = responseObject[@"data"][@"cvalue"];
+    } failure:^(NSError *error) {
+        
+    }];
 }
 -(void)getName{
     TLNetworking * http1 = [[TLNetworking alloc]init];
@@ -343,5 +423,40 @@
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"++++++++++songlei 点击了%ld ++++++++++", indexPath.row);
+}
+
+-(BOOL)comparezCount{
+    if (self.treemodel.raiseCount == self.treemodel.nowCount) {
+        return YES;
+    }
+    return NO;
+}
+
+
+#pragma mark ===================得到当前时间=============
+- (NSDate *)getCurrentTime{
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"dd-MM-yyyy-HHmmss"];
+    NSString *dateTime=[formatter stringFromDate:[NSDate date]];
+    NSDate *date = [formatter dateFromString:dateTime];
+    return date;
+}
+
+-(BOOL)compareDate:(NSDate *)date1 date:(NSDate *)date2
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    //比较准确度为“日”，如果提高比较准确度，可以在此修改时间格式
+    NSString *stringDate1 = [dateFormatter stringFromDate:date1];
+    NSString *stringDate2 = [dateFormatter stringFromDate:date2];
+    NSDate *dateA = [dateFormatter dateFromString:stringDate1];
+    NSDate *dateB = [dateFormatter dateFromString:stringDate2];
+    NSComparisonResult result = [dateA compare:dateB];
+    if (result == NSOrderedDescending) {
+        return NO;  //date1 比 date2 晚
+    } else if (result == NSOrderedAscending){
+        return YES; //date1 比 date2 早
+    }
+    return YES; //在当前准确度下，两个时间一致
 }
 @end

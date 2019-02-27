@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface OrderModel : NSObject
+@property (nonatomic,copy) NSArray * adoptOrderTreeLists;
 @property (nonatomic,copy) NSString * adoptYear;
 @property (nonatomic,copy) NSString * amount;
 @property (nonatomic,copy) NSString * applyDatetime;
@@ -34,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString * productSpecsName;
 @property (nonatomic,copy) NSString * productCode;
 @property (nonatomic,copy) NSDictionary * product;
+@property (nonatomic,copy) NSArray * treeList;
 @end
 
 NS_ASSUME_NONNULL_END

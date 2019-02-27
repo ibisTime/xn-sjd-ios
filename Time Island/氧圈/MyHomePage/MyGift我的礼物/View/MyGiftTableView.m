@@ -40,7 +40,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     
-    return 115;
+    return self.GiftModel.count;
     
 }
 
@@ -49,7 +49,7 @@
     
     MyGiftCell *cell = [tableView dequeueReusableCellWithIdentifier:MyGift forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+    cell.model = self.GiftModel[indexPath.row];
     
     return cell;
     

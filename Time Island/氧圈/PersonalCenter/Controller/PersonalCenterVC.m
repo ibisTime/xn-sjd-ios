@@ -18,6 +18,7 @@
 #import "YiceSlidelipPickerMenu.h"
 #import "YiceSlidelipPickPch.h"
 #import "YiceSlidelipPickCommonModel.h"
+#import "CompeteModel.h"
 @interface PersonalCenterVC ()<RefreshDelegate,MMComBoBoxViewDelegate,MMComBoBoxViewDataSource,AddFriendBtn,YiceSlidelipPickerMenuDelegate,YiceSlidelipPickerMenuDataSource>
 
 @property (nonatomic , strong)PersonalCenterHeadView *headView;
@@ -45,6 +46,7 @@
 
 @property (nonatomic,strong) NSMutableArray * Array;
 
+@property (nonatomic,strong) CompeteModel * CompeteModel;
 @end
 
 @implementation PersonalCenterVC
@@ -120,6 +122,9 @@
     
     [self array];
 
+    if ([self.state isEqualToString:@"rank"]) {
+        [self getcompetedata];
+    }
 }
 
 -(void)screeningBtnClick:(UIButton *)sender
@@ -212,11 +217,21 @@
                 YiceSlidelipPickCommonModel *model = [YiceSlidelipPickCommonModel new];
                 model = self.subKindArray[inde.section][inde.row];
                 self.treeLevel = model.text;
+                if ([model.text isEqualToString:@"一级"]) {
+                    self.treeLevel = @"THIRD";
+                }else if ([model.text isEqualToString:@"二级"]){
+                    self.treeLevel = @"SECOND";
+                }
+                else{
+                    self.treeLevel = @"FIRST";
+                }
+                [self myTreeLoadData];
             }
             if (inde.section == 1) {
                 YiceSlidelipPickCommonModel *model = [YiceSlidelipPickCommonModel new];
                 model = self.subKindArray[inde.section][inde.row];
                 self.variety = model.text;
+                [self myTreeLoadData];
                 //            self.variety = self.subKindArray[inde.section][inde.row];
             }
         }
@@ -395,6 +410,7 @@
     [http postWithSuccess:^(id responseObject) {
         self.models = [PersonalCenterModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
         self.tableView.models = self.models;
+        self.tableView.RankModel = self.RankModel;
         [self.tableView reloadData];
         
     } failure:^(NSError *error) {
@@ -589,5 +605,19 @@
         
     }];
 }
+//比拼数据
+-(void)getcompetedata{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629900";
+    http.parameters[@"toUserId"] = self.RankModel.userId;
+    http.parameters[@"userId"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
+        self.CompeteModel = [CompeteModel mj_objectWithKeyValues:responseObject[@"data"]];
 
+        self.tableView.CompeteModel = self.CompeteModel;
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
+}
 @end

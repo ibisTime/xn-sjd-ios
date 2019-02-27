@@ -62,4 +62,9 @@
 @property (nonatomic,strong) NSArray * productSpecsList;
 @property (nonatomic,strong) NSArray * treeList;
 @property (nonatomic,strong) NSDictionary * ownerInfo;
+
+@property (nonatomic,copy) NSString * directType;
+@property (nonatomic,copy) NSString * directObjectName;
+@property (nonatomic,copy) NSString * directObject;
+
 @end

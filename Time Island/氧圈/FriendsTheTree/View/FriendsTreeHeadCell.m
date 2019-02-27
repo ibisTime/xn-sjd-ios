@@ -191,7 +191,7 @@
     NSMutableArray * array = [NSMutableArray array];
     for (int i = 0; i < energyModels.count; i++) {
         MyTreeEnergyModel * model = energyModels[i];
-        NSString * str = [NSString stringWithFormat:@"%.2f",[model.quantity floatValue]];
+        NSString * str = [NSString stringWithFormat:@"%.2fg",[model.quantity floatValue] / 1000];
         [array addObject:@{@"number":str,@"name":model.status}];
         
     }

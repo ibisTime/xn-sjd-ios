@@ -266,6 +266,9 @@
 		36DFD831221FB07100DC5E0F /* MoreIntroduceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DFD830221FB07100DC5E0F /* MoreIntroduceCell.m */; };
 		36DFD834221FC4AC00DC5E0F /* IntroduceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DFD833221FC4AC00DC5E0F /* IntroduceModel.m */; };
 		36DFD836221FF8E000DC5E0F /* IntroduceModel.h in Sources */ = {isa = PBXBuildFile; fileRef = 36DFD832221FC4AC00DC5E0F /* IntroduceModel.h */; };
+		36F2ADBA22262832009BDAB5 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F2ADB922262832009BDAB5 /* OrderCell.m */; };
+		36F2ADBD22262C2E009BDAB5 /* OrderTreeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F2ADBC22262C2E009BDAB5 /* OrderTreeListCell.m */; };
+		36F2ADC42226952D009BDAB5 /* GiftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F2ADC32226952D009BDAB5 /* GiftModel.m */; };
 		36F4D80B221BA0B100206AAE /* FriendInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F4D80A221BA0B100206AAE /* FriendInfoModel.m */; };
 		36F4D80E221BE17000206AAE /* CompeteModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F4D80D221BE17000206AAE /* CompeteModel.m */; };
 		36F4D812221BF82B00206AAE /* BarrageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F4D811221BF82B00206AAE /* BarrageModel.m */; };
@@ -1036,6 +1039,12 @@
 		36DFD830221FB07100DC5E0F /* MoreIntroduceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoreIntroduceCell.m; sourceTree = "<group>"; };
 		36DFD832221FC4AC00DC5E0F /* IntroduceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroduceModel.h; sourceTree = "<group>"; };
 		36DFD833221FC4AC00DC5E0F /* IntroduceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroduceModel.m; sourceTree = "<group>"; };
+		36F2ADB822262832009BDAB5 /* OrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
+		36F2ADB922262832009BDAB5 /* OrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
+		36F2ADBB22262C2E009BDAB5 /* OrderTreeListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderTreeListCell.h; sourceTree = "<group>"; };
+		36F2ADBC22262C2E009BDAB5 /* OrderTreeListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderTreeListCell.m; sourceTree = "<group>"; };
+		36F2ADC22226952D009BDAB5 /* GiftModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GiftModel.h; sourceTree = "<group>"; };
+		36F2ADC32226952D009BDAB5 /* GiftModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GiftModel.m; sourceTree = "<group>"; };
 		36F4D809221BA0B100206AAE /* FriendInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendInfoModel.h; sourceTree = "<group>"; };
 		36F4D80A221BA0B100206AAE /* FriendInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FriendInfoModel.m; sourceTree = "<group>"; };
 		36F4D80C221BE17000206AAE /* CompeteModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompeteModel.h; sourceTree = "<group>"; };
@@ -2403,6 +2412,7 @@
 		1F9360D821EDFD8E007E522A /* MyGift我的礼物 */ = {
 			isa = PBXGroup;
 			children = (
+				36F2ADC122269418009BDAB5 /* Model */,
 				1F9360D921EDFD8E007E522A /* Controller */,
 				1F9360E021EDFD8E007E522A /* View */,
 			);
@@ -2426,13 +2436,13 @@
 			isa = PBXGroup;
 			children = (
 				1F9360E121EDFD8E007E522A /* MyGiftCell.h */,
-				1F9360E221EDFD8E007E522A /* ToClaimTheGiftTableView.h */,
-				1F9360E321EDFD8E007E522A /* ToClaimTheGiftCell.m */,
-				1F9360E421EDFD8E007E522A /* MyGiftTableView.m */,
-				1F9360E521EDFD8E007E522A /* ToClaimTheGiftTableView.m */,
 				1F9360E621EDFD8E007E522A /* MyGiftCell.m */,
-				1F9360E721EDFD8E007E522A /* ToClaimTheGiftCell.h */,
+				1F9360E221EDFD8E007E522A /* ToClaimTheGiftTableView.h */,
+				1F9360E521EDFD8E007E522A /* ToClaimTheGiftTableView.m */,
 				1F9360E821EDFD8E007E522A /* MyGiftTableView.h */,
+				1F9360E421EDFD8E007E522A /* MyGiftTableView.m */,
+				1F9360E721EDFD8E007E522A /* ToClaimTheGiftCell.h */,
+				1F9360E321EDFD8E007E522A /* ToClaimTheGiftCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2894,6 +2904,10 @@
 				3689769221EF367B005F1177 /* OrderView.m */,
 				3689769821EF38E8005F1177 /* OrderFootCell.h */,
 				3689769921EF38E8005F1177 /* OrderFootCell.m */,
+				36F2ADB822262832009BDAB5 /* OrderCell.h */,
+				36F2ADB922262832009BDAB5 /* OrderCell.m */,
+				36F2ADBB22262C2E009BDAB5 /* OrderTreeListCell.h */,
+				36F2ADBC22262C2E009BDAB5 /* OrderTreeListCell.m */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -2965,6 +2979,15 @@
 				36DFD833221FC4AC00DC5E0F /* IntroduceModel.m */,
 				36C894142224D7AC00B69214 /* SearchHistoryModel.h */,
 				36C894152224D7AC00B69214 /* SearchHistoryModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		36F2ADC122269418009BDAB5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				36F2ADC22226952D009BDAB5 /* GiftModel.h */,
+				36F2ADC32226952D009BDAB5 /* GiftModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4570,6 +4593,7 @@
 				1F473394221F88E0007B5908 /* UIColor+ComboBoxExtension.m in Sources */,
 				B81E602321DC906D00873AB9 /* UserDefaultsUtil.m in Sources */,
 				3689766821EED7CF005F1177 /* CollectBookVC.m in Sources */,
+				36F2ADC42226952D009BDAB5 /* GiftModel.m in Sources */,
 				1F1B002F21E71C5D000BEBD3 /* PaopaoButton.m in Sources */,
 				3615FE10221E784400D10F73 /* RulesTableView.m in Sources */,
 				1F47338E221F88E0007B5908 /* MMLeftCell.m in Sources */,
@@ -4650,6 +4674,7 @@
 				B81E608821DC9FCC00873AB9 /* LinCircleVC.m in Sources */,
 				36A84B5122115DF7003CDE19 /* BalanceVC.m in Sources */,
 				1F1B00A821E86B3C000BEBD3 /* UIButton+SGImagePosition.m in Sources */,
+				36F2ADBD22262C2E009BDAB5 /* OrderTreeListCell.m in Sources */,
 				B81E603B21DC948900873AB9 /* CoinModel.m in Sources */,
 				B86CB6A721DDB7FF00C60AC7 /* BaseCollectionView.m in Sources */,
 				B8EE11F721ED777300B9DF0D /* BookDetailHeadView.m in Sources */,
@@ -4863,6 +4888,7 @@
 				1F93614921EE0105007E522A /* MyCarbonBubbleTableView.m in Sources */,
 				1F93610D21EDFD8F007E522A /* MyNoticeTableView.m in Sources */,
 				1F1B00C321E88121000BEBD3 /* MyArticleViC.m in Sources */,
+				36F2ADBA22262832009BDAB5 /* OrderCell.m in Sources */,
 				B81E5FE321DC8FC200873AB9 /* HttpLogger.m in Sources */,
 				B81E603621DC93EC00873AB9 /* ImageUtil.m in Sources */,
 				361396152215700900F6F2F3 /* BookContentCell.m in Sources */,

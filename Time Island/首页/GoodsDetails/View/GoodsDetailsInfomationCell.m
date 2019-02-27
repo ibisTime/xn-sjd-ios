@@ -77,7 +77,24 @@
 -(void)setTreeModel:(TreeModel *)TreeModel{
     self.nameLbl.text = TreeModel.name;
     [self.nameLbl sizeToFit];
-    self.TheLabel.text = TreeModel.status;
+    int i = [TreeModel.sellType intValue];
+    switch (i) {
+        case 1:
+            self.TheLabel.text = @"专属";
+            break;
+        case 2:
+            self.TheLabel.text = @"定向";
+            break;
+        case 3:
+            self.TheLabel.text = @"捐赠";
+            break;
+        case 4:
+            self.TheLabel.text = @"集体";
+            break;
+        default:
+            break;
+    }
+//    self.TheLabel.text = TreeModel.status;
 //    self.priceLabel.text = [NSString stringWithFormat:@"¥ %@",TreeModel.productSpecsList[0][@"price"] ];
     if (TreeModel.productSpecsList.count > 0) {
         float money = [TreeModel.productSpecsList[0][@"price"] floatValue] / 1000.00;
@@ -89,7 +106,7 @@
         self.priceLabel.frame = CGRectMake(15, 55, self.priceLabel.width, 18);
     }
     if (TreeModel.treeList.count>0) {
-        self.addressLabel.text = [NSString stringWithFormat:@"%@ %@",TreeModel.treeList[0][@"city"],TreeModel.treeList[0][@"area"]];
+        self.addressLabel.text = [NSString stringWithFormat:@"%@ %@",TreeModel.city,TreeModel.area];
     }
     NSString * raise = TreeModel.raiseCount;
     NSString * now = TreeModel.nowCount;
