@@ -218,6 +218,10 @@
         [TLAlert alertWithError:@"请选择图片"];
         return;
     }
+    else if (!self.textfield1.text.length){
+        [TLAlert alertWithError:@"请选择关联古树"];
+        return;
+    }
     else{
         NSString * str = [[NSString alloc]init];
         for (int i = 0; i < self.ImageKey.count; i++) {

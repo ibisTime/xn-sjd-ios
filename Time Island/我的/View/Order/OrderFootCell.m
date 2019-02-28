@@ -18,6 +18,8 @@
      UILabel * treeAddress;
      UILabel * TreeAge;
      UILabel * TreeMoney;
+    UILabel * count;
+    UILabel * price;
 }
 
 - (void)awakeFromNib {
@@ -41,15 +43,7 @@
         OrderStatelab = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH - 40 - 15, 9.5, 40, 16.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#FE5656")];
         OrderStatelab.text = @"待支付";
         [self addSubview:OrderStatelab];
-//        self.OrderCount = 3;
-//    }
-//    return self;
-//}
-//
-//-(void)setOrderCount:(NSInteger)OrderCount
-//{
-//    self.count = OrderCount;
-//
+
     UIView * view = [[UIView alloc]init];
     view.backgroundColor = kLineColor;
     view.frame = CGRectMake(15, 35, SCREEN_WIDTH - 30, 1);
@@ -66,32 +60,39 @@
         [self addSubview:TreeName];
         TreeName.text = @"树的名字";
         [TreeName sizeToFit];
-        if (TreeName.width > SCREEN_WIDTH - 100) {
-            TreeName.frame = CGRectMake(TreeImage.xx + 15, TreeImage.y, SCREEN_WIDTH - 100, 21);
+        if (TreeName.width > SCREEN_WIDTH - 145) {
+            TreeName.frame = CGRectMake(TreeImage.xx + 15, TreeImage.y, SCREEN_WIDTH - 130, 21);
         }
         else{
             TreeName.frame = CGRectMake(TreeImage.xx + 15, TreeImage.y, TreeName.width, 21);
         }
+        
+        count = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH - 45, TreeImage.y, 30, 21) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:FONT(13.5) textColor:kTextBlack];
+        [self addSubview:count];
+        
         
         //树的所在位置
         treeAddress = [UILabel labelWithFrame:CGRectMake( TreeName.x,  TreeName.yy + 8.5, 0, 16.5) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#999999")];
         [self addSubview:treeAddress];
         treeAddress.text = @"浙江 杭州";
         [treeAddress sizeToFit];
-        if (treeAddress.width > SCREEN_WIDTH - 100) {
-            treeAddress.frame = CGRectMake( TreeName.x,  TreeName.yy + 8.5, SCREEN_WIDTH - 100, 16.5);
+        if (treeAddress.width > SCREEN_WIDTH - 145) {
+            treeAddress.frame = CGRectMake( TreeName.x,  TreeName.yy + 8.5, SCREEN_WIDTH - 130, 16.5);
         }
         else{
             treeAddress.frame = CGRectMake( TreeName.x,  TreeName.yy + 8.5,treeAddress.width, 16.5);
         }
         
+        price = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH - 45, TreeName.yy + 8.5, 30, 16.5) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:FONT(12) textColor:kTextColor3];
+        [self addSubview:price];
+        
         //树的年限
         TreeAge = [UILabel labelWithFrame:CGRectMake( TreeName.x,  treeAddress.yy + 12.5, 70, 16.5) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#999999")];
-        TreeAge.text = @"年限：1年";
+        TreeAge.text = @"规格：";
         [self addSubview:TreeAge];
         
         //金额
-        TreeMoney = [UILabel labelWithFrame:CGRectMake( TreeAge.xx + 143,  TreeName.yy + 36, 61, 18) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#333333")];
+        TreeMoney = [UILabel labelWithFrame:CGRectMake( SCREEN_WIDTH - 76,  TreeName.yy + 36, 61, 18) textAligment:NSTextAlignmentRight backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#333333")];
         TreeMoney.text = @"¥2480.00";
         [self addSubview:TreeMoney];
         
@@ -122,7 +123,7 @@
     else{
         treeAddress.frame = CGRectMake( TreeName.x,  TreeName.yy + 8.5,treeAddress.width, 16.5);
     }
-    TreeAge.text = [NSString stringWithFormat:@"年限：%@年",OrderModel.adoptYear];
+    TreeAge.text = [NSString stringWithFormat:@"规格：%@",OrderModel.productSpecsName];
     float payAmount = [OrderModel.payAmount floatValue] / 1000.00;
     TreeMoney.text = [NSString stringWithFormat:@"¥ %.2f",payAmount];
     
@@ -137,6 +138,10 @@
         default:
             break;
     }
+    
+    count.text = [NSString stringWithFormat:@"x%@", OrderModel.quantity];
+    CGFloat pricefloat = [OrderModel.price floatValue] / 1000;
+    price.text = [NSString stringWithFormat:@"x%.2f",pricefloat];
 }
 -(UIView*)createview:(CGRect)frame{
     UIView * view = [[UIView alloc]initWithFrame:frame];

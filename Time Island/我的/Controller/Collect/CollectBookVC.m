@@ -31,6 +31,8 @@
     self.bookview = [[BookView alloc] initWithFrame:CGRectMake(0,0, kScreenWidth, kScreenHeight - kNavigationBarHeight) style:UITableViewStyleGrouped];
     self.bookview.backgroundColor = kWhiteColor;
     self.bookview.refreshDelegate = self;
+    self.bookview.defaultNoDataImage = kImage(@"暂无订单");
+    self.bookview.defaultNoDataText = @"抱歉，暂无收藏";
     [self.bookview addRefreshAction:^{
         [weakSelf.bookview beginRefreshing];
         [weakSelf refresh];
@@ -62,16 +64,16 @@
         self.BookModels = [BookModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
         self.bookview.BookModels = self.BookModels;
         [self.bookview reloadData];
-        if (self.BookModels.count == 0) {
-            UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0,0, kScreenWidth, kScreenHeight - kNavigationBarHeight)];
-            UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 25, 100, 50, 50)];
-            image.image = kImage(@"暂无订单");
-            [view addSubview:image];
-            UILabel * label = [UILabel labelWithFrame:CGRectMake(0, image.yy + 5, SCREEN_WIDTH, 30) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(16) textColor:kTextColor3];
-            label.text = @"抱歉，暂无文章";
-            [view addSubview:label];
-            [self.view addSubview:view];
-        }
+//        if (self.BookModels.count == 0) {
+//            UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0,0, kScreenWidth, kScreenHeight - kNavigationBarHeight)];
+//            UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 25, 100, 50, 50)];
+//            image.image = kImage(@"暂无订单");
+//            [view addSubview:image];
+//            UILabel * label = [UILabel labelWithFrame:CGRectMake(0, image.yy + 5, SCREEN_WIDTH, 30) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(16) textColor:kTextColor3];
+//            label.text = @"抱歉，暂无文章";
+//            [view addSubview:label];
+//            [self.view addSubview:view];
+//        }
     } failure:^(NSError *error) {
     }];
 }

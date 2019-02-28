@@ -276,6 +276,7 @@
 		36F4D812221BF82B00206AAE /* BarrageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F4D811221BF82B00206AAE /* BarrageModel.m */; };
 		36F841D221F02B0D00BAC88A /* IssueBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F841D121F02B0D00BAC88A /* IssueBook.m */; };
 		36F841D521F05B3B00BAC88A /* CardVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F841D421F05B3B00BAC88A /* CardVCCell.m */; };
+		36F8DFEB2227C520008E548D /* UITableView+AddForPlaceholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F8DFE92227C520008E548D /* UITableView+AddForPlaceholder.m */; };
 		B80D384021F813D000206B55 /* GoodsEditModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B80D383F21F813D000206B55 /* GoodsEditModel.m */; };
 		B80D384321F8403800206B55 /* MallStoreListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B80D384221F8403800206B55 /* MallStoreListVC.m */; };
 		B80D385A21F85F1E00206B55 /* GoodsPriceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B80D384821F85F1E00206B55 /* GoodsPriceModel.m */; };
@@ -1061,6 +1062,8 @@
 		36F841D121F02B0D00BAC88A /* IssueBook.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IssueBook.m; sourceTree = "<group>"; };
 		36F841D321F05B3B00BAC88A /* CardVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardVCCell.h; sourceTree = "<group>"; };
 		36F841D421F05B3B00BAC88A /* CardVCCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardVCCell.m; sourceTree = "<group>"; };
+		36F8DFE92227C520008E548D /* UITableView+AddForPlaceholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+AddForPlaceholder.m"; sourceTree = "<group>"; };
+		36F8DFEA2227C520008E548D /* UITableView+AddForPlaceholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+AddForPlaceholder.h"; sourceTree = "<group>"; };
 		85935B108A2342344937F73A /* libPods-Time Island.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Time Island.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B80D383E21F813D000206B55 /* GoodsEditModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsEditModel.h; sourceTree = "<group>"; };
 		B80D383F21F813D000206B55 /* GoodsEditModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsEditModel.m; sourceTree = "<group>"; };
@@ -3262,6 +3265,8 @@
 		B81E5EDA21DC8FC000873AB9 /* Expand */ = {
 			isa = PBXGroup;
 			children = (
+				36F8DFEA2227C520008E548D /* UITableView+AddForPlaceholder.h */,
+				36F8DFE92227C520008E548D /* UITableView+AddForPlaceholder.m */,
 				B81E603921DC948700873AB9 /* CoinModel.h */,
 				B81E603A21DC948800873AB9 /* CoinModel.m */,
 				B81E5EDC21DC8FC000873AB9 /* TLBaseModel.m */,
@@ -4952,6 +4957,7 @@
 				3622C375221A8FBE00087EDD /* BuyPropsView.m in Sources */,
 				1F4731B122166BFD007B5908 /* NotAdoptedCell.m in Sources */,
 				3610EEC121EDC3A300FD345D /* AddCardVC.m in Sources */,
+				36F8DFEB2227C520008E548D /* UITableView+AddForPlaceholder.m in Sources */,
 				B8A27AA521E5A15100914897 /* TreeListVC.m in Sources */,
 				B80D389121F8754600206B55 /* USERXX.m in Sources */,
 				36A84B5722115F98003CDE19 /* BalanceCell.m in Sources */,
@@ -5247,7 +5253,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/WechatSDK1.8.2",
 				);
-
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -5296,9 +5301,7 @@
 					"\"UIKit\"",
 					"-all_load",
 				);
-
 				PRODUCT_BUNDLE_IDENTIFIER = com.PublicServicePlatform.servicesb;
-
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -5336,7 +5339,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Time\\ Island/WechatSDK1.8.2",
 				);
-
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -5385,9 +5387,7 @@
 					"\"UIKit\"",
 					"-all_load",
 				);
-
 				PRODUCT_BUNDLE_IDENTIFIER = com.PublicServicePlatform.servicesb;
-
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;

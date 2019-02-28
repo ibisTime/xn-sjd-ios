@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString * productCode;
 @property (nonatomic,copy) NSDictionary * product;
 @property (nonatomic,copy) NSArray * treeList;
+@property (nonatomic,copy) NSString * updateDatetime;
 @end
 
 NS_ASSUME_NONNULL_END

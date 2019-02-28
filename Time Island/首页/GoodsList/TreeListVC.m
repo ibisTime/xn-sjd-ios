@@ -186,7 +186,6 @@
                 }
                 else
                     self.adoptStatus = @"1";
-//                self.treeLevel = model.text;
             }
             if (inde.section == 1) {
                 YiceSlidelipPickCommonModel *model = [YiceSlidelipPickCommonModel new];
@@ -212,10 +211,7 @@
 
 
 
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return 1;
-}
+
 #pragma mark ---- pickDatasource
 - (NSInteger)menu:(YiceSlidelipPickerMenu *)menu numberOfRowsInSection:(NSInteger)section{
     return ((NSArray*)(self.subKindArray[section])).count;
@@ -237,6 +233,10 @@
 }
 
 #pragma mark------CollectionView的代理方法
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.models.count;

@@ -607,17 +607,20 @@
 }
 //比拼数据
 -(void)getcompetedata{
-    TLNetworking * http = [[TLNetworking alloc]init];
-    http.code = @"629900";
-    http.parameters[@"toUserId"] = self.RankModel.userId;
-    http.parameters[@"userId"] = [TLUser user].userId;
-    [http postWithSuccess:^(id responseObject) {
-        self.CompeteModel = [CompeteModel mj_objectWithKeyValues:responseObject[@"data"]];
-
-        self.tableView.CompeteModel = self.CompeteModel;
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
-        
-    }];
+    if ([self.state isEqualToString:@"rank"]) {
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"629900";
+        http.parameters[@"toUserId"] = self.RankModel.userId;
+        http.parameters[@"userId"] = [TLUser user].userId;
+        [http postWithSuccess:^(id responseObject) {
+            self.CompeteModel = [CompeteModel mj_objectWithKeyValues:responseObject[@"data"]];
+            
+            self.tableView.CompeteModel = self.CompeteModel;
+            [self.tableView reloadData];
+        } failure:^(NSError *error) {
+            
+        }];
+    }
+    
 }
 @end

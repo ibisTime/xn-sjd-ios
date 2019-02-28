@@ -11,7 +11,7 @@
 #import "QWDetailCategoryCell.h"
 #import "QWCollectionHeaderView.h"
 #import "TLNavigationController.h"
-#import "JHCollectionReusableView.h"
+//#import "JHCollectionReusableView.h"
 #import "QWCategoryDetail.h"
 #import "MallGoodListViewController.h"
 #import "MallClassificationVC.h"
@@ -20,6 +20,7 @@
 #import "UIImageView+WebCache.h"
 #import "JHCollectionViewFlowLayout.h"
 #import "MallGoodDetailVC.h"
+#import "MallGoodListViewController.h"
 @interface QWCategoryDetailController ()<JHCollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) NSMutableArray <QWCategory *>*catelogyList;
 
@@ -90,7 +91,7 @@ static NSString * const reuseIdentifierImageCell = @"imageCell";
     // 注册cell
     [self.collectionView registerClass:[QWDetailCategoryCell class] forCellWithReuseIdentifier:reuseIdentifierForCell];
     // 注册headerView
-    [self.collectionView registerClass:[JHCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifierForHeaderView];
+//    [self.collectionView registerClass:[JHCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifierForHeaderView];
     
     // 不显示滚动条, 不允许下拉
     self.collectionView.bounces = NO;
@@ -153,20 +154,7 @@ static NSString * const reuseIdentifierImageCell = @"imageCell";
         
     }];
   
-//    [self cancelLastRequest];
-    // 发起(新)请求
-//    AFHTTPRequestOperation *headerOperation
-//    = [QWCatelogListTool GETCatelogyListWithLevel:@"0" catelogyId:notification.object success:^(NSArray *catelogyList) {
-//
-//        // 遍历结果数组, 请求详细分类数据
-//        [self requestDetailCategoryDataWithCatelogyList:catelogyList];
-//
-//    } failure:^(NSError *error) {
-//        QWLog(@"请求header分类信息出错:%@", error);
-//    }];
 
-    // 保存当前请求操作
-//    _headerOperation = headerOperation;
 }
 
 #pragma mark 3. 根据二级分类数据, 请求详细分类数据
@@ -249,21 +237,21 @@ static NSString * const reuseIdentifierImageCell = @"imageCell";
 //        }
 }
 #pragma mark 附加控件长什么样
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    JHCollectionReusableView *reusableView = nil;
-    NSString *identfier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
-     [self.collectionView registerClass:[JHCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:identfier];
-    if (kind == UICollectionElementKindSectionHeader) {
-        JHCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:identfier forIndexPath:indexPath];
-        
-        reusableView = headerView;
-    }
-    reusableView.rankingImage.image = kImage(@"");
-    reusableView.headerTitle = @"";
-
-    [reusableView.rankingImage sd_setImageWithURL:[NSURL URLWithString:[self.row.pic convertImageUrl]]];
-    return reusableView;
-}
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+//    JHCollectionReusableView *reusableView = nil;
+//    NSString *identfier = [NSString stringWithFormat:@"cell%ld%ld",indexPath.section,indexPath.row];
+//     [self.collectionView registerClass:[JHCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:identfier];
+//    if (kind == UICollectionElementKindSectionHeader) {
+//        JHCollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:identfier forIndexPath:indexPath];
+//
+//        reusableView = headerView;
+//    }
+//    reusableView.rankingImage.image = kImage(@"");
+//    reusableView.headerTitle = @"";
+//
+//    [reusableView.rankingImage sd_setImageWithURL:[NSURL URLWithString:[self.row.pic convertImageUrl]]];
+//    return reusableView;
+//}
 
 #pragma mark - <UICollectionViewDelegate>
 #pragma mark 选中cell时做什么
@@ -274,13 +262,18 @@ static NSString * const reuseIdentifierImageCell = @"imageCell";
 //    QWCategory *selectedCategory = detailCategory.categories[indexPath.row];
 //
 //    // 跳转
-    MallGoodDetailVC *productListVC = [MallGoodDetailVC new];
-    productListVC.code = self.catelogyList [indexPath.row].code;
-     TLNavigationController *navigationVC = [[TLNavigationController alloc] initWithRootViewController:productListVC];
+    QWCategory *detailCategory = self.catelogyList[indexPath.row];
+    MallGoodListViewController * vc = [MallGoodListViewController new];
+    vc.categoryCode = detailCategory.code;
+    
+    
+//    MallGoodDetailVC *productListVC = [MallGoodDetailVC new];
+//    productListVC.code = self.catelogyList [indexPath.row].code;
+     TLNavigationController *navigationVC = [[TLNavigationController alloc] initWithRootViewController:vc];
     if ([self.view.superview.nextResponder isKindOfClass:[MallClassificationVC class]]) {
         MallClassificationVC *categoryVC = (MallClassificationVC *)self.view.superview.nextResponder;
         categoryVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [categoryVC.navigationController pushViewController:productListVC animated:YES];
+        [categoryVC.navigationController pushViewController:vc animated:YES];
     }
 //
     
@@ -288,27 +281,28 @@ static NSString * const reuseIdentifierImageCell = @"imageCell";
 }
 - (UIColor *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout backgroundColorForSection:(NSInteger)section
 {
-    
-    return [@[
-              [UIColor redColor],
-              [UIColor greenColor],
-              [UIColor yellowColor],
-              [UIColor redColor],
-              [UIColor greenColor],
-              [UIColor yellowColor],
-              [UIColor redColor],
-              [UIColor greenColor],
-              [UIColor yellowColor],
-              [UIColor redColor],
-            
-              ] objectAtIndex:section];
+    return kClearColor;
+//    return [@[
+//              [UIColor redColor],
+//              [UIColor greenColor],
+//              [UIColor yellowColor],
+//              [UIColor redColor],
+//              [UIColor greenColor],
+//              [UIColor yellowColor],
+//              [UIColor redColor],
+//              [UIColor greenColor],
+//              [UIColor yellowColor],
+//              [UIColor redColor],
+//
+//              ] objectAtIndex:section];
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return CGSizeMake(kScreenWidth, kHeight(160));
-    }else{
-        return CGSizeMake(kScreenWidth, kHeight(30));
-    }
+//    if (section == 0) {
+//        return CGSizeMake(kScreenWidth, kHeight(160));
+//    }else{
+        return CGSizeMake(kScreenWidth, kHeight(0));
+//    }
+    
 }
 
 

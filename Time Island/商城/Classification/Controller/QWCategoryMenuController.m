@@ -50,6 +50,7 @@
     self.tableView.showsVerticalScrollIndicator = NO;
     // 不允许下拉
     self.tableView.bounces = NO;
+    self.tableView.backgroundColor = kLineColor;
     
 }
 
@@ -155,7 +156,6 @@
     [tableView scrollToNearestSelectedRowAtScrollPosition:UITableViewScrollPositionTop animated:YES];
     // 字体变红
     [tableView cellForRowAtIndexPath:indexPath].textLabel.textColor = kBlackColor;
-    
     // 取出分类id
     QWCategory *selectedCategory = self.catelogyList[indexPath.row];
     if ([_selectedCategory.code isEqualToString: selectedCategory.code] == NO) { // 不重复点击

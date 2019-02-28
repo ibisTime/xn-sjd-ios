@@ -21,6 +21,7 @@
 //#import <MSAuthSDK/MSAuthVCFactory.h>
 //#import <MSAuthSDK/MSAuthSDK.h>
 //#import <SecurityGuardSDK/JAQ/SecurityVerification.h>
+#import "UITableView+AddForPlaceholder.h"
 #import "AppMacro.h"
 #import "AppColorMacro.h"
 #import "APICodeMacro.h"

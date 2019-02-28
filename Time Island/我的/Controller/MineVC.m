@@ -30,7 +30,7 @@
 #define imagearray @[@"泡泡",@"我的订单",@"我的文章",@"我的收藏",@"邀请有礼",@"设置"]
 #define array1 @[@"余额",@"碳泡泡",@"积分"]
 @interface MineVC (){
-    UIImageView *headImg;
+    
 }
 @property (nonatomic,retain) UIView * topview;
 @property (nonatomic,strong) TLTableView *table1;
@@ -43,6 +43,8 @@
 @property (nonatomic,strong) UILabel *numberLbl2;
 @property (nonatomic,strong) UILabel *numberLbl3;
 @property (nonatomic,strong)  UILabel *numLbl;
+@property (nonatomic,strong) UIImageView *headImg;
+@property (nonatomic,strong) UIView *headPortraitView;
 @end
 
 @implementation MineVC
@@ -93,20 +95,20 @@
     topiimage.image = kImage(@"我的背景");
     [self.topview addSubview:topiimage];
     
-    UIView *headPortraitView = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 171/2, 72.5 - 64 + kNavigationBarHeight, 171, 33)];
-    headPortraitView.backgroundColor = kBackgroundColor;
-    kViewRadius(headPortraitView, 33/2);
-    headPortraitView.alpha = 0.3;
+    self.headPortraitView = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 171/2, 72.5 - 64 + kNavigationBarHeight, 171, 33)];
+    self.headPortraitView.backgroundColor = kBackgroundColor;
+    kViewRadius(self.headPortraitView, 33/2);
+    self.headPortraitView.alpha = 0.3;
     
     UITapGestureRecognizer * ges = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(certify)];
     ges.delegate = self;
-    [headPortraitView addGestureRecognizer:ges];
+    [self.headPortraitView addGestureRecognizer:ges];
 
     
-    headImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 171/2 + 12, 72.5 - 64 + kNavigationBarHeight + 8, 15, 15)];
-    headImg.image = kImage(@"支付完成");
+    self.headImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 171/2 + 12, 72.5 - 64 + kNavigationBarHeight + 8, 15, 15)];
+    self.headImg.image = kImage(@"支付完成");
     
-    UILabel *nameLbl = [UILabel labelWithFrame:CGRectMake(headImg.xx + 4, 72.5 - 64 + kNavigationBarHeight + 8, SCREEN_WIDTH - headImg.xx - 5, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:[UIColor whiteColor]];
+    UILabel *nameLbl = [UILabel labelWithFrame:CGRectMake(self.headImg.xx + 4, 72.5 - 64 + kNavigationBarHeight + 8, SCREEN_WIDTH - self.headImg.xx - 5, 15) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(13) textColor:[UIColor whiteColor]];
     nameLbl.text = @"未认证";
     self.nameLbl = nameLbl;
     
@@ -145,21 +147,21 @@
     
     for (int i = 0; i < 3; i ++) {
 
-        UILabel *nameLbl = [self createlabelwithFrame:CGRectMake(SCREEN_WIDTH / 3 * i, sign.yy + 28, SCREEN_WIDTH / 3, 12) title1:array1[i] fontname:@"PingFangSC-Regular" textsize:12];
-        [self.topview addSubview:nameLbl];
-        self.numLbl = nameLbl;
+        UILabel *nameLbl0 = [self createlabelwithFrame:CGRectMake(SCREEN_WIDTH / 3 * i, sign.yy + 28, SCREEN_WIDTH / 3, 12) title1:array1[i] fontname:@"PingFangSC-Regular" textsize:12];
+        [self.topview addSubview:nameLbl0];
+        self.numLbl = nameLbl0;
 
-        UILabel *numberLbl1 = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH / 3 * 0, nameLbl.yy + 7, SCREEN_WIDTH / 3, 15) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(15) textColor:[UIColor whiteColor]];
+        UILabel *numberLbl1 = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH / 3 * 0, nameLbl0.yy + 7, SCREEN_WIDTH / 3, 15) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(15) textColor:[UIColor whiteColor]];
 //        numberLbl1.text = @"0.00";
         [self.topview addSubview:numberLbl1];
         self.numberLbl1 = numberLbl1;
         
-        UILabel *numberLbl2 = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH / 3 * 1, nameLbl.yy + 7, SCREEN_WIDTH / 3, 15) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(15) textColor:[UIColor whiteColor]];
+        UILabel *numberLbl2 = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH / 3 * 1, nameLbl0.yy + 7, SCREEN_WIDTH / 3, 15) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(15) textColor:[UIColor whiteColor]];
 //        numberLbl2.text = @"0.00";
         [self.topview addSubview:numberLbl2];
         self.numberLbl2 = numberLbl2;
         
-        UILabel *numberLbl3 = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH / 3 * 2, nameLbl.yy + 7, SCREEN_WIDTH / 3, 15) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(15) textColor:[UIColor whiteColor]];
+        UILabel *numberLbl3 = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH / 3 * 2, nameLbl0.yy + 7, SCREEN_WIDTH / 3, 15) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(15) textColor:[UIColor whiteColor]];
 //        numberLbl3.text = @"0.00";
         [self.topview addSubview:numberLbl3];
         self.numberLbl3 = numberLbl3;
@@ -175,8 +177,8 @@
     [self.topview addSubview:[self createview:CGRectMake(SCREEN_WIDTH/3-1, sign.yy + 33, 1, 20)]];
     [self.topview addSubview:[self createview:CGRectMake(SCREEN_WIDTH * 2/3-1, sign.yy + 33, 1, 20)]];
     
-    [self.topview addSubview:headPortraitView];
-    [self.topview addSubview:headImg];
+    [self.topview addSubview:self.headPortraitView];
+    [self.topview addSubview:self.headImg];
     [self.topview addSubview:nameLbl];
     [self.topview addSubview:img];
     [self.topview addSubview:name];
@@ -201,18 +203,20 @@
         }
             break;
         case 1:{
+            
+            
             MyCarbonBubbleVC * vc = [MyCarbonBubbleVC new];
-            vc.accountNumber = self.array[1][@"accountNumber"];
-            vc.state = 1;
-            vc.title = @"积分";
+            vc.accountNumber = self.array[2][@"accountNumber"];
+            vc.state = 2;
+            vc.title = @"我的碳泡泡";
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 2:{
             MyCarbonBubbleVC * vc = [MyCarbonBubbleVC new];
-            vc.accountNumber = self.array[2][@"accountNumber"];
-            vc.state = 2;
-            vc.title = @"我的碳泡泡";
+            vc.accountNumber = self.array[1][@"accountNumber"];
+            vc.state = 1;
+            vc.title = @"积分";
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
@@ -324,10 +328,16 @@
         if ([[TLUser user].userExt[@"personAuthStatus"] isEqualToString:@"1"]) {
             self.nameLbl.text = @"已个人认证";
             [self.nameLbl sizeToFit];
-            
+            self.nameLbl.frame = CGRectMake(SCREEN_WIDTH - self.nameLbl.width - 5, 72.5 - 64 + kNavigationBarHeight + 8, self.nameLbl.width, 15);
+            self.headImg.frame = CGRectMake(SCREEN_WIDTH - self.nameLbl.width - 15 - 15, 72.5 - 64 + kNavigationBarHeight + 8, 15, 15);
+            self.headPortraitView.frame = CGRectMake(self.headImg.x - 5, 72.5 - 64 + kNavigationBarHeight,SCREEN_WIDTH - self.headImg.x + 30, 33);
         }
         else if([[TLUser user].userExt[@"companyAuthStatus"] isEqualToString:@"1"]){
             self.nameLbl.text = @"已企业认证";
+            [self.nameLbl sizeToFit];
+            self.nameLbl.frame = CGRectMake(SCREEN_WIDTH - self.nameLbl.width - 5, 72.5 - 64 + kNavigationBarHeight + 8, self.nameLbl.width, 15);
+            self.headImg.frame = CGRectMake(SCREEN_WIDTH - self.nameLbl.width - 15 - 15, 72.5 - 64 + kNavigationBarHeight + 8, 15, 15);
+            self.headPortraitView.frame = CGRectMake(self.headImg.x - 5, 72.5 - 64 + kNavigationBarHeight,SCREEN_WIDTH - self.headImg.x + 30, 33);
         }
         else{
             self.nameLbl.text = @"未认证";

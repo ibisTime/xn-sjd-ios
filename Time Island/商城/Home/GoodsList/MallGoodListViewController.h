@@ -9,5 +9,6 @@
 #import "TLBaseVC.h"
 
 @interface MallGoodListViewController : TLBaseVC
-
+@property (nonatomic,strong) NSString * parentCategoryCode;
+@property (nonatomic,strong) NSString * categoryCode;
 @end

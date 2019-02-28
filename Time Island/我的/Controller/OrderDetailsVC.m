@@ -108,18 +108,60 @@
 
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
-}
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 1) {
-        return self.ordermodel.treeList.count;
-    }
-    else if (section == 0){
-        return 4;
+    if ([self.ordermodel.status isEqualToString:@"3"]) {
+        return 3;
     }
     return 2;
 }
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if ([self.ordermodel.status isEqualToString:@"3"]) {
+        if (section == 1) {
+            return self.ordermodel.treeList.count;
+        }
+        else if (section == 0){
+            return 4;
+        }
+        return 2;
+    }
+    if (section == 0) {
+        return 3;
+    }
+    return 2;
+    
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([self.ordermodel.status isEqualToString:@"3"]) {
+        if (indexPath.section == 0) {
+            if (indexPath.row == 0) {
+                OrderFootCell * cell = [tableView dequeueReusableCellWithIdentifier:OrderFoot forIndexPath:indexPath];
+                cell.OrderModel = self.OrderModel;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                return cell;
+            }
+            NSArray * titlearr = @[@"下单时间",@"订单类型",@"支付方式"];
+            
+            OrderCell * cell = [tableView dequeueReusableCellWithIdentifier:order forIndexPath:indexPath];
+            cell.title = titlearr[indexPath.row - 1];
+            cell.content = self.contentarr[indexPath.row - 1];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
+        else if (indexPath.section == 1){
+            OrderTreeListCell * cell = [tableView dequeueReusableCellWithIdentifier:OrderTreeList forIndexPath:indexPath];
+            cell.OrderModel = self.ordermodel;
+            cell.treeList = self.ordermodel.treeList[indexPath.row];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
+        
+        NSArray * titlearr = @[@"起始时间",@"终止时间"];
+        OrderCell * cell = [tableView dequeueReusableCellWithIdentifier:order forIndexPath:indexPath];
+        cell.title = titlearr[indexPath.row];
+        cell.content = self.timearr[indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+    
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             OrderFootCell * cell = [tableView dequeueReusableCellWithIdentifier:OrderFoot forIndexPath:indexPath];
@@ -127,7 +169,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
-        NSArray * titlearr = @[@"下单时间",@"订单类型",@"支付方式"];
+        NSArray * titlearr = @[@"下单时间",@"订单类型"];
         
         OrderCell * cell = [tableView dequeueReusableCellWithIdentifier:order forIndexPath:indexPath];
         cell.title = titlearr[indexPath.row - 1];
@@ -135,13 +177,13 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    else if (indexPath.section == 1){
-        OrderTreeListCell * cell = [tableView dequeueReusableCellWithIdentifier:OrderTreeList forIndexPath:indexPath];
-        cell.OrderModel = self.ordermodel;
-        cell.treeList = self.ordermodel.treeList[indexPath.row];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }
+//    else if (indexPath.section == 1){
+//        OrderTreeListCell * cell = [tableView dequeueReusableCellWithIdentifier:OrderTreeList forIndexPath:indexPath];
+//        cell.OrderModel = self.ordermodel;
+//        cell.treeList = self.ordermodel.treeList[indexPath.row];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        return cell;
+//    }
     
     NSArray * titlearr = @[@"起始时间",@"终止时间"];
     OrderCell * cell = [tableView dequeueReusableCellWithIdentifier:order forIndexPath:indexPath];
@@ -149,9 +191,21 @@
     cell.content = self.timearr[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
-    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([self.ordermodel.status isEqualToString:@"3"]) {
+        if (indexPath.section == 0) {
+            if (indexPath.row == 0) {
+                return 140;
+            }
+            else
+                return 55;
+        }
+        else if (indexPath.section == 1){
+            return 100;
+        }
+        return 55;
+    }
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             return 140;
@@ -159,30 +213,32 @@
         else
             return 55;
     }
-    else if (indexPath.section == 1){
-        return 100;
-    }
     return 55;
+    
     
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 10;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (section == 1) {
-        UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 16.5)];
-        view.backgroundColor = kWhiteColor;
-        UILabel * OrderIdlab = [[UILabel alloc]initWithFrame:CGRectMake(15, 9.5, SCREEN_WIDTH - 40 - 30, 16.5) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#666666")];
-        OrderIdlab.text = @"树木列表";
-        [view addSubview:OrderIdlab];
-        [view addSubview:[self createview:CGRectMake(0, 29, SCREEN_WIDTH, 1)]];
-        return view;
+    if ([self.ordermodel.status isEqualToString:@"3"]) {
+        if (section == 1) {
+            UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 16.5)];
+            view.backgroundColor = kWhiteColor;
+            UILabel * OrderIdlab = [[UILabel alloc]initWithFrame:CGRectMake(15, 9.5, SCREEN_WIDTH - 40 - 30, 16.5) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#666666")];
+            OrderIdlab.text = @"树木列表";
+            [view addSubview:OrderIdlab];
+            [view addSubview:[self createview:CGRectMake(0, 29, SCREEN_WIDTH, 1)]];
+            return view;
+        }
     }
     return nil;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 1) {
-        return 30;
+    if ([self.ordermodel.status isEqualToString:@"3"]) {
+        if (section == 1) {
+            return 30;
+        }
     }
     return 0.01;
 }
@@ -198,7 +254,7 @@
     http.parameters[@"code"] = self.OrderModel.code;
     [http postWithSuccess:^(id responseObject) {
         self.ordermodel = [OrderModel mj_objectWithKeyValues:responseObject[@"data"]];
-        
+        NSString * s1 = [self.ordermodel.remark substringToIndex:self.ordermodel.remark.length - 2];
         //专属
         TLNetworking * http3 = [[TLNetworking alloc]init];
         http3.code = @"630036";
@@ -212,12 +268,17 @@
                     str = self.SellTypeArray[i][@"dvalue"];
                 }
             }
-            self.contentarr = @[[self.ordermodel.payDatetime convertToDetailDate],str,@"456"];
+            if ([self.ordermodel.status isEqualToString:@"3"]) {
+                
+                self.contentarr = @[[self.ordermodel.payDatetime convertToDetailDate],str,s1];
+            }
+            else
+                self.contentarr = @[[self.ordermodel.updateDatetime convertToDetailDate],str,s1];
             [self.TableView reloadData];
         } failure:^(NSError *error) {
         }];
         
-        self.timearr = @[[self.ordermodel.payDatetime convertToDetailDateWithoutHour],[self.ordermodel.endDatetime convertToDetailDateWithoutHour]];
+        self.timearr = @[[self.ordermodel.startDatetime convertToDetailDateWithoutHour],[self.ordermodel.endDatetime convertToDetailDateWithoutHour]];
         [self.TableView reloadData];
     } failure:^(NSError *error) {
         

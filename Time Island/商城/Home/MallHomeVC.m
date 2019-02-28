@@ -17,6 +17,8 @@
 #import "MallGoodsModel.h"
 #import "MallGoodDetailVC.h"
 #import "MallGoodListViewController.h"
+#import "QWCategory.h"
+#import <UIButton+WebCache.h>
 @interface MallHomeVC ()<PYSearchViewControllerDelegate>
 //@property (nonatomic,strong) MallHomeHeadView * Classifyview;
 @property (nonatomic,strong) UIView * headview;
@@ -30,7 +32,7 @@
 @property (nonatomic,strong) MallHomeHeadView *mallHeader;
 @property (nonatomic,strong) NSMutableArray <MallGoodsModel *>*HotTrees;
 @property (nonatomic,strong) UIView * footview;
-
+@property (nonatomic,strong) NSMutableArray<QWCategory *> * QWCategorys;
 @end
 
 @implementation MallHomeVC
@@ -38,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"首页";
-    
+    [self getClassify];
     self.headview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/750*370 + 140 +  (SCREEN_WIDTH - 30)/690*230 + 247.5)];
     
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] init];
@@ -59,7 +61,7 @@
     
     [self setupImage];
     [self initSearchBar];
-    [self SetupClassify];
+//    [self SetupClassify];
 //    [self SetupFootView];
     [self createbackview];
     [self loadBaner];
@@ -209,26 +211,48 @@
     
     MallHomeHeadView *mallHeader = [[MallHomeHeadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , SCREEN_WIDTH/750 * 300)];
     self.mallHeader = mallHeader;
-//    UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/750*370)];
-//    image.image = kImage(@"树 跟背景");
-////    [self.view addSubview:image];
     [self.headview addSubview:mallHeader];
-//    self.backgroundimage = image;
 }
 -(void)SetupClassify{
-
-    NSArray * ClassifyName = @[@"分类一",@"分类二",@"分类三",@"分类四",@"分类五"];
+    NSMutableArray * namearr = [NSMutableArray array];
+    NSMutableArray  *imagearr = [NSMutableArray array];
+    for (int i = 0; i < self.QWCategorys.count; i++) {
+        [namearr addObject:self.QWCategorys[i].name];
+        [imagearr addObject:self.QWCategorys[i].pic];
+    }
+    
 
     
-    for (int i = 0; i < 5; i ++) {
-        UIButton *iconBtn = [UIButton buttonWithTitle:ClassifyName[i] titleColor:kHexColor(@"#666666") backgroundColor:kClearColor titleFont:12];
+    for (int i = 0; i < self.QWCategorys.count; i ++) {
+        UIButton *iconBtn = [UIButton buttonWithTitle:@"" titleColor:kHexColor(@"#666666") backgroundColor:kClearColor titleFont:12];
         iconBtn.frame = CGRectMake(i % 5 * SCREEN_WIDTH/5, self.mallHeader.yy + 22, SCREEN_WIDTH/5, 55 + 16.5);
-        [iconBtn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
-            [button setImage:kImage(ClassifyName[i]) forState:(UIControlStateNormal)];
-        }];
+//        [iconBtn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
+//            [button sd_setImageWithURL:[NSURL URLWithString:[imagearr[i] convertImageUrl]] forState:UIControlStateNormal];
+//
+////            //异步下载图片
+////            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+////                UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[imagearr[i] convertImageUrl]]]];
+////                //刷新主线程显示图片
+////                dispatch_async(dispatch_get_main_queue(), ^{x
+////                    [button setImage:img forState:(UIControlStateNormal)];
+////                    button.imageEdgeInsets = UIEdgeInsetsMake(0, 16.5, -16.5, -16.5);
+////                });
+////            });
+//        }];
         iconBtn.tag = i;
         [iconBtn addTarget:self action:@selector(ClassifyClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.headview addSubview:iconBtn];
+        
+        
+        UIImageView *iconImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/5/2 - 20,  7.5, 40, 40)];
+        [iconImg sd_setImageWithURL:[NSURL URLWithString:[imagearr[i] convertImageUrl]]];
+        [iconBtn addSubview:iconImg];
+        
+        UILabel *iconlLbl = [UILabel labelWithFrame:CGRectMake(0,  55, SCREEN_WIDTH/5, 16.5) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#666666")];
+        iconlLbl.text = namearr[i];
+        
+        [iconBtn addSubview:iconlLbl];
+        
     }
     
     UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, self.mallHeader.yy + 22 + 55 + 16.5 + 21.5, SCREEN_WIDTH, 10)];
@@ -241,7 +265,23 @@
     [self.headview addSubview:image];
     self.image = image;
 }
-
+-(void)getClassify{
+    TLNetworking *http = [TLNetworking new];
+    http.code = @"629005";
+    http.parameters[@"start"] = @"0";
+    http.parameters[@"limit"] = @"10";
+    http.parameters[@"level"] = @"1";
+    http.parameters[@"type"] = @"2";
+    http.parameters[@"status"] = @"1";
+    http.parameters[@"orderColumn"] = @"order_no";
+    http.parameters[@"orderDir"] = @"asc";
+    [http postWithSuccess:^(id responseObject) {
+        self.QWCategorys = [QWCategory mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        [self SetupClassify];
+    } failure:^(NSError *error) {
+        
+    }];
+}
 
 - (void)initSearchBar {
  
@@ -358,6 +398,7 @@
 }
 -(void)ClassifyClick:(UIButton * )btn{
     MallGoodListViewController *list = [MallGoodListViewController new];
+    list.parentCategoryCode = self.QWCategorys[btn.tag].code;
     list.title = @"商品列表";
     [self.navigationController pushViewController:list animated:YES];
 }

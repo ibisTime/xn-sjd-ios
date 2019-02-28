@@ -48,7 +48,7 @@
     
     [self.view addSubview:_webView];
     
-    [_webView loadHTMLString:self.htmlStr baseURL:nil];
+//    [_webView loadHTMLString:self.htmlStr baseURL:nil];
 }
 
 - (void)loadWebWithString:(NSString *)string {

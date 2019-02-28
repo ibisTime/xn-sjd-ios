@@ -238,12 +238,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/meiminjie/Desktop/xn-sjd-ios/Time%20Island/%E7%94%A8%E6%88%B7/Controller/UserInfo/ChangeLoginPwdVC.m"
-                  timestampString = "572954382.774364"
+                  timestampString = "573037003.057955"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "173"
                   endingLineNumber = "173"
-                  offsetFromSymbolStart = "2108">
+                  offsetFromSymbolStart = "2236">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -253,12 +253,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/meiminjie/Desktop/xn-sjd-ios/Time%20Island/%E7%94%A8%E6%88%B7/Controller/UserInfo/ChangeLoginPwdVC.m"
-                  timestampString = "572954382.776286"
+                  timestampString = "573037003.059839"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "173"
                   endingLineNumber = "173"
-                  offsetFromSymbolStart = "24">
+                  offsetFromSymbolStart = "16">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -268,12 +268,12 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/meiminjie/Desktop/xn-sjd-ios/Time%20Island/%E7%94%A8%E6%88%B7/Controller/UserInfo/ChangeLoginPwdVC.m"
-                  timestampString = "572954382.77815"
+                  timestampString = "573037003.061884"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "173"
                   endingLineNumber = "173"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "16">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -301,44 +301,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Time Island/&#x6c27;&#x5708;/PersonalCenter/View/PersonalCenterTableVIew.m"
-            timestampString = "572932371.4613301"
+            timestampString = "573037002.8545769"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
+            startingLineNumber = "392"
+            endingLineNumber = "392"
             landmarkName = "-getcompetedata"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Time Island/&#x9996;&#x9875;/GoodsDetails/View/NegotiateVC.m"
-            timestampString = "572949055.5414211"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "-goNext"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Time Island/&#x9996;&#x9875;/GoodsDetails/View/NegotiateVC.m"
-            timestampString = "572949055.541477"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "-goNext"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
