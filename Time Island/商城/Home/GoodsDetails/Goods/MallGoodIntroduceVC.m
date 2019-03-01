@@ -32,7 +32,9 @@
 @property (nonatomic , strong)SLBannerView *banner;
 @property (nonatomic , strong)MallGoodIntroduceTableView *tableView;
 @property (nonatomic , strong)NSMutableArray <EvaluationModel *>*evaluationModel;
-
+@property (nonatomic,assign) NSInteger count;
+@property (nonatomic,strong) NSString * size;
+@property (nonatomic,assign) int selectnum;
 @end
 
 @implementation MallGoodIntroduceVC
@@ -69,6 +71,12 @@
 //    [self initDetailView];
     [self.view addSubview:self.tableView];
     self.tableView.tableHeaderView = self.banner;
+    CoinWeakSelf;
+    weakSelf.tableView.more = ^{
+        if (weakSelf.clickmore) {
+            weakSelf.clickmore();
+        }
+    };
     [self loadData];
     
     // Do any additional setup after loading the view.
@@ -76,24 +84,7 @@
 
 
 
-//- (void)initDetailView{
-//    self.contentView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-kTabBarHeight)];
-//    [self.view addSubview:self.contentView];
-//    self.contentView.scrollEnabled = YES;
-//
-//
-//    self.detailView = [[MallGoodDetailView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kSuperViewHeight - kTabBarHeight-(kHeight(40+30+10)))];
-//    self.detailView.treeModel  =  self.treeModel;
-//    CoinWeakSelf;
-//    self.detailView.CategoryBlock = ^{
-//        [weakSelf clickShoppingCard];
-//    };
-//    [self.contentView addSubview:self.detailView];
-//    self.commentTB = [[MallCommentTB alloc] initWithFrame:CGRectMake(0, self.detailView.yy, kScreenWidth, kScreenHeight)];
-//    [self.contentView addSubview:self.commentTB];
-//    self.commentTB.refreshDelegate = self;
-//    self.contentView.contentSize = CGSizeMake(0, self.commentTB.yy+100);
-//}
+
 
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -102,13 +93,11 @@
         _alert.alpha = 0;
         [[UIApplication sharedApplication].keyWindow addSubview:_alert];
         CoinWeakSelf;
-//        _alert.selectSize = ^(SizeAttributeModel *sizeModel, NSInteger inter) {
-//            //sizeModel 选择的属性模型
-//            [JXUIKit showSuccessWithStatus:[NSString stringWithFormat:@"选择了：%@",sizeModel.goodsNo]];
-//            [weakSelf sumbitOrderWithIndex:inter];
-//        };
         _alert.selectSize = ^(SizeAttributeModel *sizeModel, NSInteger inter, NSInteger count,int selectnum) {
             [JXUIKit showSuccessWithStatus:[NSString stringWithFormat:@"选择了：%@",sizeModel.goodsNo]];
+            weakSelf.count = count;
+            weakSelf.size = sizeModel.goodsNo;
+            weakSelf.selectnum = selectnum;
             [weakSelf sumbitOrderWithIndex:inter];
         };
         [_alert initData:self.model];
@@ -117,31 +106,83 @@
 }
 
 - (void)loadData{
-    TLNetworking *http = [TLNetworking new];
+//    TLNetworking *http = [TLNetworking new];
+//    http.code = @"629755";
+//    http.parameters[@"start"] = @"1";
+//    http.parameters[@"limit"] = @"10";
+//    http.parameters[@"statusList"] = @[@"D",@"B"];
+//    http.parameters[@"commodityCode"] = self.treeModel.code;
+////    http.parameters[@"code"] = self.code;
+//    [http postWithSuccess:^(id responseObject) {
+//        self.evaluationModel = [EvaluationModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+//        NSLog(@"%@",responseObject);
+//        self.tableView.evaluationModel = self.evaluationModel;
+//        [self.tableView reloadData];
+//    } failure:^(NSError *error) {
+//
+//    }];
+    CoinWeakSelf;
+    TLPageDataHelper * http = [TLPageDataHelper new];
     http.code = @"629755";
-    http.parameters[@"start"] = @"1";
-    http.parameters[@"limit"] = @"10";
     http.parameters[@"statusList"] = @[@"D",@"B"];
     http.parameters[@"commodityCode"] = self.treeModel.code;
-//    http.parameters[@"code"] = self.code;
-    [http postWithSuccess:^(id responseObject) {
-        self.evaluationModel = [EvaluationModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-        NSLog(@"%@",responseObject);
-        self.tableView.evaluationModel = self.evaluationModel;
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
-
+    [http modelClass:[EvaluationModel class]];
+    http.showView = self.view;
+    http.tableView = self.tableView;
+    http.isCurrency = YES;
+    [self.tableView addRefreshAction:^{
+        [http refresh:^(NSMutableArray *objs, BOOL stillHave) {
+            weakSelf.tableView.evaluationModel = objs;
+            [weakSelf.tableView reloadData];
+            [weakSelf.tableView endRefreshHeader];
+        } failure:^(NSError *error) {
+            [weakSelf.tableView endRefreshHeader];
+        }];
     }];
+    [self.tableView addLoadMoreAction:^{
+        [http loadMore:^(NSMutableArray *objs, BOOL stillHave) {
+            weakSelf.tableView.evaluationModel = objs;
+            [weakSelf.tableView reloadData];
+            [weakSelf.tableView endRefreshFooter];
+        } failure:^(NSError *error) {
+            [weakSelf.tableView endRefreshFooter];
+        }];
+    }];
+    [self.tableView beginRefreshing];
+    
 
 }
 
 - (void)sumbitOrderWithIndex:(NSInteger)tag
 {
-    if (tag == 100) {
+//    if (tag == 100) {
+//        //购物车
+//    }else{
+//        SubmitOrdersVC *orderVc = [SubmitOrdersVC new];
+//        orderVc.title = @"确认订单";
+//        [self.navigationController pushViewController:orderVc animated:YES];
+//    }
+    if (tag ==100) {
         //购物车
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"629710";
+        http.parameters[@"userId"] = [TLUser user].userId;
+        http.parameters[@"commodityCode"] = self.treeModel.code;
+        http.parameters[@"commodityName"] = self.treeModel.name;
+        http.parameters[@"specsId"] = self.treeModel.specsList[self.selectnum][@"id"];
+        http.parameters[@"specsName"] = self.treeModel.specsList[self.selectnum][@"name"];
+        http.parameters[@"quantity"] = @(self.count);
+        [http postWithSuccess:^(id responseObject) {
+            [TLAlert alertWithSucces:@"加入购物车成功"];
+        } failure:^(NSError *error) {
+            
+        }];
     }else{
         SubmitOrdersVC *orderVc = [SubmitOrdersVC new];
-        orderVc.title = @"确认订单";
+        orderVc.MallGoodsModel = self.treeModel;
+        orderVc.count = self.count;
+        orderVc.size = self.size;
+        orderVc.selectnum = self.selectnum;
         [self.navigationController pushViewController:orderVc animated:YES];
     }
   

@@ -273,7 +273,7 @@
                 self.contentarr = @[[self.ordermodel.payDatetime convertToDetailDate],str,s1];
             }
             else
-                self.contentarr = @[[self.ordermodel.updateDatetime convertToDetailDate],str,s1];
+                self.contentarr = @[[self.ordermodel.applyDatetime convertToDetailDate],str,s1];
             [self.TableView reloadData];
         } failure:^(NSError *error) {
         }];

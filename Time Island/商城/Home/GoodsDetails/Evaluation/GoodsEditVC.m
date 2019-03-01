@@ -33,6 +33,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     //    [self initDetailView];
+    self.tableView.defaultNoDataImage = kImage(@"暂无订单");
+    self.tableView.defaultNoDataText = @"抱歉，暂无评论";
     [self.view addSubview:self.tableView];
     [self loadData];
     
@@ -40,21 +42,34 @@
 }
 
 - (void)loadData{
-    TLNetworking *http = [TLNetworking new];
+    CoinWeakSelf;
+    TLPageDataHelper * http = [TLPageDataHelper new];
     http.code = @"629755";
-    http.parameters[@"start"] = @"1";
-    http.parameters[@"limit"] = @"10";
     http.parameters[@"statusList"] = @[@"D",@"B"];
-    http.parameters[@"commodityCode"] = self.treeModel.code;
-    //    http.parameters[@"code"] = self.code;
-    [http postWithSuccess:^(id responseObject) {
-        self.evaluationModel = [EvaluationModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-        NSLog(@"%@",responseObject);
-        self.tableView.evaluationModel = self.evaluationModel;
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
-        
+    http.parameters[@"commodityCode"] = self.model.code;
+    [http modelClass:[EvaluationModel class]];
+    http.showView = self.view;
+    http.tableView = self.tableView;
+    http.isCurrency = YES;
+    [self.tableView addRefreshAction:^{
+        [http refresh:^(NSMutableArray *objs, BOOL stillHave) {
+            weakSelf.tableView.evaluationModel = objs;
+            [weakSelf.tableView reloadData];
+            [weakSelf.tableView endRefreshHeader];
+        } failure:^(NSError *error) {
+            [weakSelf.tableView endRefreshHeader];
+        }];
     }];
+    [self.tableView addLoadMoreAction:^{
+        [http loadMore:^(NSMutableArray *objs, BOOL stillHave) {
+            weakSelf.tableView.evaluationModel = objs;
+            [weakSelf.tableView reloadData];
+            [weakSelf.tableView endRefreshFooter];
+        } failure:^(NSError *error) {
+            [weakSelf.tableView endRefreshFooter];
+        }];
+    }];
+    [self.tableView beginRefreshing];
     
 }
 - (void)didReceiveMemoryWarning {

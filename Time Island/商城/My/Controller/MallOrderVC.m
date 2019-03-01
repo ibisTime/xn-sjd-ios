@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"订单";
-    self.itemsTitles = @[@"全部",@"待支付",@"已支付",@"已取消",@"已到期"];
+    self.itemsTitles = @[@"全部",@"待付款",@"代发货",@"代收货",@"待评价",@"已完成",@"已取消"];
     self.selectSV = [[SelectScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kSuperViewHeight - kTabBarHeight) itemTitles:self.itemsTitles];
     [self.view addSubview:self.selectSV];
     
@@ -30,17 +30,51 @@
             bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
             [self.selectSV.scrollView addSubview:bookview.view];
         }
+        else if (index == 1) {
+            MallOrderView * bookview = [[MallOrderView alloc]init];
+            bookview.status = @"0";
+            [self addChildViewController:bookview];
+            bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
+            [self.selectSV.scrollView addSubview:bookview.view];
+        }
+        else if (index == 2) {
+            MallOrderView * bookview = [[MallOrderView alloc]init];
+            bookview.status = @"1";
+            [self addChildViewController:bookview];
+            bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
+            [self.selectSV.scrollView addSubview:bookview.view];
+        }
+        else if (index == 3) {
+            MallOrderView * bookview = [[MallOrderView alloc]init];
+            bookview.status = @"2";
+            [self addChildViewController:bookview];
+            bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
+            [self.selectSV.scrollView addSubview:bookview.view];
+        }
+        else if (index == 4){
+            MallOrderView * bookview = [[MallOrderView alloc]init];
+            bookview.status = @"3";
+            [self addChildViewController:bookview];
+            bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
+            [self.selectSV.scrollView addSubview:bookview.view];
+        }
+        else if (index == 5) {
+            MallOrderView * bookview = [[MallOrderView alloc]init];
+            bookview.status = @"4";
+            [self addChildViewController:bookview];
+            bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
+            [self.selectSV.scrollView addSubview:bookview.view];
+        }
+        else if (index == 6){
+            MallOrderView * bookview = [[MallOrderView alloc]init];
+            bookview.status = @"5";
+            [self addChildViewController:bookview];
+            bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
+            [self.selectSV.scrollView addSubview:bookview.view];
+        }
     }
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

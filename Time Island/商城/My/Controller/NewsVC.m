@@ -8,79 +8,90 @@
 
 #import "NewsVC.h"
 #import "NewsVCCell.h"
+#import "MesModel.h"
 @interface NewsVC ()<UITableViewDelegate,UITableViewDataSource,RefreshDelegate>
 @property (nonatomic,strong) TLTableView * table;
+@property (nonatomic,strong) NSMutableArray<MesModel *> * MessageModels;
 @end
 
 @implementation NewsVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self connect];
-    UIBarButtonItem * item = [[UIBarButtonItem alloc]init];
-    item.title = @"消息";
-    self.navigationItem.backBarButtonItem = item;
     
+//    UIBarButtonItem * item = [[UIBarButtonItem alloc]init];
+//    item.title = @"消息";
+//    self.navigationItem.backBarButtonItem = item;
+    self.title = @"消息";
     self.table = [[TLTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [self.table registerClass:[NewsVCCell class] forCellReuseIdentifier:@"newscell"];
     self.table.delegate = self;
     self.table.dataSource = self;
     self.table.refreshDelegate = self;
-//    self.table.separatorStyle = YES;
+    self.table.defaultNoDataImage = kImage(@"暂无订单");
+    self.table.defaultNoDataText = @"抱歉，暂无消息";
     [self.view addSubview:self.table];
+    [self connect];
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return self.MessageModels.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 80;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NewsVCCell * cell = [tableView dequeueReusableCellWithIdentifier:@"newscell" forIndexPath:indexPath];
-    switch (indexPath.row) {
-        case 0:{
-            cell.NewsTitle.text = @"平台客服";
-            cell.NewsDetails.text = @"最新消息";
-            cell.NewsTime.text = @"刚刚";
-        }
-            break;
-        case 1:{
-            cell.NewsTitle.text = @"多比宠物用品专营店";
-            cell.NewsDetails.text = @"100亿红包在此！就问你抢不抢吧";
-            cell.NewsTime.text = @"4:30";
-        }
-            break;
-        case 2:{
-            cell.NewsTitle.text = @"CONNIREPET康特牌";
-            cell.NewsDetails.text = @"100亿红包在此！就问你抢不抢吧";
-            cell.NewsTime.text = @"昨天";
-        }
-            break;
-        case 3:{
-            cell.NewsTitle.text = @"多比宠物用品专营店";
-            cell.NewsDetails.text = @"100亿红包在此！就问你抢不抢吧";
-            cell.NewsTime.text = @"18/10/12";
-        }
-            break;
-        default:
-            break;
-    }
+    static NSString *rid=@"cell";
     
-    cell.selectionStyle = UIAccessibilityTraitNone;
+    NewsVCCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
+    
+    if(cell==nil){
+        cell=[[NewsVCCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:rid];
+         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    cell.model = self.MessageModels[indexPath.row];
     return cell;
+
 }
 -(void)connect{
-    TLNetworking * http = [[TLNetworking alloc]init];
-    http.code = @"805315";
-    http.parameters[@"id"] = [TLUser user].userId;
-    [http postWithSuccess:^(id responseObject) {
-        NSDictionary * dic = (NSDictionary * )responseObject;
-        
-    } failure:^(NSError *error) {
-        
+
+    CoinWeakSelf;
+    TLPageDataHelper * http = [TLPageDataHelper new];
+    http.code = @"629785";
+    http.parameters[@"user1"] = [TLUser user].userId;
+    http.parameters[@"orderColumn"] = @"update_datetime";
+    http.parameters[@"orderDir"] = @"desc";
+    [http modelClass:[MesModel class]];
+    http.tableView = self.table;
+    http.isCurrency = YES;
+    [self.table addRefreshAction:^{
+        [http refresh:^(NSMutableArray *objs, BOOL stillHave) {
+            if (objs.count > 0) {
+                weakSelf.MessageModels = objs;
+                [weakSelf.table reloadData];
+                [weakSelf.table endRefreshHeader];
+            }
+            else
+                [weakSelf.table endRefreshHeader];
+        } failure:^(NSError *error) {
+            [weakSelf.table endRefreshHeader];
+        }];
     }];
+    [self.table addLoadMoreAction:^{
+        [http loadMore:^(NSMutableArray *objs, BOOL stillHave) {
+            if (objs.count > 0) {
+                weakSelf.MessageModels = objs;
+                [weakSelf.table reloadData];
+                [weakSelf.table endRefreshFooter];
+            }
+            else
+                [weakSelf.table endRefreshFooter];
+        } failure:^(NSError *error) {
+            [weakSelf.table endRefreshFooter];
+        }];
+    }];
+    [self.table beginRefreshing];
 }
 @end

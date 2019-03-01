@@ -9,6 +9,6 @@
 #import "TLBaseVC.h"
 #import "MallGoodsModel.h"
 @interface GoodsEditVC : TLBaseVC
-@property (nonatomic ,strong) MallGoodsModel *treeModel;
+@property (nonatomic ,strong) MallGoodsModel *model;
 
 @end

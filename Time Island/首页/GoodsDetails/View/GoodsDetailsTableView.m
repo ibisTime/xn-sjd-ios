@@ -144,6 +144,8 @@
         [self reloadData];
     }
 }
+
+
 -(void)dealloc{
 //    [self removeObserver:self forKeyPath:@"contentSize"];
     [_cell.detail.scrollView removeObserver:self forKeyPath:@"contentSize" context:nil];

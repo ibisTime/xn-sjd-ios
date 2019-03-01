@@ -14,7 +14,7 @@
 @property(nonatomic, copy)NSString *title;//商品标题
 @property(nonatomic, copy)NSString *imageId;//缩略图id
 @property(nonatomic, copy)NSString *totalStock;//总库存
-
+@property (nonatomic,strong) NSString * photo;
 @property(nonatomic, copy)NSArray *itemsList;//属性列表
 @property(nonatomic, copy)NSArray *banners;//商品轮播图
 @property(nonatomic, strong)NSMutableArray *sizeAttribute;//属性组合列表

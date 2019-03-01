@@ -23,53 +23,29 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         //店铺名称
-        self.ShopNameBtn = [UIButton buttonWithTitle:@"店铺名称" titleColor:kTextColor3 backgroundColor:kClearColor titleFont:12];
+        self.ShopNameBtn = [UIButton buttonWithTitle:@"店铺名称" titleColor:kTextColor3 backgroundColor:kClearColor titleFont:14];
         self.ShopNameBtn.tag = 100-1;
         [self.ShopNameBtn addTarget:self action:@selector(clickDeleteButton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.ShopNameBtn];
 
         //下单时间
-        self.OrderTime = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH - 139, 9.5, 72.5, 16.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(12) textColor:kTextColor2];
+        self.OrderTime = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH - 139, 9.5, 72.5, 16.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(13) textColor:kTextColor2];
         [self addSubview:self.OrderTime];
         
         //订单状态
-        self.StateLab = [UILabel labelWithFrame:CGRectMake(self.OrderTime.xx + 10, 9.5, 73 - 15, 16.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#FE5656 ")];
+        self.StateLab = [UILabel labelWithFrame:CGRectMake(self.OrderTime.xx + 10, 9.5, 73 - 15, 16.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(13) textColor:kHexColor(@"#FE5656 ")];
         [self addSubview:self.StateLab];
         
         //底线
-        UIView * lineview1 = [self createview:CGRectMake(15, 35, SCREEN_WIDTH - 30, 1)];
+        UIView * lineview1 = [self createview:CGRectMake(15, 35.5, SCREEN_WIDTH - 30, 1)];
         [self addSubview:lineview1];
-        
-        //商品图片
-        self.GoodsImage = [[UIImageView alloc]initWithFrame:CGRectMake(30, lineview1.yy + 15, 75, 75)];
-        [self addSubview:self.GoodsImage];
-        
-        //商品名称
-        self.GoodsName = [UILabel labelWithFrame:CGRectMake(self.GoodsImage.xx + 10, self.GoodsImage.y, 0, 21) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(15) textColor:kTextBlack];
-        [self addSubview:self.GoodsName];
 
-        
-        //商品数量
-        self.GoodsCount = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH - 100, lineview1.yy + 17.5, 85, 16.5) textAligment:NSTextAlignmentRight backgroundColor:kClearColor font:FONT(12) textColor:kTextColor2];
-        [self addSubview:self.GoodsCount];
-        
-        //商品描述
-        self.GoodsDescribe = [UILabel labelWithFrame:CGRectMake(self.GoodsName.x, self.GoodsName.yy + 8.5, SCREEN_WIDTH - 115, 16.5) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:FONT(12) textColor:kTextColor2];
-        [self addSubview:self.GoodsDescribe];
-        
-        //商品统计
-        self.GoodsTotal = [UILabel labelWithFrame:CGRectMake(self.GoodsName.x, self.GoodsDescribe.yy + 12.5, SCREEN_WIDTH - 176, 16.5) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:FONT(12) textColor:kTextColor2];
-        [self addSubview:self.GoodsTotal];
-        
-        //商品价格
-        self.GoodsMoney = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH - 15 - 61, self.GoodsDescribe.yy + 11, 61, 18) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(12) textColor:kBlackColor];
-        [self addSubview:self.GoodsMoney];
+        //合计价格
+        self.TotalMoney = [UILabel labelWithFrame:CGRectMake(15, self.GoodsImage.yy + 15, SCREEN_WIDTH - 30, 40) textAligment:(NSTextAlignmentRight) backgroundColor:kClearColor font:FONT(16) textColor:kBlackColor];
+        [self addSubview:self.TotalMoney];
         
         
-        //底线
-        UIView * lineview = [self createview:CGRectMake(15, self.GoodsMoney.yy + 18.5, SCREEN_WIDTH - 30, 1)];
-        [self addSubview:lineview];
-        
+
         //底部按钮
         
         NSLog(@"state = %d",self.OrderState);
@@ -79,27 +55,7 @@
     return self;
 }
 
--(void)setOrderState:(int)OrderState{
-    _OrderState = OrderState;
-    if (OrderState == 1) {
-        self.StateLab.text = @"待付款";
-        self.StateLab.textColor = kHexColor(@"#FE5656");
-        [self addSubview:[self CreateButtonWithFrame:CGRectMake(SCREEN_WIDTH - 90, self.GoodsMoney.yy + 27, 75, 28) Title:@"删除订单" Color:kTextColor2 tag:101]];
-    }
-    else if (OrderState == 2){
-        self.StateLab.text = @"待收货";
-        self.StateLab.textColor = kTextColor3;
-        
-    }
-    else if (OrderState == 3){
-        self.StateLab.text = @"待发货";
-        self.StateLab.textColor = kTextColor3;
-    }
-    else if (OrderState == 4){
-        self.StateLab.text = @"待评价";
-        self.StateLab.textColor = kTextColor3;
-    }
-}
+
 
 
 
@@ -115,15 +71,118 @@
 }
 
 
--(UIButton * )CreateButtonWithFrame : (CGRect)frame Title : (NSString * )title Color : (UIColor * )color tag : (int)tag
-{
-    UIButton * btn = [UIButton buttonWithTitle:title titleColor:color backgroundColor:kClearColor titleFont:12 cornerRadius:2];
-    btn.frame = frame;
-    btn.layer.borderColor = color.CGColor;
-    btn.layer.borderWidth = 0.5;
-    btn.tag = tag;
-    [btn addTarget:self action:@selector(clickDeleteButton:) forControlEvents:UIControlEventTouchUpInside];
-    return btn;
-}
+-(void)setModel:(MallOrderModel *)model{
+    _model = model;
+    
+    [self.ShopNameBtn setTitle:model.sellersName forState:(UIControlStateNormal)];
+    //店铺名称
+    //商店名称自适应
+    [self.ShopNameBtn sizeToFit];
+    if (self.ShopNameBtn.width > SCREEN_WIDTH / 2 - 15 - 10.5) {
+        self.ShopNameBtn.frame = CGRectMake(15, 4.5, SCREEN_WIDTH / 2 - 15 - 10.5, 26.5);
+    }
+    else{
+        self.ShopNameBtn.frame = CGRectMake(15, 4.5, self.ShopNameBtn.width + 15, 26.5);
+    }
+    
+    [self.ShopNameBtn SG_imagePositionStyle:SGImagePositionStyleRight spacing:3.5 imagePositionBlock:^(UIButton *button) {
+        [button setImage:kImage(@"跳转") forState:UIControlStateNormal];
+    }];
+    
+    
+    //下单时间
+    self.OrderTime.text = [model.applyDatetime convertToDetailDate];
+    [self.OrderTime sizeToFit];
+    self.OrderTime.frame = CGRectMake(SCREEN_WIDTH - self.OrderTime.width - 5 - 58, 9.5, self.OrderTime.width, 16.5);
+    
+    //订单状态
+    int OrderState = [model.status intValue];
+    if (OrderState == 1) {
+        self.StateLab.text = @"待发货";
+        self.StateLab.textColor = kTextColor3;
+    }
+    else if (OrderState == 2){
+        self.StateLab.text = @"待收货";
+        self.StateLab.textColor = kTextColor3;
+        
+    }
+    else if (OrderState == 3){
+        self.StateLab.text = @"待发货";
+        self.StateLab.textColor = kTextColor3;
+    }
+    else if (OrderState == 4){
+        self.StateLab.text = @"待评价";
+        self.StateLab.textColor = kTextColor3;
+    }
+    else if (OrderState == 5){
+        self.StateLab.text = @"已取消";
+        self.StateLab.textColor = kTextColor3;
+    }
+    
+    for (int i = 0; i < model.detailList.count; i++) {
+            [self addview:CGRectMake(0, 50.5 + 90 * i, SCREEN_WIDTH, 90)];
+            //商品图片
+            [self.GoodsImage sd_setImageWithURL:[NSURL URLWithString:[model.detailList[i][@"listPic"] convertImageUrl]] placeholderImage:kImage(@"树 跟背景")];
+            //商品名称
+            self.GoodsName.text = model.detailList[i][@"commodityName"];
+            //商品数量
+            self.GoodsCount.text = [NSString stringWithFormat:@"x%@",model.detailList[i][@"quantity"]];
+            //商品规格
+            self.GoodsDescribe.text = [NSString stringWithFormat:@"规格分类：%@",model.detailList[i][@"specsName"]];
+            //商品统计
+            self.GoodsTotal.text = [NSString stringWithFormat:@"合计%@件商品",model.detailList[i][@"quantity"]];
+            //商品价格
+            self.GoodsMoney.text = [NSString stringWithFormat:@"x%.2f",[model.detailList[i][@"amount"] floatValue] / 1000];
 
+       
+            
+    }
+    UIView * lineview = [self createview:CGRectMake(15, 50.5+90 * (model.detailList.count), SCREEN_WIDTH - 30, 1)];
+    [self addSubview:lineview];
+    //合计价格
+    if ([model.postalFee isEqualToString:@"0"]) {
+        self.TotalMoney.text = [NSString stringWithFormat:@"合计：¥%.2f(%.2f)",[model.payAmount floatValue]/1000,[model.amount floatValue]/1000];
+    }
+    else{
+        self.TotalMoney.text = [NSString stringWithFormat:@"合计：¥%.2f(%.2f+邮费(%.2f))",[model.payAmount floatValue]/1000,[model.amount floatValue]/1000,[model.postalFee floatValue]/1000];
+    }
+    if (model.detailList.count == 0) {
+        self.TotalMoney.frame = CGRectMake(15, 50.5 + 15, SCREEN_WIDTH - 30, 40);
+    }else
+    {
+        self.TotalMoney.frame = CGRectMake(15, 50.5+90 * (model.detailList.count), SCREEN_WIDTH - 30, 40);
+    }
+}
+-(void)addview:(CGRect)frame{
+    self.details = [[UIView alloc]initWithFrame:frame];
+    
+    //商品图片
+    self.GoodsImage = [[UIImageView alloc]initWithFrame:CGRectMake(15, 0, 75, 75)];
+    kViewRadius(self.GoodsImage, 4);
+    [self.details addSubview:self.GoodsImage];
+    
+    //商品名称
+    self.GoodsName = [UILabel labelWithFrame:CGRectMake(self.GoodsImage.xx + 10, self.GoodsImage.y + 7, SCREEN_WIDTH - self.GoodsImage.xx - 10 - 50, 20) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:HGboldfont(16) textColor:kTextBlack];
+    [self.details addSubview:self.GoodsName];
+    
+    
+    //商品数量
+    self.GoodsCount = [UILabel labelWithFrame:CGRectMake(SCREEN_WIDTH - 50, self.GoodsImage.y + 7, 35, 20) textAligment:NSTextAlignmentRight backgroundColor:kClearColor font:FONT(13) textColor:kTextColor2];
+    [self.details addSubview:self.GoodsCount];
+    
+    //商品描述
+    self.GoodsDescribe = [UILabel labelWithFrame:CGRectMake(self.GoodsName.x, self.GoodsName.yy + 7, SCREEN_WIDTH - self.GoodsName.x - 15, 15) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:FONT(14) textColor:kTextColor2];
+    [self.details addSubview:self.GoodsDescribe];
+    
+    //商品统计
+    self.GoodsTotal = [UILabel labelWithFrame:CGRectMake(self.GoodsName.x, self.GoodsDescribe.yy + 7, 100, 15) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:FONT(14) textColor:kTextColor2];
+    [self.details addSubview:self.GoodsTotal];
+    
+    //商品价格
+    self.GoodsMoney = [UILabel labelWithFrame:CGRectMake(self.GoodsTotal.xx + 10, self.GoodsDescribe.yy + 7, SCREEN_WIDTH - self.GoodsTotal.xx - 25, 18) textAligment:NSTextAlignmentRight backgroundColor:kClearColor font:FONT(13) textColor:kBlackColor];
+    [self.details addSubview:self.GoodsMoney];
+    
+    [self addSubview:self.details];
+    
+}
 @end

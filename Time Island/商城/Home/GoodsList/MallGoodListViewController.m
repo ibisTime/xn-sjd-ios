@@ -21,12 +21,13 @@
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) UIView *bottomLine;
 @property (nonatomic, strong) NSArray *mutableArray;
+@property (nonatomic,strong) NSMutableArray * GoodsArray;
 @property (nonatomic, strong) MMComBoBoxView *comBoBoxView;
 @property (nonatomic, strong) UIButton *nextPageBtn;
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic,strong)UICollectionView *collectionView;
 @property (nonatomic,strong) NSMutableArray <MallGoodsModel *>*TreeModels;
-@property (nonatomic,strong) NSMutableArray <MallGoodsModel *>*models;
+//@property (nonatomic,strong) NSMutableArray <MallGoodsModel *>*models;
 @property (nonatomic, assign) NSInteger start;
 @property (nonatomic,strong) NSMutableArray * OriginalPlace;
 @property (nonatomic,strong) NSMutableArray * DeliverPlace;
@@ -73,7 +74,7 @@
     UIButton *screeningBtn = [UIButton buttonWithTitle:@"全部" titleColor:kTextColor backgroundColor:kClearColor titleFont:12];
     screeningBtn.frame = CGRectMake(0, self.searchBar.yy+10, SCREEN_WIDTH / 4, 40);
 
-    [screeningBtn addTarget:self action:@selector(loadGoodList) forControlEvents:(UIControlEventTouchUpInside)];
+    [screeningBtn addTarget:self action:@selector(loadmore) forControlEvents:(UIControlEventTouchUpInside)];
     
     [self.view addSubview:screeningBtn];
     
@@ -209,7 +210,8 @@
 -(void)loadNewData
 {
     self.start = 1;
-    self.TreeModels = [NSMutableArray array];
+//    self.TreeModels = [NSMutableArray array];
+    self.GoodsArray = [NSMutableArray array];
     [self loadGoodList];
 }
 
@@ -446,8 +448,47 @@
         http.parameters[@"location"] = @"1";
     }
     [http postWithSuccess:^(id responseObject) {
-        self.models = [MallGoodsModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-        [self.TreeModels addObjectsFromArray:self.models];
+        NSMutableArray *array = responseObject[@"data"][@"list"];
+        [self.GoodsArray addObjectsFromArray:array];
+        self.TreeModels = [MallGoodsModel mj_objectArrayWithKeyValuesArray:self.GoodsArray];
+//        [self.TreeModels addObjectsFromArray:self.models];
+        [self.collectionView reloadData];
+        if ([responseObject[@"data"][@"totalPage"] intValue] <=1) {
+            [self.collectionView.mj_header endRefreshing];
+            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [self.collectionView.mj_header endRefreshing];
+        }
+    } failure:^(NSError *error) {
+        [self.collectionView.mj_footer endRefreshing];
+        [self.collectionView.mj_header endRefreshing];
+    }];
+}
+
+-(void)loadmore{
+    [self.GoodsArray removeAllObjects];
+    TLNetworking *http = [TLNetworking new];
+    http.code = @"629706";
+    http.parameters[@"start"] = [NSString stringWithFormat:@"%ld",self.start];
+    http.parameters[@"limit"] = @"8";
+    http.parameters[@"orderColumn"] = @"order_no";
+    http.parameters[@"orderDir"] = @"asc";
+    http.parameters[@"status"] = @"4";
+    if (self.parentCategoryCode) {
+        http.parameters[@"parentCategoryCode"] = self.parentCategoryCode;
+    }
+    else if (self.categoryCode) {
+        http.parameters[@"categoryCode"] = self.categoryCode;
+        
+    }
+    else{
+        http.parameters[@"location"] = @"1";
+    }
+    [http postWithSuccess:^(id responseObject) {
+        NSMutableArray *array = responseObject[@"data"][@"list"];
+        [self.GoodsArray addObjectsFromArray:array];
+        self.TreeModels = [MallGoodsModel mj_objectArrayWithKeyValuesArray:self.GoodsArray];
+        //        [self.TreeModels addObjectsFromArray:self.models];
         [self.collectionView reloadData];
         if ([responseObject[@"data"][@"totalPage"] intValue] <=1) {
             [self.collectionView.mj_header endRefreshing];

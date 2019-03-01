@@ -20,13 +20,17 @@
 
 @property (nonatomic , strong)UILabel *timeLabel;
 
-@property (nonatomic , strong)UILabel *informationLabel;
+//@property (nonatomic , strong)UILabel *informationLabel;
+@property (nonatomic,strong) UIWebView * informationLabel;
 
-@property (nonatomic , strong)UILabel *numberLabel;
+@property (nonatomic,assign) float webViewHeight1;
 
-@property (nonatomic , strong)UIButton *praiseButton;
 
-@property (nonatomic , strong)UIButton *commentsButton;
+//@property (nonatomic , strong)UILabel *numberLabel;
+
+//@property (nonatomic , strong)UIButton *praiseButton;
+//
+//@property (nonatomic , strong)UIButton *commentsButton;
 
 @property (nonatomic , strong)UIView *lineView;
 

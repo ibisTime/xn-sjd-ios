@@ -13,4 +13,6 @@
 
 @property (nonatomic , strong)NSMutableArray <EvaluationModel *>*evaluationModel;
 @property (nonatomic ,strong) MallGoodsModel *treeModel;
+@property (nonatomic,assign) float webViewHeight1;
+@property (nonatomic,copy) void (^more)(void);
 @end

@@ -11,8 +11,11 @@
 #import "ReceivingAddressVC.h"
 #import "NewsVC.h"
 #import "MallOrderVC.h"
+#import "JVShopcartViewController.h"
+#import "MallTabbar.h"
+#import "SettingVC.h"
 #define titlearray @[@"我的购物车",@"我的商城订单",@"我的商城消息",@"我的收货地址",@"设置"]
-#define imagearray @[@"商场购物车-未选中",@"",@"",@"",@"设置"]
+#define imagearray @[@"商场购物车-未选中",@"商场我的-商场订单",@"商场我的-商场消息",@"商场我的-收获地址",@"设置"]
 @interface MallMyVC ()
 @property (nonatomic,retain) UIView * topview;
 @property (nonatomic,strong) TLTableView *table1;
@@ -40,7 +43,7 @@
     [super viewDidLoad];
 
     self.table1 = [TLTableView tableViewWithFrame:CGRectMake(0, -kNavigationBarHeight, kScreenWidth, kScreenHeight+55) delegate:self dataSource:self];
-    self.topview = [[UIView alloc]initWithFrame:CGRectMake(0, -kNavigationBarHeight, kScreenWidth, 563/2 -64 + kNavigationBarHeight)];
+    self.topview = [[UIView alloc]initWithFrame:CGRectMake(0, -kNavigationBarHeight, kScreenWidth, 563/2.5 -64 + kNavigationBarHeight)];
     [self setupview];
     self.table1.tableHeaderView = self.topview;
     self.table1.refreshDelegate = self;
@@ -128,6 +131,12 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
+        case 0:{
+            MallTabbar *tabBarCtrl = [[MallTabbar alloc] init];
+            tabBarCtrl.selectedIndex = 2;
+            [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
+        }
+            break;
         case 1:{
             MallOrderVC * vc = [MallOrderVC new];
             [self.navigationController pushViewController:vc animated:YES];
@@ -147,6 +156,11 @@
             UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] init];
             backBtn.title = @"我的收货地址";
             vc.navigationItem.backBarButtonItem = backBtn;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 4:{
+            SettingVC * vc = [[SettingVC alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

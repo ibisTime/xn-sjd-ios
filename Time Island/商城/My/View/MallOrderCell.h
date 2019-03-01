@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MallOrderModel.h"
 NS_ASSUME_NONNULL_BEGIN
 @class MallOrderCell;
 @protocol MallOrderCellDelegrate <NSObject>
@@ -26,11 +26,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UILabel * GoodsCount;
 @property (nonatomic,strong) UILabel * GoodsMoney;
 @property (nonatomic,strong) UILabel * OrderTime;
+@property (nonatomic,strong) UILabel * TotalMoney;
 @property (nonatomic,assign) int OrderState;
 @property (nonatomic,strong) UILabel * StateLab;
-
+@property (nonatomic,strong) MallOrderModel * model;
 //@property (nonatomic,assign) int uuu;
-
+@property (nonatomic,strong) UIView * details;
 
 @property(nonatomic,weak)id<MallOrderCellDelegrate>delagate;
 @end

@@ -69,15 +69,24 @@
     }
     
     static NSString *CellIdentifier = @"Cell";
-    _cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+//    _cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
     if (_cell == nil) {
         _cell = [[TeamPostCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         _cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     _cell.evaModel = self.evaluationModel[indexPath.row];
-
+    [_cell.informationLabel loadHTMLString:self.evaluationModel[indexPath.row].content baseURL:nil];
+    [_cell.informationLabel.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
     return _cell;
 }
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"contentSize"]) {
+        _webViewHeight1 = [[_cell.informationLabel stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
+        _cell.informationLabel.frame = CGRectMake(15, 53, SCREEN_WIDTH - 30, _webViewHeight1);
+        [self reloadData];
+    }
+}
+
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -93,7 +102,7 @@
     if (indexPath.section == 1) {
         return 55;
     }
-    return _cell.lineView.frame.origin.y + 0.5;
+    return 60 + _webViewHeight1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -129,13 +138,18 @@
         [allBtn SG_imagePositionStyle:(SGImagePositionStyleRight) spacing:3 imagePositionBlock:^(UIButton *button) {
             [button setImage:kImage(@"积分更多") forState:(UIControlStateNormal)];
         }];
+        [allBtn addTarget:self action:@selector(selectmore) forControlEvents:(UIControlEventTouchUpInside)];
         [backView addSubview:allBtn];
 
         return headView;
     }
     return [UIView new];
 }
-
+-(void)selectmore{
+    if (self.more) {
+        self.more();
+    }
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
@@ -146,5 +160,8 @@
     
     return [UIView new];
 }
-
+-(void)dealloc{
+    [_cell.informationLabel.scrollView removeObserver:self forKeyPath:@"contentSize" context:nil];
+    
+}
 @end

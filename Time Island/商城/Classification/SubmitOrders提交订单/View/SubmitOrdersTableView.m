@@ -110,7 +110,7 @@
     }
     if(indexPath.section == 3)
     {
-//        [self getdata];
+        [self getdata];
         TransportCell *cell = [tableView dequeueReusableCellWithIdentifier:transportCell forIndexPath:indexPath];
         cell.addressCode = self.addressModel.code;
         cell.commodityCodeList = self.mallGoodsModel.code;
