@@ -209,6 +209,8 @@
 		3663F299221D4DB30053B3C8 /* RecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3663F298221D4DB30053B3C8 /* RecordModel.m */; };
 		366A59F122000007009FFA6E /* GoodsDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A59F022000007009FFA6E /* GoodsDetailsCell.m */; };
 		366A59F322003E35009FFA6E /* SelectAddress.json in Resources */ = {isa = PBXBuildFile; fileRef = 366A59F222003E35009FFA6E /* SelectAddress.json */; };
+		366AA884222D0ECB0082A741 /* RefundVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 366AA883222D0ECB0082A741 /* RefundVC.m */; };
+		366AA887222D176D0082A741 /* RefundCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 366AA886222D176D0082A741 /* RefundCell.m */; };
 		3671897C2213AEE60050488E /* MessageDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3671897B2213AEE60050488E /* MessageDetailsVC.m */; };
 		3671897F2213B7FF0050488E /* CompanyCertifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3671897E2213B7FF0050488E /* CompanyCertifyVC.m */; };
 		367189822213EA220050488E /* MallGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 367189812213EA220050488E /* MallGoodsModel.m */; };
@@ -937,6 +939,10 @@
 		366A59EF22000007009FFA6E /* GoodsDetailsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsDetailsCell.h; sourceTree = "<group>"; };
 		366A59F022000007009FFA6E /* GoodsDetailsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailsCell.m; sourceTree = "<group>"; };
 		366A59F222003E35009FFA6E /* SelectAddress.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SelectAddress.json; sourceTree = "<group>"; };
+		366AA882222D0ECB0082A741 /* RefundVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundVC.h; sourceTree = "<group>"; };
+		366AA883222D0ECB0082A741 /* RefundVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundVC.m; sourceTree = "<group>"; };
+		366AA885222D176D0082A741 /* RefundCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefundCell.h; sourceTree = "<group>"; };
+		366AA886222D176D0082A741 /* RefundCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RefundCell.m; sourceTree = "<group>"; };
 		3671897A2213AEE60050488E /* MessageDetailsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDetailsVC.h; sourceTree = "<group>"; };
 		3671897B2213AEE60050488E /* MessageDetailsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageDetailsVC.m; sourceTree = "<group>"; };
 		3671897D2213B7FF0050488E /* CompanyCertifyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyCertifyVC.h; sourceTree = "<group>"; };
@@ -2822,6 +2828,8 @@
 				B87C211421FAE83D00EFD0B0 /* ViewExpressVC.m */,
 				B87C211F21FB040300EFD0B0 /* JudgeViewController.h */,
 				B87C212021FB040300EFD0B0 /* JudgeViewController.m */,
+				366AA882222D0ECB0082A741 /* RefundVC.h */,
+				366AA883222D0ECB0082A741 /* RefundVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2858,6 +2866,8 @@
 				B87C211A21FAF22B00EFD0B0 /* ExpressTableView.m */,
 				B87C211C21FAF2DE00EFD0B0 /* ExpressCell.h */,
 				B87C211D21FAF2DE00EFD0B0 /* ExpressCell.m */,
+				366AA885222D176D0082A741 /* RefundCell.h */,
+				366AA886222D176D0082A741 /* RefundCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4697,6 +4707,7 @@
 				B85F892521FC2FC200D5B7A4 /* PYTempViewController.m in Sources */,
 				1F1B006C21E71D26000BEBD3 /* RBBEasingFunction.m in Sources */,
 				369C60CC21F71254001F9CBA /* MailVC.m in Sources */,
+				366AA884222D0ECB0082A741 /* RefundVC.m in Sources */,
 				36A0C03B2212698400B751D0 /* PostMoneyVC.m in Sources */,
 				36F841D221F02B0D00BAC88A /* IssueBook.m in Sources */,
 				B81E608821DC9FCC00873AB9 /* LinCircleVC.m in Sources */,
@@ -4782,6 +4793,7 @@
 				B8ED2E8E21E8934B00FADCCE /* RealNameView.m in Sources */,
 				B8ED2E8821E8516D00FADCCE /* RenYangFieldView.m in Sources */,
 				1F58271322263F4000898864 /* CustomCalenderView.m in Sources */,
+				366AA887222D176D0082A741 /* RefundCell.m in Sources */,
 				B80D385F21F85F1E00206B55 /* CountView.m in Sources */,
 				36F4D812221BF82B00206AAE /* BarrageModel.m in Sources */,
 				B81E5FD621DC8FC200873AB9 /* NSString+CGSize.m in Sources */,

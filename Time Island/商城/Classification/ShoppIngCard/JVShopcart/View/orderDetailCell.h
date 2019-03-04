@@ -7,11 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MallOrderModel.h"
 typedef void(^ShopcartCellBlock)(BOOL isSelected);
 typedef void(^ShopcartCellEditBlock)(NSInteger count);
+@protocol ClickButtonDelegrate <NSObject>
+
+-(void)clickBtn:(UIButton *)sender;
+
+@end
 @interface orderDetailCell : UITableViewCell
+
 @property (nonatomic, copy) ShopcartCellBlock shopcartCellBlock;
 @property (nonatomic, copy) ShopcartCellEditBlock shopcartCellEditBlock;
+@property (nonatomic,assign) NSInteger shownum;
+
+@property (nonatomic,strong) MallOrderModel * model;
+@property (nonatomic,strong) UIButton * btn1;
+@property (nonatomic,strong) UIButton * btn2;
 
 - (void)configureShopcartCellWithProductURL:(NSString *)productURL
                                 productName:(NSString *)productName
@@ -20,4 +32,5 @@ typedef void(^ShopcartCellEditBlock)(NSInteger count);
                                productCount:(NSInteger)productCount
                                productStock:(NSInteger)productStock
                             productSelected:(BOOL)productSelected;
+@property (nonatomic,weak) id<ClickButtonDelegrate> delegate;
 @end

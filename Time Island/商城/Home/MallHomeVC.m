@@ -19,6 +19,8 @@
 #import "MallGoodListViewController.h"
 #import "QWCategory.h"
 #import <UIButton+WebCache.h>
+#import "MallGoodListViewController.h"
+#import "SearchHistoryModel.h"
 @interface MallHomeVC ()<PYSearchViewControllerDelegate>
 //@property (nonatomic,strong) MallHomeHeadView * Classifyview;
 @property (nonatomic,strong) UIView * headview;
@@ -27,6 +29,7 @@
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic,strong) UIImageView * backgroundimage;
 @property (nonatomic ,strong) PYSearchViewController *searchViewController;
+@property (nonatomic,strong) NSMutableArray<SearchHistoryModel *> * SearchHistoryModels;
 @property (nonatomic ,strong)  NSMutableArray *array;
 @property (nonatomic,strong) NSMutableArray <BannerModel *>*bannerRoom;
 @property (nonatomic,strong) MallHomeHeadView *mallHeader;
@@ -319,33 +322,61 @@
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
     [self.searchBar resignFirstResponder];
-    // 1. 创建热门搜索
-    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
-    NSMutableArray *array =  [NSMutableArray arrayWithArray:hotSeaches];
-    self.array = array;
-    // 2. 创建控制器
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:array searchBarPlaceholder:@"搜索" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-        // 开始搜索执行以下代码
-        // 如：跳转到指定控制器
-        [array insertObject:searchText atIndex:0];
-        searchViewController.hotSearches = array;
-        //        return ;
-        return ;
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629657";
+    http.parameters[@"userId"] = [TLUser user].userId;
+    http.parameters[@"type"] = @(2);
+    [http postWithSuccess:^(id responseObject) {
+        self.SearchHistoryModels = [SearchHistoryModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        NSMutableArray * arr = [NSMutableArray array];
+        for (int i = 0; i < self.SearchHistoryModels.count; i++) {
+            SearchHistoryModel * model = self.SearchHistoryModels[i];
+            [arr addObject:model.content];
+        }
+        PYSearchViewController *searchViewController ;
+        searchViewController.state = @"home";
+        searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:arr searchBarPlaceholder:@"搜索" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+            // 开始搜索执行以下代码
+            // 如：跳转到指定控制器
+            [arr insertObject:searchText atIndex:0];
+            searchViewController.hotSearches = arr;
+            return ;
+        }];
+        // 3. 设置风格
+        self.searchViewController = searchViewController;
         
-        [searchViewController.navigationController pushViewController:[[PYTempViewController alloc] init] animated:YES];
+        searchViewController.searchHistoryStyle = PYHotSearchStyleDefault; // 搜索历史风格为default
+        
+        // 4. 设置代理
+        searchViewController.delegate = self;
+        // 5. 跳转到搜索控制器
+        [self.navigationController pushViewController:searchViewController animated:YES];
+        
+    } failure:^(NSError *error) {
+        
     }];
-    // 3. 设置风格
-    //        searchViewController.hotSearchStyle = PYHotSearchStyleNormalTag; // 热门搜索风格根据选择
-    self.searchViewController = searchViewController;
-    searchViewController.searchHistoryStyle = PYHotSearchStyleDefault; // 搜索历史风格为default
-    // 5. 跳转到搜索控制器
-    [self.navigationController pushViewController:searchViewController animated:YES];
+
 }
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
+
+-(void)searchViewController:(PYSearchViewController *)searchViewController didSearchWithsearchBar:(UISearchBar *)searchBar searchText:(NSString *)searchText{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.showView = self.view;
+    http.code = @"629650";
+    http.parameters[@"userId"] = [TLUser user].userId;
+    http.parameters[@"type"] = @(2);
+    http.parameters[@"content"] = searchText;
+    [http postWithSuccess:^(id responseObject) {
+        MallGoodListViewController * vc = [[MallGoodListViewController alloc]init];
+        vc.state = @"search";
+        vc.SearchContent = searchText;
+        [self.navigationController pushViewController:vc animated:YES];
+    } failure:^(NSError *error) {
+        
+    }];
     
-   
 }
+
+
 
 -(void)createbackview{
     UIButton * btn = [[UIButton alloc]initWithFrame:CGRectMake(15, SCREEN_HEIGHT - 63 - kTabBarHeight - kNavigationBarHeight, 40, 40)];

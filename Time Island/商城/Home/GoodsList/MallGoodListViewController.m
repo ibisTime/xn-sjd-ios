@@ -32,13 +32,21 @@
 @property (nonatomic,strong) NSMutableArray * OriginalPlace;
 @property (nonatomic,strong) NSMutableArray * DeliverPlace;
 
+@property (nonatomic,strong) NSString * OriPlace;
+@property (nonatomic,strong) NSString * DelPlace;
+
 @property (nonatomic, strong) YiceSlidelipPickerMenu *pickMenu;
 @property (nonatomic, strong) NSArray *mainKindArray;
 @property (nonatomic, strong) NSArray *subKindArray;
-
+@property (nonatomic,strong) NSString * orderColumn;
+@property (nonatomic,strong) NSString * orderDir;
 @end
 
 @implementation MallGoodListViewController
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.comBoBoxView dimissPopView];
+}
 -(UICollectionView *)collectionView{
     if (_collectionView==nil) {
         UICollectionViewFlowLayout *flowayout = [[UICollectionViewFlowLayout alloc]init];
@@ -124,8 +132,11 @@
     for (NSMutableArray <YiceSlidelipPickCommonModel*> *array in self.subKindArray) {
         for (YiceSlidelipPickCommonModel *model in array) {
             model.isSelected = @"";
+            self.DelPlace = nil;
+            self.OriPlace = nil;
         }
     }
+//    [self headRefresh];
 }
 
 - (void)menu:(YiceSlidelipPickerMenu *)menu submmitSelectedIndexPaths:(NSArray<NSIndexPath *> *)indexpaths{
@@ -137,25 +148,20 @@
         for (int i = 0; i < indexpaths.count; i ++) {
             inde = indexpaths[i];
             if (inde.section == 0) {
-//                YiceSlidelipPickCommonModel *model = [YiceSlidelipPickCommonModel new];
-//                model = self.subKindArray[inde.section][inde.row];
-//                if ([model.text isEqualToString:@"不可认养"]) {
-//                    self.adoptStatus = @"0";
-//                }
-//                else
-//                    self.adoptStatus = @"1";
+                YiceSlidelipPickCommonModel *model = [YiceSlidelipPickCommonModel new];
+                model = self.subKindArray[inde.section][inde.row];
+                self.DelPlace = model.text;
             }
             if (inde.section == 1) {
-//                YiceSlidelipPickCommonModel *model = [YiceSlidelipPickCommonModel new];
-//                model = self.subKindArray[inde.section][inde.row];
-//                self.variety = model.text;
-                //                [self refresh];
-                //            self.variety = self.subKindArray[inde.section][inde.row];
+                YiceSlidelipPickCommonModel *model = [YiceSlidelipPickCommonModel new];
+                model = self.subKindArray[inde.section][inde.row];
+                
+                self.OriPlace = model.text;
             }
         }
     }
 
-//    [self headRefresh];
+    [self headRefresh];
 }
 
 
@@ -229,7 +235,8 @@
     self.comBoBoxView.delegate = self;
     [self.view addSubview:self.comBoBoxView];
     [self.comBoBoxView reload];
-    
+    if (self.isMultiSelection == NO)
+        [self.view addSubview:self.nextPageBtn];
     
 }
 - (void)initSearchBar {
@@ -244,7 +251,9 @@
     [searchbar setPlaceholder:@"搜索商品"];
     [self.view addSubview:searchbar];
     self.searchBar = searchbar;
-    
+    if ([self.state isEqualToString:@"search"]) {
+        self.searchBar.text = self.SearchContent;
+    }
     UITextField *searchField = [searchbar valueForKey:@"searchField"];
     
     if (searchField) {
@@ -288,6 +297,32 @@
                     firstPath = path.firstPath;
                 }
             }];
+            switch (index) {
+                case 0:{
+                    if ([title isEqualToString:@"从高到低"]) {
+                        self.orderColumn = @"min_price";
+                        self.orderDir = @"desc";
+                    }
+                    else{
+                        self.orderColumn = @"min_price";
+                        self.orderDir = @"asc";
+                    }
+                }
+                    break;
+                case 1:{
+                    if ([title isEqualToString:@"从大到小"]) {
+                        self.orderColumn = @"month_sell_count";
+                        self.orderDir = @"desc";
+                    }
+                    else{
+                        self.orderColumn = @"month_sell_count";
+                        self.orderDir = @"asc";
+                    }
+                }
+                    break;
+                default:
+                    break;
+            }
             NSLog(@"当title为%@时，所选字段为 %@",rootItem.title ,title);
             break;}
         case MMPopupViewDisplayTypeFilters:{
@@ -316,6 +351,7 @@
         default:
             break;
     }
+    [self headRefresh];
 }
 
 
@@ -325,19 +361,30 @@
     if (_mutableArray == nil) {
         NSMutableArray *mutableArray = [NSMutableArray array];
         //root 2
+        
         MMSingleItem *rootItem2 = [MMSingleItem itemWithItemType:MMPopupViewDisplayTypeUnselected titleName:@"销量"];
         
-        rootItem2.selectedType = MMPopupViewMultilSeMultiSelection;
-        
+        if (self.isMultiSelection)
+            rootItem2.selectedType = MMPopupViewMultilSeMultiSelection;
+        [rootItem2 addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:YES titleName:[NSString stringWithFormat:@"从大到小"] subtitleName:nil code:nil]];
+        [rootItem2 addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected titleName:[NSString stringWithFormat:@"从小到大"]]];
 
         
         
         //root 3
+//        MMSingleItem *rootItem3 = [MMSingleItem itemWithItemType:MMPopupViewDisplayTypeUnselected titleName:@"价格"];
+//
+//        rootItem3.selectedType = MMPopupViewMultilSeMultiSelection;
+//
+//        [rootItem3 addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected titleName:[NSString stringWithFormat:@"从高到低"]]];
+//        [rootItem3 addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected titleName:[NSString stringWithFormat:@"从低到高"]]];
+        
         MMSingleItem *rootItem3 = [MMSingleItem itemWithItemType:MMPopupViewDisplayTypeUnselected titleName:@"价格"];
         
-        rootItem3.selectedType = MMPopupViewMultilSeMultiSelection;
-    
-        [rootItem3 addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected titleName:[NSString stringWithFormat:@"从高到低"]]];
+        if (self.isMultiSelection)
+            rootItem3.selectedType = MMPopupViewMultilSeMultiSelection;
+        
+        [rootItem3 addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected isSelected:YES titleName:[NSString stringWithFormat:@"从高到低"] subtitleName:nil code:nil]];
         [rootItem3 addNode:[MMItem itemWithItemType:MMPopupViewDisplayTypeSelected titleName:[NSString stringWithFormat:@"从低到高"]]];
       
         
@@ -348,12 +395,6 @@
     }
     return _mutableArray;
 }
-
-
-
-
-
-
 
 
 
@@ -385,6 +426,20 @@
     point = [self.collectionView convertPoint:point fromView:sender.superview];
     NSIndexPath* indexpath = [self.collectionView indexPathForItemAtPoint:point];
     MallGoodsModel *model = self.TreeModels[indexpath.row];
+    
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629710";
+    http.parameters[@"userId"] = [TLUser user].userId;
+    http.parameters[@"commodityCode"] = model.code;
+    http.parameters[@"commodityName"] = model.name;
+    http.parameters[@"specsId"] = model.specsList[0][@"id"];
+    http.parameters[@"specsName"] = model.specsList[0][@"name"];
+    http.parameters[@"quantity"] = @"1";
+    [http postWithSuccess:^(id responseObject) {
+        [TLAlert alertWithSucces:@"加入购物车成功"];
+    } failure:^(NSError *error) {
+        
+    }];
     NSLog(@"%@",model);
 }
 
@@ -434,9 +489,18 @@
     http.code = @"629706";
     http.parameters[@"start"] = [NSString stringWithFormat:@"%ld",self.start];
     http.parameters[@"limit"] = @"8";
-    http.parameters[@"orderColumn"] = @"order_no";
-    http.parameters[@"orderDir"] = @"asc";
     http.parameters[@"status"] = @"4";
+    if (self.orderColumn) {
+        http.parameters[@"orderColumn"] = self.orderColumn;
+        http.parameters[@"orderDir"] = self.orderDir;
+        http.parameters[@"location"] = @(1);
+    }
+    else{
+        http.parameters[@"orderColumn"] = self.orderColumn;
+        http.parameters[@"orderDir"] = self.orderDir;
+        http.parameters[@"location"] = @(1);
+    }
+    
     if (self.parentCategoryCode) {
         http.parameters[@"parentCategoryCode"] = self.parentCategoryCode;
     }
@@ -447,11 +511,20 @@
     else{
         http.parameters[@"location"] = @"1";
     }
+    if ([self.state isEqualToString:@"search"]) {
+        http.parameters[@"name"] = self.SearchContent;
+    }
+    if (self.DelPlace) {
+        http.parameters[@"deliverPlace"] = self.DelPlace;
+    }
+    if (self.OriPlace) {
+        http.parameters[@"originPlace"] = self.OriPlace;
+    }
+    
     [http postWithSuccess:^(id responseObject) {
         NSMutableArray *array = responseObject[@"data"][@"list"];
         [self.GoodsArray addObjectsFromArray:array];
         self.TreeModels = [MallGoodsModel mj_objectArrayWithKeyValuesArray:self.GoodsArray];
-//        [self.TreeModels addObjectsFromArray:self.models];
         [self.collectionView reloadData];
         if ([responseObject[@"data"][@"totalPage"] intValue] <=1) {
             [self.collectionView.mj_header endRefreshing];
@@ -540,5 +613,57 @@
 -(void)getType{
     self.mainKindArray = @[@"发货地",@"产地"];
     self.subKindArray = [NSMutableArray arrayWithArray:@[self.DeliverPlace,self.OriginalPlace]];
+}
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629706";
+    http.parameters[@"start"] = @(self.start);
+    http.parameters[@"limit"] = @(10);
+    http.parameters[@"status"] = @(4);
+    http.parameters[@"orderColumn"] = @"order_no";
+    http.parameters[@"orderDir"] = @"asc";
+    http.parameters[@"location"] = @(1);
+    http.parameters[@"name"] = searchBar.text;
+    [http postWithSuccess:^(id responseObject) {
+        [self.GoodsArray removeAllObjects];
+        NSMutableArray *array = responseObject[@"data"][@"list"];
+        [self.GoodsArray addObjectsFromArray:array];
+        self.TreeModels = [MallGoodsModel mj_objectArrayWithKeyValuesArray:self.GoodsArray];
+        [self.collectionView reloadData];
+        if ([responseObject[@"data"][@"totalPage"] intValue] <=1) {
+            [self.collectionView.mj_header endRefreshing];
+            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [self.collectionView.mj_header endRefreshing];
+        }
+    } failure:^(NSError *error) {
+        [self.collectionView.mj_footer endRefreshing];
+        [self.collectionView.mj_header endRefreshing];
+    }];
+    
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629706";
+    http.parameters[@"start"] = @(self.start);
+    http.parameters[@"limit"] = @(10);
+    http.parameters[@"status"] = @(4);
+    http.parameters[@"orderColumn"] = @"order_no";
+    http.parameters[@"orderDir"] = @"asc";
+    http.parameters[@"location"] = @(1);
+    http.parameters[@"name"] = searchText;
+    [http postWithSuccess:^(id responseObject) {
+        [self.GoodsArray removeAllObjects];
+        NSMutableArray *array = responseObject[@"data"][@"list"];
+        [self.GoodsArray addObjectsFromArray:array];
+        self.TreeModels = [MallGoodsModel mj_objectArrayWithKeyValuesArray:self.GoodsArray];
+        [self.collectionView reloadData];
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
+    } failure:^(NSError *error) {
+        [self.collectionView.mj_header endRefreshing];
+        [self.collectionView.mj_footer endRefreshing];
+    }];
 }
 @end

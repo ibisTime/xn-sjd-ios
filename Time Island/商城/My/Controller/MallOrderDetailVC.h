@@ -9,5 +9,5 @@
 #import "TLBaseVC.h"
 
 @interface MallOrderDetailVC : TLBaseVC
-
+@property (nonatomic,strong) NSString * code;
 @end

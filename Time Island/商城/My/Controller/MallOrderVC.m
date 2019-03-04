@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"订单";
-    self.itemsTitles = @[@"全部",@"待付款",@"代发货",@"代收货",@"待评价",@"已完成",@"已取消"];
+    self.itemsTitles = @[@"全部",@"待付款",@"代发货",@"代收货",@"待评价",@"已完成",@"已取消",@"退款/售后"];
     self.selectSV = [[SelectScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kSuperViewHeight - kTabBarHeight) itemTitles:self.itemsTitles];
     [self.view addSubview:self.selectSV];
     
@@ -68,6 +68,13 @@
         else if (index == 6){
             MallOrderView * bookview = [[MallOrderView alloc]init];
             bookview.status = @"5";
+            [self addChildViewController:bookview];
+            bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
+            [self.selectSV.scrollView addSubview:bookview.view];
+        }
+        else if (index == 7){
+            MallOrderView * bookview = [[MallOrderView alloc]init];
+            bookview.statusList = @[@"2",@"3"];
             [self addChildViewController:bookview];
             bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
             [self.selectSV.scrollView addSubview:bookview.view];

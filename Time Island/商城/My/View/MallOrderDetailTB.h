@@ -7,7 +7,8 @@
 //
 
 #import "TLTableView.h"
-
+#import "MallOrderModel.h"
 @interface MallOrderDetailTB : TLTableView
-
+@property (nonatomic,strong) MallOrderModel * model;
+@property (nonatomic,strong) void (^payback)(NSString * code);
 @end

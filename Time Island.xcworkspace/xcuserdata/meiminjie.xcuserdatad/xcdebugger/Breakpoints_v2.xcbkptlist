@@ -190,7 +190,7 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/meiminjie/Desktop/xn-sjd-ios/Time%20Island/%E7%94%A8%E6%88%B7/Controller/UserInfo/ChangeLoginPwdVC.m"
-                  timestampString = "573127207.992246"
+                  timestampString = "573386730.662816"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "173"
@@ -205,7 +205,7 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/meiminjie/Desktop/xn-sjd-ios/Time%20Island/%E7%94%A8%E6%88%B7/Controller/UserInfo/ChangeLoginPwdVC.m"
-                  timestampString = "573127207.996505"
+                  timestampString = "573386730.664854"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "173"
@@ -220,7 +220,7 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/meiminjie/Desktop/xn-sjd-ios/Time%20Island/%E7%94%A8%E6%88%B7/Controller/UserInfo/ChangeLoginPwdVC.m"
-                  timestampString = "573127208.001527"
+                  timestampString = "573386730.6668251"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "173"
@@ -259,38 +259,6 @@
             startingLineNumber = "392"
             endingLineNumber = "392"
             landmarkName = "-getcompetedata"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Time Island/&#x5546;&#x57ce;/Home/GoodsList/MallGoodListViewController.m"
-            timestampString = "573121757.422789"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
-            landmarkName = "-comBoBoxView:didSelectedItemsPackagingInArray:atIndex:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Time Island/&#x5546;&#x57ce;/Home/GoodsList/MallGoodListViewController.m"
-            timestampString = "573121757.422848"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
-            landmarkName = "-comBoBoxView:didSelectedItemsPackagingInArray:atIndex:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

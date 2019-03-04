@@ -65,6 +65,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MallOrderDetailVC *detailVC  = [MallOrderDetailVC new];
+    detailVC.code = self.MallOrderModels[indexPath.section].code;
     [self.navigationController pushViewController:detailVC animated:YES];
     
 }
@@ -74,15 +75,24 @@
 -(void)loadData{
     CoinWeakSelf;
     TLPageDataHelper * help = [TLPageDataHelper new];
-    help.code = @"629725";
+    if (self.statusList) {
+        help.code = @"629735";
+    }else
+        help.code = @"629725";
     
     if (self.status) {
         help.parameters[@"status"] = self.status;
+        help.parameters[@"orderDir"] = @"desc";
+        help.parameters[@"orderColumn"] = @"update_datetime";
+    }
+    else if (self.statusList) {
+        help.parameters[@"statusList"] = self.statusList;
     }else{
         help.parameters[@"status"] = @"";
+        help.parameters[@"orderDir"] = @"desc";
+        help.parameters[@"orderColumn"] = @"update_datetime";
     }
-    help.parameters[@"orderDir"] = @"desc";
-    help.parameters[@"orderColumn"] = @"update_datetime";
+    
     help.parameters[@"applyUser"] = [TLUser user].userId;
     [help modelClass:[MallOrderModel class]];
     help.tableView = self.table;

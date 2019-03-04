@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MallOrderView : MallBaseVC<UITableViewDataSource,UITableViewDelegate,RefreshDelegate>
 @property (nonatomic,strong) NSString * status;
+@property (nonatomic,strong) NSArray * statusList;
 @end
 
 NS_ASSUME_NONNULL_END

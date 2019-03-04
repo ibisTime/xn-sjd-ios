@@ -55,19 +55,19 @@
     [self.shopcartBgView addSubview:self.topLineView];
 }
 
-- (void)configureShopcartCellWithProductURL:(NSString *)productURL productName:(NSString *)productName productSize:(NSString *)productSize productPrice:(NSInteger)productPrice productCount:(NSInteger)productCount productStock:(NSInteger)productStock productSelected:(BOOL)productSelected {
-    NSURL *encodingURL = [NSURL URLWithString:[productURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
-//    [self.productImageView sd_setImageWithURL:encodingURL];
-    self.productImageView.image = kImage(@"我的背景");
-    self.productNameLable.text = productName;
-    self.productSizeLable.text = productSize;
-    self.countLable.text = @"x1";
-    self.productPriceLable.text = [NSString stringWithFormat:@"￥%ld", productPrice];
-    self.productSelectButton.selected = productSelected;
-    [self.shopcartCountView configureShopcartCountViewWithProductCount:productCount productStock:productStock];
-    self.productStockLable.text = [NSString stringWithFormat:@"库存:%ld", productStock];
-    self.productTotalLable.text = [NSString stringWithFormat:@"合计一件商品"];
-}
+//- (void)configureShopcartCellWithProductURL:(NSString *)productURL productName:(NSString *)productName productSize:(NSString *)productSize productPrice:(NSInteger)productPrice productCount:(NSInteger)productCount productStock:(NSInteger)productStock productSelected:(BOOL)productSelected {
+//    NSURL *encodingURL = [NSURL URLWithString:[productURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+////    [self.productImageView sd_setImageWithURL:encodingURL];
+////    self.productImageView.image = kImage(@"我的背景");
+//    self.productNameLable.text = productName;
+//    self.productSizeLable.text = productSize;
+//    self.countLable.text = @"x1";
+//    self.productPriceLable.text = [NSString stringWithFormat:@"￥%ld", productPrice];
+//    self.productSelectButton.selected = productSelected;
+//    [self.shopcartCountView configureShopcartCountViewWithProductCount:productCount productStock:productStock];
+//    self.productStockLable.text = [NSString stringWithFormat:@"库存:%ld", productStock];
+//    self.productTotalLable.text = [NSString stringWithFormat:@"合计一件商品"];
+//}
 
 - (void)productSelectButtonAction {
     self.productSelectButton.selected = !self.productSelectButton.isSelected;
@@ -104,7 +104,7 @@
 - (UILabel *)productNameLable {
     if (_productNameLable == nil){
         _productNameLable = [[UILabel alloc] init];
-        _productNameLable.font = [UIFont systemFontOfSize:14];
+        _productNameLable.font = HGboldfont(14);
         _productNameLable.textColor = [UIColor colorWithRed:70/255.0 green:70/255.0 blue:70/255.0 alpha:1];
     }
     return _productNameLable;
@@ -237,17 +237,6 @@
 
     }];
     
-//    [self.shopcartCountView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.equalTo(self.mas_right).offset(-10);
-//        //        make.bottom.equalTo(self.shopcartBgView).offset(-5);
-//        make.size.mas_equalTo(CGSizeMake(90, 25));
-//        make.centerY.equalTo(self.productPriceLable.mas_centerY);
-//    }];
-//
-//    [self.productStockLable mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.shopcartCountView.mas_right).offset(20);
-//        make.centerY.equalTo(self.shopcartCountView);
-//    }];
     
     
     [self.topLineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -256,6 +245,49 @@
         make.height.equalTo(@0.4);
     }];
 }
-
+-(void)setShownum:(NSInteger)shownum{
+    _shownum = shownum;
+}
+-(void)setModel:(MallOrderModel *)model{
+    _model = model;
+    [self.productImageView sd_setImageWithURL:[NSURL URLWithString:[model.detailList[self.shownum][@"listPic"] convertImageUrl]] placeholderImage:kImage(@"我的背景")];
+    self.productNameLable.text = model.detailList[self.shownum][@"commodityName"];
+    self.productSizeLable.text = [NSString stringWithFormat:@"规格分类：%@",model.detailList[self.shownum][@"specsName"]];
+    self.countLable.text = [NSString stringWithFormat:@"x%@",model.detailList[self.shownum][@"quantity"]];
+    self.productPriceLable.text = [NSString stringWithFormat:@"¥ %.2f",[model.detailList[self.shownum][@"price"] floatValue]/1000];
+    self.productTotalLable.text = [NSString stringWithFormat:@"合计%@件商品",model.detailList[self.shownum][@"quantity"]];
+    
+    UIButton * btn1 = [UIButton buttonWithTitle:@"申请退款" titleColor:kTabbarColor backgroundColor:kClearColor titleFont:12 cornerRadius:4];
+    btn1.layer.borderColor = kTabbarColor.CGColor;
+    btn1.layer.borderWidth = 1;
+    self.btn1 = btn1;
+    btn1.frame = CGRectMake(SCREEN_WIDTH - 90,125, 75, 28);
+    
+    
+    UIButton * btn2 = [UIButton buttonWithTitle:@"申请退款" titleColor:kTabbarColor backgroundColor:kClearColor titleFont:12 cornerRadius:4];
+    btn2.layer.borderColor = kTabbarColor.CGColor;
+    btn2.layer.borderWidth = 1;
+    self.btn2 = btn2;
+    btn2.frame = CGRectMake(SCREEN_WIDTH - 180,125, 75, 28);
+    
+    if ([model.detailList[self.shownum][@"afterSaleStatus"] isEqualToString:@"2"]) {
+        [self.btn2 setTitle:@"取消售后" forState:(UIControlStateNormal)];
+        [self.btn1 setTitle:@"售后中" forState:(UIControlStateNormal)];
+        [self.btn1 setTitleColor:kTextColor3 forState:(UIControlStateNormal)];
+        self.btn1.userInteractionEnabled = NO;
+        self.btn1.layer.borderColor = kTextColor3.CGColor;
+    }
+    else{
+        [self.btn2 setHidden: YES];
+    }
+    
+    [self.shopcartBgView addSubview:btn1];
+    [self.shopcartBgView addSubview:btn2];
+}
+-(void)click:(UIButton *)sender{
+    if (self.delegate) {
+        [self.delegate clickBtn:sender];
+    }
+}
 
 @end

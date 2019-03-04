@@ -7,7 +7,7 @@
 //
 
 #import "MallBaseVC.h"
-
-@interface MallHomeVC : MallBaseVC<UITableViewDelegate,UITableViewDataSource,RefreshDelegate,UISearchBarDelegate>
+#import "PYSearch.h"
+@interface MallHomeVC : MallBaseVC<UITableViewDelegate,UITableViewDataSource,RefreshDelegate,UISearchBarDelegate,PYSearchViewControllerDelegate>
 
 @end
