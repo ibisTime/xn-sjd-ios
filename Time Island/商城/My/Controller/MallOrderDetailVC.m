@@ -187,13 +187,25 @@
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index{
     if ([self.model.detailList[index][@"afterSaleStatus"] isEqualToString:@"2"]) {
-        [TLAlert alertWithTitle:@"提示" message:@"是否取消售后" confirmMsg:@"是" confirmAction:^{
+        [TLAlert alertWithTitle:@"提示" msg:@"是否取消售后" confirmMsg:@"是" cancleMsg:@"否" maker:self cancle:^(UIAlertAction *action) {
             
+        } confirm:^(UIAlertAction *action) {
+            NSLog(@"1234567890");
+            TLNetworking * http = [[TLNetworking alloc]init];
+            http.code = @"629722";
+            http.parameters[@"code"] = self.model.detailList[index][@"orderCode"];
+            http.parameters[@"updater"] = [TLUser user].userId;
+            [http postWithSuccess:^(id responseObject) {
+                [self.navigationController popViewControllerAnimated:YES];
+            } failure:^(NSError *error) {
+                
+            }];
         }];
     }
     else{
         RefundVC * vc = [RefundVC new];
         vc.code = self.model.detailList[index][@"code"];
+        vc.money = self.model.detailList[index][@"amount"];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

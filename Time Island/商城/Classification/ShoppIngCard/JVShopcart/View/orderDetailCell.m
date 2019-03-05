@@ -277,6 +277,10 @@
         self.btn1.userInteractionEnabled = NO;
         self.btn1.layer.borderColor = kTextColor3.CGColor;
     }
+    else if ([model.detailList[self.shownum][@"afterSaleStatus"] isEqualToString:@"9"]){
+         [self.btn1 setHidden: YES];
+         [self.btn2 setHidden: YES];
+    }
     else{
         [self.btn2 setHidden: YES];
     }

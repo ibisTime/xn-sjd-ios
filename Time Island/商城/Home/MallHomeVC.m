@@ -229,19 +229,6 @@
     for (int i = 0; i < self.QWCategorys.count; i ++) {
         UIButton *iconBtn = [UIButton buttonWithTitle:@"" titleColor:kHexColor(@"#666666") backgroundColor:kClearColor titleFont:12];
         iconBtn.frame = CGRectMake(i % 5 * SCREEN_WIDTH/5, self.mallHeader.yy + 22, SCREEN_WIDTH/5, 55 + 16.5);
-//        [iconBtn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
-//            [button sd_setImageWithURL:[NSURL URLWithString:[imagearr[i] convertImageUrl]] forState:UIControlStateNormal];
-//
-////            //异步下载图片
-////            dispatch_async(dispatch_get_global_queue(0, 0), ^{
-////                UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[imagearr[i] convertImageUrl]]]];
-////                //刷新主线程显示图片
-////                dispatch_async(dispatch_get_main_queue(), ^{x
-////                    [button setImage:img forState:(UIControlStateNormal)];
-////                    button.imageEdgeInsets = UIEdgeInsetsMake(0, 16.5, -16.5, -16.5);
-////                });
-////            });
-//        }];
         iconBtn.tag = i;
         [iconBtn addTarget:self action:@selector(ClassifyClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.headview addSubview:iconBtn];
@@ -264,7 +251,6 @@
     
     UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(15, view.yy +15, SCREEN_WIDTH - 30, (SCREEN_WIDTH - 30)/690*230)];
     image.image = kImage(@"树 跟背景");
-    //    [self.view addSubview:image];
     [self.headview addSubview:image];
     self.image = image;
 }

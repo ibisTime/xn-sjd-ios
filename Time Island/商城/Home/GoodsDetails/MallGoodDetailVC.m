@@ -22,6 +22,7 @@
 #import "GoodsTypeModel.h"
 #import "SubmitOrdersVC.h"
 #import "ReceivingAddressVC.h"
+#import "ServiceVC.h"
 @interface MallGoodDetailVC ()<RefreshDelegate>
 {
     GoodsModel *model;
@@ -176,8 +177,13 @@
             break;
         case 2:
             //点击客服
-
-            break;
+        {
+            ServiceVC * vc = [[ServiceVC alloc]init];
+            vc.user2 = self.MallGoodsModel.sellUserId;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            
+        break;
         case 3:
             //点击加入购物车
             if (self.MallGoodsModel.specsList.count > 1) {
@@ -219,12 +225,8 @@
     _alert.alpha = 0;
     [[UIApplication sharedApplication].keyWindow addSubview:_alert];
     CoinWeakSelf;
-//    _alert.selectSize = ^(SizeAttributeModel *sizeModel, NSInteger intern) {
-//        [JXUIKit showSuccessWithStatus:[NSString stringWithFormat:@"选择了：%@",sizeModel.goodsNo]];
-//        [weakSelf sumbitOrderWithTag:inter];
-//    };
+
     _alert.selectSize = ^(SizeAttributeModel *sizeModel, NSInteger inter, NSInteger count,int selectnum) {
-//        [JXUIKit showSuccessWithStatus:[NSString stringWithFormat:@"选择了：%@",sizeModel.goodsNo]];
         weakSelf.count = count;
         weakSelf.size = sizeModel.goodsNo;
         weakSelf.selectnum = selectnum;

@@ -511,6 +511,9 @@
     else{
         http.parameters[@"location"] = @"1";
     }
+    if (self.shopCode){
+        http.parameters[@"shopCode"] = self.shopCode;
+    }
     if ([self.state isEqualToString:@"search"]) {
         http.parameters[@"name"] = self.SearchContent;
     }

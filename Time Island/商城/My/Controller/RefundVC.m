@@ -126,43 +126,73 @@
     if(cell==nil){
         cell=[[RefundCell alloc] initWithStyle:UITableViewCellStyleDefault      reuseIdentifier:rid];
         }
-    cell.textfield.text = @"";
+//    if (indexPath.row == 0) {
+//        cell.textfield.text = self.money;
+//    }else{
+//        cell.textfield.text = @"";
+//    }
+    
     cell.title = self.titlearr[indexPath.row];
     cell.textfield.tag = indexPath.row + 1;
     return cell;
   
 }
 -(void)comfirm{
+    NSLog(@"self.money%@",self.money);
     TLTextField * t0 = [self.view viewWithTag:1];
     TLTextField * t1 = [self.view viewWithTag:2];
     TLTextField * t2 = [self.view viewWithTag:3];
     TLTextField * t3 = [self.view viewWithTag:4];
     TLTextField * t4 = [self.view viewWithTag:5];
     TLTextField * t5 = [self.view viewWithTag:6];
-    TLNetworking * http = [[TLNetworking alloc]init];
-    http.code = @"629771";
-    http.parameters[@"orderDetailCode"] = self.code;
-    http.parameters[@"applyUser"] = [TLUser user].userId;
-    if (state == 0) {
-        http.parameters[@"refundAmount"] = [NSString stringWithFormat:@"%.2f",[t0.text floatValue] * 1000];
-        http.parameters[@"refundReason"] = t1.text;
-        http.parameters[@"message"] = t2.text;
+    
+    
+    if (t0.text.length == 0) {
+        [TLAlert alertWithInfo:@"请输入金额！"];
+        return;
+    }
+    else if ([t0.text integerValue] > [self.money integerValue]) {
+        [TLAlert alertWithInfo:@"您输入的金额大于商品价格，请重新输入！"];
     }
     else if (state == 1){
-        http.parameters[@"refundAmount"] = [NSString stringWithFormat:@"%F",[t0.text floatValue] * 1000];
-        http.parameters[@"logisticsCompany"] = t1.text;
-        http.parameters[@"logisticsNumber"] = t2.text;
-        http.parameters[@"deliver"] = t3.text;
-        http.parameters[@"refundReason"] = t4.text;
-        http.parameters[@"message"] = t5.text;
-        
+        if (t1.text.length == 0) {
+            [TLAlert alertWithInfo:@"请填入物流公司名称！"];
+        }
+        else if (t2.text.length == 0){
+            [TLAlert alertWithInfo:@"请填入物流单号！"];
+        }
+        else if (t3.text.length == 0){
+            [TLAlert alertWithInfo:@"请填入发货人！"];
+        }
+    }else{
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"629771";
+        http.parameters[@"orderDetailCode"] = self.code;
+        http.parameters[@"applyUser"] = [TLUser user].userId;
+        if (state == 0) {
+            http.parameters[@"refundAmount"] = [NSString stringWithFormat:@"%.2f",[t0.text floatValue] * 1000];
+            http.parameters[@"refundReason"] = t1.text;
+            http.parameters[@"message"] = t2.text;
+        }
+        else if (state == 1){
+            http.parameters[@"refundAmount"] = [NSString stringWithFormat:@"%F",[t0.text floatValue] * 1000];
+            http.parameters[@"logisticsCompany"] = t1.text;
+            http.parameters[@"logisticsNumber"] = t2.text;
+            http.parameters[@"deliver"] = t3.text;
+            http.parameters[@"refundReason"] = t4.text;
+            http.parameters[@"message"] = t5.text;
+            
+        }
+        [http postWithSuccess:^(id responseObject) {
+            [TLAlert alertWithMsg:@"申请成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        } failure:^(NSError *error) {
+            
+        }];
     }
-    [http postWithSuccess:^(id responseObject) {
-        [TLAlert alertWithMsg:@"申请成功"];
-        [self.navigationController popViewControllerAnimated:YES];
-    } failure:^(NSError *error) {
-        
-    }];
+    
+    
+    
     
 }
 @end

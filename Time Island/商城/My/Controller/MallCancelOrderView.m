@@ -1,22 +1,25 @@
 //
-//  MallOrderView.m
+//  MallCancelOrderView.m
 //  Time Island
 //
-//  Created by 梅敏杰 on 2019/1/21.
+//  Created by 梅敏杰 on 2019/3/5.
 //  Copyright © 2019年 ChengLian. All rights reserved.
 //
 
-#import "MallOrderView.h"
+#import "MallCancelOrderView.h"
 #import "MallOrderCell.h"
 #import "MallOrderDetailVC.h"
 #import "MallOrderModel.h"
-@interface MallOrderView ()<MallOrderCellDelegrate>
+#import "MallCancelOrderModel.h"
+#import "MallCancelOrderCell.h"
+@interface MallCancelOrderView ()<MallOrderCellDelegrate>
 @property (nonatomic,strong) TLTableView * table;
-@property (nonatomic,strong) NSMutableArray<MallOrderModel *> * MallOrderModels;
+@property (nonatomic,strong) NSMutableArray<MallCancelOrderModel *> * MallCancelOrderModels;
+
 
 @end
 
-@implementation MallOrderView
+@implementation MallCancelOrderView
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,34 +29,33 @@
     self.table.refreshDelegate = self;
     self.table.defaultNoDataImage = kImage(@"暂无订单");
     self.table.defaultNoDataText = @"还没有商品订单哦";
-    [self.table registerClass:[MallOrderCell class] forCellReuseIdentifier:@"mallordercell"];
+    [self.table registerClass:[MallCancelOrderCell class] forCellReuseIdentifier:@"mallordercell"];
     [self.view addSubview:self.table];
     [self loadData];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.MallOrderModels.count;
-//    return 1;
+    return self.MallCancelOrderModels.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"Cell";
-    MallOrderCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+    MallCancelOrderCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
     if (cell == nil) {
-        cell = [[MallOrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[MallCancelOrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.delagate = self;
-    cell.model = self.MallOrderModels[indexPath.section];
+    cell.model = self.MallCancelOrderModels[indexPath.section];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
-
+    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    MallOrderModel * model = self.MallOrderModels[indexPath.section];
-    return 50.5+90 * (model.detailList.count) + 40;
+//    MallCancelOrderModel * model = self.MallCancelOrderModels[indexPath.section];
+    return 50.5+90 + 40;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 10;
@@ -62,7 +64,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MallOrderDetailVC *detailVC  = [MallOrderDetailVC new];
-    detailVC.code = self.MallOrderModels[indexPath.section].code;
+    detailVC.code = self.MallCancelOrderModels[indexPath.section].orderCode;
     [self.navigationController pushViewController:detailVC animated:YES];
     
 }
@@ -72,32 +74,16 @@
 -(void)loadData{
     CoinWeakSelf;
     TLPageDataHelper * help = [TLPageDataHelper new];
-    if (self.statusList) {
-        help.code = @"629735";
-    }else
-        help.code = @"629725";
-    
-    if (self.status) {
-        help.parameters[@"status"] = self.status;
-        help.parameters[@"orderDir"] = @"desc";
-        help.parameters[@"orderColumn"] = @"update_datetime";
-    }
-    else if (self.statusList) {
-        help.parameters[@"statusList"] = self.statusList;
-    }else{
-        help.parameters[@"status"] = @"";
-        help.parameters[@"orderDir"] = @"desc";
-        help.parameters[@"orderColumn"] = @"update_datetime";
-    }
-    
+    help.code = @"629735";
+    help.parameters[@"statusList"] = self.statusList;
     help.parameters[@"applyUser"] = [TLUser user].userId;
-    [help modelClass:[MallOrderModel class]];
+    [help modelClass:[MallCancelOrderModel class]];
     help.tableView = self.table;
     help.isCurrency = YES;
     [self.table addRefreshAction:^{
         [help refresh:^(NSMutableArray *objs, BOOL stillHave) {
             if (objs.count > 0) {
-                weakSelf.MallOrderModels = objs;
+                weakSelf.MallCancelOrderModels = objs;
                 [weakSelf.table reloadData];
                 [weakSelf.table endRefreshHeader];
             }
@@ -109,7 +95,7 @@
     [self.table addLoadMoreAction:^{
         [help loadMore:^(NSMutableArray *objs, BOOL stillHave) {
             if (objs.count>0) {
-                weakSelf.MallOrderModels = objs;
+                weakSelf.MallCancelOrderModels = objs;
                 [weakSelf.table reloadData];
                 [weakSelf.table endRefreshFooter];
             }
@@ -120,4 +106,5 @@
     }];
     [self.table beginRefreshing];
 }
+
 @end

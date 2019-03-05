@@ -9,6 +9,7 @@
 #import "MallOrderVC.h"
 #import "SelectScrollView.h"
 #import "MallOrderView.h"
+#import "MallCancelOrderView.h"
 @interface MallOrderVC ()
 @property (nonatomic , strong) SelectScrollView *selectSV;
 @property (nonatomic,strong) NSArray * itemsTitles;
@@ -73,7 +74,7 @@
             [self.selectSV.scrollView addSubview:bookview.view];
         }
         else if (index == 7){
-            MallOrderView * bookview = [[MallOrderView alloc]init];
+            MallCancelOrderView* bookview = [[MallCancelOrderView alloc]init];
             bookview.statusList = @[@"2",@"3"];
             [self addChildViewController:bookview];
             bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);

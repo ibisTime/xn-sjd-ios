@@ -10,18 +10,25 @@
 #import "MallListCollectionViewCell.h"
 #import "MallGoodDetailVC.h"
 #import "SLBannerView.h"
+#import "QWCategory.h"
+#import "MallGoodsModel.h"
+#import "MallStoreHeadView.h"
+#import "MallGoodListViewController.h"
 @interface MallStoreListVC ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 {
     
     
 }
-
+@property (nonatomic,strong) NSMutableArray <MallGoodsModel *>*MallGoodsModels;
+@property (nonatomic,strong) NSMutableArray<QWCategory *> * QWCategorys;
 @property (nonatomic,strong) SLBannerView *topImage;
 @property (nonatomic,strong) UIImageView * headImage;
 @property (nonatomic,strong) UILabel *nameLable;
 @property (nonatomic,strong) UILabel *introduceLable;
 @property (nonatomic,strong) UIView * headerView;
 @property (nonatomic,strong) UICollectionView *collectionView;
+@property (nonatomic,strong) NSMutableArray * imageArraay ;
+@property (nonatomic,strong) NSString * introduce;
 @end
 
 @implementation MallStoreListVC
@@ -34,7 +41,7 @@
         _collectionView.backgroundColor = kWhiteColor;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-         [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
+         [_collectionView registerClass:[MallStoreHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
         [_collectionView registerClass:[MallListCollectionViewCell class] forCellWithReuseIdentifier:@"MallListCollectionViewCell"];
     }
     return _collectionView;
@@ -51,25 +58,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initTop];
+//
+    [self getClassify];
+    [self loadGoodsData];
     [self.view addSubview:self.collectionView];
     [self loadData];
     [self topImageLoadData];
+//    [self initTop];
 }
-
 
 
 
 - (void)initTop
 {
-//    UIImageView * topImage;
-//    UIImageView * headImage;
-//    UILabel *nameLable;
-//    UILabel *introduceLable;
-    
-    
+
     _topImage = [SLBannerView bannerView];
     _topImage.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/750*300);
+    _topImage.durTimeInterval = 0.2;
+    _topImage.imgStayTimeInterval = 2.5;
     //工程图片
     
     
@@ -102,81 +108,55 @@
     lineView.backgroundColor = kBackgroundColor;
     [self.headerView addSubview:lineView];
     
-    NSArray * ClassifyName = @[@"分类一",@"分类二",@"分类三",@"分类四"];
+//    NSArray * ClassifyName = @[@"分类一",@"分类二",@"分类三",@"分类四"];
     
-    
-    for (int i = 0; i < 4; i ++) {
-        UIButton *iconBtn = [UIButton buttonWithTitle:ClassifyName[i] titleColor:kHexColor(@"#666666") backgroundColor:kClearColor titleFont:12];
-        iconBtn.frame = CGRectMake(i % 4 * SCREEN_WIDTH/4, lineView.yy, SCREEN_WIDTH/4, SCREEN_WIDTH/4);
-        [iconBtn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
-            [button setImage:kImage(ClassifyName[i]) forState:(UIControlStateNormal)];
-        }];
-        iconBtn.tag = i;
-        [iconBtn addTarget:self action:@selector(ClassifyClick) forControlEvents:UIControlEventTouchUpInside];
-        [self.headerView addSubview:iconBtn];
+    NSMutableArray * namearr = [NSMutableArray array];
+    NSMutableArray  *imagearr = [NSMutableArray array];
+    for (int i = 0; i < self.QWCategorys.count; i++) {
+        [namearr addObject:self.QWCategorys[i].name];
+        [imagearr addObject:self.QWCategorys[i].pic];
     }
+
+        for (int i = 0; i < self.QWCategorys.count; i ++) {
+            UIButton *iconBtn = [UIButton buttonWithTitle:@"" titleColor:kHexColor(@"#666666") backgroundColor:kClearColor titleFont:12];
+            iconBtn.frame = CGRectMake(i % 5 * SCREEN_WIDTH/5, lineView.yy, SCREEN_WIDTH/5, 55 + 16.5);
+            iconBtn.tag = i;
+            [iconBtn addTarget:self action:@selector(ClassifyClick:) forControlEvents:UIControlEventTouchUpInside];
+            [self.headerView addSubview:iconBtn];
+            
+            
+            UIImageView *iconImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/5/2 - 20,  7.5, 40, 40)];
+            [iconImg sd_setImageWithURL:[NSURL URLWithString:[imagearr[i] convertImageUrl]]];
+            [iconBtn addSubview:iconImg];
+            
+            UILabel *iconlLbl = [UILabel labelWithFrame:CGRectMake(0,  55, SCREEN_WIDTH/5, 16.5) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#666666")];
+            iconlLbl.text = namearr[i];
+            
+            [iconBtn addSubview:iconlLbl];
+
+   
     
+    }
     UILabel *hotLable = [UILabel labelWithFrame:CGRectMake(15, lineView.yy + SCREEN_WIDTH/4, SCREEN_WIDTH - 30, 22) textAligment:NSTextAlignmentLeft backgroundColor:kClearColor font:HGboldfont(16) textColor:kBlackColor];
     hotLable.text = @"热销商品";
     ;
     [self.headerView addSubview:hotLable];
-    
 }
 
--(void)topImageLoadData
-{
-    TLNetworking *http = [TLNetworking new];
-    http.code = @"630506";
-    http.parameters[@"shopCode"] = self.treeModel.shopCode;
-    http.parameters[@"type"] = @"7";
-    [http postWithSuccess:^(id responseObject) {
-        
-        NSArray *dataAry = responseObject[@"data"];
-        NSMutableArray *imageArraay = [NSMutableArray array];
-        for (int i = 0; i < dataAry.count; i ++) {
-            [imageArraay addObject:[dataAry[i][@"pic"] convertImageUrl]];
-        }
-        
-        self.topImage.slImages = imageArraay;
-        
-    } failure:^(NSError *error) {
-        
-    }];
-}
 
--(void)loadData
-{
-    
-    
-    TLNetworking *http = [TLNetworking new];
-    http.code = @"630307";
-    http.parameters[@"code"] = self.treeModel.shopCode;
-    [http postWithSuccess:^(id responseObject) {
-        
-        _introduceLable.text = responseObject[@"data"][@"description"];
-        
-    } failure:^(NSError *error) {
-       
-    }];
-}
 
-- (void)ClassifyClick
-{
-    MallGoodDetailVC *detail = [MallGoodDetailVC new];
-    detail.title = @"产品详情";
-    [self.navigationController pushViewController:detail animated:YES];
-}
+
 #pragma mark------CollectionView的代理方法
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+    return self.MallGoodsModels.count;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
     MallListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MallListCollectionViewCell" forIndexPath:indexPath];
-    
+    cell.model = self.MallGoodsModels[indexPath.row];
     return cell;
 }
 
@@ -213,9 +193,17 @@
 
 - (UICollectionReusableView *) collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
-    [headerView addSubview:self.headerView];
+    MallStoreHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+//    [headerView addSubview:self.headerView];
+    headerView.imageArraay = self.imageArraay;
+    headerView.str = self.introduce;
+    headerView.QWCategorys = self.QWCategorys;
+    headerView.treeModel = self.treeModel;
     
+//    [headerView.iconBtn addTarget:self action:@selector(ClassifyClick:) forControlEvents:(UIControlEventTouchUpInside)];
+    headerView.classifyclick = ^(UIButton * _Nonnull sender) {
+        [self ClassifyClick:sender];
+    };
     return headerView;
 }
 
@@ -230,17 +218,102 @@
 {
     return UIEdgeInsetsMake(15, 15, 15, 15);
 }
-
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - 分类点击事件
+- (void)ClassifyClick:(UIButton *)sender
+{
+    NSLog(@"%ld",sender.tag);
+//    MallGoodDetailVC *detail = [MallGoodDetailVC new];
+//    detail.title = @"产品详情";
+//    [self.navigationController pushViewController:detail animated:YES];
+    
+    MallGoodListViewController *list = [MallGoodListViewController new];
+    list.parentCategoryCode = self.QWCategorys[sender.tag].code;
+    list.shopCode = self.treeModel.shopCode;
+    list.title = @"商品列表";
+    [self.navigationController pushViewController:list animated:YES];
 }
-*/
+#pragma mark - 获取数据
+-(void)getClassify{
+    TLNetworking *http = [TLNetworking new];
+    http.code = @"629005";
+    http.showView = self.view;
+    http.parameters[@"start"] = @"0";
+    http.parameters[@"limit"] = @"10";
+    http.parameters[@"level"] = @"1";
+    http.parameters[@"type"] = @"2";
+    http.parameters[@"status"] = @"1";
+    http.parameters[@"orderColumn"] = @"order_no";
+    http.parameters[@"orderDir"] = @"asc";
+    [http postWithSuccess:^(id responseObject) {
+        self.QWCategorys = [QWCategory mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+//        [self initTop];
+        [self.collectionView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
+}
+-(void)topImageLoadData
+{
+    CoinWeakSelf;
+    TLNetworking *http = [TLNetworking new];
+    http.code = @"630506";
+    http.showView = self.view;
+    http.parameters[@"shopCode"] = self.treeModel.shopCode;
+    http.parameters[@"type"] = @"7";
+    [http postWithSuccess:^(id responseObject) {
+        
+        NSArray *dataAry = responseObject[@"data"];
+        if (dataAry.count > 0) {
+            NSMutableArray *imageArraay = [NSMutableArray array];
+            for (int i = 0; i < dataAry.count; i ++) {
+                [imageArraay addObject:[dataAry[i][@"pic"] convertImageUrl]];
+            }
+            
+            self.topImage.slImages = imageArraay;
+            weakSelf.imageArraay = imageArraay;
+            [self.collectionView reloadData];
+        }
+        
+        
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
 
+-(void)loadData
+{
+    
+    CoinWeakSelf;
+    TLNetworking *http = [TLNetworking new];
+    http.code = @"630307";
+    http.showView = self.view;
+    http.parameters[@"code"] = self.treeModel.shopCode;
+    [http postWithSuccess:^(id responseObject) {
+        
+        weakSelf.introduceLable.text = responseObject[@"data"][@"description"];
+        weakSelf.introduce = responseObject[@"data"][@"description"];
+        [self.collectionView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
+}
+-(void)loadGoodsData{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629706";
+    http.showView = self.view;
+    http.parameters[@"start"] = @(1);
+    http.parameters[@"limit"] = @(6);
+    http.parameters[@"status"] = @(4);
+    http.parameters[@"orderColumn"] = @"order_no";
+    http.parameters[@"orderDir"] = @"asc";
+    http.parameters[@"shopCode"] = self.treeModel.shopCode;
+    [http postWithSuccess:^(id responseObject) {
+        NSMutableArray *array = responseObject[@"data"][@"list"];
+        self.MallGoodsModels = [MallGoodsModel mj_objectArrayWithKeyValuesArray:array];
+        [self.collectionView reloadData];
+    } failure:^(NSError *error) {
+        
+    }];
+}
 @end

@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RefundVC : MallBaseVC
 @property (nonatomic,strong) NSString * code;
+@property (nonatomic,strong) NSString * money;
 @end
 
 NS_ASSUME_NONNULL_END

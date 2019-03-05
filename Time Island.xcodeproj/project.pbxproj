@@ -215,6 +215,14 @@
 		3671897F2213B7FF0050488E /* CompanyCertifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3671897E2213B7FF0050488E /* CompanyCertifyVC.m */; };
 		367189822213EA220050488E /* MallGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 367189812213EA220050488E /* MallGoodsModel.m */; };
 		3671DA652229368400C5819B /* MesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3671DA642229368400C5819B /* MesModel.m */; };
+		3674B400222E0A61007D684F /* MallCancelOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3674B3FF222E0A61007D684F /* MallCancelOrderView.m */; };
+		3674B403222E0C02007D684F /* MallCancelOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3674B402222E0C02007D684F /* MallCancelOrderModel.m */; };
+		3674B406222E0DA4007D684F /* MallCancelOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3674B405222E0DA4007D684F /* MallCancelOrderCell.m */; };
+		3674B409222E2A8B007D684F /* MallStoreHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3674B408222E2A8B007D684F /* MallStoreHeadView.m */; };
+		3674B40D222E5349007D684F /* ServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3674B40C222E5349007D684F /* ServiceVC.m */; };
+		3674B416222E5742007D684F /* ServiceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3674B415222E5742007D684F /* ServiceTableView.m */; };
+		3674B419222E618E007D684F /* MineMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3674B418222E618E007D684F /* MineMessageCell.m */; };
+		3674B41C222E61A7007D684F /* YourMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3674B41B222E61A7007D684F /* YourMessageCell.m */; };
 		367D68E021F95A230091177C /* aiai_area.txt in Resources */ = {isa = PBXBuildFile; fileRef = 367D68DF21F95A230091177C /* aiai_area.txt */; };
 		367D68E921F95B920091177C /* SelectAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D68E821F95B920091177C /* SelectAdView.m */; };
 		367D694221F998A70091177C /* GenderPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D694121F998A70091177C /* GenderPickerView.m */; };
@@ -951,6 +959,22 @@
 		367189812213EA220050488E /* MallGoodsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallGoodsModel.m; sourceTree = "<group>"; };
 		3671DA632229368400C5819B /* MesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MesModel.h; sourceTree = "<group>"; };
 		3671DA642229368400C5819B /* MesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MesModel.m; sourceTree = "<group>"; };
+		3674B3FE222E0A61007D684F /* MallCancelOrderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallCancelOrderView.h; sourceTree = "<group>"; };
+		3674B3FF222E0A61007D684F /* MallCancelOrderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallCancelOrderView.m; sourceTree = "<group>"; };
+		3674B401222E0C02007D684F /* MallCancelOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallCancelOrderModel.h; sourceTree = "<group>"; };
+		3674B402222E0C02007D684F /* MallCancelOrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallCancelOrderModel.m; sourceTree = "<group>"; };
+		3674B404222E0DA4007D684F /* MallCancelOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallCancelOrderCell.h; sourceTree = "<group>"; };
+		3674B405222E0DA4007D684F /* MallCancelOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallCancelOrderCell.m; sourceTree = "<group>"; };
+		3674B407222E2A8B007D684F /* MallStoreHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallStoreHeadView.h; sourceTree = "<group>"; };
+		3674B408222E2A8B007D684F /* MallStoreHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallStoreHeadView.m; sourceTree = "<group>"; };
+		3674B40B222E5349007D684F /* ServiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServiceVC.h; sourceTree = "<group>"; };
+		3674B40C222E5349007D684F /* ServiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServiceVC.m; sourceTree = "<group>"; };
+		3674B414222E5742007D684F /* ServiceTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ServiceTableView.h; sourceTree = "<group>"; };
+		3674B415222E5742007D684F /* ServiceTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ServiceTableView.m; sourceTree = "<group>"; };
+		3674B417222E618E007D684F /* MineMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineMessageCell.h; sourceTree = "<group>"; };
+		3674B418222E618E007D684F /* MineMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineMessageCell.m; sourceTree = "<group>"; };
+		3674B41A222E61A7007D684F /* YourMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YourMessageCell.h; sourceTree = "<group>"; };
+		3674B41B222E61A7007D684F /* YourMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YourMessageCell.m; sourceTree = "<group>"; };
 		367D68DF21F95A230091177C /* aiai_area.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aiai_area.txt; sourceTree = "<group>"; };
 		367D68E721F95B920091177C /* SelectAdView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectAdView.h; sourceTree = "<group>"; };
 		367D68E821F95B920091177C /* SelectAdView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectAdView.m; sourceTree = "<group>"; };
@@ -2167,6 +2191,8 @@
 			children = (
 				B80D384121F8403800206B55 /* MallStoreListVC.h */,
 				B80D384221F8403800206B55 /* MallStoreListVC.m */,
+				3674B407222E2A8B007D684F /* MallStoreHeadView.h */,
+				3674B408222E2A8B007D684F /* MallStoreHeadView.m */,
 			);
 			path = MallStore;
 			sourceTree = "<group>";
@@ -2822,6 +2848,8 @@
 				36DB50DB21F5A11F009D56EF /* MallOrderVC.m */,
 				36DB50DD21F5B355009D56EF /* MallOrderView.h */,
 				36DB50DE21F5B355009D56EF /* MallOrderView.m */,
+				3674B3FE222E0A61007D684F /* MallCancelOrderView.h */,
+				3674B3FF222E0A61007D684F /* MallCancelOrderView.m */,
 				B87C210421FAA92800EFD0B0 /* MallOrderDetailVC.h */,
 				B87C210521FAA92800EFD0B0 /* MallOrderDetailVC.m */,
 				B87C211321FAE83D00EFD0B0 /* ViewExpressVC.h */,
@@ -2841,6 +2869,8 @@
 				36DB50E421F5B720009D56EF /* MallOrderModel.m */,
 				3671DA632229368400C5819B /* MesModel.h */,
 				3671DA642229368400C5819B /* MesModel.m */,
+				3674B401222E0C02007D684F /* MallCancelOrderModel.h */,
+				3674B402222E0C02007D684F /* MallCancelOrderModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2854,6 +2884,8 @@
 				36DB50D821F59AEF009D56EF /* NewsVCCell.m */,
 				36DB50E021F5B606009D56EF /* MallOrderCell.h */,
 				36DB50E121F5B606009D56EF /* MallOrderCell.m */,
+				3674B404222E0DA4007D684F /* MallCancelOrderCell.h */,
+				3674B405222E0DA4007D684F /* MallCancelOrderCell.m */,
 				B87C210721FAA99900EFD0B0 /* MallOrderDetailTB.h */,
 				B87C210821FAA99900EFD0B0 /* MallOrderDetailTB.m */,
 				B87C210A21FAB57A00EFD0B0 /* OrderAddressView.h */,
@@ -2870,6 +2902,37 @@
 				366AA886222D176D0082A741 /* RefundCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3674B40A222E5330007D684F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				3674B410222E566D007D684F /* Controller */,
+				3674B40F222E5663007D684F /* View */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		3674B40F222E5663007D684F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3674B414222E5742007D684F /* ServiceTableView.h */,
+				3674B415222E5742007D684F /* ServiceTableView.m */,
+				3674B417222E618E007D684F /* MineMessageCell.h */,
+				3674B418222E618E007D684F /* MineMessageCell.m */,
+				3674B41A222E61A7007D684F /* YourMessageCell.h */,
+				3674B41B222E61A7007D684F /* YourMessageCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3674B410222E566D007D684F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3674B40B222E5349007D684F /* ServiceVC.h */,
+				3674B40C222E5349007D684F /* ServiceVC.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		3689767B21EF003B005F1177 /* Collect */ = {
@@ -3944,6 +4007,7 @@
 		B81E5FA621DC8FC200873AB9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				3674B40A222E5330007D684F /* Service */,
 				1F4731952212C74B007B5908 /* MallStore */,
 				1F19AC39221174FB0090BF84 /* GoodsList */,
 				1F19AC1522029D550090BF84 /* GoodsDetails */,
@@ -4603,6 +4667,7 @@
 				B81E5FBE21DC8FC200873AB9 /* TLAlert.m in Sources */,
 				3689769321EF367B005F1177 /* OrderView.m in Sources */,
 				B81E5FB821DC8FC200873AB9 /* TLProgressHUD.m in Sources */,
+				3674B416222E5742007D684F /* ServiceTableView.m in Sources */,
 				3615FE13221E793900D10F73 /* RulesCell.m in Sources */,
 				366A59F122000007009FFA6E /* GoodsDetailsCell.m in Sources */,
 				36DFD828221FA1E600DC5E0F /* MoreIntroduceVC.m in Sources */,
@@ -4656,6 +4721,7 @@
 				1F47319C22153F0A007B5908 /* PersonalCenterCell.m in Sources */,
 				B8ED2E6D21E6EA3400FADCCE /* TreeRenYangVC.m in Sources */,
 				3622C372221A7B3900087EDD /* ThePropsDetailsView.m in Sources */,
+				3674B406222E0DA4007D684F /* MallCancelOrderCell.m in Sources */,
 				B81E608521DC9FB200873AB9 /* MineVC.m in Sources */,
 				B80D385D21F85F1E00206B55 /* GoodsModel.m in Sources */,
 				1F4731B422168AF2007B5908 /* PersonalCenterExpressionCell.m in Sources */,
@@ -4700,6 +4766,8 @@
 				1F19A8EA21FAA6BA0090BF84 /* CityModel.m in Sources */,
 				B81E5FD421DC8FC200873AB9 /* NSDictionary+Extension.m in Sources */,
 				B81E5FBC21DC8FC200873AB9 /* CustomPickerView.m in Sources */,
+				3674B403222E0C02007D684F /* MallCancelOrderModel.m in Sources */,
+				3674B40D222E5349007D684F /* ServiceVC.m in Sources */,
 				B80D388621F871CF00206B55 /* SubmitOrdersTableView.m in Sources */,
 				361396032215386600F6F2F3 /* FriendsModel.m in Sources */,
 				B815278621EC8BAE00F89395 /* BaseTableViewCell.m in Sources */,
@@ -4714,6 +4782,7 @@
 				36A84B5122115DF7003CDE19 /* BalanceVC.m in Sources */,
 				1F1B00A821E86B3C000BEBD3 /* UIButton+SGImagePosition.m in Sources */,
 				36F2ADBD22262C2E009BDAB5 /* OrderTreeListCell.m in Sources */,
+				3674B409222E2A8B007D684F /* MallStoreHeadView.m in Sources */,
 				B81E603B21DC948900873AB9 /* CoinModel.m in Sources */,
 				B86CB6A721DDB7FF00C60AC7 /* BaseCollectionView.m in Sources */,
 				B8EE11F721ED777300B9DF0D /* BookDetailHeadView.m in Sources */,
@@ -4901,6 +4970,7 @@
 				B8EE11F421ED76C700B9DF0D /* BoolVideoDetailVC.m in Sources */,
 				1F93616821EE01B4007E522A /* MyHomePageCell.m in Sources */,
 				B81E5FEE21DC8FC200873AB9 /* BaseButton.m in Sources */,
+				3674B41C222E61A7007D684F /* YourMessageCell.m in Sources */,
 				1F47338D221F88E0007B5908 /* MMNormalCell.m in Sources */,
 				B86CB6A021DDAA1500C60AC7 /* XBTextLoopView.m in Sources */,
 				B87C211521FAE83D00EFD0B0 /* ViewExpressVC.m in Sources */,
@@ -4942,6 +5012,7 @@
 				B87C213121FB047000EFD0B0 /* UIView+Ex.m in Sources */,
 				B81E603521DC93EC00873AB9 /* UIScrollView+TLAdd.m in Sources */,
 				1FF6398E21EC7DD400F5FF68 /* RankingCell.m in Sources */,
+				3674B419222E618E007D684F /* MineMessageCell.m in Sources */,
 				1F1B006F21E71D26000BEBD3 /* RBBTweenAnimation.m in Sources */,
 				B87C212121FB040300EFD0B0 /* JudgeViewController.m in Sources */,
 				B81E5FEB21DC8FC200873AB9 /* TLTabBarController.m in Sources */,
@@ -5039,6 +5110,7 @@
 				3689768221EF00D3005F1177 /* InviteVC.m in Sources */,
 				B8ED2E7021E6EE4300FADCCE /* TreeInfoView.m in Sources */,
 				1FF6399821EC837400F5FF68 /* FriendRequestsCell.m in Sources */,
+				3674B400222E0A61007D684F /* MallCancelOrderView.m in Sources */,
 				1F9361D021F174F1007E522A /* MallShoppingCartVC.m in Sources */,
 				1F93610B21EDFD8F007E522A /* MyNoticeDetailsVC.m in Sources */,
 				1F3EBAF721F5A621005BC837 /* SLBannerView.m in Sources */,
