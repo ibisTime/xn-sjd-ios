@@ -70,12 +70,12 @@
                               confirm:(void(^)(UIAlertAction *action))confirm;
 
 ////带有 删除 和 确认 的提示
-//+ (UIAlertController *)alertWithTitle:(NSString *)title
-//                              Message:(NSString *)message
-//                           confirmMsg:(NSString *)confirmMsg
-//                            CancleMsg:(NSString *)msg
-//                               cancle:(void(^)(UIAlertAction *action))cancle
-//                              confirm:(void(^)(UIAlertAction *action))confirm;
++ (UIAlertController *)alertWithTitle:(NSString *)title
+                              Message:(NSString *)message
+                           confirmMsg:(NSString *)confirmMsg
+                            CancleMsg:(NSString *)msg
+                               cancle:(void(^)(UIAlertAction *action))cancle
+                              confirm:(void(^)(UIAlertAction *action))confirm;
 
 //带输入框
 + (UIAlertController *)alertWithTitle:(NSString *)title

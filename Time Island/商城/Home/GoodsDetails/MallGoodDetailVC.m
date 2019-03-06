@@ -22,6 +22,7 @@
 #import "GoodsTypeModel.h"
 #import "SubmitOrdersVC.h"
 #import "ReceivingAddressVC.h"
+#import "ServiceVC.h"
 @interface MallGoodDetailVC ()<RefreshDelegate>
 {
     GoodsModel *model;
@@ -71,7 +72,11 @@
             bookview.title = self.itemsTitles[index];
             [self addChildViewController:bookview];
             self.bookVC = bookview;
+            
             bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
+            bookview.clickmore = ^{
+                self.selectSV.currentIndex = 2;
+            };
             [self.selectSV.scrollView addSubview:bookview.view];
         }else if (index ==1)
         {
@@ -85,11 +90,12 @@
             [self.selectSV.scrollView addSubview:bookview.view];
         }else{
             GoodsEditVC * bookview = [[GoodsEditVC alloc] init];
+            bookview.model = self.MallGoodsModel;
+            
             bookview.title = self.itemsTitles[index];
             [self addChildViewController:bookview];
             bookview.view.frame = CGRectMake(kScreenWidth*index, 0, kScreenWidth, kSuperViewHeight  - kTabBarHeight);
             self.editVC = bookview;
-            bookview.treeModel = self.MallGoodsModel;
             [self.selectSV.scrollView addSubview:bookview.view];
         }
     }
@@ -98,21 +104,10 @@
 //    [self loadData];
     
 }
-//- (void)loadData{
-//    TLNetworking *http = [TLNetworking new];
-//    http.code = @"629707";
-//    http.parameters[@"code"] = self.code;
-//    [http postWithSuccess:^(id responseObject) {
-//        self.treeModel = [MallTreeModel mj_objectWithKeyValues:responseObject[@"data"]];
-//        NSLog(@"%@",responseObject);
-//    } failure:^(NSError *error) {
-//
-//    }];
-//
-//}
+
 - (void)initTestModel{
     model = [[GoodsModel alloc] init];
-    model.imageId = [self.MallGoodsModel.bannerPic convertImageUrl];
+    model.imageId = self.MallGoodsModel.listPic;
     model.goodsNo = self.MallGoodsModel.name;
     model.title = @"商品标题";
     //价格信息
@@ -182,10 +177,20 @@
             break;
         case 2:
             //点击客服
-
-            break;
+        {
+            ServiceVC * vc = [[ServiceVC alloc]init];
+            vc.user2 = self.MallGoodsModel.sellUserId;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            
+        break;
         case 3:
             //点击加入购物车
+            if (self.MallGoodsModel.specsList.count > 1) {
+                [self clickShoppingCard];
+            }else
+                [self addchaopcart];
+            
             break;
         case 4:
             //点击加入购买
@@ -197,19 +202,31 @@
     }
     
 }
-
+//点击加入购物车
+-(void)addchaopcart{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629710";
+    http.parameters[@"userId"] = [TLUser user].userId;
+    http.parameters[@"commodityCode"] = self.MallGoodsModel.code;
+    http.parameters[@"commodityName"] = self.MallGoodsModel.name;
+    http.parameters[@"specsId"] = self.MallGoodsModel.specsList[0][@"id"];
+    http.parameters[@"specsName"] = self.MallGoodsModel.specsList[0][@"name"];
+    http.parameters[@"quantity"] = @"1";
+    [http postWithSuccess:^(id responseObject) {
+        [TLAlert alertWithSucces:@"加入购物车成功"];
+    } failure:^(NSError *error) {
+        
+    }];
+}
+//点击加入购买
 - (void)clickShoppingCard
 {
     ChoseGoodsTypeAlert *_alert = [[ChoseGoodsTypeAlert alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) andHeight:kHeight(450)];
     _alert.alpha = 0;
     [[UIApplication sharedApplication].keyWindow addSubview:_alert];
     CoinWeakSelf;
-//    _alert.selectSize = ^(SizeAttributeModel *sizeModel, NSInteger intern) {
-//        [JXUIKit showSuccessWithStatus:[NSString stringWithFormat:@"选择了：%@",sizeModel.goodsNo]];
-//        [weakSelf sumbitOrderWithTag:inter];
-//    };
+
     _alert.selectSize = ^(SizeAttributeModel *sizeModel, NSInteger inter, NSInteger count,int selectnum) {
-//        [JXUIKit showSuccessWithStatus:[NSString stringWithFormat:@"选择了：%@",sizeModel.goodsNo]];
         weakSelf.count = count;
         weakSelf.size = sizeModel.goodsNo;
         weakSelf.selectnum = selectnum;
@@ -225,6 +242,19 @@
 {
     if (tag ==100) {
         //购物车
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"629710";
+        http.parameters[@"userId"] = [TLUser user].userId;
+        http.parameters[@"commodityCode"] = self.MallGoodsModel.code;
+        http.parameters[@"commodityName"] = self.MallGoodsModel.name;
+        http.parameters[@"specsId"] = self.MallGoodsModel.specsList[self.selectnum][@"id"];
+        http.parameters[@"specsName"] = self.MallGoodsModel.specsList[self.selectnum][@"name"];
+        http.parameters[@"quantity"] = @(self.count);
+        [http postWithSuccess:^(id responseObject) {
+            [TLAlert alertWithSucces:@"加入购物车成功"];
+        } failure:^(NSError *error) {
+            
+        }];
     }else{
         SubmitOrdersVC *orderVc = [SubmitOrdersVC new];
         orderVc.MallGoodsModel = self.MallGoodsModel;

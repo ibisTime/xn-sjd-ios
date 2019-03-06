@@ -17,6 +17,10 @@
 #import "MallGoodsModel.h"
 #import "MallGoodDetailVC.h"
 #import "MallGoodListViewController.h"
+#import "QWCategory.h"
+#import <UIButton+WebCache.h>
+#import "MallGoodListViewController.h"
+#import "SearchHistoryModel.h"
 @interface MallHomeVC ()<PYSearchViewControllerDelegate>
 //@property (nonatomic,strong) MallHomeHeadView * Classifyview;
 @property (nonatomic,strong) UIView * headview;
@@ -25,12 +29,13 @@
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic,strong) UIImageView * backgroundimage;
 @property (nonatomic ,strong) PYSearchViewController *searchViewController;
+@property (nonatomic,strong) NSMutableArray<SearchHistoryModel *> * SearchHistoryModels;
 @property (nonatomic ,strong)  NSMutableArray *array;
 @property (nonatomic,strong) NSMutableArray <BannerModel *>*bannerRoom;
 @property (nonatomic,strong) MallHomeHeadView *mallHeader;
 @property (nonatomic,strong) NSMutableArray <MallGoodsModel *>*HotTrees;
 @property (nonatomic,strong) UIView * footview;
-
+@property (nonatomic,strong) NSMutableArray<QWCategory *> * QWCategorys;
 @end
 
 @implementation MallHomeVC
@@ -38,7 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"首页";
-    
+    [self getClassify];
     self.headview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/750*370 + 140 +  (SCREEN_WIDTH - 30)/690*230 + 247.5)];
     
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] init];
@@ -59,7 +64,7 @@
     
     [self setupImage];
     [self initSearchBar];
-    [self SetupClassify];
+//    [self SetupClassify];
 //    [self SetupFootView];
     [self createbackview];
     [self loadBaner];
@@ -209,26 +214,35 @@
     
     MallHomeHeadView *mallHeader = [[MallHomeHeadView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH , SCREEN_WIDTH/750 * 300)];
     self.mallHeader = mallHeader;
-//    UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH/750*370)];
-//    image.image = kImage(@"树 跟背景");
-////    [self.view addSubview:image];
     [self.headview addSubview:mallHeader];
-//    self.backgroundimage = image;
 }
 -(void)SetupClassify{
-
-    NSArray * ClassifyName = @[@"分类一",@"分类二",@"分类三",@"分类四",@"分类五"];
+    NSMutableArray * namearr = [NSMutableArray array];
+    NSMutableArray  *imagearr = [NSMutableArray array];
+    for (int i = 0; i < self.QWCategorys.count; i++) {
+        [namearr addObject:self.QWCategorys[i].name];
+        [imagearr addObject:self.QWCategorys[i].pic];
+    }
+    
 
     
-    for (int i = 0; i < 5; i ++) {
-        UIButton *iconBtn = [UIButton buttonWithTitle:ClassifyName[i] titleColor:kHexColor(@"#666666") backgroundColor:kClearColor titleFont:12];
+    for (int i = 0; i < self.QWCategorys.count; i ++) {
+        UIButton *iconBtn = [UIButton buttonWithTitle:@"" titleColor:kHexColor(@"#666666") backgroundColor:kClearColor titleFont:12];
         iconBtn.frame = CGRectMake(i % 5 * SCREEN_WIDTH/5, self.mallHeader.yy + 22, SCREEN_WIDTH/5, 55 + 16.5);
-        [iconBtn SG_imagePositionStyle:(SGImagePositionStyleTop) spacing:10 imagePositionBlock:^(UIButton *button) {
-            [button setImage:kImage(ClassifyName[i]) forState:(UIControlStateNormal)];
-        }];
         iconBtn.tag = i;
         [iconBtn addTarget:self action:@selector(ClassifyClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.headview addSubview:iconBtn];
+        
+        
+        UIImageView *iconImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/5/2 - 20,  7.5, 40, 40)];
+        [iconImg sd_setImageWithURL:[NSURL URLWithString:[imagearr[i] convertImageUrl]]];
+        [iconBtn addSubview:iconImg];
+        
+        UILabel *iconlLbl = [UILabel labelWithFrame:CGRectMake(0,  55, SCREEN_WIDTH/5, 16.5) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(12) textColor:kHexColor(@"#666666")];
+        iconlLbl.text = namearr[i];
+        
+        [iconBtn addSubview:iconlLbl];
+        
     }
     
     UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, self.mallHeader.yy + 22 + 55 + 16.5 + 21.5, SCREEN_WIDTH, 10)];
@@ -237,11 +251,26 @@
     
     UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(15, view.yy +15, SCREEN_WIDTH - 30, (SCREEN_WIDTH - 30)/690*230)];
     image.image = kImage(@"树 跟背景");
-    //    [self.view addSubview:image];
     [self.headview addSubview:image];
     self.image = image;
 }
-
+-(void)getClassify{
+    TLNetworking *http = [TLNetworking new];
+    http.code = @"629005";
+    http.parameters[@"start"] = @"0";
+    http.parameters[@"limit"] = @"10";
+    http.parameters[@"level"] = @"1";
+    http.parameters[@"type"] = @"2";
+    http.parameters[@"status"] = @"1";
+    http.parameters[@"orderColumn"] = @"order_no";
+    http.parameters[@"orderDir"] = @"asc";
+    [http postWithSuccess:^(id responseObject) {
+        self.QWCategorys = [QWCategory mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        [self SetupClassify];
+    } failure:^(NSError *error) {
+        
+    }];
+}
 
 - (void)initSearchBar {
  
@@ -279,33 +308,61 @@
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
     [self.searchBar resignFirstResponder];
-    // 1. 创建热门搜索
-    NSArray *hotSeaches = @[@"Java", @"Python", @"Objective-C", @"Swift", @"C", @"C++", @"PHP", @"C#", @"Perl", @"Go", @"JavaScript", @"R", @"Ruby", @"MATLAB"];
-    NSMutableArray *array =  [NSMutableArray arrayWithArray:hotSeaches];
-    self.array = array;
-    // 2. 创建控制器
-    PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:array searchBarPlaceholder:@"搜索" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
-        // 开始搜索执行以下代码
-        // 如：跳转到指定控制器
-        [array insertObject:searchText atIndex:0];
-        searchViewController.hotSearches = array;
-        //        return ;
-        return ;
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629657";
+    http.parameters[@"userId"] = [TLUser user].userId;
+    http.parameters[@"type"] = @(2);
+    [http postWithSuccess:^(id responseObject) {
+        self.SearchHistoryModels = [SearchHistoryModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        NSMutableArray * arr = [NSMutableArray array];
+        for (int i = 0; i < self.SearchHistoryModels.count; i++) {
+            SearchHistoryModel * model = self.SearchHistoryModels[i];
+            [arr addObject:model.content];
+        }
+        PYSearchViewController *searchViewController ;
+        searchViewController.state = @"home";
+        searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:arr searchBarPlaceholder:@"搜索" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+            // 开始搜索执行以下代码
+            // 如：跳转到指定控制器
+            [arr insertObject:searchText atIndex:0];
+            searchViewController.hotSearches = arr;
+            return ;
+        }];
+        // 3. 设置风格
+        self.searchViewController = searchViewController;
         
-        [searchViewController.navigationController pushViewController:[[PYTempViewController alloc] init] animated:YES];
+        searchViewController.searchHistoryStyle = PYHotSearchStyleDefault; // 搜索历史风格为default
+        
+        // 4. 设置代理
+        searchViewController.delegate = self;
+        // 5. 跳转到搜索控制器
+        [self.navigationController pushViewController:searchViewController animated:YES];
+        
+    } failure:^(NSError *error) {
+        
     }];
-    // 3. 设置风格
-    //        searchViewController.hotSearchStyle = PYHotSearchStyleNormalTag; // 热门搜索风格根据选择
-    self.searchViewController = searchViewController;
-    searchViewController.searchHistoryStyle = PYHotSearchStyleDefault; // 搜索历史风格为default
-    // 5. 跳转到搜索控制器
-    [self.navigationController pushViewController:searchViewController animated:YES];
+
 }
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
+
+-(void)searchViewController:(PYSearchViewController *)searchViewController didSearchWithsearchBar:(UISearchBar *)searchBar searchText:(NSString *)searchText{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.showView = self.view;
+    http.code = @"629650";
+    http.parameters[@"userId"] = [TLUser user].userId;
+    http.parameters[@"type"] = @(2);
+    http.parameters[@"content"] = searchText;
+    [http postWithSuccess:^(id responseObject) {
+        MallGoodListViewController * vc = [[MallGoodListViewController alloc]init];
+        vc.state = @"search";
+        vc.SearchContent = searchText;
+        [self.navigationController pushViewController:vc animated:YES];
+    } failure:^(NSError *error) {
+        
+    }];
     
-   
 }
+
+
 
 -(void)createbackview{
     UIButton * btn = [[UIButton alloc]initWithFrame:CGRectMake(15, SCREEN_HEIGHT - 63 - kTabBarHeight - kNavigationBarHeight, 40, 40)];
@@ -358,6 +415,7 @@
 }
 -(void)ClassifyClick:(UIButton * )btn{
     MallGoodListViewController *list = [MallGoodListViewController new];
+    list.parentCategoryCode = self.QWCategorys[btn.tag].code;
     list.title = @"商品列表";
     [self.navigationController pushViewController:list animated:YES];
 }

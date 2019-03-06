@@ -11,6 +11,7 @@
 #import "PayWayCell.h"
 #define PayAllPrice @"PayAllPriceCell"
 #define PayWay @"PayWayCell"
+#import "MallOrderVC.h"
 //支付密码
 //#import "ModifyayPasswordVC.h"
 //#import "TheOrderVC.h"
@@ -199,6 +200,8 @@
     [http postWithSuccess:^(id responseObject) {
         [TLAlert alertWithSucces:@"支付成功"];
         [[UserModel user].cusPopView dismiss];
+        MallOrderVC * vc= [MallOrderVC new];
+        [self.navigationController pushViewController:vc animated:YES];
     } failure:^(NSError *error) {
         self.pwd.text = nil;
     }];

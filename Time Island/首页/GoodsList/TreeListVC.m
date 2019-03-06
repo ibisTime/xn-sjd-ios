@@ -164,6 +164,8 @@
     for (NSMutableArray <YiceSlidelipPickCommonModel*> *array in self.subKindArray) {
         for (YiceSlidelipPickCommonModel *model in array) {
             model.isSelected = @"";
+            self.adoptStatus = nil;
+            self.variety = nil;
         }
     }
 }
@@ -186,14 +188,11 @@
                 }
                 else
                     self.adoptStatus = @"1";
-//                self.treeLevel = model.text;
             }
             if (inde.section == 1) {
                 YiceSlidelipPickCommonModel *model = [YiceSlidelipPickCommonModel new];
                 model = self.subKindArray[inde.section][inde.row];
                 self.variety = model.text;
-//                [self refresh];
-                //            self.variety = self.subKindArray[inde.section][inde.row];
             }
         }
     }
@@ -212,10 +211,7 @@
 
 
 
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return 1;
-}
+
 #pragma mark ---- pickDatasource
 - (NSInteger)menu:(YiceSlidelipPickerMenu *)menu numberOfRowsInSection:(NSInteger)section{
     return ((NSArray*)(self.subKindArray[section])).count;
@@ -237,6 +233,10 @@
 }
 
 #pragma mark------CollectionView的代理方法
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.models.count;
@@ -652,8 +652,6 @@
                                                                                               [self creatPcikMenuItemModelWithString:@"可认养"],
                                                                                               [self creatPcikMenuItemModelWithString:@"不可认养"]]],
                                                              [NSMutableArray arrayWithArray:self.TreeTypeArray]]];
-        
-        //        [self array];
         
         NSLog(@"%@",array);
     } failure:^(NSError *error) {

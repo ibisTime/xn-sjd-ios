@@ -9,5 +9,10 @@
 #import "TLBaseVC.h"
 
 @interface MallGoodListViewController : TLBaseVC
-
+@property (nonatomic,strong) NSString * parentCategoryCode;
+@property (nonatomic,strong) NSString * categoryCode;
+@property (nonatomic,strong) NSString * shopCode;
+@property (nonatomic,strong) NSString * state;
+@property (nonatomic,strong) NSString * SearchContent;
+@property (nonatomic, assign) BOOL isMultiSelection;           /*singer和combination类型是否支持多选*/
 @end

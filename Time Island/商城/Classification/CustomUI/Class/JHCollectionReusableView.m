@@ -22,8 +22,8 @@
     if ([layoutAttributes isKindOfClass:[JHCollectionViewLayoutAttributes class]]) {
         JHCollectionViewLayoutAttributes *attr = (JHCollectionViewLayoutAttributes *)layoutAttributes;
 //        self.backgroundColor = kLineColor;
-        self.layer.borderWidth = 1;
-        self.layer.borderColor = kLineColor.CGColor;
+//        self.layer.borderWidth = 1;
+//        self.layer.borderColor = kLineColor.CGColor;
 
     }
 }

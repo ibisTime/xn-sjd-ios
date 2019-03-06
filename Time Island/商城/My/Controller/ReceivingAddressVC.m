@@ -25,12 +25,6 @@
     [super viewDidLoad];
     self.title = @"我的收货地址";
 
-    if (self.state == 2) {
-        self.navigationController.navigationBar.barTintColor = kHexColor(@"#333333");
-    }
-    else if (self.state == 1){
-        self.navigationController.navigationBar.barTintColor = kHexColor(@"#23AD8C");
-    }
     
     self.table = [[TLTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 50 - kNavigationBarHeight - kDevice_Is_iPhoneX)];
     [self.table registerClass:[AddressCell class] forCellReuseIdentifier:@"cell"];
@@ -38,6 +32,26 @@
     self.table.dataSource = self;
     self.table.refreshDelegate = self;
     [self.view addSubview:self.table];
+    
+    if (self.state == 2) {
+        self.navigationController.navigationBar.barTintColor = kHexColor(@"#333333");
+        UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+        [self.RightButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+        self.navigationItem.rightBarButtonItems = @[negativeSpacer, [[UIBarButtonItem alloc] initWithCustomView:self.RightButton]];
+        self.RightButton.titleLabel.font = FONT(16);
+        [self.RightButton setFrame:CGRectMake(SCREEN_WIDTH-47.5, 30, 32.5, 45)];
+        [self.RightButton setTitle:@"新增" forState:UIControlStateNormal];
+        [self.RightButton addTarget:self action:@selector(confirm) forControlEvents:(UIControlEventTouchUpInside)];
+    }
+    else if (self.state == 1){
+        self.navigationController.navigationBar.barTintColor = kHexColor(@"#23AD8C");
+        UIButton * addbtn = [UIButton buttonWithTitle:@"新增地址" titleColor:kHexColor(@"#FFFFFF") backgroundColor:kHexColor(@"#F68646") titleFont:15 cornerRadius:4];
+        addbtn.frame = CGRectMake(15, self.table.yy + 3.5, SCREEN_WIDTH - 30, 42);
+        [addbtn addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:addbtn];
+    }
+    
+    
     
 //    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
 //    negativeSpacer.width = -10;
@@ -48,10 +62,7 @@
 //    [self.RightButton setTitle:@"···" forState:UIControlStateNormal];
     
 
-    UIButton * addbtn = [UIButton buttonWithTitle:@"新增地址" titleColor:kHexColor(@"#FFFFFF") backgroundColor:kHexColor(@"#F68646") titleFont:15 cornerRadius:4];
-    addbtn.frame = CGRectMake(15, self.table.yy + 3.5, SCREEN_WIDTH - 30, 42);
-    [addbtn addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:addbtn];
+    
 
 
     

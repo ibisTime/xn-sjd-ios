@@ -10,6 +10,6 @@
 #import "EvaluationModel.h"
 @interface GoodsEditTableView : TLTableView
 
-
+@property (nonatomic,assign) float webViewHeight1;
 @property (nonatomic , strong)NSMutableArray <EvaluationModel *>*evaluationModel;
 @end

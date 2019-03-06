@@ -35,7 +35,7 @@
 @interface HomeVC ()<RefreshDelegate,RefreshCollectionViewDelegate,UIScrollViewDelegate,UITextFieldDelegate,UISearchBarDelegate,UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,PYSearchViewControllerDelegate>
 @property (nonatomic,strong) NSMutableArray<SearchHistoryModel *> * SearchHistoryModels;
 //@property (nonatomic, strong) HomeHeaderView *headerView;
-@property (nonatomic,strong)HomeHeadCell *cell;
+@property (nonatomic,strong) HomeHeadCell *cell;
 @property (nonatomic,strong) NSArray <HomeFindModel *>*findModels;
 @property (nonatomic,strong) NSMutableArray <BannerModel *>*bannerRoom;
 //@property (nonatomic, strong) HomeTbleView *tableView;

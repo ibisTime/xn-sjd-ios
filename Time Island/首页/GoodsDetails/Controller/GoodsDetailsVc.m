@@ -215,7 +215,6 @@
         }
         else{
             [self.renYangButton setTitle:@"可认养" forState:(UIControlStateNormal)];
-            [self.renYangButton setEnabled:NO];
             return;
         }
     }

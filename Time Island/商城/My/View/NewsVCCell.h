@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MesModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NewsVCCell : UITableViewCell
 @property (nonatomic,strong) UILabel * NewsTitle;
 @property (nonatomic,strong) UILabel * NewsDetails;
 @property (nonatomic,strong) UILabel * NewsTime;
+@property (nonatomic,strong) MesModel * model;
 @end
 
 NS_ASSUME_NONNULL_END

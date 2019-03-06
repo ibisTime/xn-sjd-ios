@@ -12,5 +12,5 @@
 @interface MallGoodIntroduceVC : TLBaseVC
 @property (nonatomic ,strong) MallGoodsModel *treeModel;
 @property (nonatomic ,strong) GoodsModel *model;
-
+@property (nonatomic,strong) void (^clickmore)(void);
 @end

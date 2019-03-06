@@ -25,7 +25,7 @@
     
     // 添加图片
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:[category.pic convertImageUrl]]
-                      placeholderImage:[UIImage imageNamed:@"jdm_photo_placeholer"]];
+                      placeholderImage:[UIImage imageNamed:@"我的礼物"]];
     
     // 添加文字
     self.textLabel.text = category.name;
@@ -67,8 +67,8 @@
     // 图片
     CGFloat margin = ((kScreenWidth - QWCategoryMenuWidth)-self.width*3)/6;
 
-    _imageView.width = self.width;
-    _imageView.height = self.height * 0.6;
+    _imageView.width = self.width-10;
+    _imageView.height = self.width-10 ;
 //    _imageView.centerX = self.width / 2;
     _imageView.centerY = _imageView.height * 0.6;
     

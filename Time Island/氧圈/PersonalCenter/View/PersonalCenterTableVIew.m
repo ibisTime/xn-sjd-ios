@@ -35,7 +35,10 @@
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     
     if (self = [super initWithFrame:frame style:style]) {
-        [self getcompetedata];
+        if ([self.state isEqualToString:@"rank"]) {
+            [self getcompetedata];
+        }
+        
         self.dataSource = self;
         self.delegate = self;
         [self registerClass:[FriendsTreeHeadCell class] forCellReuseIdentifier:FriendsTreeHead];
@@ -236,7 +239,47 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    if (section >= 2) {
+    if ([self.state isEqualToString:@"rank"]) {
+        if (section >= 2) {
+            UIView *headerView = [UIView new];
+            
+            UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35)];
+            backView.backgroundColor = kWhiteColor;
+            [headerView addSubview:backView];
+            NSArray *dynamicArray = self.dynamicArray[section - 1];
+            UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 6, SCREEN_WIDTH - 30, 18) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGboldfont(18) textColor:kTextBlack];
+            if (dynamicArray.count > 0) {
+                DynamicModel *model = [DynamicModel mj_objectWithKeyValues:dynamicArray[0]];
+                
+                
+                
+                NSDate *currentDate = [NSDate date];//获取当前时间，日期
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+                [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+                NSString *dateString = [dateFormatter stringFromDate:currentDate];
+                
+                if ([dateString isEqualToString:model.time]) {
+                    nameLabel.text = @"今天";
+                }
+                else
+                {
+                    NSString *time = [model.time substringWithRange:NSMakeRange(5, model.time.length - 5)];
+                    nameLabel.text = time;
+                }
+                
+            }
+            
+            [headerView addSubview:nameLabel];
+            
+            UIView *roundView = [[UIView alloc]initWithFrame:CGRectMake(30, nameLabel.yy + 5 , 6, 6)];
+            roundView.backgroundColor = kHexColor(@"#CCCCCC");
+            kViewRadius(roundView, 3);
+            [backView addSubview:roundView];
+            
+            return headerView;
+        }
+    }if (section >= 1) {
         UIView *headerView = [UIView new];
         
         UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35)];
@@ -247,7 +290,7 @@
         if (dynamicArray.count > 0) {
             DynamicModel *model = [DynamicModel mj_objectWithKeyValues:dynamicArray[0]];
             
-           
+            
             
             NSDate *currentDate = [NSDate date];//获取当前时间，日期
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -275,37 +318,67 @@
         
         return headerView;
     }
+    else{
+        
+    }
+    
     
     return nil;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (section == 1) {
-        
-        
-        UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 62.5)];
-        
-        footView.backgroundColor = kWhiteColor;
-        
-        UIView *footlineView = [[UIView alloc]initWithFrame:CGRectMake(15, 21, 3, 15)];
-        footlineView.backgroundColor = kHexColor(@"#23AD8C");
-        kViewRadius(footlineView, 1.5);
-        [footView addSubview:footlineView];
-        
-        UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(footlineView.xx + 6, 20, SCREEN_WIDTH - footlineView.xx - 21, 17) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGboldfont(17) textColor:kTextBlack];
-        nameLabel.text = [LangSwitcher switchLang:@"TA的动态" key:nil];
-        [footView addSubview:nameLabel];
-        
-        return footView;
+    if ([self.state isEqualToString:@"rank"]) {
+        if (section == 1) {
+            UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 62.5)];
+            
+            footView.backgroundColor = kWhiteColor;
+            
+            UIView *footlineView = [[UIView alloc]initWithFrame:CGRectMake(15, 21, 3, 15)];
+            footlineView.backgroundColor = kHexColor(@"#23AD8C");
+            kViewRadius(footlineView, 1.5);
+            [footView addSubview:footlineView];
+            
+            UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(footlineView.xx + 6, 20, SCREEN_WIDTH - footlineView.xx - 21, 17) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGboldfont(17) textColor:kTextBlack];
+            nameLabel.text = [LangSwitcher switchLang:@"TA的动态" key:nil];
+            [footView addSubview:nameLabel];
+            
+            return footView;
+        }
     }
+    else{
+        if (section == 0) {
+            UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 62.5)];
+            
+            footView.backgroundColor = kWhiteColor;
+            
+            UIView *footlineView = [[UIView alloc]initWithFrame:CGRectMake(15, 21, 3, 15)];
+            footlineView.backgroundColor = kHexColor(@"#23AD8C");
+            kViewRadius(footlineView, 1.5);
+            [footView addSubview:footlineView];
+            
+            UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(footlineView.xx + 6, 20, SCREEN_WIDTH - footlineView.xx - 21, 17) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGboldfont(17) textColor:kTextBlack];
+            nameLabel.text = [LangSwitcher switchLang:@"我的动态" key:nil];
+            [footView addSubview:nameLabel];
+            
+            return footView;
+        }
+    }
+   
     return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (section == 1) {
-        return 62.5;
+    if ([self.state isEqualToString:@"rank"]) {
+        if (section == 1) {
+            return 62.5;
+        }
+    }else{
+        if (section == 0) {
+            return 62.5;
+        }
     }
+    
     return 0.001;
 }
 

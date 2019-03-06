@@ -44,4 +44,11 @@
     view.backgroundColor = kLineColor;
     return view;
 }
+-(void)setModel:(MesModel *)model{
+    self.NewsTitle.text = [TLUser user].nickname;
+    self.NewsDetails.text = model.messageList[0][@"content"];
+    self.NewsTime.text = [model.createDatetime convertToDetailDate];
+    [self.NewsTime sizeToFit];
+    self.NewsTime.frame = CGRectMake(SCREEN_WIDTH - self.NewsTime.width - 15, 19, self.NewsTime.width, 16.5);
+}
 @end
