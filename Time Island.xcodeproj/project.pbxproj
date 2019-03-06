@@ -261,6 +261,7 @@
 		36A84B5722115F98003CDE19 /* BalanceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A84B5622115F98003CDE19 /* BalanceCell.m */; };
 		36A84B5C22116C89003CDE19 /* GetMoneyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A84B5B22116C89003CDE19 /* GetMoneyVC.m */; };
 		36A84B5F22117BAF003CDE19 /* RuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A84B5E22117BAF003CDE19 /* RuleModel.m */; };
+		36ADC01C222F9648001E5198 /* logisticeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ADC01B222F9648001E5198 /* logisticeVC.m */; };
 		36BB9F6B21FE9B2E0010E622 /* NoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB9F6A21FE9B2E0010E622 /* NoticeModel.m */; };
 		36BB9F6F21FEE1B70010E622 /* BookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB9F6E21FEE1B70010E622 /* BookModel.m */; };
 		36BB9F7221FEEC980010E622 /* BookDetailContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BB9F7121FEEC980010E622 /* BookDetailContentView.m */; };
@@ -269,6 +270,10 @@
 		36C85E8D2212CCEF00DA26BE /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C85E8C2212CCEF00DA26BE /* MessageCell.m */; };
 		36C85E902212CE4F00DA26BE /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C85E8F2212CE4F00DA26BE /* MessageModel.m */; };
 		36C894162224D7AC00B69214 /* SearchHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C894152224D7AC00B69214 /* SearchHistoryModel.m */; };
+		36CC83D8222F9C9300FEBFF6 /* logisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CC83D7222F9C9300FEBFF6 /* logisticsModel.m */; };
+		36CC83DB222FA3FA00FEBFF6 /* PasswayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CC83DA222FA3FA00FEBFF6 /* PasswayModel.m */; };
+		36CC83DE222FA74900FEBFF6 /* LogisticeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CC83DD222FA74900FEBFF6 /* LogisticeCell.m */; };
+		36CC83E1222FBFCB00FEBFF6 /* JudgeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36CC83E0222FBFCB00FEBFF6 /* JudgeVC.m */; };
 		36DB50D621F5993B009D56EF /* NewsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50D521F5993B009D56EF /* NewsVC.m */; };
 		36DB50D921F59AEF009D56EF /* NewsVCCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50D821F59AEF009D56EF /* NewsVCCell.m */; };
 		36DB50DC21F5A11F009D56EF /* MallOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DB50DB21F5A11F009D56EF /* MallOrderVC.m */; };
@@ -1045,6 +1050,8 @@
 		36A84B5B22116C89003CDE19 /* GetMoneyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetMoneyVC.m; sourceTree = "<group>"; };
 		36A84B5D22117BAF003CDE19 /* RuleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuleModel.h; sourceTree = "<group>"; };
 		36A84B5E22117BAF003CDE19 /* RuleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RuleModel.m; sourceTree = "<group>"; };
+		36ADC01A222F9648001E5198 /* logisticeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = logisticeVC.h; sourceTree = "<group>"; };
+		36ADC01B222F9648001E5198 /* logisticeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = logisticeVC.m; sourceTree = "<group>"; };
 		36BB9F6921FE9B2E0010E622 /* NoticeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoticeModel.h; sourceTree = "<group>"; };
 		36BB9F6A21FE9B2E0010E622 /* NoticeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeModel.m; sourceTree = "<group>"; };
 		36BB9F6D21FEE1B70010E622 /* BookModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookModel.h; sourceTree = "<group>"; };
@@ -1061,6 +1068,14 @@
 		36C85E8F2212CE4F00DA26BE /* MessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
 		36C894142224D7AC00B69214 /* SearchHistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchHistoryModel.h; sourceTree = "<group>"; };
 		36C894152224D7AC00B69214 /* SearchHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchHistoryModel.m; sourceTree = "<group>"; };
+		36CC83D6222F9C9300FEBFF6 /* logisticsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = logisticsModel.h; sourceTree = "<group>"; };
+		36CC83D7222F9C9300FEBFF6 /* logisticsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = logisticsModel.m; sourceTree = "<group>"; };
+		36CC83D9222FA3FA00FEBFF6 /* PasswayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasswayModel.h; sourceTree = "<group>"; };
+		36CC83DA222FA3FA00FEBFF6 /* PasswayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PasswayModel.m; sourceTree = "<group>"; };
+		36CC83DC222FA74900FEBFF6 /* LogisticeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogisticeCell.h; sourceTree = "<group>"; };
+		36CC83DD222FA74900FEBFF6 /* LogisticeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogisticeCell.m; sourceTree = "<group>"; };
+		36CC83DF222FBFCB00FEBFF6 /* JudgeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JudgeVC.h; sourceTree = "<group>"; };
+		36CC83E0222FBFCB00FEBFF6 /* JudgeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JudgeVC.m; sourceTree = "<group>"; };
 		36DB50D421F5993B009D56EF /* NewsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsVC.h; sourceTree = "<group>"; };
 		36DB50D521F5993B009D56EF /* NewsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsVC.m; sourceTree = "<group>"; };
 		36DB50D721F59AEF009D56EF /* NewsVCCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsVCCell.h; sourceTree = "<group>"; };
@@ -2871,6 +2886,10 @@
 				3671DA642229368400C5819B /* MesModel.m */,
 				3674B401222E0C02007D684F /* MallCancelOrderModel.h */,
 				3674B402222E0C02007D684F /* MallCancelOrderModel.m */,
+				36CC83D6222F9C9300FEBFF6 /* logisticsModel.h */,
+				36CC83D7222F9C9300FEBFF6 /* logisticsModel.m */,
+				36CC83D9222FA3FA00FEBFF6 /* PasswayModel.h */,
+				36CC83DA222FA3FA00FEBFF6 /* PasswayModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2900,6 +2919,10 @@
 				B87C211D21FAF2DE00EFD0B0 /* ExpressCell.m */,
 				366AA885222D176D0082A741 /* RefundCell.h */,
 				366AA886222D176D0082A741 /* RefundCell.m */,
+				36ADC01A222F9648001E5198 /* logisticeVC.h */,
+				36ADC01B222F9648001E5198 /* logisticeVC.m */,
+				36CC83DC222FA74900FEBFF6 /* LogisticeCell.h */,
+				36CC83DD222FA74900FEBFF6 /* LogisticeCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4347,6 +4370,8 @@
 			isa = PBXGroup;
 			children = (
 				B87C212321FB047000EFD0B0 /* HDragView */,
+				36CC83DF222FBFCB00FEBFF6 /* JudgeVC.h */,
+				36CC83E0222FBFCB00FEBFF6 /* JudgeVC.m */,
 			);
 			path = "评价";
 			sourceTree = "<group>";
@@ -4354,19 +4379,19 @@
 		B87C212321FB047000EFD0B0 /* HDragView */ = {
 			isa = PBXGroup;
 			children = (
+				B87C212E21FB047000EFD0B0 /* UIView+Ex.h */,
 				B87C212421FB047000EFD0B0 /* UIView+Ex.m */,
 				B87C212521FB047000EFD0B0 /* UIButton+Ex.h */,
+				B87C212C21FB047000EFD0B0 /* UIButton+Ex.m */,
 				B87C212621FB047000EFD0B0 /* HDragItem.h */,
+				B87C213021FB047000EFD0B0 /* HDragItem.m */,
+				B87C212F21FB047000EFD0B0 /* HDragItemListView.h */,
 				B87C212721FB047000EFD0B0 /* HDragItemListView.m */,
 				B87C212821FB047000EFD0B0 /* wc_drag_delete_activate@3x.png */,
 				B87C212921FB047000EFD0B0 /* wc_drag_delete_activate@2x.png */,
 				B87C212A21FB047000EFD0B0 /* wc_drag_delete@2x.png */,
 				B87C212B21FB047000EFD0B0 /* add_image@2x.png */,
-				B87C212C21FB047000EFD0B0 /* UIButton+Ex.m */,
 				B87C212D21FB047000EFD0B0 /* wc_drag_delete@3x.png */,
-				B87C212E21FB047000EFD0B0 /* UIView+Ex.h */,
-				B87C212F21FB047000EFD0B0 /* HDragItemListView.h */,
-				B87C213021FB047000EFD0B0 /* HDragItem.m */,
 			);
 			path = HDragView;
 			sourceTree = "<group>";
@@ -4770,6 +4795,7 @@
 				3674B40D222E5349007D684F /* ServiceVC.m in Sources */,
 				B80D388621F871CF00206B55 /* SubmitOrdersTableView.m in Sources */,
 				361396032215386600F6F2F3 /* FriendsModel.m in Sources */,
+				36CC83E1222FBFCB00FEBFF6 /* JudgeVC.m in Sources */,
 				B815278621EC8BAE00F89395 /* BaseTableViewCell.m in Sources */,
 				1F473391221F88E0007B5908 /* MMDropDownBox.m in Sources */,
 				B85F892521FC2FC200D5B7A4 /* PYTempViewController.m in Sources */,
@@ -4837,6 +4863,7 @@
 				B8ED2E7921E71A2700FADCCE /* TreeRenYangListTB.m in Sources */,
 				1F19A90321FEFF130090BF84 /* PersonalCenterHeadView.m in Sources */,
 				B8ED2E6A21E6EA1D00FADCCE /* TreeFieldVC.m in Sources */,
+				36CC83DE222FA74900FEBFF6 /* LogisticeCell.m in Sources */,
 				1F93616621EE01B4007E522A /* MyHomePageTableView.m in Sources */,
 				3689766221EED58A005F1177 /* CollectVC.m in Sources */,
 				1FF6398221EC716400F5FF68 /* BarrageEncapsulationView.m in Sources */,
@@ -4948,6 +4975,7 @@
 				B81E5FDE21DC8FC200873AB9 /* AppConfig.m in Sources */,
 				B81E5FE221DC8FC200873AB9 /* HttpRequestService.m in Sources */,
 				1F473299221EA11A007B5908 /* YiceSlidelipPickReusableView.m in Sources */,
+				36ADC01C222F9648001E5198 /* logisticeVC.m in Sources */,
 				1F4731D2221D5AC2007B5908 /* SGAdvertScrollView.m in Sources */,
 				3647C4A321F1D57400FB049D /* ReceivingAddressVC.m in Sources */,
 				B80D388C21F873F000206B55 /* BankCardModel.m in Sources */,
@@ -4970,6 +4998,7 @@
 				B8EE11F421ED76C700B9DF0D /* BoolVideoDetailVC.m in Sources */,
 				1F93616821EE01B4007E522A /* MyHomePageCell.m in Sources */,
 				B81E5FEE21DC8FC200873AB9 /* BaseButton.m in Sources */,
+				36CC83D8222F9C9300FEBFF6 /* logisticsModel.m in Sources */,
 				3674B41C222E61A7007D684F /* YourMessageCell.m in Sources */,
 				1F47338D221F88E0007B5908 /* MMNormalCell.m in Sources */,
 				B86CB6A021DDAA1500C60AC7 /* XBTextLoopView.m in Sources */,
@@ -5018,6 +5047,7 @@
 				B81E5FEB21DC8FC200873AB9 /* TLTabBarController.m in Sources */,
 				1F93610521EDFD8F007E522A /* ToClaimTheGiftVC2.m in Sources */,
 				3689767121EEE176005F1177 /* CollectTreeModel.m in Sources */,
+				36CC83DB222FA3FA00FEBFF6 /* PasswayModel.m in Sources */,
 				1F47338C221F88E0007B5908 /* MMCombinationFitlerView.m in Sources */,
 				B88E542D21F9B08A00C33040 /* GoodsDetailsBottomView.m in Sources */,
 				B8712E8021F577FA00039086 /* MallClassificationVC.m in Sources */,

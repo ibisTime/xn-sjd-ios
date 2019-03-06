@@ -11,8 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YourMessageCell : UITableViewCell
-//@property (nonatomic,strong) NSString * content;
+@property (nonatomic,strong) UIView * conview;
 @property (nonatomic,strong) UILabel * content;
+@property (nonatomic,strong) UIImageView * img;
 @end
 
 NS_ASSUME_NONNULL_END

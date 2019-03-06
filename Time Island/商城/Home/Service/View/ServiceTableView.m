@@ -29,6 +29,7 @@
     return 1;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    //我发送的消息
     if ([self.model[0].messageList[indexPath.section][@"userId"] isEqualToString:[TLUser user].userId]) {
         static NSString *rid=@"minecell";
         
@@ -39,30 +40,42 @@
             cell=[[MineMessageCell alloc] initWithStyle:UITableViewCellStyleDefault      reuseIdentifier:rid];
             
         }
+        cell.backgroundColor = RGB(236, 236, 236);
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.content.text = self.model[0].messageList[indexPath.section][@"content"];
-//        cell.content.frame = CGRectMake(80, 0, SCREEN_WIDTH - 150, 1);
-//        [cell.content sizeToFit];
+        CGSize strSize = [self.model[0].messageList[indexPath.section][@"content"] boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 120, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
         
-        CGSize strSize = [self.model[0].messageList[indexPath.section][@"content"] boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 150, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
-        
+        //一行
         if (strSize.height <= 18) {
-            cell.content.frame = CGRectMake(SCREEN_WIDTH - 100 - strSize.width, 15, strSize.width + 30, 50);
-        }else if (strSize.height > 1000){
-            cell.content.frame = CGRectMake(SCREEN_WIDTH - 70 - strSize.width - 30, 15, strSize.width + 30, 1000);
+            cell.conview.frame = CGRectMake(SCREEN_WIDTH - 70 - strSize.width - 20, 15, strSize.width + 20, 50);
+            cell.content.frame = CGRectMake(10, 10, strSize.width, 30);
+            
         }
+        //很多很多行
+        else if (strSize.height > 1000){
+            cell.conview.frame = CGRectMake(SCREEN_WIDTH - 70 - strSize.width - 20, 15, strSize.width + 20, 1020);
+            cell.content.frame = CGRectMake(10, 10, cell.conview.width - 20, 1000);
+            
+        }
+        //多行
         else
         {
-            cell.content.frame = CGRectMake(80, 15, SCREEN_WIDTH - 150, strSize.height);
+            cell.conview.frame = CGRectMake(SCREEN_WIDTH - 70 - strSize.width - 20, 15, strSize.width + 20, strSize.height + 20);
+            cell.content.frame = CGRectMake(10, 10, cell.conview.width - 20, strSize.height);
         }
         
-//        if (cell.content.width > SCREEN_WIDTH - 80 - 20) {
-//            cell.content.frame = CGRectMake(20, 0, SCREEN_WIDTH - 80 - 20, cell.content.height + 30);
-//        }else
-//            cell.content.frame = CGRectMake(SCREEN_WIDTH - cell.content.width - 70 - 50, 0, cell.content.width + 50, cell.content.height + 30);
+        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:cell.conview.bounds byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomLeft) cornerRadii:CGSizeMake(6,6)];//圆角大小
+        CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+        maskLayer.frame = cell.conview.bounds;
+        maskLayer.path = maskPath.CGPath;
+        cell.conview.layer.mask = maskLayer;
         
+        
+        cell.img.frame = CGRectMake(SCREEN_WIDTH - 60, cell.conview.yy - 50, 50, 50);
         return cell;
     }
+    
+    //我接受到的消息
     static NSString *rid=@"yourmessage";
     
     YourMessageCell *cell=[tableView dequeueReusableCellWithIdentifier:rid];
@@ -72,9 +85,40 @@
         cell=[[YourMessageCell alloc] initWithStyle:UITableViewCellStyleDefault      reuseIdentifier:rid];
         
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = RGB(236, 236, 236);
     cell.content.text = self.model[0].messageList[indexPath.section][@"content"];
+    CGSize strSize = [self.model[0].messageList[indexPath.section][@"content"] boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 120, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
+    
+    //一行
+    if (strSize.height <= 18) {
+        cell.conview.frame = CGRectMake(70, 15, strSize.width + 20, 50);
+        cell.content.frame = CGRectMake(10, 10, strSize.width, 30);
+        
+    }
+    //很多很多行
+    else if (strSize.height > 1000){
+        cell.conview.frame = CGRectMake(70, 15, strSize.width + 20, 1020);
+        cell.content.frame = CGRectMake(10, 10, cell.conview.width - 20, 1000);
+        
+    }
+    //多行
+    else
+    {
+        cell.conview.frame = CGRectMake(70, 15, strSize.width + 20, strSize.height + 20);
+        cell.content.frame = CGRectMake(10, 10, cell.conview.width - 20, strSize.height);
+    }
+    
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:cell.conview.bounds byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomRight) cornerRadii:CGSizeMake(6,6)];//圆角大小
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = cell.conview.bounds;
+    maskLayer.path = maskPath.CGPath;
+    cell.conview.layer.mask = maskLayer;
+    
+    
+    cell.img.frame = CGRectMake(10, cell.conview.yy - 50, 50, 50);
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -83,7 +127,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, 10, SCREEN_WIDTH, 30)];
-    UILabel * label = [UILabel labelWithFrame:CGRectMake(0, 10, SCREEN_WIDTH, 10) textAligment:(NSTextAlignmentCenter) backgroundColor:kLineColor font:FONT(10) textColor:kBlackColor];
+    UILabel * label = [UILabel labelWithFrame:CGRectMake(0, 10, SCREEN_WIDTH, 10) textAligment:(NSTextAlignmentCenter) backgroundColor:RGB(224, 224, 224) font:FONT(10) textColor:kBlackColor];
     label.text = [self.model[0].messageList[section][@"createDatetime"] convertToDetailDate];
     [label sizeToFit];
     label.frame = CGRectMake((SCREEN_WIDTH - label.width)/2, 10, label.width, 10);
@@ -95,15 +139,15 @@
 //    if ([self heightforcell:self.model[0].messageList[indexPath.section][@"content"]] > 80) {
 //        return [self heightforcell:self.model[0].messageList[indexPath.section][@"content"]] + 30;
 //    }
-    CGSize strSize = [self.model[0].messageList[indexPath.section][@"content"] boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 150, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
+    CGSize strSize = [self.model[0].messageList[indexPath.section][@"content"] boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 120, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
     
-    if (strSize.height <= 80) {
+    if (strSize.height <= 18) {
         return 80;
     }
     if (strSize.height > 1000) {
-        return 1000 + 30;
+        return 1050;
     }
-    return strSize.height + 30;
+    return strSize.height + 50;
     
 }
 

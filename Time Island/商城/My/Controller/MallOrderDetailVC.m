@@ -16,6 +16,8 @@
 #import "MallGoodsModel.h"
 #import "MallGoodDetailVC.h"
  #import "RefundVC.h"
+#import "JudgeViewController.h"
+#import "JudgeVC.h"
 @interface MallOrderDetailVC ()<RefreshDelegate>
 @property (nonatomic ,strong) MallOrderDetailTB *tableView;
 
@@ -37,6 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"订单详情";
     [self loadData];
 //    [self initContentView];
 //    [self initCustomView];
@@ -58,9 +61,29 @@
 //    statusLab.text = @"订单待收货";
     int status = [self.model.status intValue];
     switch (status) {
+        case 0:{
+            topImage.image = kImage(@"订单待收货");
+            self.statusLab.text= @"待付款";
+        }
+            break;
         case 1:{
             topImage.image = kImage(@"订单待收货");
+            self.statusLab.text= @"订单待发货";
+        }
+            break;
+        case 2:{
+            topImage.image = kImage(@"订单待收货");
             self.statusLab.text= @"订单待收货";
+        }
+            break;
+        case 3:{
+            topImage.image = kImage(@"订单待收货");
+            self.statusLab.text= @"订单待评价";
+        }
+            break;
+        case 4:{
+            topImage.image = kImage(@"订单待收货");
+            self.statusLab.text= @"订单已完成";
         }
             break;
         case 5:{
@@ -68,10 +91,17 @@
             self.statusLab.text= @"订单已取消";
         }
             break;
-        default:
+        
+        default:{
+            topImage.image = kImage(@"订单待收货");
+            self.statusLab.text= @"售后中";
+        }
             break;
     }
-    
+    if (self.model.detailList[0][@"afterSaleStatus"]) {
+        topImage.image = kImage(@"订单待收货");
+        self.statusLab.text= @"售后中";
+    }
     
     
     OrderAddressView *addressView = [OrderAddressView new];
@@ -90,13 +120,11 @@
 
 - (void)initTableView
 {
-//    MallOrderDetailTB *tableView = [[MallOrderDetailTB alloc] initWithFrame:CGRectMake(0, self.addressView.yy, kScreenWidth, kScreenHeight-kNavigationBarHeight)];
     MallOrderDetailTB *tableView = [[MallOrderDetailTB alloc] initWithFrame:CGRectMake(0, self.addressView.yy, kScreenWidth, 40 + 100 * self.model.detailList.count)];
     tableView.scrollEnabled = NO;
     tableView.refreshDelegate = self;
     [self.contentView addSubview:tableView];
     self.tableView = tableView;
-//    self.tableView.frame = CGRectMake(0, self.addressView.yy, kScreenWidth, kHeight(3*100));
     self.tableView.frame = CGRectMake(0, self.addressView.yy, kScreenWidth, 40 + 163 * self.model.detailList.count);
     
     
@@ -160,14 +188,12 @@
     else{
         self.detailView.orderMoney.text = [NSString stringWithFormat:@"¥%.2f(%.2f+邮费(%.2f))",[self.model.payAmount floatValue]/1000,[self.model.amount floatValue]/1000,[self.model.postalFee floatValue]/1000];
     }
-//    self.detailView.orderMoney.text = [NSString stringWithFormat:@"%.2f",[self.model.payAmount floatValue] / 1000];
     
     
     self.detailView.seller.text = self.model.sellersName;
     if ([self.model.payType isEqualToString:@"1"]) {
         self.detailView.payType.text = @"余额支付";
     }
-//    [self.model.remark substringToIndex:self.model.remark.length - 2];
     self.detailView.payID.text = self.model.jourCode;
 }
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -186,13 +212,23 @@
 }
 
 -(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender selectRowAtIndex:(NSInteger)index{
-    if ([self.model.detailList[index][@"afterSaleStatus"] isEqualToString:@"2"]) {
+    
+    NSLog(@"%@",sender.titleLabel.text);
+    NSString * title = sender.titleLabel.text;
+    if ([title isEqualToString:@"申请退款"]||[title isEqualToString:@"申请售后"]) {
+        RefundVC * vc = [RefundVC new];
+        vc.code = self.model.detailList[index][@"code"];
+        vc.money = self.model.detailList[index][@"amount"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if ([title isEqualToString:@"取消售后"]){
         [TLAlert alertWithTitle:@"提示" msg:@"是否取消售后" confirmMsg:@"是" cancleMsg:@"否" maker:self cancle:^(UIAlertAction *action) {
             
         } confirm:^(UIAlertAction *action) {
             NSLog(@"1234567890");
             TLNetworking * http = [[TLNetworking alloc]init];
             http.code = @"629722";
+            //            http.code = @"629774";
             http.parameters[@"code"] = self.model.detailList[index][@"orderCode"];
             http.parameters[@"updater"] = [TLUser user].userId;
             [http postWithSuccess:^(id responseObject) {
@@ -202,11 +238,12 @@
             }];
         }];
     }
-    else{
-        RefundVC * vc = [RefundVC new];
+    else if ([title isEqualToString:@"评价"])
+    {
+        JudgeVC * vc = [[JudgeVC alloc]init];
         vc.code = self.model.detailList[index][@"code"];
-        vc.money = self.model.detailList[index][@"amount"];
         [self.navigationController pushViewController:vc animated:YES];
     }
+
 }
 @end

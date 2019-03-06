@@ -9,6 +9,7 @@
 #import "NewsVC.h"
 #import "NewsVCCell.h"
 #import "MesModel.h"
+#import "ServiceVC.h"
 @interface NewsVC ()<UITableViewDelegate,UITableViewDataSource,RefreshDelegate>
 @property (nonatomic,strong) TLTableView * table;
 @property (nonatomic,strong) NSMutableArray<MesModel *> * MessageModels;
@@ -52,8 +53,14 @@
          cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.model = self.MessageModels[indexPath.row];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ServiceVC * vc = [[ServiceVC alloc]init];
+    vc.user2 = self.MessageModels[indexPath.row].user2;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void)connect{
 

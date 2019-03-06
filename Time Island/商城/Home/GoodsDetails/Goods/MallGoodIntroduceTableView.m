@@ -11,9 +11,10 @@
 #import "MallGoodsInformationCell.h"
 #define MallGoodsInformation @"MallGoodsInformationCell"
 #import "TeamPostCell.h"
-@interface MallGoodIntroduceTableView()<UITableViewDelegate, UITableViewDataSource>
+@interface MallGoodIntroduceTableView()<UITableViewDelegate, UITableViewDataSource,UIWebViewDelegate>
 {
     TeamPostCell *_cell;
+    NSInteger tag;
 }
 
 @end
@@ -67,27 +68,80 @@
         cell.textLabel.font = FONT(13);
         return cell;
     }
-    
     static NSString *CellIdentifier = @"Cell";
-//    _cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-    if (_cell == nil) {
-        _cell = [[TeamPostCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        _cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    // 通过唯一标识创建cell实例
+    _cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    // 判断为空进行初始化  --（当拉动页面显示超过主页面内容的时候就会重用之前的cell，而不会再次初始化）
+    if (!_cell) {
+        _cell = [[TeamPostCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    _cell.evaModel = self.evaluationModel[indexPath.row];
-    [_cell.informationLabel loadHTMLString:self.evaluationModel[indexPath.row].content baseURL:nil];
-    [_cell.informationLabel.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+//    static NSString *CellIdentifier = @"Cell";
+//    _cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+//    if (_cell == nil) {
+//        _cell = [[TeamPostCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        _cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        _cell.evaModel = self.evaluationModel[indexPath.row];
+        _cell.informationLabel.delegate = self;
+        NSString *htmls = [NSString stringWithFormat:@"<html> \n"
+                           "<head> \n"
+                           "<style type=\"text/css\"> \n"
+                           "body {font-size:%ldpx;}\n"// 字体大小，px是像素
+                           "</style> \n"
+                           "</head> \n"
+                           "<body>"
+                           "<script type='text/javascript'>"
+                           "window.onload = function(){\n"
+                           "var $img = document.getElementsByTagName('img');\n"
+                           "for(var p in  $img){\n"
+                           "$img[p].style.width = '100%%';\n"// 图片宽度
+                           "$img[p].style.height ='300px'\n"// 高度自适应
+                           "}\n"
+                           "}"
+                           "</script>%@"
+                           "</body>"
+                           "</html>",30, self.evaluationModel[indexPath.row].content];
+        [_cell.informationLabel loadHTMLString:htmls baseURL:nil];
+        [_cell.informationLabel.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+//    }
+    
+//    tag = indexPath.row + 1000;
+    
+//    _cell.informationLabel.tag = indexPath.row + 1000;
     return _cell;
 }
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
     if ([keyPath isEqualToString:@"contentSize"]) {
         _webViewHeight1 = [[_cell.informationLabel stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
+//        UIWebView *webview = [self viewWithTag:tag];
         _cell.informationLabel.frame = CGRectMake(15, 53, SCREEN_WIDTH - 30, _webViewHeight1);
-        [self reloadData];
+//        [self reloadData];
     }
 }
 
+//这个知识点主要是自己最近在尝试写后台接口  在移动端展示的时候需要用到这个知识点,在webViewDidFinishLoad方法里面执行一段js代码  拿到各个图片  判断其宽度是否大于当前手机屏幕尺寸,是的话则调整为屏幕宽度显示,不是的话则原样显示
 
+//代码如下:
+//- (void)webViewDidFinishLoad:(UIWebView *)webView {
+//    //    2、都有效果
+//    NSString *js=@"var script = document.createElement('script');"
+//    "script.type = 'text/javascript';"
+//    "script.text = \"function ResizeImages() { "
+//    "var myimg,oldwidth;"
+//    "var maxwidth = %f;"
+//    "for(i=0;i <document.images.length;i++){"
+//    "myimg = document.images[i];"
+//    "if(myimg.width > maxwidth){"
+//    "oldwidth = myimg.width;"
+//    "myimg.width = %f;"
+//    "}"
+//    "}"
+//    "}\";"
+//    "document.getElementsByTagName('head')[0].appendChild(script);";
+//    js=[NSString stringWithFormat:js,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.width-15];
+//    [webView stringByEvaluatingJavaScriptFromString:js];
+//    [webView stringByEvaluatingJavaScriptFromString:@"ResizeImages();"];
+//
+//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -102,7 +156,8 @@
     if (indexPath.section == 1) {
         return 55;
     }
-    return 60 + _webViewHeight1;
+    UIWebView *webview = [self viewWithTag:tag];
+    return 60 + 350;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

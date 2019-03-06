@@ -23,14 +23,24 @@
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.content = [UILabel labelWithFrame:CGRectMake(80, 0, SCREEN_WIDTH - 80 - 20, 70) textAligment:(NSTextAlignmentCenter) backgroundColor:RGB(41, 41, 43) font:FONT(14) textColor:RGB(241, 225, 153)];
-        self.content.numberOfLines = 0;
-        [self addSubview:self.content];
         
-        UIImageView * img = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 70, 15, 50, 50)];
-        kViewRadius(img, 25);
-        [img sd_setImageWithURL:[NSURL URLWithString:[[TLUser user].photo convertImageUrl]] placeholderImage:kImage(@"头像")];
-        [self addSubview:img];
+        
+        self.conview = [[UIView alloc]initWithFrame:CGRectMake(20, 15, SCREEN_WIDTH - 100, 50)];
+        self.conview.backgroundColor = RGB(41, 41, 43);
+        [self addSubview:self.conview];
+
+        
+        self.content = [UILabel labelWithFrame:CGRectMake(10, 10, SCREEN_WIDTH - 120, 30) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(14) textColor:RGB(241, 225, 153)];
+        self.content.numberOfLines = 0;
+        [self.conview addSubview:self.content];
+        
+        
+        self.img = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 70, 15, 50, 50)];
+        kViewRadius(self.img, 25);
+        [self.img sd_setImageWithURL:[NSURL URLWithString:[[TLUser user].photo convertImageUrl]] placeholderImage:kImage(@"头像")];
+        [self addSubview:self.img];
+        
+        
     }
     return self;
 }

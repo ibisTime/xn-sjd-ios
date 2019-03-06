@@ -71,6 +71,7 @@
             StateLab.text = @"已取消";
             State.image = kImage(@"订单已取消");
             break;
+        
         default:
             break;
     }

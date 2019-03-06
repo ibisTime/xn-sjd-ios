@@ -72,7 +72,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60 + _webViewHeight1;
+//    if (_webViewHeight1 > 100) {
+//        return 100;
+//    }
+//    else
+        return 60 + _webViewHeight1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

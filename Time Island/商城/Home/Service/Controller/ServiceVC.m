@@ -43,7 +43,7 @@
     if (!_tableview) {
         _tableview = [[ServiceTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - kNavigationBarHeight - 70)];
         _tableview.refreshDelegate = self;
-        _tableview.backgroundColor = kWhiteColor;
+        _tableview.backgroundColor = RGB(236, 236, 236);
     }
     return _tableview;
 }

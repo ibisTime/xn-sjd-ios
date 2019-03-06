@@ -10,6 +10,7 @@
 #import "MallOrderCell.h"
 #import "MallOrderDetailVC.h"
 #import "MallOrderModel.h"
+#import "logisticeVC.h"
 @interface MallOrderView ()<MallOrderCellDelegrate>
 @property (nonatomic,strong) TLTableView * table;
 @property (nonatomic,strong) NSMutableArray<MallOrderModel *> * MallOrderModels;
@@ -48,11 +49,42 @@
     cell.delagate = self;
     cell.model = self.MallOrderModels[indexPath.section];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.logisticeBtn.tag = indexPath.section;
+    cell.consignBtn.tag = indexPath.section;
+    [cell.logisticeBtn addTarget:self action:@selector(lookPassway:) forControlEvents:(UIControlEventTouchUpInside)];
+    [cell.consignBtn addTarget:self action:@selector(ReceiveGoods:) forControlEvents:(UIControlEventTouchUpInside)];
+
     return cell;
 
 }
+
+-(void)lookPassway:(UIButton *)sender{
+    logisticeVC * vc = [[logisticeVC alloc]init];
+    vc.expNo = self.MallOrderModels[sender.tag].logisticsNumber;
+    vc.expCode = self.MallOrderModels[sender.tag].logisticsCompany;
+    vc.photo = self.MallOrderModels[sender.tag].detailList[0][@"listPic"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)ReceiveGoods:(UIButton *)sender{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629724";
+    http.parameters[@"receiver"] = [TLUser user].userId;
+    http.parameters[@"shopCode"] = self.MallOrderModels[sender.tag].shopCode;
+    http.parameters[@"code"] = self.MallOrderModels[sender.tag].code;
+    [http postWithSuccess:^(id responseObject) {
+        [self loadData];
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     MallOrderModel * model = self.MallOrderModels[indexPath.section];
+    if ([model.status isEqualToString:@"2"]) {
+        return 50.5+90 * (model.detailList.count) + 40 + 45;
+    }
     return 50.5+90 * (model.detailList.count) + 40;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

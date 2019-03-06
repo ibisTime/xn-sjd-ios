@@ -73,6 +73,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString * status;//5已取消 。1代发货 。
 @property (nonatomic,copy) NSString * updateDatetime;
 @property (nonatomic,copy) NSString * updater;
+@property (nonatomic,strong) NSString * logisticsCompany;
+@property (nonatomic,strong) NSString * logisticsNumber;
 
 @end
 

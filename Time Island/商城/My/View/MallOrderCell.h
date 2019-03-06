@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIView * details;
 
 @property(nonatomic,weak)id<MallOrderCellDelegrate>delagate;
+@property (nonatomic,strong) UIButton * logisticeBtn;//查看物流
+@property (nonatomic,strong) UIButton * consignBtn;//确认收货
 @end
 
 NS_ASSUME_NONNULL_END

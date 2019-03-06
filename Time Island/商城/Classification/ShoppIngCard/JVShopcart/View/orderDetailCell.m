@@ -274,15 +274,29 @@
         [self.btn2 setTitle:@"取消售后" forState:(UIControlStateNormal)];
         [self.btn1 setTitle:@"售后中" forState:(UIControlStateNormal)];
         [self.btn1 setTitleColor:kTextColor3 forState:(UIControlStateNormal)];
-        self.btn1.userInteractionEnabled = NO;
+//        self.btn1.userInteractionEnabled = NO;
         self.btn1.layer.borderColor = kTextColor3.CGColor;
     }
     else if ([model.detailList[self.shownum][@"afterSaleStatus"] isEqualToString:@"9"]){
-         [self.btn1 setHidden: YES];
+         [self.btn1 setHidden: NO];
          [self.btn2 setHidden: YES];
+    }
+    else if ([model.status isEqualToString:@"3"]){
+        [self.btn2 setTitle:@"申请售后" forState:(UIControlStateNormal)];
+        [self.btn1 setTitle:@"评价" forState:(UIControlStateNormal)];
+    }
+    else if ([model.status isEqualToString:@"4"]){
+        [self.btn2 setHidden: YES];
+        [self.btn1 setTitle:@"已完成" forState:(UIControlStateNormal)];
+        self.btn1.layer.borderColor = kTextColor3.CGColor;
+    }
+    else if (!model.detailList[self.shownum][@"afterSaleStatus"]){
+        [self.btn1 setHidden: NO];
+        [self.btn2 setHidden: YES];
     }
     else{
         [self.btn2 setHidden: YES];
+        [self.btn1 setHidden:YES];
     }
     
     [self.shopcartBgView addSubview:btn1];

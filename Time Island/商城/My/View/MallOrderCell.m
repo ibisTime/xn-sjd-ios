@@ -133,9 +133,6 @@
             self.GoodsTotal.text = [NSString stringWithFormat:@"合计%@件商品",model.detailList[i][@"quantity"]];
             //商品价格
             self.GoodsMoney.text = [NSString stringWithFormat:@"x%.2f",[model.detailList[i][@"amount"] floatValue] / 1000];
-
-       
-            
     }
     UIView * lineview = [self createview:CGRectMake(15, 50.5+90 * (model.detailList.count), SCREEN_WIDTH - 30, 1)];
     [self addSubview:lineview];
@@ -152,6 +149,29 @@
     {
         self.TotalMoney.frame = CGRectMake(15, 50.5+90 * (model.detailList.count), SCREEN_WIDTH - 30, 40);
     }
+    if (OrderState == 2) {
+        UIView * lineview1 = [self createview:CGRectMake(15, 50.5+90 * (model.detailList.count) + 45, SCREEN_WIDTH - 30, 1)];
+        [self addSubview:lineview1];
+        self.consignBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 70 - 20, lineview1.yy + 5, 70, 30) title:@"" backgroundColor:kClearColor];
+        self.consignBtn.titleLabel.font = FONT(13);
+        self.consignBtn.layer.borderColor = kTabbarColor.CGColor;
+        self.consignBtn.layer.borderWidth = 1;
+        kViewRadius(self.consignBtn, 3);
+        [self.consignBtn setTitle:@"确认收货" forState:(UIControlStateNormal)];
+        [self.consignBtn setTitleColor:kTabbarColor forState:(UIControlStateNormal)];
+        [self addSubview:self.consignBtn];
+        
+        self.logisticeBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH  - 70 - 20 - 70 - 20, lineview1.yy + 5, 70, 30) title:@"" backgroundColor:kClearColor];
+        self.logisticeBtn.titleLabel.font = FONT(13);
+        self.logisticeBtn.layer.borderColor = kTabbarColor.CGColor;
+        self.logisticeBtn.layer.borderWidth = 1;
+        kViewRadius(self.logisticeBtn, 3);
+        [self.logisticeBtn setTitle:@"查看物流" forState:(UIControlStateNormal)];
+        [self.logisticeBtn setTitleColor:kTabbarColor forState:(UIControlStateNormal)];
+        [self addSubview:self.logisticeBtn];
+    }
+    
+    
 }
 -(void)addview:(CGRect)frame{
     self.details = [[UIView alloc]initWithFrame:frame];

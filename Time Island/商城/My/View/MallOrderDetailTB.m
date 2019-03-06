@@ -57,15 +57,11 @@ static NSString *identifierCell = @"orderDetailCell";
     }
     cell.shownum = indexPath.row;
     cell.model= self.model;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if ([self.model.detailList[indexPath.row][@"afterSaleStatus"] isEqualToString:@"2"]) {
-        cell.btn2.tag = indexPath.row;
-        [cell.btn2 addTarget:self action:@selector(click:) forControlEvents:(UIControlEventTouchUpInside)];
-    }
-    else{
-        cell.btn1.tag = indexPath.row;
-        [cell.btn1 addTarget:self action:@selector(click:) forControlEvents:(UIControlEventTouchUpInside)];
-    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;cell.btn2.tag = indexPath.row;
+    [cell.btn2 addTarget:self action:@selector(click:) forControlEvents:(UIControlEventTouchUpInside)];
+    cell.btn1.tag = indexPath.row;
+    [cell.btn1 addTarget:self action:@selector(click:) forControlEvents:(UIControlEventTouchUpInside)];
+
     
 
     
