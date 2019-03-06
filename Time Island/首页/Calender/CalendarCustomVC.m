@@ -169,8 +169,10 @@
     http.parameters[@"userId"] = [TLUser user].userId;
     [http postWithSuccess:^(id responseObject) {
 
-
+        [self getgift];
         [self getSign];
+        [self getcontinue];
+        
     } failure:^(NSError *error) {
         
     }];
@@ -276,8 +278,8 @@
     [self.content addSubview:progressView];
 //    CGFloat totalWidth = kScreenWidth-40;
 //    CGFloat marge = (totalWidth - 6*23)/5;
-    CGFloat buttonW = kScreenWidth-20;
-    buttonW = (buttonW - 44*6)/5;
+//    CGFloat buttonW = kScreenWidth-20;
+//    buttonW = (buttonW - 44*6)/5;
     
     for (int i = 0; i < self.RuleArray.count; i++) {
         UIButton *button = [UIButton buttonWithImageName:@"签到-礼物" cornerRadius:11.5];
@@ -324,7 +326,8 @@
             circle.backgroundColor = kWhiteColor;
             if (num == [self.RuleArray[i][@"ckey"] integerValue]) {
                 WIDTH = i%self.RuleArray.count*(SCREEN_WIDTH - 30)/self.RuleArray.count + (SCREEN_WIDTH - 30)/self.RuleArray.count/2-6 + 12;
-            }else
+            }
+            else
             {
                 if (i < self.RuleArray.count-1) {
                     if(num > [self.RuleArray[i][@"ckey"] integerValue] && num < [self.RuleArray[i + 1][@"ckey"] integerValue])
@@ -346,8 +349,9 @@
     }
     totleView.frame = CGRectMake(15, signLab2.yy+25+3+23, kScreenWidth-30, 5);
     progressView.frame = CGRectMake(15, signLab2.yy+25+3+23, WIDTH, 5);
-    UIView *view  = [self.view viewWithTag:100];
-    view.backgroundColor = kWhiteColor;
+    
+//    UIView *view  = [self.view viewWithTag:100];
+//    view.backgroundColor = kWhiteColor;
 }
 
 -(void)getgift{
