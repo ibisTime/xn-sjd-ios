@@ -50,8 +50,17 @@
         [self addSubview:self.timeLabel];
         _informationLabel = [[UIWebView alloc]initWithFrame:CGRectMake(15, _timeLabel.yy + 8, SCREEN_WIDTH - 30, 10)];
         [self addSubview:_informationLabel];
-
-
+        _lineView = [[UIView alloc]init];
+        _lineView.backgroundColor = LineBackColor;
+        [self addSubview:_lineView];
+        [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+//            make.top.equalTo(self.contentView.mas_top).offset(0);
+            make.left.equalTo(self.contentView.mas_left).offset(0);
+            make.right.mas_equalTo(self.contentView.mas_right).offset(0);
+            make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(0);
+            make.height.mas_equalTo(@1);
+        }];
     }
     return self;
 }
@@ -63,9 +72,8 @@
     [_headImage sd_setImageWithURL:[NSURL URLWithString:evaModel.photo] placeholderImage:kImage(@"头像")];
     _nameLabel.text = evaModel.nickname;
     _timeLabel.text = [evaModel.commentDatetime convertToDetailDate];
-    _lineView = [[UIView alloc]initWithFrame:CGRectMake(0, _informationLabel.frame.origin.y + 39.5, SCREEN_WIDTH, 0.5)];
-    _lineView.backgroundColor = LineBackColor;
-    [self addSubview:_lineView];
+    
+    
 }
 
 

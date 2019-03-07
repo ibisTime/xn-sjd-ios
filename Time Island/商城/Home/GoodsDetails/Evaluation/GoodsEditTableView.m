@@ -12,6 +12,7 @@
 @interface GoodsEditTableView()<UITableViewDelegate, UITableViewDataSource>
 {
     TeamPostCell *_cell;
+    NSInteger row;
 }
 
 @end
@@ -43,28 +44,81 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    
     static NSString *CellIdentifier = @"Cell";
-//    _cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-    if (_cell == nil) {
-        _cell = [[TeamPostCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    // 通过唯一标识创建cell实例
+    _cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    // 判断为空进行初始化  --（当拉动页面显示超过主页面内容的时候就会重用之前的cell，而不会再次初始化）
+    if (!_cell) {
+        _cell = [[TeamPostCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         _cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    _cell.evaModel = self.evaluationModel[indexPath.row];
     
-    [_cell.informationLabel loadHTMLString:self.evaluationModel[indexPath.row].content baseURL:nil];
-    [_cell.informationLabel.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+
+    _cell.informationLabel.scalesPageToFit = YES;
+
+    _cell.evaModel = self.evaluationModel[indexPath.row];
+
+    NSArray *photoImg = [self filterImage:self.evaluationModel[indexPath.row].content];
+    NSString *name = [self filterHTML:self.evaluationModel[indexPath.row].content];
+
     
     return _cell;
 }
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    if ([keyPath isEqualToString:@"contentSize"]) {
-        _webViewHeight1 = [[_cell.informationLabel stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
-        _cell.informationLabel.frame = CGRectMake(15, 53, SCREEN_WIDTH - 30, _webViewHeight1);
-        [self reloadData];
+
+
+-(NSString *)filterHTML:(NSString *)html
+{
+    NSScanner * scanner = [NSScanner scannerWithString:html];
+    NSString * text = nil;
+    while([scanner isAtEnd]==NO)
+    {
+        [scanner scanUpToString:@"<" intoString:nil];
+        [scanner scanUpToString:@">" intoString:&text];
+        html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
     }
+    return html;
 }
+
+- (NSArray *)filterImage:(NSString *)html
+{
+    NSMutableArray *resultArray = [NSMutableArray array];
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<(img|IMG)(.*?)(/>|></img>|>)" options:NSRegularExpressionAllowCommentsAndWhitespace error:nil];
+    NSArray *result = [regex matchesInString:html options:NSMatchingReportCompletion range:NSMakeRange(0, html.length)];
+    
+    for (NSTextCheckingResult *item in result) {
+        NSString *imgHtml = [html substringWithRange:[item rangeAtIndex:0]];
+        
+        NSArray *tmpArray = nil;
+        if ([imgHtml rangeOfString:@"src=\""].location != NSNotFound) {
+            tmpArray = [imgHtml componentsSeparatedByString:@"src=\""];
+        } else if ([imgHtml rangeOfString:@"src="].location != NSNotFound) {
+            tmpArray = [imgHtml componentsSeparatedByString:@"src="];
+        }
+        
+        if (tmpArray.count >= 2) {
+            NSString *src = tmpArray[1];
+            
+            NSUInteger loc = [src rangeOfString:@"\""].location;
+            if (loc != NSNotFound) {
+                src = [src substringToIndex:loc];
+                [resultArray addObject:src];
+            }
+        }
+    }
+    
+    return resultArray;
+}
+//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+//    if ([keyPath isEqualToString:@"contentSize"]) {
+//
+//        _webViewHeight1 = [[_cell.informationLabel stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
+//        UIWebView *webView = [self viewWithTag:row];
+//        webView.frame = CGRectMake(15, 53, SCREEN_WIDTH - 30, _webViewHeight1);
+//
+////        [self reloadData];
+//    }
+//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -76,7 +130,10 @@
 //        return 100;
 //    }
 //    else
+    if (indexPath.row == row - 1000) {
         return 60 + _webViewHeight1;
+    }
+    return 60 + _webViewHeight1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

@@ -82,26 +82,27 @@
         _cell.selectionStyle = UITableViewCellSelectionStyleNone;
         _cell.evaModel = self.evaluationModel[indexPath.row];
         _cell.informationLabel.delegate = self;
-        NSString *htmls = [NSString stringWithFormat:@"<html> \n"
-                           "<head> \n"
-                           "<style type=\"text/css\"> \n"
-                           "body {font-size:%ldpx;}\n"// 字体大小，px是像素
-                           "</style> \n"
-                           "</head> \n"
-                           "<body>"
-                           "<script type='text/javascript'>"
-                           "window.onload = function(){\n"
-                           "var $img = document.getElementsByTagName('img');\n"
-                           "for(var p in  $img){\n"
-                           "$img[p].style.width = '100%%';\n"// 图片宽度
-                           "$img[p].style.height ='300px'\n"// 高度自适应
-                           "}\n"
-                           "}"
-                           "</script>%@"
-                           "</body>"
-                           "</html>",30, self.evaluationModel[indexPath.row].content];
-        [_cell.informationLabel loadHTMLString:htmls baseURL:nil];
-        [_cell.informationLabel.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+//    _cell.informationLabel.scalesPageToFit = YES;
+//        NSString *htmls = [NSString stringWithFormat:@"<html> \n"
+//                           "<head> \n"
+//                           "<style type=\"text/css\"> \n"
+//                           "body {font-size:%ldpx;}\n"// 字体大小，px是像素
+//                           "</style> \n"
+//                           "</head> \n"
+//                           "<body>"
+//                           "<script type='text/javascript'>"
+//                           "window.onload = function(){\n"
+//                           "var $img = document.getElementsByTagName('img');\n"
+//                           "for(var p in  $img){\n"
+//                           "$img[p].style.width = '100%%';\n"// 图片宽度
+//                           "$img[p].style.height ='300px'\n"// 高度自适应
+//                           "}\n"
+//                           "}"
+//                           "</script>%@"
+//                           "</body>"
+//                           "</html>",30, self.evaluationModel[indexPath.row].content];
+//        [_cell.informationLabel loadHTMLString:htmls baseURL:nil];
+//        [_cell.informationLabel.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
 //    }
     
 //    tag = indexPath.row + 1000;
@@ -109,14 +110,14 @@
 //    _cell.informationLabel.tag = indexPath.row + 1000;
     return _cell;
 }
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    if ([keyPath isEqualToString:@"contentSize"]) {
-        _webViewHeight1 = [[_cell.informationLabel stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
-//        UIWebView *webview = [self viewWithTag:tag];
-        _cell.informationLabel.frame = CGRectMake(15, 53, SCREEN_WIDTH - 30, _webViewHeight1);
-//        [self reloadData];
-    }
-}
+//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+//    if ([keyPath isEqualToString:@"contentSize"]) {
+//        _webViewHeight1 = [[_cell.informationLabel stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
+////        UIWebView *webview = [self viewWithTag:tag];
+//        _cell.informationLabel.frame = CGRectMake(15, 53, SCREEN_WIDTH - 30, _webViewHeight1);
+////        [self reloadData];
+//    }
+//}
 
 //这个知识点主要是自己最近在尝试写后台接口  在移动端展示的时候需要用到这个知识点,在webViewDidFinishLoad方法里面执行一段js代码  拿到各个图片  判断其宽度是否大于当前手机屏幕尺寸,是的话则调整为屏幕宽度显示,不是的话则原样显示
 
