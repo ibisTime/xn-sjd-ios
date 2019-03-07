@@ -32,19 +32,18 @@
     [self addSubview:self.editTextField];
 }
 
-- (void)configureShopcartCountViewWithProductCount:(NSInteger)productCount productStock:(NSInteger)productStock {
-    if (productCount == 1) {
+- (void)configureShopcartCountViewWithProductCount:(NSString *)productCount {
+     NSInteger count = [productCount integerValue];
+    if (count == 1) {
         self.decreaseButton.enabled = NO;
         self.increaseButton.enabled = YES;
-    } else if (productCount == productStock) {
-        self.decreaseButton.enabled = YES;
-        self.increaseButton.enabled = NO;
-    } else {
+    }
+    else {
         self.decreaseButton.enabled = YES;
         self.increaseButton.enabled = YES;
     }
     
-    self.editTextField.text = [NSString stringWithFormat:@"%ld", productCount];
+    self.editTextField.text = [NSString stringWithFormat:@"%ld", [productCount integerValue] ];
 }
 
 - (void)decreaseButtonAction {

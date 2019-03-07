@@ -19,9 +19,8 @@ typedef void(^ShopcartCellEditBlock)(NSInteger count);
 - (void)configureShopcartCellWithProductURL:(NSString *)productURL
                                 productName:(NSString *)productName
                                 productSize:(NSString *)productSize
-                               productPrice:(NSInteger)productPrice
-                               productCount:(NSInteger)productCount
-                               productStock:(NSInteger)productStock
+                               productPrice:(NSString *)productPrice
+                               productCount:(NSString *)productCount
                             productSelected:(BOOL)productSelected;
 
 @end

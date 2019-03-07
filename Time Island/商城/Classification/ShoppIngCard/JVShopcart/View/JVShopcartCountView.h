@@ -14,7 +14,6 @@ typedef void(^ShopcartCountViewEditBlock)(NSInteger count);
 
 @property (nonatomic, copy) ShopcartCountViewEditBlock shopcartCountViewEditBlock;
 
-- (void)configureShopcartCountViewWithProductCount:(NSInteger)productCount
-                                      productStock:(NSInteger)productStock;
+- (void)configureShopcartCountViewWithProductCount:(NSString *)productCount;
 
 @end

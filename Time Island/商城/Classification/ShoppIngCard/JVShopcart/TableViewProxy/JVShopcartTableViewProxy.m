@@ -21,20 +21,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     JVShopcartBrandModel *brandModel = self.dataArray[section];
-    NSArray *productArray = brandModel.products;
+    NSArray *productArray = brandModel.cartList;
     return productArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     JVShopcartCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JVShopcartCell"];
     JVShopcartBrandModel *brandModel = self.dataArray[indexPath.section];
-    NSArray *productArray = brandModel.products;
+    NSArray *productArray = brandModel.cartList;
   
     if (productArray.count > indexPath.row) {
-        JVShopcartProductModel *productModel = productArray[indexPath.row];
-        NSString *productName = [NSString stringWithFormat:@"%@%@%@", brandModel.brandName, productModel.productStyle, productModel.productType];
-        NSString *productSize = [NSString stringWithFormat:@"W:%ld H:%ld D:%ld", productModel.specWidth, productModel.specHeight, productModel.specLength];
-        [cell configureShopcartCellWithProductURL:productModel.productPicUri productName:productName productSize:productSize productPrice:productModel.productPrice productCount:productModel.productQty productStock:productModel.productStocks productSelected:productModel.isSelected];
+        JVShopcartProductModel * productModel = [JVShopcartProductModel mj_objectWithKeyValues: productArray[indexPath.row]];
+        NSLog(@"%@",productModel.commodityPhoto);
+//        NSString *productName = [NSString stringWithFormat:@"%@", brandModel.shopName];
+//        NSString *productSize = [NSString stringWithFormat:@"规格：%@", productModel.commodityName];
+//        [cell configureShopcartCellWithProductURL:productModel.commodityPhoto productName:productName productSize:productSize productPrice:productModel.amount productCount:productModel.quantity productStock:productModel.productStocks productSelected:productModel.isSelected];
+        [cell configureShopcartCellWithProductURL:[productModel.commodityPhoto convertImageUrl] productName:productModel.commodityName productSize:productModel.specsName productPrice:productModel.amount productCount:productModel.quantity productSelected:NO];
     }
     
     __weak __typeof(self) weakSelf = self;
@@ -59,7 +61,7 @@
     JVShopcartHeaderView *shopcartHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"JVShopcartHeaderView"];
     if (self.dataArray.count > section) {
         JVShopcartBrandModel *brandModel = self.dataArray[section];
-        [shopcartHeaderView configureShopcartHeaderViewWithBrandName:brandModel.brandName brandSelect:brandModel.isSelected];
+        [shopcartHeaderView configureShopcartHeaderViewWithBrandName:brandModel.shopName brandSelect:brandModel.isSelected];
     }
     
     __weak __typeof(self) weakSelf = self;
