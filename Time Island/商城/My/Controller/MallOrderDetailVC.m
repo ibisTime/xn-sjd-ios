@@ -227,10 +227,8 @@
         } confirm:^(UIAlertAction *action) {
             NSLog(@"1234567890");
             TLNetworking * http = [[TLNetworking alloc]init];
-            http.code = @"629722";
-            //            http.code = @"629774";
+            http.code = @"629774";
             http.parameters[@"code"] = self.model.detailList[index][@"orderCode"];
-            http.parameters[@"updater"] = [TLUser user].userId;
             [http postWithSuccess:^(id responseObject) {
                 [self.navigationController popViewControllerAnimated:YES];
             } failure:^(NSError *error) {

@@ -68,13 +68,7 @@
 //    self.productStockLable.text = [NSString stringWithFormat:@"库存:%ld", productStock];
 //    self.productTotalLable.text = [NSString stringWithFormat:@"合计一件商品"];
 //}
--(void)configureShopcartCellWithProductURL:(NSString *)productURL productName:(NSString *)productName productSize:(NSString *)productSize productPrice:(NSString *)productPrice productCount:(NSString *)productCount productSelected:(BOOL)productSelected{
-    [self.productImageView sd_setImageWithURL:[NSURL URLWithString:[productURL convertImageUrl]]];
-    self.productNameLable.text = productName;
-    self.productSizeLable.text = productSize;
-    self.productPriceLable.text = [NSString stringWithFormat:@"￥%@", productPrice];
-    self.productSelectButton.selected = productSelected;
-}
+
 - (void)productSelectButtonAction {
     self.productSelectButton.selected = !self.productSelectButton.isSelected;
     if (self.shopcartCellBlock) {

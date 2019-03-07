@@ -51,25 +51,16 @@
     [self.shopcartBgView addSubview:self.topLineView];
 }
 
-//- (void)configureShopcartCellWithProductURL:(NSString *)productURL productName:(NSString *)productName productSize:(NSString *)productSize productPrice:(NSInteger)productPrice productCount:(NSInteger)productCount productStock:(NSInteger)productStock productSelected:(BOOL)productSelected {
-//    NSURL *encodingURL = [NSURL URLWithString:[productURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
-//    [self.productImageView sd_setImageWithURL:encodingURL];
-//    self.productNameLable.text = productName;
-//    self.productSizeLable.text = productSize;
-//    self.productPriceLable.text = [NSString stringWithFormat:@"￥%ld", productPrice];
-//    self.productSelectButton.selected = productSelected;
-//    [self.shopcartCountView configureShopcartCountViewWithProductCount:productCount productStock:productStock];
-//    self.productStockLable.text = [NSString stringWithFormat:@"库存:%ld", productStock];
-//}
--(void)configureShopcartCellWithProductURL:(NSString *)productURL productName:(NSString *)productName productSize:(NSString *)productSize productPrice:(NSString *)productPrice productCount:(NSString *)productCount productSelected:(BOOL)productSelected{
-    [self.productImageView sd_setImageWithURL:[NSURL URLWithString:productURL]];
+- (void)configureShopcartCellWithProductURL:(NSString *)productURL productName:(NSString *)productName productSize:(NSString *)productSize productPrice:(NSInteger)productPrice productCount:(NSInteger)productCount productStock:(NSInteger)productStock productSelected:(BOOL)productSelected {
+    NSURL *encodingURL = [NSURL URLWithString:[productURL stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]];
+    [self.productImageView sd_setImageWithURL:encodingURL];
     self.productNameLable.text = productName;
-    self.productSizeLable.text = [NSString stringWithFormat:@"规格：%@", productSize];
-    self.productPriceLable.text = [NSString stringWithFormat:@"￥%.2f", [productPrice floatValue] / 1000 / [productCount integerValue]];
-    self.productSelectButton.selected = productSelected;
-    [self.shopcartCountView configureShopcartCountViewWithProductCount:productCount];
-
+    self.productSizeLable.text = productSize;
     
+    self.productPriceLable.text = [NSString stringWithFormat:@"￥%.2f",(float)productPrice   / 1000];
+    self.productSelectButton.selected = productSelected;
+    [self.shopcartCountView configureShopcartCountViewWithProductCount:productCount productStock:productStock];
+    self.productStockLable.text = [NSString stringWithFormat:@"库存:%ld", productStock];
 }
 
 - (void)productSelectButtonAction {

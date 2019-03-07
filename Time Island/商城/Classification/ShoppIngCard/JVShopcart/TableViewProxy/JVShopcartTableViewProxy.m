@@ -31,12 +31,13 @@
     NSArray *productArray = brandModel.cartList;
   
     if (productArray.count > indexPath.row) {
-        JVShopcartProductModel * productModel = [JVShopcartProductModel mj_objectWithKeyValues: productArray[indexPath.row]];
-        NSLog(@"%@",productModel.commodityPhoto);
-//        NSString *productName = [NSString stringWithFormat:@"%@", brandModel.shopName];
-//        NSString *productSize = [NSString stringWithFormat:@"规格：%@", productModel.commodityName];
-//        [cell configureShopcartCellWithProductURL:productModel.commodityPhoto productName:productName productSize:productSize productPrice:productModel.amount productCount:productModel.quantity productStock:productModel.productStocks productSelected:productModel.isSelected];
-        [cell configureShopcartCellWithProductURL:[productModel.commodityPhoto convertImageUrl] productName:productModel.commodityName productSize:productModel.specsName productPrice:productModel.amount productCount:productModel.quantity productSelected:NO];
+        JVShopcartProductModel *productModel = productArray[indexPath.row];
+//        NSString *productName = [NSString stringWithFormat:@"%@%@%@", brandModel.brandName, productModel.productStyle, productModel.productType];
+//        NSString *productSize = productModel.commodityName;
+        [cell configureShopcartCellWithProductURL:
+         [productModel.commodityPhoto convertImageUrl]
+         productName:productModel.commodityName
+         productSize:productModel.specsName productPrice:[productModel.amount integerValue] productCount:[productModel.quantity integerValue] productStock:1000 productSelected:productModel.isSelected];
     }
     
     __weak __typeof(self) weakSelf = self;

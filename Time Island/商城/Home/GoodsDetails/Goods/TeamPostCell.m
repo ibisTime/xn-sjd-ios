@@ -14,7 +14,7 @@
 {
     if (!_headImage) {
         _headImage = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 30, 30)];
-        
+        kViewRadius(_headImage, 15);
 
     }
     return _headImage;
@@ -48,8 +48,14 @@
         [self addSubview:self.headImage];
         [self addSubview:self.nameLabel];
         [self addSubview:self.timeLabel];
-        _informationLabel = [[UIWebView alloc]initWithFrame:CGRectMake(15, _timeLabel.yy + 8, SCREEN_WIDTH - 30, 10)];
+        _informationLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, _timeLabel.yy + 20, SCREEN_WIDTH - 30, 10)];
+        _informationLabel.numberOfLines = 0;
         [self addSubview:_informationLabel];
+        
+        _imageview = [[UIImageView alloc]initWithFrame:CGRectMake(15, _informationLabel.yy + 5, 150, 115)];
+        [_imageview setHidden:YES];
+        [self addSubview:_imageview];
+        
         _lineView = [[UIView alloc]init];
         _lineView.backgroundColor = LineBackColor;
         [self addSubview:_lineView];
@@ -69,10 +75,39 @@
 {
     
     
-    [_headImage sd_setImageWithURL:[NSURL URLWithString:evaModel.photo] placeholderImage:kImage(@"头像")];
+    [_headImage sd_setImageWithURL:[NSURL URLWithString:[evaModel.photo convertImageUrl]] placeholderImage:kImage(@"头像")];
     _nameLabel.text = evaModel.nickname;
     _timeLabel.text = [evaModel.commentDatetime convertToDetailDate];
     
+    NSRange startRange = [evaModel.content rangeOfString:@"<p>"];
+    NSRange endRange = [evaModel.content rangeOfString:@"</p>"];
+    NSRange range = NSMakeRange(startRange.location + startRange.length, endRange.location - startRange.location - startRange.length);
+    NSString * con = [evaModel.content substringWithRange:range];
+    
+    _informationLabel.text = con;
+    [_informationLabel sizeToFit];
+    _informationLabel.frame = CGRectMake(15, _timeLabel.yy + 8, SCREEN_WIDTH - 30, _informationLabel.height);
+    
+    
+    
+    if ([evaModel.content containsString:@"<img"]) {
+        [_imageview setHidden:NO];
+        _imageview.frame = CGRectMake(15, _informationLabel.yy + 5, 150, 115);
+        NSRange startRange1 = [evaModel.content rangeOfString:@"src=\""];
+        NSRange endRange1;
+        if ([evaModel.content containsString:@"?imageMogr2/auto-orient\" />"]) {
+            endRange1 = [evaModel.content rangeOfString:@"?imageMogr2/auto-orient\" />"];
+        }else
+            endRange1 = [evaModel.content rangeOfString:@"?imgeMogr2/auto-orient \">"];
+        
+        NSRange range1 = NSMakeRange(startRange1.location + startRange1.length, endRange1.location - startRange1.location - startRange1.length);
+        NSString * photo = [evaModel.content substringWithRange:range1];
+        [_imageview sd_setImageWithURL:[NSURL URLWithString:photo]];
+    }
+    
+   
+    
+
     
 }
 

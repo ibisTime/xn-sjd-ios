@@ -10,9 +10,12 @@
 #import "MallOrderModel.h"
 #import "MallGoodsModel.h"
 #import "AddressModel.h"
+#import "JVShopcartBrandModel.h"
 @interface SubmitOrdersVC : TLBaseVC
 
 //@property (nonatomic , strong) MallOrderModel *model;
+
+@property (nonatomic,strong) NSMutableArray<JVShopcartBrandModel *> * JVShopcartBrandModels;
 
 @property (nonatomic , strong)NSArray *selectArray;
 
@@ -29,6 +32,7 @@
 @property(nonatomic , strong)AddressModel *addressModel;
 
 @property (nonatomic,strong) NSString * code;
+
 
 
 @end

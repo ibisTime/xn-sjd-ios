@@ -11,6 +11,8 @@
 #import "MallOrderDetailVC.h"
 #import "MallOrderModel.h"
 #import "logisticeVC.h"
+#import "MallGoodsModel.h"
+#import "MallStoreListVC.h"
 @interface MallOrderView ()<MallOrderCellDelegrate>
 @property (nonatomic,strong) TLTableView * table;
 @property (nonatomic,strong) NSMutableArray<MallOrderModel *> * MallOrderModels;
@@ -51,13 +53,20 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.logisticeBtn.tag = indexPath.section;
     cell.consignBtn.tag = indexPath.section;
+    cell.ShopNameBtn.tag = indexPath.section;
     [cell.logisticeBtn addTarget:self action:@selector(lookPassway:) forControlEvents:(UIControlEventTouchUpInside)];
     [cell.consignBtn addTarget:self action:@selector(ReceiveGoods:) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    [cell.ShopNameBtn addTarget:self action:@selector(goshop:) forControlEvents:(UIControlEventTouchUpInside)];
 
     return cell;
 
 }
-
+-(void)goshop:(UIButton *)sender{
+    MallStoreListVC * vc = [[MallStoreListVC alloc]init];
+    vc.shopcode = self.MallOrderModels[sender.tag].shopCode;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 -(void)lookPassway:(UIButton *)sender{
     logisticeVC * vc = [[logisticeVC alloc]init];
     vc.expNo = self.MallOrderModels[sender.tag].logisticsNumber;

@@ -11,7 +11,7 @@
 @implementation JVShopcartBrandModel
 
 + (NSDictionary *)objectClassInArray {
-    return @{@"products":[JVShopcartProductModel class]};
+    return @{@"cartList":[JVShopcartProductModel class]};
 }
 
 @end

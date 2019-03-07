@@ -20,8 +20,9 @@
 
 @property (nonatomic , strong)UILabel *timeLabel;
 
-//@property (nonatomic , strong)UILabel *informationLabel;
-@property (nonatomic,strong) UIWebView * informationLabel;
+@property (nonatomic , strong)UILabel *informationLabel;
+@property (nonatomic,strong) UIImageView * imageview;
+//@property (nonatomic,strong) UIWebView * informationLabel;
 
 @property (nonatomic,assign) float webViewHeight1;
 

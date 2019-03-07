@@ -41,27 +41,35 @@
 }
 
 - (void)changeShopcartBottomViewWithStatus:(BOOL)status {
-    self.starButton.hidden = !status;
     self.deleteButton.hidden = !status;
+    if (!status) {
+        self.totalPriceLable.hidden = status;
+        self.settleButton.hidden = status;
+    }else{
+        self.totalPriceLable.hidden = status;
+        self.settleButton.hidden = status;
+    }
 }
 
 - (void)configureShopcartBottomViewWithTotalPrice:(float)totalPrice totalCount:(NSInteger)totalCount isAllselected:(BOOL)isAllSelected {
+//    [self.totalPriceLable setHidden:NO];
+//    [self.settleButton setHidden:NO];
     self.allSelectButton.selected = isAllSelected;
     
-    self.totalPriceLable.text = [NSString stringWithFormat:@"合计：￥%.f\n不含运费", totalPrice];
-    [self renderWithTotalPrice:[NSString stringWithFormat:@"￥%.f", totalPrice]];
+    self.totalPriceLable.text = [NSString stringWithFormat:@"合计：￥%.2f\n不含运费", totalPrice / 1000];
+    [self renderWithTotalPrice:[NSString stringWithFormat:@"￥%.2f", totalPrice]];
     
     [self.settleButton setTitle:[NSString stringWithFormat:@"结算(%ld)", totalCount] forState:UIControlStateNormal];
     self.settleButton.enabled = totalCount && totalPrice;
     self.starButton.enabled = totalCount && totalPrice;
     self.deleteButton.enabled = totalCount && totalPrice;
     if (self.settleButton.isEnabled) {
-        [self.settleButton setBackgroundColor:[UIColor colorWithRed:0.918  green:0.141  blue:0.137 alpha:1]];
-        [self.deleteButton setBackgroundColor:[UIColor colorWithRed:0.918  green:0.141  blue:0.137 alpha:1]];
+        [self.settleButton setBackgroundColor:kTabbarColor];
+        [self.deleteButton setBackgroundColor:kTabbarColor];
         [self.starButton setBackgroundColor:[UIColor colorWithRed:243/255.0 green:176/255.0 blue:74/255.0 alpha:1]];
     } else {
-        [self.settleButton setBackgroundColor:[UIColor lightGrayColor]];
-        [self.deleteButton setBackgroundColor:[UIColor lightGrayColor]];
+        [self.settleButton setBackgroundColor:kTabbarColor];
+        [self.deleteButton setBackgroundColor:kTabbarColor];
         [self.starButton setBackgroundColor:[UIColor colorWithRed:180/255.0 green:180/255.0 blue:180/255.0 alpha:1]];
     }
 }
@@ -135,7 +143,7 @@
         [_settleButton setTitle:@"结算(0)" forState:UIControlStateNormal];
         [_settleButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _settleButton.titleLabel.font = [UIFont systemFontOfSize:13];
-        [_settleButton setBackgroundColor:[UIColor lightGrayColor]];
+        [_settleButton setBackgroundColor:kTabbarColor];
         [_settleButton addTarget:self action:@selector(settleButtonAction) forControlEvents:UIControlEventTouchUpInside];
         _settleButton.enabled = NO;
     }
@@ -162,7 +170,7 @@
         [_deleteButton setTitle:@"删除" forState:UIControlStateNormal];
         [_deleteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _deleteButton.titleLabel.font = [UIFont systemFontOfSize:13];
-        [_deleteButton setBackgroundColor:[UIColor lightGrayColor]];
+        [_deleteButton setBackgroundColor:kTabbarColor];
         [_deleteButton addTarget:self action:@selector(deleteButtonAction) forControlEvents:UIControlEventTouchUpInside];
         _deleteButton.enabled = NO;
         _deleteButton.hidden = YES;

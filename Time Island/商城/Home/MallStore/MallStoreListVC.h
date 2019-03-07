@@ -10,4 +10,5 @@
 #import "MallGoodsModel.h"
 @interface MallStoreListVC : TLBaseVC
 @property (nonatomic,strong) MallGoodsModel * treeModel;
+@property (nonatomic,strong) NSString * shopcode;
 @end

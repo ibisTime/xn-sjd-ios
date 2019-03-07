@@ -25,16 +25,20 @@
 @end
 
 @implementation JVShopcartViewController
+
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.barTintColor = kBlackColor;
+    [self requestShopcartListData];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 - (void)viewDidLoad {
@@ -67,7 +71,9 @@
 
 //点击结算按钮后的回调
 - (void)shopcartFormatSettleForSelectedProducts:(NSArray *)selectedProducts {
+    
     SubmitOrdersVC *order = [SubmitOrdersVC new];
+    order.JVShopcartBrandModels = [JVShopcartBrandModel mj_objectArrayWithKeyValuesArray:selectedProducts];
     [self.navigationController pushViewController:order animated:YES];
 }
 
@@ -76,6 +82,15 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"确认要删除这%ld个宝贝吗？", selectedProducts.count] preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
     [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"629711";
+        http.parameters[@"codeList"] = selectedProducts;
+        [http postWithSuccess:^(id responseObject) {
+            [TLAlert alertWithInfo:@"删除成功"];
+            [self requestShopcartListData];
+        } failure:^(NSError *error) {
+            
+        }];
         [self.shopcartFormat deleteSelectedProducts:selectedProducts];
     }]];
     [self presentViewController:alert animated:YES completion:nil];

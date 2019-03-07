@@ -21,32 +21,38 @@
 
 - (void)requestShopcartProductList {
     //在这里请求数据 当然我直接用本地数据模拟的
-//    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"shopcart" ofType:@"plist"];
-//    NSMutableArray *dataArray = [NSMutableArray arrayWithContentsOfFile:plistPath];
+//    NSString *plistPath = [[NSBundle mainBundxle] pathForResource:@"shopcart" ofType:@"plist"];
+//    http.code = @"629715";
+//    http.parameters[@"userId"] = [TLUser user].userId;
+    
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = @"629715";
     http.parameters[@"userId"] = [TLUser user].userId;
     [http postWithSuccess:^(id responseObject) {
-        self.shopcartListArray = [JVShopcartBrandModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+//        self.shopcartListArray = [JVShopcartBrandModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
         [self.delegate shopcartFormatRequestProductListDidSuccessWithArray:self.shopcartListArray];
+        
+        self.shopcartListArray = [JVShopcartBrandModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        
+        //成功之后回调
+        [self.delegate shopcartFormatRequestProductListDidSuccessWithArray:self.shopcartListArray];
+        
     } failure:^(NSError *error) {
         
     }];
-//    self.shopcartListArray = [JVShopcartBrandModel mj_objectArrayWithKeyValuesArray:dataArray];
     
-    //成功之后回调
+//    NSMutableArray *dataArray = [NSMutableArray arrayWithContentsOfFile:plistPath];
     
 }
 
 - (void)selectProductAtIndexPath:(NSIndexPath *)indexPath isSelected:(BOOL)isSelected {
     JVShopcartBrandModel *brandModel = self.shopcartListArray[indexPath.section];
-    JVShopcartProductModel *productModel = [JVShopcartProductModel mj_objectWithKeyValues: brandModel.cartList[indexPath.row]];
+    JVShopcartProductModel *productModel = brandModel.cartList[indexPath.row];
     productModel.isSelected = isSelected;
     
     BOOL isBrandSelected = YES;
     
-    for (NSArray * arr in brandModel.cartList) {
-        JVShopcartProductModel *aProductModel = [JVShopcartProductModel mj_objectWithKeyValues:arr];
+    for (JVShopcartProductModel *aProductModel in brandModel.cartList) {
         if (aProductModel.isSelected == NO) {
             isBrandSelected = NO;
         }
@@ -61,8 +67,7 @@
     JVShopcartBrandModel *brandModel = self.shopcartListArray[section];
     brandModel.isSelected = isSelected;
     
-    for (NSArray * arr in brandModel.cartList) {
-        JVShopcartProductModel * aProductModel = [JVShopcartProductModel mj_objectWithKeyValues:arr];
+    for (JVShopcartProductModel *aProductModel in brandModel.cartList) {
         aProductModel.isSelected = brandModel.isSelected;
     }
     
@@ -71,15 +76,15 @@
 
 - (void)changeCountAtIndexPath:(NSIndexPath *)indexPath count:(NSInteger)count {
     JVShopcartBrandModel *brandModel = self.shopcartListArray[indexPath.section];
-    JVShopcartProductModel *productModel = [JVShopcartProductModel mj_objectWithKeyValues: brandModel.cartList[indexPath.row]];
+    JVShopcartProductModel *productModel = brandModel.cartList[indexPath.row];
     if (count <= 0) {
         count = 1;
-    } else if (count > [productModel.quantity integerValue]) {
-        count = [productModel.amount integerValue];
+    } else if (count > 1000) {
+        count = [productModel.quantity integerValue];
     }
     
     //根据请求结果决定是否改变数据
-    productModel.quantity = [NSString stringWithFormat:@"%ld", count];
+    productModel.quantity = [NSString stringWithFormat:@"%ld",count];
     
     [self.delegate shopcartFormatAccountForTotalPrice:[self accountTotalPrice] totalCount:[self accountTotalCount] isAllSelected:[self isAllSelected]];
 }
@@ -120,7 +125,7 @@
     for (JVShopcartBrandModel *brandModel in self.shopcartListArray) {
         for (JVShopcartProductModel *productModel in brandModel.cartList) {
             if (productModel.isSelected) {
-                [selectedArray addObject:productModel];
+                [selectedArray addObject:productModel.code];
             }
         }
     }
@@ -164,8 +169,7 @@
 - (void)selectAllProductWithStatus:(BOOL)isSelected {
     for (JVShopcartBrandModel *brandModel in self.shopcartListArray) {
         brandModel.isSelected = isSelected;
-        for (NSArray * arr in brandModel.cartList) {
-            JVShopcartProductModel * productModel = [JVShopcartProductModel mj_objectWithKeyValues:arr];
+        for (JVShopcartProductModel *productModel in brandModel.cartList) {
             productModel.isSelected = isSelected;
         }
     }
@@ -177,8 +181,7 @@
     NSMutableArray *settleArray = [[NSMutableArray alloc] init];
     for (JVShopcartBrandModel *brandModel in self.shopcartListArray) {
         NSMutableArray *selectedArray = [[NSMutableArray alloc] init];
-        for (NSArray * arr in brandModel.cartList) {
-            JVShopcartProductModel * productModel = [JVShopcartProductModel mj_objectWithKeyValues:arr];
+        for (JVShopcartProductModel *productModel in brandModel.cartList) {
             if (productModel.isSelected) {
                 [selectedArray addObject:productModel];
             }
@@ -199,8 +202,7 @@
 - (float)accountTotalPrice {
     float totalPrice = 0.f;
     for (JVShopcartBrandModel *brandModel in self.shopcartListArray) {
-        for (NSArray *arr in brandModel.cartList) {
-            JVShopcartProductModel * productModel = [JVShopcartProductModel mj_objectWithKeyValues:arr];
+        for (JVShopcartProductModel *productModel in brandModel.cartList) {
             if (productModel.isSelected) {
                 totalPrice += [productModel.amount integerValue] * [productModel.quantity integerValue];
             }
@@ -214,8 +216,7 @@
     NSInteger totalCount = 0;
     
     for (JVShopcartBrandModel *brandModel in self.shopcartListArray) {
-        for (NSArray *arr in brandModel.cartList) {
-            JVShopcartProductModel * productModel = [JVShopcartProductModel mj_objectWithKeyValues:arr];
+        for (JVShopcartProductModel *productModel in brandModel.cartList) {
             if (productModel.isSelected) {
                 totalCount += [productModel.quantity integerValue];
             }

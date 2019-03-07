@@ -38,25 +38,37 @@
 //
 //@property (nonatomic, assign) NSInteger originPrice;
 //
-//@property (nonatomic, copy) NSString* amount;       //价格
+//@property (nonatomic, assign) NSInteger productPrice;       //价格
 //
 //@property (nonatomic, copy) NSString *productName;
 //
 //@property (nonatomic, copy) NSString *productPicUri;   //图片url
 
+@property (nonatomic, copy) NSString *code;
+@property (nonatomic, copy) NSString *shopCode;
+@property (nonatomic, copy) NSString *userId;
+@property (nonatomic, copy) NSString *commodityCode;
+@property (nonatomic, copy) NSString *commodityName;
+@property (nonatomic, copy) NSString *specsId;
+@property (nonatomic, copy) NSString *specsName;
+@property (nonatomic, copy) NSString *quantity;
+@property (nonatomic, copy) NSString *amount;
+@property (nonatomic, copy) NSString *status;
+@property (nonatomic, copy) NSString *commodityPhoto;
+@property (nonatomic, copy) NSString *logistics;
+//"code": "CA2019030715423759365104",
+//"shopCode": "GS2018121115381942322109",
+//"userId": "U2019012322003723383946",
+//"commodityCode": "CO2018121315033972787088",
+//"commodityName": "脐橙121301",
+//"specsId": 9,
+//"specsName": "脐橙1213011",
+//"quantity": 1,
+//"amount": 10000,
+//"status": "1",
+//"commodityPhoto": "Fna7A8Cay7yzPAJFM-fFtQpwiOSS",
+//"logistics": "1"
 
-@property (nonatomic, copy) NSString* amount;       //价格
-@property (nonatomic, copy) NSString* code;       //编号
-@property (nonatomic, copy) NSString* commodityCode;       //商品编号
-@property (nonatomic, copy) NSString* commodityName;       //商品名
-@property (nonatomic, copy) NSString* commodityPhoto;       //商品图片
-@property (nonatomic, copy) NSString* logistics;       //
-@property (nonatomic, copy) NSString* quantity;       //数量
-@property (nonatomic, copy) NSString* shopCode;       //商店编号
-@property (nonatomic, copy) NSString* specsId;       //分类编号
-@property (nonatomic, copy) NSString* specsName;       //d分类名称
-@property (nonatomic, copy) NSString* status;       //状态
-@property (nonatomic, copy) NSString* userId;       //用户编号
 
 
 @property(nonatomic, assign)BOOL isSelected;    //记录相应row是否选中（自定义）

@@ -68,6 +68,9 @@
         cell.textLabel.font = FONT(13);
         return cell;
     }
+    
+    
+    
     static NSString *CellIdentifier = @"Cell";
     // 通过唯一标识创建cell实例
     _cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -75,34 +78,8 @@
     if (!_cell) {
         _cell = [[TeamPostCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-        _cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        _cell.evaModel = self.evaluationModel[indexPath.row];
-        _cell.informationLabel.delegate = self;
-
-
-//    _cell.informationLabel.scalesPageToFit = YES;
-//        NSString *htmls = [NSString stringWithFormat:@"<html> \n"
-//                           "<head> \n"
-//                           "<style type=\"text/css\"> \n"
-//                           "body {font-size:%ldpx;}\n"// 字体大小，px是像素
-//                           "</style> \n"
-//                           "</head> \n"
-//                           "<body>"
-//                           "<script type='text/javascript'>"
-//                           "window.onload = function(){\n"
-//                           "var $img = document.getElementsByTagName('img');\n"
-//                           "for(var p in  $img){\n"
-//                           "$img[p].style.width = '100%%';\n"// 图片宽度
-//                           "$img[p].style.height ='300px'\n"// 高度自适应
-//                           "}\n"
-//                           "}"
-//                           "</script>%@"
-//                           "</body>"
-//                           "</html>",30, self.evaluationModel[indexPath.row].content];
-//        [_cell.informationLabel loadHTMLString:htmls baseURL:nil];
-//        [_cell.informationLabel.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
-
-//    }
+    _cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    _cell.evaModel = self.evaluationModel[indexPath.row];
     
     return _cell;
 }
@@ -121,11 +98,25 @@
     if (indexPath.section == 1) {
         return 55;
     }
+    EvaluationModel * model = self.evaluationModel[indexPath.row];
     
+    CGFloat height =  [self getcellheight:model.content];
     if ([self.evaluationModel[indexPath.row].content containsString:@"<img"]) {
-        return 60 + 350;
+        return 60 + height + 115;
     }
-    return 60 ;
+    return 60 + height ;
+}
+
+-(CGFloat)getcellheight:(NSString *)content{
+    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(15,0, SCREEN_WIDTH - 30, 10)];
+    label.numberOfLines = 0;
+    NSRange startRange = [content rangeOfString:@"<p>"];
+    NSRange endRange = [content rangeOfString:@"</p>"];
+    NSRange range = NSMakeRange(startRange.location + startRange.length, endRange.location - startRange.location - startRange.length);
+    NSString * title = [content substringWithRange:range];
+    label.text = title;
+    [label sizeToFit];
+    return label.height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -183,8 +174,5 @@
     
     return [UIView new];
 }
--(void)dealloc{
-    [_cell.informationLabel.scrollView removeObserver:self forKeyPath:@"contentSize" context:nil];
-    
-}
+
 @end

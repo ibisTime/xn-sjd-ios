@@ -51,74 +51,18 @@
     if (!_cell) {
         _cell = [[TeamPostCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         _cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        _cell.userInteractionEnabled = NO;
     }
     
 
-    _cell.informationLabel.scalesPageToFit = YES;
 
     _cell.evaModel = self.evaluationModel[indexPath.row];
-
-    NSArray *photoImg = [self filterImage:self.evaluationModel[indexPath.row].content];
-    NSString *name = [self filterHTML:self.evaluationModel[indexPath.row].content];
 
     
     return _cell;
 }
 
 
--(NSString *)filterHTML:(NSString *)html
-{
-    NSScanner * scanner = [NSScanner scannerWithString:html];
-    NSString * text = nil;
-    while([scanner isAtEnd]==NO)
-    {
-        [scanner scanUpToString:@"<" intoString:nil];
-        [scanner scanUpToString:@">" intoString:&text];
-        html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
-    }
-    return html;
-}
-
-- (NSArray *)filterImage:(NSString *)html
-{
-    NSMutableArray *resultArray = [NSMutableArray array];
-    
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<(img|IMG)(.*?)(/>|></img>|>)" options:NSRegularExpressionAllowCommentsAndWhitespace error:nil];
-    NSArray *result = [regex matchesInString:html options:NSMatchingReportCompletion range:NSMakeRange(0, html.length)];
-    
-    for (NSTextCheckingResult *item in result) {
-        NSString *imgHtml = [html substringWithRange:[item rangeAtIndex:0]];
-        
-        NSArray *tmpArray = nil;
-        if ([imgHtml rangeOfString:@"src=\""].location != NSNotFound) {
-            tmpArray = [imgHtml componentsSeparatedByString:@"src=\""];
-        } else if ([imgHtml rangeOfString:@"src="].location != NSNotFound) {
-            tmpArray = [imgHtml componentsSeparatedByString:@"src="];
-        }
-        
-        if (tmpArray.count >= 2) {
-            NSString *src = tmpArray[1];
-            
-            NSUInteger loc = [src rangeOfString:@"\""].location;
-            if (loc != NSNotFound) {
-                src = [src substringToIndex:loc];
-                [resultArray addObject:src];
-            }
-        }
-    }
-    
-    return resultArray;
-}
-//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-//    if ([keyPath isEqualToString:@"contentSize"]) {
-//
-//        _webViewHeight1 = [[_cell.informationLabel stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
-//        UIWebView *webView = [self viewWithTag:row];
-//        webView.frame = CGRectMake(15, 53, SCREEN_WIDTH - 30, _webViewHeight1);
-//
-////        [self reloadData];
-//    }
-//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -126,14 +70,24 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (_webViewHeight1 > 100) {
-//        return 100;
-//    }
-//    else
-    if (indexPath.row == row - 1000) {
-        return 60 + _webViewHeight1;
+
+    EvaluationModel * model = self.evaluationModel[indexPath.row];
+    CGFloat height = [self getcellheight:model.content];
+    if ([self.evaluationModel[indexPath.row].content containsString:@"<img"]) {
+        return 60 + height + 115;
     }
-    return 60 + _webViewHeight1;
+    return 60 + height ;
+}
+-(CGFloat)getcellheight:(NSString *)content{
+    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(15,0, SCREEN_WIDTH - 30, 10)];
+    label.numberOfLines = 0;
+    NSRange startRange = [content rangeOfString:@"<p>"];
+    NSRange endRange = [content rangeOfString:@"</p>"];
+    NSRange range = NSMakeRange(startRange.location + startRange.length, endRange.location - startRange.location - startRange.length);
+    NSString * title = [content substringWithRange:range];
+    label.text = title;
+    [label sizeToFit];
+    return label.height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -159,8 +113,5 @@
     
     return [UIView new];
 }
--(void)dealloc{
-    [_cell.informationLabel.scrollView removeObserver:self forKeyPath:@"contentSize" context:nil];
-    
-}
+
 @end

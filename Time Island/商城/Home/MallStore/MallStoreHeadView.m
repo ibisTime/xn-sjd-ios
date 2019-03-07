@@ -114,10 +114,15 @@
     
 //    [self initTop];
 }
+- (void)setName:(NSString *)name{
+    _name = name;
+}
 -(void)setTreeModel:(MallGoodsModel *)treeModel{
     _treeModel = treeModel;
     [self initTop];
     self.topImage.slImages = self.imageArraay;
     self.introduceLable.text = self.str;
+    self.nameLable.text = self.name;
+    
 }
 @end

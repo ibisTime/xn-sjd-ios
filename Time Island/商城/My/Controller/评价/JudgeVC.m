@@ -58,7 +58,7 @@
     }
     else if (self.key1) {
         
-        string = [NSString stringWithFormat:@"<p>%@</p><img src=\"%@?imgeMogr2/auto-orient \"/>",self.textView.text,[self.key1 convertImageUrl]];
+        string = [NSString stringWithFormat:@"<p>%@</p><img src=\"%@?imageMogr2/auto-orient\" />",self.textView.text,[self.key1 convertImageUrl]];
     }else{
         if (self.idPic) {
             [TLAlert alertWithInfo:@"图片正在上传中···"];
