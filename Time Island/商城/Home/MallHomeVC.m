@@ -92,24 +92,28 @@
     }];
 }
 
+#pragma mark - 活动图片
 -(void)loadCentetImage
 {
     TLNetworking *http = [TLNetworking new];
-    
-    http.code = @"630047";
+    http.code = @"630045";
+    http.parameters[@"start"] = @(1);
+    http.parameters[@"limit"] = @(10);
+    http.parameters[@"type"] = @"SYS_TXT";
     http.parameters[@"ckey"] = @"ACTIVITY_PIC";
     
     [http postWithSuccess:^(id responseObject) {
-        [self.image sd_setImageWithURL:[NSURL URLWithString:        [responseObject[@"data"][@"cvalue"] convertImageUrl]]];
-      
+        [self.image sd_setImageWithURL:[NSURL URLWithString:[responseObject[@"data"][@"cvalue"] convertImageUrl]]];
     } failure:^(NSError *error) {
     }];
+    
+    
+    
 }
 
 
 - (void)loadGoodsList
 {
-
     TLPageDataHelper *http = [TLPageDataHelper new];
     http.code = @"629706";
     http.parameters[@"start"] = @"0";
@@ -172,9 +176,11 @@
     if (self.HotTrees.count < 2) {
         return;
     }
+    
+    
     MallGoodsModel *model1 = self.HotTrees[1];
 
-    UIView * v2 = [self CreateViewWithFrame:CGRectMake(v1.xx, RecommendLab.yy + 10, (SCREEN_WIDTH - 30) / 2 , 100) GoodsNameFrame:CGRectMake(10, 30.5, 85, 20) goodsname:model1.name DescribeFrame:CGRectMake(10, 55.5, 85, 16.5) describe:model.shopName Imageframe:CGRectMake(105, 20.5, SCREEN_WIDTH / 2 - 30 - 105, 100 - 41) ImageString:model.listPic];
+    UIView * v2 = [self CreateViewWithFrame:CGRectMake(v1.xx, RecommendLab.yy + 10, (SCREEN_WIDTH - 30) / 2 , 100) GoodsNameFrame:CGRectMake(10, 30.5, 85, 20) goodsname:model1.name DescribeFrame:CGRectMake(10, 55.5, 85, 16.5) describe:model1.shopName Imageframe:CGRectMake(105, 20.5, SCREEN_WIDTH / 2 - 30 - 105, 100 - 41) ImageString:model1.listPic];
     [self.headview addSubview:v2];
     v2.tag = 101;
     v2.userInteractionEnabled = YES;

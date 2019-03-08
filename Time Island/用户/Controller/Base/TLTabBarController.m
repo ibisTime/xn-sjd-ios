@@ -159,6 +159,7 @@
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginVC];
             UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
             [rootViewController presentViewController:nav animated:YES completion:nil];
+//            [rootViewController.navigationController pushViewController:nav animated:YES];
             self.selectedIndex = _currentIndex;
             
         }

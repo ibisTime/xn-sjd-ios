@@ -36,6 +36,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,weak)id<MallOrderCellDelegrate>delagate;
 @property (nonatomic,strong) UIButton * logisticeBtn;//查看物流
 @property (nonatomic,strong) UIButton * consignBtn;//确认收货
+
+@property (nonatomic,strong) UIButton * payNow;//立即付款
+@property (nonatomic,strong) UIButton * CancelOrder;//取消订单
+@property (nonatomic,strong) UIButton * changeAddress;//修改地址
+
 @end
 
 NS_ASSUME_NONNULL_END

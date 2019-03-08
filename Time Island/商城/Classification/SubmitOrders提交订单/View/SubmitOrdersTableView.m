@@ -9,17 +9,18 @@
 #import "SubmitOrdersTableView.h"
 #import "SubmitOrderAddressCell.h"
 #import "SubmitOrderBankCardCell.h"
-#import "SubmitOrderGoodsCell.h"
+
 #import "USERXX.h"
 #import "BuyCountCell.h"
 #import "TransportCell.h"
 #import "BuyRemarkCell.h"
+#import "SubmitOrderGoodsCell.h"
 #define SubmitOrderAddress @"SubmitOrderAddressCell"
 #define SubmitOrderBankCard @"SubmitOrderBankCardCell"
-#define SubmitOrderGoods @"SubmitOrderGoodsCell"
 #define buyCountCell @"BuyCountCell"
 #define transportCell @"TransportCell"
 #define buyRemarkCell @"BuyRemarkCell"
+#define SubmitOrderGoods @"SubmitOrderGoodsCell"
 
 @interface SubmitOrdersTableView ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -39,10 +40,10 @@
         self.dataSource = self;
         [self registerClass:[SubmitOrderAddressCell class] forCellReuseIdentifier:SubmitOrderAddress];
         [self registerClass:[SubmitOrderBankCardCell class] forCellReuseIdentifier:SubmitOrderBankCard];
-        [self registerClass:[SubmitOrderGoodsCell class] forCellReuseIdentifier:SubmitOrderGoods];
         [self registerClass:[BuyCountCell class] forCellReuseIdentifier:buyCountCell];
         [self registerClass:[TransportCell class] forCellReuseIdentifier:transportCell];
         [self registerClass:[BuyRemarkCell class] forCellReuseIdentifier:buyRemarkCell];
+        [self registerClass:[SubmitOrderGoodsCell class] forCellReuseIdentifier:SubmitOrderGoods];
 
     }
     return self;

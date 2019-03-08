@@ -97,6 +97,10 @@
     
     //订单状态
     int OrderState = [model.status intValue];
+    if (OrderState == 0) {
+        self.StateLab.text = @"待付款";
+        self.StateLab.textColor = kTextColor3;
+    }
     if (OrderState == 1) {
         self.StateLab.text = @"待发货";
         self.StateLab.textColor = kTextColor3;
@@ -148,6 +152,39 @@
     }else
     {
         self.TotalMoney.frame = CGRectMake(15, 50.5+90 * (model.detailList.count), SCREEN_WIDTH - 30, 40);
+    }
+    if (OrderState == 0) {
+        UIView * lineview1 = [self createview:CGRectMake(15, 50.5+90 * (model.detailList.count) + 45, SCREEN_WIDTH - 30, 1)];
+        [self addSubview:lineview1];
+        
+        self.changeAddress = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 70 - 20, lineview1.yy + 5, 70, 30) title:@"" backgroundColor:kClearColor];
+        self.changeAddress.titleLabel.font = FONT(13);
+        self.changeAddress.layer.borderColor = kTabbarColor.CGColor;
+        self.changeAddress.layer.borderWidth = 1;
+        kViewRadius(self.changeAddress, 3);
+        [self.changeAddress setTitle:@"修改地址" forState:(UIControlStateNormal)];
+        [self.changeAddress setTitleColor:kTabbarColor forState:(UIControlStateNormal)];
+        [self addSubview:self.changeAddress];
+        
+        self.CancelOrder = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH  - 70 - 20 - 70 - 20, lineview1.yy + 5, 70, 30) title:@"" backgroundColor:kClearColor];
+        self.CancelOrder.titleLabel.font = FONT(13);
+        self.CancelOrder.layer.borderColor = kTabbarColor.CGColor;
+        self.CancelOrder.layer.borderWidth = 1;
+        kViewRadius(self.CancelOrder, 3);
+        [self.CancelOrder setTitle:@"取消订单" forState:(UIControlStateNormal)];
+        [self.CancelOrder setTitleColor:kTabbarColor forState:(UIControlStateNormal)];
+        [self addSubview:self.CancelOrder];
+        
+        
+        self.payNow = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH  - 70 - 20 - 70 - 20- 70 - 20, lineview1.yy + 5, 70, 30) title:@"" backgroundColor:kClearColor];
+        self.payNow.titleLabel.font = FONT(13);
+        self.payNow.layer.borderColor = kTabbarColor.CGColor;
+        self.payNow.layer.borderWidth = 1;
+        kViewRadius(self.payNow, 3);
+        [self.payNow setTitle:@"立即付款" forState:(UIControlStateNormal)];
+        [self.payNow setTitleColor:kTabbarColor forState:(UIControlStateNormal)];
+        [self addSubview:self.payNow];
+        
     }
     if (OrderState == 2) {
         UIView * lineview1 = [self createview:CGRectMake(15, 50.5+90 * (model.detailList.count) + 45, SCREEN_WIDTH - 30, 1)];

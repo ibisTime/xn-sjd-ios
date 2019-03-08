@@ -206,6 +206,15 @@
 		3663F290221CF7270053B3C8 /* HistoryUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3663F28F221CF7270053B3C8 /* HistoryUserCell.m */; };
 		3663F296221D4D860053B3C8 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3663F295221D4D860053B3C8 /* RecordCell.m */; };
 		3663F299221D4DB30053B3C8 /* RecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3663F298221D4DB30053B3C8 /* RecordModel.m */; };
+		36691DA52232073700B753F0 /* ShopCartSubmitOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36691DA42232073700B753F0 /* ShopCartSubmitOrderVC.m */; };
+		36691DA82232087F00B753F0 /* ShopCartSubmitOrderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36691DA72232087F00B753F0 /* ShopCartSubmitOrderTableView.m */; };
+		36691DAB2232104300B753F0 /* ShopCartSubmitOrderGoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36691DAA2232104300B753F0 /* ShopCartSubmitOrderGoodsCell.m */; };
+		36691DAD22321A8000B753F0 /* ShopCartSubmitOrderTableView.h in Sources */ = {isa = PBXBuildFile; fileRef = 36691DA62232087F00B753F0 /* ShopCartSubmitOrderTableView.h */; };
+		36691DB122323E1600B753F0 /* ShopCartPayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 36691DB022323E1600B753F0 /* ShopCartPayVC.m */; };
+		36691DB4223243E400B753F0 /* ShopCartPayTableview.m in Sources */ = {isa = PBXBuildFile; fileRef = 36691DB3223243E400B753F0 /* ShopCartPayTableview.m */; };
+		36691DB7223245A700B753F0 /* ShopCartPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36691DB6223245A700B753F0 /* ShopCartPayCell.m */; };
+		36691DBA223245E500B753F0 /* ShopcartPayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36691DB9223245E500B753F0 /* ShopcartPayModel.m */; };
+		36691DBD2232462900B753F0 /* commodityOrderDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36691DBC2232462900B753F0 /* commodityOrderDetailModel.m */; };
 		366A59F122000007009FFA6E /* GoodsDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 366A59F022000007009FFA6E /* GoodsDetailsCell.m */; };
 		366A59F322003E35009FFA6E /* SelectAddress.json in Resources */ = {isa = PBXBuildFile; fileRef = 366A59F222003E35009FFA6E /* SelectAddress.json */; };
 		366AA884222D0ECB0082A741 /* RefundVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 366AA883222D0ECB0082A741 /* RefundVC.m */; };
@@ -946,6 +955,22 @@
 		3663F295221D4D860053B3C8 /* RecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordCell.m; sourceTree = "<group>"; };
 		3663F297221D4DB30053B3C8 /* RecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordModel.h; sourceTree = "<group>"; };
 		3663F298221D4DB30053B3C8 /* RecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordModel.m; sourceTree = "<group>"; };
+		36691DA32232073700B753F0 /* ShopCartSubmitOrderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCartSubmitOrderVC.h; sourceTree = "<group>"; };
+		36691DA42232073700B753F0 /* ShopCartSubmitOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopCartSubmitOrderVC.m; sourceTree = "<group>"; };
+		36691DA62232087F00B753F0 /* ShopCartSubmitOrderTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCartSubmitOrderTableView.h; sourceTree = "<group>"; };
+		36691DA72232087F00B753F0 /* ShopCartSubmitOrderTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopCartSubmitOrderTableView.m; sourceTree = "<group>"; };
+		36691DA92232104300B753F0 /* ShopCartSubmitOrderGoodsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCartSubmitOrderGoodsCell.h; sourceTree = "<group>"; };
+		36691DAA2232104300B753F0 /* ShopCartSubmitOrderGoodsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopCartSubmitOrderGoodsCell.m; sourceTree = "<group>"; };
+		36691DAF22323E1600B753F0 /* ShopCartPayVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCartPayVC.h; sourceTree = "<group>"; };
+		36691DB022323E1600B753F0 /* ShopCartPayVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopCartPayVC.m; sourceTree = "<group>"; };
+		36691DB2223243E400B753F0 /* ShopCartPayTableview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCartPayTableview.h; sourceTree = "<group>"; };
+		36691DB3223243E400B753F0 /* ShopCartPayTableview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopCartPayTableview.m; sourceTree = "<group>"; };
+		36691DB5223245A700B753F0 /* ShopCartPayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopCartPayCell.h; sourceTree = "<group>"; };
+		36691DB6223245A700B753F0 /* ShopCartPayCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopCartPayCell.m; sourceTree = "<group>"; };
+		36691DB8223245E500B753F0 /* ShopcartPayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShopcartPayModel.h; sourceTree = "<group>"; };
+		36691DB9223245E500B753F0 /* ShopcartPayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShopcartPayModel.m; sourceTree = "<group>"; };
+		36691DBB2232462900B753F0 /* commodityOrderDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = commodityOrderDetailModel.h; sourceTree = "<group>"; };
+		36691DBC2232462900B753F0 /* commodityOrderDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = commodityOrderDetailModel.m; sourceTree = "<group>"; };
 		366A59EF22000007009FFA6E /* GoodsDetailsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoodsDetailsCell.h; sourceTree = "<group>"; };
 		366A59F022000007009FFA6E /* GoodsDetailsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailsCell.m; sourceTree = "<group>"; };
 		366A59F222003E35009FFA6E /* SelectAddress.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SelectAddress.json; sourceTree = "<group>"; };
@@ -2922,6 +2947,40 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		36691DAC2232194200B753F0 /* Pay */ = {
+			isa = PBXGroup;
+			children = (
+				36691DA62232087F00B753F0 /* ShopCartSubmitOrderTableView.h */,
+				36691DA72232087F00B753F0 /* ShopCartSubmitOrderTableView.m */,
+				36691DA92232104300B753F0 /* ShopCartSubmitOrderGoodsCell.h */,
+				36691DAA2232104300B753F0 /* ShopCartSubmitOrderGoodsCell.m */,
+				36691DAF22323E1600B753F0 /* ShopCartPayVC.h */,
+				36691DB022323E1600B753F0 /* ShopCartPayVC.m */,
+			);
+			path = Pay;
+			sourceTree = "<group>";
+		};
+		36691DAE22321B8A00B753F0 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				36E8E9E222310E8900ACA4A9 /* orderDetailCell.h */,
+				36E8E9DC22310E8900ACA4A9 /* orderDetailCell.m */,
+				36E8E9DD22310E8900ACA4A9 /* JVShopcartBottomView.h */,
+				36E8E9E322310E8900ACA4A9 /* JVShopcartHeaderView.h */,
+				36E8E9E122310E8900ACA4A9 /* JVShopcartBottomView.m */,
+				36E8E9DE22310E8900ACA4A9 /* JVShopcartHeaderView.m */,
+				36E8E9E022310E8900ACA4A9 /* JVShopcartCountView.h */,
+				36E8E9E422310E8900ACA4A9 /* JVShopcartCountView.m */,
+				36E8E9DF22310E8900ACA4A9 /* JVShopcartCell.h */,
+				36E8E9E522310E8900ACA4A9 /* JVShopcartCell.m */,
+				36691DB2223243E400B753F0 /* ShopCartPayTableview.h */,
+				36691DB3223243E400B753F0 /* ShopCartPayTableview.m */,
+				36691DB5223245A700B753F0 /* ShopCartPayCell.h */,
+				36691DB6223245A700B753F0 /* ShopCartPayCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		3674B40A222E5330007D684F /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -3129,6 +3188,10 @@
 				36E8E9D922310E8900ACA4A9 /* JVShopcartBrandModel.m */,
 				36E8E9DA22310E8900ACA4A9 /* JVShopcartProductModel.h */,
 				36E8E9D822310E8900ACA4A9 /* JVShopcartProductModel.m */,
+				36691DB8223245E500B753F0 /* ShopcartPayModel.h */,
+				36691DB9223245E500B753F0 /* ShopcartPayModel.m */,
+				36691DBB2232462900B753F0 /* commodityOrderDetailModel.h */,
+				36691DBC2232462900B753F0 /* commodityOrderDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3136,16 +3199,8 @@
 		36E8E9DB22310E8900ACA4A9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				36E8E9E222310E8900ACA4A9 /* orderDetailCell.h */,
-				36E8E9DC22310E8900ACA4A9 /* orderDetailCell.m */,
-				36E8E9DD22310E8900ACA4A9 /* JVShopcartBottomView.h */,
-				36E8E9E122310E8900ACA4A9 /* JVShopcartBottomView.m */,
-				36E8E9E322310E8900ACA4A9 /* JVShopcartHeaderView.h */,
-				36E8E9DE22310E8900ACA4A9 /* JVShopcartHeaderView.m */,
-				36E8E9E022310E8900ACA4A9 /* JVShopcartCountView.h */,
-				36E8E9E422310E8900ACA4A9 /* JVShopcartCountView.m */,
-				36E8E9DF22310E8900ACA4A9 /* JVShopcartCell.h */,
-				36E8E9E522310E8900ACA4A9 /* JVShopcartCell.m */,
+				36691DAE22321B8A00B753F0 /* view */,
+				36691DAC2232194200B753F0 /* Pay */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3165,6 +3220,8 @@
 			children = (
 				36E8E9EC22310E8900ACA4A9 /* JVShopcartViewController.h */,
 				36E8E9EB22310E8900ACA4A9 /* JVShopcartViewController.m */,
+				36691DA32232073700B753F0 /* ShopCartSubmitOrderVC.h */,
+				36691DA42232073700B753F0 /* ShopCartSubmitOrderVC.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -4678,6 +4735,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36691DAD22321A8000B753F0 /* ShopCartSubmitOrderTableView.h in Sources */,
 				36DFD836221FF8E000DC5E0F /* IntroduceModel.h in Sources */,
 				3615FE17221E9A5900D10F73 /* RecordVC.m in Sources */,
 				36A84B442211114C003CDE19 /* TLChangeMobileVC.h in Sources */,
@@ -4725,6 +4783,7 @@
 				365514D821FB009000E54996 /* introduceView.m in Sources */,
 				3622C378221AB55A00087EDD /* HistroyUserVC.m in Sources */,
 				B81E609F21DCAB8F00873AB9 /* HW3DBannerView.m in Sources */,
+				36691DA52232073700B753F0 /* ShopCartSubmitOrderVC.m in Sources */,
 				B81E5FE121DC8FC200873AB9 /* HttpSign.m in Sources */,
 				1F3EBB0121F5BB55005BC837 /* GoodsDetailsHeadView.m in Sources */,
 				B8B52C8E21F0506200975459 /* MallNavigationController.m in Sources */,
@@ -4794,6 +4853,7 @@
 				1F473391221F88E0007B5908 /* MMDropDownBox.m in Sources */,
 				B85F892521FC2FC200D5B7A4 /* PYTempViewController.m in Sources */,
 				1F1B006C21E71D26000BEBD3 /* RBBEasingFunction.m in Sources */,
+				36691DB4223243E400B753F0 /* ShopCartPayTableview.m in Sources */,
 				369C60CC21F71254001F9CBA /* MailVC.m in Sources */,
 				366AA884222D0ECB0082A741 /* RefundVC.m in Sources */,
 				36A0C03B2212698400B751D0 /* PostMoneyVC.m in Sources */,
@@ -4837,6 +4897,7 @@
 				1F9361CA21F174D0007E522A /* MallHomeVC.m in Sources */,
 				1F473296221EA11A007B5908 /* YiceSlidelipPickCell.m in Sources */,
 				B81E5FB521DC8FC200873AB9 /* SortBar.m in Sources */,
+				36691DA82232087F00B753F0 /* ShopCartSubmitOrderTableView.m in Sources */,
 				B81E5FC321DC8FC200873AB9 /* TLTextField.m in Sources */,
 				1F93610321EDFD8F007E522A /* ToClaimTheGiftVC.m in Sources */,
 				363CD5E32202D44600A81CFA /* ConnectTreeModel.m in Sources */,
@@ -4859,6 +4920,7 @@
 				1F19A90321FEFF130090BF84 /* PersonalCenterHeadView.m in Sources */,
 				B8ED2E6A21E6EA1D00FADCCE /* TreeFieldVC.m in Sources */,
 				36CC83DE222FA74900FEBFF6 /* LogisticeCell.m in Sources */,
+				36691DAB2232104300B753F0 /* ShopCartSubmitOrderGoodsCell.m in Sources */,
 				1F93616621EE01B4007E522A /* MyHomePageTableView.m in Sources */,
 				3689766221EED58A005F1177 /* CollectVC.m in Sources */,
 				1FF6398221EC716400F5FF68 /* BarrageEncapsulationView.m in Sources */,
@@ -4981,6 +5043,7 @@
 				B8226F7421F6EF58002F450F /* MallGoodDetailView.m in Sources */,
 				B81E5FC821DC8FC200873AB9 /* UILabel+Extension.m in Sources */,
 				B81E602021DC906D00873AB9 /* TLUserExt.m in Sources */,
+				36691DBD2232462900B753F0 /* commodityOrderDetailModel.m in Sources */,
 				B8F3724A21FEEA1E0078B03B /* SpecsListModel.m in Sources */,
 				3623417A2216AB8E00143683 /* TreeDetailCell.m in Sources */,
 				1F47338A221F88E0007B5908 /* MMCombineCell.m in Sources */,
@@ -5064,6 +5127,7 @@
 				3689768D21EF1C1F005F1177 /* BookVC.m in Sources */,
 				B815278C21EC8BFD00F89395 /* NoticeTableView.m in Sources */,
 				B88E542A21F9AE2D00C33040 /* BuyRemarkCell.m in Sources */,
+				36691DB7223245A700B753F0 /* ShopCartPayCell.m in Sources */,
 				B81E5EA821DC8B3C00873AB9 /* ViewController.m in Sources */,
 				B81E5FF021DC8FC200873AB9 /* BaseLabel.m in Sources */,
 				3622C375221A8FBE00087EDD /* BuyPropsView.m in Sources */,
@@ -5090,11 +5154,13 @@
 				B8712E8521F578AB00039086 /* QWCategoryDetailController.m in Sources */,
 				1FF6397B21EC626000F5FF68 /* DonationAnimationView.m in Sources */,
 				B85F892221FC2F9C00D5B7A4 /* UIColor+PYExtension.m in Sources */,
+				36691DBA223245E500B753F0 /* ShopcartPayModel.m in Sources */,
 				1F19AC352211634C0090BF84 /* TeamPostCell.m in Sources */,
 				1F1B00CF21E89651000BEBD3 /* FriendsTheTreeVC.m in Sources */,
 				B87C210621FAA92800EFD0B0 /* MallOrderDetailVC.m in Sources */,
 				B8EE11FA21EDB0EA00B9DF0D /* CalendarCustomVC.m in Sources */,
 				3680126F22165B4800A7FB0B /* ImageBrowserViewController.m in Sources */,
+				36691DB122323E1600B753F0 /* ShopCartPayVC.m in Sources */,
 				B81E601921DC906D00873AB9 /* TLAccountSetBaseVC.m in Sources */,
 				B81E5FDD21DC8FC200873AB9 /* TLAlipayManager.m in Sources */,
 				B81E5FAC21DC8FC200873AB9 /* WebVC.m in Sources */,

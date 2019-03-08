@@ -26,19 +26,19 @@
 
 - (void)initWebView {
     
-    NSString *jS = [NSString stringWithFormat:@"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'); meta.setAttribute('width', %lf); document.getElementsByTagName('head')[0].appendChild(meta);",kScreenWidth];
+//    NSString *jS = [NSString stringWithFormat:@"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'); meta.setAttribute('width', %lf); document.getElementsByTagName('head')[0].appendChild(meta);",kScreenWidth];
     
-    WKUserScript *wkUserScript = [[WKUserScript alloc] initWithSource:jS injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
-    
-    WKUserContentController *wkUCC = [WKUserContentController new];
-    
-    [wkUCC addUserScript:wkUserScript];
-    
-    WKWebViewConfiguration *wkConfig = [WKWebViewConfiguration new];
-    
-    wkConfig.userContentController = wkUCC;
-    
-    _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kSuperViewHeight - kTabBarHeight - 45) configuration:wkConfig];
+//    WKUserScript *wkUserScript = [[WKUserScript alloc] initWithSource:jS injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+//
+//    WKUserContentController *wkUCC = [WKUserContentController new];
+//
+//    [wkUCC addUserScript:wkUserScript];
+//
+//    WKWebViewConfiguration *wkConfig = [WKWebViewConfiguration new];
+//
+//    wkConfig.userContentController = wkUCC;
+//
+    _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kSuperViewHeight - kTabBarHeight - 45)];
     
     _webView.backgroundColor = kWhiteColor;
     
@@ -49,36 +49,37 @@
     [self.view addSubview:_webView];
     
 //    [_webView loadHTMLString:self.htmlStr baseURL:nil];
-    [self loadWebWithString:self.htmlStr];
+//    [self loadWebWithString:self.htmlStr];
+    [_webView loadHTMLString:self.htmlStr baseURL:nil];
 }
 
-- (void)loadWebWithString:(NSString *)string {
-    
-    NSString *html = [NSString stringWithFormat:@"<head><style>img{width:%lfpx !important;height:auto;margin: 0px auto;} p{word-wrap:break-word;overflow:hidden;}</style></head>%@",kScreenWidth - 16, string];
-    
-    [_webView loadHTMLString:html baseURL:nil];
-}
+//- (void)loadWebWithString:(NSString *)string {
+//
+//    NSString *html = [NSString stringWithFormat:@"<head><style>img{width:%lfpx !important;height:auto;margin: 0px auto;} p{word-wrap:break-word;overflow:hidden;}</style></head>%@",kScreenWidth - 16, string];
+//
+//    [_webView loadHTMLString:html baseURL:nil];
+//}
 
 #pragma mark - WKWebViewDelegate
 
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    
-    [webView evaluateJavaScript:@"document.body.scrollHeight" completionHandler:^(id _Nullable string, NSError * _Nullable error) {
-        
-        [self changeWebViewHeight:string];
-    }];
-    
-}
+//- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+//
+//    [webView evaluateJavaScript:@"document.body.scrollHeight" completionHandler:^(id _Nullable string, NSError * _Nullable error) {
+//
+//        [self changeWebViewHeight:string];
+//    }];
+//
+//}
 
-- (void)changeWebViewHeight:(NSString *)heightStr {
-    
-    CGFloat height = [heightStr integerValue];
-    
-    // 改变webView和scrollView的高度
-    
-    _webView.scrollView.contentSize = CGSizeMake(kScreenWidth, height);
-    
-}
+//- (void)changeWebViewHeight:(NSString *)heightStr {
+//
+//    CGFloat height = [heightStr integerValue];
+//
+//    // 改变webView和scrollView的高度
+//
+//    _webView.scrollView.contentSize = CGSizeMake(kScreenWidth, height);
+//
+//}
 
 
 /*

@@ -132,9 +132,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
         case 0:{
-            MallTabbar *tabBarCtrl = [[MallTabbar alloc] init];
-            tabBarCtrl.selectedIndex = 2;
-            [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
+            self.tabBarController.selectedIndex = 2;
         }
             break;
         case 1:{

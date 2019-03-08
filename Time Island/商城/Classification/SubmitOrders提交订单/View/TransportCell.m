@@ -32,7 +32,7 @@
         self.countLbl.text = @"快递免邮";
     }
     else{
-        self.countLbl.text = [NSString stringWithFormat:@"快递费:%@",self.postalFee];
+        self.countLbl.text = [NSString stringWithFormat:@"快递费:%.2f",[self.postalFee floatValue]/1000];
     }
     
     self.countLbl.centerY = self.nameLbl.centerY;

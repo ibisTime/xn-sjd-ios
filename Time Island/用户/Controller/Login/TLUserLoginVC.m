@@ -61,6 +61,8 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [self navigationSetDefault];
+    [self.phone resignFirstResponder];
+    [self.pwd resignFirstResponder];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
@@ -221,8 +223,8 @@
 - (void)back {
     [self.view endEditing:YES];
     
-//    [self dismissViewControllerAnimated:YES completion:nil];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)findPwd {

@@ -118,18 +118,23 @@
         if ([self.state isEqualToString:@"rank"]) {
             RankModel * model = self.RankModels[indexPath.row];
             NSLog(@"%@",model);
-            PersonalCenterVC * vc = [PersonalCenterVC new];
-            vc.state = @"rank";
-            vc.RankModel = model;
-            [self.navigationController pushViewController:vc animated:YES];
+            if (![model.userId isEqualToString:[TLUser user].userId]) {
+                PersonalCenterVC * vc = [PersonalCenterVC new];
+                vc.state = @"rank";
+                vc.RankModel = model;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }
         else if ([self.state isEqualToString:@"friend"]){
             FriendsModel * model = self.FriendsModels[indexPath.row];
             NSLog(@"%@",model);
-            PersonalCenterVC * vc = [PersonalCenterVC new];
-            vc.state = @"friend";
-            vc.FriendsModel = model;
-            [self.navigationController pushViewController:vc animated:YES];
+            if (![model.userId isEqualToString:[TLUser user].userId]) {
+                PersonalCenterVC * vc = [PersonalCenterVC new];
+                vc.state = @"friend";
+                vc.FriendsModel = model;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            
         }
     }
     

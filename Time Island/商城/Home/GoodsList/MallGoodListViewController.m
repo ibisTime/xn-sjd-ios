@@ -493,12 +493,10 @@
     if (self.orderColumn) {
         http.parameters[@"orderColumn"] = self.orderColumn;
         http.parameters[@"orderDir"] = self.orderDir;
-        http.parameters[@"location"] = @(1);
     }
     else{
         http.parameters[@"orderColumn"] = self.orderColumn;
         http.parameters[@"orderDir"] = self.orderDir;
-        http.parameters[@"location"] = @(1);
     }
     
     if (self.parentCategoryCode) {
