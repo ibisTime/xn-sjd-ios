@@ -63,9 +63,9 @@
     self.commodityCodeList = [NSMutableArray array];
     self.cartList = [NSMutableArray array];
     for (int i = 0; i < self.JVShopcartBrandModels.count; i++) {
-        for (int j = 0; j < self.JVShopcartBrandModels[i].cartList.count; j ++) {
-            [self.commodityCodeList addObject:self.JVShopcartBrandModels[i].cartList[j].commodityCode];
-            [self.cartList addObject:self.JVShopcartBrandModels[i].cartList[j].code];
+        for (int j = 0; j < self.JVShopcartBrandModels[i].selectedArray.count; j ++) {
+            [self.commodityCodeList addObject:self.JVShopcartBrandModels[i].selectedArray[j][@"commodityCode"]];
+            [self.cartList addObject:self.JVShopcartBrandModels[i].selectedArray[j][@"code"]];
         }
     }
     self.tableview.remark = ^(NSString * _Nonnull remark) {

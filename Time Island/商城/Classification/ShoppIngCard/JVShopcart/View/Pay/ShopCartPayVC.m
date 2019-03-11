@@ -185,7 +185,7 @@
 }
 
 -(void)getData{
-    if (self.JVShopcartBrandModels) {
+//    if (self.JVShopcartBrandModels) {
         TLNetworking * http = [[TLNetworking alloc]init];
         http.code = @"629802";
         http.parameters[@"payGroupCode"] = self.code;
@@ -204,7 +204,7 @@
         } failure:^(NSError *error) {
             
         }];
-    }
+//    }
     
 }
 

@@ -343,6 +343,10 @@
 
 }
 -(void)searchViewController:(PYSearchViewController *)searchViewController didSearchWithsearchBar:(UISearchBar *)searchBar searchText:(NSString *)searchText{
+    if (searchText.length== 0) {
+        [TLAlert alertWithInfo:@"请输入搜索内容！"];
+    }
+    else{
     TLNetworking * http = [[TLNetworking alloc]init];
     http.showView = self.view;
     http.code = @"629650";
@@ -357,7 +361,8 @@
     } failure:^(NSError *error) {
         
     }];
-    
+        
+    }
 }
 
 

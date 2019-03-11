@@ -101,7 +101,8 @@
 }
 -(void)paymoney:(UIButton *)sender{
     ShopCartPayVC * vc = [[ShopCartPayVC alloc]init];
-    vc.code = self.MallOrderModels[sender.tag].code;
+    vc.code = self.MallOrderModels[sender.tag].payGroup;
+    vc.paycount = [self.MallOrderModels[sender.tag].payAmount floatValue]/1000;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

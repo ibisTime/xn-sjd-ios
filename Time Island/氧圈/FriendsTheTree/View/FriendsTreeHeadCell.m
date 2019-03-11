@@ -71,14 +71,14 @@
         [self addSubview:mapBtn];
         
         UIButton *barrageBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        barrageBtn.frame = CGRectMake(SCREEN_WIDTH - 35 - 36 - 36 , kHeight(432) - 50.5, 36, 38);
+        barrageBtn.frame = CGRectMake(SCREEN_WIDTH - 75 - 15 -15 - 36 - 36 , kHeight(432) - 50.5, 36, 38);
         [barrageBtn setImage:kImage(@"弹幕") forState:(UIControlStateNormal)];
         [barrageBtn addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
         barrageBtn.tag = 101;
         [self addSubview:barrageBtn];
         
         UIButton *donationBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        donationBtn.frame = CGRectMake(SCREEN_WIDTH - 15 - 36 , kHeight(432) - 50.5, 36, 38);
+        donationBtn.frame = CGRectMake(SCREEN_WIDTH - 75 - 15 - 36 , kHeight(432) - 50.5, 36, 38);
         [donationBtn setImage:kImage(@"捐赠红色") forState:(UIControlStateNormal)];
         [donationBtn addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
         donationBtn.tag = 102;
@@ -87,7 +87,12 @@
         
         [self addSubview:self.animationView];
 //        [self animationView];
-        
+        UIButton *emotionalStoryBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        emotionalStoryBtn.frame = CGRectMake(SCREEN_WIDTH - 75, kHeight(432) - 59, 58, 47);
+        [emotionalStoryBtn setImage:kImage(@"情感故事") forState:(UIControlStateNormal)];
+        [emotionalStoryBtn addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        emotionalStoryBtn.tag = 105;
+        [self addSubview:emotionalStoryBtn];
        
     }
     return self;

@@ -170,6 +170,8 @@
             [[UserModel user]showPopAnimationWithAnimationStyle:3 showView:self.donationView BGAlpha:0.5 isClickBGDismiss:YES];
         }
             break;
+        case 5:
+            break;
             
         default:
             break;

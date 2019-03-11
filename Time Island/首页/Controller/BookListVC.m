@@ -21,7 +21,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = kWhiteColor;
     
-    self.tableView = [[BookTableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - kTabBarHeight - GlobalRevenueListBottomHeight) style:UITableViewStyleGrouped];
+    self.tableView = [[BookTableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - kNavigationBarHeight - GlobalRevenueListBottomHeight - 20) style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = kWhiteColor;
     self.tableView.refreshDelegate = self;
 //    self.tableView.BookModel = self.BookModel;
@@ -57,6 +57,7 @@
     http.parameters[@"status"] = @(5);
     http.parameters[@"openLevel"] = @(1);
     http.parameters[@"orderDir"] = @"desc";
+    http.parameters[@"queryUserId"] = [TLUser user].userId;
     switch (self.state) {
         case 0:
             http.parameters[@"orderColumn"] = @"publish_datetime";

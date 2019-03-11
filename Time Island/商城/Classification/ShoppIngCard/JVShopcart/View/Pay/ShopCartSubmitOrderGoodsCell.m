@@ -51,11 +51,13 @@
     return self;
 }
 -(void)setProductModel:(JVShopcartProductModel *)ProductModel{
-    _ProductModel = ProductModel;
-    [self.goodsimg sd_setImageWithURL:[NSURL URLWithString:[ProductModel.commodityPhoto convertImageUrl]] placeholderImage:kImage(@"树 跟背景")];
-    self.namelab.text = ProductModel.commodityName;
+//    _ProductModel = ProductModel;
+    JVShopcartProductModel * Model = [JVShopcartProductModel mj_objectWithKeyValues:ProductModel];
+    
+    [self.goodsimg sd_setImageWithURL:[NSURL URLWithString:[Model.commodityPhoto convertImageUrl]] placeholderImage:kImage(@"树 跟背景")];
+    self.namelab.text = Model.commodityName;
     [self.namelab sizeToFit];
-    self.sizelab.text = [NSString stringWithFormat:@"规格分类：%@",ProductModel.specsName];
-    self.pricelab.text = [NSString stringWithFormat:@"¥%.2f",[ProductModel.amount floatValue]/1000];
+    self.sizelab.text = [NSString stringWithFormat:@"规格分类：%@",Model.specsName];
+    self.pricelab.text = [NSString stringWithFormat:@"¥%.2f",[Model.amount floatValue]/1000];
 }
 @end

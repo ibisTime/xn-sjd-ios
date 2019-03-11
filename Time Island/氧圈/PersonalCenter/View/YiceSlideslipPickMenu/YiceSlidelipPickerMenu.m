@@ -10,7 +10,8 @@
 #import "YiceSlidelipPickCell.h"
 #import "YiceSlidelipPickReusableView.h"
 #import "YiceSlidelipPickPch.h"
-@interface YiceSlidelipPickerMenu()<UICollectionViewDelegate,UICollectionViewDataSource,UIGestureRecognizerDelegate>
+#import "YiceSlidelipPriceCell.h"
+@interface YiceSlidelipPickerMenu()<UICollectionViewDelegate,UICollectionViewDataSource,UIGestureRecognizerDelegate,PriceDelegate>
 @property (nonatomic, strong) UIView *viewBackground;
 @property (nonatomic, strong) UICollectionView *mainCollectionView;
 @property (nonatomic, strong) UIView *viewBottom;
@@ -18,6 +19,7 @@
 @property (nonatomic, strong) UIButton *btnSure;
 @end
 static NSString * const collectionCellID = @"collectionCellID";
+static NSString * const priceCellID = @"priceCellID";
 static NSString * const headerID = @"headerID";
 const NSUInteger kBaseHeaderTag = 1234;
 @implementation YiceSlidelipPickerMenu
@@ -76,6 +78,7 @@ const NSUInteger kBaseHeaderTag = 1234;
         _mainCollectionView.backgroundColor = kPickerMenuSelectedTextColor;
         _mainCollectionView.bounces = NO;
         [_mainCollectionView registerClass:[YiceSlidelipPickCell class] forCellWithReuseIdentifier:collectionCellID];
+        [_mainCollectionView registerClass:[YiceSlidelipPriceCell class] forCellWithReuseIdentifier:priceCellID];
         
         [_mainCollectionView registerClass:[YiceSlidelipPickReusableView class]
                 forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
@@ -111,6 +114,7 @@ const NSUInteger kBaseHeaderTag = 1234;
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     //选中
+    
     [self.delegate menu:self didSelectRowAtIndexPath:indexPath];
     [UIView performWithoutAnimation:^{
         [collectionView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
@@ -127,6 +131,12 @@ const NSUInteger kBaseHeaderTag = 1234;
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section >= 2) {
+        YiceSlidelipPriceCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:priceCellID forIndexPath:indexPath];
+        cell.delegate=self;
+        return cell;
+    }
+    
     YiceSlidelipPickCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:collectionCellID forIndexPath:indexPath];
     cell.contentString = ((YiceSlidelipPickCommonModel*)[self.datasource menu:self titleForRowAtIndexPath:indexPath]).text;
     if ([((YiceSlidelipPickCommonModel*)[self.datasource menu:self titleForRowAtIndexPath:indexPath]).isSelected isEqualToString:@"YES"])
@@ -138,6 +148,11 @@ const NSUInteger kBaseHeaderTag = 1234;
         [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     }
     return cell;
+    
+    
+    
+    
+    
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -147,6 +162,9 @@ const NSUInteger kBaseHeaderTag = 1234;
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    if (section >= 2) {
+        return 1;
+    }
     if ([self.datasource menu:self numberOfRowsInSection:section] > 100)
     {
         YiceSlidelipPickReusableView *header = [collectionView viewWithTag:kBaseHeaderTag+section];
@@ -163,12 +181,17 @@ const NSUInteger kBaseHeaderTag = 1234;
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section >= 2) {
+        CGSize size = CGSizeMake(SCREEN_WIDTH - 38, 50);
+        return size;
+    }
     return yiceSlidelipPickCellUIValue()->ITEMSIZE;
 }
 
 
 - (UICollectionReusableView*)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
+    
     if ([kind isEqualToString:UICollectionElementKindSectionHeader])
     {
         YiceSlidelipPickReusableView *header;
@@ -204,20 +227,25 @@ const NSUInteger kBaseHeaderTag = 1234;
         }
         if ([collectionView indexPathsForSelectedItems]) {
             //判断有选中单位
-            for (NSIndexPath * path in [collectionView indexPathsForSelectedItems]) {
-                if (path.section == indexPath.section) {
-                    //
-                    header.selectedTitle.text = [self.datasource menu:self titleForRowAtIndexPath:path].text;
-                    header.selectedTitle.textColor = [UIColor redColor];
+            if (indexPath.section < 2) {
+                for (NSIndexPath * path in [collectionView indexPathsForSelectedItems]) {
+                    if (path.section == indexPath.section) {
+                        //
+                        header.selectedTitle.text = [self.datasource menu:self titleForRowAtIndexPath:path].text;
+                        header.selectedTitle.textColor = [UIColor redColor];
+                    }
                 }
             }
+            
         }
         header.btnClickBlock = ^(UIButton *btn) {
             //按钮点击
+            if (indexPath.section < 2) {
             weakHeader.isShowAll = !weakHeader.isShowAll;
             [UIView performWithoutAnimation:^{
                 [collectionView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section]];
             }];
+            }
         };
         return header;
         
@@ -295,6 +323,13 @@ const NSUInteger kBaseHeaderTag = 1234;
     
     [self.delegate menu:self submmitSelectedIndexPaths:[self.mainCollectionView indexPathsForSelectedItems]];
     
+}
+
+#pragma mark - 根据价格区间
+-(void)returnMinPrice:(NSString *)min MaxPrice:(NSString *)max{
+    if (self.delegate) {
+        [self.delegate MinPrice:min MaxPrice:max];
+    }
 }
 
 @end

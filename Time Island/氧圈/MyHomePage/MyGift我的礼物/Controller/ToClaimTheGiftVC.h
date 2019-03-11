@@ -9,5 +9,5 @@
 #import "TLBaseVC.h"
 
 @interface ToClaimTheGiftVC : TLBaseVC
-
+@property (nonatomic,strong) NSString * code;
 @end

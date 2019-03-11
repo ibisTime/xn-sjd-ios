@@ -187,14 +187,14 @@
             }
         }
     
-//        brandModel.selectedArray = selectedArray;
+        brandModel.selectedArray = selectedArray;
         
-//        if (selectedArray.count) {
-//            [settleArray addObject:brandModel];
-//        }
+        if (selectedArray.count) {
+            [settleArray addObject:brandModel];
+        }
     }
     
-    [self.delegate shopcartFormatSettleForSelectedProducts:selectedArray];
+    [self.delegate shopcartFormatSettleForSelectedProducts:settleArray];
 }
 
 #pragma mark private methods

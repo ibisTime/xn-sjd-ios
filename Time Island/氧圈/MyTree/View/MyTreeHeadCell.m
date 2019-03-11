@@ -49,6 +49,13 @@
         headPortraitView.alpha = 0.3;
         [self addSubview:headPortraitView];
         
+        self.btn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 207/2, 72.5 - 64 + kNavigationBarHeight, 207, 39)];
+        [self addSubview:self.btn];
+        
+//        UITapGestureRecognizer * ges = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gift)];
+//        headPortraitView.userInteractionEnabled = YES;
+//        [headPortraitView addGestureRecognizer:ges];
+        
         UIImageView *headImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 207/2 + 4.5, 72.5 - 64 + kNavigationBarHeight + 4.5, 30, 30)];
         kViewBorderRadius(headImg, 15, 1, kTabbarColor);
 //        headImg.image = kImage(@"头像");
@@ -58,11 +65,11 @@
         [self addSubview:headImg];
         
         UILabel *nameLbl = [UILabel labelWithFrame:CGRectMake(headImg.xx + 7.5, 72.5 - 64 + kNavigationBarHeight, SCREEN_WIDTH - headImg.xx - 7.5 - 5, 39) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:FONT(15) textColor:kHexColor(@"#23AD8C")];
-//        nameLbl.text = @"礼物";
-        if ([TLUser user].nickname) {
-            nameLbl.text = [TLUser user].nickname;
-        }else
-            nameLbl.text = @"";
+        nameLbl.text = @"礼物";
+//        if ([TLUser user].nickname) {
+//            nameLbl.text = [TLUser user].nickname;
+//        }else
+//            nameLbl.text = @"";
         
         
         [self addSubview:nameLbl];
@@ -89,7 +96,6 @@
     return self;
 }
 
-
 -(void)setEnergyModels:(NSMutableArray<MyTreeEnergyModel *> *)energyModels
 {
     _energyModels = energyModels;
@@ -97,7 +103,7 @@
     for (int i = 0; i < energyModels.count; i++) {
         MyTreeEnergyModel * model = energyModels[i];
         
-        [array addObject:@{@"number":model.quantity,@"name":model.status}];
+        [array addObject:@{@"number":[NSString stringWithFormat:@"%.2fg",[model.quantity floatValue]/1000],@"name":model.status}];
         
     }
     self.floatingBallHeader.dataList = array;

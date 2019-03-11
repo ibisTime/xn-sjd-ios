@@ -190,7 +190,7 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/meiminjie/Desktop/xn-sjd-ios/Time%20Island/%E7%94%A8%E6%88%B7/Controller/UserInfo/ChangeLoginPwdVC.m"
-                  timestampString = "573732349.971994"
+                  timestampString = "573991542.097795"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "173"
@@ -205,7 +205,7 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/meiminjie/Desktop/xn-sjd-ios/Time%20Island/%E7%94%A8%E6%88%B7/Controller/UserInfo/ChangeLoginPwdVC.m"
-                  timestampString = "573732349.97396"
+                  timestampString = "573991542.099676"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "173"
@@ -220,7 +220,7 @@
                   moduleName = "Time Island"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/meiminjie/Desktop/xn-sjd-ios/Time%20Island/%E7%94%A8%E6%88%B7/Controller/UserInfo/ChangeLoginPwdVC.m"
-                  timestampString = "573732349.976323"
+                  timestampString = "573991542.101579"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "173"
@@ -236,22 +236,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Time Island/&#x6c27;&#x5708;/MyTree/Controller/MyTreeVC.m"
-            timestampString = "572867582.373747"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "-refreshTableViewButtonClick:button:selectRowAtIndex:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Time Island/&#x6c27;&#x5708;/PersonalCenter/View/PersonalCenterTableVIew.m"
             timestampString = "573706207.354731"
             startingColumnNumber = "9223372036854775807"
@@ -259,22 +243,6 @@
             startingLineNumber = "401"
             endingLineNumber = "401"
             landmarkName = "-getcompetedata"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Time Island/&#x5546;&#x57ce;/Classification/ShoppIngCard/JVShopcart/Format/JVShopcartFormat.m"
-            timestampString = "573732349.563887"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
-            landmarkName = "-settleSelectedProducts"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

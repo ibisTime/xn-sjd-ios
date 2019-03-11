@@ -42,7 +42,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     int goodscount = 0;
     for (int i = 0; i < self.JVShopcartBrandModels.count; i++) {
-        goodscount += self.JVShopcartBrandModels[i].cartList.count;
+        goodscount += self.JVShopcartBrandModels[i].selectedArray.count;
     }
     if (section == 1) {
         return goodscount;
@@ -74,10 +74,10 @@
             ShopCartSubmitOrderGoodsCell *cell = [tableView dequeueReusableCellWithIdentifier:SubmitOrderGoods forIndexPath:indexPath];
 //            cell.ProductModel = self.
             for (int i = 0; i < self.JVShopcartBrandModels.count; i++) {
-                for (int j = 0; j < self.JVShopcartBrandModels[i].cartList.count; j ++) {
+                for (int j = 0; j < self.JVShopcartBrandModels[i].selectedArray.count; j ++) {
 //                    cell.ProductModel = self.JVShopcartBrandModels[i].cartList[j];
-                    [self.ProductModels addObject:self.JVShopcartBrandModels[i].cartList[j]];
-                    [self.commodityCodeList addObject:self.JVShopcartBrandModels[i].cartList[j].commodityCode];
+                    [self.ProductModels addObject:self.JVShopcartBrandModels[i].selectedArray[j]];
+                    [self.commodityCodeList addObject:self.JVShopcartBrandModels[i].selectedArray[j][@"commodityCode"]];
                 }
             }
             cell.ProductModel = self.ProductModels[indexPath.row];

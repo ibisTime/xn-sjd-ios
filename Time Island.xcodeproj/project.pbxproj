@@ -192,6 +192,7 @@
 		362341742216A6A400143683 /* DanmuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 362341732216A6A400143683 /* DanmuCell.m */; };
 		362341772216AAED00143683 /* IntroduceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 362341762216AAED00143683 /* IntroduceCell.m */; };
 		3623417A2216AB8E00143683 /* TreeDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 362341792216AB8E00143683 /* TreeDetailCell.m */; };
+		362A130E2236633B00107171 /* CertificateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 362A130D2236633B00107171 /* CertificateModel.m */; };
 		363CD5E022029B9B00A81CFA /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 363CD5DF22029B9B00A81CFA /* OrderModel.m */; };
 		363CD5E32202D44600A81CFA /* ConnectTreeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 363CD5E22202D44600A81CFA /* ConnectTreeModel.m */; };
 		363E291421F84530003981CD /* CertifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 363E291321F84530003981CD /* CertifyVC.m */; };
@@ -231,6 +232,7 @@
 		3674B416222E5742007D684F /* ServiceTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3674B415222E5742007D684F /* ServiceTableView.m */; };
 		3674B419222E618E007D684F /* MineMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3674B418222E618E007D684F /* MineMessageCell.m */; };
 		3674B41C222E61A7007D684F /* YourMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3674B41B222E61A7007D684F /* YourMessageCell.m */; };
+		3676C0702236068000304F36 /* YiceSlidelipPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3676C06F2236068000304F36 /* YiceSlidelipPriceCell.m */; };
 		367D68E021F95A230091177C /* aiai_area.txt in Resources */ = {isa = PBXBuildFile; fileRef = 367D68DF21F95A230091177C /* aiai_area.txt */; };
 		367D68E921F95B920091177C /* SelectAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D68E821F95B920091177C /* SelectAdView.m */; };
 		367D694221F998A70091177C /* GenderPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 367D694121F998A70091177C /* GenderPickerView.m */; };
@@ -925,6 +927,8 @@
 		362341762216AAED00143683 /* IntroduceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroduceCell.m; sourceTree = "<group>"; };
 		362341782216AB8E00143683 /* TreeDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeDetailCell.h; sourceTree = "<group>"; };
 		362341792216AB8E00143683 /* TreeDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeDetailCell.m; sourceTree = "<group>"; };
+		362A130C2236633B00107171 /* CertificateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CertificateModel.h; sourceTree = "<group>"; };
+		362A130D2236633B00107171 /* CertificateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CertificateModel.m; sourceTree = "<group>"; };
 		363CD5DE22029B9B00A81CFA /* OrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		363CD5DF22029B9B00A81CFA /* OrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
 		363CD5E12202D44600A81CFA /* ConnectTreeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectTreeModel.h; sourceTree = "<group>"; };
@@ -1002,6 +1006,8 @@
 		3674B418222E618E007D684F /* MineMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineMessageCell.m; sourceTree = "<group>"; };
 		3674B41A222E61A7007D684F /* YourMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YourMessageCell.h; sourceTree = "<group>"; };
 		3674B41B222E61A7007D684F /* YourMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YourMessageCell.m; sourceTree = "<group>"; };
+		3676C06E2236068000304F36 /* YiceSlidelipPriceCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YiceSlidelipPriceCell.h; sourceTree = "<group>"; };
+		3676C06F2236068000304F36 /* YiceSlidelipPriceCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YiceSlidelipPriceCell.m; sourceTree = "<group>"; };
 		367D68DF21F95A230091177C /* aiai_area.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aiai_area.txt; sourceTree = "<group>"; };
 		367D68E721F95B920091177C /* SelectAdView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectAdView.h; sourceTree = "<group>"; };
 		367D68E821F95B920091177C /* SelectAdView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectAdView.m; sourceTree = "<group>"; };
@@ -2052,6 +2058,8 @@
 			children = (
 				1F1B009821E743B1000BEBD3 /* CertificateOfPlantView.h */,
 				1F1B009921E743B1000BEBD3 /* CertificateOfPlantView.m */,
+				362A130C2236633B00107171 /* CertificateModel.h */,
+				362A130D2236633B00107171 /* CertificateModel.m */,
 			);
 			path = "Certificate证书";
 			sourceTree = "<group>";
@@ -2259,17 +2267,19 @@
 		1F473289221EA119007B5908 /* YiceSlideslipPickMenu */ = {
 			isa = PBXGroup;
 			children = (
+				1F473291221EA119007B5908 /* YiceSlidelipPickCell.h */,
 				1F47328A221EA119007B5908 /* YiceSlidelipPickCell.m */,
-				1F47328B221EA119007B5908 /* YiceSlidelipPickPch.h */,
+				3676C06E2236068000304F36 /* YiceSlidelipPriceCell.h */,
+				3676C06F2236068000304F36 /* YiceSlidelipPriceCell.m */,
 				1F47328C221EA119007B5908 /* YiceSlidelipPickerMenu.h */,
 				1F473292221EA119007B5908 /* YiceSlidelipPickerMenu.m */,
-				1F47328D221EA119007B5908 /* YiceSlidelipPickCommonModel.h */,
 				1F47328E221EA119007B5908 /* YiceSlidelipPickReusableView.h */,
-				1F47328F221EA119007B5908 /* NSString+AdjustSize.h */,
-				1F473290221EA119007B5908 /* YiceSlidelipPickPch.m */,
-				1F473291221EA119007B5908 /* YiceSlidelipPickCell.h */,
 				1F473293221EA119007B5908 /* YiceSlidelipPickReusableView.m */,
+				1F47328B221EA119007B5908 /* YiceSlidelipPickPch.h */,
+				1F473290221EA119007B5908 /* YiceSlidelipPickPch.m */,
+				1F47328D221EA119007B5908 /* YiceSlidelipPickCommonModel.h */,
 				1F473294221EA119007B5908 /* YiceSlidelipPickCommonModel.m */,
+				1F47328F221EA119007B5908 /* NSString+AdjustSize.h */,
 				1F473295221EA119007B5908 /* NSString+AdjustSize.m */,
 			);
 			path = YiceSlideslipPickMenu;
@@ -2516,11 +2526,11 @@
 		1F9360D921EDFD8E007E522A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1F9360DD21EDFD8E007E522A /* ToClaimTheGiftVC.h */,
 				1F9360DA21EDFD8E007E522A /* ToClaimTheGiftVC.m */,
-				1F9360DB21EDFD8E007E522A /* ToClaimTheGiftVC2.h */,
 				1F9360DF21EDFD8E007E522A /* MyGiftVC.h */,
 				1F9360DC21EDFD8E007E522A /* MyGiftVC.m */,
-				1F9360DD21EDFD8E007E522A /* ToClaimTheGiftVC.h */,
+				1F9360DB21EDFD8E007E522A /* ToClaimTheGiftVC2.h */,
 				1F9360DE21EDFD8E007E522A /* ToClaimTheGiftVC2.m */,
 			);
 			path = Controller;
@@ -4395,18 +4405,18 @@
 		B85F891021FC2F9B00D5B7A4 /* 搜索 */ = {
 			isa = PBXGroup;
 			children = (
+				B85F891721FC2F9B00D5B7A4 /* UIView+PYExtension.h */,
 				B85F891121FC2F9B00D5B7A4 /* UIView+PYExtension.m */,
+				B85F891621FC2F9B00D5B7A4 /* UIColor+PYExtension.h */,
+				B85F891C21FC2F9B00D5B7A4 /* UIColor+PYExtension.m */,
+				B85F891A21FC2F9B00D5B7A4 /* PYSearchViewController.h */,
 				B85F891221FC2F9B00D5B7A4 /* PYSearchViewController.m */,
-				B85F891321FC2F9B00D5B7A4 /* PYSearchSuggestionViewController.m */,
+				B85F891B21FC2F9B00D5B7A4 /* PYSearchConst.h */,
 				B85F891421FC2F9B00D5B7A4 /* PYSearchConst.m */,
 				B85F891521FC2F9B00D5B7A4 /* PYSearch.bundle */,
-				B85F891621FC2F9B00D5B7A4 /* UIColor+PYExtension.h */,
-				B85F891721FC2F9B00D5B7A4 /* UIView+PYExtension.h */,
 				B85F891821FC2F9B00D5B7A4 /* PYSearch.h */,
 				B85F891921FC2F9B00D5B7A4 /* PYSearchSuggestionViewController.h */,
-				B85F891A21FC2F9B00D5B7A4 /* PYSearchViewController.h */,
-				B85F891B21FC2F9B00D5B7A4 /* PYSearchConst.h */,
-				B85F891C21FC2F9B00D5B7A4 /* UIColor+PYExtension.m */,
+				B85F891321FC2F9B00D5B7A4 /* PYSearchSuggestionViewController.m */,
 			);
 			path = "搜索";
 			sourceTree = "<group>";
@@ -5042,6 +5052,7 @@
 				36BB9F6B21FE9B2E0010E622 /* NoticeModel.m in Sources */,
 				B8226F7421F6EF58002F450F /* MallGoodDetailView.m in Sources */,
 				B81E5FC821DC8FC200873AB9 /* UILabel+Extension.m in Sources */,
+				362A130E2236633B00107171 /* CertificateModel.m in Sources */,
 				B81E602021DC906D00873AB9 /* TLUserExt.m in Sources */,
 				36691DBD2232462900B753F0 /* commodityOrderDetailModel.m in Sources */,
 				B8F3724A21FEEA1E0078B03B /* SpecsListModel.m in Sources */,
@@ -5092,6 +5103,7 @@
 				361396152215700900F6F2F3 /* BookContentCell.m in Sources */,
 				36BB9F6F21FEE1B70010E622 /* BookModel.m in Sources */,
 				367D694221F998A70091177C /* GenderPickerView.m in Sources */,
+				3676C0702236068000304F36 /* YiceSlidelipPriceCell.m in Sources */,
 				B81E601821DC906D00873AB9 /* ChangeLoginPwdVC.m in Sources */,
 				1F93615B21EE0139007E522A /* CWDrawerTransition.m in Sources */,
 				1F93610C21EDFD8F007E522A /* MyNoticeVC.m in Sources */,

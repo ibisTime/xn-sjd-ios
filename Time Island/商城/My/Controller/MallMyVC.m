@@ -191,7 +191,7 @@
         [[TLUser user]saveUserInfo:dic];
         [[TLUser user]setUserInfoWithDict:dic];
         self.name.text = [TLUser user].nickname;
-        self.sign.text = [TLUser user].introduce;
+        self.sign.text = [NSString stringWithFormat:@"简介：%@" ,[TLUser user].introduce];
     } failure:^(NSError *error) {
         self.name.text = @"王大锤" ;
         self.logoimage.image =  [UIImage imageNamed:@"果树预售"];

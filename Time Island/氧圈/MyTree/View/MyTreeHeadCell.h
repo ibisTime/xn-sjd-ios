@@ -28,4 +28,6 @@
 @property (nonatomic , strong)PersonalCenterModel *model;
 
 @property (nonatomic,strong) NSString * protect;
+
+@property (nonatomic,strong) UIButton * btn;
 @end

@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,copy) NSString * code;
 @property (nonatomic,copy) NSString * createDatetime;
-@property (nonatomic,copy) NSString * description;
+@property (nonatomic,copy) NSString * Description;
 @property (nonatomic,copy) NSString * invalidDatetime;
 @property (nonatomic,copy) NSString * listPic;
 @property (nonatomic,copy) NSString * name;
@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString * receiver;
 @property (nonatomic,copy) NSString * status;
 @property (nonatomic,copy) NSString * toUser;
-
++(NSDictionary *)mj_replacedKeyFromPropertyName;
 @end
 
 NS_ASSUME_NONNULL_END

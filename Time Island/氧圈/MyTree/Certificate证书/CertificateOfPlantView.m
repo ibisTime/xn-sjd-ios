@@ -7,6 +7,7 @@
 //
 
 #import "CertificateOfPlantView.h"
+
 #define WIDTH kWidth(280)
 @implementation CertificateOfPlantView
 {
@@ -14,6 +15,7 @@
     UILabel *contentLbl;
     UILabel *introduceLbl;
     UILabel *codeNumberLbl;
+    UIImageView *backImg ;
 }
 
 -(instancetype)initWithFrame:(CGRect)frame
@@ -30,25 +32,25 @@
 
         
         for (int i = 0; i < 1; i ++) {
-            UIImageView *backImg = [[UIImageView alloc]initWithFrame:CGRectMake(35, kHeight(139), SCREEN_WIDTH - 75, kHeight(435))];
-            backImg.image = kImage(@"证书背景");
+            backImg = [[UIImageView alloc]initWithFrame:CGRectMake(35, kHeight(139), SCREEN_WIDTH - 75, kHeight(435))];
+//            backImg.image = kImage(@"证书背景");
             [self addSubview:backImg];
             
             
-            UIImageView *cerBackImg = [[UIImageView alloc]initWithFrame:CGRectMake((backImg.width - kHeight(106.5)) / 2, kHeight(21), kHeight(106.5), kHeight(71))];
-            
-            cerBackImg.image = kImage(@"植物证书");
-            [backImg addSubview:cerBackImg];
-            
-            UILabel *nameLbl = [UILabel labelWithFrame:CGRectMake(cerBackImg.width/2 - kHeight(40), kHeight(46.5), kHeight(80), kHeight(22.5)) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(16) textColor:kHexColor(@"#A1622A")];
-            nameLbl.text = @"植物证书";
-//            nameLbl.backgroundColor = [UIColor whiteColor];
-            [cerBackImg addSubview:nameLbl];
+//            UIImageView *cerBackImg = [[UIImageView alloc]initWithFrame:CGRectMake((backImg.width - kHeight(106.5)) / 2, kHeight(21), kHeight(106.5), kHeight(71))];
+//
+//            cerBackImg.image = kImage(@"植物证书");
+//            [backImg addSubview:cerBackImg];
+//
+//            UILabel *nameLbl = [UILabel labelWithFrame:CGRectMake(cerBackImg.width/2 - kHeight(40), kHeight(46.5), kHeight(80), kHeight(22.5)) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(16) textColor:kHexColor(@"#A1622A")];
+//            nameLbl.text = @"植物证书";
+////            nameLbl.backgroundColor = [UIColor whiteColor];
+//            [cerBackImg addSubview:nameLbl];
             
             
             
             headImg = [[UIImageView alloc]initWithFrame:CGRectMake((backImg.width - kHeight(45)) / 2, kHeight(120), kHeight(45), kHeight(45))];
-            
+            kViewRadius(headImg, kHeight(45)/2);
 //            headImg.image = kImage(@"头像");
             [backImg addSubview:headImg];
             
@@ -63,26 +65,7 @@
             [backImg addSubview:introduceLbl];
             
             
-            UILabel *codeLabel = [UILabel labelWithFrame:CGRectMake(backImg.width/2 - 35, introduceLbl.yy + kHeight(48), 70, kHeight(22.5)) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(16) textColor:kHexColor(@"#23AD8C")];
-            codeLabel.text = @"树苗编号";
-            [backImg addSubview:codeLabel];
-            
-            UIImageView *leftImg = [[UIImageView alloc]initWithFrame:CGRectMake(backImg.width/2 - 35 - 75, codeLabel.y + kHeight(22.5)/2 - kHeight(1.5), 65, kHeight(3))];
-            leftImg.image = kImage(@"编号左");
-            leftImg.centerY = codeLabel.centerY;
-            [backImg addSubview:leftImg];
-            
-            UIImageView *rightImg = [[UIImageView alloc]initWithFrame:CGRectMake(backImg.width/2 + 35 + 10, codeLabel.y + kHeight(22.5)/2 - kHeight(1.5), 65, kHeight(3))];
-            rightImg.image = kImage(@"编号右");
-            rightImg.centerY = codeLabel.centerY;
-            [backImg addSubview:rightImg];
-//
-            
-            UIImageView *codeBackImg = [[UIImageView alloc]initWithFrame:CGRectMake(kWidth(45), codeLabel.yy + kHeight(13), WIDTH - kWidth(60), kHeight(45))];
-            codeBackImg.image = kImage(@"编号框框");
-            [backImg addSubview:codeBackImg];
-            
-            codeNumberLbl = [UILabel labelWithFrame:CGRectMake(kWidth(45), codeBackImg.y + kHeight(11), WIDTH - kWidth(60), kHeight(25)) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(18) textColor:kHexColor(@"#23AD8C")];
+            codeNumberLbl = [UILabel labelWithFrame:CGRectMake(kWidth(45), introduceLbl.yy + kHeight(60), WIDTH - kWidth(60), kHeight(25)) textAligment:(NSTextAlignmentCenter) backgroundColor:kClearColor font:FONT(18) textColor:kHexColor(@"#23AD8C")];
             codeNumberLbl.text = @"NO.SP1883457567798";
             [backImg addSubview:codeNumberLbl];
             
@@ -92,6 +75,7 @@
 }
 -(void)setModel:(PersonalCenterModel *)model{
     _model = model;
+    [self getdata];
     if (model) {
         [headImg sd_setImageWithURL:[NSURL URLWithString:[model.user[@"photo"] convertImageUrl]] placeholderImage:kImage(@"头像")];
         
@@ -109,5 +93,17 @@
         codeNumberLbl.text = model.treeNumber;
     }
     
+}
+
+-(void)getdata{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629206";
+    http.parameters[@"code"] = self.model.code;
+    [http postWithSuccess:^(id responseObject) {
+        self.CertificateModel = [CertificateModel mj_objectWithKeyValues:responseObject[@"data"]];
+        [backImg sd_setImageWithURL:[NSURL URLWithString:[self.CertificateModel.certificateTemplate convertImageUrl]]];
+    } failure:^(NSError *error) {
+        
+    }];
 }
 @end
