@@ -15,4 +15,5 @@
 @property (nonatomic,strong) RankModel * RankModel;
 @property (nonatomic,strong) FriendsModel * FriendsModel;
 @property (nonatomic,strong) NSString * state;
+@property (nonatomic,strong) NSString * userid;
 @end

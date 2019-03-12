@@ -12,7 +12,11 @@
 #import "BarrageView.h"
 #import "BarrageModel.h"
 #import "MapViewController.h"
-@interface FriendsTheTreeVC ()<RefreshDelegate,BarrageViewDelegate>;
+#import "PersonalCenterVC.h"
+#import "RecordVC.h"
+#import "HistroyUserVC.h"
+#import "BookVideoVC.h"
+@interface FriendsTheTreeVC ()<RefreshDelegate,BarrageViewDelegate,UITableViewDelegate>;
 
 @property (nonatomic , strong)FriendsTheTreeTableView *tableView;
 
@@ -22,6 +26,8 @@
 @property (nonatomic , strong)BarrageView *barrageView;
 
 @property (nonatomic,strong) NSMutableArray<BarrageModel *> * BarrageModels;
+
+@property (nonatomic,strong) NSString * state;
 @end
 
 @implementation FriendsTheTreeVC
@@ -84,6 +90,7 @@
 
 -(void)BarrageViewSelectRow:(NSInteger)row
 {
+    
     TLNetworking * http = [[TLNetworking alloc]init];
     http.showView = self.view;
     http.code = @"629384";
@@ -138,7 +145,7 @@
     // Do any additional setup after loading the view.
     [self.view addSubview:self.tableView];
     self.tableView.model = self.model;
-    
+//    self.tableView.delegate = self;
     [self.view addSubview:self.donationView];
     [self.view addSubview:self.barrageView];
 //    self.title = [NSString stringWithFormat:@"%@的树",self.model.user[@"nickname"]];
@@ -170,7 +177,24 @@
             [[UserModel user]showPopAnimationWithAnimationStyle:3 showView:self.donationView BGAlpha:0.5 isClickBGDismiss:YES];
         }
             break;
-        case 5:
+        case 3:
+        {
+            //个人主页
+            PersonalCenterVC *vc = [PersonalCenterVC new];
+            vc.state = @"rank";
+            vc.userid = self.model.user[@"userId"];;
+            [self.navigationController pushViewController:vc animated:YES];
+            self.state = nil;
+        }
+            break;
+        case 5:{
+            BookVideoVC * vc = [[BookVideoVC alloc]init];
+            vc.state = @"tree";
+            vc.model = self.model;
+            [self.navigationController pushViewController:vc animated:YES];
+            self.state = nil;
+        }
+            
             break;
             
         default:
@@ -207,7 +231,53 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)refreshTableViewButtonClick:(TLTableView *)refreshTableview button:(UIButton *)sender state:(NSString *)state
+{
+    if ([state isEqualToString:@"点击"]) {
+        if (sender.tag == 101) {
+            self.state = @"认养人介绍";
+        }
+        else{
+            self.state = nil;
+        }
+    }
+    else if ([state isEqualToString:@"点击主页"]){
+        PersonalCenterVC *vc = [PersonalCenterVC new];
+        vc.state = @"rank";
+        vc.userid = self.model.user[@"userId"];;
+        [self.navigationController pushViewController:vc animated:YES];
+        self.state = nil;
+    }
 
+}
+
+-(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 2) {
+        if ([self.state isEqualToString:@"认养人介绍"]) {
+            PersonalCenterVC *vc = [PersonalCenterVC new];
+            vc.state = @"rank";
+            vc.userid = self.model.user[@"userId"];;
+            [self.navigationController pushViewController:vc animated:YES];
+            self.state = nil;
+        }
+        else{
+            if (indexPath.row == 6) {
+                NSLog(@"%s,%ld",__func__,indexPath.row);
+                RecordVC * vc = [RecordVC new];
+                vc.treeNumber = self.model.tree[@"treeNumber"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            else if (indexPath.row == 7){
+                NSLog(@"%s%ld",__func__,indexPath.row);
+                HistroyUserVC * vc = [HistroyUserVC new];
+                vc.productCode = self.model.tree[@"productCode"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        }
+        
+    }
+}
 //弹幕
 -(void)getbarrageData{
     TLNetworking * http = [[TLNetworking alloc]init];
