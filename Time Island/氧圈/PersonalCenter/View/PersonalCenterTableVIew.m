@@ -187,6 +187,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([self.state isEqualToString:@"rank"]) {
+        
         if (indexPath.section == 0) {
             if(self.models.count > 0)
             {
@@ -195,7 +196,7 @@
             return 150;
         }
         if (indexPath.section == 1) {
-            return kHeight(140);
+            return kHeight(150);
         }
         NSArray *dynamicArray = self.dynamicArray[indexPath.section - 1];
         DynamicModel *model = [DynamicModel mj_objectWithKeyValues:dynamicArray[indexPath.row]];
@@ -225,22 +226,67 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     [self.refreshDelegate refreshTableView:self didSelectRowAtIndexPath:indexPath];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section >= 2) {
-        
-        
-        return 35;
+    if ([self.state isEqualToString:@"rank"]) {
+        if (section >= 2) {
+            return 35;
+        }
+        return 0.001;
     }
-    return 0.001;
+    else{
+        if (section >= 1) {
+            return 35;
+        }
+        return 0.001;
+    }
+    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
     if ([self.state isEqualToString:@"rank"]) {
         if (section >= 2) {
+            UIView *headerView = [UIView new];
+            
+            UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35)];
+            backView.backgroundColor = kWhiteColor;
+            [headerView addSubview:backView];
+            NSArray *dynamicArray = self.dynamicArray[section - 1];
+            UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 6, SCREEN_WIDTH - 30, 18) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGboldfont(18) textColor:kTextBlack];
+            if (dynamicArray.count > 0) {
+                DynamicModel *model = [DynamicModel mj_objectWithKeyValues:dynamicArray[0]];
+                NSDate *currentDate = [NSDate date];//获取当前时间，日期
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
+                [dateFormatter setDateFormat:@"YYYY-MM-dd"];
+                NSString *dateString = [dateFormatter stringFromDate:currentDate];
+                
+                if ([dateString isEqualToString:model.time]) {
+                    nameLabel.text = @"今天";
+                }
+                else
+                {
+                    NSString *time = [model.time substringWithRange:NSMakeRange(5, model.time.length - 5)];
+                    nameLabel.text = time;
+                }
+                
+            }
+            
+            [headerView addSubview:nameLabel];
+            
+            UIView *roundView = [[UIView alloc]initWithFrame:CGRectMake(30, nameLabel.yy + 5 , 6, 6)];
+            roundView.backgroundColor = kHexColor(@"#CCCCCC");
+            kViewRadius(roundView, 3);
+            [backView addSubview:roundView];
+            
+            return headerView;
+        }
+    }else{
+        if (section >= 1) {
             UIView *headerView = [UIView new];
             
             UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35)];
@@ -279,48 +325,11 @@
             
             return headerView;
         }
-    }if (section >= 1) {
-        UIView *headerView = [UIView new];
-        
-        UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35)];
-        backView.backgroundColor = kWhiteColor;
-        [headerView addSubview:backView];
-        NSArray *dynamicArray = self.dynamicArray[section - 1];
-        UILabel *nameLabel = [UILabel labelWithFrame:CGRectMake(15, 6, SCREEN_WIDTH - 30, 18) textAligment:(NSTextAlignmentLeft) backgroundColor:kClearColor font:HGboldfont(18) textColor:kTextBlack];
-        if (dynamicArray.count > 0) {
-            DynamicModel *model = [DynamicModel mj_objectWithKeyValues:dynamicArray[0]];
-            
-            
-            
-            NSDate *currentDate = [NSDate date];//获取当前时间，日期
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];
-            [dateFormatter setDateFormat:@"YYYY-MM-dd"];
-            NSString *dateString = [dateFormatter stringFromDate:currentDate];
-            
-            if ([dateString isEqualToString:model.time]) {
-                nameLabel.text = @"今天";
-            }
-            else
-            {
-                NSString *time = [model.time substringWithRange:NSMakeRange(5, model.time.length - 5)];
-                nameLabel.text = time;
-            }
+        else{
             
         }
-        
-        [headerView addSubview:nameLabel];
-        
-        UIView *roundView = [[UIView alloc]initWithFrame:CGRectMake(30, nameLabel.yy + 5 , 6, 6)];
-        roundView.backgroundColor = kHexColor(@"#CCCCCC");
-        kViewRadius(roundView, 3);
-        [backView addSubview:roundView];
-        
-        return headerView;
     }
-    else{
-        
-    }
+    
     
     
     return nil;

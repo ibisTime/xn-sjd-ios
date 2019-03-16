@@ -287,7 +287,11 @@
     
     helper.code = @"629305";
     if ([self.state isEqualToString:@"rank"]) {
-        helper.parameters[@"queryUserId"] = self.RankModel.userId;
+//        helper.parameters[@"queryUserId"] = self.RankModel.userId;
+        if (self.RankModel) {
+            helper.parameters[@"queryUserId"] = self.RankModel.userId;
+        }else
+            helper.parameters[@"queryUserId"] = self.userid;
     }
     else if ([self.state isEqualToString:@"friend"]){
         helper.parameters[@"queryUserId"] = self.FriendsModel.toUserInfo[@"userId"];
@@ -386,7 +390,11 @@
     http.code = @"629207";
     
     if ([self.state isEqualToString:@"rank"]) {
-        http.parameters[@"currentHolder"] = self.RankModel.userId;
+//        http.parameters[@"currentHolder"] = self.RankModel.userId;
+        if (self.RankModel) {
+            http.parameters[@"currentHolder"] = self.RankModel.userId;
+        }else
+            http.parameters[@"currentHolder"] = self.userid;
     }
     else if ([self.state isEqualToString:@"friend"]){
         http.parameters[@"currentHolder"] = self.FriendsModel.toUserInfo[@"userId"];
@@ -442,7 +450,11 @@
     TLNetworking * http = [[TLNetworking alloc]init];
     http.code = USER_INFO;
     if ([self.state isEqualToString:@"rank"]) {
-        http.parameters[@"userId"] = self.RankModel.userId;
+        if (self.RankModel) {
+            http.parameters[@"userId"] = self.RankModel.userId;
+        }else
+            http.parameters[@"userId"] = self.userid;
+        
         
     }
     else if ([self.state isEqualToString:@"friend"]){
@@ -610,7 +622,11 @@
     if ([self.state isEqualToString:@"rank"]) {
         TLNetworking * http = [[TLNetworking alloc]init];
         http.code = @"629900";
-        http.parameters[@"toUserId"] = self.RankModel.userId;
+        if (self.RankModel) {
+            http.parameters[@"toUserId"] = self.RankModel.userId;
+        }else
+            http.parameters[@"toUserId"] = self.userid;
+//        http.parameters[@"toUserId"] = self.RankModel.userId;
         http.parameters[@"userId"] = [TLUser user].userId;
         [http postWithSuccess:^(id responseObject) {
             self.CompeteModel = [CompeteModel mj_objectWithKeyValues:responseObject[@"data"]];

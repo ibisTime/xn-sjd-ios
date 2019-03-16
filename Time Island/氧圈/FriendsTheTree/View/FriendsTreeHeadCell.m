@@ -46,13 +46,18 @@
         
     
         
-        UIView *headPortraitView = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 207/2, 72.5 - 64 + kNavigationBarHeight, 207, 39)];
+        UIView *headPortraitView = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 207/1.8, 72.5 - 64 + kNavigationBarHeight, 207, 39)];
         headPortraitView.backgroundColor = kWhiteColor;
         kViewRadius(headPortraitView, 39/2);
         headPortraitView.alpha = 0.3;
         [self addSubview:headPortraitView];
         
-        headImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 207/2 + 4.5, 72.5 - 64 + kNavigationBarHeight + 4.5, 30, 30)];
+        self.person = [[UIButton alloc]initWithFrame:headPortraitView.frame];
+        self.person.tag = 103;
+        [self.person addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        [self addSubview:self.person];
+        
+        headImg = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 207/1.8 + 4.5, 72.5 - 64 + kNavigationBarHeight + 4.5, 30, 30)];
         kViewBorderRadius(headImg, 15, 1, kTabbarColor);
         headImg.image = kImage(@"头像");
         [self addSubview:headImg];
@@ -71,14 +76,14 @@
         [self addSubview:mapBtn];
         
         UIButton *barrageBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        barrageBtn.frame = CGRectMake(SCREEN_WIDTH - 35 - 36 - 36 , kHeight(432) - 50.5, 36, 38);
+        barrageBtn.frame = CGRectMake(SCREEN_WIDTH - 75 - 15 -15 - 36 - 36 , kHeight(432) - 50.5, 36, 38);
         [barrageBtn setImage:kImage(@"弹幕") forState:(UIControlStateNormal)];
         [barrageBtn addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
         barrageBtn.tag = 101;
         [self addSubview:barrageBtn];
         
         UIButton *donationBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        donationBtn.frame = CGRectMake(SCREEN_WIDTH - 15 - 36 , kHeight(432) - 50.5, 36, 38);
+        donationBtn.frame = CGRectMake(SCREEN_WIDTH - 75 - 15 - 36 , kHeight(432) - 50.5, 36, 38);
         [donationBtn setImage:kImage(@"捐赠红色") forState:(UIControlStateNormal)];
         [donationBtn addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
         donationBtn.tag = 102;
@@ -87,7 +92,12 @@
         
         [self addSubview:self.animationView];
 //        [self animationView];
-        
+        UIButton *emotionalStoryBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        emotionalStoryBtn.frame = CGRectMake(SCREEN_WIDTH - 75, kHeight(432) - 59, 58, 47);
+        [emotionalStoryBtn setImage:kImage(@"情感故事") forState:(UIControlStateNormal)];
+        [emotionalStoryBtn addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        emotionalStoryBtn.tag = 105;
+        [self addSubview:emotionalStoryBtn];
        
     }
     return self;
@@ -174,17 +184,18 @@
 -(void)setModel:(PersonalCenterModel *)model{
     _model = model;
     [headImg sd_setImageWithURL:[NSURL URLWithString:[model.user[@"photo"] convertImageUrl]] placeholderImage:kImage(@"头像")];
-    if (model.user[@"nickname"]) {
-        nameLbl.text =model.user[@"nickname"];
-        [nameLbl sizeToFit];
-        if (nameLbl.width > SCREEN_WIDTH - headImg.xx - 7.5 - 5) {
-            nameLbl.frame = CGRectMake(headImg.xx + 7.5, 72.5 - 64 + kNavigationBarHeight, SCREEN_WIDTH - headImg.xx - 7.5 - 5, 39);
-        }
-        else{
-            nameLbl.frame = CGRectMake(headImg.xx + 7.5, 72.5 - 64 + kNavigationBarHeight, nameLbl.width, 39);
-        }
-        
-    }
+    nameLbl.text = @"进入主页";
+//    if (model.user[@"nickname"]) {
+//        nameLbl.text =model.user[@"nickname"];
+//        [nameLbl sizeToFit];
+//        if (nameLbl.width > SCREEN_WIDTH - headImg.xx - 7.5 - 5) {
+//            nameLbl.frame = CGRectMake(headImg.xx + 7.5, 72.5 - 64 + kNavigationBarHeight, SCREEN_WIDTH - headImg.xx - 7.5 - 5, 39);
+//        }
+//        else{
+//            nameLbl.frame = CGRectMake(headImg.xx + 7.5, 72.5 - 64 + kNavigationBarHeight, nameLbl.width, 39);
+//        }
+//
+//    }
 }
 -(void)setEnergyModels:(NSMutableArray<MyTreeEnergyModel *> *)energyModels{
     _energyModels = energyModels;

@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) SLBannerView *topImage;
 @property (nonatomic,strong) UIImageView * headImage;
 @property (nonatomic,strong) UILabel *nameLable;
+@property (nonatomic,strong) NSString * name;
 @property (nonatomic,strong) UILabel *introduceLable;
 @property (nonatomic,strong) UIView * headerView;
 @property (nonatomic,strong) NSMutableArray<QWCategory *> * QWCategorys;

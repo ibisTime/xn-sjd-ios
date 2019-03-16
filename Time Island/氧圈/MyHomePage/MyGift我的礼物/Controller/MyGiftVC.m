@@ -36,8 +36,9 @@
     // Do any additional setup after loading the view.
     self.title = @"礼物";
     [self.view addSubview:self.tableView];
+    self.tableView.defaultNoDataImage = kImage(@"暂无订单");
+    self.tableView.defaultNoDataText = @"抱歉，暂无礼物";
     self.view.backgroundColor = kWhiteColor;
-    
     [self getdata];
 }
 
@@ -47,6 +48,7 @@
 -(void)refreshTableView:(TLTableView *)refreshTableview didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ToClaimTheGiftVC *vc = [[ToClaimTheGiftVC alloc]init];
+    vc.code = self.GiftModel[indexPath.row].code;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -56,10 +58,12 @@
 //    TLNetworking * http = [[TLNetworking alloc]init];
     TLPageDataHelper * http = [[TLPageDataHelper alloc]init];
     http.code = @"629325";
-    http.parameters[@"adoptTreeCode"] = @"";
-//    http.parameters[@"start"] = @(1);
-//    http.parameters[@"limit"] = @(10);
+    
+    http.parameters[@"adoptTreeCode"] = self.adoptTreeCode;
     http.parameters[@"toUser"] = [TLUser user].userId;
+    [http modelClass:[GiftModel class]];
+    http.tableView = self.tableView;
+    http.isCurrency = YES;
     [self.tableView addRefreshAction:^{
         [http refresh:^(NSMutableArray *objs, BOOL stillHave) {
             weakSelf.GiftModel = objs;
@@ -80,6 +84,7 @@
             [weakSelf.tableView endRefreshFooter];
         }];
     }];
+    [self.tableView beginRefreshing];
 }
 
 @end

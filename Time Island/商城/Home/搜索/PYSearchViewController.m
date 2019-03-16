@@ -280,10 +280,10 @@
     UIView *titleView = [[UIView alloc] init];
     titleView.py_x = PYMargin * 0.5;
     titleView.py_y = 7;
-    titleView.py_width = self.view.py_width - 64 - titleView.py_x * 2;
+    titleView.py_width = self.view.py_width - PYMargin;
     titleView.py_height = 30;
     titleView.backgroundColor = kWhiteColor;
-    UISearchBar * searchbar = [[UISearchBar alloc]initWithFrame:CGRectMake(14.5, 0, kScreenWidth-30, 31.0f)];
+    UISearchBar * searchbar = [[UISearchBar alloc]initWithFrame:CGRectMake(14.5, 0, kScreenWidth-30 - 90, 31.0f)];
     searchbar.layer.cornerRadius = 15.5;
     searchbar.clipsToBounds = YES;
     searchbar.delegate = self;
@@ -313,6 +313,12 @@
         
     }
     [titleView addSubview:searchbar];
+    
+    UIButton * searchbtn = [[UIButton alloc]initWithFrame:CGRectMake(kScreenWidth-30 - 90 + 30, 0, 70, 31.0f) title:@"搜索" backgroundColor:kTabbarColor];
+    kViewRadius(searchbtn, 15);
+    [searchbtn setTitleColor:kWhiteColor forState:(UIControlStateNormal)];
+    [searchbtn addTarget:self action:@selector(searchbtnclick:) forControlEvents:(UIControlEventTouchUpInside)];
+    [titleView addSubview:searchbtn];
     
     
     [self.view addSubview:titleView];;
@@ -812,7 +818,9 @@
     label.py_height += 14;
     return label;
 }
-
+-(void)searchbtnclick:(UIButton *)sender{
+    [self searchBarSearchButtonClicked:self.searchBar];
+}
 #pragma mark - UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {

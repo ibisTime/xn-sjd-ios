@@ -36,4 +36,6 @@
 
 @property (nonatomic , strong)BarrageEncapsulationView *barrView;
 
+@property (nonatomic,strong) UIButton * person;
+
 @end

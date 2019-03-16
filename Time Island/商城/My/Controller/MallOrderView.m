@@ -11,6 +11,10 @@
 #import "MallOrderDetailVC.h"
 #import "MallOrderModel.h"
 #import "logisticeVC.h"
+#import "MallGoodsModel.h"
+#import "MallStoreListVC.h"
+#import "ShopCartPayVC.h"
+#import "ReceivingAddressVC.h"
 @interface MallOrderView ()<MallOrderCellDelegrate>
 @property (nonatomic,strong) TLTableView * table;
 @property (nonatomic,strong) NSMutableArray<MallOrderModel *> * MallOrderModels;
@@ -49,15 +53,76 @@
     cell.delagate = self;
     cell.model = self.MallOrderModels[indexPath.section];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     cell.logisticeBtn.tag = indexPath.section;
-    cell.consignBtn.tag = indexPath.section;
     [cell.logisticeBtn addTarget:self action:@selector(lookPassway:) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    cell.consignBtn.tag = indexPath.section;
     [cell.consignBtn addTarget:self action:@selector(ReceiveGoods:) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    cell.ShopNameBtn.tag = indexPath.section;
+    [cell.ShopNameBtn addTarget:self action:@selector(goshop:) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    
+    cell.payNow.tag = indexPath.section;
+    [cell.payNow addTarget:self action:@selector(paymoney:) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    cell.changeAddress.tag = indexPath.section;
+    [cell.changeAddress addTarget:self action:@selector(changeaddress:) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    cell.CancelOrder.tag = indexPath.section;
+    [cell.CancelOrder addTarget:self action:@selector(cancelOrder:) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    
+    
+    
+    
 
     return cell;
 
 }
+-(void)changeaddress:(UIButton *)sender{
+    ReceivingAddressVC *address = [ReceivingAddressVC new];
+    address.selectCellBlock = ^(AddressModel * _Nonnull model) {
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"629800";
+        http.parameters[@"code"] = self.MallOrderModels[sender.tag].code;
+        http.parameters[@"addressCode"] = model.code;
+        [http postWithSuccess:^(id responseObject) {
+            [TLAlert alertWithInfo:@"修改成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+            [self loadData];
+        } failure:^(NSError *error) {
+            
+        }];
+        
+    };
+    [self.navigationController pushViewController:address animated:YES];
+}
+-(void)paymoney:(UIButton *)sender{
+    ShopCartPayVC * vc = [[ShopCartPayVC alloc]init];
+    vc.code = self.MallOrderModels[sender.tag].payGroup;
+    vc.paycount = [self.MallOrderModels[sender.tag].payAmount floatValue]/1000;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
+-(void)cancelOrder:(UIButton *)sender{
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629722";
+    http.parameters[@"updater"] = [TLUser user].userId;
+    http.parameters[@"code"] = self.MallOrderModels[sender.tag].code;
+    [http postWithSuccess:^(id responseObject) {
+        [self loadData];
+    } failure:^(NSError *error) {
+        
+    }];
+    
+}
+-(void)goshop:(UIButton *)sender{
+    MallStoreListVC * vc = [[MallStoreListVC alloc]init];
+    vc.shopcode = self.MallOrderModels[sender.tag].shopCode;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 -(void)lookPassway:(UIButton *)sender{
     logisticeVC * vc = [[logisticeVC alloc]init];
     vc.expNo = self.MallOrderModels[sender.tag].logisticsNumber;
@@ -82,7 +147,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     MallOrderModel * model = self.MallOrderModels[indexPath.section];
-    if ([model.status isEqualToString:@"2"]) {
+    if ([model.status isEqualToString:@"2"] || [model.status isEqualToString:@"0"]) {
         return 50.5+90 * (model.detailList.count) + 40 + 45;
     }
     return 50.5+90 * (model.detailList.count) + 40;

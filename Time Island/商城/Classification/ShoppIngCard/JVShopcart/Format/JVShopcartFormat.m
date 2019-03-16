@@ -125,7 +125,7 @@
     for (JVShopcartBrandModel *brandModel in self.shopcartListArray) {
         for (JVShopcartProductModel *productModel in brandModel.cartList) {
             if (productModel.isSelected) {
-                [selectedArray addObject:productModel];
+                [selectedArray addObject:productModel.code];
             }
         }
     }

@@ -62,7 +62,7 @@
     JVShopcartHeaderView *shopcartHeaderView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"JVShopcartHeaderView"];
     if (self.dataArray.count > section) {
         JVShopcartBrandModel *brandModel = self.dataArray[section];
-        [shopcartHeaderView configureShopcartHeaderViewWithBrandName:brandModel.brandName brandSelect:brandModel.isSelected];
+        [shopcartHeaderView configureShopcartHeaderViewWithBrandName:brandModel.shopName brandSelect:brandModel.isSelected];
     }
     
     __weak __typeof(self) weakSelf = self;

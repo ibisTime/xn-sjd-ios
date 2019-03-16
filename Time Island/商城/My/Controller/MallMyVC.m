@@ -132,9 +132,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
         case 0:{
-            MallTabbar *tabBarCtrl = [[MallTabbar alloc] init];
-            tabBarCtrl.selectedIndex = 2;
-            [UIApplication sharedApplication].keyWindow.rootViewController = tabBarCtrl;
+            self.tabBarController.selectedIndex = 2;
         }
             break;
         case 1:{
@@ -193,7 +191,7 @@
         [[TLUser user]saveUserInfo:dic];
         [[TLUser user]setUserInfoWithDict:dic];
         self.name.text = [TLUser user].nickname;
-        self.sign.text = [TLUser user].introduce;
+        self.sign.text = [NSString stringWithFormat:@"简介：%@" ,[TLUser user].introduce];
     } failure:^(NSError *error) {
         self.name.text = @"王大锤" ;
         self.logoimage.image =  [UIImage imageNamed:@"果树预售"];

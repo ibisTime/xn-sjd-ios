@@ -92,24 +92,28 @@
     }];
 }
 
+#pragma mark - 活动图片
 -(void)loadCentetImage
 {
     TLNetworking *http = [TLNetworking new];
-    
-    http.code = @"630047";
+    http.code = @"630045";
+    http.parameters[@"start"] = @(1);
+    http.parameters[@"limit"] = @(10);
+    http.parameters[@"type"] = @"SYS_TXT";
     http.parameters[@"ckey"] = @"ACTIVITY_PIC";
     
     [http postWithSuccess:^(id responseObject) {
-        [self.image sd_setImageWithURL:[NSURL URLWithString:        [responseObject[@"data"][@"cvalue"] convertImageUrl]]];
-      
+        [self.image sd_setImageWithURL:[NSURL URLWithString:[responseObject[@"data"][@"list"][0][@"cvalue"] convertImageUrl]]];
     } failure:^(NSError *error) {
     }];
+    
+    
+    
 }
 
 
 - (void)loadGoodsList
 {
-
     TLPageDataHelper *http = [TLPageDataHelper new];
     http.code = @"629706";
     http.parameters[@"start"] = @"0";
@@ -162,8 +166,15 @@
     if (self.footview) {
         return;
     }
+    
+    
     MallGoodsModel *model = self.HotTrees[0];
-    UIView * v1 = [self CreateViewWithFrame:CGRectMake(15, RecommendLab.yy + 10, (SCREEN_WIDTH - 30) / 2 , 200) GoodsNameFrame:CGRectMake(0, 26, (SCREEN_WIDTH - 30) / 2, 21) goodsname:model.name DescribeFrame:CGRectMake(0, 55, (SCREEN_WIDTH - 30) / 2, 16.5) describe:model.shopName Imageframe:CGRectMake((SCREEN_WIDTH - 30) / 2/2 - 60,55 + 16.5 + 26.5, 120, 90) ImageString:model.listPic];
+    NSString * describe;
+    if ([model.minPrice isEqualToString:model.maxPrice]) {
+        describe = [NSString stringWithFormat:@"¥%.2f",[model.minPrice floatValue]/1000];
+    }else
+        describe = [NSString stringWithFormat:@"%.2f起",[model.minPrice floatValue]/1000];
+    UIView * v1 = [self CreateViewWithFrame:CGRectMake(15, RecommendLab.yy + 10, (SCREEN_WIDTH - 30) / 2 , 200) GoodsNameFrame:CGRectMake(0, 26, (SCREEN_WIDTH - 30) / 2, 21) goodsname:model.name DescribeFrame:CGRectMake(0, 55, (SCREEN_WIDTH - 30) / 2, 16.5) describe:describe Imageframe:CGRectMake((SCREEN_WIDTH - 30) / 2/2 - 60,55 + 16.5 + 26.5, 120, 90) ImageString:model.listPic];
     [self.headview addSubview:v1];
     v1.tag = 100;
     v1.userInteractionEnabled = YES;
@@ -172,9 +183,17 @@
     if (self.HotTrees.count < 2) {
         return;
     }
+    
+    
+    
     MallGoodsModel *model1 = self.HotTrees[1];
-
-    UIView * v2 = [self CreateViewWithFrame:CGRectMake(v1.xx, RecommendLab.yy + 10, (SCREEN_WIDTH - 30) / 2 , 100) GoodsNameFrame:CGRectMake(10, 30.5, 85, 20) goodsname:model1.name DescribeFrame:CGRectMake(10, 55.5, 85, 16.5) describe:model.shopName Imageframe:CGRectMake(105, 20.5, SCREEN_WIDTH / 2 - 30 - 105, 100 - 41) ImageString:model.listPic];
+    NSString * describe1;
+    if ([model1.minPrice isEqualToString:model1.maxPrice]) {
+        describe1 = [NSString stringWithFormat:@"¥%.2f",[model1.minPrice floatValue]/1000];
+    }else
+        describe1 = [NSString stringWithFormat:@"%.2f起",[model1.minPrice floatValue]/1000];
+    
+    UIView * v2 = [self CreateViewWithFrame:CGRectMake(v1.xx, RecommendLab.yy + 10, (SCREEN_WIDTH - 30) / 2 , 100) GoodsNameFrame:CGRectMake(10, 30.5, 85, 20) goodsname:model1.name DescribeFrame:CGRectMake(10, 55.5, 85, 16.5) describe:describe1 Imageframe:CGRectMake(105, 20.5, SCREEN_WIDTH / 2 - 30 - 105, 100 - 41) ImageString:model1.listPic];
     [self.headview addSubview:v2];
     v2.tag = 101;
     v2.userInteractionEnabled = YES;
@@ -183,14 +202,26 @@
     if (self.HotTrees.count < 3) {
         return;
     }
+    
+    
+    
     MallGoodsModel *model2 = self.HotTrees[2];
-    UIView * v3 = [self CreateViewWithFrame:CGRectMake(v1.xx, v2.yy, (SCREEN_WIDTH - 30) / 2 , 100) GoodsNameFrame:CGRectMake(10, 30.5, 85, 20) goodsname:model2.name DescribeFrame:CGRectMake(10, 55.5, 85, 16.5) describe:model2.shopName Imageframe:CGRectMake(105, 20.5, SCREEN_WIDTH / 2 - 30 - 105, 100 - 41) ImageString:model2.listPic];
+    NSString * describe2;
+    if ([model2.minPrice isEqualToString:model2.maxPrice]) {
+        describe2 = [NSString stringWithFormat:@"¥%.2f",[model2.minPrice floatValue]/1000];
+    }else
+        describe2 = [NSString stringWithFormat:@"¥%.2f起",[model2.minPrice floatValue]/1000];
+    
+    UIView * v3 = [self CreateViewWithFrame:CGRectMake(v1.xx, v2.yy, (SCREEN_WIDTH - 30) / 2 , 100) GoodsNameFrame:CGRectMake(10, 30.5, 85, 20) goodsname:model2.name DescribeFrame:CGRectMake(10, 55.5, 85, 16.5) describe:describe2 Imageframe:CGRectMake(105, 20.5, SCREEN_WIDTH / 2 - 30 - 105, 100 - 41) ImageString:model2.listPic];
     [self.headview addSubview:v3];
     v3.userInteractionEnabled = YES;
     v3.tag = 102;
     UITapGestureRecognizer *ta2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hotGoodsClck:)];
     [v3 addGestureRecognizer:ta2];
     self.footview = v3;
+    
+    
+    
 }
 
 - (void)moreClick
@@ -321,7 +352,7 @@
         }
         PYSearchViewController *searchViewController ;
         searchViewController.state = @"home";
-        searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:arr searchBarPlaceholder:@"搜索" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+        searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:arr searchBarPlaceholder:@"搜索商品" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
             // 开始搜索执行以下代码
             // 如：跳转到指定控制器
             [arr insertObject:searchText atIndex:0];
@@ -345,20 +376,26 @@
 }
 
 -(void)searchViewController:(PYSearchViewController *)searchViewController didSearchWithsearchBar:(UISearchBar *)searchBar searchText:(NSString *)searchText{
-    TLNetworking * http = [[TLNetworking alloc]init];
-    http.showView = self.view;
-    http.code = @"629650";
-    http.parameters[@"userId"] = [TLUser user].userId;
-    http.parameters[@"type"] = @(2);
-    http.parameters[@"content"] = searchText;
-    [http postWithSuccess:^(id responseObject) {
-        MallGoodListViewController * vc = [[MallGoodListViewController alloc]init];
-        vc.state = @"search";
-        vc.SearchContent = searchText;
-        [self.navigationController pushViewController:vc animated:YES];
-    } failure:^(NSError *error) {
-        
-    }];
+    if (searchText.length== 0) {
+        [TLAlert alertWithInfo:@"请输入搜索内容！"];
+    }
+    else{
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.showView = self.view;
+        http.code = @"629650";
+        http.parameters[@"userId"] = [TLUser user].userId;
+        http.parameters[@"type"] = @(2);
+        http.parameters[@"content"] = searchText;
+        [http postWithSuccess:^(id responseObject) {
+            MallGoodListViewController * vc = [[MallGoodListViewController alloc]init];
+            vc.state = @"search";
+            vc.SearchContent = searchText;
+            [self.navigationController pushViewController:vc animated:YES];
+        } failure:^(NSError *error) {
+            
+        }];
+    }
+    
     
 }
 
@@ -400,8 +437,24 @@
     [view addSubview:GoodsName];
     
     UILabel * DescribeLab = [UILabel labelWithFrame:describeframe textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(12) textColor:kTextColor];
-    DescribeLab.text = describe;
+    
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:describe];
+    if ([describe containsString:@"起"]) {
+        [attrStr addAttribute:NSForegroundColorAttributeName
+                        value:RGB(241, 113, 55)
+                        range:NSMakeRange(0, describe.length-1)];
+        [attrStr addAttribute:NSForegroundColorAttributeName
+                        value:kTextColor2
+                        range:NSMakeRange(describe.length-1, 1)];
+    }else{
+        [attrStr addAttribute:NSForegroundColorAttributeName
+                        value:RGB(241, 113, 55)
+                        range:NSMakeRange(0, describe.length)];
+    }
+    DescribeLab.attributedText = attrStr;
     [view addSubview:DescribeLab];
+    
+    
     
     UIImageView * image = [[UIImageView alloc]initWithFrame:imageframe];
     [view addSubview:image];

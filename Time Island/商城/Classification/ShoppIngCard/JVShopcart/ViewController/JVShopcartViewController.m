@@ -14,6 +14,7 @@
 #import "JVShopcartFormat.h"
 #import "Masonry.h"
 #import "SubmitOrdersVC.h"
+#import "ShopCartSubmitOrderVC.h"
 @interface JVShopcartViewController ()<JVShopcartFormatDelegate>
 
 @property (nonatomic, strong) UITableView *shopcartTableView;   /**< 购物车列表 */
@@ -21,20 +22,24 @@
 @property (nonatomic, strong) JVShopcartTableViewProxy *shopcartTableViewProxy;    /**< tableView代理 */
 @property (nonatomic, strong) JVShopcartFormat *shopcartFormat;    /**< 负责购物车逻辑处理 */
 @property (nonatomic, strong) UIButton *editButton;    /**< 编辑按钮 */
-
+@property (nonatomic,assign) CGFloat  totalprice;
 @end
 
 @implementation JVShopcartViewController
+
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.barTintColor = kBlackColor;
+    [self requestShopcartListData];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 - (void)viewDidLoad {
@@ -49,6 +54,7 @@
 
 - (void)requestShopcartListData {
     [self.shopcartFormat requestShopcartProductList];
+    [self shopcartFormatAccountForTotalPrice:0 totalCount:0 isAllSelected:NO];
 }
 
 #pragma mark JVShopcartFormatDelegate
@@ -61,14 +67,25 @@
 
 //购物车视图需要更新时的统一回调
 - (void)shopcartFormatAccountForTotalPrice:(float)totalPrice totalCount:(NSInteger)totalCount isAllSelected:(BOOL)isAllSelected {
+    self.totalprice = totalPrice;
     [self.shopcartBottomView configureShopcartBottomViewWithTotalPrice:totalPrice totalCount:totalCount isAllselected:isAllSelected];
     [self.shopcartTableView reloadData];
 }
 
 //点击结算按钮后的回调
 - (void)shopcartFormatSettleForSelectedProducts:(NSArray *)selectedProducts {
-    SubmitOrdersVC *order = [SubmitOrdersVC new];
-    [self.navigationController pushViewController:order animated:YES];
+    if (self.totalprice == 0) {
+//        [TLAlert alertWithError:@"请选择商品"];
+        [TLAlert alertWithMsg:@"请选择商品" viewCtrl:self];
+    }
+    else{
+        ShopCartSubmitOrderVC *order = [ShopCartSubmitOrderVC new];
+        order.totalprice = self.totalprice;
+        order.JVShopcartBrandModels = [JVShopcartBrandModel mj_objectArrayWithKeyValuesArray:selectedProducts];
+        [self.navigationController pushViewController:order animated:YES];
+    }
+    
+    
 }
 
 //批量删除回调
@@ -76,6 +93,15 @@
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"确认要删除这%ld个宝贝吗？", selectedProducts.count] preferredStyle:UIAlertControllerStyleAlert];
     [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
     [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        TLNetworking * http = [[TLNetworking alloc]init];
+        http.code = @"629711";
+        http.parameters[@"codeList"] = selectedProducts;
+        [http postWithSuccess:^(id responseObject) {
+            [TLAlert alertWithInfo:@"删除成功"];
+            [self requestShopcartListData];
+        } failure:^(NSError *error) {
+            
+        }];
         [self.shopcartFormat deleteSelectedProducts:selectedProducts];
     }]];
     [self presentViewController:alert animated:YES completion:nil];

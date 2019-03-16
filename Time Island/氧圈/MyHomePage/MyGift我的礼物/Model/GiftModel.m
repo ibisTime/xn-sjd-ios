@@ -9,5 +9,8 @@
 #import "GiftModel.h"
 
 @implementation GiftModel
-
++(NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"Description": @"description"};
+}
 @end

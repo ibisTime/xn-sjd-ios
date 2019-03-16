@@ -22,6 +22,7 @@
 #import "BuyPropsView.h"
 #import "HistroyUserVC.h"
 #import "RecordVC.h"
+#import "MyGiftVC.h"
 @interface MyTreeVC ()<RefreshDelegate,ClickDelegate,ClickConvertDelegrate,BuyPropsdelegate>
 
 @property (nonatomic , strong)MyTreeTableView *tableView;
@@ -215,6 +216,11 @@
         else{
             self.state = nil;
         }
+    }
+    else if ([state isEqualToString:@"礼物"]){
+        MyGiftVC * vc = [[MyGiftVC alloc]init];
+        vc.adoptTreeCode = self.model.code;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

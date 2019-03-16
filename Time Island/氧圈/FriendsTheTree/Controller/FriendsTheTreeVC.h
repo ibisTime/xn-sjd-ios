@@ -12,5 +12,6 @@
 @interface FriendsTheTreeVC : TLBaseVC
 @property (nonatomic , strong)PersonalCenterModel *model;
 @property (nonatomic,strong) DynamicModel * DynamicModel;
+
 @property (nonatomic,strong) NSMutableArray * Info;
 @end

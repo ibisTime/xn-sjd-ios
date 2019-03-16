@@ -101,7 +101,7 @@
     self.statusLbl.text = [NSString stringWithFormat:@"月销 %@",model.monthSellCount];
     [self.statusLbl sizeToFit];
     self.statusLbl.frame = CGRectMake(10, _headImage.yy + 55, self.statusLbl.width + 10, 22);
-    NSString *str= [NSString stringWithFormat:@"¥%@",model.originalPrice];
+    NSString *str= [NSString stringWithFormat:@"¥%.2f",[model.minPrice floatValue]/1000];
     
     
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:str];

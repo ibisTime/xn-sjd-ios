@@ -29,6 +29,7 @@
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic,strong) NSMutableArray * imageArraay ;
 @property (nonatomic,strong) NSString * introduce;
+@property (nonatomic,strong) NSString * name;
 @end
 
 @implementation MallStoreListVC
@@ -91,8 +92,9 @@
     [self.headerView addSubview:_headImage];
     
     _nameLable = [UILabel labelWithFrame:CGRectMake(0, _headImage.yy+11, SCREEN_WIDTH, 22.5) textAligment:NSTextAlignmentCenter backgroundColor:kClearColor font:FONT(16) textColor:kBlackColor];
-    _nameLable.text = self.treeModel.shopName;
+    
     [_nameLable setFont:[UIFont fontWithName:@"Helvetica-Bold" size:16]];
+    _nameLable.text = @"";
     [self.headerView addSubview:_nameLable];
     
     
@@ -197,6 +199,7 @@
 //    [headerView addSubview:self.headerView];
     headerView.imageArraay = self.imageArraay;
     headerView.str = self.introduce;
+    headerView.name = self.name; 
     headerView.QWCategorys = self.QWCategorys;
     headerView.treeModel = self.treeModel;
     
@@ -228,7 +231,10 @@
     
     MallGoodListViewController *list = [MallGoodListViewController new];
     list.parentCategoryCode = self.QWCategorys[sender.tag].code;
-    list.shopCode = self.treeModel.shopCode;
+    if (self.shopcode) {
+        list.shopCode = self.shopcode;
+    }else
+        list.shopCode = self.treeModel.shopCode;
     list.title = @"商品列表";
     [self.navigationController pushViewController:list animated:YES];
 }
@@ -258,7 +264,11 @@
     TLNetworking *http = [TLNetworking new];
     http.code = @"630506";
     http.showView = self.view;
-    http.parameters[@"shopCode"] = self.treeModel.shopCode;
+    if (self.shopcode) {
+        http.parameters[@"shopCode"] = self.shopcode;
+    }
+    else
+        http.parameters[@"shopCode"] = self.treeModel.shopCode;
     http.parameters[@"type"] = @"7";
     [http postWithSuccess:^(id responseObject) {
         
@@ -288,11 +298,17 @@
     TLNetworking *http = [TLNetworking new];
     http.code = @"630307";
     http.showView = self.view;
-    http.parameters[@"code"] = self.treeModel.shopCode;
+    if (self.shopcode) {
+        http.parameters[@"code"] = self.shopcode;
+    }
+    else
+        http.parameters[@"code"] = self.treeModel.shopCode;
     [http postWithSuccess:^(id responseObject) {
         
         weakSelf.introduceLable.text = responseObject[@"data"][@"description"];
         weakSelf.introduce = responseObject[@"data"][@"description"];
+        weakSelf.nameLable.text = responseObject[@"data"][@"name"];
+        weakSelf.name = responseObject[@"data"][@"name"];
         [self.collectionView reloadData];
     } failure:^(NSError *error) {
         
@@ -307,7 +323,11 @@
     http.parameters[@"status"] = @(4);
     http.parameters[@"orderColumn"] = @"order_no";
     http.parameters[@"orderDir"] = @"asc";
-    http.parameters[@"shopCode"] = self.treeModel.shopCode;
+    if (self.shopcode) {
+        http.parameters[@"code"] = self.shopcode;
+    }
+    else
+        http.parameters[@"shopCode"] = self.treeModel.shopCode;
     [http postWithSuccess:^(id responseObject) {
         NSMutableArray *array = responseObject[@"data"][@"list"];
         self.MallGoodsModels = [MallGoodsModel mj_objectArrayWithKeyValuesArray:array];

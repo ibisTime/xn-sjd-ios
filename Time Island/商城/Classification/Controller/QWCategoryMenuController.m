@@ -74,6 +74,7 @@
     CoinWeakSelf;
     [http postWithSuccess:^(id responseObject) {
         self.catelogyList = [QWCategory mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        self.catelogyList = (NSMutableArray *)[[self.catelogyList reverseObjectEnumerator]allObjects];
         [self.tableView reloadData];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];

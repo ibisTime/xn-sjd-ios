@@ -56,7 +56,8 @@
     [self.productImageView sd_setImageWithURL:encodingURL];
     self.productNameLable.text = productName;
     self.productSizeLable.text = productSize;
-    self.productPriceLable.text = [NSString stringWithFormat:@"￥%ld", productPrice];
+    
+    self.productPriceLable.text = [NSString stringWithFormat:@"￥%.2f",(float)productPrice   / 1000];
     self.productSelectButton.selected = productSelected;
     [self.shopcartCountView configureShopcartCountViewWithProductCount:productCount productStock:productStock];
     self.productStockLable.text = [NSString stringWithFormat:@"库存:%ld", productStock];

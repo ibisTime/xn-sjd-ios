@@ -11,11 +11,11 @@
 
 @interface JVShopcartBrandModel : NSObject
 
-@property (nonatomic, copy) NSString *brandId;
+@property (nonatomic, copy) NSString *shopCode;
 
 @property (nonatomic, strong) NSMutableArray<JVShopcartProductModel *> *cartList;
 
-@property (nonatomic, copy) NSString *brandName;
+@property (nonatomic, copy) NSString *shopName;
 
 @property (nonatomic, assign)BOOL isSelected; //记录相应section是否全选（自定义）
 

@@ -14,7 +14,7 @@
     NSArray *array;
     NSArray *array1;
 }
-@property (nonatomic,strong) MesModel * MesModels;
+@property (nonatomic,strong) NSMutableArray<MesModel *> * MesModels;
 @property (nonatomic,strong) NSMutableArray<MesModel*> * model;
 @property (nonatomic,strong) ServiceTableView * tableview;
 @property (nonatomic,strong) NSString * content;
@@ -76,17 +76,21 @@
         http.parameters[@"user1"] = [TLUser user].userId;
         http.parameters[@"user2"] = self.user2;
         [http postWithSuccess:^(id responseObject) {
-            self.MesModels = responseObject[@"data"][@"list"];
+            self.MesModels = [MesModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
             
-            self.tableview.model = [MesModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-            array = self.tableview.model[0].messageList;
-            if (array.count != array1.count) {
-                [self.tableview reloadData];
+            if (self.MesModels.count > 0) {
+                self.tableview.model = [MesModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+                array = self.tableview.model[0].messageList;
+                if (array.count != array1.count) {
+                    [self.tableview reloadData];
+                }
+                array1 = self.tableview.model[0].messageList;
+                
+                self.model = [MesModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+                [self loadData];
             }
-            array1 = self.tableview.model[0].messageList;
             
-            self.model = [MesModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
-            [self loadData];
+            
         } failure:^(NSError *error) {
             
         }];

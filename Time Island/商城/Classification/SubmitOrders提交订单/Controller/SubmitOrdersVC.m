@@ -46,6 +46,7 @@
         weakSelf.count = count;
         weakSelf.selectnum = selectnum;
         NSString * str = [NSString stringWithFormat:@"合计 ：%.2f",[self.MallGoodsModel.specsList[self.selectnum][@"price"] floatValue]  * self.count / 1000];
+        
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:str];
         [attrStr addAttribute:NSForegroundColorAttributeName
                         value:kTextColor

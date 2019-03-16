@@ -68,6 +68,9 @@
         cell.textLabel.font = FONT(13);
         return cell;
     }
+    
+    
+    
     static NSString *CellIdentifier = @"Cell";
     // 通过唯一标识创建cell实例
     _cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -75,74 +78,12 @@
     if (!_cell) {
         _cell = [[TeamPostCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-//    static NSString *CellIdentifier = @"Cell";
-//    _cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
-//    if (_cell == nil) {
-//        _cell = [[TeamPostCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        _cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        _cell.evaModel = self.evaluationModel[indexPath.row];
-        _cell.informationLabel.delegate = self;
-//    _cell.informationLabel.scalesPageToFit = YES;
-//        NSString *htmls = [NSString stringWithFormat:@"<html> \n"
-//                           "<head> \n"
-//                           "<style type=\"text/css\"> \n"
-//                           "body {font-size:%ldpx;}\n"// 字体大小，px是像素
-//                           "</style> \n"
-//                           "</head> \n"
-//                           "<body>"
-//                           "<script type='text/javascript'>"
-//                           "window.onload = function(){\n"
-//                           "var $img = document.getElementsByTagName('img');\n"
-//                           "for(var p in  $img){\n"
-//                           "$img[p].style.width = '100%%';\n"// 图片宽度
-//                           "$img[p].style.height ='300px'\n"// 高度自适应
-//                           "}\n"
-//                           "}"
-//                           "</script>%@"
-//                           "</body>"
-//                           "</html>",30, self.evaluationModel[indexPath.row].content];
-//        [_cell.informationLabel loadHTMLString:htmls baseURL:nil];
-//        [_cell.informationLabel.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
-//    }
+    _cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    _cell.evaModel = self.evaluationModel[indexPath.row];
     
-//    tag = indexPath.row + 1000;
-    
-//    _cell.informationLabel.tag = indexPath.row + 1000;
     return _cell;
 }
-//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-//    if ([keyPath isEqualToString:@"contentSize"]) {
-//        _webViewHeight1 = [[_cell.informationLabel stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
-////        UIWebView *webview = [self viewWithTag:tag];
-//        _cell.informationLabel.frame = CGRectMake(15, 53, SCREEN_WIDTH - 30, _webViewHeight1);
-////        [self reloadData];
-//    }
-//}
 
-//这个知识点主要是自己最近在尝试写后台接口  在移动端展示的时候需要用到这个知识点,在webViewDidFinishLoad方法里面执行一段js代码  拿到各个图片  判断其宽度是否大于当前手机屏幕尺寸,是的话则调整为屏幕宽度显示,不是的话则原样显示
-
-//代码如下:
-//- (void)webViewDidFinishLoad:(UIWebView *)webView {
-//    //    2、都有效果
-//    NSString *js=@"var script = document.createElement('script');"
-//    "script.type = 'text/javascript';"
-//    "script.text = \"function ResizeImages() { "
-//    "var myimg,oldwidth;"
-//    "var maxwidth = %f;"
-//    "for(i=0;i <document.images.length;i++){"
-//    "myimg = document.images[i];"
-//    "if(myimg.width > maxwidth){"
-//    "oldwidth = myimg.width;"
-//    "myimg.width = %f;"
-//    "}"
-//    "}"
-//    "}\";"
-//    "document.getElementsByTagName('head')[0].appendChild(script);";
-//    js=[NSString stringWithFormat:js,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.width-15];
-//    [webView stringByEvaluatingJavaScriptFromString:js];
-//    [webView stringByEvaluatingJavaScriptFromString:@"ResizeImages();"];
-//
-//}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -157,8 +98,25 @@
     if (indexPath.section == 1) {
         return 55;
     }
-    UIWebView *webview = [self viewWithTag:tag];
-    return 60 + 350;
+    EvaluationModel * model = self.evaluationModel[indexPath.row];
+    
+    CGFloat height =  [self getcellheight:model.content];
+    if ([self.evaluationModel[indexPath.row].content containsString:@"<img"]) {
+        return 60 + height + 115;
+    }
+    return 60 + height ;
+}
+
+-(CGFloat)getcellheight:(NSString *)content{
+    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(15,0, SCREEN_WIDTH - 30, 10)];
+    label.numberOfLines = 0;
+    NSRange startRange = [content rangeOfString:@"<p>"];
+    NSRange endRange = [content rangeOfString:@"</p>"];
+    NSRange range = NSMakeRange(startRange.location + startRange.length, endRange.location - startRange.location - startRange.length);
+    NSString * title = [content substringWithRange:range];
+    label.text = title;
+    [label sizeToFit];
+    return label.height;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -216,8 +174,5 @@
     
     return [UIView new];
 }
--(void)dealloc{
-    [_cell.informationLabel.scrollView removeObserver:self forKeyPath:@"contentSize" context:nil];
-    
-}
+
 @end

@@ -9,5 +9,5 @@
 #import "TLBaseVC.h"
 
 @interface MyGiftVC : TLBaseVC
-
+@property (nonatomic,strong) NSString * adoptTreeCode;
 @end

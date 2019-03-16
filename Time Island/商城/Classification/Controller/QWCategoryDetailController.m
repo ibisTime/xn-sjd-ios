@@ -141,6 +141,7 @@ static NSString * const reuseIdentifierImageCell = @"imageCell";
     CoinWeakSelf;
     [http postWithSuccess:^(id responseObject) {
         self.catelogyList = [QWCategory mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"list"]];
+        self.catelogyList = (NSMutableArray*)[[self.catelogyList reverseObjectEnumerator]allObjects];
         if (self.catelogyList.count == 0) {
             [self.collectionView reloadData];
 

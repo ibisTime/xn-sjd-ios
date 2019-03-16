@@ -90,6 +90,7 @@
         cell.delegate = self;
         cell.energyModels = self.energyModels;
         cell.model = self.model;
+        [cell.btn addTarget:self action:@selector(giftclick:) forControlEvents:(UIControlEventTouchUpInside)];
         return cell;
     }
     
@@ -173,6 +174,7 @@
     }];
 
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.section == 0) {
@@ -256,9 +258,9 @@
     [self reloadData];
     [self.refreshDelegate refreshTableViewButtonClick:self button:sender state:@"点击"];
 }
-
-
-
+-(void)giftclick:(UIButton *)sender{
+    [self.refreshDelegate refreshTableViewButtonClick:self button:sender state:@"礼物"];
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
     if (section == 2) {
