@@ -13,7 +13,7 @@
 
 @property (nonatomic, copy) NSString *brandId;
 
-@property (nonatomic, strong) NSMutableArray<JVShopcartProductModel *> *products;
+@property (nonatomic, strong) NSMutableArray<JVShopcartProductModel *> *cartList;
 
 @property (nonatomic, copy) NSString *brandName;
 

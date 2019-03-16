@@ -21,22 +21,38 @@
 
 - (void)requestShopcartProductList {
     //在这里请求数据 当然我直接用本地数据模拟的
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"shopcart" ofType:@"plist"];
-    NSMutableArray *dataArray = [NSMutableArray arrayWithContentsOfFile:plistPath];
-    self.shopcartListArray = [JVShopcartBrandModel mj_objectArrayWithKeyValuesArray:dataArray];
+//    NSString *plistPath = [[NSBundle mainBundxle] pathForResource:@"shopcart" ofType:@"plist"];
+//    http.code = @"629715";
+//    http.parameters[@"userId"] = [TLUser user].userId;
     
-    //成功之后回调
-    [self.delegate shopcartFormatRequestProductListDidSuccessWithArray:self.shopcartListArray];
+    TLNetworking * http = [[TLNetworking alloc]init];
+    http.code = @"629715";
+    http.parameters[@"userId"] = [TLUser user].userId;
+    [http postWithSuccess:^(id responseObject) {
+//        self.shopcartListArray = [JVShopcartBrandModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        [self.delegate shopcartFormatRequestProductListDidSuccessWithArray:self.shopcartListArray];
+        
+        self.shopcartListArray = [JVShopcartBrandModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+        
+        //成功之后回调
+        [self.delegate shopcartFormatRequestProductListDidSuccessWithArray:self.shopcartListArray];
+        
+    } failure:^(NSError *error) {
+        
+    }];
+    
+//    NSMutableArray *dataArray = [NSMutableArray arrayWithContentsOfFile:plistPath];
+    
 }
 
 - (void)selectProductAtIndexPath:(NSIndexPath *)indexPath isSelected:(BOOL)isSelected {
     JVShopcartBrandModel *brandModel = self.shopcartListArray[indexPath.section];
-    JVShopcartProductModel *productModel = brandModel.products[indexPath.row];
+    JVShopcartProductModel *productModel = brandModel.cartList[indexPath.row];
     productModel.isSelected = isSelected;
     
     BOOL isBrandSelected = YES;
     
-    for (JVShopcartProductModel *aProductModel in brandModel.products) {
+    for (JVShopcartProductModel *aProductModel in brandModel.cartList) {
         if (aProductModel.isSelected == NO) {
             isBrandSelected = NO;
         }
@@ -51,7 +67,7 @@
     JVShopcartBrandModel *brandModel = self.shopcartListArray[section];
     brandModel.isSelected = isSelected;
     
-    for (JVShopcartProductModel *aProductModel in brandModel.products) {
+    for (JVShopcartProductModel *aProductModel in brandModel.cartList) {
         aProductModel.isSelected = brandModel.isSelected;
     }
     
@@ -60,31 +76,31 @@
 
 - (void)changeCountAtIndexPath:(NSIndexPath *)indexPath count:(NSInteger)count {
     JVShopcartBrandModel *brandModel = self.shopcartListArray[indexPath.section];
-    JVShopcartProductModel *productModel = brandModel.products[indexPath.row];
+    JVShopcartProductModel *productModel = brandModel.cartList[indexPath.row];
     if (count <= 0) {
         count = 1;
-    } else if (count > productModel.productStocks) {
-        count = productModel.productStocks;
+    } else if (count > 1000) {
+        count = [productModel.quantity integerValue];
     }
     
     //根据请求结果决定是否改变数据
-    productModel.productQty = count;
+    productModel.quantity = [NSString stringWithFormat:@"%ld",count];
     
     [self.delegate shopcartFormatAccountForTotalPrice:[self accountTotalPrice] totalCount:[self accountTotalCount] isAllSelected:[self isAllSelected]];
 }
 
 - (void)deleteProductAtIndexPath:(NSIndexPath *)indexPath {
     JVShopcartBrandModel *brandModel = self.shopcartListArray[indexPath.section];
-    JVShopcartProductModel *productModel = brandModel.products[indexPath.row];
+    JVShopcartProductModel *productModel = brandModel.cartList[indexPath.row];
     
     //根据请求结果决定是否删除
-    [brandModel.products removeObject:productModel];
-    if (brandModel.products.count == 0) {
+    [brandModel.cartList removeObject:productModel];
+    if (brandModel.cartList.count == 0) {
         [self.shopcartListArray removeObject:brandModel];
     } else {
         if (!brandModel.isSelected) {
             BOOL isBrandSelected = YES;
-            for (JVShopcartProductModel *aProductModel in brandModel.products) {
+            for (JVShopcartProductModel *aProductModel in brandModel.cartList) {
                 if (!aProductModel.isSelected) {
                     isBrandSelected = NO;
                     break;
@@ -107,7 +123,7 @@
 - (void)beginToDeleteSelectedProducts {
     NSMutableArray *selectedArray = [[NSMutableArray alloc] init];
     for (JVShopcartBrandModel *brandModel in self.shopcartListArray) {
-        for (JVShopcartProductModel *productModel in brandModel.products) {
+        for (JVShopcartProductModel *productModel in brandModel.cartList) {
             if (productModel.isSelected) {
                 [selectedArray addObject:productModel];
             }
@@ -122,9 +138,9 @@
     //根据请求结果决定是否批量删除
     NSMutableArray *emptyArray = [[NSMutableArray alloc] init];
     for (JVShopcartBrandModel *brandModel in self.shopcartListArray) {
-        [brandModel.products removeObjectsInArray:selectedArray];
+        [brandModel.cartList removeObjectsInArray:selectedArray];
         
-        if (brandModel.products.count == 0) {
+        if (brandModel.cartList.count == 0) {
             [emptyArray addObject:brandModel];
         }
     }
@@ -153,7 +169,7 @@
 - (void)selectAllProductWithStatus:(BOOL)isSelected {
     for (JVShopcartBrandModel *brandModel in self.shopcartListArray) {
         brandModel.isSelected = isSelected;
-        for (JVShopcartProductModel *productModel in brandModel.products) {
+        for (JVShopcartProductModel *productModel in brandModel.cartList) {
             productModel.isSelected = isSelected;
         }
     }
@@ -165,7 +181,7 @@
     NSMutableArray *settleArray = [[NSMutableArray alloc] init];
     for (JVShopcartBrandModel *brandModel in self.shopcartListArray) {
         NSMutableArray *selectedArray = [[NSMutableArray alloc] init];
-        for (JVShopcartProductModel *productModel in brandModel.products) {
+        for (JVShopcartProductModel *productModel in brandModel.cartList) {
             if (productModel.isSelected) {
                 [selectedArray addObject:productModel];
             }
@@ -186,9 +202,9 @@
 - (float)accountTotalPrice {
     float totalPrice = 0.f;
     for (JVShopcartBrandModel *brandModel in self.shopcartListArray) {
-        for (JVShopcartProductModel *productModel in brandModel.products) {
+        for (JVShopcartProductModel *productModel in brandModel.cartList) {
             if (productModel.isSelected) {
-                totalPrice += productModel.productPrice * productModel.productQty;
+                totalPrice += [productModel.amount integerValue] * [productModel.quantity integerValue];
             }
         }
     }
@@ -200,9 +216,9 @@
     NSInteger totalCount = 0;
     
     for (JVShopcartBrandModel *brandModel in self.shopcartListArray) {
-        for (JVShopcartProductModel *productModel in brandModel.products) {
+        for (JVShopcartProductModel *productModel in brandModel.cartList) {
             if (productModel.isSelected) {
-                totalCount += productModel.productQty;
+                totalCount += [productModel.quantity integerValue];
             }
         }
     }

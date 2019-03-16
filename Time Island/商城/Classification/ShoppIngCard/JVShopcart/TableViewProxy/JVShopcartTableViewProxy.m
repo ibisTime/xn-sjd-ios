@@ -21,20 +21,23 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     JVShopcartBrandModel *brandModel = self.dataArray[section];
-    NSArray *productArray = brandModel.products;
+    NSArray *productArray = brandModel.cartList;
     return productArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     JVShopcartCell *cell = [tableView dequeueReusableCellWithIdentifier:@"JVShopcartCell"];
     JVShopcartBrandModel *brandModel = self.dataArray[indexPath.section];
-    NSArray *productArray = brandModel.products;
+    NSArray *productArray = brandModel.cartList;
   
     if (productArray.count > indexPath.row) {
         JVShopcartProductModel *productModel = productArray[indexPath.row];
-        NSString *productName = [NSString stringWithFormat:@"%@%@%@", brandModel.brandName, productModel.productStyle, productModel.productType];
-        NSString *productSize = [NSString stringWithFormat:@"W:%ld H:%ld D:%ld", productModel.specWidth, productModel.specHeight, productModel.specLength];
-        [cell configureShopcartCellWithProductURL:productModel.productPicUri productName:productName productSize:productSize productPrice:productModel.productPrice productCount:productModel.productQty productStock:productModel.productStocks productSelected:productModel.isSelected];
+//        NSString *productName = [NSString stringWithFormat:@"%@%@%@", brandModel.brandName, productModel.productStyle, productModel.productType];
+//        NSString *productSize = productModel.commodityName;
+        [cell configureShopcartCellWithProductURL:
+         [productModel.commodityPhoto convertImageUrl]
+         productName:productModel.commodityName
+         productSize:productModel.specsName productPrice:[productModel.amount integerValue] productCount:[productModel.quantity integerValue] productStock:1000 productSelected:productModel.isSelected];
     }
     
     __weak __typeof(self) weakSelf = self;
